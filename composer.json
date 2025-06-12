@@ -1,13 +1,12 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/vue-starter-kit",
-    "type": "project",
     "description": "The skeleton application for the Laravel framework.",
+    "license": "MIT",
+    "type": "project",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "license": "MIT",
     "require": {
         "php": "^8.4",
         "inertiajs/inertia-laravel": "^2.0.2",
@@ -34,6 +33,8 @@
         "spaze/phpstan-disallowed-calls": "^4.5",
         "wulfheart/laravel-actions-ide-helper": "^0.10.0"
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -49,13 +50,28 @@
             "Tests\\": "tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
     "scripts": {
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -74,32 +90,16 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr\" --names=server,queue,logs,ssr --kill-others"
         ],
-        "test": [
-            "@php artisan config:clear --ansi",
-            "@php artisan test"
-        ],
         "lint": "php phplint.phar",
         "phpcs": "./vendor/bin/pint",
         "phpcs-check": "./vendor/bin/pint --test",
         "phpstan": "./vendor/bin/phpstan analyse",
         "rector": "vendor/bin/rector process",
-        "rector-check": "vendor/bin/rector process --dry-run"
+        "rector-check": "vendor/bin/rector process --dry-run",
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ]
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "$schema": "https://getcomposer.org/schema.json"
 }

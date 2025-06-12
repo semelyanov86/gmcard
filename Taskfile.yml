@@ -57,6 +57,7 @@ tasks:
       - task: type-check
       - task: audit
       - task: eslint
+      - "npm audit"
 
   type-check:
     desc: "Run checker in typescript"

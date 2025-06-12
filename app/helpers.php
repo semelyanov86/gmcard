@@ -13,7 +13,7 @@ if (! function_exists('config_string')) {
         /** @var ?string $result */
         $result = config($key, $default);
         if (! $result) {
-            throw new InvalidArgumentException('Wrong config param for key ' . $key);
+            throw new InvalidArgumentException('Wrong config param for key '.$key);
         }
 
         return $result;
@@ -29,7 +29,7 @@ if (! function_exists('config_int')) {
         /** @var ?int $result */
         $result = config($key, $default);
         if (! $result || $result < 1) {
-            throw new InvalidArgumentException('Wrong config param for key ' . $key);
+            throw new InvalidArgumentException('Wrong config param for key '.$key);
         }
 
         return $result;
@@ -88,6 +88,6 @@ if (! function_exists('jsonDecode')) {
 if (! function_exists('formatCurrency')) {
     function formatCurrency(int $value): string
     {
-        return Number::currency($value / 100, 'RUB', 'ru-RU') . '';
+        return Number::currency($value / 100, 'RUB', 'ru-RU').'';
     }
 }
