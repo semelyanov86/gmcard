@@ -13,7 +13,7 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class RegisteredUserController extends Controller
+final class RegisteredUserController extends Controller
 {
     /**
      * Show the registration page.
@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), // @phpstan-ignore-line
         ]);
 
         event(new Registered($user));

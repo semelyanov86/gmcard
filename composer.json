@@ -23,6 +23,7 @@
         "driftingly/rector-laravel": "^2.0",
         "ergebnis/composer-normalize": "^2.47",
         "fakerphp/faker": "^1.24.1",
+        "larastan/larastan": "^3.4",
         "laravel/pail": "^1.2.3",
         "laravel/pint": "^1.22.1",
         "laravel/sail": "^1.43.1",

@@ -10,7 +10,7 @@ use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class PasswordController extends Controller
+final class PasswordController extends Controller
 {
     /**
      * Show the user's password settings page.
@@ -30,7 +30,7 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        $request->user()->update([
+        $request->user()?->update([
             'password' => Hash::make($validated['password']),
         ]);
 

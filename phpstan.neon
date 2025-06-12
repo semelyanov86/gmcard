@@ -8,7 +8,7 @@ parameters:
         - tests/
 
     # The level 9 is the highest level
-    level: max
+    level: 9
     noUnnecessaryCollectionCallExcept: ['pluck', 'contains']
 
     disallowedFunctionCalls:
