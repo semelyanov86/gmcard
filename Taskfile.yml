@@ -207,8 +207,8 @@ tasks:
       - "php artisan config:clear"
       - "php artisan cache:clear"
       - "npm run build"
-      - "php artisan dependency:versions"
       - "php artisan queue:restart"
+      - "php artisan octane:reload"
 
   work:
     desc: "Run queue jobs"
