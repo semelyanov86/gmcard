@@ -2,12 +2,14 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
+        "build": "vue-tsc && vite build",
         "build:ssr": "vite build && vite build --ssr",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix"
+        "lint": "eslint . --fix",
+        "check": "eslint .",
+        "check:type": "vue-tsc"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",

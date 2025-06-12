@@ -12,7 +12,10 @@
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
+        "laravel/octane": "^2.9",
         "laravel/tinker": "^2.10.1",
+        "spiral/roadrunner-cli": "^2.6.0",
+        "spiral/roadrunner-http": "^3.3.0",
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
