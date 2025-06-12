@@ -1,0 +1,52 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+    - ./vendor/spaze/phpstan-disallowed-calls/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - tests/
+
+    # The level 9 is the highest level
+    level: 9
+    noUnnecessaryCollectionCallExcept: ['pluck', 'contains']
+
+    disallowedFunctionCalls:
+        -
+            function: 'var_dump()'
+            message: 'use logger instead'
+        -
+            function: 'print_r()'
+            message: 'use logger instead'
+        -
+            function: 'd()'
+            message: 'use logger instead'
+        -
+            function: 'dd()'
+            message: 'use logger instead'
+        -
+            function: 'die()'
+            message: 'use logger instead'
+        -
+            function: 'dump()'
+            message: 'use logger instead'
+        -
+            function: 'print()'
+            message: 'use logger instead'
+        -
+            function: 'echo'
+            message: 'use logger instead'
+        -
+            function: 'eval()'
+            message: 'not allowed for security reasons'
+        -
+            function: 'exit()'
+            message: 'not allowed for security reasons'
+
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
+
+#    reportUnmatchedIgnoredErrors: false
