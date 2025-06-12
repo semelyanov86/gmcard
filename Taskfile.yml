@@ -57,7 +57,6 @@ tasks:
       - task: type-check
       - task: audit
       - task: eslint
-      - "npm audit"
 
   type-check:
     desc: "Run checker in typescript"
@@ -91,7 +90,7 @@ tasks:
     desc: "Find all vulnerabilities in front end and backend"
     cmds:
       - "{{.EXEC_PHP}} composer audit"
-#      - npm audit
+      - npm audit
 
   generate:
     desc: "Generate helper ide mockups"
