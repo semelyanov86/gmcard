@@ -1,0 +1,51 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  tests:
+    needs: lint
+    uses: ./.github/workflows/tests.yml
+
+  dedploy:
+    needs: tests
+    runs-on: ubuntu-latest
+    env:
+      LARAVEL_PATH: '/var/www/laravel/gmcard'
+      WWW_USER: 'www-data'
+      WWW_HOME: '/var/www'
+
+    steps:
+      - name: Run laravel commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            sudo cp -r /home/${{ secrets.USER }}/.ssh ${{ env.WWW_HOME }}/
+            sudo chown -R ${{ env.WWW_USER }}: ${{ env.WWW_HOME }}/.ssh
+            cd ${{ env.LARAVEL_PATH }}
+            sudo -u ${{ env.WWW_USER }} git reset --hard
+            sudo -u ${{ env.WWW_USER }} task deploy
+            if [[ $? != 0 ]]; then exit 1; fi
+            sudo rm -rf ${WWW_HOME}/.ssh
+
+
+
+
+
+
+
