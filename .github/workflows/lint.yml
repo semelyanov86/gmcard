@@ -1,7 +1,14 @@
 name: linter
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
 
 permissions:
   contents: write

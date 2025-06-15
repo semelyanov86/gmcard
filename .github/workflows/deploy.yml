@@ -11,14 +11,11 @@ on:
       - main
 
 jobs:
-  lint:
-    uses: ./.github/workflows/lint.yml
-
   tests:
     needs: lint
     uses: ./.github/workflows/tests.yml
 
-  dedploy:
+  deploy:
     needs: tests
     runs-on: ubuntu-latest
     env:
