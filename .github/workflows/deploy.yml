@@ -49,5 +49,5 @@ jobs:
             sudo -u ${{ env.WWW_USER }} php artisan queue:restart
             sudo -u ${{ env.WWW_USER }} php artisan octane:reload
             echo -e "\033[0;32m remove \033[0m"
-            sudo rm -rf ${{ env.WWW_USER }}/.ssh
+            sudo rm -rf ${{ env.WWW_HOME }}/.ssh
 
