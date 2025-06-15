@@ -12,7 +12,6 @@ on:
 
 jobs:
   tests:
-    needs: lint
     uses: ./.github/workflows/tests.yml
 
   deploy:
