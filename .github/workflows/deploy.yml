@@ -46,6 +46,7 @@ jobs:
             echo -e "\033[0;32m npm run build \033[0m"
             sudo -u ${{ env.WWW_USER }} npm run build
             if [[ $? != 0 ]]; then exit 1; fi
+            echo -e "\033[0;32m php artisan ... \033[0m"
             sudo -u ${{ env.WWW_USER }} php artisan queue:restart
             sudo -u ${{ env.WWW_USER }} php artisan octane:reload
             echo -e "\033[0;32m remove \033[0m"
