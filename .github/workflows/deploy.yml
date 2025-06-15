@@ -34,14 +34,15 @@ jobs:
             sudo cp -r /home/${{ secrets.USER }}/.ssh ${{ env.WWW_HOME }}/
             sudo chown -R ${{ env.WWW_USER }}: ${{ env.WWW_HOME }}/.ssh
             cd ${{ env.LARAVEL_PATH }}
+            sudo -u ${{ env.WWW_USER }} composer install
+            sudo -u ${{ env.WWW_USER }} npm install --cache ./.npm
             sudo -u ${{ env.WWW_USER }} git reset --hard
-            sudo -u ${{ env.WWW_USER }} task deploy
+            sudo -u ${{ env.WWW_USER }} npm run build
+            sudo -u ${{ env.WWW_USER }} task predeploy
             if [[ $? != 0 ]]; then exit 1; fi
+            sudo -u ${{ env.WWW_USER }} npm run build
+            if [[ $? != 0 ]]; then exit 1; fi
+            sudo -u ${{ env.WWW_USER }} php artisan queue:restart
+            sudo -u ${{ env.WWW_USER }} php artisan octane:reload
             sudo rm -rf ${WWW_HOME}/.ssh
-
-
-
-
-
-
 
