@@ -236,5 +236,5 @@ tasks:
     cmds:
       - task: fix
       - task: check
-      - task: test
       - task: build
+      - task: test
