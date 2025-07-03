@@ -1,5 +1,18 @@
 import '../css/app.css';
 
+import '../css/font-awesome.min.css';
+import '../css/bootstrap.min.css';
+import '../css/owl.carousel.min.css';
+import '../css/owl.theme.default.min.css';
+import '../css/style.min.css';
+
+import './vendor/jquery-1.11.0.min.js';
+import './vendor/owl.carousel.min.js';
+import './vendor/app.min.js';
+import './vendor/app.js'
+
+
+
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
