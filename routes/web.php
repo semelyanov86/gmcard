@@ -7,6 +7,8 @@ use Inertia\Inertia;
 
 Route::get('/', fn () => Inertia::render('Welcome'))->name('home');
 
+Route::get('/form', fn () => Inertia::render('form/Index'))->name('form');
+
 Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/settings.php';
