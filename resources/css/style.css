@@ -21,6 +21,7 @@ section.section-1:after {
     background-image: url(../images/bg-2.png);
     z-index: 1;
 }
+
 .container {
 	max-width: 1170px;
 }
@@ -397,6 +398,7 @@ section.section-3:after {
 
 section.section-3 {
     position: relative;
+    z-index: 0;
 }
 
 section.section-3 .container {
@@ -439,6 +441,8 @@ section.section-3 .container {
     line-height: 19px;
     color: #8D8D8D;
 }
+
+
 .slider-2 img.card-avatar {
     width: auto;
     position: absolute;
@@ -446,8 +450,11 @@ section.section-3 .container {
     left: calc(50% - 54px);
 }
 
-.slider-2 .owl-stage-outer {
+.slider-2  {
     overflow: visible;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
 
 .section-slider {
@@ -477,7 +484,15 @@ section.section-3 .container {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(0,29,85,0.7) 10%, rgba(0,29,85,0.7) 100%);
 }
 
-/**/
+.splide__arrow {
+    position: relative;
+    z-index: 10 !important;
+}
+
+.custom-arrow:focus {
+    outline: none;
+    box-shadow: none;
+}
 
 .slider-2 .owl-prev,
 .slider-2 .owl-next {
