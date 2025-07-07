@@ -91,6 +91,13 @@ const reviews = [
 </script>
 
 <style>
+.slider-2 {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: visible;
+}
+
 .slider-2 .item {
     text-align: center;
     padding-bottom: 80px;
