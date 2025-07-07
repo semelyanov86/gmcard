@@ -372,7 +372,7 @@ section.section-3:before {
     background-position: top center;
     background-repeat: no-repeat;
     background-color: #001D55;
-    z-index: -1;
+
     /*opacity: .3;*/
 }
 
@@ -386,7 +386,7 @@ section.section-3:after {
     left: 0;
     background-position: bottom center;
     background-repeat: no-repeat;
-    z-index: 1;
+
 }
 
 .section-3 h2 {
