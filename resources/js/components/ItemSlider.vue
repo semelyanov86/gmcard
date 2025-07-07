@@ -1,6 +1,6 @@
 <template>
     <Splide
-        class="header-slider"
+        class="testing"
         ref="splideRef"
         :options="{
       type: 'loop',
@@ -95,6 +95,8 @@ const slides = [
 <style>
 .item {
     text-align: center;
+    margin-top: 32px;
+    font-weight: 700;
 }
 
 .item img {
@@ -121,7 +123,6 @@ const slides = [
 .left-arrow {
     position: absolute;
     top: 50%;
-    left: 10px;
     transform: translateY(-50%);
     z-index: 10;
 }
@@ -129,8 +130,11 @@ const slides = [
 .right-arrow {
     position: absolute;
     top: 50%;
-    right: 20px;
     transform: translateY(-50%);
     z-index: 10;
+}
+.testing {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 </style>
