@@ -284,27 +284,7 @@ button.btn.btn-primary {
     position: absolute;
     bottom: calc(50% - 135px);
 }
-.header-slider .owl-dots .owl-dot {
-    background: #1B3568;
-    width: 21px;
-    height: 9px;
-    margin: 0 5px;
-    border-radius: 20px;
-    -webkit-transition: width .5s; /* For Safari 3.1 to 6.0 */
-    transition: width .5s;
-}
 
-.header-slider .owl-dots {
-    display: flex;
-    max-width: 300px;
-    margin: 50px auto;
-    min-height: 24px;
-}
-
-.header-slider .owl-dots .owl-dot.active {
-    background-color: #013CA4;
-    width: 92px;
-}
 .block-1 {
     text-align: center;
     position: relative;
