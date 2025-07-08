@@ -6,7 +6,7 @@ html {
 }
 
 section.section-1 {
-    background-image: url(../images/bg-1.png);
+    background-image: url('/images/bg-1.png');
     background-repeat: no-repeat;
     background-color: #001E57;
     background-position: top center;
@@ -21,7 +21,7 @@ section.section-1:after {
     width: 1920px;
     height: 290px;
     background: #001E57;
-    background-image: url(../images/bg-2.png);
+    background-image: url('/images/bg-2.png');
     z-index: 1;
 }
 
@@ -35,7 +35,7 @@ section.section-1:after {
 }
 
 .header-block .logo-icon {
-    background-image: url(../images/gm-logo.png);
+    background-image: url('/images/gm-logo.png');
     width: 34px;
     height: 34px;
 }
@@ -99,7 +99,7 @@ section.section-1:after {
     left: 8px;
     width: 143px;
     height: 5px;
-    background-image: url(../images/underline-1.png);
+    background-image: url('/images/underline-1.png');
     content: '';
 }
 
@@ -143,7 +143,7 @@ button.btn.btn-primary {
     width: 1066px;
     height: 672px;
     content: '';
-    background-image: url(../images/header-hands.png);
+    background-image: url('/images/header-hands.png');
     position: absolute;
     top: -672px;
     right: -378px;
@@ -170,15 +170,15 @@ button.btn.btn-primary {
 }
 
 .header-card .card-image.card-icon-1 {
-    background-image: url(../images/header-card-icon-1.png);
+    background-image: url('/images/header-card-icon-1.png');
 }
 
 .header-card .card-image.card-icon-2 {
-    background-image: url(../images/header-card-icon-2.png);
+    background-image: url('/images/header-card-icon-2.png');
 }
 
 .header-card .card-image.card-icon-3 {
-    background-image: url(../images/header-card-icon-3.png);
+    background-image: url('/images/header-card-icon-3.png');
 }
 
 .header-card h4.card-title {
@@ -218,12 +218,12 @@ button.btn.btn-primary {
 
 .slider-1:after {
     right: -10px;
-    background-image: url(../images/slider-fade-right.png);
+    background-image: url('/images/slider-fade-right.png');
 }
 
 .slider-1:before {
     left: -10px;
-    background-image: url(../images/slider-fade-left.png);
+    background-image: url('/images/slider-fade-left.png');
 }
 
 .header-slider {
@@ -238,7 +238,7 @@ button.btn.btn-primary {
     content: '';
     width: 1920px;
     height: 353px;
-    background-image: url(../images/line-1.png);
+    background-image: url('/images/line-1.png');
     pointer-events: none;
     z-index: 0;
 }
@@ -298,11 +298,11 @@ ul.list-1 .item-text {
     content: '';
     width: 830px;
     height: 537px;
-    background-image: url(../images/block-2-image.png);
+    background-image: url('/images/block-2-image.png');
 }
 
 section.section-3:before {
-    background-image: url(../images/bg-3.png);
+    background-image: url('/images/bg-3.png');
     position: absolute;
     content: '';
     width: 100%;
@@ -317,7 +317,7 @@ section.section-3:before {
 }
 
 section.section-3:after {
-    background-image: url(../images/bg-4.png);
+    background-image: url('/images/bg-4.png');
     position: absolute;
     content: '';
     width: 100%;
@@ -447,7 +447,7 @@ ul.list-2:after {
     width: 973px;
     height: 2px;
     content: '';
-    background-image: url(../images/line-2.png);
+    background-image: url('/images/line-2.png');
     top: 83px;
     left: calc(50% - 486.5px);
 }
@@ -471,7 +471,7 @@ ul.list-2 li.list-item:after {
     content: '';
     top: 45px;
     left: calc(50% - 30px);
-    background-image: url(../images/icon-check.png);
+    background-image: url('/images/icon-check.png');
     z-index: 1;
 }
 
@@ -493,7 +493,7 @@ h3.title-3 {
     top: -230px;
     right: 43px;
     content: '';
-    background-image: url(../images/block-3-image.png);
+    background-image: url('/images/block-3-image.png');
     width: 564px;
     height: 482px;
 }
@@ -632,7 +632,7 @@ h3.title-3 {
     left: 95px;
     width: 520px;
     height: 460px;
-    background-image: url(../images/block-4-image.png);
+    background-image: url('/images/block-4-image.png');
     content: '';
     z-index: 0;
 }
@@ -670,7 +670,7 @@ h3.title-4 {
     right: 0;
     width: 100%;
     height: 778px;
-    background-image: url(../images/block-5-image.png);
+    background-image: url('/images/block-5-image.png');
     background-position: top center;
     background-repeat: no-repeat;
     z-index: -1;
@@ -756,7 +756,7 @@ section.footer {
     content: '';
     width: 87px;
     height: 30px;
-    background-image: url(../images/partners/other.png);
+    background-image: url('/images/partners/other.png');
     bottom: -40px;
     right: 80px;
 }
@@ -858,12 +858,12 @@ a.footer-link-1:hover {
 }
 
 .btn-flag:after {
-    background-image: url(../images/rus-flag.png);
+    background-image: url('/images/rus-flag.png');
     left: 17px;
 }
 
 .btn-select:before {
-    background-image: url(../images/btn-arrow.png);
+    background-image: url('/images/btn-arrow.png');
     right: 17px;
 }
 
@@ -880,7 +880,7 @@ a.footer-link-1:hover {
     content: '';
     background-repeat: no-repeat;
     background-position: 50% 100%;
-    background-image: url(../images/hand-footer.png);
+    background-image: url('/images/hand-footer.png');
     z-index: 0;
 }
 

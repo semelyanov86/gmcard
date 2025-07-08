@@ -170,11 +170,11 @@ const reviews = usePage().props.reviews;
                     <p>
                         В разработке мобильные приложения и расширения для браузеров
                     </p>
-                    <img src="images/browsers/1.png" alt="">
-                    <img src="images/browsers/2.png" alt="">
-                    <img src="images/browsers/3.png" alt="">
-                    <img src="images/browsers/4.png" alt="">
-                    <img src="images/browsers/5.png" alt="">
+                    <img src="/images/browsers/1.png" alt="">
+                    <img src="/images/browsers/2.png" alt="">
+                    <img src="/images/browsers/3.png" alt="">
+                    <img src="/images/browsers/4.png" alt="">
+                    <img src="/images/browsers/5.png" alt="">
                 </div>
             </div>
             <hr>
@@ -229,10 +229,10 @@ const reviews = usePage().props.reviews;
                     <p class="text-9">
                         В нашем мобильном<br>приложении<br>
                         <a href="#">
-                            <img src="images/app-store.png" alt="">
+                            <img src="/images/app-store.png" alt="">
                         </a><br>
                         <a href="#">
-                            <img src="images/google-play.png" alt="">
+                            <img src="/images/google-play.png" alt="">
                         </a>
                     </p>
                 </div>
@@ -256,31 +256,31 @@ const reviews = usePage().props.reviews;
                     <div class="title-8 text-center">Мы работаем с</div>
                     <div class="row partners text-center">
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/1.png" alt="">
+                            <img class="partner" src="/images/partners/1.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/2.png" alt="">
+                            <img class="partner" src="/images/partners/2.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/3.png" alt="">
+                            <img class="partner" src="/images/partners/3.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/4.png" alt="">
+                            <img class="partner" src="/images/partners/4.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/5.png" alt="">
+                            <img class="partner" src="/images/partners/5.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/6.png" alt="">
+                            <img class="partner" src="/images/partners/6.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/7.png" alt="">
+                            <img class="partner" src="/images/partners/7.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/8.png" alt="">
+                            <img class="partner" src="/images/partners/8.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="images/partners/9.png" alt="">
+                            <img class="partner" src="/images/partners/9.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -297,7 +297,7 @@ const reviews = usePage().props.reviews;
             <div class="row block-6">
                 <div class="col-md-4">
                     <div class="footer-logo">
-                        <img src="images/gm-logo-2.png" alt="">
+                        <img src="/images/gm-logo-2.png" alt="">
                         <span>
 							GM 2014 — 2019
 						</span>
