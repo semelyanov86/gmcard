@@ -130,10 +130,10 @@ const reviews = [
     margin-bottom: 10px;
 }
 
-.card-avatar {
+.slider-2 img.card-avatar {
     position: absolute;
+    bottom: -65px;
     left: 50%;
-    bottom: 20px;
     transform: translateX(-50%);
     width: 80px;
     height: 80px;

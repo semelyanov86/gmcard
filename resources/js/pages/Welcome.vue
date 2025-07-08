@@ -249,21 +249,33 @@ import ReviewsSlider from '@/components/ReviewsSlider.vue';
                     <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i> +7 (927) 997-888-44</a>
                 </div>
                 <div class="col-md-4">
-                    <div class="title-8">Мы работаем с</div>
-                    <div class="row text-center partners">
-                        <div class="col-md-4 partner-cloumn">
+                    <div class="title-8 text-center">Мы работаем с</div>
+                    <div class="row partners text-center">
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/1.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/2.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/3.png" alt="">
                         </div>
-                        <div class="col-md-4 partner-cloumn">
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/4.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/5.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/6.png" alt="">
                         </div>
-                        <div class="col-md-4 partner-cloumn">
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/7.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/8.png" alt="">
+                        </div>
+                        <div class="col-4 col-md-4">
                             <img class="partner" src="images/partners/9.png" alt="">
                         </div>
                     </div>

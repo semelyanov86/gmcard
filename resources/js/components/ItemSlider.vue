@@ -4,15 +4,24 @@
             class="carousel header-slider"
             ref="splideRef"
             :options="{
-        type: 'loop',
-        autoplay: true,
-        perMove: 1,
-        interval: 4000,
-        arrows: false,
-        perPage: 3,
-        pagination: false,
-        pauseOnHover: true
-      }"
+            type: 'loop',
+            autoplay: true,
+            perMove: 1,
+            interval: 4000,
+            arrows: false,
+            perPage: 3,
+            drag: true,
+            pagination: false,
+            pauseOnHover: true,
+            breakpoints: {
+                1024: {
+                  perPage: 2
+                },
+                768: {
+                  perPage: 1
+    }
+  }
+}"
         >
             <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
                 <div class="item">
@@ -191,5 +200,47 @@ const slides = [
 .header-slider .splide-dot.active {
     background-color: #013CA4;
     width: 92px;
+}
+
+@media (max-width: 1024px) {
+    .left-arrow {
+        left: -40px;
+    }
+
+    .right-arrow {
+        right: -40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-arrow,
+    .right-arrow {
+        display: none;
+    }
+
+    .item-content {
+        max-width: 90%;
+        font-size: 0.95rem;
+        line-height: 1.4rem;
+    }
+
+    .item h4 {
+        font-size: 1.2rem;
+    }
+
+    .header-slider .custom-pagination {
+        max-width: 100%;
+        flex-wrap: wrap;
+        margin: 30px auto;
+    }
+
+    .header-slider .splide-dot {
+        width: 12px;
+        height: 8px;
+    }
+
+    .header-slider .splide-dot.active {
+        width: 30px;
+    }
 }
 </style>
