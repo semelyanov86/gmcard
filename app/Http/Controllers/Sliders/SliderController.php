@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Sliders;
 
 use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Settings\GeneralSettingsController;
+use App\Settings\GeneralSettings;
 use Inertia\Inertia;
 
 class SliderController extends Controller
@@ -90,9 +93,23 @@ class SliderController extends Controller
             ]
         ];
 
+        $support = $this->getSupportSettings();
+
+
         return Inertia::render('Welcome', [
             'slides' => $slides,
             'reviews' => $reviews,
+            'supportEmail' => $support['email'],
+            'supportPhone' => $support['phone'],
         ]);
+    }
+
+    private function getSupportSettings(): array
+    {
+        $settings = app(GeneralSettings::class);
+        return [
+            'email' => $settings->email,
+            'phone' => $settings->phone,
+        ];
     }
 }

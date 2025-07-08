@@ -25,6 +25,7 @@
         "vue-tsc": "^2.2.4"
     },
     "dependencies": {
+        "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/vue3": "^2.0.0",
         "@splidejs/vue-splide": "^0.6.12",
         "@tailwindcss/vite": "^4.1.1",
