@@ -238,6 +238,7 @@ button.btn.btn-primary {
 }
 .header-slider {
     position: relative;
+    cursor: grab;
 }
 
 .header-slider:after {
@@ -248,6 +249,7 @@ button.btn.btn-primary {
     width: 1920px;
     height: 353px;
     background-image: url(../images/line-1.png);
+    pointer-events: none;
     z-index: 0;
 }
 .slider-1 .owl-prev,
@@ -402,6 +404,7 @@ section.section-3 .container {
 .slider-2 {
     margin-top: 40px;
     padding-bottom: 65px;
+    cursor: grab;
 }
 
 .slider-2 .card-name {
@@ -422,13 +425,6 @@ section.section-3 .container {
     color: #8D8D8D;
 }
 
-
-.slider-2 img.card-avatar {
-    width: auto;
-    position: absolute;
-    bottom: -65px;
-    left: calc(50% - 54px);
-}
 
 .slider-2  {
     overflow: visible;
@@ -797,7 +793,8 @@ section.footer {
     position: relative;
 }
 .partners img.partner {
-    padding: 14px;
+    margin: 0 auto;
+    padding: 10px;
 }
 .partners .partner-cloumn {
     border-left: 1px solid #272936;
@@ -1100,6 +1097,11 @@ a.footer-link-1:hover {
 
     .text-9 {
         text-align: center;
+    }
+
+    .text-9 a img {
+        display: block;
+        margin: 20px auto 0 auto;
     }
 
     .footer .btn-outline {
