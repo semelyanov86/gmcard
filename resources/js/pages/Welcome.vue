@@ -1,6 +1,10 @@
 <script setup>
-import ItemSlider from '@/components/ItemSlider.vue';
-import ReviewsSlider from '@/components/ReviewsSlider.vue';
+import { usePage } from '@inertiajs/vue3';
+import ItemSlider from '@/components/sliders/ItemSlider.vue';
+import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
+
+const slides = usePage().props.slides;
+const reviews = usePage().props.reviews;
 </script>
 
 <template>
@@ -62,8 +66,8 @@ import ReviewsSlider from '@/components/ReviewsSlider.vue';
                     </div>
                 </div>
             </div>
-            <div class="header-slider">
-                <ItemSlider></ItemSlider>
+            <div class="header-slider" v-if="slides && slides.length">
+                <ItemSlider :slides="slides" />
             </div>
             <div class="block-1">
                 <button class="btn btn-primary">
@@ -118,8 +122,8 @@ import ReviewsSlider from '@/components/ReviewsSlider.vue';
             <div class="text-5">
                 Ваши клиенты ищут вас<br>на GM CARD
             </div>
-            <div class="section-slider">
-                <ReviewsSlider></ReviewsSlider>
+            <div class="section-slider" v-if="reviews && reviews.length">
+                <ReviewsSlider :reviews="reviews" />
             </div>
             <h3 class="title-2">
                 Что получает магазин партнер?
