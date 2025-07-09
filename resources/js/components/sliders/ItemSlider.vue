@@ -51,16 +51,17 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
+<script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import type { SlideModel } from '@/models/SlideModel';
+import { ref, onMounted } from 'vue';
 
-const props = defineProps<{
-    slides: SlideModel[]
-}>();
+const props = defineProps({
+    slides: {
+        type: Array,
+    },
+})
 
-const splideRef = ref<InstanceType<typeof Splide> | null>(null);
+const splideRef = ref(null);
 const currentSlide = ref(0);
 
 function goPrev() {
@@ -71,20 +72,19 @@ function goNext() {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index: number) {
+function goToSlide(index) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
 
 onMounted(() => {
-    const splide = splideRef.value?.splide;
-    if (splide) {
-        splide.on('move', (newIndex: number) => {
-            currentSlide.value = newIndex;
-        });
-    }
+    const splide = splideRef.value.splide;
+    splide.on('move', (newIndex) => {
+        currentSlide.value = newIndex;
+    });
 });
 </script>
+
 <style scoped>
 .header-slider-wrapper {
     position: relative;
