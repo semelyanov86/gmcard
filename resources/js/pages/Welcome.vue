@@ -7,7 +7,11 @@ import { ReviewModel } from '@/models/ReviewModel';
 
 const props = defineProps<{
     slides: SlideModel[],
-    reviews: ReviewModel[]
+    reviews: ReviewModel[],
+    contact: {
+        email: string
+        phone: string
+    },
 }>()
 </script>
 
@@ -252,9 +256,8 @@ const props = defineProps<{
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </button>
                     <div class="title-8 mt-5">Служба поддержки GM</div>
-                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>
-                        admin@gm1lp.ru</a>
-                    <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i> +7 (927) 997-888-44</a>
+                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email }}</a>
+                    <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{ contact.phone }}</a>
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 text-center">Мы работаем с</div>

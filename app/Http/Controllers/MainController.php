@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\GeneralSettings;
 use Inertia\Inertia;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(GeneralSettings $settings)
     {
         $slides = [
             [
@@ -92,6 +93,10 @@ class MainController extends Controller
         return Inertia::render('Welcome', [
             'slides' => $slides,
             'reviews' => $reviews,
+            'contact' => [
+                'email' => $settings->email,
+                'phone' => $settings->phone,
+            ],
         ]);
     }
 }
