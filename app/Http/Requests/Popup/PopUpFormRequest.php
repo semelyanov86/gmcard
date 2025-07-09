@@ -24,6 +24,9 @@ class PopUpFormRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email',
+            'phone' => 'nullable|string|max:20',
+            'city' => 'nullable|string|max:100',
+            'agree' => 'accepted',
         ];
     }
 }
