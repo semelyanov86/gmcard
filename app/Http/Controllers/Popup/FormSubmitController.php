@@ -12,6 +12,6 @@ class FormSubmitController extends Controller
     {
         $data = $request->validated();
 
-        return back()->with('success', 'Форма успешно отправлена!');
+        return response()->json(['message' => 'Форма успешно отправлена!']);
     }
 }
