@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.10.1",
         "lorisleiva/laravel-actions": "^2.9",
         "spatie/laravel-ray": "^1.40",
+        "spatie/laravel-settings": "^3.4",
         "spiral/roadrunner-cli": "^2.7.1",
         "spiral/roadrunner-http": "^3.5.2",
         "tightenco/ziggy": "^2.5.3"

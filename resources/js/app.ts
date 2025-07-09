@@ -1,4 +1,10 @@
-import '../css/app.css';
+import '../css/app.css'
+
+import '../css/font-awesome.min.css';
+import '../css/bootstrap.min.css';
+import '../css/style.css';
+
+import '@splidejs/splide/dist/css/splide.min.css'
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
