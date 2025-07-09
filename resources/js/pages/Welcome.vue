@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
+import PopUpForm from '@/components/popup/PopUpForm.vue';
 
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
+import { ref } from 'vue';
 
 const props = defineProps<{
     slides: SlideModel[],
@@ -13,6 +15,12 @@ const props = defineProps<{
         phone: string
     },
 }>()
+
+const isPopUpVisible = ref(false)
+
+function openPopUp() {
+    isPopUpVisible.value = true
+}
 </script>
 
 <template>
@@ -30,13 +38,14 @@ const props = defineProps<{
                     – это бесплатно!
                 </p>
                 <div class="header-flex">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" @click="openPopUp">
                         Подключится
                     </button>
                     <div class="button-hint">
                         Увеличьте ваши продажи уже через 2 недели
                     </div>
                 </div>
+                <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
             </div>
             <div class="header-card">
                 <div class="row">
