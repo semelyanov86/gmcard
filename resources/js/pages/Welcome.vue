@@ -1,10 +1,14 @@
-<script setup>
-import { usePage } from '@inertiajs/vue3';
+<script setup lang="ts">
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 
-const slides = usePage().props.slides;
-const reviews = usePage().props.reviews;
+import { SlideModel } from '@/models/SlideModel';
+import { ReviewModel } from '@/models/ReviewModel';
+
+const props = defineProps<{
+    slides: SlideModel[],
+    reviews: ReviewModel[]
+}>()
 </script>
 
 <template>

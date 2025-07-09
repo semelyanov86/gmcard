@@ -2,7 +2,6 @@ import '../css/app.css'
 
 import '../css/font-awesome.min.css';
 import '../css/bootstrap.min.css';
-import '../css/style.min.css';
 import '../css/style.css';
 
 import '@splidejs/splide/dist/css/splide.min.css'
