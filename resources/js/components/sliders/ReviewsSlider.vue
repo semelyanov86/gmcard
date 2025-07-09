@@ -42,17 +42,16 @@
     </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import type { ReviewModel } from '@/models/ReviewModel';
 
-const props = defineProps({
-    reviews: {
-        type: Array,
-    },
-})
+const props = defineProps<{
+    reviews: ReviewModel[]
+}>();
 
-const splideRef = ref(null);
+const splideRef = ref<InstanceType<typeof Splide> | null>(null);
 
 function goPrev() {
     splideRef.value?.splide.go('<');
@@ -62,7 +61,6 @@ function goNext() {
     splideRef.value?.splide.go('>');
 }
 </script>
-
 <style>
 .slider-2 {
     width: 100vw;

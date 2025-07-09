@@ -23,7 +23,7 @@
   }
 }"
         >
-            <SplideSlide class="slider-1" v-for="(slide, i) in props.slides" :key="i">
+            <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
                 <div class="item">
                     <img :src="slide.image" alt="" />
                     <h4>{{ slide.title }}</h4>
@@ -51,17 +51,16 @@
     </div>
 </template>
 
-<script setup>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import type { SlideModel } from '@/models/SlideModel';
 
-const props = defineProps({
-    slides: {
-        type: Array,
-    },
-})
+const props = defineProps<{
+    slides: SlideModel[]
+}>();
 
-const splideRef = ref(null);
+const splideRef = ref<InstanceType<typeof Splide> | null>(null);
 const currentSlide = ref(0);
 
 function goPrev() {
@@ -72,19 +71,20 @@ function goNext() {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index) {
+function goToSlide(index: number) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
 
 onMounted(() => {
-    const splide = splideRef.value.splide;
-    splide.on('move', (newIndex) => {
-        currentSlide.value = newIndex;
-    });
+    const splide = splideRef.value?.splide;
+    if (splide) {
+        splide.on('move', (newIndex: number) => {
+            currentSlide.value = newIndex;
+        });
+    }
 });
 </script>
-
 <style scoped>
 .header-slider-wrapper {
     position: relative;
