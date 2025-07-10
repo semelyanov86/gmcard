@@ -91,7 +91,9 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/inertia-vue3'
 
-const emit = defineEmits(['close'])
+const emit = defineEmits<{
+    (event: 'close'): void
+}>()
 
 const form = useForm({
     name: '',
