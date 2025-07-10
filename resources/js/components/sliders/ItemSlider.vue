@@ -51,35 +51,33 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted } from 'vue';
 
-const props = defineProps({
-    slides: {
-        type: Array,
-    },
-})
+const props = defineProps<{
+    slides: Array<any>;
+}>();
 
-const splideRef = ref(null);
-const currentSlide = ref(0);
+const splideRef = ref<any>(null);
+const currentSlide = ref<number>(0);
 
-function goPrev() {
+function goPrev(): void {
     splideRef.value?.splide.go('<');
 }
 
-function goNext() {
+function goNext(): void {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index) {
+function goToSlide(index: number): void {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
 
 onMounted(() => {
-    const splide = splideRef.value.splide;
-    splide.on('move', (newIndex) => {
+    const splide = splideRef.value?.splide;
+    splide?.on('move', (newIndex: number) => {
         currentSlide.value = newIndex;
     });
 });
