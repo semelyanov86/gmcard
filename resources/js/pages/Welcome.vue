@@ -5,14 +5,14 @@ import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 
-const props = defineProps<{
+const { slides, reviews, contact } = defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {
-        email: string
+        email: string,
         phone: string
-    },
-}>()
+    }
+}>();
 </script>
 
 <template>
