@@ -46,13 +46,15 @@
 import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
-defineProps<{
-    reviews: Array<{
-        text: string;
-        name: string;
-        position: string;
-        avatar: string;
-    }>;
+type Review = {
+    text: string;
+    name: string;
+    position: string;
+    avatar: string;
+};
+
+const { reviews } = defineProps<{
+    reviews: Review[];
 }>();
 
 const splideRef = ref<{
