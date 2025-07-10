@@ -59,6 +59,8 @@ const props = defineProps<{
     slides: Array<any>;
 }>();
 
+const { slides } = props;
+
 const splideRef = ref<any>(null);
 const currentSlide = ref<number>(0);
 

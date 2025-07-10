@@ -57,6 +57,8 @@ const props = defineProps<{
     reviews: Review[];
 }>();
 
+const { reviews } = props;
+
 const splideRef = ref<any>(null);
 
 function goPrev(): void {
