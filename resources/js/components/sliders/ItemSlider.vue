@@ -9,7 +9,7 @@
             perMove: 1,
             interval: 4000,
             arrows: false,
-            perPage: 3,
+            perPage: 2,
             drag: true,
             pagination: false,
             pauseOnHover: true,

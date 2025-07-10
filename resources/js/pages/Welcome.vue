@@ -263,31 +263,31 @@ const { slides, reviews, contact } = defineProps<{
                     <div class="title-8 text-center">Мы работаем с</div>
                     <div class="row partners text-center">
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/1.png" alt="">
+                            <img class="partner" src="/images/icons/visa.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/2.png" alt="">
+                            <img class="partner" src="/images/icons/master.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/3.png" alt="">
+                            <img class="partner" src="/images/icons/maestro.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/4.png" alt="">
+                            <img class="partner" src="/images/icons/sberbank.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/5.png" alt="">
+                            <img class="partner" src="/images/icons/robbo.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/6.png" alt="">
+                            <img class="partner" src="/images/icons/webmoney.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/7.png" alt="">
+                            <img class="partner" src="/images/icons/alfa.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/8.png" alt="">
+                            <img class="partner" src="/images/icons/yandex.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/partners/9.png" alt="">
+                            <img class="partner" src="/images/icons/qiwi.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -306,15 +306,15 @@ const { slides, reviews, contact } = defineProps<{
                     <div class="footer-logo">
                         <img src="/images/gm-logo-2.png" alt="">
                         <span>
-							GM 2014 — 2019
+							GM 2020 — 2021
 						</span>
                     </div>
                 </div>
-                <div class="col-md-4 yellow-links">
+                <div class="col-md-6 yellow-links">
                     <a href="#">+ ПАРТНЕРСКАЯ ПРОГРАММА</a>
                     <a href="#">+ ДОБАВИТЬ МАГАЗИН</a>
                 </div>
-                <div class="col-md-4 text-right">
+                <div class="col-md-2 text-right">
                     <button class="btn btn-outline btn-flag btn-select">Россия</button>
                 </div>
             </div>
