@@ -7,20 +7,16 @@ import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 import { ref } from 'vue';
 
-const props = defineProps<{
+const { slides, reviews, contact } = defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {
-        email: string
+        email: string,
         phone: string
     },
 }>();
 
-const isPopUpVisible = ref(false);
 
-function openPopUp() {
-    isPopUpVisible.value = true;
-}
 </script>
 
 <template>
