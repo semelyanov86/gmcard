@@ -14,12 +14,12 @@ const props = defineProps<{
         email: string
         phone: string
     },
-}>()
+}>();
 
-const isPopUpVisible = ref(false)
+const isPopUpVisible = ref(false);
 
 function openPopUp() {
-    isPopUpVisible.value = true
+    isPopUpVisible.value = true;
 }
 </script>
 
@@ -45,7 +45,9 @@ function openPopUp() {
                         Увеличьте ваши продажи уже через 2 недели
                     </div>
                 </div>
-                <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
+                <transition name="fade">
+                    <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
+                </transition>
             </div>
             <div class="header-card">
                 <div class="row">

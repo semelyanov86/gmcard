@@ -1,5 +1,4 @@
 <template>
-    <transition name="fade">
         <div
             class="fixed inset-0 backdrop-blur-sm bg-black/10 flex justify-center items-center z-50"
             @click.self="$emit('close')"
@@ -87,7 +86,6 @@
                 </form>
             </div>
         </div>
-    </transition>
 </template>
 
 <script setup lang="ts">
@@ -112,3 +110,20 @@ function submitForm() {
     })
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: scale(0.95);
+}
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
