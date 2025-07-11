@@ -1,18 +1,44 @@
 <script setup lang="ts">
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
+import PopUpForm from '@/components/popup/PopUpForm.vue';
 
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 
-const { slides, reviews, contact } = defineProps<{
+import { ref, watch } from 'vue';
+import { useToast } from 'vue-toastification';
+import { usePage } from '@inertiajs/vue3';
+
+const props = defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {
-        email: string,
+        email: string
         phone: string
-    }
+    },
 }>();
+
+const isPopUpVisible = ref(false);
+
+function openPopUp() {
+    isPopUpVisible.value = true;
+}
+
+const page = usePage();
+const toast = useToast();
+
+type FlashProps = {
+    success?: string
+    error?: string
+}
+
+watch(
+    () => page.props.flash as FlashProps, (flash) => {
+        if (flash?.success) toast.success(flash.success);
+        if (flash?.error) toast.error(flash.error);
+    }
+);
 </script>
 
 <template>
@@ -30,13 +56,16 @@ const { slides, reviews, contact } = defineProps<{
                     – это бесплатно!
                 </p>
                 <div class="header-flex">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" @click="openPopUp">
                         Подключится
                     </button>
                     <div class="button-hint">
                         Увеличьте ваши продажи уже через 2 недели
                     </div>
                 </div>
+                <transition name="fade">
+                    <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
+                </transition>
             </div>
             <div class="header-card">
                 <div class="row">
@@ -256,7 +285,8 @@ const { slides, reviews, contact } = defineProps<{
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </button>
                     <div class="title-8 mt-5">Служба поддержки GM</div>
-                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email }}</a>
+                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email
+                        }}</a>
                     <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{ contact.phone }}</a>
                 </div>
                 <div class="col-md-4">
