@@ -13,6 +13,10 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 
+import Toast from "vue-toastification";
+import 'vue-toastification/dist/index.css';
+import { toastOptions } from '@/plugins/toastOptions';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -22,6 +26,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(Toast, toastOptions)
             .mount(el);
     },
     progress: {
