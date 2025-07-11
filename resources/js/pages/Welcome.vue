@@ -5,7 +5,10 @@ import PopUpForm from '@/components/popup/PopUpForm.vue';
 
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
-import { ref } from 'vue';
+
+import { ref, watch } from 'vue';
+import { useToast } from 'vue-toastification';
+import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps<{
     slides: SlideModel[],
@@ -21,6 +24,21 @@ const isPopUpVisible = ref(false);
 function openPopUp() {
     isPopUpVisible.value = true;
 }
+
+const page = usePage();
+const toast = useToast();
+
+type FlashProps = {
+    success?: string
+    error?: string
+}
+
+watch(
+    () => page.props.flash as FlashProps, (flash) => {
+        if (flash?.success) toast.success(flash.success);
+        if (flash?.error) toast.error(flash.error);
+    }
+);
 </script>
 
 <template>
@@ -267,7 +285,8 @@ function openPopUp() {
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </button>
                     <div class="title-8 mt-5">Служба поддержки GM</div>
-                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email }}</a>
+                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email
+                        }}</a>
                     <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{ contact.phone }}</a>
                 </div>
                 <div class="col-md-4">

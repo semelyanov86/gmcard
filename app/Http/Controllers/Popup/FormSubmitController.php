@@ -10,7 +10,6 @@ class FormSubmitController extends Controller
     public function submit(PopUpFormRequest $request)
     {
         $data = $request->validated();
-        dd($data);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Форма успешно отправлена!');
     }
 }
