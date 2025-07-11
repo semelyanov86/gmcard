@@ -200,6 +200,22 @@ button.btn.btn-primary {
     min-height: 245px;
 }
 
+.header-card .col-md-4 {
+    position: relative;
+    padding: 0 20px;
+}
+
+.header-card .col-md-4:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #d1d1d1;
+    opacity: 0.5;
+}
+
 .slider-1 {
     position: relative;
 }
@@ -271,8 +287,23 @@ ul.list-1 {
 ul.list-1 li.list-item {
     list-style: none;
     display: flex;
-    margin-bottom: 3px;
     align-items: center;
+    margin-bottom: 3px;
+    position: relative;
+    padding: 15px 0;
+}
+
+
+ul.list-1 li.list-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 35%;
+    background-color: #d1d1d1;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 ul.list-1 .item-number {
@@ -345,6 +376,7 @@ section.section-3 .container {
     padding-top: 622px;
     padding-bottom: 100px;
     color: #fffffd;
+    position: relative;
 }
 
 .slider-2 .slider-card {
@@ -661,6 +693,7 @@ h3.title-4 {
 
 .section-5 {
     position: relative;
+    z-index: 0;
 }
 
 .section-5:after {
@@ -740,7 +773,7 @@ section.footer {
 
 .partners img.partner {
     margin: 0 auto;
-    padding: 10px;
+    padding: 14px;
 }
 
 .partners .partner-cloumn {
@@ -821,6 +854,14 @@ a.footer-link-1:hover {
     padding-left: 15px;
 }
 
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+.footer-logo img {
+    margin-right: 5px;
+}
+
 .yellow-links a {
     color: #f9da10;
     font-size: 13px;
@@ -886,6 +927,9 @@ a.footer-link-1:hover {
 
 @media (min-width: 0px) and (max-width: 1180px) {
     .footer:before {
+        display: none;
+    }
+    ul.list-1 li.list-item:not(:last-child)::after {
         display: none;
     }
 }
