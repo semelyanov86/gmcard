@@ -6,7 +6,7 @@ html {
 }
 
 section.section-1 {
-    background-image: url('/images/bg-1.png');
+    background-image: url('/images/new_bg_test.png');
     background-repeat: no-repeat;
     background-color: #001E57;
     background-position: top center;
@@ -137,18 +137,6 @@ button.btn.btn-primary {
 
 .header-card {
     position: relative;
-}
-
-.header-card:after {
-    width: 1066px;
-    height: 672px;
-    content: '';
-    background-image: url('/images/header-hands.png');
-    position: absolute;
-    top: -672px;
-    right: -378px;
-    z-index: 0;
-    background-repeat: no-repeat;
 }
 
 .header-card:before {
