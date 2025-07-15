@@ -7,7 +7,6 @@ parameters:
         - app/
         - tests/
 
-    # The level 9 is the highest level
     level: 9
     noUnnecessaryCollectionCallExcept: ['pluck', 'contains']
 
@@ -42,6 +41,9 @@ parameters:
         -
             function: 'exit()'
             message: 'not allowed for security reasons'
+
+    typeAliases:
+        ValidationRules: 'array<string, array<\Illuminate\Contracts\Validation\Rule|\Illuminate\Contracts\Validation\ValidationRule|string>|string>'
 
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
