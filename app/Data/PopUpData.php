@@ -4,7 +4,7 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class PopUpData extends Data
+final class PopUpData extends Data
 {
     public function __construct(
         public string $name,
