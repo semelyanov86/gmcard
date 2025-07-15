@@ -5,7 +5,7 @@ namespace App\Services\CRM;
 use App\Data\PopUpData;
 use Salaros\Vtiger\VTWSCLib\WSClient;
 
-class VtigerCrmAdapter
+final readonly class VtigerCrmAdapter
 {
     protected WSClient $client;
 
