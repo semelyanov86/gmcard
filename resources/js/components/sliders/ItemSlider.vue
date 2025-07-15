@@ -9,7 +9,7 @@
             perMove: 1,
             interval: 4000,
             arrows: false,
-            perPage: 3,
+            perPage: 2,
             drag: true,
             pagination: false,
             pauseOnHover: true,
@@ -51,35 +51,46 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted } from 'vue';
 
-const props = defineProps({
+const props = defineProps<{
     slides: {
-        type: Array,
-    },
-})
+        image: string;
+        title: string;
+        text: string;
+    }[];
+}>();
 
-const splideRef = ref(null);
-const currentSlide = ref(0);
+const { slides } = props;
 
-function goPrev() {
+
+const splideRef = ref<{
+    splide: {
+        go: (target: string | number) => void;
+        on: (event: string, callback: (index: number) => void) => void;
+    };
+} | null>(null);
+
+const currentSlide = ref<number>(0);
+
+function goPrev(): void {
     splideRef.value?.splide.go('<');
 }
 
-function goNext() {
+function goNext(): void {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index) {
+function goToSlide(index: number): void {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
 
 onMounted(() => {
-    const splide = splideRef.value.splide;
-    splide.on('move', (newIndex) => {
+    const splide = splideRef.value?.splide;
+    splide?.on('move', (newIndex: number) => {
         currentSlide.value = newIndex;
     });
 });
