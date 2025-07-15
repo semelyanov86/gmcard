@@ -5,7 +5,7 @@ import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 
-const props = defineProps<{
+defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {

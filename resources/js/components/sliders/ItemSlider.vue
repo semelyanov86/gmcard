@@ -51,17 +51,19 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted } from 'vue';
 
-const props = defineProps({
-    slides: {
-        type: Array,
-    },
-})
+defineProps<{
+    slides: Array<{
+        image: string;
+        title: string;
+        text: string;
+    }>;
+}>();
 
-const splideRef = ref(null);
+const splideRef = ref<any>(null);
 const currentSlide = ref(0);
 
 function goPrev() {
@@ -72,14 +74,14 @@ function goNext() {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index) {
+function goToSlide(index: number) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
 
 onMounted(() => {
     const splide = splideRef.value.splide;
-    splide.on('move', (newIndex) => {
+    splide.on('move', (newIndex: number) => {
         currentSlide.value = newIndex;
     });
 });
