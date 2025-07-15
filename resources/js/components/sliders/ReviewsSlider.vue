@@ -46,20 +46,18 @@
 import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
-type Review = {
-    text: string;
-    name: string;
-    position: string;
-    avatar: string;
-};
-
 const props = defineProps<{
-    reviews: Review[];
+    reviews: {
+        text: string;
+        name: string;
+        position: string;
+        avatar: string;
+    }[];
 }>();
 
 const { reviews } = props;
 
-const splideRef = ref<any>(null);
+const splideRef = ref<{ splide: { go: (target: string | number) => void } } | null>(null);
 
 function goPrev(): void {
     splideRef.value?.splide.go('<');

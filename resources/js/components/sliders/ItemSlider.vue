@@ -56,12 +56,23 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted } from 'vue';
 
 const props = defineProps<{
-    slides: Array<any>;
+    slides: {
+        image: string;
+        title: string;
+        text: string;
+    }[];
 }>();
 
 const { slides } = props;
 
-const splideRef = ref<any>(null);
+
+const splideRef = ref<{
+    splide: {
+        go: (target: string | number) => void;
+        on: (event: string, callback: (index: number) => void) => void;
+    };
+} | null>(null);
+
 const currentSlide = ref<number>(0);
 
 function goPrev(): void {
