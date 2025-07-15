@@ -4,7 +4,7 @@
         class="slider-2"
         :options="{
         type: 'loop',
-        perPage: 5,
+        perPage: 6,
         perMove: 1,
         gap: '10px',
         autoplay: true,
@@ -46,18 +46,20 @@
 import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
-const props = defineProps<{
-    reviews: {
+defineProps<{
+    reviews: Array<{
         text: string;
         name: string;
         position: string;
         avatar: string;
-    }[];
+    }>;
 }>();
 
-const { reviews } = props;
-
-const splideRef = ref<{ splide: { go: (target: string | number) => void } } | null>(null);
+const splideRef = ref<{
+    splide: {
+        go: (target: string | number) => void;
+    };
+} | null>(null);
 
 function goPrev(): void {
     splideRef.value?.splide.go('<');
@@ -108,15 +110,16 @@ function goNext(): void {
     margin-bottom: 10px;
 }
 
-.section-3 img.card-avatar {
-    width: auto;
+.slider-2 img.card-avatar {
     position: absolute;
     bottom: -65px;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 108px;
-    height: auto;
-    z-index: 5;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .custom-arrow {

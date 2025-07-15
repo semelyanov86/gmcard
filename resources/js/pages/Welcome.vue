@@ -6,7 +6,7 @@ import { useMetaBusinessPage } from '@/meta/useMetaBusiness';
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 
-const { slides, reviews, contact } = defineProps<{
+defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {
@@ -41,40 +41,38 @@ useMetaBusinessPage();
                     </div>
                 </div>
             </div>
-            <div class="header-card-wrapper">
-                <div class="header-card">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card-image card-icon-1"></div>
-                            <h4 class="card-title">
-                                Реклама ваших товаров и услуг <br>проще чем кажется
-                            </h4>
-                            <div class="card-content">
-                                Бесплатно! Создайте акцию на ваш товар или услугу, разместив тем самым его в каталоге GM
-                                CARD и зарабатывайте! Вашу акцию увидят потенциальные покупатели или заказчики, которые ищут
-                                интересные предложения, а мы позаботимся обо всем остальном
-                            </div>
+            <div class="header-card">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-image card-icon-1"></div>
+                        <h4 class="card-title">
+                            Реклама ваших товаров и услуг <br>проще чем кажется
+                        </h4>
+                        <div class="card-content">
+                            Бесплатно! Создайте акцию на ваш товар или услугу, разместив тем самым его в каталоге GM
+                            CARD и зарабатывайте! Вашу акцию увидят потенциальные покупатели или заказчики, которые ищут
+                            интересные предложения, а мы позаботимся обо всем остальном
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card-image card-icon-2"></div>
-                            <h4 class="card-title">
-                                Продвижение с нами – <br>это легко и просто
-                            </h4>
-                            <div class="card-content">
-                                Вы сами устанавливаете условия, это может быть скидка, конкурс, бонус при покупке, кэшбэк и
-                                прочее - как вы сами пожелаете. Вы сами устанавливаете периоды запуска и организовываете
-                                процесс так, чтобы ваша реклама была максимально эффективной.
-                            </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-image card-icon-2"></div>
+                        <h4 class="card-title">
+                            Продвижение с нами – <br>это легко и просто
+                        </h4>
+                        <div class="card-content">
+                            Вы сами устанавливаете условия, это может быть скидка, конкурс, бонус при покупке, кэшбэк и
+                            прочее - как вы сами пожелаете. Вы сами устанавливаете периоды запуска и организовываете
+                            процесс так, чтобы ваша реклама была максимально эффективной.
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="card-image card-icon-3"></div>
-                            <h4 class="card-title">
-                                Отличный результат с рекламой<br>от нашего сервиса
-                            </h4>
-                            <div class="card-content">
-                                Поделимся интересными кейсами, предоставим аналитику для вашего бизнеса и сделаем все, чтобы
-                                вам было комфортно! Реклама и продвижение вашего бизнеса и услуг с GM CARD - залог успеха.
-                            </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card-image card-icon-3"></div>
+                        <h4 class="card-title">
+                            Отличный результат с рекламой<br>от нашего сервиса
+                        </h4>
+                        <div class="card-content">
+                            Поделимся интересными кейсами, предоставим аналитику для вашего бизнеса и сделаем все, чтобы
+                            вам было комфортно! Реклама и продвижение вашего бизнеса и услуг с GM CARD - залог успеха.
                         </div>
                     </div>
                 </div>
@@ -226,10 +224,6 @@ useMetaBusinessPage();
     </section>
     <section class="footer">
         <div class="container">
-            <div>
-
-
-            </div>
             <div class="links">
                 <a href="#">Все магазины</a>
                 <a href="#">Все промокоды</a>
@@ -242,10 +236,10 @@ useMetaBusinessPage();
             <hr>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="title-8 mb-3">Больше скидок</div>
+                    <div class="title-8">Больше скидок</div>
                     <p class="text-9">
                         В нашем мобильном<br>приложении<br>
-                        <a href="#" class="mt-3">
+                        <a href="#">
                             <img src="/images/app-store.png" alt="">
                         </a><br>
                         <a href="#">
@@ -255,67 +249,59 @@ useMetaBusinessPage();
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 pb-2">Следите за новостями и акциями</div>
-                    <button class="btn btn-outline btn-vk mr-4">
-                        <i class="fa fa-vk te" style="color:white" aria-hidden="true"></i> Вконтакте
+                    <button class="btn btn-outline btn-vk">
+                        <i class="fa fa-vk" aria-hidden="true"></i> Вконтакте
                     </button>
                     <button class="btn btn-outline btn-fb">
-                        <i class="fa " aria-hidden="true"><img class="w-3 h-3" src="/images/tg.svg"></i> Telegram
+                        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
                     </button>
-                    <p class="text-sm max-w-xs mt-2 text-white opacity-30 hover:opacity-100">Instagram - соцсеть
-                        принадлежит компании Meta, признанной экстремистской и запрещенной на территории России</p>
-                    <div class="text-lg font-bold text-white opacity-30 mt-12">Служба поддержки GM</div>
-                    <div class="flex mt-[15px] flex-wrap">
-                        <a class="footer-link-1" href="#"><i class="fa fa-envelope"
-                                                             aria-hidden="true"></i>{{ contact.email }}</a>
-                        <a class="footer-link-1" href="#"><i class="fa" aria-hidden="true"></i>Где мой кэшбэк?</a>
-                    </div>
+                    <button class="btn btn-outline btn-in pr-0">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </button>
+                    <div class="title-8 mt-5">Служба поддержки GM</div>
+                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email }}</a>
+                    <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{ contact.phone }}</a>
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 text-center">Мы работаем с</div>
                     <div class="row partners text-center">
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/visa.png" alt="">
+                            <img class="partner" src="/images/partners/1.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/master.png" alt="">
+                            <img class="partner" src="/images/partners/2.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/maestro.png" alt="">
+                            <img class="partner" src="/images/partners/3.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/sberbank.png" alt="">
+                            <img class="partner" src="/images/partners/4.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/robbo.png" alt="">
+                            <img class="partner" src="/images/partners/5.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/webmoney.png" alt="">
+                            <img class="partner" src="/images/partners/6.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/alfa.png" alt="">
+                            <img class="partner" src="/images/partners/7.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/yandex.png" alt="">
+                            <img class="partner" src="/images/partners/8.png" alt="">
                         </div>
                         <div class="col-4 col-md-4">
-                            <img class="partner" src="/images/icons/qiwi.png" alt="">
+                            <img class="partner" src="/images/partners/9.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row under-links">
-                <div class="mt-11 flex gap-6">
-                    <div class="inline-block">
-                        <a href="#" class="text-white opacity-30">
-                            Политика защиты персональной информации
-                        </a>
-                    </div>
-                    <div class="inline-block">
-                        <a href="#" class="text-sm text-white opacity-30">
-                            Пользовательское соглашение
-                        </a>
-                    </div>
-                </div>
+                <a href="#">
+                    Политика защиты персональной информации
+                </a>
+                <a href="#">
+                    Пользовательское соглашение
+                </a>
             </div>
             <hr>
             <div class="row block-6">
@@ -323,15 +309,15 @@ useMetaBusinessPage();
                     <div class="footer-logo">
                         <img src="/images/gm-logo-2.png" alt="">
                         <span>
-							GM 2014 — 2021
+							GM 2014 — 2019
 						</span>
                     </div>
                 </div>
-                <div class="col-md-6 yellow-links">
+                <div class="col-md-4 yellow-links">
                     <a href="#">+ ПАРТНЕРСКАЯ ПРОГРАММА</a>
                     <a href="#">+ ДОБАВИТЬ МАГАЗИН</a>
                 </div>
-                <div class="col-md-2 text-right">
+                <div class="col-md-4 text-right">
                     <button class="btn btn-outline btn-flag btn-select">Россия</button>
                 </div>
             </div>

@@ -55,16 +55,13 @@
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted } from 'vue';
 
-const props = defineProps<{
-    slides: {
+defineProps<{
+    slides: Array<{
         image: string;
         title: string;
         text: string;
-    }[];
+    }>;
 }>();
-
-const { slides } = props;
-
 
 const splideRef = ref<{
     splide: {
