@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
+import { useMetaBusinessPage } from '@/meta/useMetaBusiness';
 
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
@@ -13,6 +14,8 @@ const { slides, reviews, contact } = defineProps<{
         phone: string
     }
 }>();
+
+useMetaBusinessPage();
 </script>
 
 <template>
