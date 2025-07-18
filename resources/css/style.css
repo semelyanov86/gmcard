@@ -821,10 +821,10 @@ a.footer-link-1:hover {
 .under-links {
     margin-top: -10px !important;
     display: flex;
-    width: 700px;
+    width: 900px;
     margin: 0px auto;
     justify-content: space-around;
-    padding-left: 143px;
+    padding-left: 200px;
     margin-bottom: 27px;
 }
 

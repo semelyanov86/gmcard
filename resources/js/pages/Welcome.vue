@@ -224,6 +224,10 @@ useMetaBusinessPage();
     </section>
     <section class="footer">
         <div class="container">
+            <div>
+
+
+            </div>
             <div class="links">
                 <a href="#">Все магазины</a>
                 <a href="#">Все промокоды</a>
@@ -236,10 +240,10 @@ useMetaBusinessPage();
             <hr>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="title-8">Больше скидок</div>
+                    <div class="title-8 mb-3">Больше скидок</div>
                     <p class="text-9">
                         В нашем мобильном<br>приложении<br>
-                        <a href="#">
+                        <a href="#" class="mt-3">
                             <img src="/images/app-store.png" alt="">
                         </a><br>
                         <a href="#">
@@ -249,18 +253,20 @@ useMetaBusinessPage();
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 pb-2">Следите за новостями и акциями</div>
-                    <button class="btn btn-outline btn-vk">
-                        <i class="fa fa-vk" aria-hidden="true"></i> Вконтакте
+                    <button class="btn btn-outline btn-vk mr-4">
+                        <i class="fa fa-vk te" style="color:white" aria-hidden="true"></i> Вконтакте
                     </button>
                     <button class="btn btn-outline btn-fb">
-                        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+                        <i class="fa " aria-hidden="true"><img class="w-3 h-3" src="/images/tg.svg"></i> Telegram
                     </button>
-                    <button class="btn btn-outline btn-in pr-0">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                    </button>
-                    <div class="title-8 mt-5">Служба поддержки GM</div>
-                    <a class="footer-link-1" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>{{ contact.email }}</a>
-                    <a class="footer-link-1" href="#"><i class="fa fa-phone" aria-hidden="true"></i>{{ contact.phone }}</a>
+                    <p class="text-sm max-w-xs mt-2 text-white opacity-30 hover:opacity-100">Instagram - соцсеть
+                        принадлежит компании Meta, признанной экстремистской и запрещенной на территории России</p>
+                    <div class="text-lg font-bold text-white opacity-30 mt-12">Служба поддержки GM</div>
+                    <div class="flex mt-[15px] flex-wrap">
+                        <a class="footer-link-1" href="#"><i class="fa fa-envelope"
+                                                             aria-hidden="true"></i>{{ contact.email }}</a>
+                        <a class="footer-link-1" href="#"><i class="fa" aria-hidden="true"></i>Где мой кэшбэк?</a>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 text-center">Мы работаем с</div>
@@ -296,12 +302,18 @@ useMetaBusinessPage();
                 </div>
             </div>
             <div class="row under-links">
-                <a href="#">
-                    Политика защиты персональной информации
-                </a>
-                <a href="#">
-                    Пользовательское соглашение
-                </a>
+                <div class="mt-11 flex gap-6">
+                    <div class="inline-block">
+                        <a href="#" class="text-white opacity-30">
+                            Политика защиты персональной информации
+                        </a>
+                    </div>
+                    <div class="inline-block">
+                        <a href="#" class="text-sm text-white opacity-30">
+                            Пользовательское соглашение
+                        </a>
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="row block-6">
@@ -309,7 +321,7 @@ useMetaBusinessPage();
                     <div class="footer-logo">
                         <img src="/images/gm-logo-2.png" alt="">
                         <span>
-							GM 2020 — 2021
+							GM 2014 — 2021
 						</span>
                     </div>
                 </div>
