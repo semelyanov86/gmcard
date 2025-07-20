@@ -1,10 +1,10 @@
-import '../css/app.css'
+import '../css/app.css';
 
-import '../css/font-awesome.min.css';
 import '../css/bootstrap.min.css';
+import '../css/font-awesome.min.css';
 import '../css/style.css';
 
-import '@splidejs/splide/dist/css/splide.min.css'
+import '@splidejs/splide/dist/css/splide.min.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -13,9 +13,9 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 
-import Toast from "vue-toastification";
-import 'vue-toastification/dist/index.css';
 import { toastOptions } from '@/plugins/toastOptions';
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

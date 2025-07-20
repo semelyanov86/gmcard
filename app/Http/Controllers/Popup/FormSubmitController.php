@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Popup;
 
 use App\Data\PopUpData;
@@ -10,11 +12,12 @@ use App\Services\Popup\PopupFormService;
 class FormSubmitController extends Controller
 {
     public function __construct(protected PopupFormService $service) {}
+
     public function submit(PopUpFormRequest $request)
     {
-        $data = PopUpData::from($request);
-        $crmResponse = $this->service->handle($data);
+        $dto = PopUpData::from($request);
+        $crmResponse = $this->service->handle($dto);
 
-        return response()->json(['success' => true, 'crm' => $crmResponse]);
+        return redirect()->back()->with('success', 'Заявка отправлена!');
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Controllers\Popup\FormSubmitController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
 Route::get('/', [MainController::class, 'index'])->name('home');
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);

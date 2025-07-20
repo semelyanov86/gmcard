@@ -4,24 +4,24 @@
             class="carousel header-slider"
             ref="splideRef"
             :options="{
-            type: 'loop',
-            autoplay: true,
-            perMove: 1,
-            interval: 4000,
-            arrows: false,
-            perPage: 3,
-            drag: true,
-            pagination: false,
-            pauseOnHover: true,
-            breakpoints: {
-                1024: {
-                  perPage: 2
+                type: 'loop',
+                autoplay: true,
+                perMove: 1,
+                interval: 4000,
+                arrows: false,
+                perPage: 3,
+                drag: true,
+                pagination: false,
+                pauseOnHover: true,
+                breakpoints: {
+                    1024: {
+                        perPage: 2,
+                    },
+                    768: {
+                        perPage: 1,
+                    },
                 },
-                768: {
-                  perPage: 1
-    }
-  }
-}"
+            }"
         >
             <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
                 <div class="item">
@@ -40,20 +40,14 @@
         </button>
 
         <div class="custom-pagination header-slider">
-      <span
-          v-for="(slide, i) in slides"
-          :key="i"
-          class="splide-dot"
-          :class="{ active: currentSlide === i }"
-          @click="goToSlide(i)"
-      ></span>
+            <span v-for="(slide, i) in slides" :key="i" class="splide-dot" :class="{ active: currentSlide === i }" @click="goToSlide(i)"></span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
     slides: Array<any>;
@@ -138,7 +132,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1B3568;
+    background: #1b3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;
@@ -156,7 +150,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot.active {
-    background-color: #013CA4;
+    background-color: #013ca4;
     width: 92px;
 }
 

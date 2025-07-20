@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\CRM;
 
 use App\Data\PopUpData;
@@ -18,13 +20,13 @@ final readonly class VtigerCrmAdapter
         );
     }
 
-    public function createLead(PopUpData $data): array
+    public function createLead(PopUpData $dto): array
     {
-        return $this->client->create('Leads', [
-            'lastname'         => $data->name,
-            'email'            => $data->email,
-            'phone'            => $data->phone,
-            'city'             => $data->city,
+        return $this->client->entities->createOne('Leads', [
+            'lastname'         => $dto->name,
+            'email'            => $dto->email,
+            'phone'            => $dto->phone,
+            'city'             => $dto->city,
             'assigned_user_id' => '19x6',
         ]);
     }

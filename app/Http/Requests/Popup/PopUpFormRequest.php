@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Popup;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -17,7 +19,7 @@ class PopUpFormRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return  ValidationRules
+     * @return ValidationRules
      */
     public function rules(): array
     {

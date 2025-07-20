@@ -8,7 +8,7 @@ html {
 section.section-1 {
     background-image: url('/images/bg-1.png');
     background-repeat: no-repeat;
-    background-color: #001E57;
+    background-color: #001e57;
     background-position: top center;
     position: relative;
 }
@@ -20,7 +20,7 @@ section.section-1:after {
     left: calc(50vw - 960px);
     width: 1920px;
     height: 290px;
-    background: #001E57;
+    background: #001e57;
     background-image: url('/images/bg-2.png');
     z-index: 1;
 }
@@ -113,12 +113,24 @@ button.btn.btn-primary {
     font-weight: bold;
 }
 
-.btn:not(:disabled):not(.disabled).active:focus, .btn:not(:disabled):not(.disabled):active:focus, .show > .btn.dropdown-toggle:focus, .btn.focus, .btn:focus {
+.btn:not(:disabled):not(.disabled).active:focus,
+.btn:not(:disabled):not(.disabled):active:focus,
+.show > .btn.dropdown-toggle:focus,
+.btn.focus,
+.btn:focus {
     box-shadow: none;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus, .btn-primary.focus, .btn-primary:focus,
-.btn-primary:not(:disabled):not(.disabled).active:hover, .btn-primary:not(:disabled):not(.disabled):active:hover, .show > .btn-primary.dropdown-toggle:hover, .btn-primary.focus, .btn-primary:hover {
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus,
+.btn-primary.focus,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled).active:hover,
+.btn-primary:not(:disabled):not(.disabled):active:hover,
+.show > .btn-primary.dropdown-toggle:hover,
+.btn-primary.focus,
+.btn-primary:hover {
     box-shadow: 0 6px 40px #f9d91496;
 }
 
@@ -311,7 +323,7 @@ section.section-3:before {
     left: 0;
     background-position: top center;
     background-repeat: no-repeat;
-    background-color: #001D55;
+    background-color: #001d55;
 
     /*opacity: .3;*/
 }
@@ -326,7 +338,6 @@ section.section-3:after {
     left: 0;
     background-position: bottom center;
     background-repeat: no-repeat;
-
 }
 
 .section-3 h2 {
@@ -380,9 +391,8 @@ section.section-3 .container {
     text-align: center;
     font-size: 13px;
     line-height: 19px;
-    color: #8D8D8D;
+    color: #8d8d8d;
 }
-
 
 .slider-2 {
     overflow: visible;
@@ -483,7 +493,7 @@ h3.title-3 {
 }
 
 .cost-card {
-    background-color: #F9D914;
+    background-color: #f9d914;
     border-radius: 35px;
     position: relative;
 }
@@ -623,7 +633,7 @@ h3.title-3 {
 }
 
 .block-4 .block-content p a {
-    color: #006A95;
+    color: #006a95;
 }
 
 .block-4:after {
@@ -647,7 +657,7 @@ h3.title-4 {
 }
 
 .text-7 {
-    color: #99999B;
+    color: #99999b;
 }
 
 .text-8 {
@@ -839,7 +849,7 @@ a.footer-link-1:hover {
 
 .block-6 .btn-outline.btn-flag.btn-select {
     width: 150px;
-    opacity: .7;
+    opacity: 0.7;
     padding: 9px;
     font-weight: bold;
     text-transform: uppercase;
@@ -1014,7 +1024,8 @@ a.footer-link-1:hover {
         text-align: center;
     }
 
-    .text-7, .text-8 {
+    .text-7,
+    .text-8 {
         text-align: center;
         width: 100%;
         padding: 24px;
@@ -1159,7 +1170,8 @@ a.footer-link-1:hover {
         text-align: center;
     }
 
-    .text-7, .text-8 {
+    .text-7,
+    .text-8 {
         text-align: center;
         width: 100%;
         padding: 24px;
@@ -1170,7 +1182,6 @@ a.footer-link-1:hover {
     .text-8.underline-1:after {
         display: none;
     }
-
 }
 
 @media (max-width: 575px) {
@@ -1317,7 +1328,8 @@ a.footer-link-1:hover {
         margin-top: 15px;
     }
 
-    .text-1, .text-7 {
+    .text-1,
+    .text-7 {
         font-size: 6vw;
         line-height: initial;
     }
