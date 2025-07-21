@@ -29,5 +29,6 @@ rr
 /var/cache/
 /var/cache/.phplint.json/
 
-
 .task/
+
+.env.*
