@@ -43,8 +43,9 @@
 </template>
 
 <script setup lang="ts">
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref } from 'vue';
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+
 
 type Review = {
     text: string;
@@ -53,13 +54,16 @@ type Review = {
     avatar: string;
 };
 
-const props = defineProps<{
+const { reviews } = defineProps<{
     reviews: Review[];
 }>();
 
-const { reviews } = props;
+const splideRef = ref<{
+    splide: {
+        go: (target: string | number) => void;
+    };
+} | null>(null);
 
-const splideRef = ref<any>(null);
 
 function goPrev(): void {
     splideRef.value?.splide.go('<');

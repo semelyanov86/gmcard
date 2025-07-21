@@ -25,6 +25,3 @@ yarn-error.log
 /.npm
 rr
 .rr.yaml
-.task/
-var/
-.env.*

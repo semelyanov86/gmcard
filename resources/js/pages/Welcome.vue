@@ -3,6 +3,8 @@ import PopUpForm from '@/components/popup/PopUpForm.vue';
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 
+import { useMetaBusinessPage } from '@/meta/useMetaBusiness';
+
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
 
@@ -40,6 +42,8 @@ watch(
         if (flash?.error) toast.error(flash.error);
     },
 );
+
+useMetaBusinessPage();
 </script>
 
 <template>
@@ -99,41 +103,59 @@ watch(
     <section class="section-2">
         <div class="container">
             <div class="block-2">
-                <h4 class="title-1">Как это работает</h4>
+                <h4 class="title-1">
+                    Как это работает
+                </h4>
                 <ul class="list-1">
                     <li class="list-item">
                         <div class="item-number">1</div>
-                        <div class="item-text">Создайте аккаунт или войдите на сайт</div>
+                        <div class="item-text">
+                            Создайте аккаунт или войдите на сайт
+                        </div>
                     </li>
                     <li class="list-item">
                         <div class="item-number">2</div>
-                        <div class="item-text">Создайте акцию и запустите ее</div>
+                        <div class="item-text">
+                            Создайте акцию и запустите ее
+                        </div>
                     </li>
                     <li class="list-item">
                         <div class="item-number">3</div>
-                        <div class="item-text">Получайте новых клиентов прямо сейчас!</div>
+                        <div class="item-text">
+                            Получайте новых клиентов прямо сейчас!
+                        </div>
                     </li>
                 </ul>
-                <button class="btn btn-primary">Стать нашим партнером!</button>
-                <div class="text-4">Просто попробуйте! Это бесплатно!</div>
+                <button class="btn btn-primary">
+                    Стать нашим партнером!
+                </button>
+                <div class="text-4">
+                    Просто попробуйте! Это бесплатно!
+                </div>
             </div>
         </div>
     </section>
     <section class="section-3">
         <div class="container">
-            <h2>С нами уже работает <br />более 500+ магазинов!</h2>
-            <div class="text-5">Ваши клиенты ищут вас<br />на GM CARD</div>
+            <h2>
+                С нами уже работает <br>более 500+ магазинов!
+            </h2>
+            <div class="text-5">
+                Ваши клиенты ищут вас<br>на GM CARD
+            </div>
             <div class="section-slider" v-if="reviews && reviews.length">
                 <ReviewsSlider :reviews="reviews" />
             </div>
-            <h3 class="title-2">Что получает магазин партнер?</h3>
+            <h3 class="title-2">
+                Что получает магазин партнер?
+            </h3>
             <ul class="list-2 row">
-                <li class="col-sm-6 list-item">Новых <br />покупателей</li>
-                <li class="col-sm-6 list-item">Рост заказов от старых клиентов</li>
-                <li class="col-sm-6 list-item">Увеличение количества постоянных клиентов</li>
-                <li class="col-sm-6 list-item">Повышение узнаваемости и лояльности к нему</li>
-                <li class="col-sm-6 list-item">Стабильный источник чистого и качественного трафика</li>
-                <li class="col-sm-6 list-item">Промокомпании с его участием</li>
+                <li class="list-item col-sm-6">Новых <br>покупателей</li>
+                <li class="list-item col-sm-6">Рост заказов от старых клиентов</li>
+                <li class="list-item col-sm-6">Увеличение количества постоянных клиентов</li>
+                <li class="list-item col-sm-6">Повышение узнаваемости и лояльности к нему</li>
+                <li class="list-item col-sm-6">Стабильный источник чистого и качественного трафика</li>
+                <li class="list-item col-sm-6">Промокомпании с его участием</li>
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -141,50 +163,72 @@ watch(
     <section class="section-4">
         <div class="container">
             <div class="block-3">
-                <h3 class="title-3">Это не все! <br />У нас есть подарок!</h3>
+                <h3 class="title-3">
+                    Это не все! <br>У нас есть подарок!
+                </h3>
                 <div class="cost-card">
                     <div class="card-content">
                         <div class="card-title-1">
-                            <div class="title-cost">6.000 ₽ / год</div>
-                            <div class="title-red">Время ограничено</div>
+                            <div class="title-cost">
+                                6.000 ₽ / год
+                            </div>
+                            <div class="title-red">
+                                Время ограничено
+                            </div>
                         </div>
-                        <div class="card-title-2">600 ₽ / год *</div>
+                        <div class="card-title-2">
+                            600 ₽ / год *
+                        </div>
                         <div class="text-6">
                             <!-- * —  -->
-                            Скидка 90% предоставлена в связи с редизайном сервисов GM и добавлением нового функционала. После того, как будет запущен
-                            goodmoneys.ru и доработаны мобильные приложение - предложение будет не действительно.
+                            Скидка 90% предоставлена в связи с редизайном сервисов GM и добавлением нового функционала.
+                            После того, как будет запущен goodmoneys.ru и доработаны мобильные приложение - предложение
+                            будет не действительно.
                         </div>
                     </div>
                 </div>
                 <div class="expansions">
-                    <p>В разработке мобильные приложения и расширения для браузеров</p>
-                    <img src="/images/browsers/1.png" alt="" />
-                    <img src="/images/browsers/2.png" alt="" />
-                    <img src="/images/browsers/3.png" alt="" />
-                    <img src="/images/browsers/4.png" alt="" />
-                    <img src="/images/browsers/5.png" alt="" />
+                    <p>
+                        В разработке мобильные приложения и расширения для браузеров
+                    </p>
+                    <img src="/images/browsers/1.png" alt="">
+                    <img src="/images/browsers/2.png" alt="">
+                    <img src="/images/browsers/3.png" alt="">
+                    <img src="/images/browsers/4.png" alt="">
+                    <img src="/images/browsers/5.png" alt="">
                 </div>
             </div>
-            <hr />
+            <hr>
             <div class="block-4">
                 <div class="block-content">
-                    <h3>А еще реферальная программа</h3>
+                    <h3>
+                        А еще реферальная программа
+                    </h3>
                     <p>
-                        Делитесь с другими своей реферальной ссылкой и получайте до 500 руб., за каждого, кто зарегистрировался в GM.<br /><br />Подробнее,
-                        как это работает,<br />можно <a href="#">узнать здесь</a>
+                        Делитесь с другими своей реферальной ссылкой и получайте до 500 руб., за каждого, кто
+                        зарегистрировался в GM.<br><br>Подробнее, как это работает,<br>можно <a href="#">узнать
+                        здесь</a>
                     </p>
                 </div>
             </div>
-            <hr />
+            <hr>
         </div>
     </section>
     <section class="section-5">
         <div class="container">
             <div class="block-5">
-                <h3 class="title-4">Сделайте первый<br />шаг к своим новым<br />продажам</h3>
-                <p class="text-7">Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте</p>
-                <p class="text-8 underline-1">– это бесплатно!</p>
-                <button class="btn btn-primary">Стать нашим партнером!</button>
+                <h3 class="title-4">
+                    Сделайте первый<br>шаг к своим новым<br>продажам
+                </h3>
+                <p class="text-7">
+                    Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте
+                </p>
+                <p class="text-8 underline-1">
+                    – это бесплатно!
+                </p>
+                <button class="btn btn-primary">
+                    Стать нашим партнером!
+                </button>
             </div>
         </div>
     </section>
@@ -199,22 +243,28 @@ watch(
                 <a href="#">О нас</a>
                 <a href="#">Контакты</a>
             </div>
-            <hr />
+            <hr>
             <div class="row">
                 <div class="col-md-4">
                     <div class="title-8">Больше скидок</div>
                     <p class="text-9">
-                        В нашем мобильном<br />приложении<br />
-                        <a href="#"> <img src="/images/app-store.png" alt="" /> </a><br />
+                        В нашем мобильном<br>приложении<br>
                         <a href="#">
-                            <img src="/images/google-play.png" alt="" />
+                            <img src="/images/app-store.png" alt="">
+                        </a><br>
+                        <a href="#">
+                            <img src="/images/google-play.png" alt="">
                         </a>
                     </p>
                 </div>
                 <div class="col-md-4">
                     <div class="title-8 pb-2">Следите за новостями и акциями</div>
-                    <button class="btn btn-outline btn-vk"><i class="fa fa-vk" aria-hidden="true"></i> Вконтакте</button>
-                    <button class="btn btn-outline btn-fb"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
+                    <button class="btn btn-outline btn-vk">
+                        <i class="fa fa-vk" aria-hidden="true"></i> Вконтакте
+                    </button>
+                    <button class="btn btn-outline btn-fb">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+                    </button>
                     <button class="btn btn-outline btn-in pr-0">
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </button>
@@ -225,46 +275,52 @@ watch(
                 <div class="col-md-4">
                     <div class="title-8 text-center">Мы работаем с</div>
                     <div class="row partners text-center">
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/1.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/1.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/2.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/2.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/3.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/3.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/4.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/4.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/5.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/5.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/6.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/6.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/7.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/7.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/8.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/8.png" alt="">
                         </div>
-                        <div class="col-md-4 col-4">
-                            <img class="partner" src="/images/partners/9.png" alt="" />
+                        <div class="col-4 col-md-4">
+                            <img class="partner" src="/images/partners/9.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row under-links">
-                <a href="#"> Политика защиты персональной информации </a>
-                <a href="#"> Пользовательское соглашение </a>
+                <a href="#">
+                    Политика защиты персональной информации
+                </a>
+                <a href="#">
+                    Пользовательское соглашение
+                </a>
             </div>
-            <hr />
+            <hr>
             <div class="row block-6">
                 <div class="col-md-4">
                     <div class="footer-logo">
-                        <img src="/images/gm-logo-2.png" alt="" />
-                        <span> GM 2014 — 2019 </span>
+                        <img src="/images/gm-logo-2.png" alt="">
+                        <span>
+							GM 2014 — 2019
+						</span>
                     </div>
                 </div>
                 <div class="col-md-4 yellow-links">

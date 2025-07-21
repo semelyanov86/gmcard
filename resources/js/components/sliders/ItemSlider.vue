@@ -4,24 +4,24 @@
             class="carousel header-slider"
             ref="splideRef"
             :options="{
-                type: 'loop',
-                autoplay: true,
-                perMove: 1,
-                interval: 4000,
-                arrows: false,
-                perPage: 3,
-                drag: true,
-                pagination: false,
-                pauseOnHover: true,
-                breakpoints: {
-                    1024: {
-                        perPage: 2,
-                    },
-                    768: {
-                        perPage: 1,
-                    },
+            type: 'loop',
+            autoplay: true,
+            perMove: 1,
+            interval: 4000,
+            arrows: false,
+            perPage: 2,
+            drag: true,
+            pagination: false,
+            pauseOnHover: true,
+            breakpoints: {
+                1024: {
+                  perPage: 2
                 },
-            }"
+                768: {
+                  perPage: 1
+    }
+  }
+}"
         >
             <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
                 <div class="item">
@@ -40,22 +40,36 @@
         </button>
 
         <div class="custom-pagination header-slider">
-            <span v-for="(slide, i) in slides" :key="i" class="splide-dot" :class="{ active: currentSlide === i }" @click="goToSlide(i)"></span>
+      <span
+          v-for="(slide, i) in slides"
+          :key="i"
+          class="splide-dot"
+          :class="{ active: currentSlide === i }"
+          @click="goToSlide(i)"
+      ></span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { onMounted, ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const props = defineProps<{
-    slides: Array<any>;
+const { slides } = defineProps<{
+    slides: {
+        image: string;
+        title: string;
+        text: string;
+    }[];
 }>();
 
-const { slides } = props;
+const splideRef = ref<{
+    splide: {
+        go: (target: string | number) => void;
+        on: (event: string, callback: (index: number) => void) => void;
+    };
+} | null>(null);
 
-const splideRef = ref<any>(null);
 const currentSlide = ref<number>(0);
 
 function goPrev(): void {
@@ -66,7 +80,8 @@ function goNext(): void {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index: number): void {
+
+function goToSlide(index: number) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
@@ -132,7 +147,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1b3568;
+    background: #1B3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;
@@ -150,7 +165,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot.active {
-    background-color: #013ca4;
+    background-color: #013CA4;
     width: 92px;
 }
 
