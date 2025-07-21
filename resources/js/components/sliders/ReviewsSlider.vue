@@ -63,6 +63,7 @@ const splideRef = ref<{
     };
 } | null>(null);
 
+
 function goPrev(): void {
     splideRef.value?.splide.go('<');
 }

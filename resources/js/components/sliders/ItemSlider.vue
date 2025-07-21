@@ -80,7 +80,8 @@ function goNext(): void {
     splideRef.value?.splide.go('>');
 }
 
-function goToSlide(index: number): void {
+
+function goToSlide(index: number) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
 }
