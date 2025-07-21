@@ -27,3 +27,4 @@ rr
 .rr.yaml
 .task/
 var/
+.env.*
