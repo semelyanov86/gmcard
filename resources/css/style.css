@@ -139,6 +139,11 @@ button.btn.btn-primary {
     position: relative;
 }
 
+.header-card-wrapper {
+    position: relative;
+    max-width: 100%;
+}
+
 .header-card:before {
     position: absolute;
     background: #ffffff;
@@ -191,6 +196,12 @@ button.btn.btn-primary {
 .header-card .col-md-4 {
     position: relative;
     padding: 0 20px;
+    height: 485px; /* в точности как у .header-card:before */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .header-card .col-md-4:not(:last-child)::after {
@@ -358,6 +369,10 @@ section.section-3:after {
 section.section-3 {
     position: relative;
     z-index: 2;
+}
+
+.section-2 {
+    z-index: 88;
 }
 
 section.section-3 .container {
@@ -1206,6 +1221,23 @@ a.footer-link-1:hover {
 }
 
 @media (max-width: 575px) {
+    section.section-1 {
+        background-image: none;
+        background-color: #001E57;
+    }
+
+    section.section-1:after {
+        width: 100vw;
+        height: 150px;
+        bottom: 0;
+        background-size: cover;
+        background-position: center bottom;
+    }
+
+    ul.list-1 li.list-item:not(:last-child)::after {
+        display: none;
+    }
+
     .block-4:after {
         display: none;
     }
