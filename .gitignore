@@ -25,3 +25,7 @@ yarn-error.log
 /.npm
 rr
 .rr.yaml
+
+.env.testing
+.task/
+var/
