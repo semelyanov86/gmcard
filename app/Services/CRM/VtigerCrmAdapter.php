@@ -7,6 +7,7 @@ namespace App\Services\CRM;
 use App\Contracts\VtigerCrmInterface;
 use App\Data\PopUpData;
 use Salaros\Vtiger\VTWSCLib\WSClient;
+use Salaros\Vtiger\VTWSCLib\WSException;
 
 final readonly class VtigerCrmAdapter implements VtigerCrmInterface
 {
@@ -20,6 +21,11 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
             config('services.vtiger.access_key')
         );
     }
+
+    /**
+     * @return array<string, string>
+     * @throws WSException
+     */
 
     public function createLead(PopUpData $dto): array
     {
