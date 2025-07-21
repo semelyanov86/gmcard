@@ -14,9 +14,9 @@ final readonly class VtigerCrmAdapter
     public function __construct()
     {
         $this->client = new WSClient(
-            env('VTIGER_URL'),
-            env('VTIGER_USERNAME'),
-            env('VTIGER_ACCESS_KEY')
+            config('services.vtiger.url'),
+            config('services.vtiger.username'),
+            config('services.vtiger.access_key')
         );
     }
 
