@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services\CRM;
 
+use App\Contracts\VtigerCrmInterface;
 use App\Data\PopUpData;
 use Salaros\Vtiger\VTWSCLib\WSClient;
 
-final readonly class VtigerCrmAdapter
+final readonly class VtigerCrmAdapter implements VtigerCrmInterface
 {
     protected WSClient $client;
 

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Contracts\VtigerCrmInterface;
 use App\Providers\Configurables\ConfigurableInterface;
+use App\Services\CRM\VtigerCrmAdapter;
 use Illuminate\Support\ServiceProvider;
 use Override;
 
@@ -32,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
     #[Override]
     public function register(): void
     {
-        //
+        $this->app->bind(VtigerCrmInterface::class, VtigerCrmAdapter::class);
     }
 
     /**
