@@ -196,7 +196,7 @@ button.btn.btn-primary {
 .header-card .col-md-4 {
     position: relative;
     padding: 0 20px;
-    height: 485px; /* в точности как у .header-card:before */
+    height: 485px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -720,7 +720,6 @@ a:hover {
     color: #eacc14 !important;
 }
 
-
 .footer .links {
     display: flex;
     justify-content: space-between;
@@ -917,6 +916,40 @@ a.footer-link-1:hover {
 
 .footer {
     position: relative;
+}
+
+.hand {
+    animation-name: spin-top;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin-top {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+
+    25% {
+        transform: rotate(5deg);
+        transform-origin: bottom;
+    }
+
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+
+    75% {
+        transform: rotate(-5deg);
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
 }
 
 /*.footer:before {*/

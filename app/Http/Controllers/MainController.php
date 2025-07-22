@@ -90,6 +90,8 @@ class MainController extends Controller
             ]
         ];
 
+        $meta = config('meta.business');
+
         return Inertia::render('Welcome', [
             'slides' => $slides,
             'reviews' => $reviews,
@@ -97,6 +99,7 @@ class MainController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
+            'meta' => $meta,
         ]);
     }
 }

@@ -1,21 +1,43 @@
 <script setup lang="ts">
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
-import { useMetaBusinessPage } from '@/meta/useMetaBusiness';
+import { useHead } from '@vueuse/head';
 
 import { SlideModel } from '@/models/SlideModel';
 import { ReviewModel } from '@/models/ReviewModel';
 
-defineProps<{
+const props = defineProps<{
     slides: SlideModel[],
     reviews: ReviewModel[],
     contact: {
         email: string,
         phone: string
+    },
+    meta: {
+        title: string,
+        description: string,
+        og: {
+            title: string,
+            description: string,
+            image: string,
+            url: string,
+            type: string
+        }
     }
 }>();
 
-useMetaBusinessPage();
+
+useHead({
+    title: props.meta.title,
+    meta: [
+        { name: 'description', content: props.meta.description },
+        { property: 'og:title', content: props.meta.og.title },
+        { property: 'og:description', content: props.meta.og.description },
+        { property: 'og:image', content: props.meta.og.image },
+        { property: 'og:url', content: props.meta.og.url },
+        { property: 'og:type', content: props.meta.og.type },
+    ],
+});
 </script>
 
 <template>
