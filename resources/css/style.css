@@ -6,7 +6,9 @@ html {
 }
 
 section.section-1 {
+    background-image: url('/images/new_bg_test.png');
     background-repeat: no-repeat;
+    background-color: #001E57;
     background-position: top center;
     position: relative;
 }
@@ -18,6 +20,7 @@ section.section-1:after {
     left: calc(50vw - 960px);
     width: 1920px;
     height: 290px;
+    background: #001E57;
     background-image: url('/images/bg-2.png');
     z-index: 1;
 }
@@ -110,12 +113,13 @@ button.btn.btn-primary {
     font-weight: bold;
 }
 
-.btn:not(:disabled):not(.disabled).active:focus,
-.btn:not(:disabled):not(.disabled):active:focus,
-.show > .btn.dropdown-toggle:focus,
-.btn.focus,
-.btn:focus {
+.btn:not(:disabled):not(.disabled).active:focus, .btn:not(:disabled):not(.disabled):active:focus, .show > .btn.dropdown-toggle:focus, .btn.focus, .btn:focus {
     box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus, .btn-primary.focus, .btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled).active:hover, .btn-primary:not(:disabled):not(.disabled):active:hover, .show > .btn-primary.dropdown-toggle:hover, .btn-primary.focus, .btn-primary:hover {
+    box-shadow: 0 6px 40px #f9d91496;
 }
 
 .header-flex {
@@ -187,6 +191,28 @@ button.btn.btn-primary {
     margin: 0 auto;
     color: #7c7c7c;
     min-height: 245px;
+}
+
+.header-card .col-md-4 {
+    position: relative;
+    padding: 0 20px;
+    height: 485px; /* в точности как у .header-card:before */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header-card .col-md-4:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #d1d1d1;
+    opacity: 0.5;
 }
 
 .slider-1 {
@@ -261,6 +287,22 @@ ul.list-1 li.list-item {
     list-style: none;
     display: flex;
     align-items: center;
+    margin-bottom: 3px;
+    position: relative;
+    padding: 15px 0;
+}
+
+
+ul.list-1 li.list-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 35%;
+    background-color: #d1d1d1;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 ul.list-1 .item-number {
@@ -299,6 +341,7 @@ section.section-3:before {
     left: 0;
     background-position: top center;
     background-repeat: no-repeat;
+    background-color: #001D55;
 
     /*opacity: .3;*/
 }
@@ -313,6 +356,7 @@ section.section-3:after {
     left: 0;
     background-position: bottom center;
     background-repeat: no-repeat;
+
 }
 
 .section-3 h2 {
@@ -327,10 +371,15 @@ section.section-3 {
     z-index: 2;
 }
 
+.section-2 {
+    z-index: 88;
+}
+
 section.section-3 .container {
     padding-top: 622px;
     padding-bottom: 100px;
     color: #fffffd;
+    position: relative;
 }
 
 .slider-2 .slider-card {
@@ -366,7 +415,9 @@ section.section-3 .container {
     text-align: center;
     font-size: 13px;
     line-height: 19px;
+    color: #8D8D8D;
 }
+
 
 .slider-2 {
     overflow: visible;
@@ -467,6 +518,7 @@ h3.title-3 {
 }
 
 .cost-card {
+    background-color: #F9D914;
     border-radius: 35px;
     position: relative;
 }
@@ -606,6 +658,7 @@ h3.title-3 {
 }
 
 .block-4 .block-content p a {
+    color: #006A95;
 }
 
 .block-4:after {
@@ -629,6 +682,7 @@ h3.title-4 {
 }
 
 .text-7 {
+    color: #99999B;
 }
 
 .text-8 {
@@ -642,6 +696,7 @@ h3.title-4 {
 
 .section-5 {
     position: relative;
+    z-index: 0;
 }
 
 .section-5:after {
@@ -721,6 +776,7 @@ section.footer {
 
 .partners img.partner {
     margin: 0 auto;
+    padding: 14px;
 }
 
 .partners .partner-cloumn {
@@ -780,8 +836,10 @@ a.footer-link-1:hover {
 .under-links {
     margin-top: -10px !important;
     display: flex;
+    width: 900px;
     margin: 0px auto;
     justify-content: space-around;
+    padding-left: 200px;
     margin-bottom: 27px;
 }
 
@@ -797,6 +855,14 @@ a.footer-link-1:hover {
     color: #7a7b7f;
     font-size: 14px;
     padding-left: 15px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+.footer-logo img {
+    margin-right: 5px;
 }
 
 .yellow-links a {
@@ -817,6 +883,7 @@ a.footer-link-1:hover {
 
 .block-6 .btn-outline.btn-flag.btn-select {
     width: 150px;
+    opacity: .7;
     padding: 9px;
     font-weight: bold;
     text-transform: uppercase;
@@ -863,6 +930,9 @@ a.footer-link-1:hover {
 
 @media (min-width: 0px) and (max-width: 1180px) {
     .footer:before {
+        display: none;
+    }
+    ul.list-1 li.list-item:not(:last-child)::after {
         display: none;
     }
 }
@@ -988,6 +1058,10 @@ a.footer-link-1:hover {
     }
 
     h3.title-4 {
+        text-align: center;
+    }
+
+    .text-7, .text-8 {
         text-align: center;
         width: 100%;
         padding: 24px;
@@ -1130,6 +1204,10 @@ a.footer-link-1:hover {
 
     h3.title-4 {
         text-align: center;
+    }
+
+    .text-7, .text-8 {
+        text-align: center;
         width: 100%;
         padding: 24px;
         padding-top: 7px;
@@ -1139,9 +1217,27 @@ a.footer-link-1:hover {
     .text-8.underline-1:after {
         display: none;
     }
+
 }
 
 @media (max-width: 575px) {
+    section.section-1 {
+        background-image: none;
+        background-color: #001E57;
+    }
+
+    section.section-1:after {
+        width: 100vw;
+        height: 150px;
+        bottom: 0;
+        background-size: cover;
+        background-position: center bottom;
+    }
+
+    ul.list-1 li.list-item:not(:last-child)::after {
+        display: none;
+    }
+
     .block-4:after {
         display: none;
     }
@@ -1156,7 +1252,7 @@ a.footer-link-1:hover {
 
     .block-4 .block-content {
         margin-left: 0;
-        /*margin: 0 auto;*/
+        margin: 0 auto;
         width: 100%;
         padding: 25px;
     }
@@ -1283,8 +1379,11 @@ a.footer-link-1:hover {
         font-size: 8vw;
         line-height: initial;
         margin-top: 15px;
-        /*font-size: 6vw;*/
-        /*line-height: initial;*/
+    }
+
+    .text-1, .text-7 {
+        font-size: 6vw;
+        line-height: initial;
     }
 
     .header-block {
