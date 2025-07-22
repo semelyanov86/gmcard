@@ -714,8 +714,12 @@ h3.title-4 {
 
 section.footer {
     background-color: #0f1120;
-    padding-bottom: 25px;
 }
+
+a:hover {
+    color: #eacc14 !important;
+}
+
 
 .footer .links {
     display: flex;
@@ -915,18 +919,18 @@ a.footer-link-1:hover {
     position: relative;
 }
 
-.footer:before {
-    position: absolute;
-    left: -287px;
-    bottom: 0;
-    width: 100%;
-    height: 410px;
-    content: '';
-    background-repeat: no-repeat;
-    background-position: 50% 100%;
-    background-image: url('/images/hand-footer.png');
-    z-index: 0;
-}
+/*.footer:before {*/
+/*    position: absolute;*/
+/*    left: -287px;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    height: 410px;*/
+/*    content: '';*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: 50% 100%;*/
+/*    background-image: url('/images/hand-footer.png');*/
+/*    z-index: 0;*/
+/*}*/
 
 @media (min-width: 0px) and (max-width: 1180px) {
     .footer:before {
@@ -1390,3 +1394,4 @@ a.footer-link-1:hover {
         padding-bottom: 30px;
     }
 }
+
