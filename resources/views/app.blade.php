@@ -28,7 +28,6 @@
         }
     </style>
 
-    <link rel="stylesheet" href="{{ asset('css/output.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
