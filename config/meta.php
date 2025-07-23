@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'business' => [
         'title' => 'GM CARD для бизнеса: Привлекайте клиентов скидками и бонусами | Партнерская программа',

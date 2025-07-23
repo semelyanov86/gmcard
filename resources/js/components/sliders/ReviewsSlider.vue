@@ -3,22 +3,22 @@
         ref="splideRef"
         class="slider-2"
         :options="{
-        type: 'loop',
-        perPage: 6,
-        perMove: 1,
-        gap: '10px',
-        autoplay: true,
-        pauseOnHover: true,
-        pagination: false,
-        arrows: false,
-        breakpoints: {
-          768: {
-            perPage: 1,
+            type: 'loop',
+            perPage: 6,
             perMove: 1,
             gap: '10px',
-          },
-        },
-      }"
+            autoplay: true,
+            pauseOnHover: true,
+            pagination: false,
+            arrows: false,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    perMove: 1,
+                    gap: '10px',
+                },
+            },
+        }"
     >
         <SplideSlide v-for="(review, i) in reviews" :key="i">
             <div class="item">
@@ -43,8 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { ref } from 'vue';
 
 type Review = {
     text: string;
@@ -62,7 +62,6 @@ const splideRef = ref<{
         go: (target: string | number) => void;
     };
 } | null>(null);
-
 
 function goPrev(): void {
     splideRef.value?.splide.go('<');
