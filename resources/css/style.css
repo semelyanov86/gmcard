@@ -631,7 +631,7 @@ h3.title-3 {
     border-radius: 35px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 130px;
 }
 
 .block-4 .block-content {
@@ -712,9 +712,6 @@ h3.title-4 {
     z-index: -1;
 }
 
-section.footer {
-    background-color: #0f1120;
-}
 
 a:hover {
     color: #eacc14 !important;
