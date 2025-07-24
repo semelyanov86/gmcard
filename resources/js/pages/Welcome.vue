@@ -3,6 +3,8 @@ import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 import { useHead } from '@vueuse/head';
 
+import '../../css/internal/landing.css';
+
 import Footer from '@/components/Footer.vue';
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
