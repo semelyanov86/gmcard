@@ -118,7 +118,7 @@ useHead({
         <div class="container">
             <h2>С нами уже работает <br />более 500+ магазинов!</h2>
             <div class="text-5">Ваши клиенты ищут вас<br />на GM CARD</div>
-            <div class="section-slider" v-if="reviews && reviews.length">
+            <div class="review-slider" v-if="reviews && reviews.length">
                 <ReviewsSlider :reviews="reviews" />
             </div>
             <h3 class="title-2">Что получает магазин партнер?</h3>

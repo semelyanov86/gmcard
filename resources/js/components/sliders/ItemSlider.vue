@@ -1,7 +1,6 @@
 <template>
     <div class="header-slider-wrapper">
         <Splide
-            class="carousel header-slider"
             ref="splideRef"
             :options="{
                 type: 'loop',
@@ -23,7 +22,7 @@
                 },
             }"
         >
-            <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
+            <SplideSlide v-for="(slide, i) in slides" :key="i">
                 <div class="item">
                     <img :src="slide.image" alt="" />
                     <h4>{{ slide.title }}</h4>
@@ -39,7 +38,7 @@
             <img src="/images/slide-btn-right.png" alt="Next" />
         </button>
 
-        <div class="custom-pagination header-slider">
+        <div class="custom-pagination">
             <span v-for="(slide, i) in slides" :key="i" class="splide-dot" :class="{ active: currentSlide === i }" @click="goToSlide(i)"></span>
         </div>
     </div>
@@ -91,6 +90,7 @@ onMounted(() => {
 .header-slider-wrapper {
     position: relative;
     margin: 0 auto;
+    cursor: grab;
 }
 
 .item {
@@ -149,7 +149,7 @@ onMounted(() => {
     cursor: pointer;
 }
 
-.header-slider .custom-pagination {
+.custom-pagination {
     display: flex;
     justify-content: center;
     max-width: 300px;
