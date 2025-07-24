@@ -2,7 +2,6 @@
 
 @import 'tw-animate-css';
 
-
 body,
 html {
     font-family: 'PT Sans', sans-serif;
@@ -155,7 +154,6 @@ button.btn.btn-primary {
 .header-card {
     position: relative;
 }
-
 
 .header-card:before {
     position: absolute;
@@ -376,7 +374,6 @@ section.section-3 .container {
     right: -400px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 29, 85, 0.7) 10%, rgba(0, 29, 85, 0.7) 100%);
 }
-
 
 .custom-arrow:focus {
     outline: none;
@@ -1337,7 +1334,7 @@ a.footer-link-1:hover {
     }
 }
 
-@media(max-width:648px) {
+@media (max-width: 648px) {
     .footer_navBlock {
         /* justify-content: center !important; */
     }
@@ -1353,7 +1350,7 @@ a.footer-link-1:hover {
     }
 }
 
-@media(max-width:529px) {
+@media (max-width: 529px) {
     .footer_block {
         flex-direction: column !important;
     }
@@ -1378,13 +1375,13 @@ a.footer-link-1:hover {
     }
 }
 
-@media (max-width:940px) {
+@media (max-width: 940px) {
     .list_footer {
         margin-left: 50px;
     }
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
     .pay_block {
         display: none !important;
     }
