@@ -15,11 +15,16 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
 
     public function __construct()
     {
-        $this->client = new WSClient(
-            config('services.vtiger.url'),
-            config('services.vtiger.username'),
-            config('services.vtiger.access_key')
-        );
+        /** @var string $url */
+        $url = config('services.vtiger.url');
+
+        /** @var string $username */
+        $username = config('services.vtiger.username');
+
+        /** @var string $accessKey */
+        $accessKey = config('services.vtiger.access_key');
+
+        $this->client = new WSClient($url, $username, $accessKey);
     }
 
     /**

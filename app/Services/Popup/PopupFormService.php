@@ -13,6 +13,10 @@ class PopupFormService
         protected VtigerCrmInterface $crm
     ) {}
 
+    /**
+     * @return array<string, mixed>
+     */
+
     public function handle(PopUpData $dto): array
     {
         return $this->crm->createLead($dto);

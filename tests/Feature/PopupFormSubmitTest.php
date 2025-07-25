@@ -17,7 +17,7 @@ class PopupFormSubmitTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_form_submit_successfully_creates_lead()
+    public function test_form_submit_successfully_creates_lead(): void
     {
         $this->withoutMiddleware();
 
