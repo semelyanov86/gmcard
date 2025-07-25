@@ -1,29 +1,28 @@
 <template>
     <div class="header-slider-wrapper">
         <Splide
-            class="carousel header-slider"
             ref="splideRef"
             :options="{
-            type: 'loop',
-            autoplay: true,
-            perMove: 1,
-            interval: 4000,
-            arrows: false,
-            perPage: 2,
-            drag: true,
-            pagination: false,
-            pauseOnHover: true,
-            breakpoints: {
-                1024: {
-                  perPage: 2
+                type: 'loop',
+                autoplay: true,
+                perMove: 1,
+                interval: 4000,
+                arrows: false,
+                perPage: 2,
+                drag: true,
+                pagination: false,
+                pauseOnHover: true,
+                breakpoints: {
+                    1024: {
+                        perPage: 2,
+                    },
+                    768: {
+                        perPage: 1,
+                    },
                 },
-                768: {
-                  perPage: 1
-    }
-  }
-}"
+            }"
         >
-            <SplideSlide class="slider-1" v-for="(slide, i) in slides" :key="i">
+            <SplideSlide v-for="(slide, i) in slides" :key="i">
                 <div class="item">
                     <img :src="slide.image" alt="" />
                     <h4>{{ slide.title }}</h4>
@@ -39,21 +38,15 @@
             <img src="/images/slide-btn-right.png" alt="Next" />
         </button>
 
-        <div class="custom-pagination header-slider">
-      <span
-          v-for="(slide, i) in slides"
-          :key="i"
-          class="splide-dot"
-          :class="{ active: currentSlide === i }"
-          @click="goToSlide(i)"
-      ></span>
+        <div class="custom-pagination">
+            <span v-for="(slide, i) in slides" :key="i" class="splide-dot" :class="{ active: currentSlide === i }" @click="goToSlide(i)"></span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const { slides } = defineProps<{
     slides: {
@@ -80,7 +73,6 @@ function goNext(): void {
     splideRef.value?.splide.go('>');
 }
 
-
 function goToSlide(index: number) {
     splideRef.value?.splide.go(index);
     currentSlide.value = index;
@@ -98,6 +90,7 @@ onMounted(() => {
 .header-slider-wrapper {
     position: relative;
     margin: 0 auto;
+    cursor: grab;
 }
 
 .item {
@@ -147,7 +140,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1B3568;
+    background: #1b3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;
@@ -156,7 +149,7 @@ onMounted(() => {
     cursor: pointer;
 }
 
-.header-slider .custom-pagination {
+.custom-pagination {
     display: flex;
     justify-content: center;
     max-width: 300px;
@@ -165,7 +158,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot.active {
-    background-color: #013CA4;
+    background-color: #013ca4;
     width: 92px;
 }
 

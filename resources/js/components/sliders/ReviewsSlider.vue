@@ -43,8 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { ref } from 'vue';
 
 
 type Review = {
@@ -64,7 +64,6 @@ const splideRef = ref<{
     };
 } | null>(null);
 
-
 function goPrev(): void {
     splideRef.value?.splide.go('<');
 }
@@ -79,7 +78,9 @@ function goNext(): void {
     width: 100vw;
     max-width: 100vw;
     margin-left: calc(-50vw + 50%);
+    margin-top: 40px;
     overflow: visible;
+    cursor: grab;
 }
 
 .slider-2 .item {
@@ -88,12 +89,16 @@ function goNext(): void {
 }
 
 .slider-card {
+    margin: 0 auto;
     position: relative;
     background-color: #fff;
-    padding: 30px 20px;
-    border-radius: 12px;
+    max-width: 340px;
+    color: #000;
+    padding: 60px 20px;
+    border-radius: 25px;
     overflow: visible;
     min-height: 300px;
+
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -106,6 +111,7 @@ function goNext(): void {
 .card-name {
     font-weight: bold;
     font-size: 1.2rem;
+    margin-top: 32px;
 }
 
 .card-position {
@@ -115,20 +121,15 @@ function goNext(): void {
 }
 
 .slider-2 img.card-avatar {
+    width: auto;
     position: absolute;
     bottom: -65px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: calc(50% - 54px);
 }
 
 .custom-arrow {
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 20;
