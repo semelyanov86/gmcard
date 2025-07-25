@@ -14,7 +14,7 @@
         "laravel/octane": "^2.9.3",
         "laravel/tinker": "^2.10.1",
         "lorisleiva/laravel-actions": "^2.9",
-        "salaros/vtwsclib-php": "^1.1.0",
+        "salaros/vtwsclib-php": "*",
         "spatie/laravel-data": "^4.17",
         "spatie/laravel-ray": "^1.40",
         "spatie/laravel-settings": "^3.4",
