@@ -15,23 +15,18 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
 
     public function __construct()
     {
-        /** @var string $url */
-        $url = config('services.vtiger.url');
+        $url = config_string('services.vtiger.url');
+        $username = config_string('services.vtiger.username');
+        $accessKey = config_string('services.vtiger.access_key');
 
-        /** @var string $username */
-        $username = config('services.vtiger.username');
-
-        /** @var string $accessKey */
-        $accessKey = config('services.vtiger.access_key');
 
         $this->client = new WSClient($url, $username, $accessKey);
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, scalar>
      * @throws WSException
      */
-
     public function createLead(PopUpData $dto): array
     {
         return $this->client->entities->createOne('Leads', [

@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
-use App\Contracts\VtigerCrmInterface;
-use Mockery;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Tests\TestCase;
+use App\Contracts\VtigerCrmInterface;
+use Tests\Mocks\MockVtigerAdapter;
 
 class PopupFormSubmitTest extends TestCase
 {
-    use MockeryPHPUnitIntegration;
-
     public function test_example(): void
     {
         $response = $this->get('/');
@@ -21,17 +20,7 @@ class PopupFormSubmitTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $mockCrm = Mockery::mock(VtigerCrmInterface::class);
-
-        $mockCrm->shouldReceive('createLead')
-            ->once()
-            ->andReturn([
-                'id' => '10x123',
-                'lastname' => 'Test',
-                'email' => 'test@example.com',
-            ]);
-
-        $this->app->instance(VtigerCrmInterface::class, $mockCrm);
+        $this->app->bind(VtigerCrmInterface::class, MockVtigerAdapter::class);
 
         $response = $this->post('/submit-form', [
             'name' => 'Test User',

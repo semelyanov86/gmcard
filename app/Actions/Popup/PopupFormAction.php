@@ -8,7 +8,6 @@ use App\Contracts\VtigerCrmInterface;
 use App\Data\PopUpData;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-
 class PopupFormAction
 {
     use AsAction;

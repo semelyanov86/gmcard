@@ -19,15 +19,12 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 
-
 import { toastOptions } from '@/plugins/toastOptions';
 import Toast from 'vue-toastification';
 
 import 'vue-toastification/dist/index.css';
 
 import { createHead } from '@vueuse/head';
-
-
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
