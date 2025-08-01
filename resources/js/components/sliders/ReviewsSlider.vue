@@ -35,10 +35,10 @@
     </Splide>
 
     <button class="custom-arrow left-arrow" @click="goPrev" aria-label="Previous slide">
-        <img src="/images/slide-btn-left.png" alt="Previous" />
+        <img src="/images/webp/slide-btn-left.webp" alt="Previous" />
     </button>
     <button class="custom-arrow right-arrow" @click="goNext" aria-label="Next slide">
-        <img src="/images/slide-btn-right.png" alt="Next" />
+        <img src="/images/webp/slide-btn-right.webp" alt="Next" />
     </button>
 </template>
 

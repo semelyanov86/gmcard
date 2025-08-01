@@ -10,7 +10,7 @@ html {
 }
 
 section.section-1 {
-    background-image: url('/images/new_bg_test.png');
+    background-image: url('/images/webp/new_bg_test.webp');
     background-repeat: no-repeat;
     background-color: #001e57;
     background-position: top center;
@@ -25,7 +25,7 @@ section.section-1:after {
     width: 1920px;
     height: 290px;
     background: #001e57;
-    background-image: url('/images/bg-2.png');
+    background-image: url('/images/webp/bg-2.webp');
     z-index: 1;
 }
 
@@ -39,7 +39,7 @@ section.section-1:after {
 }
 
 .header-block .logo-icon {
-    background-image: url('/images/gm-logo.png');
+    background-image: url('/images/webp/gm-logo.webp');
     width: 34px;
     height: 34px;
 }
@@ -103,7 +103,7 @@ section.section-1:after {
     left: 8px;
     width: 143px;
     height: 5px;
-    background-image: url('/images/underline-1.png');
+    background-image: url('/images/webp/underline-1.webp');
     content: '';
 }
 
@@ -174,15 +174,15 @@ button.btn.btn-primary {
 }
 
 .header-card .card-image.card-icon-1 {
-    background-image: url('/images/header-card-icon-1.png');
+    background-image: url('/images/webp/header-card-icon-1.webp');
 }
 
 .header-card .card-image.card-icon-2 {
-    background-image: url('/images/header-card-icon-2.png');
+    background-image: url('/images/webp/header-card-icon-2.webp');
 }
 
 .header-card .card-image.card-icon-3 {
-    background-image: url('/images/header-card-icon-3.png');
+    background-image: url('/images/webp/header-card-icon-3.webp');
 }
 
 .header-card h4.card-title {
@@ -295,11 +295,11 @@ ul.list-1 .item-text {
     content: '';
     width: 830px;
     height: 537px;
-    background-image: url('/images/block-2-image.png');
+    background-image: url('/images/webp/block-2-image.webp');
 }
 
 section.section-3:before {
-    background-image: url('/images/bg-3.png');
+    background-image: url('/images/webp/bg-3.webp');
     position: absolute;
     content: '';
     width: 100%;
@@ -314,7 +314,7 @@ section.section-3:before {
 }
 
 section.section-3:after {
-    background-image: url('/images/bg-4.png');
+    background-image: url('/images/webp/bg-4.webp');
     position: absolute;
     content: '';
     width: 100%;
@@ -399,7 +399,7 @@ ul.list-2:after {
     width: 973px;
     height: 2px;
     content: '';
-    background-image: url('/images/line-2.png');
+    background-image: url('/images/webp/line-2.webp');
     top: 83px;
     left: calc(50% - 486.5px);
 }
@@ -423,7 +423,7 @@ ul.list-2 li.list-item:after {
     content: '';
     top: 45px;
     left: calc(50% - 30px);
-    background-image: url('/images/icon-check.png');
+    background-image: url('/images/webp/icon-check.webp');
     z-index: 1;
 }
 
@@ -445,7 +445,7 @@ h3.title-3 {
     top: -230px;
     right: 43px;
     content: '';
-    background-image: url('/images/block-3-image.png');
+    background-image: url('/images/webp/block-3-image.webp');
     width: 564px;
     height: 482px;
 }
@@ -584,7 +584,7 @@ h3.title-3 {
     left: 95px;
     width: 520px;
     height: 460px;
-    background-image: url('/images/block-4-image.png');
+    background-image: url('/images/webp/block-4-image.webp');
     content: '';
     z-index: 0;
 }
@@ -623,7 +623,7 @@ h3.title-4 {
     right: 0;
     width: 100%;
     height: 778px;
-    background-image: url('/images/block-5-image.png');
+    background-image: url('/images/webp/block-5-image.webp');
     background-position: top center;
     background-repeat: no-repeat;
     z-index: -1;
@@ -708,7 +708,7 @@ a:hover {
     content: '';
     width: 87px;
     height: 30px;
-    background-image: url('/images/partners/other.png');
+    background-image: url('/images/webp/partners/other.webp');
     bottom: -40px;
     right: 80px;
 }
@@ -818,12 +818,12 @@ a.footer-link-1:hover {
 }
 
 .btn-flag:after {
-    background-image: url('/images/rus-flag.png');
+    background-image: url('/images/webp/rus-flag.webp');
     left: 17px;
 }
 
 .btn-select:before {
-    background-image: url('/images/btn-arrow.png');
+    background-image: url('/images/webp/btn-arrow.webp');
     right: 17px;
 }
 

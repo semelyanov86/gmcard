@@ -155,11 +155,11 @@ useHead({
                 </div>
                 <div class="expansions">
                     <p>В разработке мобильные приложения и расширения для браузеров</p>
-                    <img src="/images/browsers/1.png" alt="" />
-                    <img src="/images/browsers/2.png" alt="" />
-                    <img src="/images/browsers/3.png" alt="" />
-                    <img src="/images/browsers/4.png" alt="" />
-                    <img src="/images/browsers/5.png" alt="" />
+                    <img src="/images/webp/browsers/1.webp" alt="" />
+                    <img src="/images/webp/browsers/2.webp" alt="" />
+                    <img src="/images/webp/browsers/3.webp" alt="" />
+                    <img src="/images/webp/browsers/4.webp" alt="" />
+                    <img src="/images/webp/browsers/5.webp" alt="" />
                 </div>
             </div>
             <hr />

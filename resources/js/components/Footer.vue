@@ -5,7 +5,7 @@
         <div class="container">
             <footer class="relative overflow-hidden bg-[#101121]">
                 <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
-                    <img src="/images/hand-footer.png" class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
+                    <img src="/images/webp/hand-footer.webp" class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
                         <li>
                             <a href="#" class="footer_nav text-sm font-bold text-white uppercase hover:border-b-2 hover:border-b-white"
@@ -42,7 +42,7 @@
                                 <li>
                                     <a href="#" class=""
                                         ><img
-                                            src="/images/app-store.png"
+                                            src="/images/webp/app-store.webp"
                                             class="h-[54px] w-[143px] hover:opacity-80"
                                             alt="Скачать на Android"
                                             data-tooltip-target="tooltip-app"
@@ -52,7 +52,7 @@
                                 <li>
                                     <a href="#" class=""
                                         ><img
-                                            src="/images/google-play.png"
+                                            src="/images/webp/google-play.webp"
                                             class="h-[54px] w-[143px] hover:opacity-80"
                                             alt="Скачать на Android"
                                             data-tooltip-target="tooltip-app"
@@ -86,7 +86,7 @@
                                         class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                         data-tooltip-target="tooltip-social"
                                         type="button"
-                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/tg.svg" />Telegramm</a
+                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/webp/tg.webp" />Telegramm</a
                                     >
                                 </li>
                             </div>
@@ -98,7 +98,7 @@
                             <div class="mt-[15px] flex flex-wrap gap-7">
                                 <li>
                                     <a href="mailto:admin@gmcard.ru" class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white"
-                                        ><img src="/images/icons/email.png" class="mr-[14px] opacity-50" alt="" />admin@gmcard.ru</a
+                                        ><img src="/images/webp/icons/email.webp" class="mr-[14px] opacity-50" alt="" />admin@gmcard.ru</a
                                     >
                                 </li>
                                 <li>
@@ -411,25 +411,25 @@
                             <ul class="flex gap-5">
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/visa.png" class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
-                                        <li><img src="/images/icons/sberbank.png" class="mb-11" alt="Сбер Банк" /></li>
-                                        <li><img src="/images/icons/alfa.png" alt="Альфа Банк" /></li>
+                                        <li><img src="/images/webp/icons/visa.webp" class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
+                                        <li><img src="/images/webp/icons/sberbank.webp" class="mb-11" alt="Сбер Банк" /></li>
+                                        <li><img src="/images/webp/icons/alfa.webp" alt="Альфа Банк" /></li>
                                     </ul>
                                 </li>
                                 <div class="h-full w-[1px] bg-white"></div>
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/master.png" class="mb-8" alt="MasterCard" /></li>
-                                        <li><img src="/images/icons/robbo.png" class="mb-9" alt="Robbo" /></li>
-                                        <li><img src="/images/icons/yandex.png" alt="Яндекс" /></li>
+                                        <li><img src="/images/webp/icons/master.webp" class="mb-8" alt="MasterCard" /></li>
+                                        <li><img src="/images/webp/icons/robbo.webp" class="mb-9" alt="Robbo" /></li>
+                                        <li><img src="/images/webp/icons/yandex.webp" alt="Яндекс" /></li>
                                     </ul>
                                 </li>
                                 <div></div>
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/maestro.png" class="mb-10" alt="Maestro" /></li>
-                                        <li><img src="/images/icons/webmoney.png" class="mb-9" alt="Webmoney" /></li>
-                                        <li><img src="/images/icons/qiwi.png" alt="Qiwi" /></li>
+                                        <li><img src="/images/webp/icons/maestro.webp" class="mb-10" alt="Maestro" /></li>
+                                        <li><img src="/images/webp/icons/webmoney.webp" class="mb-9" alt="Webmoney" /></li>
+                                        <li><img src="/images/webp/icons/qiwi.webp" alt="Qiwi" /></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -439,7 +439,7 @@
                     <div class="my-8 h-[1px] w-full bg-white opacity-10"></div>
                     <div class="flex items-center justify-between px-1">
                         <div class="flex items-center gap-[16px]">
-                            <img src="/images/gm-logo-2.png" class="h-[26px] w-[26px]" alt="GM" />
+                            <img src="/images/webp/gm-logo-2.webp" class="h-[26px] w-[26px]" alt="GM" />
                             <span class="text-sm text-white opacity-30">GM 2014 - 2025</span>
                         </div>
                         <ul class="partner_link flex items-center">
@@ -454,9 +454,9 @@
                             data-tooltip-target="tooltip-country"
                             type="button"
                         >
-                            <img src="/images/icons/russia.png" class="h-[9px] w-[13px]" alt="Россия" />
+                            <img src="/images/webp/icons/russia.webp" class="h-[9px] w-[13px]" alt="Россия" />
                             <span class="text-[12px] font-bold text-white">Россия</span>
-                            <img src="/images/icons/up.png" alt="Вверх" />
+                            <img src="/images/webp/icons/up.webp" alt="Вверх" />
                         </div>
                     </div>
                 </div>
