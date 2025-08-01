@@ -2,6 +2,7 @@
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 import { useHead } from '@vueuse/head';
+import { ref } from 'vue';
 
 import '../../css/internal/landing.css';
 
@@ -10,9 +11,19 @@ import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
 
+const isLoaded = ref(false);
+const isLoaded1 = ref(false);
+const isLoaded2 = ref(false);
+
+interface CardModel {
+    og_image: string;
+    placeholder: string;
+}
+
 const props = defineProps<{
     slides: SlideModel[];
     reviews: ReviewModel[];
+    cards: CardModel[];
     contact: {
         email: string;
         phone: string;
@@ -59,7 +70,23 @@ useHead({
             <div class="header-card">
                 <div class="row">
                     <div class="col-md-4 col-sm-6">
-                        <div class="card-image card-icon-1"></div>
+                        <div class="card-image-wrapper">
+                            <div class="image-container">
+                                <img 
+                                    :src="cards[0].placeholder"
+                                    alt="Реклама товаров и услуг"
+                                    class="placeholder-image"
+                                    :class="{ 'placeholder-hidden': isLoaded }"
+                                />
+                                <img 
+                                    :src="cards[0].og_image"
+                                    alt="Реклама товаров и услуг"
+                                    class="main-image"
+                                    :class="{ 'main-visible': isLoaded }"
+                                    @load="isLoaded = true"
+                                />
+                            </div>
+                        </div>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
                             Бесплатно! Создайте акцию на ваш товар или услугу, разместив тем самым его в каталоге GM CARD и зарабатывайте! Вашу акцию
@@ -67,7 +94,23 @@ useHead({
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
-                        <div class="card-image card-icon-2"></div>
+                        <div class="card-image-wrapper">
+                            <div class="image-container">
+                                <img 
+                                    :src="cards[1].placeholder"
+                                    alt="Продвижение с нами"
+                                    class="placeholder-image"
+                                    :class="{ 'placeholder-hidden': isLoaded1 }"
+                                />
+                                <img 
+                                    :src="cards[1].og_image"
+                                    alt="Продвижение с нами"
+                                    class="main-image"
+                                    :class="{ 'main-visible': isLoaded1 }"
+                                    @load="isLoaded1 = true"
+                                />
+                            </div>
+                        </div>
                         <h4 class="card-title">Продвижение с нами – <br />это легко и просто</h4>
                         <div class="card-content">
                             Вы сами устанавливаете условия, это может быть скидка, конкурс, бонус при покупке, кэшбэк и прочее - как вы сами
@@ -76,7 +119,23 @@ useHead({
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <div class="card-image card-icon-3"></div>
+                        <div class="card-image-wrapper">
+                            <div class="image-container">
+                                <img 
+                                    :src="cards[2].placeholder"
+                                    alt="Отличный результат"
+                                    class="placeholder-image"
+                                    :class="{ 'placeholder-hidden': isLoaded2 }"
+                                />
+                                <img 
+                                    :src="cards[2].og_image"
+                                    alt="Отличный результат"
+                                    class="main-image"
+                                    :class="{ 'main-visible': isLoaded2 }"
+                                    @load="isLoaded2 = true"
+                                />
+                            </div>
+                        </div>
                         <h4 class="card-title">Отличный результат с рекламой<br />от нашего сервиса</h4>
                         <div class="card-content">
                             Поделимся интересными кейсами, предоставим аналитику для вашего бизнеса и сделаем все, чтобы вам было комфортно! Реклама и

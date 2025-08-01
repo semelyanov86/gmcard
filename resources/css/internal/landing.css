@@ -167,10 +167,47 @@ button.btn.btn-primary {
     border-radius: 25px;
 }
 
-.header-card .card-image {
+.card-image-wrapper {
     width: 260px;
     height: 175px;
     margin: 0 auto;
+    position: relative;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-image,
+.main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.placeholder-image {
+    opacity: 1;
+    z-index: 1;
+}
+
+.placeholder-hidden {
+    opacity: 0;
+}
+
+.main-image {
+    opacity: 0;
+    z-index: 2;
+}
+
+.main-visible {
+    opacity: 1;
 }
 
 .header-card .card-image.card-icon-1 {
