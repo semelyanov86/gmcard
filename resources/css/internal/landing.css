@@ -521,7 +521,6 @@ h3.title-3 {
 .expansions {
     display: flex;
     margin: 0px 75px;
-    justify-content: space-around;
     margin-right: 0px;
     margin-bottom: -10px;
 }

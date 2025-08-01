@@ -6,6 +6,7 @@ import { useHead } from '@vueuse/head';
 import '../../css/internal/landing.css';
 
 import Footer from '@/components/Footer.vue';
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
 
@@ -155,11 +156,26 @@ useHead({
                 </div>
                 <div class="expansions">
                     <p>В разработке мобильные приложения и расширения для браузеров</p>
-                    <img src="/images/webp/browsers/1.webp" alt="" />
-                    <img src="/images/webp/browsers/2.webp" alt="" />
-                    <img src="/images/webp/browsers/3.webp" alt="" />
-                    <img src="/images/webp/browsers/4.webp" alt="" />
-                    <img src="/images/webp/browsers/5.webp" alt="" />
+                    <AdaptiveImage
+                        image-path="browsers/1"
+                        alt="Браузер Chrome"
+                         />
+                    <AdaptiveImage
+                        image-path="browsers/2"
+                        alt="Браузер Firefox"
+                        image-class="mx-auto" />
+                    <AdaptiveImage
+                        image-path="browsers/3"
+                        alt="Браузер Safari"
+                        image-class="mx-auto" />
+                    <AdaptiveImage
+                        image-path="browsers/4"
+                        alt="Браузер Edge"
+                        image-class="mx-auto" />
+                    <AdaptiveImage
+                        image-path="browsers/5"
+                        alt="Браузер Opera"
+                        image-class="mx-auto" />
                 </div>
             </div>
             <hr />
