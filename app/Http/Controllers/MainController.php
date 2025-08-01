@@ -8,7 +8,9 @@ use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
-use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 class MainController extends Controller
 {
@@ -47,8 +49,9 @@ class MainController extends Controller
     {
         $key = 'placeholder:' . $imagePath . filemtime(public_path($imagePath));
         return Cache::rememberForever($key, function () use ($imagePath) {
-            $image = Image::read(public_path($imagePath));
-            $placeholder = $image->scaleDown(400)->blur(10)->toJpeg(30);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(public_path($imagePath));
+            $placeholder = $image->scaleDown(400)->blur(10)->toJpeg(30)->toString();
             return 'data:image/jpeg;base64,' . base64_encode($placeholder);
         });
     }
