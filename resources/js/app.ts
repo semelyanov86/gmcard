@@ -1,7 +1,5 @@
 import '../css/app.css';
 
-import '../css/font-awesome.min.css';
-
 import '@splidejs/splide/dist/css/splide.min.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';

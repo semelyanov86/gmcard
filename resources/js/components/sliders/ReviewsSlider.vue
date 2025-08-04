@@ -46,7 +46,6 @@
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref } from 'vue';
 
-
 type Review = {
     text: string;
     name: string;

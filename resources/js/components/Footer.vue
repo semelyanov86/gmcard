@@ -79,7 +79,12 @@ import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
                                         class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                         data-tooltip-target="tooltip-social"
                                         type="button"
-                                        ><i class="fa fa-vk mr-[14px] opacity-50" aria-hidden="true"></i>Вконтакте</a
+                                        ><img
+                                            src="/images/png/icons/vk.svg"
+                                            class="mr-[14px] h-5 w-5 opacity-50"
+                                            style="filter: brightness(1.5)"
+                                            alt="ВКонтакте"
+                                        />Вконтакте</a
                                     >
                                 </li>
                                 <li>

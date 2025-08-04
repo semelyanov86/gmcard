@@ -174,8 +174,6 @@ button.btn.btn-primary {
     box-sizing: border-box;
 }
 
-
-
 .header-card:before {
     position: absolute;
     background: #ffffff;
@@ -226,8 +224,6 @@ button.btn.btn-primary {
     color: #7c7c7c;
     min-height: 245px;
 }
-
-
 
 .block-1 {
     text-align: center;
