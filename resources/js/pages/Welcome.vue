@@ -47,7 +47,7 @@ useHead({
     <section class="section-1">
         <div class="container">
             <div class="header-block">
-                <div class="logo-icon"></div>
+                <AdaptiveImage image-path="gm-logo" alt="logo" image-class="logo-icon"></AdaptiveImage>
                 <h1>Подключитесь к GM и получите новых клиентов уже сейчас!</h1>
                 <p class="text-1">Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте</p>
                 <p class="text-2 underline-1">– это бесплатно!</p>
@@ -59,7 +59,7 @@ useHead({
             <div class="header-card">
                 <div class="row">
                     <div class="col-md-4 col-sm-6">
-                        <div class="card-image card-icon-1"></div>
+                        <AdaptiveImage image-path="header-card-icon-1" alt="card-icon-1" image-class="header-card card-image card-icon-1"></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
                             Бесплатно! Создайте акцию на ваш товар или услугу, разместив тем самым его в каталоге GM CARD и зарабатывайте! Вашу акцию
@@ -67,7 +67,7 @@ useHead({
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
-                        <div class="card-image card-icon-2"></div>
+                        <AdaptiveImage image-path="header-card-icon-2" alt="card-icon-2" image-class="header-card card-image card-icon-2"></AdaptiveImage>
                         <h4 class="card-title">Продвижение с нами – <br />это легко и просто</h4>
                         <div class="card-content">
                             Вы сами устанавливаете условия, это может быть скидка, конкурс, бонус при покупке, кэшбэк и прочее - как вы сами
@@ -76,7 +76,7 @@ useHead({
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <div class="card-image card-icon-3"></div>
+                        <AdaptiveImage image-path="header-card-icon-3" alt="card-icon-3" image-class="header-card card-image card-icon-3"></AdaptiveImage>
                         <h4 class="card-title">Отличный результат с рекламой<br />от нашего сервиса</h4>
                         <div class="card-content">
                             Поделимся интересными кейсами, предоставим аналитику для вашего бизнеса и сделаем все, чтобы вам было комфортно! Реклама и

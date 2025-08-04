@@ -2,11 +2,11 @@
     <picture>
         <source
             type="image/avif"
-            :srcset="`/images/avif/${imagePath}.avif 400w, /images/avif/${imagePath}.avif 800w`">
+            :srcset="`/images/avif/${imagePath}.avif`">
 
         <source
             type="image/webp"
-            :srcset="`/images/webp/${imagePath}.webp 400w, /images/webp/${imagePath}.webp 800w`">
+            :srcset="`/images/webp/${imagePath}.webp`">
 
         <img
             :src="`/images/png/${imagePath}.png`"
