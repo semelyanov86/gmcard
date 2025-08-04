@@ -57,8 +57,8 @@ useHead({
                 </div>
             </div>
             <div class="header-card">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-1 sm:col-span-1">
                         <AdaptiveImage image-path="header-card-icon-1" alt="card-icon-1" image-class="header-card card-image card-icon-1"></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
@@ -66,7 +66,7 @@ useHead({
                             увидят потенциальные покупатели или заказчики, которые ищут интересные предложения, а мы позаботимся обо всем остальном
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
+                    <div class="md:col-span-1 sm:col-span-1">
                         <AdaptiveImage image-path="header-card-icon-2" alt="card-icon-2" image-class="header-card card-image card-icon-2"></AdaptiveImage>
                         <h4 class="card-title">Продвижение с нами – <br />это легко и просто</h4>
                         <div class="card-content">
@@ -75,7 +75,7 @@ useHead({
                             эффективной.
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="md:col-span-1 sm:col-span-2">
                         <AdaptiveImage image-path="header-card-icon-3" alt="card-icon-3" image-class="header-card card-image card-icon-3"></AdaptiveImage>
                         <h4 class="card-title">Отличный результат с рекламой<br />от нашего сервиса</h4>
                         <div class="card-content">
@@ -125,13 +125,13 @@ useHead({
                 <ReviewsSlider :reviews="reviews" />
             </div>
             <h3 class="title-2">Что получает магазин партнер?</h3>
-            <ul class="list-2 row">
-                <li class="col-sm-6 list-item">Новых <br />покупателей</li>
-                <li class="col-sm-6 list-item">Рост заказов от старых клиентов</li>
-                <li class="col-sm-6 list-item">Увеличение количества постоянных клиентов</li>
-                <li class="col-sm-6 list-item">Повышение узнаваемости и лояльности к нему</li>
-                <li class="col-sm-6 list-item">Стабильный источник чистого и качественного трафика</li>
-                <li class="col-sm-6 list-item">Промокомпании с его участием</li>
+            <ul class="list-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <li class="list-item">Новых <br />покупателей</li>
+                <li class="list-item">Рост заказов от старых клиентов</li>
+                <li class="list-item">Увеличение количества постоянных клиентов</li>
+                <li class="list-item">Повышение узнаваемости и лояльности к нему</li>
+                <li class="list-item">Стабильный источник чистого и качественного трафика</li>
+                <li class="list-item">Промокомпании с его участием</li>
             </ul>
             <div class="clearfix"></div>
         </div>

@@ -7,6 +7,7 @@ html {
     font-family: 'PT Sans', sans-serif;
     overflow-x: hidden;
     width: 100%;
+    background-color: #ffffff;
 }
 
 section.section-1 {
@@ -31,6 +32,8 @@ section.section-1:after {
 
 .container {
     max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .header-block {
@@ -155,6 +158,24 @@ button.btn.btn-primary {
     position: relative;
 }
 
+.header-card .grid {
+    position: relative;
+    z-index: 1;
+}
+
+.header-card .grid > div {
+    position: relative;
+    padding: 0 20px;
+    height: 485px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+
+
 .header-card:before {
     position: absolute;
     background: #ffffff;
@@ -163,7 +184,8 @@ button.btn.btn-primary {
     content: '';
     z-index: 0;
     top: 0;
-    left: -205px;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 25px;
 }
 
@@ -188,6 +210,7 @@ button.btn.btn-primary {
 .header-card h4.card-title {
     font-size: 18px;
     font-weight: bold;
+    color: #0a0a0a;
     padding: 9px 0;
     line-height: 24px;
     text-align: center;
@@ -204,27 +227,7 @@ button.btn.btn-primary {
     min-height: 245px;
 }
 
-.header-card .col-md-4 {
-    position: relative;
-    padding: 0 20px;
-    height: 485px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    box-sizing: border-box;
-}
 
-.header-card .col-md-4:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    background-color: #d1d1d1;
-    opacity: 0.5;
-}
 
 .block-1 {
     text-align: center;
@@ -337,15 +340,25 @@ section.section-3 {
     z-index: 2;
 }
 
-.section-2 {
-    z-index: 88;
-}
-
 section.section-3 .container {
     padding-top: 622px;
     padding-bottom: 100px;
     color: #fffffd;
     position: relative;
+}
+
+.section-2 {
+    z-index: 88;
+    background-color: #ffffff !important;
+    color: #000000;
+}
+
+.section-2 * {
+    color: inherit;
+}
+
+.section-2 .max-w-7xl {
+    background-color: #ffffff;
 }
 
 .review-slider {
@@ -428,10 +441,11 @@ ul.list-2 li.list-item:after {
 }
 
 h3.title-3 {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 45px;
     padding: 28px 94px;
     margin-bottom: 15px;
+    color: #000;
 }
 
 .cost-card {
@@ -442,7 +456,7 @@ h3.title-3 {
 
 .cost-card:after {
     position: absolute;
-    top: -230px;
+    top: -250px;
     right: 43px;
     content: '';
     background-image: url('/images/webp/block-3-image.webp');
@@ -520,6 +534,7 @@ h3.title-3 {
 
 .expansions {
     display: flex;
+    color: #000;
     margin: 0px 75px;
     margin-right: 0px;
     margin-bottom: -10px;
@@ -530,15 +545,16 @@ h3.title-3 {
     font-size: 20px;
     font-weight: bold;
     padding: 21px 0;
-    line-height: 28px;
+    line-height: 32px;
+    color: #000;
 }
 
 .expansions img {
     width: 118px;
     height: 70px;
-    margin: 24px 0px;
+    margin: 24px 0;
     border-left: 1px solid #e5e5e5;
-    padding-left: 27px;
+    padding-left: 14px;
 }
 
 .block-4 {
@@ -547,7 +563,7 @@ h3.title-3 {
     border-radius: 35px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 130px;
+    margin-bottom: 150px;
 }
 
 .block-4 .block-content {
@@ -569,7 +585,7 @@ h3.title-3 {
     padding: 17px 11px;
     letter-spacing: -0.5px;
     padding-right: 95px;
-    line-height: 29px;
+    line-height: 33px;
     color: #000;
 }
 
@@ -579,7 +595,7 @@ h3.title-3 {
 
 .block-4:after {
     position: absolute;
-    bottom: -12px;
+    bottom: -8px;
     left: 95px;
     width: 520px;
     height: 460px;
@@ -590,6 +606,7 @@ h3.title-3 {
 
 h3.title-4 {
     font-weight: bold;
+    color: #000100;
     font-size: 55px;
     padding: 62px 0;
     line-height: 58px;
@@ -648,6 +665,13 @@ a:hover {
 
 .footer hr {
     border-top: 1px solid rgb(39, 41, 56);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e5e5e5;
+    margin: 40px 0;
 }
 
 .footer .title-8 {
@@ -864,19 +888,6 @@ a.footer-link-1:hover {
     }
 }
 
-/*.footer:before {*/
-/*    position: absolute;*/
-/*    left: -287px;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-/*    height: 410px;*/
-/*    content: '';*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: 50% 100%;*/
-/*    background-image: url('/images/hand-footer.png');*/
-/*    z-index: 0;*/
-/*}*/
-
 @media (min-width: 0px) and (max-width: 1180px) {
     .footer:before {
         display: none;
@@ -889,6 +900,10 @@ a.footer-link-1:hover {
 @media (min-width: 1025px) and (max-width: 1280px) {
     .header-card:after {
         right: -500px;
+    }
+
+    .header-card:before {
+        width: 1570px;
     }
 }
 
@@ -929,9 +944,28 @@ a.footer-link-1:hover {
         display: none;
     }
 
+    ul.list-2 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    ul.list-2 .list-item {
+        width: 48%;
+        min-width: 140px;
+        max-width: 180px;
+        margin-bottom: 24px;
+        padding-top: 150px;
+    }
+    ul.list-2 li.list-item:after {
+        top: 20px;
+    }
+
     .header-card:after,
     .block-2:after {
         display: none;
+    }
+
+    .header-card .grid {
+        padding: 1px 10px;
     }
 
     h4.title-1 {
@@ -1114,6 +1148,7 @@ a.footer-link-1:hover {
 
     .header-card:before {
         min-height: 100%;
+        width: 1570px;
     }
 
     .header-card .card-content {
@@ -1182,6 +1217,11 @@ a.footer-link-1:hover {
         bottom: 0;
         background-size: cover;
         background-position: center bottom;
+    }
+
+    .header-card:before {
+        width: 1570px;
+        min-height: 100%;
     }
 
     ul.list-1 li.list-item:not(:last-child)::after {
@@ -1383,5 +1423,14 @@ a.footer-link-1:hover {
 @media (max-width: 767px) {
     .pay_block {
         display: none !important;
+    }
+}
+
+@media (min-width: 0) and (max-width: 991px) {
+    ul.list-2 .list-item {
+        padding-top: 135px;
+    }
+    ul.list-2 li.list-item:after {
+        top: 30px;
     }
 }
