@@ -123,7 +123,7 @@ onMounted(() => {
 .left-arrow,
 .right-arrow {
     position: absolute;
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);
     z-index: 10;
     background: none;

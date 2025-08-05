@@ -217,6 +217,20 @@ button.btn.btn-primary {
     background-image: url('/images/webp/header-card-icon-3.webp');
 }
 
+.header-slider-wrapper:before {
+    position: absolute;
+    top: 100px;
+    left: -50vw;
+    right: -50vw;
+    height: 353px;
+    content: '';
+    background-image: url('/images/png/line-1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 0;
+}
+
 .header-card h4.card-title {
     font-size: 18px;
     font-weight: bold;
@@ -319,8 +333,6 @@ section.section-3:before {
     background-position: top center;
     background-repeat: no-repeat;
     background-color: #001d55;
-
-
 }
 
 section.section-3:after {
