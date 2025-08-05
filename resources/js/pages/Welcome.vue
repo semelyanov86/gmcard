@@ -136,7 +136,7 @@ useHead({
                 <ItemSlider :slides="slides" />
             </div>
             <div class="block-1">
-                <button class="btn btn-primary">Стать нашим партнером!</button>
+                <button class="btn btn-primary" @click="openPopUp">Стать нашим партнером!</button>
                 <div class="text-3">Убедитесь сами</div>
             </div>
         </div>
@@ -159,7 +159,7 @@ useHead({
                         <div class="item-text">Получайте новых клиентов прямо сейчас!</div>
                     </li>
                 </ul>
-                <button class="btn btn-primary">Стать нашим партнером!</button>
+                <button class="btn btn-primary" @click="openPopUp">Стать нашим партнером!</button>
                 <div class="text-4">Просто попробуйте! Это бесплатно!</div>
             </div>
         </div>
@@ -229,7 +229,7 @@ useHead({
                 <h3 class="title-4">Сделайте первый<br />шаг к своим новым<br />продажам</h3>
                 <p class="text-7">Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте</p>
                 <p class="text-8 underline-1">– это бесплатно!</p>
-                <button class="btn btn-primary">Стать нашим партнером!</button>
+                <button class="btn btn-primary" @click="openPopUp">Стать нашим партнером!</button>
             </div>
         </div>
     </section>
