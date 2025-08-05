@@ -10,6 +10,14 @@ use Tests\Mocks\MockVtigerAdapter;
 
 class PopupFormSubmitTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        $this->withoutMiddleware();
+        $this->app->bind(VtigerCrmInterface::class, MockVtigerAdapter::class);
+    }
+
     public function test_example(): void
     {
         $response = $this->get('/');
@@ -18,10 +26,6 @@ class PopupFormSubmitTest extends TestCase
 
     public function test_form_submit_successfully_creates_lead(): void
     {
-        $this->withoutMiddleware();
-
-        $this->app->bind(VtigerCrmInterface::class, MockVtigerAdapter::class);
-
         $response = $this->post('/submit-form', [
             'name' => 'Test User',
             'email' => 'test@example.com',
