@@ -51,9 +51,14 @@ type FlashProps = {
 watch(
     () => page.props.flash as FlashProps,
     (flash) => {
-        if (flash?.success) toast.success(flash.success);
-        if (flash?.error) toast.error(flash.error);
+        if (flash?.success) {
+            toast.success(flash.success);
+        }
+        if (flash?.error) {
+            toast.error(flash.error);
+        }
     },
+    { immediate: true }
 );
 
 useHead({
