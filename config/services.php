@@ -37,4 +37,10 @@ return [
         ],
     ],
 
+    'vtiger' => [
+        'url' => env('VTIGER_URL'),
+        'username' => env('VTIGER_USERNAME'),
+        'access_key' => env('VTIGER_ACCESS_KEY'),
+    ],
+
 ];

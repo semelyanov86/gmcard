@@ -1,14 +1,19 @@
 <script setup lang="ts">
+import PopUpForm from '@/components/popup/PopUpForm.vue';
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
-import { useHead } from '@vueuse/head';
 
+import { useHead } from '@vueuse/head';
 import '../../css/internal/landing.css';
 
 import Footer from '@/components/Footer.vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
+
+import { usePage } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
+import { useToast } from 'vue-toastification';
 
 const props = defineProps<{
     slides: SlideModel[];
@@ -29,6 +34,33 @@ const props = defineProps<{
         };
     };
 }>();
+
+const isPopUpVisible = ref(false);
+
+function openPopUp() {
+    isPopUpVisible.value = true;
+}
+
+const page = usePage();
+const toast = useToast();
+
+type FlashProps = {
+    success?: string;
+    error?: string;
+};
+
+watch(
+    () => page.props.flash as FlashProps,
+    (flash) => {
+        if (flash?.success) {
+            toast.success(flash.success);
+        }
+        if (flash?.error) {
+            toast.error(flash.error);
+        }
+    },
+    { immediate: true }
+);
 
 useHead({
     title: props.meta.title,
@@ -52,9 +84,12 @@ useHead({
                 <p class="text-1">Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте</p>
                 <p class="text-2 underline-1">– это бесплатно!</p>
                 <div class="header-flex">
-                    <button class="btn btn-primary">Подключится</button>
+                    <button class="btn btn-primary" @click="openPopUp">Подключится</button>
                     <div class="button-hint">Увеличьте ваши продажи уже через 2 недели</div>
                 </div>
+                <transition name="fade">
+                    <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
+                </transition>
             </div>
             <div class="header-card">
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-3">

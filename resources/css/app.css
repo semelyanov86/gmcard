@@ -198,13 +198,11 @@
     width: 100%;
 }
 
-
 .category-icon {
     width: 45px;
     height: 45px;
     object-fit: contain;
 }
-
 
 .dropdown-arrow {
     font-size: 24px;
@@ -212,11 +210,9 @@
     margin-left: auto;
 }
 
-
 .rotate-180 {
     transform: rotate(180deg);
 }
-
 
 .my-class {
     display: flex;
@@ -300,8 +296,6 @@
     background-color: #ededf4;
 }
 
-
-
 .mains:hover #icons1 {
     display: block;
 }
@@ -349,8 +343,6 @@
 .mains12:hover #icons3 {
     display: block;
 }
-
-
 
 .image-1 {
     background-image: url(/assets/12icons/man.png);
@@ -624,9 +616,6 @@
     border-color: #fae115 !important;
 }
 
-
-
-
 .sales_block > div:nth-child(even) {
     margin-left: 20px;
 }
@@ -664,15 +653,6 @@
     border-right: 2px solid #f8f8f8;
     text-align: start;
 }
-
-
-
-
-
-
-
-
-
 
 .tarifs_opport {
     list-style: none;
@@ -1017,24 +997,13 @@
         padding: 0 12px 0;
     }
 
-    /* .tarifs_main_border {
-      max-width: 270px;
-    } */
 
-    /* .tarifs_main {
-      display: none;
-    } */
 
     .section-slider {
         display: block;
         margin-bottom: 32px;
     }
 
-    /* .tarifs_main_border {
-      border: none;
-      border-radius: 0;
-      max-width: 270px;
-    } */
 
     .tarifs_main_prices {
         padding-bottom: 30px;
@@ -1138,10 +1107,6 @@
 
     .main_card {
         width: 260px !important;
-    }
-
-    .footer_navBlock {
-
     }
 
     .footer_navBlock li {
@@ -1883,7 +1848,6 @@
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid blue;
-    
     transition: transform 0.3s;
 }
 
