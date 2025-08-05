@@ -4,9 +4,9 @@
         class="slider-2"
         :options="{
             type: 'loop',
-            perPage: 6,
+            perPage: 5,
             perMove: 1,
-            gap: '10px',
+            gap: '20px',
             autoplay: true,
             pauseOnHover: true,
             pagination: false,
@@ -128,7 +128,7 @@ function goNext(): void {
 
 .custom-arrow {
     position: absolute;
-    top: 60%;
+    top: 40%;
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 20;
@@ -145,10 +145,17 @@ function goNext(): void {
 }
 
 .left-arrow {
-    left: 10px;
+    left: -10px;
 }
 
 .right-arrow {
-    right: 10px;
+    right: -10px;
+}
+
+@media (max-width: 768px) {
+    .custom-arrow {
+        width: 50px;
+        height: 600px;
+    }
 }
 </style>

@@ -93,11 +93,20 @@ import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
                                         class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                         data-tooltip-target="tooltip-social"
                                         type="button"
-                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/webp/tg.webp" />Telegramm</a
+                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/png/icons/tg.svg" />Telegramm</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href=""
+                                        class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                        data-tooltip-target="tooltip-social"
+                                        type="button"
+                                    ><img class="h-5 w-5 text-white opacity-50" src="/images/png/icons/insta.svg" /></a
                                     >
                                 </li>
                             </div>
-                            <p class="mt-5 max-w-xs text-sm text-white opacity-30 hover:opacity-100">
+                            <p class="mt-5 max-w-xs text-sm text-white opacity-30 hover:opacity-100 cursor-pointer">
                                 Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России
                             </p>
 

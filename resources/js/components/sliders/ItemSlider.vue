@@ -123,7 +123,7 @@ onMounted(() => {
 .left-arrow,
 .right-arrow {
     position: absolute;
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);
     z-index: 10;
     background: none;
@@ -140,7 +140,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1b3568;
+    background: #1B3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;
