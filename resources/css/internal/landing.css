@@ -94,6 +94,7 @@ section.section-1:after {
     line-height: 37px;
     letter-spacing: 0px;
     margin-left: -30px;
+    color: #b4b0b0
 }
 
 .underline-1 {
@@ -174,7 +175,6 @@ button.btn.btn-primary {
     box-sizing: border-box;
 }
 
-/* Добавляем серые полоски между карточками */
 .header-card .grid > div:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -236,7 +236,6 @@ button.btn.btn-primary {
     color: #7c7c7c;
     min-height: 245px;
 }
-
 .block-1 {
     text-align: center;
     position: relative;
@@ -387,13 +386,25 @@ section.section-3 .container {
 }
 
 .review-slider:after {
-    left: -400px;
-    background: linear-gradient(90deg, rgba(0, 29, 85, 0.7) 0%, rgba(0, 29, 85, 0.7) 90%, rgba(255, 255, 255, 0) 100%);
+    left: -470px;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 29, 85, 0.95) 0%,
+        rgba(0, 29, 85, 0.7) 50%,
+        rgba(0, 29, 85, 0.4) 85%,
+        rgba(0, 29, 85, 0) 100%
+    );
 }
 
 .review-slider:before {
-    right: -400px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 29, 85, 0.7) 10%, rgba(0, 29, 85, 0.7) 100%);
+    right: -470px;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 29, 85, 0) 0%,
+        rgba(0, 29, 85, 0.4) 15%,
+        rgba(0, 29, 85, 0.7) 50%,
+        rgba(0, 29, 85, 0.95) 100%
+    );
 }
 
 .custom-arrow:focus {

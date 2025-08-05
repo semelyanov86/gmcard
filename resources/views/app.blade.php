@@ -32,7 +32,7 @@
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 
     @routes
