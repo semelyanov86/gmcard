@@ -2,8 +2,6 @@ import '../css/app.css';
 
 import '@splidejs/splide/dist/css/splide.min.css';
 
-import '@splidejs/splide/dist/css/splide.min.css';
-
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';

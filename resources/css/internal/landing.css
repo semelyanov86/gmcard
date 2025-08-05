@@ -309,7 +309,7 @@ section.section-3:before {
     background-repeat: no-repeat;
     background-color: #001d55;
 
-    /*opacity: .3;*/
+
 }
 
 section.section-3:after {
@@ -418,7 +418,7 @@ ul.list-2 .list-item {
     width: 159px;
     text-align: center;
     padding-top: 118px;
-    /*margin: 0 32px;*/
+
     line-height: 22px;
     position: relative;
     z-index: 2;
@@ -1371,7 +1371,7 @@ a.footer-link-1:hover {
 
 @media (max-width: 648px) {
     .footer_navBlock {
-        /* justify-content: center !important; */
+
     }
 
     .footer_navBlock li {
