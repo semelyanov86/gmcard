@@ -145,10 +145,17 @@ function goNext(): void {
 }
 
 .left-arrow {
-    left: -30px;
+    left: -10px;
 }
 
 .right-arrow {
-    right: -30px;
+    right: -10px;
+}
+
+@media (max-width: 768px) {
+    .custom-arrow {
+        width: 50px;
+        height: 600px;
+    }
 }
 </style>
