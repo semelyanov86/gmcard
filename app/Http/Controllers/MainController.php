@@ -12,8 +12,8 @@ class MainController extends Controller
 {
     public function index(GeneralSettings $settings): Response
     {
-        $slides = config('slides');
-        $reviews = config('reviews');
+        $slides = config('slides.item');
+        $reviews = config('slides.reviews');
         $meta = config('meta.business');
 
         return Inertia::render('Welcome', [

@@ -1,11 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+</script>
 
 <template>
     <section class="footer bg-[#0f1120]">
         <div class="container">
             <footer class="relative overflow-hidden bg-[#101121]">
                 <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
-                    <img src="/images/hand-footer.png" class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
+                    <img src="/images/webp/hand-footer.webp" class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
                         <li>
                             <a href="#" class="footer_nav text-sm font-bold text-white uppercase hover:border-b-2 hover:border-b-white"
@@ -41,9 +43,9 @@
                             <div class="upBlock_phones flex flex-col gap-3">
                                 <li>
                                     <a href="#" class=""
-                                        ><img
-                                            src="/images/app-store.png"
-                                            class="h-[54px] w-[143px] hover:opacity-80"
+                                        ><AdaptiveImage
+                                            image-path="app-store"
+                                            image-class="h-[54px] w-[143px] hover:opacity-80"
                                             alt="Скачать на Android"
                                             data-tooltip-target="tooltip-app"
                                             type="button"
@@ -51,9 +53,9 @@
                                 </li>
                                 <li>
                                     <a href="#" class=""
-                                        ><img
-                                            src="/images/google-play.png"
-                                            class="h-[54px] w-[143px] hover:opacity-80"
+                                        ><AdaptiveImage
+                                            image-path="google-play"
+                                            image-class="h-[54px] w-[143px] hover:opacity-80"
                                             alt="Скачать на Android"
                                             data-tooltip-target="tooltip-app"
                                             type="button"
@@ -77,7 +79,12 @@
                                         class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                         data-tooltip-target="tooltip-social"
                                         type="button"
-                                        ><i class="fa fa-vk mr-[14px] opacity-50" aria-hidden="true"></i>Вконтакте</a
+                                        ><img
+                                            src="/images/png/icons/vk.svg"
+                                            class="mr-[14px] h-5 w-5 opacity-50"
+                                            style="filter: brightness(1.5)"
+                                            alt="ВКонтакте"
+                                        />Вконтакте</a
                                     >
                                 </li>
                                 <li>
@@ -86,7 +93,7 @@
                                         class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                         data-tooltip-target="tooltip-social"
                                         type="button"
-                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/tg.svg" />Telegramm</a
+                                        ><img class="mr-[14px] h-5 w-5 text-white opacity-50" src="/images/webp/tg.webp" />Telegramm</a
                                     >
                                 </li>
                             </div>
@@ -98,7 +105,7 @@
                             <div class="mt-[15px] flex flex-wrap gap-7">
                                 <li>
                                     <a href="mailto:admin@gmcard.ru" class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white"
-                                        ><img src="/images/icons/email.png" class="mr-[14px] opacity-50" alt="" />admin@gmcard.ru</a
+                                        ><img src="/images/webp/icons/email.webp" class="mr-[14px] opacity-50" alt="" />admin@gmcard.ru</a
                                     >
                                 </li>
                                 <li>
@@ -133,7 +140,7 @@
                                                     <div class="space-y-1 p-6">
                                                         <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                                             Пожалуйста заполните эту форму и мы поможем Вам найти кэшбек Поиск кэшбека возможен, если
-                                                            с момента соверщения покупки прошло не более 6 месяцев, т.е. если Вы потеряли бонус за
+                                                            с момента совершения покупки прошло не более 6 месяцев, т.е. если Вы потеряли бонус за
                                                             покупку, которую сделали более полугода назад, то найти нам его, скорее всего, не удастся.
                                                         </p>
                                                         <form action="">
@@ -411,25 +418,25 @@
                             <ul class="flex gap-5">
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/visa.png" class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
-                                        <li><img src="/images/icons/sberbank.png" class="mb-11" alt="Сбер Банк" /></li>
-                                        <li><img src="/images/icons/alfa.png" alt="Альфа Банк" /></li>
+                                        <li><AdaptiveImage image-path="icons/visa" image-class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
+                                        <li><AdaptiveImage image-path="icons/sberbank" image-class="mb-11" alt="Сбер Банк" /></li>
+                                        <li><AdaptiveImage image-path="icons/alfa" alt="Альфа Банк" /></li>
                                     </ul>
                                 </li>
                                 <div class="h-full w-[1px] bg-white"></div>
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/master.png" class="mb-8" alt="MasterCard" /></li>
-                                        <li><img src="/images/icons/robbo.png" class="mb-9" alt="Robbo" /></li>
-                                        <li><img src="/images/icons/yandex.png" alt="Яндекс" /></li>
+                                        <li><AdaptiveImage image-path="icons/master" image-class="mb-8" alt="MasterCard" /></li>
+                                        <li><AdaptiveImage image-path="icons/robbo" image-class="mb-9" alt="Robbo" /></li>
+                                        <li><AdaptiveImage image-path="icons/yandex" alt="Яндекс" /></li>
                                     </ul>
                                 </li>
                                 <div></div>
                                 <li>
                                     <ul class="flex flex-col">
-                                        <li><img src="/images/icons/maestro.png" class="mb-10" alt="Maestro" /></li>
-                                        <li><img src="/images/icons/webmoney.png" class="mb-9" alt="Webmoney" /></li>
-                                        <li><img src="/images/icons/qiwi.png" alt="Qiwi" /></li>
+                                        <li><AdaptiveImage image-path="icons/maestro" image-class="mb-10" alt="Maestro" /></li>
+                                        <li><AdaptiveImage image-path="icons/webmoney" image-class="mb-9" alt="Webmoney" /></li>
+                                        <li><AdaptiveImage image-path="icons/qiwi" alt="Qiwi" /></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -439,7 +446,7 @@
                     <div class="my-8 h-[1px] w-full bg-white opacity-10"></div>
                     <div class="flex items-center justify-between px-1">
                         <div class="flex items-center gap-[16px]">
-                            <img src="/images/gm-logo-2.png" class="h-[26px] w-[26px]" alt="GM" />
+                            <AdaptiveImage image-path="gm-logo-2" alt="GM" image-class="h-[26px] w-[26px]" />
                             <span class="text-sm text-white opacity-30">GM 2014 - 2025</span>
                         </div>
                         <ul class="partner_link flex items-center">
@@ -454,9 +461,9 @@
                             data-tooltip-target="tooltip-country"
                             type="button"
                         >
-                            <img src="/images/icons/russia.png" class="h-[9px] w-[13px]" alt="Россия" />
+                            <AdaptiveImage image-path="icons/russia" image-class="h-[9px] w-[13px]" alt="Россия" />
                             <span class="text-[12px] font-bold text-white">Россия</span>
-                            <img src="/images/icons/up.png" alt="Вверх" />
+                            <AdaptiveImage image-path="icons/up" alt="Вверх" />
                         </div>
                     </div>
                 </div>
