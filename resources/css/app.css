@@ -58,14 +58,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
     *,
     ::after,
@@ -196,7 +189,7 @@
     width: 16px !important;
     color: #8a9cae !important;
 }
-/* Стили для контейнера иконки */
+
 .icon-container {
     display: flex;
     justify-content: flex-start;
@@ -205,26 +198,26 @@
     width: 100%;
 }
 
-/* Стили для иконок категорий */
+
 .category-icon {
     width: 45px;
     height: 45px;
     object-fit: contain;
 }
 
-/* Стили для стрелки */
+
 .dropdown-arrow {
     font-size: 24px;
     transition: transform 0.3s ease;
     margin-left: auto;
 }
 
-/* Класс для поворота стрелки */
+
 .rotate-180 {
     transform: rotate(180deg);
 }
 
-/* Стили для основного элемента */
+
 .my-class {
     display: flex;
     align-items: center;
@@ -307,7 +300,7 @@
     background-color: #ededf4;
 }
 
-/* icons hover */
+
 
 .mains:hover #icons1 {
     display: block;
@@ -357,7 +350,7 @@
     display: block;
 }
 
-/* background image */
+
 
 .image-1 {
     background-image: url(/assets/12icons/man.png);
@@ -631,9 +624,8 @@
     border-color: #fae115 !important;
 }
 
-/* .controls-carousel_class {
-  height: 1600px;
-} */
+
+
 
 .sales_block > div:nth-child(even) {
     margin-left: 20px;
@@ -649,20 +641,19 @@
 }
 
 .tarifs_main td {
-    text-align: left; /* Выравнивание по умолчанию для всех ячеек */
+    text-align: left;
     padding: 18px 6px;
 }
 .tarifs_main td:not(:first-child) {
-    text-align: center; /* Выравнивание по центру для всех ячеек, кроме первой */
+    text-align: center;
 }
 
 .tarifs_main td:nth-child(n + 2):nth-child(-n + 4) {
-    /* Для 2-й, 3-й, 4-й и 5-й ячеек */
-    width: 25%; /* Если первая колонка 200px, остальные занимают оставшееся пространство */
+    width: 25%;
 }
 
 .tarifs_main td:first-child {
-    width: 300px; /* Ширина первой колонки */
+    width: 300px;
     padding: 18px;
     border-right: 2px solid #f8f8f8;
 }
@@ -674,140 +665,45 @@
     text-align: start;
 }
 
-/* .tarifs_main tr:nth-child(1) td:nth-child(2),
-    .tarifs_main tr:nth-child(2) td:nth-child(2),
-    .tarifs_main tr:nth-child(3) td:nth-child(2),
-    .tarifs_main tr:nth-child(5) td:nth-child(2),
-    .tarifs_main tr:nth-child(7) td:nth-child(2),
-    .tarifs_main tr:nth-child(8) td:nth-child(2),
-    .tarifs_main tr:nth-child(9) td:nth-child(2),
-    .tarifs_main tr:nth-child(11) td:nth-child(2),
-    .tarifs_main tr:nth-child(12) td:nth-child(2),
-    .tarifs_main tr:nth-child(13) td:nth-child(2),
-    .tarifs_main tr:nth-child(14) td:nth-child(2),
-    .tarifs_main tr:nth-child(16) td:nth-child(2),
-    .tarifs_main tr:nth-child(17) td:nth-child(2),
-    .tarifs_main tr:nth-child(18) td:nth-child(2),
-    .tarifs_main tr:nth-child(19) td:nth-child(2),
-    .tarifs_main tr:nth-child(22) td:nth-child(2),
-    .tarifs_main tr:nth-child(23) td:nth-child(2),
-    .tarifs_main tr:nth-child(24) td:nth-child(2),
-    .tarifs_main tr:nth-child(25) td:nth-child(2),
-    .tarifs_main tr:nth-child(26) td:nth-child(2),
-    .tarifs_main tr:nth-child(27) td:nth-child(2)
-    {
-        background-color: #f7fbfe;
-    }
-     */
-/* .tarifs_main tr:nth-child(1) td:nth-child(3),
-.tarifs_main tr:nth-child(2) td:nth-child(3),
-.tarifs_main tr:nth-child(3) td:nth-child(3),
-.tarifs_main tr:nth-child(5) td:nth-child(3),
-.tarifs_main tr:nth-child(7) td:nth-child(3),
-.tarifs_main tr:nth-child(8) td:nth-child(3),
-.tarifs_main tr:nth-child(9) td:nth-child(3),
-.tarifs_main tr:nth-child(11) td:nth-child(3),
-.tarifs_main tr:nth-child(12) td:nth-child(3),
-.tarifs_main tr:nth-child(13) td:nth-child(3),
-.tarifs_main tr:nth-child(14) td:nth-child(3),
-.tarifs_main tr:nth-child(16) td:nth-child(3),
-.tarifs_main tr:nth-child(17) td:nth-child(3),
-.tarifs_main tr:nth-child(18) td:nth-child(3),
-.tarifs_main tr:nth-child(19) td:nth-child(3),
-.tarifs_main tr:nth-child(22) td:nth-child(3),
-.tarifs_main tr:nth-child(23) td:nth-child(3),
-.tarifs_main tr:nth-child(24) td:nth-child(3),
-.tarifs_main tr:nth-child(25) td:nth-child(3),
-.tarifs_main tr:nth-child(26) td:nth-child(3),
-.tarifs_main tr:nth-child(27) td:nth-child(3)
- {
-    background-color: #f1f2fc;
-} */
 
-/* .tarifs_main tr:nth-child(1) td:nth-child(4),
-.tarifs_main tr:nth-child(2) td:nth-child(4),
-.tarifs_main tr:nth-child(3) td:nth-child(4),
-.tarifs_main tr:nth-child(5) td:nth-child(4),
-.tarifs_main tr:nth-child(7) td:nth-child(4),
-.tarifs_main tr:nth-child(8) td:nth-child(4),
-.tarifs_main tr:nth-child(9) td:nth-child(4),
-.tarifs_main tr:nth-child(11) td:nth-child(4),
-.tarifs_main tr:nth-child(12) td:nth-child(4),
-.tarifs_main tr:nth-child(13) td:nth-child(4),
-.tarifs_main tr:nth-child(14) td:nth-child(4),
-.tarifs_main tr:nth-child(16) td:nth-child(4),
-.tarifs_main tr:nth-child(17) td:nth-child(4),
-.tarifs_main tr:nth-child(18) td:nth-child(4),
-.tarifs_main tr:nth-child(19) td:nth-child(4),
-.tarifs_main tr:nth-child(22) td:nth-child(4),
-.tarifs_main tr:nth-child(23) td:nth-child(4),
-.tarifs_main tr:nth-child(24) td:nth-child(4),
-.tarifs_main tr:nth-child(25) td:nth-child(4),
-.tarifs_main tr:nth-child(26) td:nth-child(4),
-.tarifs_main tr:nth-child(27) td:nth-child(4)
-{
-    background-color: #fef29b;
-} */
 
-/* .tarifs_main tr:nth-child(1) td:nth-child(5),
-.tarifs_main tr:nth-child(2) td:nth-child(5),
-.tarifs_main tr:nth-child(3) td:nth-child(5),
-.tarifs_main tr:nth-child(5) td:nth-child(5),
-.tarifs_main tr:nth-child(7) td:nth-child(5),
-.tarifs_main tr:nth-child(8) td:nth-child(5),
-.tarifs_main tr:nth-child(9) td:nth-child(5),
-.tarifs_main tr:nth-child(11) td:nth-child(5),
-.tarifs_main tr:nth-child(12) td:nth-child(5),
-.tarifs_main tr:nth-child(13) td:nth-child(5),
-.tarifs_main tr:nth-child(14) td:nth-child(5),
-.tarifs_main tr:nth-child(16) td:nth-child(5),
-.tarifs_main tr:nth-child(17) td:nth-child(5),
-.tarifs_main tr:nth-child(18) td:nth-child(5),
-.tarifs_main tr:nth-child(19) td:nth-child(5),
-.tarifs_main tr:nth-child(22) td:nth-child(5),
-.tarifs_main tr:nth-child(23) td:nth-child(5),
-.tarifs_main tr:nth-child(24) td:nth-child(5),
-.tarifs_main tr:nth-child(25) td:nth-child(5),
-.tarifs_main tr:nth-child(26) td:nth-child(5),
-.tarifs_main tr:nth-child(27) td:nth-child(5)
- {
-    background-color: #f7fbfe;
-} */
 
-/* .tarifs_btn {
-  width: 220px;
-} */
+
+
+
+
+
 
 .tarifs_opport {
-    list-style: none; /* Убираем стандартные маркеры списка */
-    padding: 0; /* Убираем отступы */
+    list-style: none;
+    padding: 0;
 }
 
 .tarifs_opport li {
-    position: relative; /* Устанавливаем позицию относительно для :before */
-    padding-left: 29px; /* Добавляем отступ слева для текста */
+    position: relative;
+    padding-left: 29px;
     margin-bottom: 12px;
     color: #000000;
 }
 
 .tarifs_opport li:before {
-    content: ''; /* Пустое содержимое для псевдоэлемента */
-    background-image: url('/assets/icons/check_white.svg'); /* Указываем путь к изображению */
-    background-size: contain; /* Подгоняем размер изображения */
-    background-repeat: no-repeat; /* Не повторяем изображение */
-    width: 16px; /* Ширина иконки */
-    height: 16px; /* Высота иконки */
-    position: absolute; /* Абсолютное позиционирование для иконки */
-    left: 0; /* Сместим иконку влево */
-    top: 50%; /* Центрируем иконку по вертикали */
-    transform: translateY(-50%); /* Корректируем центрирование */
+    content: '';
+    background-image: url('/assets/icons/check_white.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .tarifs_main_border {
     border: 2px solid #e2e8f0;
     border-radius: 10px;
     max-width: 270px;
-    /* background-color: #ffffff; */
+
 }
 
 .tarifs_main_border_blue {
@@ -857,12 +753,12 @@
 }
 
 .tarifs_opport_mobile .check_li {
-    content: ''; /* Пустое содержимое для псевдоэлемента */
-    background-image: url('/assets/icons/check_tarif.svg'); /* Указываем путь к изображению */
-    background-size: contain; /* Подгоняем размер изображения */
-    background-repeat: no-repeat; /* Не повторяем изображение */
-    width: 16px; /* Ширина иконки */
-    height: 16px; /* Высота иконки */
+    content: '';
+    background-image: url('/assets/icons/check_tarif.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
 }
 
 .tarifs_opport_mobile_text {
@@ -883,20 +779,20 @@
     max-height: 666px;
 }
 .rightSide::-webkit-scrollbar {
-    width: 32px; /* Толщина вертикального скроллбара */
-    height: 32px; /* Высота горизонтального скроллбара */
+    width: 32px;
+    height: 32px;
 }
 
 .rightSide::-webkit-scrollbar-track {
-    background-color: #1344871a; /* Цвет трека */
-    border-radius: 40px; /* Закругление трека */
+    background-color: #1344871a;
+    border-radius: 40px;
 }
 
 .rightSide::-webkit-scrollbar-thumb {
-    background-color: #3398cc; /* Цвет бегунка */
-    border-radius: 30px; /* Закругление бегунка */
+    background-color: #3398cc;
+    border-radius: 30px;
     height: 10px;
-    border: 2px solid #3398cc; /* Граница вокруг бегунка */
+    border: 2px solid #3398cc;
 }
 .bio_text {
     background-color: #ffffff;
@@ -924,7 +820,7 @@
 }
 
 .hidden {
-    display: none; /* Скрывает элемент */
+    display: none;
 }
 
 .section-slider {
@@ -963,8 +859,8 @@
 }
 
 .border-white {
-    border-left: 2px solid white; /* Левое поле */
-    border-right: 2px solid white; /* Правое поле */
+    border-left: 2px solid white;
+    border-right: 2px solid white;
 }
 
 .cell_padding {
@@ -1002,7 +898,7 @@
 }
 
 .tarifs_main tbody tr:nth-child(odd) {
-    background-color: white; /* Белый для нечетных строк */
+    background-color: white;
 }
 
 .tarifs_main tbody tr:nth-child(even) {
@@ -1149,8 +1045,8 @@
     }
 
     .tarifs_main_table_wrapper {
-        overflow-x: scroll; /* Включаем горизонтальный скроллинг */
-        overflow-y: hidden; /* Отключаем вертикальный скроллинг */
+        overflow-x: scroll;
+        overflow-y: hidden;
         border-top: 2px solid #3398cc;
     }
 
@@ -1245,7 +1141,7 @@
     }
 
     .footer_navBlock {
-        /* justify-content: center !important; */
+
     }
 
     .footer_navBlock li {
@@ -1455,7 +1351,7 @@
     }
 }
 
-/* анимация меню */
+
 
 .animated-block {
     position: relative;
@@ -1474,7 +1370,7 @@
     }
 }
 
-/* register */
+
 
 .btn_register:hover {
     box-shadow: 0px 0px 39px -14px rgba(244, 215, 16, 0.57);
@@ -1492,7 +1388,7 @@
     }
 }
 
-/* help and rules page */
+
 
 .activate {
     width: 280px;
@@ -1529,7 +1425,7 @@
     }
 }
 
-/* card promo bg-images */
+
 
 .promo_image1 {
     background-image: url(/assets/constructor/constructor_sale1.png);
@@ -1987,7 +1883,7 @@
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid blue;
-    /* Используется синий цвет */
+    
     transition: transform 0.3s;
 }
 
@@ -1995,7 +1891,7 @@
     transform: rotate(180deg);
 }
 
-/* cropper */
+
 
 .modal {
     display: none;
