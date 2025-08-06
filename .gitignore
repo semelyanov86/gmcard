@@ -26,9 +26,6 @@ yarn-error.log
 rr
 .rr.yaml
 
-/var/cache/
-/var/cache/.phplint.json/
-
+.env.testing
 .task/
-
-.env.*
+var/
