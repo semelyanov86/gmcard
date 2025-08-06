@@ -33,5 +33,12 @@ export interface MetaData {
         image: string;
         type: string;
     };
+    twitter?: {
+        card: string;
+        title: string;
+        description: string;
+        image: string;
+        site: string;
+    };
     schema?: SchemaData;
 }

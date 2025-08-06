@@ -13,6 +13,13 @@ return [
             'image' => 'https://gmcard.ru/images/png/og-business.jpg',
             'type' => 'website',
         ],
+        'twitter' => [
+            'card' => 'summary_large_image',
+            'title' => 'GM CARD для бизнеса: Привлекайте клиентов скидками и бонусами | Партнерская программа',
+            'description' => 'Подключите свой бизнес, ИП или самозанятость к GM Card. Получите новых клиентов, увеличьте средний чек и лояльность с помощью нашей программы скидок и бонусов.',
+            'image' => 'https://gmcard.ru/images/png/twitter-card.jpg',
+            'site' => '@gmcard',
+        ],
         'schema' => [
             'organization' => [
                 '@type' => 'Organization',

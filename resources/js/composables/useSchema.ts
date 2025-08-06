@@ -36,7 +36,15 @@ export function useSchema(meta: MetaData) {
             { property: 'og:description', content: meta.og.description },
             { property: 'og:image', content: meta.og.image },
             { property: 'og:type', content: meta.og.type },
+            // Twitter/X Card
+            ...(meta.twitter ? [
+                { name: 'twitter:card', content: meta.twitter.card },
+                { name: 'twitter:title', content: meta.twitter.title },
+                { name: 'twitter:description', content: meta.twitter.description },
+                { name: 'twitter:image', content: meta.twitter.image },
+                { name: 'twitter:site', content: meta.twitter.site },
+            ] : []),
         ],
-        script: createSchemaScripts(),
+        script: createSchemaScripts()
     });
 }
