@@ -24,6 +24,8 @@ class MainController extends Controller
                 'phone' => $settings->phone,
             ],
             'meta' => $meta,
+        ])->with([
+            'canonical' => $meta['canonical'],
         ]);
     }
 }

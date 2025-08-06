@@ -20,11 +20,11 @@ const props = defineProps<{
     meta: {
         title: string;
         description: string;
+        canonical: string;
         og: {
             title: string;
             description: string;
             image: string;
-            url: string;
             type: string;
         };
     };
@@ -37,9 +37,8 @@ useHead({
         { property: 'og:title', content: props.meta.og.title },
         { property: 'og:description', content: props.meta.og.description },
         { property: 'og:image', content: props.meta.og.image },
-        { property: 'og:url', content: props.meta.og.url },
         { property: 'og:type', content: props.meta.og.type },
-    ],
+    ]
 });
 </script>
 

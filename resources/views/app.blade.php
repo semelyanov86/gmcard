@@ -34,6 +34,9 @@
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+    @if(isset($canonical))
+        <link rel="canonical" href="{{ $canonical }}">
+    @endif
 
     @routes
     @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
