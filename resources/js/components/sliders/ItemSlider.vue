@@ -140,7 +140,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1B3568;
+    background: #1b3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;

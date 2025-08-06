@@ -56,7 +56,11 @@
                 <p v-if="form.errors.agree" class="mt-1 text-sm text-red-600">{{ form.errors.agree }}</p>
 
                 <div class="flex items-center justify-between gap-4 pt-2">
-                    <button type="button" @click="$emit('close')" class="w-1/2 rounded border border-gray-300 px-4 py-2 text-gray-700 transition hover:bg-gray-100">
+                    <button
+                        type="button"
+                        @click="$emit('close')"
+                        class="w-1/2 rounded border border-gray-300 px-4 py-2 text-gray-700 transition hover:bg-gray-100"
+                    >
                         Отмена
                     </button>
                     <button

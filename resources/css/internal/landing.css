@@ -94,7 +94,7 @@ section.section-1:after {
     line-height: 37px;
     letter-spacing: 0px;
     margin-left: -30px;
-    color: #bcc2e5
+    color: #bcc2e5;
 }
 
 .underline-1 {
@@ -399,24 +399,12 @@ section.section-3 .container {
 
 .review-slider:after {
     left: -470px;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 29, 85, 0.95) 0%,
-        rgba(0, 29, 85, 0.7) 50%,
-        rgba(0, 29, 85, 0.4) 85%,
-        rgba(0, 29, 85, 0) 100%
-    );
+    background: linear-gradient(90deg, rgba(0, 29, 85, 0.95) 0%, rgba(0, 29, 85, 0.7) 50%, rgba(0, 29, 85, 0.4) 85%, rgba(0, 29, 85, 0) 100%);
 }
 
 .review-slider:before {
     right: -470px;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 29, 85, 0) 0%,
-        rgba(0, 29, 85, 0.4) 15%,
-        rgba(0, 29, 85, 0.7) 50%,
-        rgba(0, 29, 85, 0.95) 100%
-    );
+    background: linear-gradient(90deg, rgba(0, 29, 85, 0) 0%, rgba(0, 29, 85, 0.4) 15%, rgba(0, 29, 85, 0.7) 50%, rgba(0, 29, 85, 0.95) 100%);
 }
 
 .custom-arrow:focus {
@@ -1416,7 +1404,6 @@ a.footer-link-1:hover {
 
 @media (max-width: 648px) {
     .footer_navBlock {
-
     }
 
     .footer_navBlock li {
