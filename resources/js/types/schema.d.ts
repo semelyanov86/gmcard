@@ -27,6 +27,7 @@ export interface MetaData {
     title: string;
     description: string;
     canonical: string;
+    keywords?: string;
     og: {
         title: string;
         description: string;

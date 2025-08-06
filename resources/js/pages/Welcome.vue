@@ -53,7 +53,7 @@ watch(
     { immediate: true },
 );
 
-useSchema(props.meta);
+useSchema(props.meta, 'landing');
 </script>
 
 <template>
