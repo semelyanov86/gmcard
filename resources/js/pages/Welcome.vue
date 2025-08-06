@@ -232,5 +232,5 @@ useHead({
             </div>
         </div>
     </section>
-    <Footer></Footer>
+    <Footer :contact="contact"></Footer>
 </template>
