@@ -34,7 +34,6 @@
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-
     @if(isset($canonical))
         <link rel="canonical" href="{{ $canonical }}">
     @endif
@@ -45,5 +44,11 @@
 </head>
 <body class="font-sans antialiased">
 @inertia
+
+<script>
+    addEventListener('load', () => setTimeout(() => {
+        dispatchEvent(new Event('vite:prefetch'))
+    }, 3000))
+</script>
 </body>
 </html>
