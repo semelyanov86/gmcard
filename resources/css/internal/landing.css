@@ -719,10 +719,7 @@ hr {
     margin-bottom: 10px;
 }
 
-.footer .btn-outline i.fa {
-    color: #585a67;
-    padding: 0 15px;
-}
+
 
 .footer .btn-outline:hover {
     background: #181a27;
@@ -761,11 +758,6 @@ a.footer-link-1 {
     padding-bottom: 5px;
 }
 
-a.footer-link-1 i.fa {
-    padding: 0 5px;
-    color: #3e4152;
-}
-
 a.footer-link-1:hover {
     text-decoration: none;
 }
@@ -775,11 +767,6 @@ a.footer-link-1 {
     border-bottom: 1px solid #414455;
     padding-bottom: 5px;
     margin-right: 15px;
-}
-
-a.footer-link-1 i.fa {
-    padding: 0 5px;
-    color: #3e4152;
 }
 
 a.footer-link-1:hover {

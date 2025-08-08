@@ -44,93 +44,98 @@ const props = defineProps<{
                         <ul class="footer_upBlock flex w-[143px] list-none flex-col gap-3">
                             <li><a href="#" class="text-lg font-bold text-white opacity-30">Больше скидок</a></li>
                             <li><a href="#" class="text-[15px] text-white">В нашем мобильном приложении</a></li>
-                            <div class="upBlock_phones flex flex-col gap-3">
-                                <li>
-                                    <a href="#" class=""
-                                        ><AdaptiveImage
-                                            image-path="app-store"
-                                            image-class="h-[54px] w-[143px] hover:opacity-80"
-                                            alt="Скачать на Android"
-                                            data-tooltip-target="tooltip-app"
-                                            type="button"
-                                    /></a>
-                                </li>
-                                <li>
-                                    <a href="#" class=""
-                                        ><AdaptiveImage
-                                            image-path="google-play"
-                                            image-class="h-[54px] w-[143px] hover:opacity-80"
-                                            alt="Скачать на Android"
-                                            data-tooltip-target="tooltip-app"
-                                            type="button"
-                                    /></a>
-                                </li>
-                            </div>
-                            <div
-                                id="tooltip-app"
-                                role="tooltip"
-                                class="tooltip invisible absolute z-10 inline-block w-[150px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
-                            >
-                                В разработке!
-                            </div>
+                            <li class="upBlock_phones flex flex-col gap-3">
+                                <ul class="flex flex-col gap-3">
+                                    <li>
+                                        <a href="#" class=""
+                                            ><AdaptiveImage
+                                                image-path="app-store"
+                                                image-class="h-[54px] w-[143px] hover:opacity-80"
+                                                alt="Скачать на Android"
+                                                data-tooltip-target="tooltip-app"
+                                                type="button"
+                                        /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class=""
+                                            ><AdaptiveImage
+                                                image-path="google-play"
+                                                image-class="h-[54px] w-[143px] hover:opacity-80"
+                                                alt="Скачать на Android"
+                                                data-tooltip-target="tooltip-app"
+                                                type="button"
+                                        /></a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
+                        <div
+                            id="tooltip-app"
+                            role="tooltip"
+                            class="tooltip invisible absolute z-10 inline-block w-[150px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+                        >
+                            В разработке!
+                        </div>
                         <ul class="list_footer footer_downBlock ml-[250px] list-none">
                             <li class="text-lg font-bold text-white opacity-30">Следите за новостями и акциями</li>
-                            <div class="mt-[15px] flex flex-wrap items-center gap-3">
-                                <li>
-                                    <a
-                                        href=""
-                                        class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                        data-tooltip-target="tooltip-social"
-                                        type="button"
-                                        ><img
-                                            src="/images/png/icons/vk.svg"
-                                            class="mr-[14px] h-5 w-5 opacity-50"
-                                            style="filter: brightness(1.5)"
-                                            alt="ВКонтакте"
-                                        />Вконтакте</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href=""
-                                        class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                        data-tooltip-target="tooltip-social"
-                                        type="button"
-                                        ><img
-                                            class="mr-[14px] h-5 w-5 text-white opacity-50"
-                                            src="/images/png/icons/tg.svg"
-                                            alt="Telegram"
-                                        />Telegramm</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href=""
-                                        class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                        data-tooltip-target="tooltip-social"
-                                        type="button"
-                                        ><img class="h-5 w-5 text-white opacity-50" src="/images/png/icons/insta.svg" alt="Instagram"
-                                    /></a>
-                                </li>
-                            </div>
-                            <p class="mt-5 max-w-xs cursor-pointer text-sm text-white opacity-30 hover:opacity-100">
+                            <li class="mt-[15px] flex flex-wrap items-center gap-3">
+                                <ul class="flex flex-wrap items-center gap-3">
+                                    <li>
+                                        <a
+                                            href=""
+                                            class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
+                                            type="button"
+                                            ><img
+                                                src="/images/png/icons/vk.svg"
+                                                class="mr-[14px] h-5 w-5 opacity-50"
+                                                style="filter: brightness(1.5)"
+                                                alt="ВКонтакте"
+                                            />Вконтакте</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href=""
+                                            class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
+                                            type="button"
+                                            ><img
+                                                class="mr-[14px] h-5 w-5 text-white opacity-50"
+                                                src="/images/png/icons/tg.svg"
+                                                alt="Telegram"
+                                            />Telegramm</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href=""
+                                            class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
+                                            type="button"
+                                            ><img class="h-5 w-5 text-white opacity-50" src="/images/png/icons/insta.svg" alt="Instagram"
+                                        /></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="mt-5 max-w-xs cursor-pointer text-sm text-white opacity-30 hover:opacity-100">
                                 Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России
-                            </p>
+                            </li>
 
                             <li class="mt-12 text-lg font-bold text-white opacity-30">Служба поддержки GM</li>
-                            <div class="mt-[15px] flex flex-wrap gap-7">
-                                <li>
-                                    <a
-                                        :href="`mailto:${props.contact.email}`"
-                                        class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white"
-                                        ><img src="/images/webp/icons/email.webp" class="mr-[14px] opacity-50" alt="" />{{ props.contact.email }}</a
-                                    >
-                                </li>
-                                <li>
-                                    <button id="modal-cash" class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white">
-                                        Где мой кэшбэк?
-                                    </button>
+                            <li class="mt-[15px] flex flex-wrap gap-7">
+                                <ul class="flex flex-wrap gap-7">
+                                    <li>
+                                        <a
+                                            :href="`mailto:${props.contact.email}`"
+                                            class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white"
+                                            ><img src="/images/webp/icons/email.webp" class="mr-[14px] opacity-50" alt="" />{{ props.contact.email }}</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <button id="modal-cash" class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white">
+                                            Где мой кэшбэк?
+                                        </button>
                                     <div id="staticModals" class="bg-opacity-30 fixed top-0 left-0 z-50 hidden h-full w-full overflow-auto bg-black">
                                         <div class="flex w-full justify-center px-4 py-10">
                                             <div class="relative z-50 max-h-full w-full max-w-[500px]">
@@ -424,41 +429,46 @@ const props = defineProps<{
                                         </div>
                                     </div>
                                 </li>
-                            </div>
-                            <div class="politic relative z-30 mt-11 flex gap-4">
+                            </ul>
+                        </li>
+                        <li class="politic relative z-30 mt-11 flex gap-4">
+                            <ul class="flex gap-4">
                                 <li>
                                     <a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Политика защиты персональный информации</a>
                                 </li>
                                 <li><a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Пользовательское соглашение</a></li>
-                            </div>
+                            </ul>
+                        </li>
                         </ul>
                         <ul class="pay_block block list-none">
                             <li class="mb-6 text-lg font-bold text-white opacity-30">Мы работаем с</li>
-                            <ul class="flex gap-5">
-                                <li>
-                                    <ul class="flex flex-col">
-                                        <li><AdaptiveImage image-path="icons/visa" image-class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
-                                        <li><AdaptiveImage image-path="icons/sberbank" image-class="mb-11" alt="Сбер Банк" /></li>
-                                        <li><AdaptiveImage image-path="icons/alfa" alt="Альфа Банк" /></li>
-                                    </ul>
-                                </li>
-                                <div class="h-full w-[1px] bg-white"></div>
-                                <li>
-                                    <ul class="flex flex-col">
-                                        <li><AdaptiveImage image-path="icons/master" image-class="mb-8" alt="MasterCard" /></li>
-                                        <li><AdaptiveImage image-path="icons/robbo" image-class="mb-9" alt="Robbo" /></li>
-                                        <li><AdaptiveImage image-path="icons/yandex" alt="Яндекс" /></li>
-                                    </ul>
-                                </li>
-                                <div></div>
-                                <li>
-                                    <ul class="flex flex-col">
-                                        <li><AdaptiveImage image-path="icons/maestro" image-class="mb-10" alt="Maestro" /></li>
-                                        <li><AdaptiveImage image-path="icons/webmoney" image-class="mb-9" alt="Webmoney" /></li>
-                                        <li><AdaptiveImage image-path="icons/qiwi" alt="Qiwi" /></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <li class="flex gap-5">
+                                <ul class="flex gap-5">
+                                    <li>
+                                        <ul class="flex flex-col">
+                                            <li><AdaptiveImage image-path="icons/visa" image-class="mt-1 mb-11 h-[14px] w-[47px]" alt="Visa" /></li>
+                                            <li><AdaptiveImage image-path="icons/sberbank" image-class="mb-11" alt="Сбер Банк" /></li>
+                                            <li><AdaptiveImage image-path="icons/alfa" alt="Альфа Банк" /></li>
+                                        </ul>
+                                    </li>
+                                    <li class="h-full"></li>
+                                    <li>
+                                        <ul class="flex flex-col">
+                                            <li><AdaptiveImage image-path="icons/master" image-class="mb-8" alt="MasterCard" /></li>
+                                            <li><AdaptiveImage image-path="icons/robbo" image-class="mb-9" alt="Robbo" /></li>
+                                            <li><AdaptiveImage image-path="icons/yandex" alt="Яндекс" /></li>
+                                        </ul>
+                                    </li>
+                                    <li></li>
+                                    <li>
+                                        <ul class="flex flex-col">
+                                            <li><AdaptiveImage image-path="icons/maestro" image-class="mb-10" alt="Maestro" /></li>
+                                            <li><AdaptiveImage image-path="icons/webmoney" image-class="mb-9" alt="Webmoney" /></li>
+                                            <li><AdaptiveImage image-path="icons/qiwi" alt="Qiwi" /></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="mt-11 text-end text-sm text-white opacity-30">И другие</li>
                         </ul>
                     </div>
@@ -472,7 +482,7 @@ const props = defineProps<{
                             <li class="relative z-10 font-bold text-[#eacc14] hover:opacity-80">
                                 <a class="text-[#eacc14]" href="#">+ Партнерская программа</a>
                             </li>
-                            <div class="mx-5 h-[30px] w-[1px] bg-white opacity-10"></div>
+                            <li class="mx-5 h-[30px] w-[1px] bg-white opacity-10"></li>
                             <li class="font-bold text-[#eacc14] hover:opacity-80"><a class="text-[#eacc14]" href="#">+ Добавить магазин</a></li>
                         </ul>
                         <div
