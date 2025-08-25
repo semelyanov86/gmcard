@@ -14,6 +14,7 @@ class MainController extends Controller
     {
         $slides = config('slides.item');
         $reviews = config('slides.reviews');
+        /** @var array<string, mixed> $meta */
         $meta = config('meta.business');
 
         return Inertia::render('Welcome', [

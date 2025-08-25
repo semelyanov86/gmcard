@@ -58,7 +58,6 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
-
 @layer base {
     *,
     ::after,
@@ -683,7 +682,6 @@
     border: 2px solid #e2e8f0;
     border-radius: 10px;
     max-width: 270px;
-
 }
 
 .tarifs_main_border_blue {
@@ -997,13 +995,10 @@
         padding: 0 12px 0;
     }
 
-
-
     .section-slider {
         display: block;
         margin-bottom: 32px;
     }
-
 
     .tarifs_main_prices {
         padding-bottom: 30px;
@@ -1316,8 +1311,6 @@
     }
 }
 
-
-
 .animated-block {
     position: relative;
     animation: slide-down 1s ease-out forwards;
@@ -1335,8 +1328,6 @@
     }
 }
 
-
-
 .btn_register:hover {
     box-shadow: 0px 0px 39px -14px rgba(244, 215, 16, 0.57);
     -webkit-box-shadow: 0px 0px 39px -14px rgba(244, 215, 16, 0.57);
@@ -1352,8 +1343,6 @@
         width: 100% !important;
     }
 }
-
-
 
 .activate {
     width: 280px;
@@ -1389,8 +1378,6 @@
         padding-left: 0px !important;
     }
 }
-
-
 
 .promo_image1 {
     background-image: url(/assets/constructor/constructor_sale1.png);
@@ -1854,8 +1841,6 @@
 .custom-selects select:focus + .select-arrow {
     transform: rotate(180deg);
 }
-
-
 
 .modal {
     display: none;
