@@ -61,7 +61,7 @@ section.section-1:after {
 .text-7 {
     margin-top: 40px;
     font-size: 20px;
-    color: #85a4b9;
+    color: #6a97b4;
     max-width: 440px;
     margin-bottom: 0;
 }
@@ -503,7 +503,7 @@ h3.title-3 {
 }
 
 .card-title-1 .title-red {
-    color: #f00;
+    color: #990000;
     font-weight: bold;
     font-size: 17px;
     margin-top: 6px;
@@ -537,7 +537,7 @@ h3.title-3 {
     width: 400px;
     font-size: 16px;
     margin: 16px 110px;
-    color: #887809;
+    color: #6b5c07;
     letter-spacing: -0.5px;
     line-height: 24px;
     padding-bottom: 57px;
@@ -634,7 +634,7 @@ h3.title-4 {
 }
 
 .text-7 {
-    color: #99999b;
+    color: #666666;
 }
 
 .text-8 {

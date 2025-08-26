@@ -79,6 +79,8 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-1"
                             alt="card-icon-1"
                             image-class="header-card card-image card-icon-1"
+                            loading="eager"
+                            fetchpriority="high"
                         ></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">

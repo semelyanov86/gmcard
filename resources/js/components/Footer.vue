@@ -42,7 +42,7 @@ const props = defineProps<{
                     <div class="my-10 h-[1px] w-full bg-white opacity-10"></div>
                     <div class="footer_block relative z-20 flex justify-between">
                         <ul class="footer_upBlock flex w-[143px] list-none flex-col gap-3">
-                            <li><a href="#" class="text-lg font-bold text-white opacity-30">Больше скидок</a></li>
+                            <li><a href="#" class="text-lg font-bold text-white opacity-60">Больше скидок</a></li>
                             <li><a href="#" class="text-[15px] text-white">В нашем мобильном приложении</a></li>
                             <li class="upBlock_phones flex flex-col gap-3">
                                 <ul class="flex flex-col gap-3">
@@ -77,7 +77,7 @@ const props = defineProps<{
                             В разработке!
                         </div>
                         <ul class="list_footer footer_downBlock ml-[250px] list-none">
-                            <li class="text-lg font-bold text-white opacity-30">Следите за новостями и акциями</li>
+                            <li class="text-lg font-bold text-white opacity-60">Следите за новостями и акциями</li>
                             <li class="mt-[15px] flex flex-wrap items-center gap-3">
                                 <ul class="flex flex-wrap items-center gap-3">
                                     <li>
@@ -118,11 +118,11 @@ const props = defineProps<{
                                     </li>
                                 </ul>
                             </li>
-                            <li class="mt-5 max-w-xs cursor-pointer text-sm text-white opacity-30 hover:opacity-100">
+                            <li class="mt-5 max-w-xs cursor-pointer text-sm text-white opacity-60 hover:opacity-100">
                                 Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России
                             </li>
 
-                            <li class="mt-12 text-lg font-bold text-white opacity-30">Служба поддержки GM</li>
+                            <li class="mt-12 text-lg font-bold text-white opacity-60">Служба поддержки GM</li>
                             <li class="mt-[15px] flex flex-wrap gap-7">
                                 <ul class="flex flex-wrap gap-7">
                                     <li>
@@ -434,14 +434,14 @@ const props = defineProps<{
                         <li class="politic relative z-30 mt-11 flex gap-4">
                             <ul class="flex gap-4">
                                 <li>
-                                    <a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Политика защиты персональный информации</a>
+                                    <a href="#" class="text-sm text-white opacity-60 hover:opacity-100">Политика защиты персональный информации</a>
                                 </li>
-                                <li><a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Пользовательское соглашение</a></li>
+                                <li><a href="#" class="text-sm text-white opacity-60 hover:opacity-100">Пользовательское соглашение</a></li>
                             </ul>
                         </li>
                         </ul>
                         <ul class="pay_block block list-none">
-                            <li class="mb-6 text-lg font-bold text-white opacity-30">Мы работаем с</li>
+                            <li class="mb-6 text-lg font-bold text-white opacity-60">Мы работаем с</li>
                             <li class="flex gap-5">
                                 <ul class="flex gap-5">
                                     <li>
@@ -469,14 +469,14 @@ const props = defineProps<{
                                     </li>
                                 </ul>
                             </li>
-                            <li class="mt-11 text-end text-sm text-white opacity-30">И другие</li>
+                            <li class="mt-11 text-end text-sm text-white opacity-60">И другие</li>
                         </ul>
                     </div>
                     <div class="my-8 h-[1px] w-full bg-white opacity-10"></div>
                     <div class="flex items-center justify-between px-1">
                         <div class="flex items-center gap-[16px]">
                             <AdaptiveImage image-path="gm-logo-2" alt="GM" image-class="h-[26px] w-[26px]" />
-                            <span class="text-sm text-white opacity-30">GM 2014 - 2025</span>
+                            <span class="text-sm text-white opacity-60">GM 2014 - 2025</span>
                         </div>
                         <ul class="partner_link flex items-center">
                             <li class="relative z-10 font-bold text-[#eacc14] hover:opacity-80">
