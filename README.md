@@ -111,6 +111,21 @@ To run all checkers, like phpstan, rector:
 task check
 ```
 
+## SEO Commands
+
+### Generate Sitemap
+
+Generate sitemap.xml file for search engines:
+
+```
+php artisan sitemap:generate
+```
+
+This command automatically:
+- Finds all GET routes in your application
+- Sets appropriate priorities and update frequencies
+- Creates `public/sitemap.xml` file
+
 # License
 
 This project is licensed under the GNU License. See the LICENSE file for details.

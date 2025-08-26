@@ -27,7 +27,7 @@
                     <div class="card-name">{{ review.name }}</div>
                     <div class="card-position">{{ review.position }}</div>
                     <div class="test">
-                        <img :src="review.avatar" alt="" class="card-avatar" />
+                        <img :src="review.avatar" alt="" class="card-avatar" loading="lazy" />
                     </div>
                 </div>
             </div>
@@ -35,10 +35,10 @@
     </Splide>
 
     <button class="custom-arrow left-arrow" @click="goPrev" aria-label="Previous slide">
-        <img src="/images/webp/slide-btn-left.webp" alt="Previous" />
+        <img src="/images/webp/slide-btn-left.webp" alt="Previous" loading="lazy" />
     </button>
     <button class="custom-arrow right-arrow" @click="goNext" aria-label="Next slide">
-        <img src="/images/webp/slide-btn-right.webp" alt="Next" />
+        <img src="/images/webp/slide-btn-right.webp" alt="Next" loading="lazy" />
     </button>
 </template>
 

@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\DB;
 
 class PopupFormSubmitTest extends TestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->withoutMiddleware();
         $this->app->bind(VtigerCrmInterface::class, MockVtigerAdapter::class);
-        
-        if (!Schema::hasTable('settings')) {
-            Schema::create('settings', function ($table) {
+
+        if (! Schema::hasTable('settings')) {
+            Schema::create('settings', function ($table): void {
                 $table->id();
                 $table->string('group');
                 $table->string('name');
@@ -30,7 +31,7 @@ class PopupFormSubmitTest extends TestCase
                 $table->unique(['group', 'name']);
             });
         }
-        
+
         DB::table('settings')->insertOrIgnore([
             [
                 'group' => 'general',

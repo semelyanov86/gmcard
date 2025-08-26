@@ -8,6 +8,7 @@ use App\Contracts\VtigerCrmInterface;
 use App\Providers\Configurables\ConfigurableInterface;
 use App\Services\CRM\VtigerCrmAdapter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Vite;
 use Override;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
             ->map(fn (string $configurable) => $this->app->make($configurable))
             ->filter(fn (ConfigurableInterface $configurable): bool => $configurable->enabled())
             ->each(fn (ConfigurableInterface $configurable) => $configurable->configure());
+
+        Vite::prefetch(concurrency: 3, event: 'vite:prefetch');
     }
 }

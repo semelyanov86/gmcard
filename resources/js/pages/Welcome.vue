@@ -3,13 +3,14 @@ import PopUpForm from '@/components/popup/PopUpForm.vue';
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 
-import { useHead } from '@vueuse/head';
 import '../../css/internal/landing.css';
 
 import Footer from '@/components/Footer.vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import { useSchema } from '@/composables/useSchema';
 import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
+import type { MetaData } from '@/types/schema';
 
 import { usePage } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
@@ -22,17 +23,7 @@ const props = defineProps<{
         email: string;
         phone: string;
     };
-    meta: {
-        title: string;
-        description: string;
-        og: {
-            title: string;
-            description: string;
-            image: string;
-            url: string;
-            type: string;
-        };
-    };
+    meta: MetaData;
 }>();
 
 const isPopUpVisible = ref(false);
@@ -59,20 +50,10 @@ watch(
             toast.error(flash.error);
         }
     },
-    { immediate: true }
+    { immediate: true },
 );
 
-useHead({
-    title: props.meta.title,
-    meta: [
-        { name: 'description', content: props.meta.description },
-        { property: 'og:title', content: props.meta.og.title },
-        { property: 'og:description', content: props.meta.og.description },
-        { property: 'og:image', content: props.meta.og.image },
-        { property: 'og:url', content: props.meta.og.url },
-        { property: 'og:type', content: props.meta.og.type },
-    ],
-});
+useSchema(props.meta, 'landing');
 </script>
 
 <template>
@@ -98,6 +79,8 @@ useHead({
                             image-path="header-card-icon-1"
                             alt="card-icon-1"
                             image-class="header-card card-image card-icon-1"
+                            loading="eager"
+                            fetchpriority="high"
                         ></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
@@ -233,5 +216,5 @@ useHead({
             </div>
         </div>
     </section>
-    <Footer></Footer>
+    <Footer :contact="contact"></Footer>
 </template>

@@ -24,7 +24,7 @@
         >
             <SplideSlide v-for="(slide, i) in slides" :key="i">
                 <div class="item">
-                    <img :src="slide.image" alt="" />
+                    <img :src="slide.image" alt="" loading="lazy" />
                     <h4>{{ slide.title }}</h4>
                     <div class="item-content">{{ slide.text }}</div>
                 </div>
@@ -32,10 +32,10 @@
         </Splide>
 
         <button class="custom-arrow left-arrow" @click="goPrev" aria-label="Previous slide">
-            <img src="/images/webp/slide-btn-left.webp" alt="Previous" />
+            <img src="/images/webp/slide-btn-left.webp" alt="Previous" loading="lazy" />
         </button>
         <button class="custom-arrow right-arrow" @click="goNext" aria-label="Next slide">
-            <img src="/images/webp/slide-btn-right.webp" alt="Next" />
+            <img src="/images/webp/slide-btn-right.webp" alt="Next" loading="lazy" />
         </button>
 
         <div class="custom-pagination">
@@ -140,7 +140,7 @@ onMounted(() => {
 }
 
 .header-slider .splide-dot {
-    background: #1B3568;
+    background: #1b3568;
     width: 21px;
     height: 9px;
     margin: 0 5px;

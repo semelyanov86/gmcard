@@ -28,11 +28,16 @@
         }
     </style>
 
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    @if(isset($canonical))
+        <link rel="canonical" href="{{ $canonical }}">
+    @endif
 
     @routes
     @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
@@ -40,5 +45,11 @@
 </head>
 <body class="font-sans antialiased">
 @inertia
+
+<script>
+    addEventListener('load', () => setTimeout(() => {
+        dispatchEvent(new Event('vite:prefetch'))
+    }, 3000))
+</script>
 </body>
 </html>
