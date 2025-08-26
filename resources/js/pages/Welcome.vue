@@ -81,6 +81,7 @@ useSchema(props.meta, 'landing');
                             image-class="header-card card-image card-icon-1"
                             loading="eager"
                             fetchpriority="high"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
@@ -93,6 +94,7 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-2"
                             alt="card-icon-2"
                             image-class="header-card card-image card-icon-2"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Продвижение с нами – <br />это легко и просто</h4>
                         <div class="card-content">
@@ -106,6 +108,7 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-3"
                             alt="card-icon-3"
                             image-class="header-card card-image card-icon-3"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Отличный результат с рекламой<br />от нашего сервиса</h4>
                         <div class="card-content">
