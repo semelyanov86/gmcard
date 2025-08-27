@@ -1,0 +1,1894 @@
+{
+  "id": "0",
+  "name": "gm",
+  "createdAt": "2025-08-06T08:27:07.618Z",
+  "updatedAt": "2025-08-06T08:27:07.618Z",
+  "databaseType": "mysql",
+  "tables": [
+    {
+      "id": "1",
+      "name": "payments",
+      "x": -1189.5435111823863,
+      "y": 1045.8308255100358,
+      "fields": [
+        {
+          "id": "2",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751378321171
+        },
+        {
+          "id": "3",
+          "name": "payment_date",
+          "type": {
+            "id": "datetime",
+            "name": "datetime"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378327149,
+          "comments": "Дата оплаты"
+        },
+        {
+          "id": "4",
+          "name": "amount",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378327909,
+          "comments": "\tСумма"
+        },
+        {
+          "id": "5",
+          "name": "type",
+          "type": {
+            "id": "enum",
+            "name": "enum"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378328408,
+          "comments": "Enum values:\nincoming,outgoing"
+        },
+        {
+          "id": "6",
+          "name": "currency",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378328917,
+          "comments": "\tВалюта"
+        },
+        {
+          "id": "7",
+          "name": "description",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378329438
+        },
+        {
+          "id": "8",
+          "name": "transaction_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378329928,
+          "comments": "\tID транзакции"
+        },
+        {
+          "id": "9",
+          "name": "user_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378330461
+        }
+      ],
+      "indexes": [],
+      "color": "#ffe374",
+      "isView": false,
+      "createdAt": 1751378321171,
+      "order": 10,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "история платежей "
+    },
+    {
+      "id": "10",
+      "name": "categories",
+      "x": 1026.003840665585,
+      "y": -724.9178077395732,
+      "fields": [
+        {
+          "id": "11",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751373977218
+        },
+        {
+          "id": "12",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374167526
+        },
+        {
+          "id": "13",
+          "name": "description",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751374168153
+        },
+        {
+          "id": "14",
+          "name": "parent_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374168746
+        },
+        {
+          "id": "15",
+          "name": "is_starred",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374169423,
+          "comments": "Default:\nfalse"
+        }
+      ],
+      "indexes": [],
+      "color": "#7175fa",
+      "isView": false,
+      "createdAt": 1751373977218,
+      "order": 4,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "категории акций или товаров для группировки предложений"
+    },
+    {
+      "id": "16",
+      "name": "users",
+      "schema": "public",
+      "x": -574.7376649072852,
+      "y": -1157.010289102479,
+      "fields": [
+        {
+          "id": "17",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751356579813
+        },
+        {
+          "id": "18",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751356579813
+        },
+        {
+          "id": "19",
+          "name": "last_name",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751365061057
+        },
+        {
+          "id": "20",
+          "name": "age",
+          "type": {
+            "id": "tinyint",
+            "name": "tinyint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751382385147,
+          "comments": "default 0???\n"
+        },
+        {
+          "id": "21",
+          "name": "email",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751356579813
+        },
+        {
+          "id": "22",
+          "name": "password",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751367389343,
+          "comments": "?"
+        },
+        {
+          "id": "23",
+          "name": "balance",
+          "type": {
+            "id": "decimal",
+            "name": "decimal"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751382278589,
+          "comments": "10, 2\nDefault 0"
+        },
+        {
+          "id": "24",
+          "name": "job",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751364935420
+        },
+        {
+          "id": "25",
+          "name": "job_status",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751382861378,
+          "characterMaximumLength": "100"
+        },
+        {
+          "id": "26",
+          "name": "city",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751365687289
+        },
+        {
+          "id": "27",
+          "name": "country",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366037542
+        },
+        {
+          "id": "28",
+          "name": " birth_date",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366054574
+        },
+        {
+          "id": "29",
+          "name": "role",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366059840
+        },
+        {
+          "id": "30",
+          "name": "gender",
+          "type": {
+            "id": "enum",
+            "name": "enum"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366089699,
+          "comments": "Добавить атрибуты \n"
+        },
+        {
+          "id": "31",
+          "name": "code",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366108679,
+          "comments": "Промокод для начисления бонусов\nРАЗОБРАТЬСЯ!!\n"
+        },
+        {
+          "id": "32",
+          "name": "created_at",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366262609,
+          "comments": "?"
+        },
+        {
+          "id": "33",
+          "name": "updated_at",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751366299271,
+          "comments": "?"
+        }
+      ],
+      "indexes": [
+        {
+          "id": "34",
+          "name": "index_1",
+          "unique": false,
+          "fieldIds": [],
+          "createdAt": 1751367816974
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1751356579813,
+      "order": 0,
+      "expanded": true,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "35",
+      "name": "organisations",
+      "x": -1420.2213659964825,
+      "y": -89.49121836844702,
+      "fields": [
+        {
+          "id": "36",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751378899095
+        },
+        {
+          "id": "37",
+          "name": "address_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378905824,
+          "comments": "Адрес организации"
+        },
+        {
+          "id": "38",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378907125,
+          "comments": "Название организации"
+        },
+        {
+          "id": "39",
+          "name": "owner_role",
+          "type": {
+            "id": "enum",
+            "name": "enum"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378907683,
+          "comments": "Enum values:\nowner,manager,secretary,other"
+        },
+        {
+          "id": "40",
+          "name": "inn",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378908437,
+          "characterMaximumLength": "15",
+          "comments": ""
+        },
+        {
+          "id": "41",
+          "name": "ogrn",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378909889,
+          "characterMaximumLength": "20"
+        },
+        {
+          "id": "42",
+          "name": "contact",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378910418,
+          "comments": "контактный данные"
+        },
+        {
+          "id": "43",
+          "name": "contact_fio",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378910980,
+          "comments": "Фио"
+        },
+        {
+          "id": "44",
+          "name": "opening_hours",
+          "type": {
+            "id": "json",
+            "name": "json"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751379055951,
+          "comments": "Расписание работы "
+        },
+        {
+          "id": "45",
+          "name": "user_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751379056659
+        }
+      ],
+      "indexes": [],
+      "color": "#ff9f74",
+      "isView": false,
+      "createdAt": 1751378899095,
+      "order": 14,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "юридические лица-организации, которые создают акции или размещают услуги."
+    },
+    {
+      "id": "46",
+      "name": "adv_campaigns",
+      "x": -1481.5737952178513,
+      "y": -1193.5431051901983,
+      "fields": [
+        {
+          "id": "47",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751378684195
+        },
+        {
+          "id": "48",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378701604
+        },
+        {
+          "id": "49",
+          "name": "description",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378702238
+        },
+        {
+          "id": "50",
+          "name": "crmid",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378702744
+        },
+        {
+          "id": "51",
+          "name": "action_details",
+          "type": {
+            "id": "json",
+            "name": "json"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378703295,
+          "comments": "Здесь размер вознаграждения"
+        },
+        {
+          "id": "52",
+          "name": "deeplink",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378703848
+        },
+        {
+          "id": "53",
+          "name": "avg_hold_time",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378788736,
+          "comments": "среднее время, которое действие находится в ожидании"
+        },
+        {
+          "id": "54",
+          "name": "avg_money_transfer_time",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378789364,
+          "comments": "среднее время оплаты действий рекламодателем."
+        }
+      ],
+      "indexes": [],
+      "color": "#7175fa",
+      "isView": false,
+      "createdAt": 1751378684195,
+      "order": 13,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "рекламные кампании для промо"
+    },
+    {
+      "id": "55",
+      "name": "category_promo",
+      "x": 487.52315249491033,
+      "y": 96.83610671663168,
+      "fields": [
+        {
+          "id": "56",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751373977389
+        },
+        {
+          "id": "57",
+          "name": "category_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374288389,
+          "comments": "Для каких категорий акция"
+        },
+        {
+          "id": "58",
+          "name": "promo_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374288900,
+          "comments": "Сама акция"
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1751373977389,
+      "order": 5,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "связь «категория -- акция»"
+    },
+    {
+      "id": "59",
+      "name": "media",
+      "x": -1414.5673196471344,
+      "y": -683.6777813086306,
+      "fields": [
+        {
+          "id": "60",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751378650480
+        },
+        {
+          "id": "61",
+          "name": "type",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751378663259
+        }
+      ],
+      "indexes": [],
+      "color": "#9ef07a",
+      "isView": false,
+      "createdAt": 1751378650480,
+      "order": 12,
+      "diagramId": "kgfog9rws5o2",
+      "comments": " медиафайлы изображения, видео"
+    },
+    {
+      "id": "62",
+      "name": "city_promo",
+      "x": -610.6229514984977,
+      "y": -362.365922950072,
+      "fields": [
+        {
+          "id": "63",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751373977035
+        },
+        {
+          "id": "64",
+          "name": "city_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374101416
+        },
+        {
+          "id": "65",
+          "name": "promo_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374102169
+        }
+      ],
+      "indexes": [],
+      "color": "#ff9f74",
+      "isView": false,
+      "createdAt": 1751373977035,
+      "order": 3,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "связь «город -- акция»"
+    },
+    {
+      "id": "66",
+      "name": "cities",
+      "x": -1421.8815472495082,
+      "y": -410.08384340624445,
+      "fields": [
+        {
+          "id": "67",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751378462826
+        },
+        {
+          "id": "68",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378512138
+        },
+        {
+          "id": "69",
+          "name": "country",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751378524573,
+          "comments": "Default:\nru"
+        }
+      ],
+      "indexes": [],
+      "color": "#7175fa",
+      "isView": false,
+      "createdAt": 1751378462826,
+      "order": 11,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "список городов, где доступны сервисы или акции. Используется для фильтрации и привязки промо."
+    },
+    {
+      "id": "70",
+      "name": "bonuses",
+      "x": -1292.6860618330559,
+      "y": 684.2873694504074,
+      "fields": [
+        {
+          "id": "71",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751376531111
+        },
+        {
+          "id": "72",
+          "name": "amount",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751376557965,
+          "comments": "Сумма бонуса"
+        },
+        {
+          "id": "73",
+          "name": "code",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751376558624,
+          "comments": "\tПромокод"
+        },
+        {
+          "id": "74",
+          "name": "source_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751376559284,
+          "comments": "Кто отправил (user_id)"
+        },
+        {
+          "id": "75",
+          "name": "target_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751376559840,
+          "comments": "Кто получил (user_id)"
+        },
+        {
+          "id": "76",
+          "name": "type",
+          "type": {
+            "id": "enum",
+            "name": "enum"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751376560412,
+          "comments": "Enum values:\nincoming,outgoing"
+        }
+      ],
+      "indexes": [],
+      "color": "#4dee8a",
+      "isView": false,
+      "createdAt": 1751376531111,
+      "width": 224,
+      "order": 9,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "начисления и списания бонусов"
+    },
+    {
+      "id": "77",
+      "name": "addresses",
+      "x": -168.31032608938546,
+      "y": 90.43936050680414,
+      "fields": [
+        {
+          "id": "78",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751374392478
+        },
+        {
+          "id": "79",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374409917,
+          "comments": "Название организации"
+        },
+        {
+          "id": "80",
+          "name": "open_hours",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751374410657,
+          "comments": "Время работы"
+        },
+        {
+          "id": "81",
+          "name": "phone",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751374411174,
+          "comments": "Номер телефона"
+        },
+        {
+          "id": "82",
+          "name": "phone_secondary",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751374411758,
+          "comments": "Запасной номер телефона"
+        },
+        {
+          "id": "83",
+          "name": "website",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751374486213,
+          "comments": "Сайт организации"
+        }
+      ],
+      "indexes": [],
+      "color": "#ffe374",
+      "isView": false,
+      "createdAt": 1751374392478,
+      "order": 5,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "физические адреса организаций. Могут быть связаны с промо."
+    },
+    {
+      "id": "84",
+      "name": "promos",
+      "x": -170.5888605214725,
+      "y": -1070.849402028598,
+      "fields": [
+        {
+          "id": "85",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751367949246
+        },
+        {
+          "id": "86",
+          "name": "name",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751367966211,
+          "characterMaximumLength": "64"
+        },
+        {
+          "id": "87",
+          "name": "user_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751370898935
+        },
+        {
+          "id": "88",
+          "name": "type",
+          "type": {
+            "id": "enum",
+            "name": "enum"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751367966976,
+          "comments": "simple,coupon,gift,one_plus_one,two_plus_one,cashback,konkurs\n\nтип акции"
+        },
+        {
+          "id": "89",
+          "name": "code",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751367967725,
+          "comments": "промокод"
+        },
+        {
+          "id": "90",
+          "name": "img",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751385302886
+        },
+        {
+          "id": "91",
+          "name": "amount",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751367968548,
+          "comments": "Обьем скидки"
+        },
+        {
+          "id": "92",
+          "name": "description",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751367969230
+        },
+        {
+          "id": "93",
+          "name": "extra_conditions",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751367969957,
+          "comments": "Доп условия"
+        },
+        {
+          "id": "94",
+          "name": "video_link",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751368374709,
+          "characterMaximumLength": "2083",
+          "comments": "Ссылка на видео 2083\n\nВопрос по длине "
+        },
+        {
+          "id": "95",
+          "name": "smm_links",
+          "type": {
+            "id": "json",
+            "name": "json"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751368375456,
+          "comments": "ссылки на соц сети\n"
+        },
+        {
+          "id": "96",
+          "name": "days_availability",
+          "type": {
+            "id": "json",
+            "name": "json"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751368376097,
+          "comments": "Список дней когда доступна акция \nТИПИЗАЦИЯ"
+        },
+        {
+          "id": "97",
+          "name": "availabe_from",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751368376853,
+          "comments": "Со скольки до скольки доступна акция\nТИПИЗАЦИЯ"
+        },
+        {
+          "id": "98",
+          "name": "available_to",
+          "type": {
+            "id": "time",
+            "name": "time"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751368377663,
+          "comments": "время когда акция доступна\n"
+        },
+        {
+          "id": "99",
+          "name": "started_at",
+          "type": {
+            "id": "datetime",
+            "name": "datetime"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751370899581,
+          "comments": "Время запуска "
+        },
+        {
+          "id": "100",
+          "name": "available_till",
+          "type": {
+            "id": "datetime",
+            "name": "datetime"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751370900142,
+          "comments": "Время завершения акции"
+        },
+        {
+          "id": "101",
+          "name": "show_on_home",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751370901201,
+          "comments": "Показывать ли акцию на главной странице сайта?\n\nDefault:\nfalse"
+        },
+        {
+          "id": "102",
+          "name": "raise_on_top_hours",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751370901780,
+          "comments": "Поднимать акцию на первое место каждые 0 дней\n\nDefault:\n0"
+        },
+        {
+          "id": "103",
+          "name": "restart_after_finish_days",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751371173310,
+          "comments": "Автоматически перезапускать акцию после завершения на 0 дней\n\nDefault:\n0\n"
+        },
+        {
+          "id": "104",
+          "name": "sales_order_from",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751371173905,
+          "comments": "Скидка действует при заказе от 0 руб\n\nDefault:\n0"
+        },
+        {
+          "id": "105",
+          "name": "free_delivery_from",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751371174477,
+          "comments": "Бесплатная доставка от определённой суммы"
+        },
+        {
+          "id": "106",
+          "name": "free_delivery",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751372552716,
+          "comments": "Default:\nfalse"
+        },
+        {
+          "id": "107",
+          "name": "approved_at",
+          "type": {
+            "id": "datetime",
+            "name": "datetime"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751371175245,
+          "comments": "Когда подтверждено "
+        },
+        {
+          "id": "108",
+          "name": "approving_notes",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751372622474,
+          "comments": "Хранит комментарии или примечания модератора"
+        },
+        {
+          "id": "109",
+          "name": "crmid",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751372623161,
+          "comments": "Связь с CRM"
+        },
+        {
+          "id": "110",
+          "name": "adv_campaign_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751372623864,
+          "comments": "Рекламная компания\n"
+        },
+        {
+          "id": "111",
+          "name": "organisation_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751372624708,
+          "comments": "связь с организацией"
+        },
+        {
+          "id": "112",
+          "name": "dicsount",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751372904206,
+          "comments": "Размер вознаграждения"
+        }
+      ],
+      "indexes": [
+        {
+          "id": "113",
+          "name": "index_1",
+          "unique": false,
+          "fieldIds": [],
+          "createdAt": 1751371559725
+        }
+      ],
+      "color": "#4dee8a",
+      "isView": false,
+      "createdAt": 1751367949246,
+      "order": 1,
+      "expanded": true,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "акции, скидки, промокоды. Основная таблица предложений."
+    },
+    {
+      "id": "114",
+      "name": "promo_usages",
+      "x": 527.3526358527024,
+      "y": -1599.364461431277,
+      "fields": [
+        {
+          "id": "115",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751375142359
+        },
+        {
+          "id": "116",
+          "name": "promo_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375608155,
+          "comments": "Какая акция была использована"
+        },
+        {
+          "id": "117",
+          "name": "used_at",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375608705,
+          "comments": "Когда была использована"
+        },
+        {
+          "id": "118",
+          "name": "user_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "createdAt": 1751375609235,
+          "comments": "\tКто использовал"
+        },
+        {
+          "id": "119",
+          "name": "ip",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375609803,
+          "comments": "не понял для чего ip\n"
+        }
+      ],
+      "indexes": [],
+      "color": "#ff6b8a",
+      "isView": false,
+      "createdAt": 1751375142359,
+      "width": 224,
+      "order": 7,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "история использования промо"
+    },
+    {
+      "id": "120",
+      "name": "subscriptions",
+      "x": -1355.942221092979,
+      "y": 410.08390349542964,
+      "fields": [
+        {
+          "id": "121",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751375776016
+        },
+        {
+          "id": "122",
+          "name": "user_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375784676
+        },
+        {
+          "id": "123",
+          "name": "type",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375785242,
+          "comments": "Тип акции\n"
+        },
+        {
+          "id": "124",
+          "name": "amount",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375785736,
+          "comments": "Стоимость подписки"
+        },
+        {
+          "id": "125",
+          "name": "periodicity",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375820100
+        }
+      ],
+      "indexes": [],
+      "color": "#c05dcf",
+      "isView": false,
+      "createdAt": 1751375776016,
+      "order": 8,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "платные подписки пользователей, хранит стоимость и периодичность."
+    },
+    {
+      "id": "126",
+      "name": "address_promo",
+      "x": 563.5403688781382,
+      "y": -298.5007182237264,
+      "fields": [
+        {
+          "id": "127",
+          "name": "id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": true,
+          "unique": true,
+          "nullable": false,
+          "createdAt": 1751375104297
+        },
+        {
+          "id": "128",
+          "name": "address_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375122914,
+          "comments": "Где действцет акция"
+        },
+        {
+          "id": "129",
+          "name": "promo_id",
+          "type": {
+            "id": "bigint",
+            "name": "bigint"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "createdAt": 1751375123814,
+          "comments": "Сама акция"
+        }
+      ],
+      "indexes": [],
+      "color": "#c05dcf",
+      "isView": false,
+      "createdAt": 1751375104297,
+      "order": 6,
+      "diagramId": "kgfog9rws5o2",
+      "comments": "связь «адрес -- акция»."
+    }
+  ],
+  "relationships": [
+    {
+      "id": "130",
+      "name": "adv_campaigns_id_fk",
+      "sourceTableId": "46",
+      "targetTableId": "84",
+      "sourceFieldId": "47",
+      "targetFieldId": "110",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386673469,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "131",
+      "name": "bonuses_source_id_fk",
+      "sourceTableId": "70",
+      "targetTableId": "16",
+      "sourceFieldId": "74",
+      "targetFieldId": "17",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387061537,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "132",
+      "name": "bonuses_target_id_fk",
+      "sourceTableId": "70",
+      "targetTableId": "16",
+      "sourceFieldId": "75",
+      "targetFieldId": "17",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387068554,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "133",
+      "name": "categories_id_fk",
+      "sourceTableId": "10",
+      "targetTableId": "55",
+      "sourceFieldId": "11",
+      "targetFieldId": "57",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751388039759,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "134",
+      "name": "category_promo_id_fk",
+      "sourceTableId": "55",
+      "targetTableId": "126",
+      "sourceFieldId": "56",
+      "targetFieldId": "127",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387420221,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "135",
+      "name": "cities_id_fk",
+      "sourceTableId": "66",
+      "targetTableId": "62",
+      "sourceFieldId": "67",
+      "targetFieldId": "64",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386808250,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "136",
+      "name": "city_promo_promo_id_fk",
+      "sourceTableId": "62",
+      "targetTableId": "84",
+      "sourceFieldId": "65",
+      "targetFieldId": "85",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386839389,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "137",
+      "name": "media_type_fk",
+      "sourceTableId": "59",
+      "targetTableId": "84",
+      "sourceFieldId": "61",
+      "targetFieldId": "86",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386749678,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "138",
+      "name": "organisations_address_id_fk",
+      "sourceTableId": "35",
+      "targetTableId": "77",
+      "sourceFieldId": "37",
+      "targetFieldId": "78",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386929354,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "139",
+      "name": "organisations_id_fk",
+      "sourceTableId": "35",
+      "targetTableId": "84",
+      "sourceFieldId": "36",
+      "targetFieldId": "111",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386882650,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "140",
+      "name": "organisations_user_id_fk",
+      "sourceTableId": "35",
+      "targetTableId": "16",
+      "sourceFieldId": "45",
+      "targetFieldId": "17",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386949225,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "141",
+      "name": "payments_id_fk",
+      "sourceTableId": "1",
+      "targetTableId": "16",
+      "sourceFieldId": "2",
+      "targetFieldId": "17",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387095353,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "142",
+      "name": "promos_id_fk",
+      "sourceTableId": "84",
+      "targetTableId": "55",
+      "sourceFieldId": "85",
+      "targetFieldId": "58",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387357699,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "143",
+      "name": "promos_id_fk",
+      "sourceTableId": "84",
+      "targetTableId": "126",
+      "sourceFieldId": "85",
+      "targetFieldId": "129",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387169324,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "144",
+      "name": "promos_id_fk",
+      "sourceTableId": "84",
+      "targetTableId": "114",
+      "sourceFieldId": "85",
+      "targetFieldId": "116",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387272795,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "145",
+      "name": "subscriptions_user_id_fk",
+      "sourceTableId": "120",
+      "targetTableId": "16",
+      "sourceFieldId": "122",
+      "targetFieldId": "17",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751386994485,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "146",
+      "name": "users_id_fk",
+      "sourceSchema": "public",
+      "sourceTableId": "16",
+      "targetSchema": "public",
+      "targetTableId": "84",
+      "sourceFieldId": "17",
+      "targetFieldId": "87",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387135737,
+      "diagramId": "kgfog9rws5o2"
+    },
+    {
+      "id": "147",
+      "name": "users_id_fk",
+      "sourceSchema": "public",
+      "sourceTableId": "16",
+      "targetSchema": "public",
+      "targetTableId": "114",
+      "sourceFieldId": "17",
+      "targetFieldId": "118",
+      "sourceCardinality": "one",
+      "targetCardinality": "one",
+      "createdAt": 1751387251205,
+      "diagramId": "kgfog9rws5o2"
+    }
+  ],
+  "dependencies": [],
+  "areas": []
+}
