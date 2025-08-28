@@ -40,6 +40,8 @@ jobs:
             sudo -u ${{ env.WWW_USER }} npm install --cache ./.npm
             echo -e "\033[0;32m git reset \033[0m"
             sudo -u ${{ env.WWW_USER }} git reset --hard
+            echo -e "\033[0;32m git remote set-url \033[0m"
+            sudo -u ${{ env.WWW_USER }} git remote set-url origin git@github.com:semelyanov86/gmcard.git
             echo -e "\033[0;32m task predeploy \033[0m"
             sudo -u ${{ env.WWW_USER }} task predeploy
             if [[ $? != 0 ]]; then exit 1; fi
