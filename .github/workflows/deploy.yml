@@ -44,6 +44,25 @@ jobs:
             sudo -u ${{ env.WWW_USER }} git remote set-url origin git@github.com:semelyanov86/gmcard.git
             echo -e "\033[0;32m task predeploy \033[0m"
             sudo -u ${{ env.WWW_USER }} task predeploy
+            echo -e "\033[0;32m Fix DNS and git pull \033[0m"
+            # Fix DNS resolution
+            echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+            echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf > /dev/null
+            
+            # Test DNS
+            nslookup github.com || echo "DNS still not working, trying alternative approach"
+            
+            # Try git pull with HTTPS instead of SSH
+            cd ${{ env.LARAVEL_PATH }}
+            sudo -u ${{ env.WWW_USER }} git remote set-url origin https://github.com/Kirillmlk/gmcard.git
+            sudo -u ${{ env.WWW_USER }} git pull origin main
+            
+            if [[ $? != 0 ]]; then 
+                echo "Git pull failed, trying to reset and pull again"
+                sudo -u ${{ env.WWW_USER }} git fetch origin
+                sudo -u ${{ env.WWW_USER }} git reset --hard origin/main
+            fi
+           
             if [[ $? != 0 ]]; then exit 1; fi
             echo -e "\033[0;32m npm run build \033[0m"
             sudo -u ${{ env.WWW_USER }} npm run build
