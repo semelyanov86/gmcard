@@ -28,8 +28,8 @@
         }
     </style>
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/pt-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/pt-sans-700.woff2" as="font" type="font/woff2" crossorigin>
 
     <title>{{ config('app.name') }}</title>
 

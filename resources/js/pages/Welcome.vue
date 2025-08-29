@@ -60,7 +60,7 @@ useSchema(props.meta, 'landing');
     <section class="section-1">
         <div class="container">
             <div class="header-block">
-                <AdaptiveImage image-path="gm-logo" alt="logo" image-class="logo-icon"></AdaptiveImage>
+                <AdaptiveImage image-path="gm-logo" alt="logo" image-class="logo-icon" :critical="true"></AdaptiveImage>
                 <h1>Подключитесь к GM и получите новых клиентов уже сейчас!</h1>
                 <p class="text-1">Создайте всего 1 аккаунт чтобы получить доступ ко всем нашим сервисам. Просто попробуйте</p>
                 <p class="text-2 underline-1">– это бесплатно!</p>
@@ -79,8 +79,7 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-1"
                             alt="card-icon-1"
                             image-class="header-card card-image card-icon-1"
-                            loading="eager"
-                            fetchpriority="high"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Реклама ваших товаров и услуг <br />проще чем кажется</h4>
                         <div class="card-content">
@@ -93,6 +92,7 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-2"
                             alt="card-icon-2"
                             image-class="header-card card-image card-icon-2"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Продвижение с нами – <br />это легко и просто</h4>
                         <div class="card-content">
@@ -106,6 +106,7 @@ useSchema(props.meta, 'landing');
                             image-path="header-card-icon-3"
                             alt="card-icon-3"
                             image-class="header-card card-image card-icon-3"
+                            :critical="true"
                         ></AdaptiveImage>
                         <h4 class="card-title">Отличный результат с рекламой<br />от нашего сервиса</h4>
                         <div class="card-content">

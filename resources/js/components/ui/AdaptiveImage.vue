@@ -12,8 +12,8 @@
             :src="`/images/png/${imagePath}.png`"
             :alt="alt"
             :class="imageClass"
-            :style="imageStyle"
-            loading="lazy"
+            :loading="critical ? 'eager' : 'lazy'"
+            :fetchpriority="critical ? 'high' : 'auto'"
             v-bind="$attrs">
     </picture>
 </template>
@@ -23,12 +23,12 @@ interface Props {
     imagePath: string;
     alt: string;
     imageClass?: string;
-    imageStyle?: string;
+    critical?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     imageClass: '',
-    imageStyle: ''
+    critical: false
 });
 </script>
 
