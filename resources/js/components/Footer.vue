@@ -11,7 +11,11 @@ const props = defineProps<{
         <div class="container">
             <footer class="relative overflow-hidden bg-[#101121]">
                 <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
-                    <img src="/images/webp/hand-footer.webp" class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
+                    <AdaptiveImage
+                        image-path="hand-footer"
+                        image-class="hand absolute -bottom-2 -left-20 z-10"
+                        alt="Телефон"
+                    />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
                         <li>
                             <a href="#" class="footer_nav text-sm font-bold text-white uppercase hover:border-b-2 hover:border-b-white"
@@ -129,7 +133,7 @@ const props = defineProps<{
                                         <a
                                             :href="`mailto:${props.contact.email}`"
                                             class="flex items-center border-b-2 border-b-white/30 text-[16px] text-white"
-                                            ><img src="/images/webp/icons/email.webp" class="mr-[14px] opacity-50" alt="" />{{ props.contact.email }}</a
+                                            ><AdaptiveImage image-path="icons/email" image-class="mr-[14px] opacity-50" alt="" />{{ props.contact.email }}</a
                                         >
                                     </li>
                                     <li>
