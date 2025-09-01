@@ -16,6 +16,7 @@
         "lorisleiva/laravel-actions": "^2.9",
         "salaros/vtwsclib-php": "^1.1",
         "spatie/laravel-data": "^4.17",
+        "spatie/laravel-permission": "^6.21",
         "spatie/laravel-ray": "^1.40",
         "spatie/laravel-settings": "^3.4",
         "spiral/roadrunner-cli": "^2.7.1",
