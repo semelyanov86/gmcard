@@ -44,6 +44,8 @@ final class RegisteredUserController extends Controller
             'password' => Hash::make($request->password), // @phpstan-ignore-line
         ]);
 
+        $user->assignRole('user');
+
         event(new Registered($user));
 
         Auth::login($user);
