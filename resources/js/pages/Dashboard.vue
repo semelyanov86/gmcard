@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, router } from '@inertiajs/vue3';
-import { LogOut } from 'lucide-vue-next';
-import PlaceholderPattern from '../components/PlaceholderPattern.vue';
+import { Head, usePage } from '@inertiajs/vue3';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getInitials } from '@/composables/useInitials';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,38 +11,57 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/dashboard',
     },
 ];
-const handleLogout = () => {
-    router.post(route('logout'));
-};
+
+const page = usePage();
+const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
 </script>
 
 <template>
     <Head title="Dashboard" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <div class="flex justify-end">
-                <button
-                    @click="handleLogout"
-                    class="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
-                >
-                    <LogOut class="h-4 w-4" />
-                    Выйти
-                </button>
-            </div>
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
+        <div class="flex h-full flex-1 flex-col">
+            <div class="flex h-screen w-full gap-x-8">
+                <div class="relative h-screen w-[20%] pt-6 md:pt-8 px-2 space-y-4">
+                    <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
+
+                        <div class="flex items-center gap-4">
+                            <div class="flex flex-col">
+                                <span class="text-base font-medium">Info</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
+
+                        <div class="flex items-center gap-4">
+                            <div class="flex flex-col">
+                                <span class="text-base font-medium">Menu</span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
+                <div class="relative h-screen w-[80%] px-2 space-y-4">
+                    <div class="flex items-center py-6 md:py-8">
+                        <h2 class="text-3xl font-semibold md:text-4xl">Dashboard</h2>
+                    </div>
+
+                    <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border w-250">
+                        <div class="flex items-center gap-4">
+                            <Avatar class="size-10 overflow-hidden rounded-full">
+                                <AvatarImage v-if="auth.user?.avatar" :src="auth.user?.avatar" :alt="auth.user?.name || 'User'" />
+                                <AvatarFallback class="rounded-full bg-black font-semibold text-white">
+                                    {{ getInitials(auth.user?.name) }}
+                                </AvatarFallback>
+                            </Avatar>
+                            <div class="flex flex-col">
+                                <span class="text-sm text-neutral-500">{{ auth.user?.name || 'admin' }}</span>
+                                <span class="text-base font-medium">Welcome</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
-                </div>
-            </div>
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                <PlaceholderPattern />
             </div>
         </div>
     </AppLayout>
