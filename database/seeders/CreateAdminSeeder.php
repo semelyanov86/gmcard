@@ -9,28 +9,41 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CreateAdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'), // @phpstan-ignore-line
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+        $email = env('ADMIN_EMAIL');
+        $pass  = env('ADMIN_PASSWORD');
 
-        Role::create([
-            'name' => 'admin',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+		$admin = User::firstOrCreate(
+			['email' => $email],
+			[
+				'name' => 'Admin',
+				'password' => Hash::make($pass), // @phpstan-ignore-line
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			]
+		);
 
-        $admin->assignRole('admin');
-    }
+		$role = Role::firstOrCreate(
+			['name' => 'admin'],
+			['created_at' => Carbon::now(),
+             'updated_at' => Carbon::now()
+            ]
+		);
+
+		$permission = Permission::firstOrCreate(
+			['name' => 'access admin'],
+			['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+		);
+
+		$role->givePermissionTo($permission);
+		$admin->assignRole($role);
+	}
 }
