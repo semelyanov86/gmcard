@@ -9,6 +9,7 @@ use App\Providers\Configurables\ConfigurableInterface;
 use App\Services\CRM\VtigerCrmAdapter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\Facades\Gate;
 use Override;
 
 class AppServiceProvider extends ServiceProvider
@@ -49,5 +50,9 @@ class AppServiceProvider extends ServiceProvider
             ->each(fn (ConfigurableInterface $configurable) => $configurable->configure());
 
         Vite::prefetch(concurrency: 3, event: 'vite:prefetch');
+
+        Gate::before(function ($user, string $ability) {
+            return $user->hasRole('admin') ? true : null;
+        });
     }
 }
