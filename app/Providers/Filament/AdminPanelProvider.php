@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -41,6 +42,24 @@ class AdminPanelProvider extends PanelProvider
 				AccountWidget::class,
 				FilamentInfoWidget::class,
 			])
+			->plugins([
+				BreezyCore::make()
+					->myProfile(
+						shouldRegisterUserMenu: true,
+						userMenuLabel: 'My Profile',
+						shouldRegisterNavigation: false,
+						navigationGroup: 'Settings',
+						hasAvatars: false,
+						slug: 'my-profile'
+					)
+					->enableTwoFactorAuthentication(
+						condition: true,
+						force: false,
+						action: null,
+						authMiddleware: false
+					)
+					->enableBrowserSessions()
+			])
 			->middleware([
 				EncryptCookies::class,
 				AddQueuedCookiesToResponse::class,
@@ -56,4 +75,4 @@ class AdminPanelProvider extends PanelProvider
 				Authenticate::class,
 			]);
 	}
-} 
+}
