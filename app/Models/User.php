@@ -61,4 +61,32 @@ class User extends Authenticatable implements FilamentUser
 	{
 		return $this->can('access admin') || $this->hasRole('admin');
 	}
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function promos() {
+        return $this->hasMany(Promo::class);
+    }
+
+    public function organisations() {
+        return $this->hasMany(Organisation::class);
+    }
+
+    public function bonusesSent() {
+        return $this->hasMany(Bonus::class, 'source_id');
+    }
+
+    public function bonusesReceived() {
+        return $this->hasMany(Bonus::class, 'target_id');
+    }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function promoUsages() {
+        return $this->hasMany(PromoUsage::class);
+    }
 }
