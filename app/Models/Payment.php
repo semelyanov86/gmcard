@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Payment extends Model
 {
@@ -16,8 +16,22 @@ class Payment extends Model
         'currency',
         'description',
         'transaction_id',
-        'user_id',
     ];
+
+    protected $guarded = [
+        'id',
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'payment_date' => 'datetime',
+            'amount' => 'decimal:2',
+        ];
+    }
 
     public function user() {
         return $this->belongsTo(User::class);

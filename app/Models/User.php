@@ -30,20 +30,17 @@ class User extends Authenticatable implements FilamentUser
 	 */
 	protected $fillable = [
 		'name',
-        'last_name',
+		'last_name',
+		'age',
 		'email',
-		'password',
-        'age',
-        'email',
-        'balance',
-        'job',
-        'job_status',
-        'city',
-        'country',
-        'birth_date',
-        'role',
-        'gender',
-        'code',
+		'job',
+		'job_status',
+		'city',
+		'country',
+		'birth_date',
+		'role',
+		'gender',
+		'code',
 	];
 
 	/**
@@ -57,6 +54,19 @@ class User extends Authenticatable implements FilamentUser
 	];
 
 	/**
+	 * The attributes that should be guarded from mass assignment.
+	 *
+	 * @var list<string>
+	 */
+	protected $guarded = [
+		'password',
+		'balance',
+		'id',
+		'created_at',
+		'updated_at',
+	];
+
+	/**
 	 * Get the attributes that should be cast.
 	 *
 	 * @return array<string, string>
@@ -66,6 +76,8 @@ class User extends Authenticatable implements FilamentUser
 		return [
 			'email_verified_at' => 'datetime',
 			'password' => 'hashed',
+			'balance' => 'decimal:2',
+			'birth_date' => 'date',
 		];
 	}
 

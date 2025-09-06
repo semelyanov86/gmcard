@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -12,8 +12,13 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
-        'parent_id',
-        'is_starred',
+        'slug',
+    ];
+
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
     ];
 
     public function promos() {

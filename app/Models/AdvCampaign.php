@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AdvCampaign extends Model
 {
@@ -19,9 +19,18 @@ class AdvCampaign extends Model
         'avg_money_transfer_time',
     ];
 
-    protected $casts = [
-        'action_details' => 'array',
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'action_details' => 'array',
+        ];
+    }
 
     public function promos() {
         return $this->hasMany(Promo::class);
