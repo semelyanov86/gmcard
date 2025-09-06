@@ -13,9 +13,9 @@ class SubscriptionFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'type' => $this->faker->randomElement(['basic', 'premium']),
-            'amount' => $this->faker->numberBetween(100, 1000),
-            'periodicity' => $this->faker->randomElement(['monthly', 'yearly']),
+            'type' => fake()->randomElement(['basic', 'premium', 'pro', 'enterprise']),
+            'amount' => fake()->numberBetween(500, 5000),
+            'periodicity' => fake()->randomElement(['monthly', 'yearly', 'quarterly']),
         ];
     }
 }

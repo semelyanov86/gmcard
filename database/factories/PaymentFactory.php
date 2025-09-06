@@ -11,14 +11,13 @@ class PaymentFactory extends Factory
 {
     public function definition(): array
     {
-
         return [
-            'payment_date' => $this->faker->dateTimeThisYear(),
-            'amount' => $this->faker->numberBetween(100, 10000),
-            'type' => $this->faker->randomElement(['incoming', 'outgoing']),
-            'currency' => $this->faker->currencyCode(),
-            'description' => $this->faker->sentence(),
-            'transaction_id' => $this->faker->randomNumber(),
+            'payment_date' => fake()->dateTimeBetween('-1 year', 'now'),
+            'amount' => fake()->numberBetween(100, 50000),
+            'type' => fake()->randomElement(['incoming', 'outgoing']),
+            'currency' => fake()->randomElement(['RUB', 'USD', 'EUR']),
+            'description' => fake()->sentence(),
+            'transaction_id' => fake()->optional(0.8)->numerify('TXN#########'),
             'user_id' => User::factory(),
         ];
     }

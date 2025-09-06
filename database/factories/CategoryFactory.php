@@ -10,12 +10,11 @@ class CategoryFactory extends Factory
 {
     public function definition(): array
     {
-
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
-            'parent_id' => null,
-            'is_starred' => $this->faker->boolean(),
+            'name' => fake()->words(2, true),
+            'description' => fake()->optional(0.7)->paragraph(),
+            'parent_id' => fake()->numberBetween(1, 10),
+            'is_starred' => fake()->boolean(20),
         ];
     }
 }
