@@ -30,8 +30,17 @@ class User extends Authenticatable implements FilamentUser
 	 */
 	protected $fillable = [
 		'name',
+		'last_name',
+		'age',
 		'email',
-		'password',
+		'job',
+		'job_status',
+		'city',
+		'country',
+		'birth_date',
+		'role',
+		'gender',
+		'code',
 	];
 
 	/**
@@ -45,6 +54,19 @@ class User extends Authenticatable implements FilamentUser
 	];
 
 	/**
+	 * The attributes that should be guarded from mass assignment.
+	 *
+	 * @var list<string>
+	 */
+	protected $guarded = [
+		'password',
+		'balance',
+		'id',
+		'created_at',
+		'updated_at',
+	];
+
+	/**
 	 * Get the attributes that should be cast.
 	 *
 	 * @return array<string, string>
@@ -54,6 +76,8 @@ class User extends Authenticatable implements FilamentUser
 		return [
 			'email_verified_at' => 'datetime',
 			'password' => 'hashed',
+			'balance' => 'decimal:2',
+			'birth_date' => 'date',
 		];
 	}
 
@@ -61,4 +85,32 @@ class User extends Authenticatable implements FilamentUser
 	{
 		return $this->can('access admin') || $this->hasRole('admin');
 	}
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function promos() {
+        return $this->hasMany(Promo::class);
+    }
+
+    public function organisations() {
+        return $this->hasMany(Organisation::class);
+    }
+
+    public function bonusesSent() {
+        return $this->hasMany(Bonus::class, 'source_id');
+    }
+
+    public function bonusesReceived() {
+        return $this->hasMany(Bonus::class, 'target_id');
+    }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function promoUsages() {
+        return $this->hasMany(PromoUsage::class);
+    }
 }
