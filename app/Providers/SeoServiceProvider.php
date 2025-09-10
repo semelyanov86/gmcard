@@ -20,11 +20,19 @@ class SeoServiceProvider extends ServiceProvider
     {
         $routeName = $request->route()?->getName();
 
+        $appUrlValue = config('app.url');
+        $appUrl = is_string($appUrlValue) ? $appUrlValue : '';
+
+        $homeCanonicalValue = config('meta.business.canonical', '');
+        $homeCanonical = is_string($homeCanonicalValue) ? $homeCanonicalValue : '';
+
         $canonicalUrls = [
-            'home' => config('meta.business.canonical'),
-            'dashboard' => config('app.url') . '/dashboard',
+            'home' => $homeCanonical,
+            'dashboard' => $appUrl . '/dashboard',
         ];
 
-        return $canonicalUrls[$routeName] ?? $request->url();
+        $candidate = $canonicalUrls[$routeName] ?? $request->url();
+
+        return $candidate;
     }
 }

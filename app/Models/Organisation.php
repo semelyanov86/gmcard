@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Organisation extends Model
 {
+    /** @use HasFactory<\Database\Factories\OrganisationFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -29,17 +30,26 @@ class Organisation extends Model
         'updated_at',
     ];
 
-    public function user()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function address()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address, $this>
+     */
+    public function address(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Address::class);
     }
 
-    public function promos()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
+     */
+    public function promos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Promo::class);
     }

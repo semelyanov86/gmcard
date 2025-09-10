@@ -25,34 +25,42 @@ class GenerateSitemap extends Command
         $this->info('Total URLs: ' . count($urls));
     }
 
+    /**
+     * @return array<int, array<string, string>>
+     */
     private function getUrls(): array
     {
-        $baseUrl = config('app.url');
+        $baseUrlValue = config('app.url');
+        $baseUrl = is_string($baseUrlValue) ? $baseUrlValue : '';
         $today = now()->format('Y-m-d');
+        /** @var array<int, array<string, string>> $urls */
         $urls = [];
 
         $routes = Route::getRoutes();
 
-        foreach ($routes as $route) {
-            if (! in_array('GET', $route->methods())) {
+        /** @var \Illuminate\Routing\Route $route */
+        foreach ($routes->getRoutes() as $route) {
+            if (! in_array('GET', $route->methods(), true)) {
                 continue;
             }
 
-            if (str_contains((string) $route->uri(), '{')) {
+            $uri = (string) $route->uri();
+
+            if (str_contains($uri, '{')) {
                 continue;
             }
 
-            if (str_starts_with((string) $route->uri(), 'api/')) {
+            if (str_starts_with($uri, 'api/')) {
                 continue;
             }
 
-            if (in_array($route->uri(), ['up', 'storage'])) {
+            if (in_array($uri, ['up', 'storage'], true)) {
                 continue;
             }
 
-            $url = $baseUrl . '/' . mb_ltrim($route->uri(), '/');
-            $priority = $this->getPriority($route->uri());
-            $changefreq = $this->getChangeFreq($route->uri());
+            $url = $baseUrl . '/' . mb_ltrim($uri, '/');
+            $priority = $this->getPriority($uri);
+            $changefreq = $this->getChangeFreq($uri);
 
             $urls[] = [
                 'loc' => $url,
@@ -90,6 +98,9 @@ class GenerateSitemap extends Command
         };
     }
 
+    /**
+     * @param  array<int, array<string, string>>  $urls
+     */
     private function generateXml(array $urls): string
     {
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";

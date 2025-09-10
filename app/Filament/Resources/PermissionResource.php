@@ -15,6 +15,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Forms\Components\TextInput;
+use Override;
 
 class PermissionResource extends Resource
 {
@@ -24,7 +25,7 @@ class PermissionResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    #[\Override]
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -42,7 +43,7 @@ class PermissionResource extends Resource
             ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -84,7 +85,7 @@ class PermissionResource extends Resource
             ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function getRelations(): array
     {
         return [

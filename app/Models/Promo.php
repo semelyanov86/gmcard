@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Promo extends Model
 {
+    /** @use HasFactory<\Database\Factories\PromoFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -47,37 +48,58 @@ class Promo extends Model
         'updated_at',
     ];
 
-    public function user()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function advCampaign()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<AdvCampaign, $this>
+     */
+    public function advCampaign(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(AdvCampaign::class);
     }
 
-    public function organisation()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<Organisation, $this>
+     */
+    public function organisation(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Organisation::class);
     }
 
-    public function categories()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     */
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'category_promo');
     }
 
-    public function cities()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     */
+    public function cities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(City::class, 'city_promo');
     }
 
-    public function addresses()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Address, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     */
+    public function addresses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Address::class, 'address_promo');
     }
 
-    public function usages()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<PromoUsage, $this>
+     */
+    public function usages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PromoUsage::class);
     }

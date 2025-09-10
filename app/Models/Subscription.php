@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subscription extends Model
 {
+    /** @use HasFactory<\Database\Factories\SubscriptionFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -24,7 +25,10 @@ class Subscription extends Model
         'updated_at',
     ];
 
-    public function user()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }

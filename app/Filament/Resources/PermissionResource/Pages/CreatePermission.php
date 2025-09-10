@@ -6,12 +6,13 @@ namespace App\Filament\Resources\PermissionResource\Pages;
 
 use App\Filament\Resources\PermissionResource;
 use Filament\Resources\Pages\CreateRecord;
+use Override;
 
 class CreatePermission extends CreateRecord
 {
     protected static string $resource = PermissionResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Media extends Model
 {
+    /** @use HasFactory<\Database\Factories\MediaFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -24,6 +25,8 @@ class Media extends Model
         'created_at',
         'updated_at',
     ];
+
+
 
     protected function casts(): array
     {

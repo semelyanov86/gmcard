@@ -16,6 +16,7 @@ class OrganisationData extends Data
         public ?string $ogrn,
         public ?string $contact,
         public ?string $contact_fio,
+        /** @var array<string, mixed>|null */
         public ?array $opening_hours,
         public ?int $user_id,
         public ?int $address_id,

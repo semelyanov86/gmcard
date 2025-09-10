@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bonus extends Model
 {
+    /** @use HasFactory<\Database\Factories\BonusFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -25,12 +26,19 @@ class Bonus extends Model
         'updated_at',
     ];
 
-    public function sender()
+
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     */
+    public function sender(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'source_id');
     }
 
-    public function receiver()
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     */
+    public function receiver(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'target_id');
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -69,37 +70,58 @@ class User extends Authenticatable implements FilamentUser
         return $this->can('access admin') || $this->hasRole('admin');
     }
 
-    public function payments()
+    /**
+     * @phpstan-return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
     }
 
-    public function promos()
+    /**
+     * @phpstan-return HasMany<Promo, $this>
+     */
+    public function promos(): HasMany
     {
         return $this->hasMany(Promo::class);
     }
 
-    public function organisations()
+    /**
+     * @phpstan-return HasMany<Organisation, $this>
+     */
+    public function organisations(): HasMany
     {
         return $this->hasMany(Organisation::class);
     }
 
-    public function bonusesSent()
+    /**
+     * @phpstan-return HasMany<Bonus, $this>
+     */
+    public function bonusesSent(): HasMany
     {
         return $this->hasMany(Bonus::class, 'source_id');
     }
 
-    public function bonusesReceived()
+    /**
+     * @phpstan-return HasMany<Bonus, $this>
+     */
+    public function bonusesReceived(): HasMany
     {
         return $this->hasMany(Bonus::class, 'target_id');
     }
 
-    public function subscriptions()
+    /**
+     * @phpstan-return HasMany<Subscription, $this>
+     */
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
     }
 
-    public function promoUsages()
+    /**
+     * @phpstan-return HasMany<PromoUsage, $this>
+     */
+    public function promoUsages(): HasMany
     {
         return $this->hasMany(PromoUsage::class);
     }

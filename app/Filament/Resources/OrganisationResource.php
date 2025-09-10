@@ -17,6 +17,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Override;
 
 class OrganisationResource extends Resource
 {
@@ -26,7 +27,7 @@ class OrganisationResource extends Resource
 
     protected static ?int $navigationSort = 11;
 
-    #[\Override]
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -43,7 +44,7 @@ class OrganisationResource extends Resource
             ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -67,7 +68,7 @@ class OrganisationResource extends Resource
             ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function getRelations(): array
     {
         return [];

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+    /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -23,7 +24,12 @@ class Category extends Model
         'updated_at',
     ];
 
-    public function promos()
+
+
+    /**
+     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     */
+    public function promos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Promo::class, 'category_promo');
     }

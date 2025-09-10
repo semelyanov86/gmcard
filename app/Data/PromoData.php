@@ -16,9 +16,12 @@ class PromoData extends Data
         public ?string $img,
         public ?int $amount,
         public ?string $description,
+        /** @var array<string, mixed>|null */
         public ?array $extra_conditions,
         public ?string $video_link,
+        /** @var array<string, mixed>|null */
         public ?array $smm_links,
+        /** @var array<string, mixed>|null */
         public ?array $days_availability,
         public ?string $availabe_from,
         public ?string $available_to,

@@ -7,6 +7,7 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 class EditUser extends EditRecord
 {
@@ -20,7 +21,7 @@ class EditUser extends EditRecord
         ];
     }
 
-    #[\Override]
+    #[Override]
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

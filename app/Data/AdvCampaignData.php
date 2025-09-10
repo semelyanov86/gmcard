@@ -13,6 +13,7 @@ class AdvCampaignData extends Data
         public string $name,
         public ?string $description,
         public ?int $crmid,
+        /** @var array<string, mixed>|null */
         public ?array $action_details,
         public ?string $deeplink,
         public ?int $avg_hold_time,
