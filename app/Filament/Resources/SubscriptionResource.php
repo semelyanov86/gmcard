@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubscriptionResource\Pages;
@@ -24,6 +26,7 @@ class SubscriptionResource extends Resource
 
     protected static ?int $navigationSort = 18;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -35,6 +38,7 @@ class SubscriptionResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -42,7 +46,7 @@ class SubscriptionResource extends Resource
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
                 Tables\Columns\TextColumn::make('user.name')->label('Пользователь')->toggleable(),
                 Tables\Columns\TextColumn::make('type')->label('Тип')->badge()->toggleable(),
-                Tables\Columns\TextColumn::make('status')->label('Статус')->badge()->color(fn($state) => $state === 'active' ? 'success' : 'warning')->toggleable(),
+                Tables\Columns\TextColumn::make('status')->label('Статус')->badge()->color(fn ($state) => $state === 'active' ? 'success' : 'warning')->toggleable(),
                 Tables\Columns\TextColumn::make('expires_at')->label('Истекает')->dateTime('d.m.Y H:i')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->label('Создано')->dateTime('d.m.Y H:i')->sortable(),
             ])
@@ -58,6 +62,7 @@ class SubscriptionResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
@@ -71,4 +76,4 @@ class SubscriptionResource extends Resource
             'edit' => Pages\EditSubscription::route('/{record}/edit'),
         ];
     }
-} 
+}

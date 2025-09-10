@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\PermissionResource\Pages;
 
 use App\Filament\Resources\PermissionResource;
@@ -17,4 +19,4 @@ class ListPermissions extends ListRecords
                 ->label('Создать разрешение'),
         ];
     }
-} 
+}

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\RoleResource\Pages;
 
 use App\Filament\Resources\RoleResource;
@@ -17,4 +19,4 @@ class ListRoles extends ListRecords
                 ->label('Создать роль'),
         ];
     }
-} 
+}

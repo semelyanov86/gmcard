@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
@@ -23,6 +25,7 @@ class CategoryResource extends Resource
 
     protected static ?int $navigationSort = 13;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -33,6 +36,7 @@ class CategoryResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -55,6 +59,7 @@ class CategoryResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
@@ -68,4 +73,4 @@ class CategoryResource extends Resource
             'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
-} 
+}

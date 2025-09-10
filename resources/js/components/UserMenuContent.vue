@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import UserInfo from '@/components/UserInfo.vue';
 import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { useAppearance } from '@/composables/useAppearance';
 import type { User } from '@/types';
 import { Link, router } from '@inertiajs/vue3';
-import { LogOut, Settings, Sun, Moon, Monitor } from 'lucide-vue-next';
-import { useAppearance } from '@/composables/useAppearance';
+import { LogOut, Monitor, Moon, Settings, Sun } from 'lucide-vue-next';
 
 interface Props {
     user: User;

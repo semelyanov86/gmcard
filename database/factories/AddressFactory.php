@@ -17,7 +17,7 @@ class AddressFactory extends Factory
                 'Пн-Вс: 10:00-22:00',
                 'Пн-Сб: 8:00-20:00',
                 'Круглосуточно',
-                'Пн-Пт: 8:00-17:00, Сб: 9:00-15:00'
+                'Пн-Пт: 8:00-17:00, Сб: 9:00-15:00',
             ]),
             'phone' => fake()->phoneNumber(),
             'phone_secondary' => fake()->optional(0.3)->phoneNumber(),

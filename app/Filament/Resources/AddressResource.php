@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AddressResource\Pages;
 use App\Models\Address;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -23,6 +24,7 @@ class AddressResource extends Resource
 
     protected static ?int $navigationSort = 15;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -35,6 +37,7 @@ class AddressResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -59,6 +62,7 @@ class AddressResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
@@ -72,4 +76,4 @@ class AddressResource extends Resource
             'edit' => Pages\EditAddress::route('/{record}/edit'),
         ];
     }
-} 
+}

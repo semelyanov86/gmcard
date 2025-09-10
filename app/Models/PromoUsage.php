@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -22,18 +24,20 @@ class PromoUsage extends Model
         'updated_at',
     ];
 
+    public function promo()
+    {
+        return $this->belongsTo(Promo::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected function casts(): array
     {
         return [
             'used_at' => 'datetime',
         ];
-    }
-
-    public function promo() {
-        return $this->belongsTo(Promo::class);
-    }
-    
-    public function user() {
-        return $this->belongsTo(User::class);
     }
 }

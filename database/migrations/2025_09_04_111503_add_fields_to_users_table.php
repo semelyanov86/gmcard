@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table): void {
             $table->string('last_name')->nullable();
             $table->tinyInteger('age')->default(0);
             $table->decimal('balance', 10, 2)->default(0)->nullable();
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('role')->nullable();
-            $table->enum('gender', ['male','female','other'])->nullable();
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('code')->nullable();
         });
     }
@@ -31,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table): void {
             $table->dropColumn([
                 'last_name',
                 'age',
@@ -43,7 +44,7 @@ return new class extends Migration
                 'birth_date',
                 'role',
                 'gender',
-                'code'
+                'code',
             ]);
         });
     }

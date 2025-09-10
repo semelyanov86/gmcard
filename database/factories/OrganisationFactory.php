@@ -27,7 +27,7 @@ class OrganisationFactory extends Factory
                 'thursday' => '9:00-18:00',
                 'friday' => '9:00-18:00',
                 'saturday' => '10:00-16:00',
-                'sunday' => 'closed'
+                'sunday' => 'closed',
             ],
             'user_id' => User::factory(),
         ];

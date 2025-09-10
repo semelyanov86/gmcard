@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,15 +27,16 @@ class Payment extends Model
         'updated_at',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected function casts(): array
     {
         return [
             'payment_date' => 'datetime',
             'amount' => 'decimal:2',
         ];
-    }
-
-    public function user() {
-        return $this->belongsTo(User::class);
     }
 }

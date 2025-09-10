@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -27,22 +29,25 @@ class Organisation extends Model
         'updated_at',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    public function promos()
+    {
+        return $this->hasMany(Promo::class);
+    }
+
     protected function casts(): array
     {
         return [
             'opening_hours' => 'array',
         ];
-    }
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-    
-    public function address() {
-        return $this->belongsTo(Address::class);
-    }
-    
-    public function promos() {
-        return $this->hasMany(Promo::class);
     }
 }

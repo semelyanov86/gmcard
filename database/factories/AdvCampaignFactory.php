@@ -17,7 +17,7 @@ class AdvCampaignFactory extends Factory
             'action_details' => [
                 'reward' => fake()->numberBetween(100, 1000),
                 'target_audience' => fake()->words(3, true),
-                'budget' => fake()->numberBetween(10000, 100000)
+                'budget' => fake()->numberBetween(10000, 100000),
             ],
             'deeplink' => fake()->optional(0.6)->url(),
             'avg_hold_time' => fake()->optional(0.7)->time(),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
@@ -22,6 +24,7 @@ class MediaResource extends Resource
 
     protected static ?int $navigationSort = 19;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -34,6 +37,7 @@ class MediaResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -56,6 +60,7 @@ class MediaResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
@@ -69,4 +74,4 @@ class MediaResource extends Resource
             'edit' => Pages\EditMedia::route('/{record}/edit'),
         ];
     }
-} 
+}

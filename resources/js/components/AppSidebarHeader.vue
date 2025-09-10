@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 import UserMenuContent from '@/components/UserMenuContent.vue';
-import type { BreadcrumbItemType } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/composables/useInitials';
+import type { BreadcrumbItemType } from '@/types';
 import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import { Search } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 withDefaults(
     defineProps<{
@@ -37,7 +37,7 @@ const auth = computed(() => page.props.auth);
                 <input
                     type="text"
                     placeholder="Search"
-                    class="h-9 w-56 rounded-md border border-neutral-200 bg-white pl-9 pr-3 text-sm text-neutral-800 outline-none ring-0 placeholder:text-neutral-400 focus:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-neutral-600"
+                    class="h-9 w-56 rounded-md border border-neutral-200 bg-white pr-3 pl-9 text-sm text-neutral-800 ring-0 outline-none placeholder:text-neutral-400 focus:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-neutral-600"
                 />
             </div>
 

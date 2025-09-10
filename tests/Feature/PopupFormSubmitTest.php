@@ -9,10 +9,11 @@ use App\Contracts\VtigerCrmInterface;
 use Tests\Mocks\MockVtigerAdapter;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Override;
 
 class PopupFormSubmitTest extends TestCase
 {
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BonusResource\Pages;
@@ -23,6 +25,7 @@ class BonusResource extends Resource
 
     protected static ?int $navigationSort = 17;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -35,6 +38,7 @@ class BonusResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -58,6 +62,7 @@ class BonusResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
@@ -71,4 +76,4 @@ class BonusResource extends Resource
             'edit' => Pages\EditBonus::route('/{record}/edit'),
         ];
     }
-} 
+}

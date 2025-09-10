@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,14 +27,15 @@ class AdvCampaign extends Model
         'updated_at',
     ];
 
+    public function promos()
+    {
+        return $this->hasMany(Promo::class);
+    }
+
     protected function casts(): array
     {
         return [
             'action_details' => 'array',
         ];
-    }
-
-    public function promos() {
-        return $this->hasMany(Promo::class);
     }
 }

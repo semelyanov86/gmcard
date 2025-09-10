@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,18 +25,20 @@ class Bonus extends Model
         'updated_at',
     ];
 
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'source_id');
+    }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'target_id');
+    }
+
     protected function casts(): array
     {
         return [
             'amount' => 'decimal:2',
         ];
-    }
-
-    public function sender() {
-        return $this->belongsTo(User::class, 'source_id');
-    }
-    
-    public function receiver() {
-        return $this->belongsTo(User::class, 'target_id');
     }
 }
