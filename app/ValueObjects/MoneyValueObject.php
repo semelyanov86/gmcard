@@ -23,7 +23,6 @@ final class MoneyValueObject implements Cast
      */
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
-        // Конвертируем строку в копейки (умножаем на 100)
         $amountInMinorUnits = (int) round((float) $amount * 100);
 
         return new self(
@@ -58,7 +57,7 @@ final class MoneyValueObject implements Cast
         return $this->money;
     }
 
-    // Реализация Cast интерфейса для Spatie Laravel Data
+
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): mixed
     {
         if ($value === null) {
