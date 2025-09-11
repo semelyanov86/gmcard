@@ -70,6 +70,8 @@ class User extends Authenticatable implements FilamentUser
         return $this->can('access admin') || $this->hasRole('admin');
     }
 
+
+
     /**
      * @phpstan-return HasMany<Payment, $this>
      */

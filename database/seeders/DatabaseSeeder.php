@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
             Finance\SubscriptionSeeder::class,
         ]);
 
-        // $this->call(CreateAdminSeeder::class);
+        $this->call(CreateAdminSeeder::class);
     }
 }

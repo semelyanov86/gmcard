@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ class UserFactory extends Factory
             'city' => fake()->numberBetween(1, 100),
             'country' => fake()->country(),
             'birth_date' => fake()->date('Y-m-d', '2000-01-01'),
-            'role' => fake()->randomElement(['user', 'admin', 'moderator']),
+            'role' => 'user',
             'gender' => fake()->randomElement(['male', 'female', 'other']),
             'code' => fake()->unique()->numerify('PROMO####'),
             'email_verified_at' => now(),
