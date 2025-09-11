@@ -9,9 +9,9 @@ use Spatie\LaravelData\Data;
 class CategoryData extends Data
 {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public string $name,
-        public ?string $description,
-        public ?string $slug,
+        public ?string $description = null,
+        public ?string $slug = null,
     ) {}
 }

@@ -9,11 +9,11 @@ use Spatie\LaravelData\Data;
 class MediaData extends Data
 {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public string $filename,
-        public ?string $original_name,
-        public ?string $mime_type,
-        public ?int $size,
-        public ?string $path,
+        public ?string $original_name = null,
+        public ?string $mime_type = null,
+        public ?int $size = null,
+        public ?string $path = null,
     ) {}
 }

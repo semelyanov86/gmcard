@@ -9,18 +9,18 @@ use Spatie\LaravelData\Data;
 class UserData extends Data
 {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public string $name,
-        public ?string $last_name,
-        public ?int $age,
+        public ?string $last_name = null,
+        public ?int $age = null,
         public string $email,
-        public ?string $job,
-        public ?string $job_status,
-        public ?string $city,
-        public ?string $country,
-        public ?string $birth_date,
-        public ?string $role,
-        public ?string $gender,
-        public ?string $code,
+        public ?string $job = null,
+        public ?string $job_status = null,
+        public ?string $city = null,
+        public ?string $country = null,
+        public ?string $birth_date = null,
+        public ?string $role = null,
+        public ?string $gender = null,
+        public ?string $code = null,
     ) {}
 }

@@ -9,10 +9,10 @@ use Spatie\LaravelData\Data;
 class SubscriptionData extends Data
 {
     public function __construct(
-        public ?int $id,
-        public ?string $type,
-        public ?string $status,
-        public ?string $expires_at,
-        public ?int $user_id,
+        public ?int $id = null,
+        public ?string $type = null,
+        public ?string $status = null,
+        public ?string $expires_at = null,
+        public ?int $user_id = null,
     ) {}
 }

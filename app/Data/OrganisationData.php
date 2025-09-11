@@ -9,16 +9,16 @@ use Spatie\LaravelData\Data;
 class OrganisationData extends Data
 {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public string $name,
-        public ?string $owner_role,
-        public ?string $inn,
-        public ?string $ogrn,
-        public ?string $contact,
-        public ?string $contact_fio,
+        public ?string $owner_role = null,
+        public ?string $inn = null,
+        public ?string $ogrn = null,
+        public ?string $contact = null,
+        public ?string $contact_fio = null,
         /** @var array<string, mixed>|null */
-        public ?array $opening_hours,
-        public ?int $user_id,
-        public ?int $address_id,
+        public ?array $opening_hours = null,
+        public ?int $user_id = null,
+        public ?int $address_id = null,
     ) {}
 }

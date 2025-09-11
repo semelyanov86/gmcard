@@ -11,8 +11,8 @@ final class PopUpData extends Data
     public function __construct(
         public string $name,
         public string $email,
-        public ?string $phone,
-        public ?string $city,
+        public ?string $phone = null,
+        public ?string $city = null,
         public bool $agree,
     ) {}
 }

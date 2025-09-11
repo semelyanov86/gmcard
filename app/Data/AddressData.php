@@ -9,11 +9,11 @@ use Spatie\LaravelData\Data;
 class AddressData extends Data
 {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public string $name,
-        public ?string $open_hours,
-        public ?string $phone,
-        public ?string $phone_secondary,
-        public ?string $website,
+        public ?string $open_hours = null,
+        public ?string $phone = null,
+        public ?string $phone_secondary = null,
+        public ?string $website = null,
     ) {}
 }
