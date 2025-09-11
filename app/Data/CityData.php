@@ -6,12 +6,11 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class CityData extends Data
+final class CityData extends Data
 {
     public function __construct(
         public ?int $id = null,
         public string $name,
-        public ?string $region = null,
-        public ?string $country = null,
+        public string $country,
     ) {}
 }

@@ -13,11 +13,7 @@ class Media extends Model
     use HasFactory;
 
     protected $fillable = [
-        'filename',
-        'original_name',
-        'mime_type',
-        'size',
-        'path',
+        'type',
     ];
 
     protected $guarded = [
@@ -26,12 +22,10 @@ class Media extends Model
         'updated_at',
     ];
 
-
-
     protected function casts(): array
     {
         return [
-            'size' => 'integer',
+            //
         ];
     }
 }

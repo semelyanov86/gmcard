@@ -6,12 +6,13 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class CategoryData extends Data
+final class CategoryData extends Data
 {
     public function __construct(
         public ?int $id = null,
         public string $name,
         public ?string $description = null,
-        public ?string $slug = null,
+        public int $parent_id,
+        public bool $is_starred,
     ) {}
 }

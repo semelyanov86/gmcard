@@ -6,13 +6,13 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class PromoUsageData extends Data
+final class PromoUsageData extends Data
 {
     public function __construct(
         public ?int $id = null,
-        public ?string $used_at = null,
-        public ?string $status = null,
+        public string $used_at,
         public ?int $user_id = null,
-        public ?int $promo_id = null,
+        public int $promo_id,
+        public ?string $ip = null,
     ) {}
 }

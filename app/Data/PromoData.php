@@ -6,18 +6,18 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class PromoData extends Data
+final class PromoData extends Data
 {
     public function __construct(
         public ?int $id = null,
         public string $name,
-        public ?string $type = null,
+        public int $user_id,
+        public string $type,
         public ?string $code = null,
         public ?string $img = null,
         public ?int $amount = null,
-        public ?string $description = null,
-        /** @var array<string, mixed>|null */
-        public ?array $extra_conditions = null,
+        public string $description,
+        public string $extra_conditions,
         public ?string $video_link = null,
         /** @var array<string, mixed>|null */
         public ?array $smm_links = null,
@@ -26,18 +26,18 @@ class PromoData extends Data
         public ?string $availabe_from = null,
         public ?string $available_to = null,
         public ?string $started_at = null,
-        public ?string $available_till = null,
+        public string $available_till,
         public bool $show_on_home,
-        public ?int $raise_on_top_hours = null,
-        public ?int $restart_after_finish_days = null,
-        public ?int $sales_order_from = null,
-        public ?int $free_delivery_from = null,
+        public int $raise_on_top_hours,
+        public int $restart_after_finish_days,
+        public int $sales_order_from,
+        public int $free_delivery_from,
         public bool $free_delivery,
         public ?string $approved_at = null,
         public ?string $approving_notes = null,
         public ?int $crmid = null,
         public ?int $adv_campaign_id = null,
         public ?int $organisation_id = null,
-        public ?int $dicsount = null,
+        public ?string $dicsount = null,
     ) {}
 }

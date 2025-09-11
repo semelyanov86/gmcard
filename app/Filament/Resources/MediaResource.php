@@ -30,11 +30,7 @@ class MediaResource extends Resource
     {
         return $schema
             ->schema([
-                TextInput::make('filename')->label('Имя файла')->required()->maxLength(255),
-                TextInput::make('original_name')->label('Оригинальное имя')->maxLength(255)->nullable(),
-                TextInput::make('mime_type')->label('MIME')->maxLength(255)->nullable(),
-                TextInput::make('size')->label('Размер (байт)')->numeric()->nullable(),
-                TextInput::make('path')->label('Путь')->maxLength(255)->nullable(),
+                TextInput::make('type')->label('Тип медиа')->maxLength(255)->nullable(),
             ]);
     }
 
@@ -44,10 +40,9 @@ class MediaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
-                Tables\Columns\TextColumn::make('filename')->label('Имя файла')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('mime_type')->label('MIME')->toggleable(),
-                Tables\Columns\TextColumn::make('size')->label('Размер')->numeric()->sortable()->toggleable(),
+                Tables\Columns\TextColumn::make('type')->label('Тип')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->label('Создано')->dateTime('d.m.Y H:i')->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')->label('Обновлено')->dateTime('d.m.Y H:i')->sortable()->toggleable(),
             ])
             ->filters([])
             ->actions([
