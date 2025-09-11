@@ -24,8 +24,6 @@ class Category extends Model
         'updated_at',
     ];
 
-
-
     /**
      * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */

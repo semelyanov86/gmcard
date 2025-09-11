@@ -10,7 +10,7 @@ use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 
-final class MoneyValueObject implements Cast
+final readonly class MoneyValueObject implements Cast, \Stringable
 {
     public function __construct(
         private Money $money
@@ -18,7 +18,7 @@ final class MoneyValueObject implements Cast
 
     /**
      * @param string $amount
-     * @param string $currency
+     * @param non-empty-string $currency
      * @return self
      */
     public static function fromString(string $amount, string $currency = 'RUB'): self
@@ -30,6 +30,9 @@ final class MoneyValueObject implements Cast
         );
     }
 
+    /**
+     * @param non-empty-string $currency
+     */
     public static function fromCents(int $cents, string $currency = 'RUB'): self
     {
         return new self(
@@ -57,7 +60,7 @@ final class MoneyValueObject implements Cast
         return $this->money;
     }
 
-
+    /** @phpstan-ignore-next-line */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): mixed
     {
         if ($value === null) {

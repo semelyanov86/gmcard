@@ -9,7 +9,7 @@ use Spatie\LaravelData\Data;
 final class AdvCampaignData extends Data
 {
     public function __construct(
-        public ?int $id = null,
+        public ?int $id,
         public string $name,
         public string $description,
         public int $crmid,

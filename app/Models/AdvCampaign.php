@@ -29,9 +29,8 @@ class AdvCampaign extends Model
         'updated_at',
     ];
 
-
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
+     * @phpstan-return HasMany<Promo, $this>
      */
     public function promos(): HasMany
     {

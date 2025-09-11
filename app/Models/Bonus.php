@@ -26,7 +26,6 @@ class Bonus extends Model
         'updated_at',
     ];
 
-
     /**
      * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */

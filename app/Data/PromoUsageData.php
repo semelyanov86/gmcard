@@ -9,9 +9,9 @@ use Spatie\LaravelData\Data;
 final class PromoUsageData extends Data
 {
     public function __construct(
-        public ?int $id = null,
+        public ?int $id,
         public string $used_at,
-        public ?int $user_id = null,
+        public ?int $user_id,
         public int $promo_id,
         public ?string $ip = null,
     ) {}

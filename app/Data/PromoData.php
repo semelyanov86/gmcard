@@ -9,23 +9,23 @@ use Spatie\LaravelData\Data;
 final class PromoData extends Data
 {
     public function __construct(
-        public ?int $id = null,
+        public ?int $id,
         public string $name,
         public int $user_id,
         public string $type,
-        public ?string $code = null,
-        public ?string $img = null,
-        public ?int $amount = null,
+        public ?string $code,
+        public ?string $img,
+        public ?int $amount,
         public string $description,
         public string $extra_conditions,
-        public ?string $video_link = null,
+        public ?string $video_link,
         /** @var array<string, mixed>|null */
-        public ?array $smm_links = null,
+        public ?array $smm_links,
         /** @var array<string, mixed>|null */
-        public ?array $days_availability = null,
-        public ?string $availabe_from = null,
-        public ?string $available_to = null,
-        public ?string $started_at = null,
+        public ?array $days_availability,
+        public ?string $availabe_from,
+        public ?string $available_to,
+        public ?string $started_at,
         public string $available_till,
         public bool $show_on_home,
         public int $raise_on_top_hours,
