@@ -9,6 +9,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Spatie\Permission\Models\Role;
 
 class UserForm
 {
@@ -25,7 +26,9 @@ class UserForm
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required(),
+                    ->required(fn (string $context): bool => $context === 'create')
+                    ->dehydrated(fn (?string $state): bool => filled($state))
+                    ->dehydrateStateUsing(fn (?string $state): ?string => filled($state) ? bcrypt($state) : null),
                 TextInput::make('last_name'),
                 TextInput::make('age')
                     ->required()
@@ -40,7 +43,26 @@ class UserForm
                     ->numeric(),
                 TextInput::make('country'),
                 DatePicker::make('birth_date'),
-                TextInput::make('role'),
+                Select::make('roles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->options(function () {
+                        $user = auth()->user();
+                        
+                        // Super-admin может назначать любые роли
+                        if ($user && $user->hasRole('super-admin')) {
+                            return Role::pluck('name', 'id');
+                        }
+                        
+                        // Admin может назначать только moderator и user
+                        if ($user && $user->hasRole('admin')) {
+                            return Role::whereIn('name', ['moderator', 'user'])->pluck('name', 'id');
+                        }
+                        
+                        // Moderator не может назначать роли
+                        return [];
+                    })
+                    ->preload(),
                 Select::make('gender')
                     ->options(['male' => 'Male', 'female' => 'Female', 'other' => 'Other']),
                 TextInput::make('code'),

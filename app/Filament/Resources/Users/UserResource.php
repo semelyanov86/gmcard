@@ -22,6 +22,34 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+        return $user && ($user->hasRole('super-admin') || $user->hasRole('admin'));
+    }
+
+    public static function canEdit($record): bool
+    {
+        $user = auth()->user();
+        
+        // Super-admin может редактировать всех
+        if ($user && $user->hasRole('super-admin')) {
+            return true;
+        }
+        
+        // Admin может редактировать moderator и user, но не других admin и не super-admin
+        if ($user && $user->hasRole('admin')) {
+            return $record->hasRole('moderator') || $record->hasRole('user');
+        }
+        
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return self::canEdit($record);
+    }
+
     #[\Override]
     public static function form(Schema $schema): Schema
     {
