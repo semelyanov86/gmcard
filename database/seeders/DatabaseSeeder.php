@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use Database\Seeders\Auth\RolesSeeder;
+use Database\Seeders\Auth\PermissionsSeeder;
 use Database\Seeders\Base\CategorySeeder;
 use Database\Seeders\Base\CitySeeder;
 use Database\Seeders\Base\UserSeeder;
@@ -22,7 +24,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(CreateAdminSeeder::class);
+        $this->call([
+            RolesSeeder::class,
+            PermissionsSeeder::class,
+        ]);
+
+        $this->call(CreateSuperAdminSeeder::class);
 
         $this->call([
             CitySeeder::class,
