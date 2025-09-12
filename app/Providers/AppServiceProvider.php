@@ -51,6 +51,6 @@ class AppServiceProvider extends ServiceProvider
 
         Vite::prefetch(concurrency: 3, event: 'vite:prefetch');
 
-        Gate::before(fn ($user, string $ability) => $user->hasRole('admin') ? true : null);
+        Gate::before(fn ($user, string $ability) => $user->hasRole('super-admin') ? true : null);
     }
 }

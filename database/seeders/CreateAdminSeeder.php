@@ -32,7 +32,7 @@ class CreateAdminSeeder extends Seeder
         );
 
         $adminRole = Role::firstOrCreate(
-            ['name' => 'admin'],
+            ['name' => 'super-admin'],
             ['created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
