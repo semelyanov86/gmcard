@@ -29,6 +29,14 @@ class RolesSeeder extends Seeder
         );
 
         Role::firstOrCreate(
+            ['name' => 'moderator'],
+            [
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+
+        Role::firstOrCreate(
             ['name' => 'user'],
             [
                 'created_at' => Carbon::now(),

@@ -20,8 +20,10 @@ class PermissionsSeeder extends Seeder
 
         $superAdminRole = Role::where('name', 'super-admin')->first();
         $adminRole = Role::where('name', 'admin')->first();
+        $moderatorRole = Role::where('name', 'moderator')->first();
 
         $superAdminRole?->givePermissionTo($accessAdminPermission);
         $adminRole?->givePermissionTo($accessAdminPermission);
+        $moderatorRole?->givePermissionTo($accessAdminPermission);
     }
 }
