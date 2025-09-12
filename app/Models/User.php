@@ -4,17 +4,23 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
+    use HasRoles;
     use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +29,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'age',
         'email',
-        'password',
+        'job',
+        'job_status',
+        'city',
+        'country',
+        'birth_date',
+        'gender',
+        'code',
     ];
 
     /**
@@ -38,6 +52,80 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be guarded from mass assignment.
+     *
+     * @var list<string>
+     */
+    protected $guarded = [
+        'password',
+        'balance',
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->can('access admin') || $this->hasRole('super-admin') || $this->hasRole('admin') || $this->hasRole('moderator');
+    }
+
+    /**
+     * @phpstan-return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
+     * @phpstan-return HasMany<Promo, $this>
+     */
+    public function promos(): HasMany
+    {
+        return $this->hasMany(Promo::class);
+    }
+
+    /**
+     * @phpstan-return HasMany<Organisation, $this>
+     */
+    public function organisations(): HasMany
+    {
+        return $this->hasMany(Organisation::class);
+    }
+
+    /**
+     * @phpstan-return HasMany<Bonus, $this>
+     */
+    public function bonusesSent(): HasMany
+    {
+        return $this->hasMany(Bonus::class, 'source_id');
+    }
+
+    /**
+     * @phpstan-return HasMany<Bonus, $this>
+     */
+    public function bonusesReceived(): HasMany
+    {
+        return $this->hasMany(Bonus::class, 'target_id');
+    }
+
+    /**
+     * @phpstan-return HasMany<Subscription, $this>
+     */
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    /**
+     * @phpstan-return HasMany<PromoUsage, $this>
+     */
+    public function promoUsages(): HasMany
+    {
+        return $this->hasMany(PromoUsage::class);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -47,6 +135,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'balance' => 'decimal:2',
+            'birth_date' => 'date',
         ];
     }
 }
