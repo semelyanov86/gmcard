@@ -21,7 +21,6 @@ return new class () extends Migration {
             $table->bigInteger('city')->nullable();
             $table->string('country')->nullable();
             $table->date('birth_date')->nullable();
-            $table->string('role')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('code')->nullable();
         });
@@ -42,7 +41,6 @@ return new class () extends Migration {
                 'city',
                 'country',
                 'birth_date',
-                'role',
                 'gender',
                 'code',
             ]);

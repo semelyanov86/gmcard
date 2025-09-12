@@ -27,7 +27,6 @@ class UserFactory extends Factory
             'city' => fake()->numberBetween(1, 100),
             'country' => fake()->country(),
             'birth_date' => fake()->date('Y-m-d', '2000-01-01'),
-            'role' => 'user',
             'gender' => fake()->randomElement(['male', 'female', 'other']),
             'code' => fake()->unique()->numerify('PROMO####'),
             'email_verified_at' => now(),

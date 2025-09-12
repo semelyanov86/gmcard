@@ -31,15 +31,15 @@ class CreateAdminSeeder extends Seeder
             ]
         );
 
-        $userRole = Role::firstOrCreate(
-            ['name' => 'user'],
+        $adminRole = Role::firstOrCreate(
+            ['name' => 'admin'],
             ['created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
         );
 
-        $adminRole = Role::firstOrCreate(
-            ['name' => 'admin'],
+        $userRole = Role::firstOrCreate(
+            ['name' => 'user'],
             ['created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
@@ -52,6 +52,5 @@ class CreateAdminSeeder extends Seeder
 
         $adminRole->givePermissionTo($permission);
         $admin->assignRole($adminRole);
-        $admin->update(['role' => 'admin']);
     }
 }
