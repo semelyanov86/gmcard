@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Promos\Schemas;
 
 use Filament\Forms\Components\DatePicker;
@@ -24,14 +26,14 @@ class PromoForm
                     ->required(),
                 Select::make('type')
                     ->options([
-            'simple' => 'Simple',
-            'coupon' => 'Coupon',
-            'gift' => 'Gift',
-            'one_plus_one' => 'One plus one',
-            'two_plus_one' => 'Two plus one',
-            'cashback' => 'Cashback',
-            'konkurs' => 'Konkurs',
-        ])
+                        'simple' => 'Simple',
+                        'coupon' => 'Coupon',
+                        'gift' => 'Gift',
+                        'one_plus_one' => 'One plus one',
+                        'two_plus_one' => 'Two plus one',
+                        'cashback' => 'Cashback',
+                        'konkurs' => 'Konkurs',
+                    ])
                     ->required(),
                 TextInput::make('code'),
                 TextInput::make('img'),

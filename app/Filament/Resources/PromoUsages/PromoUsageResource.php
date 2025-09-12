@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\PromoUsages;
 
 use App\Filament\Resources\PromoUsages\Pages\CreatePromoUsage;
@@ -20,16 +22,19 @@ class PromoUsageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return PromoUsageForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return PromoUsagesTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [

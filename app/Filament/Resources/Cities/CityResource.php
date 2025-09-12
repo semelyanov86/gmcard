@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Cities;
 
 use App\Filament\Resources\Cities\Pages\CreateCity;
@@ -20,16 +22,19 @@ class CityResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return CityForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return CitiesTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [

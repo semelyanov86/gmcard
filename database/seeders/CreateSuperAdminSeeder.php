@@ -17,7 +17,7 @@ class CreateSuperAdminSeeder extends Seeder
         $email = env('ADMIN_EMAIL');
         $pass = env('ADMIN_PASSWORD');
 
-        if (!$email || !$pass) {
+        if (! $email || ! $pass) {
             return;
         }
 
@@ -33,11 +33,11 @@ class CreateSuperAdminSeeder extends Seeder
 
         $superAdminRole = Role::where('name', 'super-admin')->first();
 
-        if (!$superAdminRole) {
+        if (! $superAdminRole) {
             return;
         }
 
-        if (!$admin->hasRole('super-admin')) {
+        if (! $admin->hasRole('super-admin')) {
             $admin->assignRole($superAdminRole);
         }
     }

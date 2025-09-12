@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 
         // Убедимся что роль 'user' существует
         $userRole = Role::firstOrCreate(['name' => 'user']);
-        
+
         foreach ($users as $data) {
             $cityId = City::query()->where('name', $data['city_name'])->value('id');
             $user = User::query()->create([
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                 'code' => $data['code'],
                 'password' => Hash::make('password'),
             ]);
-            
+
             // Назначаем роль 'user' через Spatie Permission
             $user->assignRole($userRole);
         }

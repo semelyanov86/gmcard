@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AdvCampaigns;
 
 use App\Filament\Resources\AdvCampaigns\Pages\CreateAdvCampaign;
@@ -20,16 +22,19 @@ class AdvCampaignResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return AdvCampaignForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return AdvCampaignsTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [

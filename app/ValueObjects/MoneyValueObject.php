@@ -9,17 +9,16 @@ use Money\Money;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
+use Stringable;
 
-final readonly class MoneyValueObject implements Cast, \Stringable
+final readonly class MoneyValueObject implements Stringable, Cast
 {
     public function __construct(
         private Money $money
     ) {}
 
     /**
-     * @param string $amount
-     * @param non-empty-string $currency
-     * @return self
+     * @param  non-empty-string  $currency
      */
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
@@ -31,7 +30,7 @@ final readonly class MoneyValueObject implements Cast, \Stringable
     }
 
     /**
-     * @param non-empty-string $currency
+     * @param  non-empty-string  $currency
      */
     public static function fromCents(int $cents, string $currency = 'RUB'): self
     {

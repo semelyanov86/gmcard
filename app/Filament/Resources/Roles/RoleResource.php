@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Roles;
 
 use App\Filament\Resources\Roles\Pages\CreateRole;
@@ -20,16 +22,19 @@ class RoleResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return RoleForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return RolesTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [

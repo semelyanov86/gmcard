@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Bonuses;
 
 use App\Filament\Resources\Bonuses\Pages\CreateBonus;
@@ -20,16 +22,19 @@ class BonusResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return BonusForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return BonusesTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Media;
 
 use App\Filament\Resources\Media\Pages\CreateMedia;
@@ -20,16 +22,19 @@ class MediaResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return MediaForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return MediaTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
