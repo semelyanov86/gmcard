@@ -9,7 +9,6 @@ use Spatie\LaravelData\Data;
 final class AdvCampaignData extends Data
 {
     public function __construct(
-        public ?int $id,
         public string $name,
         public string $description,
         public int $crmid,
@@ -18,5 +17,6 @@ final class AdvCampaignData extends Data
         public ?string $deeplink = null,
         public ?string $avg_hold_time = null,
         public ?string $avg_money_transfer_time = null,
+        public ?int $id = null,
     ) {}
 }

@@ -9,12 +9,12 @@ use Spatie\LaravelData\Data;
 final class UserData extends Data
 {
     public function __construct(
-        public ?int $id,
         public string $name,
         public string $last_name,
         public int $age,
         public string $email,
         public string $password,
+        public ?int $id = null,
         public ?string $balance = null,
         public ?string $job = null,
         public ?string $job_status = null,
