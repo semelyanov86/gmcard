@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->foreignId('promo_id')->constrained('promos')->cascadeOnDelete();
             $table->timestamp('used_at');
             $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->string('ip');
+            $table->string('ip', 45);
             $table->timestamps();
         });
     }
