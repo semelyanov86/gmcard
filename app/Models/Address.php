@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property array<string, string> $open_hours
+ */
 class Address extends Model
 {
     /** @use HasFactory<\Database\Factories\AddressFactory> */
@@ -27,6 +30,16 @@ class Address extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'open_hours' => 'array',
+        ];
+    }
 
     /**
      * @return HasMany<Organisation, $this>

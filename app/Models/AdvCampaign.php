@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property array<string, string> $action_details
+ */
 class AdvCampaign extends Model
 {
     /** @use HasFactory<\Database\Factories\AdvCampaignFactory> */
