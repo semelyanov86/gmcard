@@ -30,7 +30,7 @@ class AdvCampaign extends Model
     ];
 
     /**
-     * @phpstan-return HasMany<Promo, $this>
+     * @return HasMany<Promo, $this>
      */
     public function promos(): HasMany
     {

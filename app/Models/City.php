@@ -25,7 +25,7 @@ class City extends Model
     ];
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function promos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

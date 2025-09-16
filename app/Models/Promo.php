@@ -49,7 +49,7 @@ class Promo extends Model
     ];
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -57,7 +57,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<AdvCampaign, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<AdvCampaign, $this>
      */
     public function advCampaign(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -65,7 +65,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<Organisation, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Organisation, $this>
      */
     public function organisation(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -73,7 +73,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -81,7 +81,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function cities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -89,7 +89,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Address, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Address, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function addresses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -97,7 +97,7 @@ class Promo extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<PromoUsage, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<PromoUsage, $this>
      */
     public function usages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

@@ -31,7 +31,7 @@ class Organisation extends Model
     ];
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -39,7 +39,7 @@ class Organisation extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address, $this>
      */
     public function address(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -47,7 +47,7 @@ class Organisation extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
      */
     public function promos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

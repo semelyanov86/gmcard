@@ -70,7 +70,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Payment, $this>
+     * @return HasMany<Payment, $this>
      */
     public function payments(): HasMany
     {
@@ -78,7 +78,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Promo, $this>
+     * @return HasMany<Promo, $this>
      */
     public function promos(): HasMany
     {
@@ -86,7 +86,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Organisation, $this>
+     * @return HasMany<Organisation, $this>
      */
     public function organisations(): HasMany
     {
@@ -94,7 +94,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Bonus, $this>
+     * @return HasMany<Bonus, $this>
      */
     public function bonusesSent(): HasMany
     {
@@ -102,7 +102,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Bonus, $this>
+     * @return HasMany<Bonus, $this>
      */
     public function bonusesReceived(): HasMany
     {
@@ -110,7 +110,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<Subscription, $this>
+     * @return HasMany<Subscription, $this>
      */
     public function subscriptions(): HasMany
     {
@@ -118,7 +118,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @phpstan-return HasMany<PromoUsage, $this>
+     * @return HasMany<PromoUsage, $this>
      */
     public function promoUsages(): HasMany
     {

@@ -26,7 +26,7 @@ class PromoUsage extends Model
     ];
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<Promo, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Promo, $this>
      */
     public function promo(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -34,7 +34,7 @@ class PromoUsage extends Model
     }
 
     /**
-     * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

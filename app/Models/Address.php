@@ -29,7 +29,7 @@ class Address extends Model
     ];
 
     /**
-     * @phpstan-return HasMany<Organisation, $this>
+     * @return HasMany<Organisation, $this>
      */
     public function organisations(): HasMany
     {
@@ -37,7 +37,7 @@ class Address extends Model
     }
 
     /**
-     * @phpstan-return BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function promos(): BelongsToMany
     {
