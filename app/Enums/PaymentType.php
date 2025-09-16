@@ -9,3 +9,4 @@ enum PaymentType: string
     case INCOMING = 'incoming';
     case OUTGOING = 'outgoing';
 }
+ 

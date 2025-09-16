@@ -11,7 +11,7 @@ final class AdvCampaignData extends Data
     public function __construct(
         public string $name,
         public string $description,
-        public int $crmid,
+        public string $crmid,
         /** @var array<string, mixed>|null */
         public ?array $action_details = null,
         public ?string $deeplink = null,

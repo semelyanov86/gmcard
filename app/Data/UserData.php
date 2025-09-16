@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\ValueObjects\MoneyValueObject;
+use SensitiveParameter;
+use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 
 final class UserData extends Data
@@ -13,9 +16,11 @@ final class UserData extends Data
         public string $last_name,
         public int $age,
         public string $email,
+        #[SensitiveParameter]
         public string $password,
         public ?int $id = null,
-        public ?string $balance = null,
+        #[WithCast(MoneyValueObject::class)]
+        public ?MoneyValueObject $balance = null,
         public ?string $job = null,
         public ?string $job_status = null,
         public ?int $city = null,

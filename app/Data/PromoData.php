@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Enums\PromoType;
 use Spatie\LaravelData\Data;
 
 final class PromoData extends Data
@@ -11,19 +12,19 @@ final class PromoData extends Data
     public function __construct(
         public string $name,
         public int $user_id,
-        public string $type,
+        public PromoType $type,
         public string $description,
         public string $extra_conditions,
-        public bool $show_on_home,
+        public bool $show_on_home = false,
         public int $raise_on_top_hours,
         public int $restart_after_finish_days,
         public int $sales_order_from,
         public int $free_delivery_from,
-        public bool $free_delivery,
+        public bool $free_delivery = false,
         public ?string $video_link = null,
-        /** @var array<string, mixed>|null */
+        /** @var array<string, string>|null */
         public ?array $smm_links = null,
-        /** @var array<string, mixed>|null */
+        /** @var string[]|null */
         public ?array $days_availability = null,
         public ?string $availabe_from = null,
         public ?string $available_to= null,
