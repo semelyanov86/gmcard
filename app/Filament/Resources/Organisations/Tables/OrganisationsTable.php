@@ -10,7 +10,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class OrganisationsTable
+final class OrganisationsTable
 {
     public static function configure(Table $table): Table
     {
