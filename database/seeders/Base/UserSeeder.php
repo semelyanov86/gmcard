@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
             ['name' => 'Наталья', 'last_name' => 'Волкова', 'age' => 27, 'email' => 'natalia.volkova@example.com', 'job' => 'SMM-специалист', 'job_status' => 'фрилансер', 'city_name' => 'Челябинск', 'country' => 'Россия', 'birth_date' => '1998-08-16', 'gender' => 'female', 'code' => '100110'],
         ];
 
-        // Убедимся что роль 'user' существует
         $userRole = Role::firstOrCreate(['name' => 'user']);
 
         foreach ($users as $data) {
@@ -47,7 +46,6 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
 
-            // Назначаем роль 'user' через Spatie Permission
             $user->assignRole($userRole);
         }
     }

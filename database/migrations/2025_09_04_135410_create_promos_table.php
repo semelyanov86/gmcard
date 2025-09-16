@@ -37,7 +37,7 @@ return new class () extends Migration {
             $table->boolean('free_delivery')->default(false);
             $table->dateTime('approved_at')->nullable();
             $table->text('approving_notes')->nullable();
-            $table->bigInteger('crmid')->nullable();
+            $table->string('crmid')->nullable();
             $table->foreignId('adv_campaign_id')->nullable()->constrained('adv_campaigns');
             $table->foreignId('organisation_id')->nullable()->constrained('organisations');
             $table->string('dicsount')->nullable();

@@ -37,7 +37,7 @@ class PromoFactory extends Factory
             'free_delivery' => fake()->boolean(40),
             'approved_at' => fake()->optional(0.6)->dateTimeBetween('-1 week', 'now'),
             'approving_notes' => fake()->optional(0.3)->paragraph(),
-            'crmid' => fake()->optional(0.5)->numberBetween(1000, 9999),
+            'crmid' => fake()->optional(0.5)->bothify('CRM###??'),
             'adv_campaign_id' => AdvCampaign::factory(),
             'organisation_id' => Organisation::factory(),
             'dicsount' => fake()->optional(0.8)->numberBetween(5, 50) . '%',
