@@ -14,8 +14,6 @@ class Subscription extends Model
 
     protected $fillable = [
         'type',
-        'status',
-        'expires_at',
     ];
 
     protected $guarded = [
@@ -31,12 +29,5 @@ class Subscription extends Model
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    protected function casts(): array
-    {
-        return [
-            'expires_at' => 'datetime',
-        ];
     }
 }

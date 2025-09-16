@@ -40,7 +40,7 @@ class Payment extends Model
     protected function casts(): array
     {
         return [
-            'payment_date' => 'datetime',
+            'payment_date' => 'immutable_datetime',
             'amount' => 'integer',
             'type' => PaymentType::class,
         ];

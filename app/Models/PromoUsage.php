@@ -44,7 +44,7 @@ class PromoUsage extends Model
     protected function casts(): array
     {
         return [
-            'used_at' => 'datetime',
+            'used_at' => 'immutable_datetime',
         ];
     }
 }

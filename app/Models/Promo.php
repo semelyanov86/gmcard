@@ -7,6 +7,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property array<string, string> $smm_links
+ */
 class Promo extends Model
 {
     /** @use HasFactory<\Database\Factories\PromoFactory> */
@@ -111,11 +114,11 @@ class Promo extends Model
             'days_availability' => 'array',
             'availabe_from' => 'date',
             'available_to' => 'datetime',
-            'started_at' => 'datetime',
-            'available_till' => 'datetime',
+            'started_at' => 'immutable_datetime',
+            'available_till' => 'immutable_datetime',
             'show_on_home' => 'boolean',
             'free_delivery' => 'boolean',
-            'approved_at' => 'datetime',
+            'approved_at' => 'immutable_datetime',
             'amount' => 'integer',
             'raise_on_top_hours' => 'integer',
             'restart_after_finish_days' => 'integer',
