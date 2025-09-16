@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\OwnerRole;
+use App\Enums\OwnerRoleType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -62,7 +62,7 @@ class Organisation extends Model
     {
         return [
             'opening_hours' => 'array',
-            'owner_role' => OwnerRole::class,
+            'owner_role' => OwnerRoleType::class,
         ];
     }
 }

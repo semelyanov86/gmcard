@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum JobStatus: string
+enum JobStatusType: string
 {
     case EMPLOYED = 'трудоустроен';
     case SELF_EMPLOYED = 'самозанятый';
     case FREELANCER = 'фрилансер';
-} 
+}

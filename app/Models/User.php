@@ -11,7 +11,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use App\Enums\JobStatus;
+use App\Enums\GenderType;
+use App\Enums\JobStatusType;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable implements FilamentUser
@@ -138,7 +139,8 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
             'balance' => 'integer',
             'birth_date' => 'date',
-            'job_status' => JobStatus::class,
+            'job_status' => JobStatusType::class,
+            'gender' => GenderType::class,
         ];
     }
 }
