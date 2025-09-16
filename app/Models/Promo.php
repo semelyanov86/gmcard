@@ -42,11 +42,11 @@ class Promo extends Model
         'adv_campaign_id',
         'organisation_id',
         'dicsount',
+        'user_id',
     ];
 
     protected $guarded = [
         'id',
-        'user_id',
         'created_at',
         'updated_at',
     ];

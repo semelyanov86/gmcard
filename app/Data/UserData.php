@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Enums\JobStatus;
 use App\ValueObjects\MoneyValueObject;
 use SensitiveParameter;
 use Spatie\LaravelData\Attributes\WithCast;
@@ -22,7 +23,7 @@ final class UserData extends Data
         #[WithCast(MoneyValueObject::class)]
         public ?MoneyValueObject $balance = null,
         public ?string $job = null,
-        public ?string $job_status = null,
+        public ?JobStatus $job_status = null,
         public ?int $city = null,
         public ?string $country = null,
         public ?string $birth_date = null,

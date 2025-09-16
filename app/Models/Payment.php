@@ -20,11 +20,11 @@ class Payment extends Model
         'currency',
         'description',
         'transaction_id',
+        'user_id',
     ];
 
     protected $guarded = [
         'id',
-        'user_id',
         'created_at',
         'updated_at',
     ];

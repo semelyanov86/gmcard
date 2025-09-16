@@ -14,13 +14,13 @@ class PromoUsage extends Model
 
     protected $fillable = [
         'used_at',
-        'status',
+        'ip',
+        'user_id',
+        'promo_id',
     ];
 
     protected $guarded = [
         'id',
-        'user_id',
-        'promo_id',
         'created_at',
         'updated_at',
     ];

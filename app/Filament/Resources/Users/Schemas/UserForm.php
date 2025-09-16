@@ -48,18 +48,15 @@ class UserForm
                     ->relationship('roles', 'name')
                     ->options(function () {
                         $user = auth()->user();
-                        
-                        // Super-admin может назначать любые роли
+
                         if ($user && $user->hasRole('super-admin')) {
                             return Role::pluck('name', 'id');
                         }
-                        
-                        // Admin может назначать только moderator и user
+
                         if ($user && $user->hasRole('admin')) {
                             return Role::whereIn('name', ['moderator', 'user'])->pluck('name', 'id');
                         }
-                        
-                        // Moderator не может назначать роли
+
                         return [];
                     })
                     ->preload(),

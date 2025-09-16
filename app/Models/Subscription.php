@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\SubscriptionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Subscription extends Model
 {
@@ -14,11 +16,13 @@ class Subscription extends Model
 
     protected $fillable = [
         'type',
+        'amount',
+        'periodicity',
+        'user_id',
     ];
 
     protected $guarded = [
         'id',
-        'user_id',
         'created_at',
         'updated_at',
     ];
@@ -26,8 +30,15 @@ class Subscription extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'type' => SubscriptionType::class,
+        ];
     }
 }

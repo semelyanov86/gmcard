@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\JobStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -22,7 +23,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'balance' => fake()->randomFloat(2, 0, 10000),
             'job' => fake()->jobTitle(),
-            'job_status' => fake()->randomElement(['employed', 'unemployed', 'freelancer', 'retired']),
+            'job_status' => fake()->randomElement([JobStatus::EMPLOYED->value, JobStatus::SELF_EMPLOYED->value, JobStatus::FREELANCER->value]),
             'city' => fake()->numberBetween(1, 100),
             'country' => fake()->country(),
             'birth_date' => fake()->date('Y-m-d', '2000-01-01'),

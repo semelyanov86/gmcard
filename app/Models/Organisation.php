@@ -24,12 +24,12 @@ class Organisation extends Model
         'contact',
         'contact_fio',
         'opening_hours',
+        'user_id',
+        'address_id',
     ];
 
     protected $guarded = [
         'id',
-        'user_id',
-        'address_id',
         'created_at',
         'updated_at',
     ];
