@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -40,7 +41,8 @@ class Payment extends Model
     {
         return [
             'payment_date' => 'datetime',
-            'amount' => 'decimal:2',
+            'amount' => 'integer',
+            'type' => PaymentType::class,
         ];
     }
 }

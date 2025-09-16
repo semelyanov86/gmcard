@@ -14,7 +14,6 @@ use Database\Seeders\Business\AdvCampaignSeeder;
 use Database\Seeders\Business\OrganisationSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
-use Database\Seeders\Media\MediaSeeder;
 use Database\Seeders\Promo\BonusSeeder;
 use Database\Seeders\Promo\PromoSeeder;
 use Database\Seeders\Promo\PromoUsageSeeder;
@@ -39,8 +38,6 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             OrganisationSeeder::class,
             AdvCampaignSeeder::class,
-
-            MediaSeeder::class,
 
             PromoSeeder::class,
             PromoUsageSeeder::class,

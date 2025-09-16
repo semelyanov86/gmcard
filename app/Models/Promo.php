@@ -121,7 +121,7 @@ class Promo extends Model
             'restart_after_finish_days' => 'integer',
             'sales_order_from' => 'integer',
             'free_delivery_from' => 'integer',
-            'crmid' => 'integer',
+            'crmid' => 'string',
         ];
     }
 }

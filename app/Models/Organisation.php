@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\OwnerRole;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property array<string, string> $opening_hours
+ */
 class Organisation extends Model
 {
     /** @use HasFactory<\Database\Factories\OrganisationFactory> */
@@ -58,6 +62,7 @@ class Organisation extends Model
     {
         return [
             'opening_hours' => 'array',
+            'owner_role' => OwnerRole::class,
         ];
     }
 }
