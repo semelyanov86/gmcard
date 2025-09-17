@@ -31,17 +31,15 @@ class UserResource extends Resource
     public static function canEdit($record): bool
     {
         $user = auth()->user();
-        
-        // Super-admin может редактировать всех
+
         if ($user && $user->hasRole('super-admin')) {
             return true;
         }
-        
-        // Admin может редактировать moderator и user, но не других admin и не super-admin
+
         if ($user && $user->hasRole('admin')) {
             return $record->hasRole('moderator') || $record->hasRole('user');
         }
-        
+
         return false;
     }
 

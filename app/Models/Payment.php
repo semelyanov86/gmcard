@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\MoneyValueObjectCast;
 use App\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,7 +42,7 @@ class Payment extends Model
     {
         return [
             'payment_date' => 'immutable_datetime',
-            'amount' => 'integer',
+            'amount' => MoneyValueObjectCast::class,
             'type' => PaymentType::class,
         ];
     }

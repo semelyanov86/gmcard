@@ -23,10 +23,7 @@ final readonly class MoneyValueObject implements Stringable, Cast
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
         $amountInMinorUnits = (int) round((float) $amount * 100);
-
-        return new self(
-            new Money($amountInMinorUnits, new Currency($currency))
-        );
+        return new self(new Money($amountInMinorUnits, new Currency($currency)));
     }
 
     /**
@@ -34,9 +31,7 @@ final readonly class MoneyValueObject implements Stringable, Cast
      */
     public static function fromCents(int $cents, string $currency = 'RUB'): self
     {
-        return new self(
-            new Money($cents, new Currency($currency))
-        );
+        return new self(new Money($cents, new Currency($currency)));
     }
 
     public function toString(): string
@@ -57,6 +52,13 @@ final readonly class MoneyValueObject implements Stringable, Cast
     public function getMoney(): Money
     {
         return $this->money;
+    }
+
+    public function toDisplayValue(): string
+    {
+        $amountInRubles = ((int) $this->money->getAmount()) / 100;
+        $formatted = number_format($amountInRubles, 2, ',', "\u{A0}");
+        return $formatted . "\u{A0}₽";
     }
 
     /** @phpstan-ignore-next-line */
