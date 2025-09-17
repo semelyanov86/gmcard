@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->json('open_hours')->nullable();
-            $table->string('phone');
+            $table->string('phone', 20);
             $table->string('phone_secondary')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();
