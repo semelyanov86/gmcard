@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Override;
 
 class UserResource extends Resource
@@ -30,7 +31,7 @@ class UserResource extends Resource
         return $user && ($user->hasRole('super-admin') || $user->hasRole('admin'));
     }
 
-    public static function canEdit($record): bool
+    public static function canEdit(Model $record): bool
     {
         $user = auth()->user();
 
@@ -39,13 +40,13 @@ class UserResource extends Resource
         }
 
         if ($user && $user->hasRole('admin')) {
-            return $record->hasRole('moderator') || $record->hasRole('user');
+            return method_exists($record, 'hasRole') && ($record->hasRole('moderator') || $record->hasRole('user'));
         }
 
         return false;
     }
 
-    public static function canDelete($record): bool
+    public static function canDelete(Model $record): bool
     {
         return self::canEdit($record);
     }
