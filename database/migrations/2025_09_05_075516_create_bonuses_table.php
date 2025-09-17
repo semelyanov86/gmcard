@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->bigInteger('code')->nullable();
             $table->foreignId('source_id')->nullable()->constrained('users');
             $table->foreignId('target_id')->nullable()->constrained('users');
-            $table->enum('type', ['incoming', 'outgoing'])->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
