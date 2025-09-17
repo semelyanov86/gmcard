@@ -6,6 +6,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\PromoType;
 
 /**
  * @property array<string, string> $smm_links
@@ -54,7 +58,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -62,7 +66,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<AdvCampaign, $this>
      */
-    public function advCampaign(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function advCampaign(): BelongsTo
     {
         return $this->belongsTo(AdvCampaign::class);
     }
@@ -70,7 +74,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Organisation, $this>
      */
-    public function organisation(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function organisation(): BelongsTo
     {
         return $this->belongsTo(Organisation::class);
     }
@@ -78,7 +82,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
-    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'category_promo');
     }
@@ -86,7 +90,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
-    public function cities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function cities(): BelongsToMany
     {
         return $this->belongsToMany(City::class, 'city_promo');
     }
@@ -102,7 +106,7 @@ class Promo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<PromoUsage, $this>
      */
-    public function usages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function usages(): HasMany
     {
         return $this->hasMany(PromoUsage::class);
     }
@@ -125,6 +129,7 @@ class Promo extends Model
             'sales_order_from' => 'integer',
             'free_delivery_from' => 'integer',
             'crmid' => 'string',
+            'type' => PromoType::class,
         ];
     }
 }

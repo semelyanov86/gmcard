@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name', 64);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('type', ['simple', 'coupon', 'gift', 'one_plus_one', 'two_plus_one', 'cashback', 'konkurs']);
+            $table->string('type');
             $table->string('code')->nullable();
             $table->string('img')->nullable();
             $table->bigInteger('amount')->nullable();
@@ -40,7 +40,7 @@ return new class () extends Migration {
             $table->string('crmid')->nullable();
             $table->foreignId('adv_campaign_id')->nullable()->constrained('adv_campaigns');
             $table->foreignId('organisation_id')->nullable()->constrained('organisations');
-            $table->string('dicsount')->nullable();
+            $table->string('discount')->nullable();
             $table->timestamps();
         });
     }

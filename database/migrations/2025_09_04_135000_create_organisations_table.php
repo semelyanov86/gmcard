@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('address_id')->constrained('addresses');
             $table->string('name');
-            $table->enum('owner_role', ['owner', 'manager', 'secretary', 'other']);
+            $table->string('owner_role');
             $table->string('inn', 15)->nullable();
             $table->string('ogrn', 20)->nullable();
             $table->string('contact')->nullable();
