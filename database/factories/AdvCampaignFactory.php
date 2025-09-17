@@ -13,7 +13,7 @@ class AdvCampaignFactory extends Factory
         return [
             'name' => fake()->sentence(2),
             'description' => fake()->paragraph(),
-            'crmid' => fake()->numberBetween(1000, 9999),
+            'crmid' => fake()->numberBetween(1, 9) . 'x' . fake()->numberBetween(1000, 9999),
             'action_details' => [
                 'reward' => fake()->numberBetween(100, 1000),
                 'target_audience' => fake()->words(3, true),

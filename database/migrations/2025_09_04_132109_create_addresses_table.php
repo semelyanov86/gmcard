@@ -15,7 +15,7 @@ return new class () extends Migration {
         Schema::create('addresses', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
-            $table->text('open_hours')->nullable();
+            $table->json('open_hours')->nullable();
             $table->string('phone');
             $table->string('phone_secondary')->nullable();
             $table->string('website')->nullable();

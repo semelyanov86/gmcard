@@ -15,14 +15,14 @@ return new class () extends Migration {
         Schema::table('users', function (Blueprint $table): void {
             $table->string('last_name')->nullable();
             $table->tinyInteger('age')->default(0);
-            $table->decimal('balance', 10, 2)->default(0)->nullable();
-            $table->string('job')->nullable();
+            $table->bigInteger('balance')->default(0)->nullable();
+            $table->string('job', 50)->nullable();
             $table->string('job_status', 100)->nullable();
             $table->bigInteger('city')->nullable();
-            $table->string('country')->nullable();
+            $table->string('country', 50)->nullable();
             $table->date('birth_date')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
-            $table->string('code')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('code', 20)->nullable();
         });
     }
 
