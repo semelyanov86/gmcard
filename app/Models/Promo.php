@@ -56,7 +56,7 @@ class Promo extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -64,7 +64,7 @@ class Promo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<AdvCampaign, $this>
+     * @return BelongsTo<AdvCampaign, $this>
      */
     public function advCampaign(): BelongsTo
     {
@@ -72,7 +72,7 @@ class Promo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Organisation, $this>
+     * @return BelongsTo<Organisation, $this>
      */
     public function organisation(): BelongsTo
     {
@@ -80,7 +80,7 @@ class Promo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return BelongsToMany<Category, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function categories(): BelongsToMany
     {
@@ -88,7 +88,7 @@ class Promo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return BelongsToMany<City, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
     public function cities(): BelongsToMany
     {
@@ -96,15 +96,15 @@ class Promo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Address, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
+     * @return BelongsToMany<Address, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
-    public function addresses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function addresses(): BelongsToMany
     {
         return $this->belongsToMany(Address::class, 'address_promo');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<PromoUsage, $this>
+     * @return HasMany<PromoUsage, $this>
      */
     public function usages(): HasMany
     {

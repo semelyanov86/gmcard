@@ -10,7 +10,7 @@ final class PromoUsageData extends Data
 {
     public function __construct(
         public string $used_at,
-        public ?int $id = null,
+        public ?int $id,
         public int $promo_id,
         public ?int $user_id = null,
         public ?string $ip = null,

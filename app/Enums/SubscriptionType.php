@@ -9,4 +9,4 @@ enum SubscriptionType: string
     case BASIC = 'базовая';
     case PREMIUM = 'премиум';
     case PARTNER = 'партнер';
-} 
+}

@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 
 class AdvCampaignResource extends Resource
 {
@@ -22,19 +23,19 @@ class AdvCampaignResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    #[\Override]
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return AdvCampaignForm::configure($schema);
     }
 
-    #[\Override]
+    #[Override]
     public static function table(Table $table): Table
     {
         return AdvCampaignsTable::configure($table);
     }
 
-    #[\Override]
+    #[Override]
     public static function getRelations(): array
     {
         return [

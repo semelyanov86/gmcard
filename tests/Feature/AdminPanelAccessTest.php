@@ -101,7 +101,7 @@ class AdminPanelAccessTest extends TestCase
 
         foreach ($adminRoutes as $route) {
             $response = $this->get($route);
-            $response->assertRedirect('/admin/login', "Failed for route: {$route}");
+            $response->assertRedirect('/admin/login');
         }
     }
 
@@ -129,8 +129,7 @@ class AdminPanelAccessTest extends TestCase
 
         foreach ($adminRoutes as $route) {
             $response = $this->actingAs($user)->get($route);
-            $response->assertStatus(403, "Failed for route: {$route}");
+            $response->assertStatus(403);
         }
     }
 }
- 

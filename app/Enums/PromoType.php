@@ -13,4 +13,4 @@ enum PromoType: string
     case TWO_PLUS_ONE = 'two_plus_one';
     case CASHBACK = 'cashback';
     case KONKURS = 'konkurs';
-} 
+}

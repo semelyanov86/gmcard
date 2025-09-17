@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 
 class UserResource extends Resource
 {
@@ -25,6 +26,7 @@ class UserResource extends Resource
     public static function canCreate(): bool
     {
         $user = auth()->user();
+
         return $user && ($user->hasRole('super-admin') || $user->hasRole('admin'));
     }
 
@@ -48,19 +50,19 @@ class UserResource extends Resource
         return self::canEdit($record);
     }
 
-    #[\Override]
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);
     }
 
-    #[\Override]
+    #[Override]
     public static function table(Table $table): Table
     {
         return UsersTable::configure($table);
     }
 
-    #[\Override]
+    #[Override]
     public static function getRelations(): array
     {
         return [

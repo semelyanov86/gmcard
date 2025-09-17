@@ -33,17 +33,6 @@ class Address extends Model
     ];
 
     /**
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'open_hours' => 'array',
-            'phone' => PhoneNumberCast::class,
-        ];
-    }
-
-    /**
      * @return HasMany<Organisation, $this>
      */
     public function organisations(): HasMany
@@ -57,5 +46,16 @@ class Address extends Model
     public function promos(): BelongsToMany
     {
         return $this->belongsToMany(Promo::class, 'address_promo');
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'open_hours' => 'array',
+            'phone' => PhoneNumberCast::class,
+        ];
     }
 }

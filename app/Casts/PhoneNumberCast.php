@@ -10,25 +10,25 @@ use Illuminate\Database\Eloquent\Model;
 
 final class PhoneNumberCast implements CastsAttributes
 {
-	public function get(Model $model, string $key, mixed $value, array $attributes): ?PhoneNumberValueObject
-	{
-		if (! $value) {
-			return null;
-		}
+    public function get(Model $model, string $key, mixed $value, array $attributes): ?PhoneNumberValueObject
+    {
+        if (! $value) {
+            return null;
+        }
 
-		if ($value instanceof PhoneNumberValueObject) {
-			return $value;
-		}
+        if ($value instanceof PhoneNumberValueObject) {
+            return $value;
+        }
 
-		return PhoneNumberValueObject::from((string) $value);
-	}
+        return PhoneNumberValueObject::from((string) $value);
+    }
 
-	public function set(Model $model, string $key, mixed $value, array $attributes): ?string
-	{
-		if ($value instanceof PhoneNumberValueObject) {
-			return $value->toE164();
-		}
+    public function set(Model $model, string $key, mixed $value, array $attributes): ?string
+    {
+        if ($value instanceof PhoneNumberValueObject) {
+            return $value->toE164();
+        }
 
-		return $value ? (string) $value : null;
-	}
-} 
+        return $value ? (string) $value : null;
+    }
+}

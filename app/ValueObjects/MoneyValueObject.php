@@ -11,7 +11,7 @@ use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
 
-final readonly class MoneyValueObject implements Stringable, Cast
+final readonly class MoneyValueObject implements Cast, Stringable
 {
     public function __construct(
         private Money $money
@@ -23,6 +23,7 @@ final readonly class MoneyValueObject implements Stringable, Cast
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
         $amountInMinorUnits = (int) round((float) $amount * 100);
+
         return new self(new Money($amountInMinorUnits, new Currency($currency)));
     }
 
@@ -58,6 +59,7 @@ final readonly class MoneyValueObject implements Stringable, Cast
     {
         $amountInRubles = ((int) $this->money->getAmount()) / 100;
         $formatted = number_format($amountInRubles, 2, ',', "\u{A0}");
+
         return $formatted . "\u{A0}₽";
     }
 
