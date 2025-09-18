@@ -19,10 +19,13 @@ final class AddressesTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->formatStateUsing(fn ($state) => $state?->toE164())
                     ->searchable(),
                 TextColumn::make('phone_secondary')
+                    ->formatStateUsing(fn ($state) => $state?->toE164())
                     ->searchable(),
                 TextColumn::make('website')
+                    ->url(fn ($record) => $record->website ?: null, shouldOpenInNewTab: true)
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

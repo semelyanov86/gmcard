@@ -20,9 +20,11 @@ class AddressForm
                     ->columnSpanFull(),
                 TextInput::make('phone')
                     ->tel()
+                    ->formatStateUsing(fn ($state) => (string) $state)
                     ->required(),
                 TextInput::make('phone_secondary')
-                    ->tel(),
+                    ->tel()
+                    ->formatStateUsing(fn ($state) => (string) $state),
                 TextInput::make('website'),
             ]);
     }

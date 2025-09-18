@@ -56,6 +56,7 @@ class Address extends Model
         return [
             'open_hours' => 'array',
             'phone' => PhoneNumberCast::class,
+            'phone_secondary' => PhoneNumberCast::class,
         ];
     }
 }
