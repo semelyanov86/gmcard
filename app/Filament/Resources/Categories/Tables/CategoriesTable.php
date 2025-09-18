@@ -19,9 +19,9 @@ final class CategoriesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('parent_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('parent.name')
+                    ->label('Parent')
+                    ->searchable(),
                 IconColumn::make('is_starred')
                     ->boolean(),
                 TextColumn::make('created_at')
