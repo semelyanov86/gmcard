@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Organisations\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use App\Enums\OwnerRoleType;
 
 class OrganisationForm
 {
@@ -20,7 +21,7 @@ class OrganisationForm
                 TextInput::make('name')
                     ->required(),
                 Select::make('owner_role')
-                    ->options(['owner' => 'Owner', 'manager' => 'Manager', 'secretary' => 'Secretary', 'other' => 'Other'])
+                    ->options(collect(OwnerRoleType::cases())->pluck('value', 'value')->all())
                     ->required(),
                 TextInput::make('inn'),
                 TextInput::make('ogrn'),
