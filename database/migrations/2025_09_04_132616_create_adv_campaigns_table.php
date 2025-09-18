@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->bigInteger('crmid');
+            $table->string('crmid')->nullable();
             $table->json('action_details')->nullable();
             $table->string('deeplink')->nullable();
             $table->string('avg_hold_time')->nullable();

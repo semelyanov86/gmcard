@@ -76,8 +76,7 @@ class PromoForm
                 DateTimePicker::make('approved_at'),
                 Textarea::make('approving_notes')
                     ->columnSpanFull(),
-                TextInput::make('crmid')
-                    ->numeric(),
+                TextInput::make('crmid'),
                 Select::make('adv_campaign_id')
                     ->relationship('advCampaign', 'name'),
                 Select::make('organisation_id')

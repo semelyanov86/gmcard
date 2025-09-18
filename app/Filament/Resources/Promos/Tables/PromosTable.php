@@ -63,7 +63,6 @@ final class PromosTable
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('crmid')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('advCampaign.name')
                     ->searchable(),
