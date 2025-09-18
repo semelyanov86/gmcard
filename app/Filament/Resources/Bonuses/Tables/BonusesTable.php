@@ -17,7 +17,7 @@ final class BonusesTable
         return $table
             ->columns([
                 TextColumn::make('amount')
-                    ->numeric()
+                    ->formatStateUsing(fn ($state) => is_object($state) && method_exists($state, 'toDisplayValue') ? $state->toDisplayValue() : (string) $state)
                     ->sortable(),
                 TextColumn::make('code')
                     ->numeric()

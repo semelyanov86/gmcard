@@ -15,7 +15,7 @@ class BonusForm
         return $schema
             ->components([
                 TextInput::make('amount')
-                    ->numeric(),
+                    ->formatStateUsing(fn ($state) => (string) $state),
                 TextInput::make('code')
                     ->numeric(),
                 TextInput::make('source_id')

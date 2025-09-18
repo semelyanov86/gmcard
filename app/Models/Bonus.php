@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\MoneyValueObjectCast;
 use App\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bonus extends Model
 {
@@ -30,7 +32,7 @@ class Bonus extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function sender(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function sender(): BelongsTo
     {
         return $this->belongsTo(User::class, 'source_id');
     }
@@ -38,7 +40,7 @@ class Bonus extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function receiver(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function receiver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'target_id');
     }
@@ -46,7 +48,7 @@ class Bonus extends Model
     protected function casts(): array
     {
         return [
-            'amount' => 'integer',
+            'amount' => MoneyValueObjectCast::class,
             'type' => PaymentType::class,
         ];
     }
