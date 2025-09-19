@@ -26,6 +26,7 @@ class CategoryForm
                     ->preload()
                     ->nullable(),
                 Toggle::make('is_starred')
+                    ->default(false)
                     ->required(),
             ]);
     }

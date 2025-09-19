@@ -27,9 +27,8 @@ final class PermissionsTable
                     ->label('Guard')
                     ->badge()
                     ->color('success'),
-                TextColumn::make('roles_count')
+                TextColumn::make('roles.name')
                     ->label('Assigned Roles')
-                    ->counts('roles')
                     ->badge()
                     ->color('info'),
                 TextColumn::make('created_at')
