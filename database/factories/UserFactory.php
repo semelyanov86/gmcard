@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Enums\JobStatusType;
+use App\Enums\GenderType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -27,7 +28,7 @@ class UserFactory extends Factory
             'city' => fake()->numberBetween(1, 100),
             'country' => fake()->country(),
             'birth_date' => fake()->date('Y-m-d', '2000-01-01'),
-            'gender' => fake()->randomElement(['male', 'female', 'other']),
+            'gender' => fake()->randomElement(GenderType::cases()),
             'code' => fake()->unique()->numerify('PROMO####'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
