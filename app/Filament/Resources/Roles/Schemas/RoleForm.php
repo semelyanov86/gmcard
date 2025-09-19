@@ -18,9 +18,10 @@ class RoleForm
                     ->label('Role Name')
                     ->unique(ignoreRecord: true)
                     ->required(),
-                Select::make('guard_name')
+                TextInput::make('guard_name')
                     ->label('Guard')
                     ->default('web')
+                    ->placeholder('web')
                     ->required(),
                 Select::make('permissions')
                     ->label('Permissions')
