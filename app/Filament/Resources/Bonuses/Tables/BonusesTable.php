@@ -20,14 +20,12 @@ final class BonusesTable
                     ->formatStateUsing(fn ($state) => is_object($state) && method_exists($state, 'toDisplayValue') ? $state->toDisplayValue() : (string) $state)
                     ->sortable(),
                 TextColumn::make('code')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('source_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('target_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('sender.name')
+                    ->searchable(),
+                TextColumn::make('receiver.name')
+                    ->searchable(),
                 TextColumn::make('type'),
                 TextColumn::make('created_at')
                     ->dateTime()

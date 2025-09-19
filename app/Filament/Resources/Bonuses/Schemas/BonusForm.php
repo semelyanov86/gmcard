@@ -17,12 +17,13 @@ class BonusForm
             ->components([
                 TextInput::make('amount')
                     ->formatStateUsing(fn ($state) => (string) $state),
-                TextInput::make('code')
-                    ->numeric(),
-                TextInput::make('source_id')
-                    ->numeric(),
-                TextInput::make('target_id')
-                    ->numeric(),
+                TextInput::make('code'),
+                Select::make('source_id')
+                    ->relationship('sender', 'name')
+                    ->searchable(),
+                Select::make('target_id')
+                    ->relationship('receiver', 'name')
+                    ->searchable(),
                 Select::make('type')
                     ->options(fn () => collect(PaymentType::cases())->mapWithKeys(fn (PaymentType $type) => [
                         $type->value => $type->value,
