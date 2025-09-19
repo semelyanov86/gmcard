@@ -16,15 +16,10 @@ class RoleForm
             ->components([
                 TextInput::make('name')
                     ->label('Role Name')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true),
+                    ->unique(ignoreRecord: true)
+                    ->required(),
                 Select::make('guard_name')
                     ->label('Guard')
-                    ->options([
-                        'web' => 'Web',
-                        'api' => 'API',
-                    ])
                     ->default('web')
                     ->required(),
                 Select::make('permissions')
