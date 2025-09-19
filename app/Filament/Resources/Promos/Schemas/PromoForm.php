@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use App\Enums\PromoType;
 
 class PromoForm
 {
@@ -25,15 +26,9 @@ class PromoForm
                     ->relationship('user', 'name')
                     ->required(),
                 Select::make('type')
-                    ->options([
-                        'simple' => 'Simple',
-                        'coupon' => 'Coupon',
-                        'gift' => 'Gift',
-                        'one_plus_one' => 'One plus one',
-                        'two_plus_one' => 'Two plus one',
-                        'cashback' => 'Cashback',
-                        'konkurs' => 'Konkurs',
-                    ])
+                    ->options(fn () => collect(PromoType::cases())->mapWithKeys(fn (PromoType $type) => [
+                        $type->value => $type->value,
+                    ])->all())
                     ->required(),
                 TextInput::make('code'),
                 TextInput::make('img'),
@@ -46,7 +41,11 @@ class PromoForm
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('video_link'),
-                TextInput::make('smm_links'),
+                Textarea::make('smm_links')
+                    ->formatStateUsing(fn ($state) => is_array($state) ? json_encode($state, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : $state)
+                    ->dehydrateStateUsing(fn ($state) => is_string($state) ? json_decode($state, true) : $state)
+                    ->rows(3)
+                    ->columnSpanFull(),
                 TextInput::make('days_availability'),
                 DatePicker::make('availabe_from'),
                 TimePicker::make('available_to'),
@@ -54,33 +53,31 @@ class PromoForm
                 DateTimePicker::make('available_till')
                     ->required(),
                 Toggle::make('show_on_home')
+                    ->default(false)
                     ->required(),
                 TextInput::make('raise_on_top_hours')
-                    ->required()
                     ->numeric()
                     ->default(0),
                 TextInput::make('restart_after_finish_days')
-                    ->required()
                     ->numeric()
                     ->default(0),
                 TextInput::make('sales_order_from')
-                    ->required()
                     ->numeric()
                     ->default(0),
                 TextInput::make('free_delivery_from')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
+                    ->numeric(),
                 Toggle::make('free_delivery')
+                    ->default(false)
                     ->required(),
                 DateTimePicker::make('approved_at'),
-                Textarea::make('approving_notes')
-                    ->columnSpanFull(),
+                TextInput::make('approving_notes'),
                 TextInput::make('crmid'),
                 Select::make('adv_campaign_id')
-                    ->relationship('advCampaign', 'name'),
+                    ->relationship('advCampaign', 'name')
+                    ->required(),
                 Select::make('organisation_id')
-                    ->relationship('organisation', 'name'),
+                    ->relationship('organisation', 'name')
+                    ->required(),
                 TextInput::make('discount'),
             ]);
     }

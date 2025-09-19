@@ -31,6 +31,14 @@ final class PromosTable
                     ->sortable(),
                 TextColumn::make('video_link')
                     ->searchable(),
+                TextColumn::make('smm_links')
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) return null;
+                        $decoded = is_string($state) ? json_decode($state, true) : $state;
+                        if (!is_array($decoded)) return $state;
+                        return implode(', ', array_map(fn ($key, $value) => "$key: $value", array_keys($decoded), $decoded));
+                    })
+                    ->searchable(),
                 TextColumn::make('availabe_from')
                     ->date()
                     ->sortable(),
