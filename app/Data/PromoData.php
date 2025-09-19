@@ -36,7 +36,7 @@ final class PromoData extends Data
         public ?string $crmid = null,
         public ?int $adv_campaign_id = null,
         public ?int $organisation_id = null,
-        public ?string $dicsount = null,
+        public ?string $discount = null,
         public ?string $code = null,
         public ?string $img = null,
         public ?int $amount = null,

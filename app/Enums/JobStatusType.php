@@ -6,7 +6,7 @@ namespace App\Enums;
 
 enum JobStatusType: string
 {
-    case EMPLOYED = 'трудоустроен';
-    case SELF_EMPLOYED = 'самозанятый';
-    case FREELANCER = 'фрилансер';
+    case EMPLOYED = 'Трудоустроен';
+    case SELF_EMPLOYED = 'Самозанятый';
+    case FREELANCER = 'Фрилансер';
 }

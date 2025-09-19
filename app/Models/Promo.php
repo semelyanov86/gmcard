@@ -45,7 +45,7 @@ class Promo extends Model
         'crmid',
         'adv_campaign_id',
         'organisation_id',
-        'dicsount',
+        'discount',
         'user_id',
     ];
 

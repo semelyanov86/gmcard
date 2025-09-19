@@ -6,8 +6,8 @@ namespace App\Enums;
 
 enum OwnerRoleType: string
 {
-    case OWNER = 'owner';
-    case MANAGER = 'manager';
-    case SECRETARY = 'secretary';
-    case OTHER = 'other';
+    case OWNER = 'Владелец';
+    case MANAGER = 'Менеджер';
+    case SECRETARY = 'Секретарь';
+    case OTHER = 'Другое';
 }

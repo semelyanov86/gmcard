@@ -6,7 +6,7 @@ namespace App\Enums;
 
 enum GenderType: string
 {
-    case MALE = 'male';
-    case FEMALE = 'female';
-    case OTHER = 'other';
+    case MALE = 'Мужской';
+    case FEMALE = 'Женский';
+    case OTHER = 'Другой';
 }

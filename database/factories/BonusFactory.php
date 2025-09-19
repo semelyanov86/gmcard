@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\PaymentType;
 
 class BonusFactory extends Factory
 {
@@ -16,7 +17,7 @@ class BonusFactory extends Factory
             'code' => fake()->optional(0.6)->numerify('BONUS####'),
             'source_id' => User::factory(),
             'target_id' => User::factory(),
-            'type' => fake()->randomElement(['incoming', 'outgoing']),
+            'type' => fake()->randomElement(PaymentType::cases()),
         ];
     }
 }

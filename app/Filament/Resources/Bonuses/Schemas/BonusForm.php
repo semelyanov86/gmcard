@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Bonuses\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use App\Enums\PaymentType;
 
 class BonusForm
 {
@@ -23,7 +24,9 @@ class BonusForm
                 TextInput::make('target_id')
                     ->numeric(),
                 Select::make('type')
-                    ->options(['incoming' => 'Incoming', 'outgoing' => 'Outgoing']),
+                    ->options(fn () => collect(PaymentType::cases())->mapWithKeys(fn (PaymentType $type) => [
+                        $type->value => $type->value,
+                    ])->all()),
             ]);
     }
 }

@@ -6,7 +6,7 @@ namespace App\Enums;
 
 enum SubscriptionType: string
 {
-    case BASIC = 'базовая';
-    case PREMIUM = 'премиум';
-    case PARTNER = 'партнер';
+    case BASIC = 'Базовый';
+    case PREMIUM = 'Премиум';
+    case PARTNER = 'Партнерский';
 }

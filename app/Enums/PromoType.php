@@ -6,11 +6,11 @@ namespace App\Enums;
 
 enum PromoType: string
 {
-    case SIMPLE = 'simple';
-    case COUPON = 'coupon';
-    case GIFT = 'gift';
-    case ONE_PLUS_ONE = 'one_plus_one';
-    case TWO_PLUS_ONE = 'two_plus_one';
-    case CASHBACK = 'cashback';
-    case KONKURS = 'konkurs';
+    case SIMPLE = 'Простая акция';
+    case COUPON = 'Купон';
+    case GIFT = 'Подарок';
+    case ONE_PLUS_ONE = 'Один плюс один';
+    case TWO_PLUS_ONE = 'Два плюс один';
+    case CASHBACK = 'Кэшбэк';
+    case KONKURS = 'Конкурс';
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Organisation;
 use App\Models\AdvCampaign;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\PromoType;
 
 class PromoFactory extends Factory
 {
@@ -16,7 +17,7 @@ class PromoFactory extends Factory
         return [
             'name' => fake()->sentence(3),
             'user_id' => User::factory(),
-            'type' => fake()->randomElement(['simple', 'coupon', 'gift', 'one_plus_one', 'two_plus_one', 'cashback', 'konkurs']),
+            'type' => fake()->randomElement(PromoType::cases()),
             'code' => fake()->optional(0.7)->bothify('PROMO##??'),
             'img' => fake()->optional(0.5)->imageUrl(),
             'amount' => fake()->numberBetween(100, 10000),
@@ -40,7 +41,7 @@ class PromoFactory extends Factory
             'crmid' => fake()->optional(0.5)->bothify('CRM###??'),
             'adv_campaign_id' => AdvCampaign::factory(),
             'organisation_id' => Organisation::factory(),
-            'dicsount' => fake()->optional(0.8)->numberBetween(5, 50) . '%',
+            'discount' => fake()->optional(0.8)->numberBetween(5, 50) . '%',
         ];
     }
 }

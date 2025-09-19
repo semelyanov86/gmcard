@@ -6,6 +6,6 @@ namespace App\Enums;
 
 enum PaymentType: string
 {
-    case INCOMING = 'incoming';
-    case OUTGOING = 'outgoing';
+    case INCOMING = 'Поступление';
+    case OUTGOING = 'Списание';
 }

@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\PaymentType;
 
 class PaymentFactory extends Factory
 {
@@ -14,7 +15,7 @@ class PaymentFactory extends Factory
         return [
             'payment_date' => fake()->dateTimeBetween('-1 year', 'now'),
             'amount' => fake()->numberBetween(100, 50000),
-            'type' => fake()->randomElement(['incoming', 'outgoing']),
+            'type' => fake()->randomElement(PaymentType::cases()),
             'currency' => fake()->randomElement(['RUB', 'USD', 'EUR']),
             'description' => fake()->sentence(),
             'transaction_id' => fake()->optional(0.8)->numerify('TXN#########'),

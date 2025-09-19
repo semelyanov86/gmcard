@@ -68,7 +68,7 @@ final class PromosTable
                     ->searchable(),
                 TextColumn::make('organisation.name')
                     ->searchable(),
-                TextColumn::make('dicsount')
+                TextColumn::make('discount')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

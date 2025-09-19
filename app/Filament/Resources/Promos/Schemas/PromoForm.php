@@ -81,7 +81,7 @@ class PromoForm
                     ->relationship('advCampaign', 'name'),
                 Select::make('organisation_id')
                     ->relationship('organisation', 'name'),
-                TextInput::make('dicsount'),
+                TextInput::make('discount'),
             ]);
     }
 }
