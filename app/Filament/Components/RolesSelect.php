@@ -6,6 +6,7 @@ namespace App\Filament\Components;
 
 use Filament\Forms\Components\Select;
 use Spatie\Permission\Models\Role;
+use App\Enums\RoleType;
 
 class RolesSelect extends Select
 {
@@ -17,12 +18,12 @@ class RolesSelect extends Select
             ->options(function () {
                 $user = auth()->user();
 
-                if ($user && $user->hasRole('super-admin')) {
+                if ($user && $user->hasRole(RoleType::SUPER_ADMIN->value)) {
                     return Role::pluck('name', 'id');
                 }
 
-                if ($user && $user->hasRole('admin')) {
-                    return Role::whereIn('name', ['moderator', 'user'])->pluck('name', 'id');
+                if ($user && $user->hasRole(RoleType::ADMIN->value)) {
+                    return Role::whereIn('name', RoleType::adminAssignable())->pluck('name', 'id');
                 }
 
                 return [];

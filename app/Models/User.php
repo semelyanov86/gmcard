@@ -13,6 +13,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
+use App\Enums\RoleType;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable implements FilamentUser
@@ -68,7 +69,10 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->can('access admin') || $this->hasRole('super-admin') || $this->hasRole('admin') || $this->hasRole('moderator');
+        return $this->can('access admin')
+            || $this->hasRole(RoleType::SUPER_ADMIN->value)
+            || $this->hasRole(RoleType::ADMIN->value)
+            || $this->hasRole(RoleType::MODERATOR->value);
     }
 
     /**

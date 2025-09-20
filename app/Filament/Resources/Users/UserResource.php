@@ -11,6 +11,7 @@ use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
+use App\Enums\RoleType;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -28,19 +29,19 @@ class UserResource extends Resource
     {
         $user = auth()->user();
 
-        return $user && ($user->hasRole('super-admin') || $user->hasRole('admin'));
+        return $user && ($user->hasRole(RoleType::SUPER_ADMIN->value) || $user->hasRole(RoleType::ADMIN->value));
     }
 
     public static function canEdit(Model $record): bool
     {
         $user = auth()->user();
 
-        if ($user && $user->hasRole('super-admin')) {
+        if ($user && $user->hasRole(RoleType::SUPER_ADMIN->value)) {
             return true;
         }
 
-        if ($user && $user->hasRole('admin')) {
-            return method_exists($record, 'hasRole') && ($record->hasRole('moderator') || $record->hasRole('user'));
+        if ($user && $user->hasRole(RoleType::ADMIN->value)) {
+            return method_exists($record, 'hasRole') && ($record->hasRole(RoleType::MODERATOR->value) || $record->hasRole(RoleType::USER->value));
         }
 
         return false;
