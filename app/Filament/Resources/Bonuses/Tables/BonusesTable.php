@@ -9,7 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use App\Filament\Components\MoneyColumn;
+use App\Filament\Components\Money;
 
 final class BonusesTable
 {
@@ -17,7 +17,7 @@ final class BonusesTable
     {
         return $table
             ->columns([
-                MoneyColumn::make('amount')
+                Money::column('amount')
                     ->sortable(),
                 TextColumn::make('code')
                     ->searchable()

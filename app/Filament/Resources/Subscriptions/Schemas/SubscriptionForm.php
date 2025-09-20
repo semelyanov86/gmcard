@@ -7,7 +7,7 @@ namespace App\Filament\Resources\Subscriptions\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use App\Filament\Components\MoneyInput;
+use App\Filament\Components\Money;
 use App\Enums\SubscriptionType;
 
 class SubscriptionForm
@@ -22,7 +22,7 @@ class SubscriptionForm
                 Select::make('type')
                     ->options(SubscriptionType::options())
                     ->required(),
-                MoneyInput::make('amount')
+                Money::input('amount')
                     ->required(),
                 TextInput::make('periodicity')
                     ->required(),

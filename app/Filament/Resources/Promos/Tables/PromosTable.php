@@ -10,7 +10,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
-use App\Filament\Components\MoneyColumn;
+use App\Filament\Components\Money;
 
 final class PromosTable
 {
@@ -34,7 +34,7 @@ final class PromosTable
                     ->searchable(),
                 TextColumn::make('img')
                     ->searchable(),
-                MoneyColumn::make('amount')
+                Money::column('amount')
                     ->sortable(),
                 TextColumn::make('video_link')
                     ->searchable(),

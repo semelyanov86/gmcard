@@ -13,7 +13,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 use App\Enums\PromoType;
-use App\Filament\Components\MoneyInput;
+use App\Filament\Components\Money;
 
 class PromoForm
 {
@@ -31,7 +31,7 @@ class PromoForm
                     ->required(),
                 TextInput::make('code'),
                 TextInput::make('img'),
-                MoneyInput::make('amount'),
+                Money::input('amount'),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),

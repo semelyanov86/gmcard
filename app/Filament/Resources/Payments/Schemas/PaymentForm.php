@@ -9,7 +9,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\PaymentType;
-use App\Filament\Components\MoneyInput;
+use App\Filament\Components\Money;
 
 class PaymentForm
 {
@@ -19,7 +19,7 @@ class PaymentForm
             ->components([
                 DateTimePicker::make('payment_date')
                     ->required(),
-                MoneyInput::make('amount')
+                Money::input('amount')
                     ->required(),
                 Select::make('type')
                     ->options(PaymentType::options())

@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use App\Filament\Components\Money;
 
 use Filament\Tables\Table;
 
@@ -38,7 +39,7 @@ final class UsersTable
                 TextColumn::make('age')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('balance')
+                Money::column('balance')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('job')

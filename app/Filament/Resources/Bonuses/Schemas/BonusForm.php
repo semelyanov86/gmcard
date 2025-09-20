@@ -8,7 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\PaymentType;
-use App\Filament\Components\MoneyInput;
+use App\Filament\Components\Money;
 
 class BonusForm
 {
@@ -16,7 +16,7 @@ class BonusForm
     {
         return $schema
             ->components([
-                MoneyInput::make('amount'),
+                Money::input('amount'),
                 TextInput::make('code'),
                 Select::make('source_id')
                     ->relationship('sender', 'name')
