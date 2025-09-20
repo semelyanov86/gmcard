@@ -7,9 +7,9 @@ namespace App\Filament\Resources\Users\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
+use App\Filament\Components\RolesSelect;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use Spatie\Permission\Models\Role;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 
@@ -46,23 +46,7 @@ class UserForm
                     ->numeric(),
                 TextInput::make('country'),
                 DatePicker::make('birth_date'),
-                Select::make('roles')
-                    ->multiple()
-                    ->relationship('roles', 'name')
-                    ->options(function () {
-                        $user = auth()->user();
-
-                        if ($user && $user->hasRole('super-admin')) {
-                            return Role::pluck('name', 'id');
-                        }
-
-                        if ($user && $user->hasRole('admin')) {
-                            return Role::whereIn('name', ['moderator', 'user'])->pluck('name', 'id');
-                        }
-
-                        return [];
-                    })
-                    ->preload(),
+                RolesSelect::make(),
                 Select::make('gender')
                     ->options(GenderType::options()),
                 TextInput::make('code'),

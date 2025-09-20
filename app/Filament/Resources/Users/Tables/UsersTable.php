@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+
 use Filament\Tables\Table;
 
 final class UsersTable
@@ -52,7 +53,9 @@ final class UsersTable
                 TextColumn::make('birth_date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('role')
+                TextColumn::make('roles.name')
+                    ->badge()
+                    ->separator(', ')
                     ->searchable(),
                 TextColumn::make('gender'),
                 TextColumn::make('code')
