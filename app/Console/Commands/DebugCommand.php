@@ -6,7 +6,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-final class DebugCommand extends Command
+class DebugCommand extends Command
 {
     protected $signature = 'debug';
 

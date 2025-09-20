@@ -1,2 +1,26 @@
 User-agent: *
-Disallow:
+
+Allow: /
+
+Disallow: /admin/
+Disallow: /admin
+
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /email/verification-notification
+
+Disallow: /submit-form
+
+Disallow: /storage/
+Disallow: /vendor/
+
+Disallow: /.env
+Disallow: /config/
+Disallow: /bootstrap/
+
+Allow: /sitemap.xml
+
+Sitemap: https://gmcard.ru/sitemap.xml

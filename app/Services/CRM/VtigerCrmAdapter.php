@@ -32,7 +32,7 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
         return $this->client->entities->createOne('Leads', [
             'lastname'         => $dto->name,
             'email'            => $dto->email,
-            'phone'            => $dto->phone,
+            'phone'            => $dto->phone?->toE164(),
             'city'             => $dto->city,
             'assigned_user_id' => '19x6',
         ]);

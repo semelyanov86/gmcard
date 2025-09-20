@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -9,7 +11,7 @@ class SeoServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->app->make('view')->composer('*', function ($view) {
+        $this->app->make('view')->composer('*', function ($view): void {
             $view->with('canonical', $this->getCanonicalUrl(request()));
         });
     }
@@ -17,12 +19,20 @@ class SeoServiceProvider extends ServiceProvider
     private function getCanonicalUrl(Request $request): string
     {
         $routeName = $request->route()?->getName();
-        
+
+        $appUrlValue = config('app.url');
+        $appUrl = is_string($appUrlValue) ? $appUrlValue : '';
+
+        $homeCanonicalValue = config('meta.business.canonical', '');
+        $homeCanonical = is_string($homeCanonicalValue) ? $homeCanonicalValue : '';
+
         $canonicalUrls = [
-            'home' => config('meta.business.canonical'),
-            'dashboard' => config('app.url') . '/dashboard',
+            'home' => $homeCanonical,
+            'dashboard' => $appUrl . '/dashboard',
         ];
 
-        return $canonicalUrls[$routeName] ?? $request->url();
+        $candidate = $canonicalUrls[$routeName] ?? $request->url();
+
+        return $candidate;
     }
 }

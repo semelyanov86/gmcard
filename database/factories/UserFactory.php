@@ -4,39 +4,37 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\JobStatusType;
+use App\Enums\GenderType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'age' => fake()->numberBetween(18, 80),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'balance' => fake()->randomFloat(2, 0, 10000),
+            'job' => fake()->jobTitle(),
+            'job_status' => fake()->randomElement([JobStatusType::EMPLOYED->value, JobStatusType::SELF_EMPLOYED->value, JobStatusType::FREELANCER->value]),
+            'city' => fake()->numberBetween(1, 100),
+            'country' => fake()->country(),
+            'birth_date' => fake()->date('Y-m-d', '2000-01-01'),
+            'gender' => fake()->randomElement(GenderType::cases()),
+            'code' => fake()->unique()->numerify('PROMO####'),
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
