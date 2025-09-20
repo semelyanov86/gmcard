@@ -7,6 +7,8 @@ namespace App\Models;
 use App\Enums\OwnerRoleType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property array<string, string> $opening_hours
@@ -37,7 +39,7 @@ class Organisation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -45,7 +47,7 @@ class Organisation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address, $this>
      */
-    public function address(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
     }
@@ -53,7 +55,7 @@ class Organisation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
      */
-    public function promos(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function promos(): HasMany
     {
         return $this->hasMany(Promo::class);
     }

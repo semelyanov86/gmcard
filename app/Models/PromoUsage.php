@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PromoUsage extends Model
 {
@@ -28,7 +29,7 @@ class PromoUsage extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Promo, $this>
      */
-    public function promo(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function promo(): BelongsTo
     {
         return $this->belongsTo(Promo::class);
     }
@@ -36,7 +37,7 @@ class PromoUsage extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

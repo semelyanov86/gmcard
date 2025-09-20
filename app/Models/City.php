@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class City extends Model
 {
@@ -27,7 +28,7 @@ class City extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
-    public function promos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function promos(): BelongsToMany
     {
         return $this->belongsToMany(Promo::class, 'city_promo');
     }
