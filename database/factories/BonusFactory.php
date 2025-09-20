@@ -14,7 +14,7 @@ class BonusFactory extends Factory
     {
         return [
             'amount' => fake()->numberBetween(10, 1000),
-            'code' => fake()->optional(0.6)->numerify('BONUS####'),
+            'code' => fake()->optional(0.6)->numberBetween(1000, 9999),
             'source_id' => User::factory(),
             'target_id' => User::factory(),
             'type' => fake()->randomElement(PaymentType::cases()),
