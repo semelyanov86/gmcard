@@ -41,7 +41,7 @@ class UserForm
                     ->default(0.0),
                 TextInput::make('job'),
                 Select::make('job_status')
-                    ->options(collect(JobStatusType::cases())->pluck('value', 'value')->all()),
+                    ->options(JobStatusType::options()),
                 TextInput::make('city')
                     ->numeric(),
                 TextInput::make('country'),

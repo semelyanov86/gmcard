@@ -7,9 +7,10 @@ namespace App\Filament\Resources\Promos\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
+use App\Filament\Components\MoneyColumn;
 
 final class PromosTable
 {
@@ -17,17 +18,23 @@ final class PromosTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('user.name')
-                    ->searchable(),
-                TextColumn::make('type'),
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('type')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('code')
                     ->searchable(),
                 TextColumn::make('img')
                     ->searchable(),
-                TextColumn::make('amount')
-                    ->numeric()
+                MoneyColumn::make('amount')
                     ->sortable(),
                 TextColumn::make('video_link')
                     ->searchable(),
@@ -39,11 +46,19 @@ final class PromosTable
                         return implode(', ', array_map(fn ($key, $value) => "$key: $value", array_keys($decoded), $decoded));
                     })
                     ->searchable(),
+                TextColumn::make('days_availability')
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) return null;
+                        $decoded = is_string($state) ? json_decode($state, true) : $state;
+                        if (!is_array($decoded)) return $state;
+                        return implode(', ', $decoded);
+                    })
+                    ->searchable(),
                 TextColumn::make('availabe_from')
                     ->date()
                     ->sortable(),
                 TextColumn::make('available_to')
-                    ->time()
+                    ->dateTime()
                     ->sortable(),
                 TextColumn::make('started_at')
                     ->dateTime()
@@ -52,7 +67,8 @@ final class PromosTable
                     ->dateTime()
                     ->sortable(),
                 IconColumn::make('show_on_home')
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
                 TextColumn::make('raise_on_top_hours')
                     ->numeric()
                     ->sortable(),
@@ -66,23 +82,24 @@ final class PromosTable
                     ->numeric()
                     ->sortable(),
                 IconColumn::make('free_delivery')
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
                 TextColumn::make('approved_at')
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('approving_notes')
+                    ->searchable(),
                 TextColumn::make('crmid')
-                    ->sortable(),
+                    ->searchable(),
                 TextColumn::make('advCampaign.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('organisation.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('discount')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

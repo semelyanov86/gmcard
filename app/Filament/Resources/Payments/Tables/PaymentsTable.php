@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Filament\Components\MoneyColumn;
 
 final class PaymentsTable
 {
@@ -16,11 +17,13 @@ final class PaymentsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
                 TextColumn::make('payment_date')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('amount')
-                    ->numeric()
+                MoneyColumn::make('amount')
                     ->sortable(),
                 TextColumn::make('type'),
                 TextColumn::make('description')
@@ -31,10 +34,6 @@ final class PaymentsTable
                 TextColumn::make('user.name')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -13,6 +13,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 use App\Enums\PromoType;
+use App\Filament\Components\MoneyInput;
 
 class PromoForm
 {
@@ -26,14 +27,11 @@ class PromoForm
                     ->relationship('user', 'name')
                     ->required(),
                 Select::make('type')
-                    ->options(fn () => collect(PromoType::cases())->mapWithKeys(fn (PromoType $type) => [
-                        $type->value => $type->value,
-                    ])->all())
+                    ->options(PromoType::options())
                     ->required(),
                 TextInput::make('code'),
                 TextInput::make('img'),
-                TextInput::make('amount')
-                    ->numeric(),
+                MoneyInput::make('amount'),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -65,19 +63,19 @@ class PromoForm
                     ->numeric()
                     ->default(0),
                 TextInput::make('free_delivery_from')
-                    ->numeric(),
+                    ->numeric()
+                    ->default(0),
                 Toggle::make('free_delivery')
                     ->default(false)
                     ->required(),
                 DateTimePicker::make('approved_at'),
-                TextInput::make('approving_notes'),
+                Textarea::make('approving_notes')
+                    ->columnSpanFull(),
                 TextInput::make('crmid'),
                 Select::make('adv_campaign_id')
-                    ->relationship('advCampaign', 'name')
-                    ->required(),
+                    ->relationship('advCampaign', 'name'),
                 Select::make('organisation_id')
-                    ->relationship('organisation', 'name')
-                    ->required(),
+                    ->relationship('organisation', 'name'),
                 TextInput::make('discount'),
             ]);
     }

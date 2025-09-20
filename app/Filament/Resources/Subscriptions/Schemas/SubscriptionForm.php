@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Subscriptions\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use App\Filament\Components\MoneyInput;
 
 class SubscriptionForm
 {
@@ -19,9 +20,8 @@ class SubscriptionForm
                     ->required(),
                 TextInput::make('type')
                     ->required(),
-                TextInput::make('amount')
-                    ->required()
-                    ->numeric(),
+                MoneyInput::make('amount')
+                    ->required(),
                 TextInput::make('periodicity')
                     ->required(),
             ]);

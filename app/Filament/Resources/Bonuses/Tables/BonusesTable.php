@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Filament\Components\MoneyColumn;
 
 final class BonusesTable
 {
@@ -16,22 +17,19 @@ final class BonusesTable
     {
         return $table
             ->columns([
-                TextColumn::make('amount')
-                    ->formatStateUsing(fn ($state) => is_object($state) && method_exists($state, 'toDisplayValue') ? $state->toDisplayValue() : (string) $state)
+                MoneyColumn::make('amount')
                     ->sortable(),
                 TextColumn::make('code')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('sender.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('receiver.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('type'),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

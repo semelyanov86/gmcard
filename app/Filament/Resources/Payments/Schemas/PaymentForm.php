@@ -9,6 +9,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\PaymentType;
+use App\Filament\Components\MoneyInput;
 
 class PaymentForm
 {
@@ -18,13 +19,10 @@ class PaymentForm
             ->components([
                 DateTimePicker::make('payment_date')
                     ->required(),
-                TextInput::make('amount')
-                    ->formatStateUsing(fn($state) => (string)$state)
+                MoneyInput::make('amount')
                     ->required(),
                 Select::make('type')
-                    ->options(fn() => collect(PaymentType::cases())->mapWithKeys(fn(PaymentType $type) => [
-                        $type->value => $type->value,
-                    ])->all())
+                    ->options(PaymentType::options())
                     ->required(),
                 TextInput::make('description')
                     ->required(),

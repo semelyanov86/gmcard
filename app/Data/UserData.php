@@ -6,7 +6,6 @@ namespace App\Data;
 
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
-use App\ValueObjects\MoneyValueObject;
 use SensitiveParameter;
 use Spatie\LaravelData\Data;
 
@@ -20,7 +19,7 @@ final class UserData extends Data
         #[SensitiveParameter]
         public string $password,
         public ?int $id = null,
-        public ?MoneyValueObject $balance = null,
+        public ?int $balance = null,
         public ?string $job = null,
         public ?JobStatusType $job_status = null,
         public ?int $city = null,

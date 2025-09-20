@@ -12,6 +12,6 @@ enum GenderType: string
 
     public static function options(): array
     {
-        return collect(self::cases())->pluck('value', 'value')->all();
+        return array_column(self::cases(), 'value', 'value');
     }
 }

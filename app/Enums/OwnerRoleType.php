@@ -10,4 +10,9 @@ enum OwnerRoleType: string
     case MANAGER = 'Менеджер';
     case SECRETARY = 'Секретарь';
     case OTHER = 'Другое';
+
+    public static function options(): array
+    {
+        return array_column(self::cases(), 'value', 'value');
+    }
 }
