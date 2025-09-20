@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\MoneyValueObjectCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,7 +25,6 @@ class Promo extends Model
         'type',
         'code',
         'img',
-        'amount',
         'description',
         'extra_conditions',
         'video_link',
@@ -123,7 +123,7 @@ class Promo extends Model
             'show_on_home' => 'boolean',
             'free_delivery' => 'boolean',
             'approved_at' => 'immutable_datetime',
-            'amount' => 'integer',
+            'amount' => MoneyValueObjectCast::class,
             'raise_on_top_hours' => 'integer',
             'restart_after_finish_days' => 'integer',
             'sales_order_from' => 'integer',

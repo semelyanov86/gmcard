@@ -17,7 +17,6 @@ return new class () extends Migration {
             $table->dateTime('payment_date');
             $table->bigInteger('amount');
             $table->string('type');
-            $table->string('currency', 10);
             $table->string('description');
             $table->bigInteger('transaction_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

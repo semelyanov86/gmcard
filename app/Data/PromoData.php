@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Data;
 
 use App\Enums\PromoType;
+use App\ValueObjects\MoneyValueObject;
 use Spatie\LaravelData\Data;
 
 final class PromoData extends Data
@@ -39,6 +40,6 @@ final class PromoData extends Data
         public ?string $discount = null,
         public ?string $code = null,
         public ?string $img = null,
-        public ?int $amount = null,
+        public ?MoneyValueObject $amount = null,
     ) {}
 }

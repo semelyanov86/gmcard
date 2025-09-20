@@ -16,7 +16,6 @@ class PaymentFactory extends Factory
             'payment_date' => fake()->dateTimeBetween('-1 year', 'now'),
             'amount' => fake()->numberBetween(100, 50000),
             'type' => fake()->randomElement(PaymentType::cases()),
-            'currency' => fake()->randomElement(['RUB', 'USD', 'EUR']),
             'description' => fake()->sentence(),
             'transaction_id' => fake()->optional(0.8)->numerify('TXN#########'),
             'user_id' => User::factory(),

@@ -19,14 +19,12 @@ class PaymentForm
                 DateTimePicker::make('payment_date')
                     ->required(),
                 TextInput::make('amount')
-                    ->formatStateUsing(fn ($state) => (string) $state)
+                    ->formatStateUsing(fn($state) => (string)$state)
                     ->required(),
                 Select::make('type')
-                    ->options(fn () => collect(PaymentType::cases())->mapWithKeys(fn (PaymentType $type) => [
+                    ->options(fn() => collect(PaymentType::cases())->mapWithKeys(fn(PaymentType $type) => [
                         $type->value => $type->value,
                     ])->all())
-                    ->required(),
-                TextInput::make('currency')
                     ->required(),
                 TextInput::make('description')
                     ->required(),

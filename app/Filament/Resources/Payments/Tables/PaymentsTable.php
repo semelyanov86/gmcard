@@ -23,8 +23,6 @@ final class PaymentsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('type'),
-                TextColumn::make('currency')
-                    ->searchable(),
                 TextColumn::make('description')
                     ->searchable(),
                 TextColumn::make('transaction_id')

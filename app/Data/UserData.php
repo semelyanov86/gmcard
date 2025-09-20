@@ -8,7 +8,6 @@ use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\ValueObjects\MoneyValueObject;
 use SensitiveParameter;
-use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 
 final class UserData extends Data
@@ -21,7 +20,6 @@ final class UserData extends Data
         #[SensitiveParameter]
         public string $password,
         public ?int $id = null,
-        #[WithCast(MoneyValueObject::class)]
         public ?MoneyValueObject $balance = null,
         public ?string $job = null,
         public ?JobStatusType $job_status = null,

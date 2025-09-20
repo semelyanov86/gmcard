@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\MoneyValueObjectCast;
 use App\Enums\SubscriptionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +17,6 @@ class Subscription extends Model
 
     protected $fillable = [
         'type',
-        'amount',
         'periodicity',
         'user_id',
     ];
@@ -38,6 +38,7 @@ class Subscription extends Model
     protected function casts(): array
     {
         return [
+            'amount' => MoneyValueObjectCast::class,
             'type' => SubscriptionType::class,
         ];
     }
