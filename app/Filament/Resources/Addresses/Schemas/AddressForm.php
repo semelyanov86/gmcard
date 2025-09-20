@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Addresses\Schemas;
 
 use Filament\Forms\Components\TextInput;
+use App\Filament\Components\Phone;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
@@ -18,13 +19,9 @@ class AddressForm
                     ->required(),
                 Textarea::make('open_hours')
                     ->columnSpanFull(),
-                TextInput::make('phone')
-                    ->tel()
-                    ->formatStateUsing(fn ($state) => (string) $state)
+                Phone::input('phone')
                     ->required(),
-                TextInput::make('phone_secondary')
-                    ->tel()
-                    ->formatStateUsing(fn ($state) => (string) $state),
+                Phone::input('phone_secondary'),
                 TextInput::make('website'),
             ]);
     }

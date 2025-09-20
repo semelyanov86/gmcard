@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use App\Filament\Components\Phone;
 use Filament\Tables\Table;
 
 final class AddressesTable
@@ -18,12 +19,8 @@ final class AddressesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('phone')
-                    ->formatStateUsing(fn ($state) => $state?->toE164())
-                    ->searchable(),
-                TextColumn::make('phone_secondary')
-                    ->formatStateUsing(fn ($state) => $state?->toE164())
-                    ->searchable(),
+                Phone::column('phone'),
+                Phone::column('phone_secondary'),
                 TextColumn::make('website')
                     ->url(fn ($record) => $record->website ?: null, shouldOpenInNewTab: true)
                     ->searchable(),
