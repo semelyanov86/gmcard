@@ -9,4 +9,9 @@ enum GenderType: string
     case MALE = 'Мужской';
     case FEMALE = 'Женский';
     case OTHER = 'Другой';
+
+    public static function options(): array
+    {
+        return collect(self::cases())->pluck('value', 'value')->all();
+    }
 }

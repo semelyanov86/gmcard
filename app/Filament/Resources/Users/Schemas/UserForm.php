@@ -10,6 +10,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Spatie\Permission\Models\Role;
+use App\Enums\GenderType;
+use App\Enums\JobStatusType;
 
 class UserForm
 {
@@ -38,7 +40,8 @@ class UserForm
                     ->numeric()
                     ->default(0.0),
                 TextInput::make('job'),
-                TextInput::make('job_status'),
+                Select::make('job_status')
+                    ->options(collect(JobStatusType::cases())->pluck('value', 'value')->all()),
                 TextInput::make('city')
                     ->numeric(),
                 TextInput::make('country'),
@@ -61,7 +64,7 @@ class UserForm
                     })
                     ->preload(),
                 Select::make('gender')
-                    ->options(['male' => 'Male', 'female' => 'Female', 'other' => 'Other']),
+                    ->options(GenderType::options()),
                 TextInput::make('code'),
             ]);
     }
