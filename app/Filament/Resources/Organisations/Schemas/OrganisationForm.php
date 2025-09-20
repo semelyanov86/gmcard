@@ -21,7 +21,7 @@ class OrganisationForm
                 TextInput::make('name')
                     ->required(),
                 Select::make('owner_role')
-                    ->options(collect(OwnerRoleType::cases())->pluck('value', 'value')->all())
+                    ->options(OwnerRoleType::options())
                     ->required(),
                 TextInput::make('inn'),
                 TextInput::make('ogrn'),
