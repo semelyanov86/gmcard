@@ -14,6 +14,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 use App\Enums\PromoType;
 use App\Filament\Components\Money;
+use Filament\Forms\Components\KeyValue;
 
 class PromoForm
 {
@@ -39,10 +40,9 @@ class PromoForm
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('video_link'),
-                Textarea::make('smm_links')
-                    ->formatStateUsing(fn ($state) => is_array($state) ? json_encode($state, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : $state)
-                    ->dehydrateStateUsing(fn ($state) => is_string($state) ? json_decode($state, true) : $state)
-                    ->rows(3)
+                KeyValue::make('smm_links')
+                    ->keyLabel('smm')
+                    ->valueLabel('link')
                     ->columnSpanFull(),
                 TextInput::make('days_availability'),
                 DatePicker::make('availabe_from'),

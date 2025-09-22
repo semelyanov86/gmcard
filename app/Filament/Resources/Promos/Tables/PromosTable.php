@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Promos\Tables;
 
+use App\Filament\Components\SmmLinksColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -38,13 +39,7 @@ final class PromosTable
                     ->sortable(),
                 TextColumn::make('video_link')
                     ->searchable(),
-                TextColumn::make('smm_links')
-                    ->formatStateUsing(function ($state) {
-                        if (!$state) return null;
-                        $decoded = is_string($state) ? json_decode($state, true) : $state;
-                        if (!is_array($decoded)) return $state;
-                        return implode(', ', array_map(fn ($key, $value) => "$key: $value", array_keys($decoded), $decoded));
-                    })
+                SmmLinksColumn::make('smm_links')
                     ->searchable(),
                 TextColumn::make('days_availability')
                     ->formatStateUsing(function ($state) {
