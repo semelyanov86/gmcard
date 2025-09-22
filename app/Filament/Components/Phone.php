@@ -9,9 +9,6 @@ use Filament\Tables\Columns\TextColumn;
 
 class Phone
 {
-    /**
-     * Create phone input for forms
-     */
     public static function input(?string $name = null): TextInput
     {
         return TextInput::make($name)
@@ -19,9 +16,6 @@ class Phone
             ->formatStateUsing(fn ($state) => (string) $state);
     }
 
-    /**
-     * Create phone column for tables
-     */
     public static function column(?string $name = null): TextColumn
     {
         return TextColumn::make($name)
