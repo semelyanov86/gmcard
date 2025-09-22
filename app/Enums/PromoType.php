@@ -14,6 +14,9 @@ enum PromoType: string
     case CASHBACK = 'Кэшбэк';
     case KONKURS = 'Конкурс';
 
+    /**
+     * @return array<string,string>
+     */
     public static function options(): array
     {
         return array_column(self::cases(), 'value', 'value');

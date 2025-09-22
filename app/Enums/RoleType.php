@@ -12,7 +12,7 @@ enum RoleType: string
     case USER = 'user';
 
     /**
-     * Get all role values as array
+     * @return array<int,string>
      */
     public static function values(): array
     {
@@ -21,6 +21,8 @@ enum RoleType: string
 
     /**
      * Get roles that admin can assign
+     *
+     * @return array<int,string>
      */
     public static function adminAssignable(): array
     {
@@ -31,7 +33,7 @@ enum RoleType: string
     }
 
     /**
-     * Get all roles that super admin can assign
+     * @return array<int,string>
      */
     public static function superAdminAssignable(): array
     {

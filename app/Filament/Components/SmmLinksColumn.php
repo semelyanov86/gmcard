@@ -15,18 +15,21 @@ final class SmmLinksColumn
             ->tooltip(fn ($state) => self::format($state, "\n", emptyText: null));
     }
 
+    /**
+     * @param  array<string,string>|string|null  $state
+     */
     private static function format(mixed $state, string $separator, ?string $emptyText = '-'): ?string
     {
         if (! is_array($state)) {
             return is_string($state) ? $state : null;
         }
 
-        if (empty($state)) {
+        if ($state === []) {
             return $emptyText;
         }
 
         return collect($state)
-            ->map(fn ($value, $key) => "{$key}: {$value}")
+            ->map(fn (string $value, string $key) => sprintf('%s: %s', $key, $value))
             ->implode($separator);
     }
 }

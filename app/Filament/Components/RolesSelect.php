@@ -7,10 +7,11 @@ namespace App\Filament\Components;
 use Filament\Forms\Components\Select;
 use Spatie\Permission\Models\Role;
 use App\Enums\RoleType;
+use Override;
 
 class RolesSelect extends Select
 {
-    #[\Override]
+    #[Override]
     public static function make(?string $name = 'roles'): static
     {
         return parent::make($name)

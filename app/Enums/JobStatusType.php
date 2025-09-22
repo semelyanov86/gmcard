@@ -10,6 +10,9 @@ enum JobStatusType: string
     case SELF_EMPLOYED = 'Самозанятый';
     case FREELANCER = 'Фрилансер';
 
+    /**
+     * @return array<string,string>
+     */
     public static function options(): array
     {
         return array_column(self::cases(), 'value', 'value');

@@ -10,6 +10,9 @@ enum SubscriptionType: string
     case PREMIUM = 'Премиум';
     case PARTNER = 'Партнерский';
 
+    /**
+     * @return array<string,string>
+     */
     public static function options(): array
     {
         return array_column(self::cases(), 'value', 'value');
