@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models;
+
+use App\Enums\OwnerRoleType;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+/**
+ * @property array<string, string> $opening_hours
+ */
+class Organisation extends Model
+{
+    /** @use HasFactory<\Database\Factories\OrganisationFactory> */
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'owner_role',
+        'inn',
+        'ogrn',
+        'contact',
+        'contact_fio',
+        'opening_hours',
+        'user_id',
+        'address_id',
+    ];
+
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsTo<Address, $this>
+     */
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function promos(): HasMany
+    {
+        return $this->hasMany(Promo::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'opening_hours' => 'array',
+            'owner_role' => OwnerRoleType::class,
+        ];
+    }
+}
