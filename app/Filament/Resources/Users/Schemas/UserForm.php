@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
+use App\Filament\Components\Password;
 
 class UserForm
 {
@@ -27,11 +28,7 @@ class UserForm
                     ->email()
                     ->required(),
                 DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->required(fn (string $context): bool => $context === 'create')
-                    ->dehydrated(fn (?string $state): bool => filled($state))
-                    ->dehydrateStateUsing(fn (?string $state): ?string => filled($state) ? bcrypt($state) : null),
+                Password::make(),
                 TextInput::make('last_name'),
                 TextInput::make('age')
                     ->required()
