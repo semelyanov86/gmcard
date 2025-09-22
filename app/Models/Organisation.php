@@ -37,7 +37,7 @@ class Organisation extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -45,7 +45,7 @@ class Organisation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Address, $this>
+     * @return BelongsTo<Address, $this>
      */
     public function address(): BelongsTo
     {
@@ -53,7 +53,7 @@ class Organisation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Promo, $this>
+     * @return HasMany<Promo, $this>
      */
     public function promos(): HasMany
     {

@@ -18,4 +18,4 @@ final class Password
             ->rule('min:8')
             ->dehydrated(fn (?string $state): bool => filled($state));
     }
-} 
+}

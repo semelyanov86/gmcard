@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components;
 
 use Filament\Tables\Columns\TextColumn;
@@ -12,19 +14,21 @@ final class DaysAvailabilityColumn
             ->label('Days availability')
             ->formatStateUsing(function ($state) {
                 $value = is_string($state) ? json_decode($state, true) : $state;
-                if (!is_array($value)) {
+                if (! is_array($value)) {
                     return $state;
                 }
                 if (empty($value)) {
                     return '-';
                 }
+
                 return implode(', ', $value);
             })
             ->tooltip(function ($state) {
                 $value = is_string($state) ? json_decode($state, true) : $state;
-                if (!is_array($value) || empty($value)) {
+                if (! is_array($value) || empty($value)) {
                     return null;
                 }
+
                 return implode("\n", $value);
             });
     }

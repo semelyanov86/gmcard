@@ -10,7 +10,7 @@ final class CategoryData extends Data
 {
     public function __construct(
         public string $name,
-        public bool $is_starred = false,
+        public bool $is_starred,
         public ?int $parent_id,
         public ?string $description = null,
         public ?int $id = null,

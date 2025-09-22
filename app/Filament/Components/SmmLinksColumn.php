@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Components;
 
 use Filament\Tables\Columns\TextColumn;
@@ -13,9 +15,9 @@ final class SmmLinksColumn
             ->tooltip(fn ($state) => self::format($state, "\n", emptyText: null));
     }
 
-    private static function format(mixed $state, string $separator, ?string $emptyText = '-') : ?string
+    private static function format(mixed $state, string $separator, ?string $emptyText = '-'): ?string
     {
-        if (!is_array($state)) {
+        if (! is_array($state)) {
             return is_string($state) ? $state : null;
         }
 

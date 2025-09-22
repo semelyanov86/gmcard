@@ -30,7 +30,7 @@ class Bonus extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function sender(): BelongsTo
     {
@@ -38,7 +38,7 @@ class Bonus extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function receiver(): BelongsTo
     {

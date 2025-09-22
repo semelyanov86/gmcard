@@ -13,36 +13,36 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class PhoneNumberCast implements CastsAttributes
 {
-	/**
-	 * @param array<string, string> $attributes
-	 */
-	public function get(Model $model, string $key, mixed $value, array $attributes): ?PhoneNumberValueObject
-	{
-		if ($value === null || $value === '') {
-			return null;
-		}
+    /**
+     * @param  array<string, string>  $attributes
+     */
+    public function get(Model $model, string $key, mixed $value, array $attributes): ?PhoneNumberValueObject
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
 
-		if (is_string($value)) {
-			return PhoneNumberValueObject::from($value);
-		}
+        if (is_string($value)) {
+            return PhoneNumberValueObject::from($value);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @param PhoneNumberValueObject|string|null $value
-	 * @param array<string, string> $attributes
-	 */
-	public function set(Model $model, string $key, mixed $value, array $attributes): ?string
-	{
-		if ($value instanceof PhoneNumberValueObject) {
-			return $value->toE164();
-		}
+    /**
+     * @param  PhoneNumberValueObject|string|null  $value
+     * @param  array<string, string>  $attributes
+     */
+    public function set(Model $model, string $key, mixed $value, array $attributes): ?string
+    {
+        if ($value instanceof PhoneNumberValueObject) {
+            return $value->toE164();
+        }
 
-		if (is_string($value)) {
-			return $value !== '' ? $value : null;
-		}
+        if (is_string($value)) {
+            return $value !== '' ? $value : null;
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

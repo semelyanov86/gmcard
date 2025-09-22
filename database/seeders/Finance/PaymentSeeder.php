@@ -16,7 +16,7 @@ class PaymentSeeder extends Seeder
             ['payment_date' => '2025-01-05 12:30:00', 'amount' => 1200, 'type' => 'Поступление', 'description' => 'Пополнение баланса', 'transaction_id' => 2, 'user_id' => 2],
             ['payment_date' => '2025-01-09 09:15:00', 'amount' => 800, 'type' => 'Списание', 'description' => 'Оплата заказа #1002', 'transaction_id' => 3, 'user_id' => 3],
             ['payment_date' => '2025-01-12 18:05:00', 'amount' => 150, 'type' => 'Поступление', 'description' => 'Кэшбэк за покупку', 'transaction_id' => 4, 'user_id' => 4],
-            ['payment_date' => '2025-01-15 11:40:00', 'amount' => 2300, 'type' => 'Списание','description' => 'Оплата заказа #1003', 'transaction_id' => 5, 'user_id' => 5],
+            ['payment_date' => '2025-01-15 11:40:00', 'amount' => 2300, 'type' => 'Списание', 'description' => 'Оплата заказа #1003', 'transaction_id' => 5, 'user_id' => 5],
             ['payment_date' => '2025-01-20 14:20:00', 'amount' => 300, 'type' => 'Поступление', 'description' => 'Кэшбэк по акции', 'transaction_id' => 6, 'user_id' => 6],
             ['payment_date' => '2025-02-01 16:10:00', 'amount' => 1000, 'type' => 'Списание', 'description' => 'Оплата заказа #1004', 'transaction_id' => 7, 'user_id' => 7],
             ['payment_date' => '2025-02-05 09:50:00', 'amount' => 2000, 'type' => 'Поступление', 'description' => 'Пополнение баланса', 'transaction_id' => 8, 'user_id' => 8],

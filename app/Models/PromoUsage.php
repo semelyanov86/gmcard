@@ -27,7 +27,7 @@ class PromoUsage extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Promo, $this>
+     * @return BelongsTo<Promo, $this>
      */
     public function promo(): BelongsTo
     {
@@ -35,7 +35,7 @@ class PromoUsage extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

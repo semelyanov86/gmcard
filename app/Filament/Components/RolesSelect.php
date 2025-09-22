@@ -10,6 +10,7 @@ use App\Enums\RoleType;
 
 class RolesSelect extends Select
 {
+    #[\Override]
     public static function make(?string $name = 'roles'): static
     {
         return parent::make($name)

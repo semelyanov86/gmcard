@@ -9,7 +9,6 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use App\Filament\Components\Money;
-
 use Filament\Tables\Table;
 
 final class UsersTable
