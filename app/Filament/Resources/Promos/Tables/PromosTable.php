@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Promos\Tables;
 
+use App\Filament\Components\DaysAvailabilityColumn;
 use App\Filament\Components\SmmLinksColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -41,13 +42,7 @@ final class PromosTable
                     ->searchable(),
                 SmmLinksColumn::make('smm_links')
                     ->searchable(),
-                TextColumn::make('days_availability')
-                    ->formatStateUsing(function ($state) {
-                        if (!$state) return null;
-                        $decoded = is_string($state) ? json_decode($state, true) : $state;
-                        if (!is_array($decoded)) return $state;
-                        return implode(', ', $decoded);
-                    })
+                DaysAvailabilityColumn::make()
                     ->searchable(),
                 TextColumn::make('availabe_from')
                     ->date()
