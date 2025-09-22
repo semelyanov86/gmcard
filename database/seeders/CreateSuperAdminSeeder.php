@@ -14,8 +14,8 @@ class CreateSuperAdminSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = env('ADMIN_EMAIL');
-        $pass = env('ADMIN_PASSWORD');
+        $email = 'admin@gmail.com';
+        $pass = '12345678';
 
         if (! $email || ! $pass) {
             return;
