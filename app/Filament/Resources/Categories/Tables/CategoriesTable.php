@@ -18,6 +18,7 @@ final class CategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Name')
                     ->searchable(),
                 TextColumn::make('parent.name')
                     ->label('Parent')
@@ -36,6 +37,7 @@ final class CategoriesTable
             ->filters([
                 //
             ])
+            ->defaultSort('parent_id')
             ->recordActions([
                 EditAction::make(),
             ])
