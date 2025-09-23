@@ -19,6 +19,7 @@ use Database\Seeders\Categories\FashionSeeder;
 use Database\Seeders\Categories\GiftsSeeder;
 use Database\Seeders\Categories\HealthSeeder;
 use Database\Seeders\Categories\HomeSeeder;
+use Database\Seeders\Categories\PetsSeeder;
 use Database\Seeders\Categories\RestaurantsSeeder;
 use Database\Seeders\Categories\SportSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
@@ -51,6 +52,7 @@ class DatabaseSeeder extends Seeder
             SportSeeder::class,
             AutoSeeder::class,
             EducationSeeder::class,
+            PetsSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
