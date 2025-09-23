@@ -22,6 +22,7 @@ use Database\Seeders\Categories\HomeSeeder;
 use Database\Seeders\Categories\PetsSeeder;
 use Database\Seeders\Categories\RestaurantsSeeder;
 use Database\Seeders\Categories\SportSeeder;
+use Database\Seeders\Categories\TravelSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
@@ -53,6 +54,7 @@ class DatabaseSeeder extends Seeder
             AutoSeeder::class,
             EducationSeeder::class,
             PetsSeeder::class,
+            TravelSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
