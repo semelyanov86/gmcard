@@ -15,8 +15,10 @@ use Database\Seeders\Categories\CategoryKidsSeeder;
 use Database\Seeders\Categories\ElectroSeeder;
 use Database\Seeders\Categories\FashionSeeder;
 use Database\Seeders\Categories\GiftsSeeder;
+use Database\Seeders\Categories\HealthSeeder;
 use Database\Seeders\Categories\HomeSeeder;
 use Database\Seeders\Categories\RestaurantsSeeder;
+use Database\Seeders\Categories\SportSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
@@ -43,6 +45,8 @@ class DatabaseSeeder extends Seeder
             HomeSeeder::class,
             RestaurantsSeeder::class,
             GiftsSeeder::class,
+            HealthSeeder::class,
+            SportSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
