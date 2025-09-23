@@ -24,11 +24,14 @@ class CategoryForm
                     ->label('Parent')
                     ->relationship('parent', 'name', 'parent_id')
                     ->nullable()
-                    ->searchable()
                     ->multiple(false)
-                    ->independent(false)
                     ->enableBranchNode()
-                    ->defaultOpenLevel(1),
+                    ->independent(false)
+                    ->defaultOpenLevel(1)
+                    ->searchable()
+                    ->placeholder(__('Please select a category'))
+                    ->emptyLabel(__('Oops, no results have been found!'))
+                    ->withCount(),
                 Toggle::make('is_starred')
                     ->default(false)
                     ->required(),
