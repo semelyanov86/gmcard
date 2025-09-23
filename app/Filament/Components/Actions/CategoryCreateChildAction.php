@@ -15,6 +15,7 @@ final class CategoryCreateChildAction
             ->label('Add subcategory')
             ->mutateFormDataUsing(function (array $data, Category $record): array {
                 $data['parent_id'] = $record->getKey();
+
                 return $data;
             });
     }

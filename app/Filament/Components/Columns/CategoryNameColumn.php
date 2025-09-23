@@ -15,10 +15,11 @@ final class CategoryNameColumn
             ->label('Name')
             ->formatStateUsing(function (string $state, Category $record): string {
                 $path = CategoryPathColumn::pathOf($record);
-                $depth = max(substr_count($path, '/'), 0);
+                $depth = max(mb_substr_count($path, '/'), 0);
                 $indent = str_repeat('— ', $depth);
+
                 return $indent . $state;
             })
             ->searchable();
     }
-} 
+}

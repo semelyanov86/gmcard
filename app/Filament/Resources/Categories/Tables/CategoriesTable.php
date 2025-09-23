@@ -7,7 +7,6 @@ namespace App\Filament\Resources\Categories\Tables;
 use App\Filament\Components\Actions\CategoryCreateChildAction;
 use App\Filament\Components\Columns\CategoryNameColumn;
 use App\Filament\Components\Columns\CategoryPathColumn;
-use App\Models\Category;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;

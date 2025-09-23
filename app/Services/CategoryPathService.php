@@ -8,8 +8,12 @@ use App\Models\Category;
 
 class CategoryPathService
 {
+    /**
+     * @param list<string> $namesPath
+     */
     public function ensurePath(array $namesPath): void
     {
+        /** @var int|null $parentId */
         $parentId = null;
 
         foreach ($namesPath as $name) {
@@ -19,13 +23,13 @@ class CategoryPathService
                 ->when($parentId === null, fn ($q) => $q->whereNull('parent_id'))
                 ->first();
 
-            if (!$category) {
+            if (! $category) {
                 $category = new Category(['name' => $name]);
                 $category->parent_id = $parentId;
                 $category->save();
             }
 
-            $parentId = $category->getKey();
+            $parentId = $category->id;
         }
     }
-} 
+}

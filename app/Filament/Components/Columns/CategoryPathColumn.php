@@ -28,6 +28,7 @@ final class CategoryPathColumn
             $parts[] = $current->name;
             $current = $current->parent;
         }
+
         return implode(' / ', array_reverse($parts));
     }
-} 
+}
