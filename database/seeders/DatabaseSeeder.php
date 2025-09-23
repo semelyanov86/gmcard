@@ -13,6 +13,7 @@ use Database\Seeders\Business\AdvCampaignSeeder;
 use Database\Seeders\Business\OrganisationSeeder;
 use Database\Seeders\Categories\AutoSeeder;
 use Database\Seeders\Categories\CategoryKidsSeeder;
+use Database\Seeders\Categories\EducationSeeder;
 use Database\Seeders\Categories\ElectroSeeder;
 use Database\Seeders\Categories\FashionSeeder;
 use Database\Seeders\Categories\GiftsSeeder;
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
             HealthSeeder::class,
             SportSeeder::class,
             AutoSeeder::class,
+            EducationSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
