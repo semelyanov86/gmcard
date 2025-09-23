@@ -14,6 +14,7 @@ use Database\Seeders\Business\OrganisationSeeder;
 use Database\Seeders\Categories\CategoryKidsSeeder;
 use Database\Seeders\Categories\ElectroSeeder;
 use Database\Seeders\Categories\FashionSeeder;
+use Database\Seeders\Categories\HomeSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             CategoryKidsSeeder::class,
             FashionSeeder::class,
             ElectroSeeder::class,
+            HomeSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
