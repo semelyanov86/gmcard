@@ -17,6 +17,10 @@ class CreateSuperAdminSeeder extends Seeder
         $email = 'admin@gmail.com';
         $pass = '12345678';
 
+        if (! $email || ! $pass) {
+            return;
+        }
+
         $admin = User::firstOrCreate(
             ['email' => $email],
             [
