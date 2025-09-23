@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Auth\PermissionsSeeder;
-use Database\Seeders\Base\CategorySeeder;
+use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Base\CitySeeder;
 use Database\Seeders\Base\UserSeeder;
 use Database\Seeders\Business\AddressSeeder;
 use Database\Seeders\Business\AdvCampaignSeeder;
 use Database\Seeders\Business\OrganisationSeeder;
+use Database\Seeders\Categories\CategoryKidsSeeder;
+use Database\Seeders\Categories\FashionSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CitySeeder::class,
-            CategorySeeder::class,
+            CategoryKidsSeeder::class,
+            FashionSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,

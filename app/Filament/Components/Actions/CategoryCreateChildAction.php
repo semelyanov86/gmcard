@@ -12,10 +12,10 @@ final class CategoryCreateChildAction
     public static function make(string $name = 'createChild'): CreateAction
     {
         return CreateAction::make($name)
-            ->label('Добавить подкатегорию')
+            ->label('Add subcategory')
             ->mutateFormDataUsing(function (array $data, Category $record): array {
                 $data['parent_id'] = $record->getKey();
                 return $data;
             });
     }
-} 
+}
