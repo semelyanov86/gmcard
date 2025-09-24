@@ -8,7 +8,7 @@ use App\Http\Controllers\Popup\FormSubmitController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/business', [BusinessLandingController::class, 'index'])->name('business.landing');
+Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);

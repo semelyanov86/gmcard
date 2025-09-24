@@ -53,7 +53,7 @@ class PopupFormSubmitTest extends TestCase
 
     public function test_example(): void
     {
-        $response = $this->get('/business');
+        $response = $this->get('/');
         $response->assertStatus(200);
     }
 
