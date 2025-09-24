@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import '../../../css/internal/discount.css';
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 </script>
 
 <template>
     <body class="flex flex-col items-center justify-center py-10">
         <div class="header flex items-center justify-center gap-2">
-            <img class="h-14 w-14" src="/images/discount_images/logo.png" alt="Логотип" />
+            <AdaptiveImage image-path="discount_images/logo" alt="Логотип" image-class="h-14 w-14" :critical="true" />
             <span class="text-lg font-bold tracking-[4px] text-white">CARD</span>
         </div>
         <section class="flex flex-col">
@@ -20,19 +21,19 @@ import '../../../css/internal/discount.css';
             </button>
             <div class="flex items-baseline justify-center">
                 <div class="blockCol flex flex-col items-center justify-center">
-                    <img class="comp w-[183px] pl-[54px]" src="/images/discount_images/computer.png" alt="" />
+                    <AdaptiveImage image-path="discount_images/computer" alt="" image-class="comp w-[183px] pl-[54px]" />
                     <p class="mt-3 max-w-[200px] text-center text-[14px] text-white">
                         Зарегистрируйтесь в GM или войдите под вашим логином и выберите любимый магазин
                     </p>
                 </div>
-                <img src="/images/discount_images/arrow.png" alt="" />
+                <AdaptiveImage image-path="discount_images/arrow" alt="" />
                 <div class="blockCol flex flex-col items-center justify-center">
-                    <img class="cart w-[190px] pr-[59px]" src="/images/discount_images/basket.png" alt="" />
+                    <AdaptiveImage image-path="discount_images/basket" alt="" image-class="cart w-[190px] pr-[59px]" />
                     <p class="mt-3 max-w-[200px] text-center text-[14px] text-white">Перейдите в магазин и совершите покупку как обычно</p>
                 </div>
-                <img src="/images/discount_images/arrow.png" alt="" />
+                <AdaptiveImage image-path="discount_images/arrow" alt="" />
                 <div class="blockCol flex flex-col items-center justify-center">
-                    <img class="pay w-[85px] pr-[14px]" src="/images/discount_images/pay.png" alt="" />
+                    <AdaptiveImage image-path="discount_images/pay" alt="" image-class="pay w-[85px] pr-[14px]" />
                     <p class="mt-3 max-w-[200px] text-center text-[14px] text-white">
                         Мы получаем комиссию от магазина и переводим кэшбэк на ваш счет
                     </p>
