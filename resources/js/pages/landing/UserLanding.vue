@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import '../../../css/internal/discount.css';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import PopUpForm from '@/components/popup/PopUpForm.vue';
+import { ref } from 'vue';
+
+const isPopUpVisible = ref(false);
+
+function openPopUp() {
+    isPopUpVisible.value = true;
+}
 </script>
 
 <template>
@@ -16,9 +24,12 @@ import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
                 </p>
                 <p class="mt-5 mb-5 text-center text-[20px] font-bold text-[#f6db12]">7 дней премиума за регистрацию в подарок</p>
             </div>
-            <button class="mx-auto mb-10 w-full max-w-[320px] cursor-pointer rounded-[50px] bg-[#f6db12] px-3 py-5 text-[19px] font-bold text-black">
-                Присоедениться бесплатно
-            </button>
+                <button class="mx-auto mb-10 w-full max-w-[320px] cursor-pointer rounded-[50px] bg-[#f6db12] px-3 py-5 text-[19px] font-bold text-black" @click="openPopUp">
+                    Присоедениться бесплатно
+                </button>
+                <transition name="fade">
+                    <PopUpForm v-if="isPopUpVisible" @close="isPopUpVisible = false" />
+                </transition>
             <div class="flex items-baseline justify-center">
                 <div class="blockCol flex flex-col items-center justify-center">
                     <AdaptiveImage image-path="discount_images/computer" alt="" image-class="comp w-[183px] pl-[54px]" />
