@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\Category;
@@ -10,7 +12,7 @@ class CategoryPathAction
     use AsAction;
 
     /**
-     * @param list<string> $namesPath
+     * @param  list<string>  $namesPath
      */
     public function handle(array $namesPath): void
     {

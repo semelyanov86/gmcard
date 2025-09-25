@@ -49,4 +49,4 @@ class CategoryPathActionTest extends TestCase
         $this->assertSame($root->id, $child->parent_id);
         $this->assertSame($child->id, $leaf->parent_id);
     }
-} 
+}
