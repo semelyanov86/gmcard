@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Categories;
 
-use App\Services\CategoryPathService;
+use App\Actions\CategoryPathAction;
 use Illuminate\Database\Seeder;
 
 class TravelSeeder extends Seeder
@@ -73,9 +73,8 @@ class TravelSeeder extends Seeder
             ['Досуг, Культура и Путешествия', 'Товары', 'Дорожные аксессуары'],
         ];
 
-        $service = new CategoryPathService();
         foreach ($paths as $path) {
-            $service->ensurePath($path);
+            CategoryPathAction::run($path);
         }
     }
 }

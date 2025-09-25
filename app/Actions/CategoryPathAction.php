@@ -1,19 +1,19 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Services;
+namespace App\Actions;
 
 use App\Models\Category;
+use Lorisleiva\Actions\Concerns\AsAction;
 
-class CategoryPathService
+class CategoryPathAction
 {
+    use AsAction;
+
     /**
      * @param list<string> $namesPath
      */
-    public function ensurePath(array $namesPath): void
+    public function handle(array $namesPath): void
     {
-        /** @var int|null $parentId */
         $parentId = null;
 
         foreach ($namesPath as $name) {

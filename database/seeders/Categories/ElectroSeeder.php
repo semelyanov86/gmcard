@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Categories;
 
-use App\Services\CategoryPathService;
+use App\Actions\CategoryPathAction;
 use Illuminate\Database\Seeder;
 
 class ElectroSeeder extends Seeder
@@ -62,9 +62,8 @@ class ElectroSeeder extends Seeder
 
         ];
 
-        $service = new CategoryPathService();
         foreach ($paths as $path) {
-            $service->ensurePath($path);
+            CategoryPathAction::run($path);
         }
     }
 }
