@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\Landing\BusinessLandingController;
+use App\Http\Controllers\Landing\UserLandingController;
 use App\Http\Controllers\Popup\FormSubmitController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
+Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 

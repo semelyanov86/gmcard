@@ -3,7 +3,7 @@ import PopUpForm from '@/components/popup/PopUpForm.vue';
 import ItemSlider from '@/components/sliders/ItemSlider.vue';
 import ReviewsSlider from '@/components/sliders/ReviewsSlider.vue';
 
-import '../../css/internal/landing.css';
+import '../../../css/internal/landingBusiness.css';
 
 import Footer from '@/components/Footer.vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';

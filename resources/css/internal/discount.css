@@ -1,0 +1,24 @@
+body,
+html {
+    font-family: 'PT Sans', sans-serif;
+    background-image: url('/images/webp/discount_images/bg.webp');
+    background-size: cover;
+}
+
+@media (max-width: 500px) {
+    .blockCol {
+        .comp {
+            width: 100%;
+            padding-left: 34px;
+        }
+        .cart {
+            width: 100%;
+            padding: 0;
+            margin-right: 34px;
+        }
+        .pay {
+            width: 60%;
+            padding: 0;
+        }
+    }
+}
