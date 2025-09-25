@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Categories\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Filament\Components\Actions\CategoryCreateChildAction;
+use App\Filament\Components\Columns\CategoryNameColumn;
+use App\Filament\Components\Columns\CategoryPathColumn;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -17,11 +18,8 @@ final class CategoriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('parent.name')
-                    ->label('Parent')
-                    ->searchable(),
+                CategoryNameColumn::make(),
+                CategoryPathColumn::make(),
                 IconColumn::make('is_starred')
                     ->boolean(),
                 TextColumn::make('created_at')
@@ -33,16 +31,10 @@ final class CategoriesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->defaultSort('parent_id')
             ->recordActions([
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                CategoryCreateChildAction::make(),
             ]);
     }
 }

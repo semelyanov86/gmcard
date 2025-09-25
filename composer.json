@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.4",
         "brick/phonenumber": "^0.8.0",
+        "codewithdennis/filament-select-tree": "^4.0",
         "filament/filament": "^4.0",
         "inertiajs/inertia-laravel": "^2.0.2",
         "jeffgreco13/filament-breezy": "^3.0",

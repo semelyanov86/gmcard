@@ -4,14 +4,25 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Auth\PermissionsSeeder;
-use Database\Seeders\Base\CategorySeeder;
+use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Base\CitySeeder;
 use Database\Seeders\Base\UserSeeder;
 use Database\Seeders\Business\AddressSeeder;
 use Database\Seeders\Business\AdvCampaignSeeder;
 use Database\Seeders\Business\OrganisationSeeder;
+use Database\Seeders\Categories\AutoSeeder;
+use Database\Seeders\Categories\CategoryKidsSeeder;
+use Database\Seeders\Categories\EducationSeeder;
+use Database\Seeders\Categories\ElectroSeeder;
+use Database\Seeders\Categories\FashionSeeder;
+use Database\Seeders\Categories\GiftsSeeder;
+use Database\Seeders\Categories\HealthSeeder;
+use Database\Seeders\Categories\HomeSeeder;
+use Database\Seeders\Categories\PetsSeeder;
+use Database\Seeders\Categories\RestaurantsSeeder;
+use Database\Seeders\Categories\SportSeeder;
+use Database\Seeders\Categories\TravelSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
@@ -32,7 +43,18 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CitySeeder::class,
-            CategorySeeder::class,
+            CategoryKidsSeeder::class,
+            FashionSeeder::class,
+            ElectroSeeder::class,
+            HomeSeeder::class,
+            RestaurantsSeeder::class,
+            GiftsSeeder::class,
+            HealthSeeder::class,
+            SportSeeder::class,
+            AutoSeeder::class,
+            EducationSeeder::class,
+            PetsSeeder::class,
+            TravelSeeder::class,
             UserSeeder::class,
 
             AddressSeeder::class,
