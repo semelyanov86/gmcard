@@ -23,6 +23,7 @@ return new class () extends Migration {
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
             $table->string('code', 20)->nullable();
+            $table->string('crmid')->nullable();
         });
     }
 
