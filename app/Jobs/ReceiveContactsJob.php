@@ -18,18 +18,17 @@ class ReceiveContactsJob implements ShouldQueue
     public function handle($job, array $data): void
     {
         $contactData = $data['data'];
-        $contactData['crmid'] = $contactData['id'];
-        
-        if (isset($contactData['firstname'])) {
-            $contactData['name'] = $contactData['firstname'];
-        }
-        if (isset($contactData['lastname'])) {
-            $contactData['last_name'] = $contactData['lastname'];
-        }
 
-        User::updateOrCreate(
-            ['crmid' => $contactData['crmid']],
-            $contactData
+        $mappedData = [
+            'crmid' => $contactData['id'],
+            'name' => $contactData['firstname'] ?? null,
+            'last_name' => $contactData['lastname'] ?? null,
+            'email' => $contactData['email'] ?? 'no-email@example.com',
+        ];
+
+        User::firstOrCreate(
+            ['crmid' => $mappedData['crmid']],
+            $mappedData
         );
     }
 }
