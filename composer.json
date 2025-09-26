@@ -27,7 +27,8 @@
         "spatie/laravel-settings": "^3.4",
         "spiral/roadrunner-cli": "^2.7.1",
         "spiral/roadrunner-http": "^3.5.2",
-        "tightenco/ziggy": "^2.5.3"
+        "tightenco/ziggy": "^2.5.3",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.3"
     },
     "require-dev": {
         "driftingly/rector-laravel": "^2.0",

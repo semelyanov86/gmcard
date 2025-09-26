@@ -42,6 +42,7 @@ class User extends Authenticatable implements FilamentUser
         'birth_date',
         'gender',
         'code',
+        'crmid',
     ];
 
     /**
