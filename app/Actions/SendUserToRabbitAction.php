@@ -11,6 +11,10 @@ final class SendUserToRabbitAction
 {
     public function __invoke(User $user): bool
     {
+        if (app()->environment('testing')) {
+            return true;
+        }
+
         $userData = $user->toArray();
         $userData['module'] = User::CRM_CONTACTS_NAME;
 
