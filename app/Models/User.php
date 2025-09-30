@@ -25,6 +25,8 @@ class User extends Authenticatable implements FilamentUser
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public const CRM_CONTACTS_NAME = 'Users';
+
     /**
      * The attributes that are mass assignable.
      *

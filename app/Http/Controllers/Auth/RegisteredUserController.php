@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\SendUserToRabbitAction;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -30,7 +31,7 @@ final class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, SendUserToRabbitAction $action): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -43,6 +44,8 @@ final class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password), // @phpstan-ignore-line
         ]);
+
+        $action($user);
 
         $user->assignRole('user');
 
