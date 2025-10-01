@@ -34,14 +34,22 @@ final class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'birth_date' => 'nullable|date',
+            'gender' => 'nullable|string|in:Мужской,Женский,Другой',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'code' => 'nullable|string|max:20',
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name,
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
             'email' => $request->email,
             'password' => Hash::make($request->password), // @phpstan-ignore-line
+            'code' => $request->code,
         ]);
 
         $user->assignRole('user');
