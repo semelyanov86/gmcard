@@ -2,7 +2,7 @@
 import TextLink from '@/components/TextLink.vue';
 import { useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 
 defineProps<{
     status?: string;
@@ -18,13 +18,10 @@ const submit = () => {
 </script>
 
 <template>
-    <section class="w-full h-full flex items-center justify-center pt-10 pb-14">
-        <div class="w-[500px] flex items-center flex-col justify-center bestForm px-4">
-            <AdaptiveImage image-path="logo" alt="logo" class="w-14 h-14" :critical="true"></AdaptiveImage>
-            <h1 class="text-[32px] font-bold w-full max-w-[550px] text-center lett mt-10 tracking-tighter leading-tight text-foreground bestForm">Восстановление пароля</h1>
-            <div v-if="status" class="mb-4 mt-6 text-center text-sm font-medium text-green-600">
-                {{ status }}
-            </div>
+    <AuthCustomLayout title="Восстановление пароля">
+        <div v-if="status" class="mb-4 mt-6 text-center text-sm font-medium text-green-600">
+            {{ status }}
+        </div>
             <p class="w-full text-lg mt-10">Введите email, который указывали при регистрации</p>
             <form @submit.prevent="submit" class="flex flex-col w-full">
                 <div class="flex flex-col w-full mt-5 relative">
@@ -60,6 +57,5 @@ const submit = () => {
                 Вспомнили пароль?
                 <TextLink :href="route('login')" class="font-bold ml-1 hover:text-[#F9D914] underline">Войти</TextLink>
             </p>
-        </div>
-    </section>
+    </AuthCustomLayout>
 </template>

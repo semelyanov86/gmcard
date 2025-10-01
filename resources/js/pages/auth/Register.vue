@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
 import { useForm } from '@inertiajs/vue3';
-import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 import { ref } from 'vue';
 
 const form = useForm({
@@ -23,11 +23,7 @@ const submit = () => {
 </script>
 
 <template>
-
-    <section class="w-full h-full flex items-center justify-center pt-10 pb-14">
-        <div class="w-[500px] flex items-center flex-col justify-center bestForm">
-            <AdaptiveImage image-path="logo" alt="logo" class="w-14 h-14" :critical="true"></AdaptiveImage>
-            <h1 class="text-[32px] font-bold w-[550px] text-center lett mt-5 tracking-tighter leading-tight text-black bestForm">Зарегистрируйтесь и подключитесь к системе</h1>
+    <AuthCustomLayout title="Зарегистрируйтесь и подключитесь к системе">
             <div class="flex flex-col items-center mt-5">
                 <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
                 <ul class="flex items-center mt-5 gap-8">
@@ -140,6 +136,5 @@ const submit = () => {
                 <p class="mt-5 text-base">Уже есть аккаунт?<a href="#" class="text-black font-bold ml-1 text_dec hover:text-[#F9D914]]">Войти</a></p>
             </form>
             <p class="text-[14px] mt-2 text-center">Нажимая "Зарегистрироваться", вы соглашаетесь с <a href="" class="text_dec">Пользовательским соглашением</a>, <a href="" class="text_dec">Политикой конфеденциальности</a> и <a href="" class="text_dec">Правилами сообщества GM1LP</a>.</p>
-        </div>
-    </section>
+    </AuthCustomLayout>
 </template>
