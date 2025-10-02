@@ -15,6 +15,7 @@ use Filament\Panel;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Enums\RoleType;
+use App\Models\TariffPlan;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable implements FilamentUser

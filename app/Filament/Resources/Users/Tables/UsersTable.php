@@ -60,6 +60,11 @@ final class UsersTable
                 TextColumn::make('gender'),
                 TextColumn::make('code')
                     ->searchable(),
+                TextColumn::make('tariffPlan.name')
+                    ->badge()
+                    ->color('info')
+                    ->searchable()
+                    ->placeholder('Не выбран'),
             ])
             ->filters([
                 //

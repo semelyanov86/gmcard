@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
+use App\Models\TariffPlan;
 use App\Filament\Components\Password;
 
 class UserForm
@@ -43,6 +44,29 @@ class UserForm
                 TextInput::make('city')
                     ->numeric(),
                 TextInput::make('country'),
+                Select::make('tariff_plan_id')
+                    ->label('TariffPlan')
+                    ->relationship('tariffPlan', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('description'),
+                        Money::input('price')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                        Money::input('banner_price')
+                            ->numeric()
+                            ->default(0),
+                        TextInput::make('ads_count')
+                            ->numeric()
+                            ->default(0)
+                            ->required(),
+                    ])
+                    ->placeholder('Выберите тарифный план'),
                 DatePicker::make('birth_date'),
                 RolesSelect::make(),
                 Select::make('gender')
