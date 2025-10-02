@@ -4,16 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\TariffPlans\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Components\Money;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 final class TariffPlanTable
 {
@@ -26,8 +20,7 @@ final class TariffPlanTable
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
+                    ->sortable(),
                 TextColumn::make('description')
                     ->limit(100),
                 Money::column('price')
@@ -38,14 +31,7 @@ final class TariffPlanTable
                     ->sortable(),
                 TextColumn::make('ads_count')
                     ->numeric()
-                    ->sortable()
-                    ->badge()
-                    ->color('info'),
-                TextColumn::make('users_count')
-                    ->counts('users')
-                    ->sortable()
-                    ->badge()
-                    ->color('success'),
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime('d.m.Y H:i')
                     ->sortable()
@@ -55,36 +41,8 @@ final class TariffPlanTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                Filter::make('with_banner_price')
-                    ->query(fn (Builder $query): Builder => $query->whereNotNull('banner_price')),
-                Filter::make('without_banner_price')
-                    ->query(fn (Builder $query): Builder => $query->whereNull('banner_price')),
-                SelectFilter::make('ads_count_range')
-                    ->options([
-                        '0' => '0',
-                        '1-10' => '1-10',
-                        '11-50' => '11-50',
-                        '51+' => '51+',
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return match ($data['value'] ?? null) {
-                            '0' => $query->where('ads_count', 0),
-                            '1-10' => $query->whereBetween('ads_count', [1, 10]),
-                            '11-50' => $query->whereBetween('ads_count', [11, 50]),
-                            '51+' => $query->where('ads_count', '>', 50),
-                            default => $query,
-                        };
-                    }),
-            ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ])
             ->defaultSort('created_at', 'desc');
     }
