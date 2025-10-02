@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/composables/useInitials';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -26,14 +26,13 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                     <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
                         <div class="flex items-center gap-4">
                             <div class="flex flex-col">
-                                <span class="text-base font-medium">Info</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
-                        <div class="flex items-center gap-4">
-                            <div class="flex flex-col">
                                 <span class="text-base font-medium">Menu</span>
+                                <div class="mt-3 grid grid-cols-1 gap-2">
+                                    <Link :href="route('home')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Главная</Link>
+                                    <Link href="/" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Юзер лендинг</Link>
+                                    <Link :href="route('password.confirm')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Восстановление пароля/Подтверждение</Link>
+                                    <Link :href="route('verification.notice')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Подтвердить email</Link>
+                                </div>
                             </div>
                         </div>
                     </div>

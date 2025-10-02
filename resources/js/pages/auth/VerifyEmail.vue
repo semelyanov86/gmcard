@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 
 defineProps<{
     status?: string;
@@ -17,20 +16,26 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Verify email" description="Please verify your email address by clicking on the link we just emailed to you.">
-        <Head title="Email verification" />
-
-        <div v-if="status === 'verification-link-sent'" class="mb-4 text-center text-sm font-medium text-green-600">
-            A new verification link has been sent to the email address you provided during registration.
+    <AuthCustomLayout title="Подтвердите email">
+        <div v-if="status === 'verification-link-sent'" class="mb-4 mt-6 text-center text-sm font-medium text-green-600">
+            Новое письмо с подтверждением отправлено на указанный при регистрации email адрес.
         </div>
-
-        <form @submit.prevent="submit" class="space-y-6 text-center">
-            <Button :disabled="form.processing" variant="secondary">
-                <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                Resend verification email
-            </Button>
-
-            <TextLink :href="route('logout')" method="post" as="button" class="mx-auto block text-sm"> Log out </TextLink>
+        
+        <p class="w-full text-lg mt-10">Пожалуйста, подтвердите свой email адрес, перейдя по ссылке в письме, которое мы только что отправили вам.</p>
+        
+        <form @submit.prevent="submit" class="flex flex-col w-full">
+            <button
+                type="submit"
+                :disabled="form.processing"
+                class="bg-[#F4D710] hover:bg-[#F9D914] disabled:opacity-50 disabled:cursor-not-allowed py-4 w-full text-lg font-bold rounded-2xl mt-10 btn_register cursor-pointer flex items-center justify-center gap-2"
+            >
+                <LoaderCircle v-if="form.processing" class="h-5 w-5 animate-spin" />
+                Отправить письмо подтверждения
+            </button>
         </form>
-    </AuthLayout>
+        
+        <p class="mt-10 text-base text-center">
+            <TextLink :href="route('logout')" method="post" as="button" class="font-bold hover:text-[#F9D914] underline">Выйти</TextLink>
+        </p>
+    </AuthCustomLayout>
 </template>

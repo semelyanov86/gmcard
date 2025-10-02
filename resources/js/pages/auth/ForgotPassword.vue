@@ -19,9 +19,9 @@ const submit = () => {
 
 <template>
     <AuthCustomLayout title="Восстановление пароля">
-        <div v-if="status" class="mb-4 mt-6 text-center text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
+            <div v-if="status" class="mb-4 mt-6 text-center text-sm font-medium text-green-600">
+                {{ status }}
+            </div>
             <p class="w-full text-lg mt-10">Введите email, который указывали при регистрации</p>
             <form @submit.prevent="submit" class="flex flex-col w-full">
                 <div class="flex flex-col w-full mt-5 relative">

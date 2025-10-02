@@ -27,10 +27,10 @@ const submit = () => {
             <div class="flex flex-col items-center mt-5">
                 <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
                 <ul class="flex items-center mt-5 gap-8">
-                    <li><a href=""><img src="/images/svg/google.svg" alt="Через google" class="w-10 h-10 hover:opacity-70"></a></li>
-                    <li><a href=""><img src="/images/svg/facebook.svg" alt="Через facebook" class="w-10 h-10 hover:opacity-70"></a></li>
-                    <li><a href=""><img src="/images/svg/ok.svg" alt="Через ok" class="w-10 h-10 hover:opacity-70"></a></li>
-                    <li><a href=""><img src="/images/svg/vk_r.svg" alt="Через vk" class="w-10 h-10 hover:opacity-70"></a></li>
+                    <li><a href="" class="group"><img src="/images/svg/social/google_c.svg" alt="Через google" class="w-10 h-10 grayscale hover:grayscale-0 transition-all duration-300"></a></li>
+                    <li><a href="" class="group"><img src="/images/svg/social/tg_c.svg" alt="Через telegram" class="w-10 h-10 grayscale hover:grayscale-0 transition-all duration-300"></a></li>
+                    <li><a href="" class="group"><img src="/images/svg/social/vk_c.svg" alt="Через vk" class="w-10 h-10 grayscale hover:grayscale-0 transition-all duration-300"></a></li>
+                    <li><a href="" class="group"><img src="/images/svg/social/ms_c.svg" alt="Через microsoft" class="w-10 h-10 grayscale hover:grayscale-0 transition-all duration-300"></a></li>
                 </ul>
             </div>
             <div class="flex items-center my-6">
