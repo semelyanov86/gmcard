@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -42,6 +43,7 @@ class User extends Authenticatable implements FilamentUser
         'birth_date',
         'gender',
         'code',
+        'tariff_plan_id',
     ];
 
     /**
@@ -73,6 +75,14 @@ class User extends Authenticatable implements FilamentUser
             || $this->hasRole(RoleType::SUPER_ADMIN->value)
             || $this->hasRole(RoleType::ADMIN->value)
             || $this->hasRole(RoleType::MODERATOR->value);
+    }
+
+    /**
+     * @return BelongsTo<TariffPlan, $this>
+     */
+    public function tariffPlan(): BelongsTo
+    {
+        return $this->belongsTo(TariffPlan::class);
     }
 
     /**
