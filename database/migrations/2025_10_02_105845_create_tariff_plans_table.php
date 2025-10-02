@@ -37,7 +37,6 @@ return new class () extends Migration {
             $table->dropColumn('tariff_plan_id');
         });
 
-        // Удаляем таблицу тарифных планов
         Schema::dropIfExists('tariff_plans');
     }
 };

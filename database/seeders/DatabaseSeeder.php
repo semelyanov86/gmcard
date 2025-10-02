@@ -67,6 +67,7 @@ class DatabaseSeeder extends Seeder
 
             PaymentSeeder::class,
             SubscriptionSeeder::class,
+            TariffPlansSeeder::class,
         ]);
     }
 }
