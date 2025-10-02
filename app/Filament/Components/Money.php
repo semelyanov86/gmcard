@@ -43,10 +43,22 @@ class Money
 
     private static function dehydrateMoneyState(mixed $state): mixed
     {
+        if ($state === null || $state === '') {
+            return MoneyValueObject::fromString('0');
+        }
+
         if (is_string($state)) {
             return MoneyValueObject::fromString($state);
         }
 
-        return $state;
+        if (is_numeric($state)) {
+            return MoneyValueObject::fromString((string) $state);
+        }
+
+        if ($state instanceof MoneyValueObject) {
+            return $state;
+        }
+
+        return MoneyValueObject::fromString('0');
     }
 }
