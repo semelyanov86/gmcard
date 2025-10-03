@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 
 interface Props {
     token: string;
@@ -71,10 +70,9 @@ const submit = () => {
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
 
-                <Button type="submit" class="mt-4 w-full" :disabled="form.processing">
-                    <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
+                <PrimaryButton type="submit" class="mt-4 w-full" :disabled="form.processing" :loading="form.processing">
                     Reset password
-                </Button>
+                </PrimaryButton>
             </div>
         </form>
     </AuthLayout>

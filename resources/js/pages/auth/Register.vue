@@ -3,6 +3,7 @@ import InputError from '@/components/InputError.vue';
 import { useForm } from '@inertiajs/vue3';
 import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 import { ref } from 'vue';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 
 const form = useForm({
     name: '',
@@ -130,9 +131,15 @@ const submit = () => {
                         {{ form.errors.code }}
                     </p>
                 </div>
-                <button type="submit" tabindex="5" :disabled="form.processing" class="bg-[#F4D710] py-4 w-full text-lg font-bold rounded-2xl mt-10 btn_register cursor-pointer">
+                <PrimaryButton
+                    type="submit"
+                    :disabled="form.processing"
+                    :loading="form.processing"
+                    class="mt-10"
+                    tabindex="5"
+                >
                     Зарегистрироваться
-                </button>
+                </PrimaryButton>
                 <p class="mt-5 text-base">Уже есть аккаунт?<a href="#" class="text-black font-bold ml-1 text_dec hover:text-[#F9D914]]">Войти</a></p>
             </form>
             <p class="text-[14px] mt-2 text-center">Нажимая "Зарегистрироваться", вы соглашаетесь с <a href="" class="text_dec">Пользовательским соглашением</a>, <a href="" class="text_dec">Политикой конфеденциальности</a> и <a href="" class="text_dec">Правилами сообщества GM1LP</a>.</p>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import TextLink from '@/components/TextLink.vue';
 import { useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
 import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 import { ref } from 'vue';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 
 defineProps<{
     status?: string;
@@ -71,14 +71,14 @@ const submit = () => {
                         {{ form.errors.password }}
                     </p>
                 </div>
-                <button
+                <PrimaryButton
                     type="submit"
+                    :loading="form.processing"
                     :disabled="form.processing"
-                    class="bg-[#F4D710] hover:bg-[#F9D914] disabled:opacity-50 disabled:cursor-not-allowed py-4 w-full text-lg font-bold rounded-2xl mt-10 btn_register cursor-pointer flex items-center justify-center gap-2"
+                    class="mt-10"
                 >
-                    <LoaderCircle v-if="form.processing" class="h-5 w-5 animate-spin" />
                     Войти
-                </button>
+                </PrimaryButton>
             </form>
             <p class="mt-10 text-base text-center">
                 Забыл пароль?
