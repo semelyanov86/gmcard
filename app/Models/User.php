@@ -17,6 +17,7 @@ use App\Enums\JobStatusType;
 use App\Enums\RoleType;
 use App\Models\TariffPlan;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use App\Casts\MoneyValueObjectCast;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -152,7 +153,7 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
-            'balance' => 'integer',
+            'balance' => MoneyValueObjectCast::class,
             'birth_date' => 'date',
             'job_status' => JobStatusType::class,
             'gender' => GenderType::class,

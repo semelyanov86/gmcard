@@ -24,10 +24,8 @@ final class TariffPlanTable
                 TextColumn::make('description')
                     ->limit(100),
                 Money::column('price')
-                    ->numeric()
                     ->sortable(),
                 Money::column('banner_price')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('ads_count')
                     ->numeric()

@@ -15,7 +15,13 @@ class Money
         return TextInput::make($name)
             ->formatStateUsing(fn (mixed $state) => self::formatMoneyState($state))
             ->dehydrateStateUsing(fn (mixed $state) => self::dehydrateMoneyState($state))
-            ->suffix('₽');
+            ->suffix('₽')
+            ->inputMode('decimal')
+            ->rule('regex:/^\d+(?:[\.,]\d{1,2})?$/')
+            ->extraInputAttributes([
+                'pattern' => '[0-9]*[.,]?[0-9]*',
+                'inputmode' => 'decimal',
+            ]);
     }
 
     public static function column(?string $name = null): TextColumn
@@ -48,7 +54,11 @@ class Money
         }
 
         if (is_string($state)) {
-            return MoneyValueObject::fromString($state);
+            try {
+                return MoneyValueObject::fromString($state);
+            } catch (\InvalidArgumentException $e) {
+                return MoneyValueObject::fromString('0');
+            }
         }
 
         if (is_numeric($state)) {

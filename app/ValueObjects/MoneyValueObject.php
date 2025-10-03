@@ -22,7 +22,12 @@ final readonly class MoneyValueObject implements Cast, Stringable
      */
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
-        $amountInMinorUnits = (int) round((float) $amount * 100);
+        if (!preg_match('/^[0-9]+[.,]?[0-9]*$/', trim($amount))) {
+            throw new \InvalidArgumentException("Invalid amount format: {$amount}. Only numbers, dots and commas are allowed.");
+        }
+
+        $normalizedAmount = str_replace(',', '.', $amount);
+        $amountInMinorUnits = (int) round((float) $normalizedAmount * 100);
 
         return new self(new Money($amountInMinorUnits, new Currency($currency)));
     }
