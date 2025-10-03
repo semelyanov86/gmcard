@@ -10,6 +10,7 @@ use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
+use InvalidArgumentException;
 
 final readonly class MoneyValueObject implements Cast, Stringable
 {
@@ -22,8 +23,8 @@ final readonly class MoneyValueObject implements Cast, Stringable
      */
     public static function fromString(string $amount, string $currency = 'RUB'): self
     {
-        if (!preg_match('/^[0-9]+[.,]?[0-9]*$/', trim($amount))) {
-            throw new \InvalidArgumentException("Invalid amount format: {$amount}. Only numbers, dots and commas are allowed.");
+        if (! preg_match('/^[0-9]+[.,]?[0-9]*$/', mb_trim($amount))) {
+            throw new InvalidArgumentException("Invalid amount format: {$amount}. Only numbers, dots and commas are allowed.");
         }
 
         $normalizedAmount = str_replace(',', '.', $amount);

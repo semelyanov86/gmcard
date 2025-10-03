@@ -15,7 +15,6 @@ use Filament\Panel;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Enums\RoleType;
-use App\Models\TariffPlan;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use App\Casts\MoneyValueObjectCast;
 

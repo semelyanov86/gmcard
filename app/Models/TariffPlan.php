@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TariffPlan extends Model
 {
+    /** @use HasFactory<\Database\Factories\TariffPlanFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -29,7 +30,7 @@ class TariffPlan extends Model
     ];
 
     /**
-     * @return HasMany<User>
+     * @return HasMany<User, $this>
      */
     public function users(): HasMany
     {

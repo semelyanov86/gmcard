@@ -7,6 +7,7 @@ namespace App\Filament\Components;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use App\ValueObjects\MoneyValueObject;
+use InvalidArgumentException;
 
 class Money
 {
@@ -56,7 +57,7 @@ class Money
         if (is_string($state)) {
             try {
                 return MoneyValueObject::fromString($state);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException) {
                 return MoneyValueObject::fromString('0');
             }
         }

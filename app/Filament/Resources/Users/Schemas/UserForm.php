@@ -13,7 +13,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
-use App\Models\TariffPlan;
 use App\Filament\Components\Password;
 
 class UserForm
