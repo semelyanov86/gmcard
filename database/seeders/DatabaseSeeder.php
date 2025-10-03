@@ -28,6 +28,7 @@ use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Promo\BonusSeeder;
 use Database\Seeders\Promo\PromoSeeder;
 use Database\Seeders\Promo\PromoUsageSeeder;
+use Database\Seeders\Promo\TariffPlansSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CitySeeder::class,
+            TariffPlansSeeder::class,
             CategoryKidsSeeder::class,
             FashionSeeder::class,
             ElectroSeeder::class,
@@ -67,7 +69,6 @@ class DatabaseSeeder extends Seeder
 
             PaymentSeeder::class,
             SubscriptionSeeder::class,
-            TariffPlansSeeder::class,
         ]);
     }
 }
