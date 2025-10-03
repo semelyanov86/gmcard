@@ -23,7 +23,9 @@ class OrganisationForm
                 Select::make('owner_role')
                     ->options(OwnerRoleType::options())
                     ->required(),
-                TextInput::make('inn'),
+                TextInput::make('inn')
+                    ->maxLength(15)
+                    ->rule('max:15'),
                 TextInput::make('ogrn'),
                 TextInput::make('contact'),
                 TextInput::make('contact_fio'),
