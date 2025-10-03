@@ -14,6 +14,7 @@ class TariffPlan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'slug',
         'name',
         'description',
         'price',

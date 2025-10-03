@@ -21,6 +21,10 @@ final class TariffPlanTable
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('slug')
+                    ->badge()
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('description')
                     ->limit(100),
                 Money::column('price')

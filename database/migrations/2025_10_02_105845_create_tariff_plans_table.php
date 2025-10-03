@@ -14,6 +14,7 @@ return new class () extends Migration {
     {
         Schema::create('tariff_plans', function (Blueprint $table): void {
             $table->id();
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('description')->nullable();
             $table->bigInteger('price');

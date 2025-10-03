@@ -18,6 +18,9 @@ class TariffPlanForm
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 Textarea::make('description')
                     ->rows(3)
                     ->columnSpanFull(),
