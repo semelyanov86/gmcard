@@ -129,3 +129,44 @@ This command automatically:
 # License
 
 This project is licensed under the GNU License. See the LICENSE file for details.
+
+## User Balance Commands
+
+### Add payment (credit)
+
+```
+php artisan user:add-payment 13 1235 incoming "transfer from card"
+```
+
+Creates an incoming (credit) payment for the given user ID.
+
+### Add payment (debit)
+
+```
+php artisan user:add-payment 13 2000 outgoing "debit from card"
+```
+
+Creates an outgoing (debit) payment for user ID 13. If funds are insufficient, the operation will be rejected.
+
+### Recalculate balances for all users
+
+```
+php artisan user:recalc-balances --chunk=1000
+```
+
+Iterates through all users in batches of 1000 and updates their balance as total credits minus total debits (stored in cents).
+
+### Command output (add-payment)
+
+After creating a payment, the command prints:
+- Payment ID
+- User ID
+- Type (Incoming/Outgoing)
+- Description
+- Amount
+- Previous balance
+- Total change
+- Current payment impact
+- (if any) Adjustment from previously unaccounted payments
+- New balance
+- New balance

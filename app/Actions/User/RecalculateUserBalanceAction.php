@@ -18,27 +18,27 @@ final class RecalculateUserBalanceAction
         $userModel = $user instanceof User ? $user : User::query()->findOrFail($user);
 
         $sums = Payment::query()
-            ->selectRaw("
+            ->selectRaw(
+                '
             SUM(CASE WHEN type = ? THEN amount ELSE 0 END) as incoming_sum,
             SUM(CASE WHEN type = ? THEN amount ELSE 0 END) as outgoing_sum
-            ",
+            ',
                 [
                     PaymentType::INCOMING->value,
                     PaymentType::OUTGOING->value,
-                ])
+                ]
+            )
             ->where('user_id', $userModel->id)
             ->first();
 
-        $incoming = (int)($sums?->incoming_sum ?? 0);
-        $outgoing = (int)($sums?->outgoing_sum ?? 0);
+        $incoming = (int) (($sums->incoming_sum ?? 0));
+        $outgoing = (int) (($sums->outgoing_sum ?? 0));
         $newBalance = $incoming - $outgoing;
 
-        if ((int)$userModel->balance !== $newBalance) {
+        if ((int) $userModel->balance !== $newBalance) {
             $userModel->forceFill(['balance' => $newBalance])->save();
         }
 
         return $newBalance;
     }
 }
-
-

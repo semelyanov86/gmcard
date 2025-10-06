@@ -11,13 +11,15 @@ use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
+use RuntimeException;
+use Throwable;
 
 final class CreatePaymentAction
 {
     use AsAction;
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function handle(PaymentData $dto): Payment
     {
@@ -28,14 +30,14 @@ final class CreatePaymentAction
             if ($dto->type === PaymentType::OUTGOING) {
                 $currentBalance = (int) $user->balance;
                 if ($amountCents > $currentBalance) {
-                    throw new \RuntimeException('Недостаточно средств: нельзя списать больше, чем на счёте.');
+                    throw new RuntimeException('Недостаточно средств: нельзя списать больше, чем на счёте.');
                 }
             }
 
             $payment = new Payment();
-            $payment->payment_date = $dto->paymentDate?->toDateTimeString() ?? now();
-            $payment->amount = $dto->amount;
-            $payment->type = $dto->type;
+            $payment->payment_date = $dto->paymentDate?->toDateTimeString() ?? now()->toDateTimeString();
+            $payment->amount = (int) $dto->amount->getMoney()->getAmount();
+            $payment->type = $dto->type->value;
             $payment->description = $dto->description;
             $payment->transaction_id = $dto->transactionId;
             $payment->user_id = $dto->userId;
@@ -52,5 +54,3 @@ final class CreatePaymentAction
         });
     }
 }
-
-

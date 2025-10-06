@@ -7,10 +7,13 @@ namespace App\Console\Commands;
 use App\Actions\Payment\CreatePaymentAction;
 use App\Data\PaymentData;
 use App\Enums\PaymentType;
+use App\Models\Payment;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
 use Carbon\CarbonImmutable;
 use Illuminate\Console\Command;
+use RuntimeException;
+use Throwable;
 
 final class UserAddPayment extends Command
 {
@@ -30,17 +33,20 @@ final class UserAddPayment extends Command
         $user = User::query()->find($userId);
         if ($user === null) {
             $this->error('User not found: ' . $userId);
+
             return self::FAILURE;
         }
 
-        if (!is_numeric($amountInput) || (float) $amountInput <= 0) {
+        if (! is_numeric($amountInput) || (float) $amountInput <= 0) {
             $this->error('Amount must be a positive number (e.g., 100 or 99.50).');
+
             return self::FAILURE;
         }
 
         $type = $this->mapType($typeInput);
         if ($type === null) {
             $this->error('Тип должен быть: incoming, outgoing, Поступление, Списание');
+
             return self::FAILURE;
         }
 
@@ -48,16 +54,18 @@ final class UserAddPayment extends Command
         if (is_string($dateInput) && $dateInput !== '') {
             try {
                 $paymentDate = new CarbonImmutable($dateInput);
-            } catch (\Throwable $e) {
+            } catch (Throwable) {
                 $this->error('Неверный формат --date. Используйте - 2025-10-06T12:00:00');
+
                 return self::FAILURE;
             }
         }
 
         $transactionId = null;
         if ($txInput !== null && $txInput !== '') {
-            if (!ctype_digit((string) $txInput)) {
+            if (! ctype_digit((string) $txInput)) {
                 $this->error('--tx должен быть целым числом');
+
                 return self::FAILURE;
             }
             $transactionId = (int) $txInput;
@@ -77,12 +85,15 @@ final class UserAddPayment extends Command
         $paymentImpactCents = $type === PaymentType::INCOMING ? $amountCents : -$amountCents;
 
         try {
+            /** @var Payment $payment */
             $payment = CreatePaymentAction::run($dto);
-        } catch (\RuntimeException $e) {
+        } catch (RuntimeException $e) {
             $this->error($e->getMessage());
+
             return self::FAILURE;
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->error('Ошибка при создании платежа: ' . $e->getMessage());
+
             return self::FAILURE;
         }
 
@@ -111,7 +122,8 @@ final class UserAddPayment extends Command
 
     private function mapType(string $input): ?PaymentType
     {
-        $normalized = mb_strtolower(trim($input));
+        $normalized = mb_strtolower(mb_trim($input));
+
         return match ($normalized) {
             'incoming', 'поступление' => PaymentType::INCOMING,
             'outgoing', 'списание' => PaymentType::OUTGOING,
@@ -119,5 +131,3 @@ final class UserAddPayment extends Command
         };
     }
 }
-
-

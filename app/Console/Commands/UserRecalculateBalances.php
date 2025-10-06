@@ -35,5 +35,3 @@ final class UserRecalculateBalances extends Command
         return self::SUCCESS;
     }
 }
-
-
