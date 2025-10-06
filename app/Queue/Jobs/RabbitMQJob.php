@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Queue\Jobs;
 
 use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob as BaseJob;
+use Override;
 
 class RabbitMQJob extends BaseJob
 {
@@ -11,14 +14,18 @@ class RabbitMQJob extends BaseJob
      *
      * @return void
      */
-    public function fire()
+    #[Override]
+    public function fire(): void
     {
         $payload = $this->payload();
         $job = $payload['job'];
         $class = $job;
         $method = 'handle';
 
-        ($this->instance = $this->resolve($class))->{$method}($this, $payload);
+        $instance = $this->resolve($class);
+        if (is_object($instance) && method_exists($instance, $method)) {
+            $instance->{$method}($this, $payload);
+        }
 
         $this->delete();
     }

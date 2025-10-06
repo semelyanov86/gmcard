@@ -87,8 +87,8 @@ return [
                     'user' => env('RABBITMQ_USER', 'guest'),
                     'password' => env('RABBITMQ_PASSWORD', 'guest'),
                     'vhost' => env('RABBITMQ_VHOST', '/'),
-                    ],
                 ],
+            ],
             'options' => [
                 'ssl_options' => [
                     'cafile' => env('RABBITMQ_SSL_CAFILE', null),
@@ -98,7 +98,7 @@ return [
                     'passphrase' => env('RABBITMQ_SSL_PASSPHRASE', null),
                 ],
                 'queue' => [
-                    'job' => \App\Queue\Jobs\RabbitMQJob::class,
+                    'job' => App\Queue\Jobs\RabbitMQJob::class,
                 ],
             ],
 

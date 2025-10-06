@@ -19,6 +19,7 @@ final class SendUserToRabbitAction
         $userData['module'] = User::CRM_CONTACTS_NAME;
 
         Queue::connection('rabbitmq')->pushRaw(json_encode($userData, JSON_THROW_ON_ERROR), 'vtcontacts');
+
         return true;
     }
 }

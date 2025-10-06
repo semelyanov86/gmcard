@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Models\User;
+use App\Queue\Jobs\RabbitMQJob;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,9 +14,15 @@ use Illuminate\Queue\SerializesModels;
 
 class ReceiveContactsJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
-    public function handle($job, array $data): void
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    public function handle(RabbitMQJob $job, array $data): void
     {
         $map = [
             'firstname' => 'name',
@@ -24,8 +31,19 @@ class ReceiveContactsJob implements ShouldQueue
         ];
 
         $incoming = $data['data'] ?? [];
-        $crmid = (string)($incoming['id'] ?? '');
-        if ($crmid === '') return;
+        if (! is_array($incoming)) {
+            return;
+        }
+
+        $id = $incoming['id'] ?? '';
+        if (is_string($id) || is_numeric($id)) {
+            $crmid = (string) $id;
+        } else {
+            $crmid = '';
+        }
+        if ($crmid === '') {
+            return;
+        }
 
         $user = User::firstOrNew(['crmid' => $crmid]);
 
@@ -36,13 +54,13 @@ class ReceiveContactsJob implements ShouldQueue
             $toUpdate[$map[$src]] = $value;
         }
 
-        if (!$user->exists && !array_key_exists('email', $toUpdate)) {
+        if (! $user->exists && ! array_key_exists('email', $toUpdate)) {
             $toUpdate['email'] = 'no-email+' . $crmid . '@example.com';
         }
 
         $user->fill($toUpdate);
 
-        if (!$user->exists && empty($user->password)) {
+        if (! $user->exists && empty($user->password)) {
             $user->password = bcrypt('123456');
         }
 
