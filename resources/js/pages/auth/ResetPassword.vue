@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 
 interface Props {
     token: string;

@@ -7,10 +7,12 @@ defineProps<{
 </script>
 
 <template>
-    <section class="w-full h-full flex items-center justify-center pt-10 pb-14">
-        <div class="w-[500px] flex items-center flex-col justify-center bestForm px-4">
-            <AdaptiveImage image-path="logo" alt="logo" class="w-14 h-14" :critical="true"></AdaptiveImage>
-            <h1 class="text-[32px] w-full max-w-[550px] text-center lett mt-10 tracking-tighter leading-tight text-foreground bestForm">{{ title }}</h1>
+    <section class="flex h-full w-full items-center justify-center pt-10 pb-14">
+        <div class="bestForm flex w-[500px] flex-col items-center justify-center px-4">
+            <AdaptiveImage image-path="logo" alt="logo" class="h-14 w-14" :critical="true"></AdaptiveImage>
+            <h1 class="lett bestForm mt-10 w-full max-w-[550px] text-center text-[32px] leading-tight tracking-tighter text-foreground">
+                {{ title }}
+            </h1>
             <slot />
         </div>
     </section>

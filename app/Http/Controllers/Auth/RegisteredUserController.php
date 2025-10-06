@@ -34,7 +34,7 @@ final class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->string('name')->toString(),
             'email' => $request->string('email')->toString(),
-            'password' => Hash::make($request->string('password')->toString()), // @phpstan-ignore-line
+            'password' => Hash::make($request->string('password')->toString()),
             'code' => $request->string('code')->toString(),
         ]);
 

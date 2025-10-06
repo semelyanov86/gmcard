@@ -28,10 +28,24 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                             <div class="flex flex-col">
                                 <span class="text-base font-medium">Menu</span>
                                 <div class="mt-3 grid grid-cols-1 gap-2">
-                                    <Link :href="route('home')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Главная</Link>
-                                    <Link href="/" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Юзер лендинг</Link>
-                                    <Link :href="route('password.confirm')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Восстановление пароля/Подтверждение</Link>
-                                    <Link :href="route('verification.notice')" class="w-full rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted text-left">Подтвердить email</Link>
+                                    <Link
+                                        :href="route('home')"
+                                        class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
+                                        >Главная</Link
+                                    >
+                                    <Link href="/" class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
+                                        >Юзер лендинг</Link
+                                    >
+                                    <Link
+                                        :href="route('password.confirm')"
+                                        class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
+                                        >Восстановление пароля/Подтверждение</Link
+                                    >
+                                    <Link
+                                        :href="route('verification.notice')"
+                                        class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
+                                        >Подтвердить email</Link
+                                    >
                                 </div>
                             </div>
                         </div>
