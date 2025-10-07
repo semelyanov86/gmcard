@@ -19,4 +19,3 @@ final class VirtualBalanceData extends Data
         public ?int $id = null,
     ) {}
 }
-

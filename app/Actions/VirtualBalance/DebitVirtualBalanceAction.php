@@ -11,13 +11,14 @@ use App\Models\VirtualBalance;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
+use Throwable;
 
 class DebitVirtualBalanceAction
 {
     use AsAction;
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      * @throws ValidationException
      */
     public function handle(VirtualBalanceData $data): VirtualBalance
@@ -46,4 +47,3 @@ class DebitVirtualBalanceAction
         });
     }
 }
-

@@ -9,6 +9,7 @@ use App\Data\VirtualBalanceData;
 use App\Enums\PaymentType;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Exception;
 
 class CreditVirtualBalanceCommand extends Command
 {
@@ -28,8 +29,9 @@ class CreditVirtualBalanceCommand extends Command
         $amount = (int) $this->argument('amount');
 
         $user = User::find($userId);
-        if (!$user) {
+        if (! $user) {
             $this->error("User with ID {$userId} not found");
+
             return self::FAILURE;
         }
 
@@ -56,14 +58,13 @@ class CreditVirtualBalanceCommand extends Command
             $this->info('Credited: ' . $amount . ' points');
             $this->info('Virtual balance AFTER: ' . $user->virtual_balance . ' points');
             $this->info('Record id: ' . $result->id);
-            $this->info('Description: ' . $result->description);
-            $this->info('Date: ' . $result->compensation_date->format('Y-m-d H:i:s'));
+            $this->info('Description: ' . ($result->description ?? 'Not Available '));
 
             return self::SUCCESS;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error: ' . $e->getMessage());
+
             return self::FAILURE;
         }
     }
 }
-

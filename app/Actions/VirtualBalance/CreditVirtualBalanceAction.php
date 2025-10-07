@@ -10,13 +10,14 @@ use App\Models\User;
 use App\Models\VirtualBalance;
 use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
+use Throwable;
 
 class CreditVirtualBalanceAction
 {
     use AsAction;
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function handle(VirtualBalanceData $data): VirtualBalance
     {
@@ -36,4 +37,3 @@ class CreditVirtualBalanceAction
         });
     }
 }
-

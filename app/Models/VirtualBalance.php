@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PaymentType;
-use Illuminate\Database\Eloquent\Model;
+use Database\Factories\VirtualBalanceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class VirtualBalance extends Model
 {
-    /** @use HasFactory<\Database\Factories\VirtualBalanceFactory> */
+    /** @use HasFactory<VirtualBalanceFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -45,4 +46,3 @@ class VirtualBalance extends Model
         ];
     }
 }
-

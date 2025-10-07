@@ -10,6 +10,7 @@ use App\Enums\PaymentType;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Validation\ValidationException;
+use Exception;
 
 class DebitVirtualBalanceCommand extends Command
 {
@@ -29,8 +30,9 @@ class DebitVirtualBalanceCommand extends Command
         $amount = (int) $this->argument('amount');
 
         $user = User::find($userId);
-        if (!$user) {
+        if (! $user) {
             $this->error("User with ID {$userId} not found");
+
             return self::FAILURE;
         }
 
@@ -57,8 +59,7 @@ class DebitVirtualBalanceCommand extends Command
             $this->info('Debited: ' . $amount . ' points');
             $this->info('Virtual balance AFTER: ' . $user->virtual_balance . ' points');
             $this->info('Record id: ' . $result->id);
-            $this->info('Description: ' . $result->description);
-            $this->info('Date: ' . $result->compensation_date->format('Y-m-d H:i:s'));
+            $this->info('Description: ' . ($result->description ?? 'Not Available '));
 
             return self::SUCCESS;
         } catch (ValidationException $e) {
@@ -68,11 +69,12 @@ class DebitVirtualBalanceCommand extends Command
                     $this->error("  - {$error}");
                 }
             }
+
             return self::FAILURE;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error: ' . $e->getMessage());
+
             return self::FAILURE;
         }
     }
 }
-
