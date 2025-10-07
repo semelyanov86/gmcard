@@ -133,6 +133,14 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * @return HasMany<VirtualBalance, $this>
+     */
+    public function virtualBalances(): HasMany
+    {
+        return $this->hasMany(VirtualBalance::class);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
