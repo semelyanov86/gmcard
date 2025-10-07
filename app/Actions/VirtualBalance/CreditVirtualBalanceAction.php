@@ -30,7 +30,7 @@ class CreditVirtualBalanceAction
             ]);
 
             User::where('id', $data->user_id)
-                ->increment('balance', $data->amount);
+                ->increment('virtual_balance', $data->amount);
 
             return $virtualBalance;
         });

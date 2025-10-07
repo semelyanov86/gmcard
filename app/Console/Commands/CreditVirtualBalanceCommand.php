@@ -8,7 +8,6 @@ use App\Actions\VirtualBalance\CreditVirtualBalanceAction;
 use App\Data\VirtualBalanceData;
 use App\Enums\PaymentType;
 use App\Models\User;
-use App\Models\VirtualBalance;
 use Illuminate\Console\Command;
 
 class CreditVirtualBalanceCommand extends Command
@@ -35,7 +34,7 @@ class CreditVirtualBalanceCommand extends Command
         }
 
         $this->info('User: ' . $user->name);
-        $this->info('Balance BEFORE: ' . $user->balance . ' points');
+        $this->info('Virtual balance BEFORE: ' . $user->virtual_balance . ' points');
         $this->newLine();
 
         try {
@@ -55,7 +54,7 @@ class CreditVirtualBalanceCommand extends Command
             $this->info('Successfully credited!');
             $this->newLine();
             $this->info('Credited: ' . $amount . ' points');
-            $this->info('Balance AFTER: ' . $user->balance . ' points');
+            $this->info('Virtual balance AFTER: ' . $user->virtual_balance . ' points');
             $this->info('Record id: ' . $result->id);
             $this->info('Description: ' . $result->description);
             $this->info('Date: ' . $result->compensation_date->format('Y-m-d H:i:s'));

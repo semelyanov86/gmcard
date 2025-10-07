@@ -62,6 +62,7 @@ class User extends Authenticatable implements FilamentUser
     protected $guarded = [
         'password',
         'balance',
+        'virtual_balance',
         'id',
         'created_at',
         'updated_at',
@@ -142,6 +143,7 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
             'balance' => 'integer',
+            'virtual_balance' => 'integer',
             'birth_date' => 'date',
             'job_status' => JobStatusType::class,
             'gender' => GenderType::class,
