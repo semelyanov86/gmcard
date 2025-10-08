@@ -7,6 +7,7 @@ namespace App\Filament\Components;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use App\ValueObjects\MoneyValueObject;
+use InvalidArgumentException;
 
 class Money
 {
@@ -15,7 +16,13 @@ class Money
         return TextInput::make($name)
             ->formatStateUsing(fn (mixed $state) => self::formatMoneyState($state))
             ->dehydrateStateUsing(fn (mixed $state) => self::dehydrateMoneyState($state))
-            ->suffix('₽');
+            ->suffix('₽')
+            ->inputMode('decimal')
+            ->rule('regex:/^\d+(?:[\.,]\d{1,2})?$/')
+            ->extraInputAttributes([
+                'pattern' => '[0-9]*[.,]?[0-9]*',
+                'inputmode' => 'decimal',
+            ]);
     }
 
     public static function column(?string $name = null): TextColumn
@@ -43,10 +50,26 @@ class Money
 
     private static function dehydrateMoneyState(mixed $state): mixed
     {
-        if (is_string($state)) {
-            return MoneyValueObject::fromString($state);
+        if ($state === null || $state === '') {
+            return MoneyValueObject::fromString('0');
         }
 
-        return $state;
+        if (is_string($state)) {
+            try {
+                return MoneyValueObject::fromString($state);
+            } catch (InvalidArgumentException) {
+                return MoneyValueObject::fromString('0');
+            }
+        }
+
+        if (is_numeric($state)) {
+            return MoneyValueObject::fromString((string) $state);
+        }
+
+        if ($state instanceof MoneyValueObject) {
+            return $state;
+        }
+
+        return MoneyValueObject::fromString('0');
     }
 }
