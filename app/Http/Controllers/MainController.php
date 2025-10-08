@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class BusinessLandingController extends Controller
+class MainController extends Controller
 {
     public function index(GeneralSettings $settings): Response
     {
@@ -18,7 +17,7 @@ class BusinessLandingController extends Controller
         /** @var array<string, mixed> $meta */
         $meta = config('meta.business');
 
-        return Inertia::render('landing/BusinessLanding', [
+        return Inertia::render('Welcome', [
             'slides' => $slides,
             'reviews' => $reviews,
             'contact' => [
