@@ -7,7 +7,7 @@ namespace App\Actions;
 use App\Models\Category;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class CategoryPathAction
+final readonly class CategoryPathAction
 {
     use AsAction;
 
