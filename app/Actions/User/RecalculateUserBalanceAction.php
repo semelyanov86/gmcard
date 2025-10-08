@@ -9,7 +9,7 @@ use App\Models\Payment;
 use App\Models\User;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-final class RecalculateUserBalanceAction
+final readonly class RecalculateUserBalanceAction
 {
     use AsAction;
 

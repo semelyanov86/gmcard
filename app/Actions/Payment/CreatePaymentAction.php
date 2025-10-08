@@ -14,7 +14,7 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use RuntimeException;
 use Throwable;
 
-final class CreatePaymentAction
+final readonly class CreatePaymentAction
 {
     use AsAction;
 
