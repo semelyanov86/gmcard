@@ -3,17 +3,19 @@ name: deploy
 on:
   push:
     branches:
-      - main  # Только при push в main
+      - main
 
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
+    permissions:
+      contents: write
 
   tests:
     uses: ./.github/workflows/tests.yml
 
   deploy:
-    needs: [lint, tests]  # Зависимость от обоих jobs
+    needs: [lint, tests]
     runs-on: ubuntu-latest
     env:
       LARAVEL_PATH: '/var/www/laravel/gmcard'
