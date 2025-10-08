@@ -10,14 +10,13 @@ use App\Enums\PaymentType;
 use App\Models\Payment;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\CarbonImmutable;
 use Illuminate\Console\Command;
 use RuntimeException;
 use Throwable;
 
 final class UserAddPayment extends Command
 {
-    protected $signature = 'user:add-payment {user_id} {amount} {type} {description} {--date=} {--tx=}';
+    protected $signature = 'user:add-payment {user_id} {amount} {type} {description} {--tx=}';
 
     protected $description = 'Создать платёж пользователю и пересчитать его баланс';
 
@@ -27,7 +26,6 @@ final class UserAddPayment extends Command
         $amountInput = (string) $this->argument('amount');
         $typeInput = (string) $this->argument('type');
         $description = (string) $this->argument('description');
-        $dateInput = $this->option('date');
         $txInput = $this->option('tx');
 
         $user = User::query()->find($userId);
@@ -50,17 +48,6 @@ final class UserAddPayment extends Command
             return self::FAILURE;
         }
 
-        $paymentDate = null;
-        if (is_string($dateInput) && $dateInput !== '') {
-            try {
-                $paymentDate = new CarbonImmutable($dateInput);
-            } catch (Throwable) {
-                $this->error('Неверный формат --date. Используйте - 2025-10-06T12:00:00');
-
-                return self::FAILURE;
-            }
-        }
-
         $transactionId = null;
         if ($txInput !== null && $txInput !== '') {
             if (! ctype_digit((string) $txInput)) {
@@ -77,7 +64,6 @@ final class UserAddPayment extends Command
             type: $type,
             description: $description,
             transactionId: $transactionId,
-            paymentDate: $paymentDate,
         );
 
         $previousBalanceCents = (int) $user->balance;

@@ -34,14 +34,10 @@ final readonly class CreatePaymentAction
                 }
             }
 
-            $payment = new Payment();
-            $payment->payment_date = $dto->paymentDate?->toDateTimeString() ?? now()->toDateTimeString();
-            $payment->amount = (int) $dto->amount->getMoney()->getAmount();
-            $payment->type = $dto->type->value;
-            $payment->description = $dto->description;
-            $payment->transaction_id = $dto->transactionId;
-            $payment->user_id = $dto->userId;
-            $payment->save();
+            $attributes = $dto->toArray();
+            $attributes['payment_date'] ??= now();
+
+            $payment = Payment::create($attributes);
 
             if ($payment->transaction_id === null) {
                 $payment->transaction_id = $payment->id;
