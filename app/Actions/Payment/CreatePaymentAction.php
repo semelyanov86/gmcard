@@ -25,11 +25,11 @@ final readonly class CreatePaymentAction
     {
         return DB::transaction(function () use ($dto): Payment {
             $user = User::query()->whereKey($dto->userId)->lockForUpdate()->firstOrFail();
+            $actualBalance = RecalculateUserBalanceAction::run($dto->userId);
 
             $amountCents = (int) $dto->amount->getMoney()->getAmount();
             if ($dto->type === PaymentType::OUTGOING) {
-                $currentBalance = (int) $user->balance;
-                if ($amountCents > $currentBalance) {
+                if ($amountCents > $actualBalance) {
                     throw new RuntimeException('Недостаточно средств: нельзя списать больше, чем на счёте.');
                 }
             }

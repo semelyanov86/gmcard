@@ -13,9 +13,9 @@ final readonly class RecalculateUserBalanceAction
 {
     use AsAction;
 
-    public function handle(int|User $user): int
+    public function handle(int $userId): int
     {
-        $userModel = $user instanceof User ? $user : User::query()->findOrFail($user);
+        $userModel = User::query()->findOrFail($userId);
 
         $sums = Payment::query()
             ->selectRaw(

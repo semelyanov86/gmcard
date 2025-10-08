@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Throwable;
 
 final class UserRecalculateBalances extends Command
 {
@@ -18,20 +19,26 @@ final class UserRecalculateBalances extends Command
     {
         $chunkSize = (int) $this->option('chunk');
         $processed = 0;
+        $errors = 0;
 
         User::query()
             ->select('id')
             ->orderBy('id')
-            ->chunk($chunkSize, function ($users) use (&$processed): void {
+            ->chunk($chunkSize, function ($users) use (&$processed, &$errors): void {
                 foreach ($users as $user) {
-                    RecalculateUserBalanceAction::run($user->id);
-                    $processed++;
+                    try {
+                        RecalculateUserBalanceAction::run($user->id);
+                        $processed++;
+                    } catch (Throwable $e) {
+                        $errors++;
+                        $this->error("Error processing user {$user->id}: {$e->getMessage()}");
+                    }
                 }
-                $this->info('Processed: ' . $processed);
+                $this->info("Processed: {$processed}, Errors: {$errors}");
             });
 
-        $this->info('Done. Total users processed: ' . $processed);
+        $this->info("Done. Total users processed: {$processed}, Total errors: {$errors}");
 
-        return self::SUCCESS;
+        return $errors > 0 ? self::FAILURE : self::SUCCESS;
     }
 }
