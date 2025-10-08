@@ -18,6 +18,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_calculates_balance_correctly_with_incoming_payments(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -40,6 +41,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_calculates_balance_correctly_with_outgoing_payments(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -62,6 +64,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_calculates_balance_with_mixed_payments(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -96,6 +99,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_returns_zero_when_no_payments(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 99999]);
 
         $newBalance = RecalculateUserBalanceAction::run($user->id);
@@ -107,6 +111,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_can_result_in_negative_balance_when_old_data_exists(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -123,6 +128,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_updates_db_balance_only_when_different(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 10000]);
 
         Payment::factory()->create([
@@ -143,7 +149,9 @@ class RecalculateUserBalanceActionTest extends TestCase
 
     public function test_isolates_users_balance_calculation(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create(['balance' => 0]);
+        /** @var User $user2 */
         $user2 = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -172,4 +180,3 @@ class RecalculateUserBalanceActionTest extends TestCase
         RecalculateUserBalanceAction::run(999999);
     }
 }
-

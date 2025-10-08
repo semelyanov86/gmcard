@@ -20,6 +20,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_creates_incoming_payment_and_updates_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $dto = new PaymentData(
@@ -29,6 +30,7 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test incoming payment',
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertDatabaseHas('payments', [
@@ -45,6 +47,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_creates_outgoing_payment_and_updates_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -60,6 +63,7 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test outgoing payment',
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertDatabaseHas('payments', [
@@ -75,6 +79,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_prevents_negative_balance_on_outgoing_payment(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -101,6 +106,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_prevents_negative_balance_when_actual_balance_differs_from_db(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 10000]);
 
         Payment::factory()->create([
@@ -124,6 +130,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_allows_exact_balance_deduction(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -139,6 +146,7 @@ class CreatePaymentActionTest extends TestCase
             description: 'Exact balance',
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertInstanceOf(Payment::class, $payment);
@@ -148,6 +156,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_sets_transaction_id_to_payment_id_if_null(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $dto = new PaymentData(
@@ -158,6 +167,7 @@ class CreatePaymentActionTest extends TestCase
             transactionId: null,
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertSame($payment->id, $payment->transaction_id);
@@ -165,6 +175,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_keeps_custom_transaction_id_if_provided(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $dto = new PaymentData(
@@ -175,6 +186,7 @@ class CreatePaymentActionTest extends TestCase
             transactionId: 99999,
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertSame(99999, $payment->transaction_id);
@@ -182,6 +194,7 @@ class CreatePaymentActionTest extends TestCase
 
     public function test_sets_payment_date_automatically_if_not_provided(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $dto = new PaymentData(
@@ -191,14 +204,18 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test',
         );
 
+        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertNotNull($payment->payment_date);
+        /** @phpstan-ignore property.nonObject */
         $this->assertEqualsWithDelta(now()->timestamp, $payment->payment_date->timestamp, 2);
     }
 
     public function test_uses_locks_to_prevent_race_conditions(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -221,6 +238,7 @@ class CreatePaymentActionTest extends TestCase
             description: 'Second',
         );
 
+        /** @var Payment $payment1 */
         $payment1 = CreatePaymentAction::run($dto1);
         $this->assertInstanceOf(Payment::class, $payment1);
 
@@ -228,4 +246,3 @@ class CreatePaymentActionTest extends TestCase
         CreatePaymentAction::run($dto2);
     }
 }
-

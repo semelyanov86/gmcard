@@ -16,8 +16,11 @@ class UserRecalculateBalancesCommandTest extends TestCase
 
     public function test_recalculates_balances_for_all_users(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create(['balance' => 0]);
+        /** @var User $user2 */
         $user2 = User::factory()->create(['balance' => 0]);
+        /** @var User $user3 */
         $user3 = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -53,7 +56,9 @@ class UserRecalculateBalancesCommandTest extends TestCase
 
     public function test_continues_processing_after_error(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create(['balance' => 0]);
+        /** @var User $user2 */
         $user2 = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -101,6 +106,7 @@ class UserRecalculateBalancesCommandTest extends TestCase
 
     public function test_handles_users_with_no_payments(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 9999]);
 
         $this->artisan('user:recalc-balances')
@@ -112,6 +118,7 @@ class UserRecalculateBalancesCommandTest extends TestCase
 
     public function test_handles_users_with_negative_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -138,6 +145,7 @@ class UserRecalculateBalancesCommandTest extends TestCase
 
     public function test_calculates_complex_payment_history(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -181,4 +189,3 @@ class UserRecalculateBalancesCommandTest extends TestCase
             ->expectsOutput('Done. Total users processed: 3, Total errors: 0');
     }
 }
-

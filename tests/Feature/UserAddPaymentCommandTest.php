@@ -15,6 +15,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_creates_incoming_payment_via_command(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $this->artisan('user:add-payment', [
@@ -39,6 +40,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_creates_outgoing_payment_via_command(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -67,6 +69,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_supports_russian_type_names(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $this->artisan('user:add-payment', [
@@ -97,6 +100,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_fails_with_invalid_amount(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $this->artisan('user:add-payment', [
@@ -111,6 +115,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_fails_with_negative_amount(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $this->artisan('user:add-payment', [
@@ -125,6 +130,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_fails_with_invalid_type(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $this->artisan('user:add-payment', [
@@ -139,6 +145,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_fails_when_insufficient_funds(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 5000]);
 
         $this->artisan('user:add-payment', [
@@ -156,6 +163,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_accepts_custom_transaction_id(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         $this->artisan('user:add-payment', [
@@ -175,6 +183,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_fails_with_invalid_transaction_id(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $this->artisan('user:add-payment', [
@@ -190,6 +199,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_shows_balance_correction_info(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 5000]);
 
         Payment::factory()->create([
@@ -210,6 +220,7 @@ class UserAddPaymentCommandTest extends TestCase
 
     public function test_displays_all_balance_information(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
 
         Payment::factory()->create([
@@ -234,4 +245,3 @@ class UserAddPaymentCommandTest extends TestCase
             ->expectsOutputToContain('Новый баланс:');
     }
 }
-
