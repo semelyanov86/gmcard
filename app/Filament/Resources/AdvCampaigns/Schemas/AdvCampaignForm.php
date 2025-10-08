@@ -17,9 +17,7 @@ class AdvCampaignForm
                     ->required(),
                 TextInput::make('description')
                     ->required(),
-                TextInput::make('crmid')
-                    ->numeric()
-                    ->rule('integer'),
+                TextInput::make('crmid'),
                 TextInput::make('action_details'),
                 TextInput::make('deeplink'),
                 TextInput::make('avg_hold_time'),

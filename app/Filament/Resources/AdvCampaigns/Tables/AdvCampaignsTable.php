@@ -22,7 +22,6 @@ final class AdvCampaignsTable
                     ->searchable(),
                 TextColumn::make('crmid')
                     ->searchable()
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('deeplink')
                     ->searchable(),
