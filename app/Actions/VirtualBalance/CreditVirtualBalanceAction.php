@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
-class CreditVirtualBalanceAction
+final readonly class CreditVirtualBalanceAction
 {
     use AsAction;
 

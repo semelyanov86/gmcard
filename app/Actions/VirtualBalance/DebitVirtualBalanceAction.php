@@ -13,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
-class DebitVirtualBalanceAction
+final readonly class DebitVirtualBalanceAction
 {
     use AsAction;
 
