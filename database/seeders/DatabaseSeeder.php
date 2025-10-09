@@ -25,6 +25,7 @@ use Database\Seeders\Categories\SportSeeder;
 use Database\Seeders\Categories\TravelSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
+use Database\Seeders\Finance\VirtualBalanceSeeder;
 use Database\Seeders\Promo\BonusSeeder;
 use Database\Seeders\Promo\PromoSeeder;
 use Database\Seeders\Promo\PromoUsageSeeder;
@@ -69,6 +70,7 @@ class DatabaseSeeder extends Seeder
 
             PaymentSeeder::class,
             SubscriptionSeeder::class,
+            VirtualBalanceSeeder::class,
         ]);
     }
 }

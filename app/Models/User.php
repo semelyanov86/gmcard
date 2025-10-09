@@ -65,6 +65,7 @@ class User extends Authenticatable implements FilamentUser
     protected $guarded = [
         'password',
         'balance',
+        'virtual_balance',
         'id',
         'created_at',
         'updated_at',
@@ -143,6 +144,14 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * @return HasMany<VirtualBalance, $this>
+     */
+    public function virtualBalances(): HasMany
+    {
+        return $this->hasMany(VirtualBalance::class);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -153,6 +162,7 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
             'balance' => MoneyValueObjectCast::class,
+            'virtual_balance' => 'integer',
             'birth_date' => 'date',
             'job_status' => JobStatusType::class,
             'gender' => GenderType::class,
