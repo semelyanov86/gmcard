@@ -48,31 +48,31 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col justify-center items-center relative mains3" data-index="3">
-                            <div class="rounded-lg py-3 px-4 w-[49px] image-3 h-[41px] ">
+                            <div class="rounded-lg py-3 px-4 w-[51px] image-3 h-[51px] ">
                             </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Детям</p>
+                            <p class="lg:text-sm font-bold mt-2 text-white">Детям</p>
                         </div>
                         <svg fill="currentColor" id="icons3" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains4" data-index="4">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-4 h-[41px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-4 h-[51px] ">
                             </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Для дома</p>
+                            <p class="lg:text-sm font-bold mt-2 text-white">Для дома</p>
                         </div>
                         <svg fill="currentColor" id="icons4" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains5" data-index="5">
-                            <div class=" rounded-lg py-3 px-4 w-[52px] image-5 h-[50px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-5 h-[51px] ">
                             </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Техника</p>
+                            <p class="lg:text-sm font-bold mt-2 text-white">Техника</p>
                         </div>
                         <svg fill="currentColor" id="icons5" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains6" data-index="6">
-                            <div class="rounded-lg py-3 px-4 w-[52px] image-6 h-[50px] ">
+                            <div class="rounded-lg py-3 px-4 w-[51px] image-6 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Красота</p>
                         </div>
@@ -80,7 +80,7 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains7" data-index="7">
-                            <div class=" rounded-lg py-3 px-4 w-[46px] image-7 h-[44px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-7 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Услуги</p>
                         </div>
@@ -88,7 +88,7 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains8" data-index="8">
-                            <div class=" rounded-lg py-3 px-4 w-[56px] image-8 h-[38px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-8 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Туризм</p>
                         </div>
@@ -96,7 +96,7 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains9" data-index="9">
-                            <div class=" rounded-lg py-3 px-4 w-[49px] image-9 h-[42px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-9 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Магазины</p>
                         </div>
@@ -104,7 +104,7 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains10" data-index="10">
-                            <div class=" rounded-lg py-3 px-4 w-[48px] image-10 h-[49px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-10 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Поесть</p>
                         </div>
@@ -112,7 +112,7 @@ defineProps<{
                     </div>
                     <div class=" relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains11" data-index="11">
-                            <div class=" rounded-lg py-3  w-[40px] image-11 h-[46px] ">
+                            <div class=" rounded-lg py-3  w-[51px] image-11 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Для авто</p>
                         </div>
@@ -120,7 +120,7 @@ defineProps<{
                     </div>
                     <div class="  relative flex flex-col items-center cursor-pointer">
                         <div class="flex flex-col items-center justify-center relative mains12" data-index="12">
-                            <div class=" rounded-lg py-3 px-4 w-[47px] image-12 h-[43px] ">
+                            <div class=" rounded-lg py-3 px-4 w-[51px] image-12 h-[51px] ">
                             </div>
                             <p class="lg:text-sm font-bold mt-2 text-white">Обучение</p>
                         </div>
