@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -15,6 +16,7 @@ use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Enums\RoleType;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use App\Casts\MoneyValueObjectCast;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -42,6 +44,7 @@ class User extends Authenticatable implements FilamentUser
         'birth_date',
         'gender',
         'code',
+        'tariff_plan_id',
     ];
 
     /**
@@ -73,6 +76,14 @@ class User extends Authenticatable implements FilamentUser
             || $this->hasRole(RoleType::SUPER_ADMIN->value)
             || $this->hasRole(RoleType::ADMIN->value)
             || $this->hasRole(RoleType::MODERATOR->value);
+    }
+
+    /**
+     * @return BelongsTo<TariffPlan, $this>
+     */
+    public function tariffPlan(): BelongsTo
+    {
+        return $this->belongsTo(TariffPlan::class);
     }
 
     /**
@@ -141,7 +152,7 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
-            'balance' => 'integer',
+            'balance' => MoneyValueObjectCast::class,
             'birth_date' => 'date',
             'job_status' => JobStatusType::class,
             'gender' => GenderType::class,

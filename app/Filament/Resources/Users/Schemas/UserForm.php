@@ -34,15 +34,32 @@ class UserForm
                     ->required()
                     ->numeric()
                     ->default(0),
-                Money::input('balance')
-                    ->numeric()
-                    ->default(0.0),
+                Money::input('balance'),
                 TextInput::make('job'),
                 Select::make('job_status')
                     ->options(JobStatusType::options()),
                 TextInput::make('city')
                     ->numeric(),
                 TextInput::make('country'),
+                Select::make('tariff_plan_id')
+                    ->label('TariffPlan')
+                    ->relationship('tariffPlan', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('description'),
+                        Money::input('price')
+                            ->required(),
+                        Money::input('banner_price'),
+                        TextInput::make('ads_count')
+                            ->numeric()
+                            ->default(0)
+                            ->required(),
+                    ])
+                    ->placeholder('Выберите тарифный план'),
                 DatePicker::make('birth_date'),
                 RolesSelect::make(),
                 Select::make('gender')
