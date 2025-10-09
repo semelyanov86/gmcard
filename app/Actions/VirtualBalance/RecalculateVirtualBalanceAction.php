@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
+use stdClass;
 
 final readonly class RecalculateVirtualBalanceAction
 {
@@ -21,7 +22,8 @@ final readonly class RecalculateVirtualBalanceAction
     public function handle(int $userId): void
     {
         DB::transaction(function () use ($userId): void {
-            $balance = DB::selectOne('
+            /** @var stdClass $result */
+            $result = DB::selectOne('
                 SELECT COALESCE(SUM(
                     CASE
                         WHEN vb.type = ? THEN vb.amount
@@ -34,7 +36,9 @@ final readonly class RecalculateVirtualBalanceAction
                 PaymentType::INCOMING->value,
                 PaymentType::OUTGOING->value,
                 $userId,
-            ])->balance;
+            ]);
+
+            $balance = (int) $result->balance;
 
             if ($balance < 0) {
                 throw ValidationException::withMessages([
