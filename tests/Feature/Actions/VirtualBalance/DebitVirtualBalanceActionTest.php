@@ -13,6 +13,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
+use Override;
 
 class DebitVirtualBalanceActionTest extends TestCase
 {
@@ -20,7 +21,7 @@ class DebitVirtualBalanceActionTest extends TestCase
 
     private DebitVirtualBalanceAction $action;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

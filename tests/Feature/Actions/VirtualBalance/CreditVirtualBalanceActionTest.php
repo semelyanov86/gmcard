@@ -12,6 +12,7 @@ use App\Models\VirtualBalance;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Override;
 
 class CreditVirtualBalanceActionTest extends TestCase
 {
@@ -19,7 +20,7 @@ class CreditVirtualBalanceActionTest extends TestCase
 
     private CreditVirtualBalanceAction $action;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

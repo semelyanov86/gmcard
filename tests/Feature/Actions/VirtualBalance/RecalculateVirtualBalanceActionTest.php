@@ -11,6 +11,7 @@ use App\Models\VirtualBalance;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
+use Override;
 
 class RecalculateVirtualBalanceActionTest extends TestCase
 {
@@ -18,7 +19,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     private RecalculateVirtualBalanceAction $action;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
