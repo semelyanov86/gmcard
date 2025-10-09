@@ -29,6 +29,7 @@ class CreditVirtualBalanceActionTest extends TestCase
 
     public function test_it_creates_credit_record_and_recalculates_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         $data = new VirtualBalanceData(
@@ -52,6 +53,7 @@ class CreditVirtualBalanceActionTest extends TestCase
 
     public function test_it_adds_to_existing_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         VirtualBalance::factory()->create([
@@ -77,6 +79,7 @@ class CreditVirtualBalanceActionTest extends TestCase
 
     public function test_it_handles_multiple_credit_operations(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         $data1 = new VirtualBalanceData(

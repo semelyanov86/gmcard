@@ -30,6 +30,7 @@ class DebitVirtualBalanceActionTest extends TestCase
 
     public function test_it_creates_debit_record_and_recalculates_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 100]);
 
         VirtualBalance::factory()->create([
@@ -59,6 +60,7 @@ class DebitVirtualBalanceActionTest extends TestCase
 
     public function test_it_throws_exception_when_insufficient_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 50]);
 
         VirtualBalance::factory()->create([
@@ -81,6 +83,7 @@ class DebitVirtualBalanceActionTest extends TestCase
 
     public function test_it_handles_exact_amount_debit(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 100]);
 
         VirtualBalance::factory()->create([

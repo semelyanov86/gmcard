@@ -28,6 +28,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     public function test_it_correctly_calculates_balance_with_incoming_and_outgoing_operations(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         VirtualBalance::factory()->create([
@@ -50,6 +51,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     public function test_it_throws_exception_when_balance_becomes_negative(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         VirtualBalance::factory()->create([
@@ -64,6 +66,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     public function test_it_handles_user_without_operations(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 100]);
 
         $this->action->handle($user->id);
@@ -74,6 +77,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     public function test_it_handles_zero_balance_correctly(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 999]);
 
         VirtualBalance::factory()->create([
@@ -96,6 +100,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     public function test_it_handles_multiple_operations_correctly(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
 
         VirtualBalance::factory()->create([
