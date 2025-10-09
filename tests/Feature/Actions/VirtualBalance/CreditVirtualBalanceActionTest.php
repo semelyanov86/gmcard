@@ -19,6 +19,7 @@ class CreditVirtualBalanceActionTest extends TestCase
 
     private CreditVirtualBalanceAction $action;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

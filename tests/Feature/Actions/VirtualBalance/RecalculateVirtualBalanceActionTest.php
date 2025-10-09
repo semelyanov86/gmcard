@@ -18,6 +18,7 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
     private RecalculateVirtualBalanceAction $action;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

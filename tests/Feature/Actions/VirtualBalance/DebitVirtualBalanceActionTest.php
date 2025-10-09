@@ -20,6 +20,7 @@ class DebitVirtualBalanceActionTest extends TestCase
 
     private DebitVirtualBalanceAction $action;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
