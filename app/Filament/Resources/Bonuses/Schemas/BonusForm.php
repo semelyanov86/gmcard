@@ -17,13 +17,18 @@ class BonusForm
         return $schema
             ->components([
                 Money::input('amount'),
-                TextInput::make('code'),
+                TextInput::make('code')
+                    ->numeric()
+                    ->inputMode('numeric')
+                    ->rule('integer'),
                 Select::make('source_id')
                     ->relationship('sender', 'name')
-                    ->searchable(),
+                    ->searchable()
+                    ->preload(),
                 Select::make('target_id')
                     ->relationship('receiver', 'name')
-                    ->searchable(),
+                    ->searchable()
+                    ->preload(),
                 Select::make('type')
                     ->options(PaymentType::options()),
             ]);
