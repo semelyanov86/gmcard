@@ -17,6 +17,10 @@ final readonly class DebitVirtualBalanceAction
 {
     use AsAction;
 
+    public function __construct(
+        private RecalculateVirtualBalanceAction $recalculateAction
+    ) {}
+
     /**
      * @throws Throwable
      * @throws ValidationException
@@ -40,8 +44,7 @@ final readonly class DebitVirtualBalanceAction
                 'description' => $data->description,
             ]);
 
-            User::where('id', $data->user_id)
-                ->decrement('virtual_balance', $data->amount);
+            $this->recalculateAction->handle($data->user_id);
 
             return $virtualBalance;
         });

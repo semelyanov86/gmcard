@@ -6,7 +6,6 @@ namespace App\Actions\VirtualBalance;
 
 use App\Data\VirtualBalanceData;
 use App\Enums\PaymentType;
-use App\Models\User;
 use App\Models\VirtualBalance;
 use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -15,6 +14,10 @@ use Throwable;
 final readonly class CreditVirtualBalanceAction
 {
     use AsAction;
+
+    public function __construct(
+        private RecalculateVirtualBalanceAction $recalculateAction
+    ) {}
 
     /**
      * @throws Throwable
@@ -30,8 +33,7 @@ final readonly class CreditVirtualBalanceAction
                 'description' => $data->description,
             ]);
 
-            User::where('id', $data->user_id)
-                ->increment('virtual_balance', $data->amount);
+            $this->recalculateAction->handle($data->user_id);
 
             return $virtualBalance;
         });
