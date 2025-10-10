@@ -25,10 +25,10 @@ const activeImg12 = document.querySelector(".image-12")
 const topBar = document.querySelector("#topBar")
 
 
-const lists = document.querySelector('#lists')
+// const lists = document.querySelector('#lists')
 
 
-const blockList = document.querySelector('#blocks_list')
+// const blockList = document.querySelector('#blocks_list')
 
 // sub menu
 const modalTrigger1 = document.querySelector('#icons_block1');
@@ -54,7 +54,7 @@ const modalCashSubmit = document.querySelector('#close_Submit');
 
 
 
-const myClass = document.querySelector(".my-class")
+// const myClass = document.querySelector(".my-class")
 
 const dropdown = document.querySelector('.drop_list');
 const arrow = document.querySelector('#icons1');
@@ -87,7 +87,7 @@ const optionsList2 = document.querySelectorAll('.custom-option_2');
 const span1 = document.querySelector("#spaner")
 const span2 = document.querySelector("#spaner1")
 
-const listParent = document.querySelector('#list_subMenu')
+// const listParent = document.querySelector('#list_subMenu')
 
 const open_menuList = document.querySelector(".animated-block")
 
@@ -178,19 +178,19 @@ closeModalButtons.forEach(button => {
 //     });
 
 
-function showYellow(element) {
-    const container = element.parentNode;
-    // Скрыть оригинал и показать желтую иконку
-    element.classList.add('hidden'); // Скрыть оригинал
-    container.querySelector('.yellow').classList.remove('hidden'); // Показать желтый
-}
+// function showYellow(element) {
+//     const container = element.parentNode;
+//     // Скрыть оригинал и показать желтую иконку
+//     element.classList.add('hidden'); // Скрыть оригинал
+//     container.querySelector('.yellow').classList.remove('hidden'); // Показать желтый
+// }
 
-function showOriginal(element) {
-    const container = element.parentNode;
-    // Показать оригинал и скрыть желтую иконку
-    container.querySelector('.original').classList.remove('hidden'); // Показать оригинал
-    container.querySelector('.yellow').classList.add('hidden'); // Скрыть желтый
-}
+// function showOriginal(element) {
+//     const container = element.parentNode;
+//     // Показать оригинал и скрыть желтую иконку
+//     container.querySelector('.original').classList.remove('hidden'); // Показать оригинал
+//     container.querySelector('.yellow').classList.add('hidden'); // Скрыть желтый
+// }
 
 document.querySelectorAll('.toggle-subcategories').forEach(item => {
     item.addEventListener('click', (event) => {
@@ -1072,9 +1072,9 @@ open_menu.addEventListener("click", () => {
 
 // swiper
 
-let Swipes = new Swiper('.swiper-container', {
-    loop: true,
-});
+// let Swipes = new Swiper('.swiper-container', {
+//     loop: true,
+// });
 
 
 // $('.slider-1').owlCarousel({
@@ -1174,3 +1174,6 @@ let Swipes = new Swiper('.swiper-container', {
 // }).on('translated.owl.carousel', function(event) {
 //     console.log('Слайдер завершил трансляцию');
 // });
+
+// Экспортируем пустой объект, чтобы файл считался модулем для TypeScript
+export {};
