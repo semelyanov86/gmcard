@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
 import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import NavBar from '@/components/NavBar.vue';
+import CategoriesMenu from '@/components/CategoriesMenu.vue';
 
 defineProps<{
     contact: {
@@ -28,207 +28,9 @@ defineProps<{
         </div>
         <div class="2xl:w-full 2xl:px-4 w-[1140px] mx-auto">
            <NavBar></NavBar>
-            <div class="w-full md:py-0 py-4 relative">
-                <div class="flex items-end justify-between -mx-2 lg:px-0 px-4 mobile_desctop">
-                    <div class=" relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains" data-index="1">
-                            <div class="rounded-lg py-3 px-4 image-1 w-[51px] h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для него</p>
-                        </div>
-                        <svg fill="currentColor" id="icons1" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class=" relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains2" data-index="2">
-                            <div class=" rounded-lg py-3 px-4 image-2 w-[51px] h-[51px]">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для нее</p>
-                        </div>
-                        <svg fill="currentColor" id="icons2" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col justify-center items-center relative mains3" data-index="3">
-                            <div class="rounded-lg py-3 px-4 w-[51px] image-3 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Детям</p>
-                        </div>
-                        <svg fill="currentColor" id="icons3" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains4" data-index="4">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-4 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для дома</p>
-                        </div>
-                        <svg fill="currentColor" id="icons4" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains5" data-index="5">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-5 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Техника</p>
-                        </div>
-                        <svg fill="currentColor" id="icons5" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains6" data-index="6">
-                            <div class="rounded-lg py-3 px-4 w-[51px] image-6 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Красота</p>
-                        </div>
-                        <svg fill="currentColor" id="icons6" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains7" data-index="7">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-7 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Услуги</p>
-                        </div>
-                        <svg fill="currentColor" id="icons7" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains8" data-index="8">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-8 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Туризм</p>
-                        </div>
-                        <svg fill="currentColor" id="icons8" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains9" data-index="9">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-9 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Магазины</p>
-                        </div>
-                        <svg fill="currentColor" id="icons9" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains10" data-index="10">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-10 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Поесть</p>
-                        </div>
-                        <svg fill="currentColor" id="icons10" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class=" relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains11" data-index="11">
-                            <div class=" rounded-lg py-3  w-[51px] image-11 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для авто</p>
-                        </div>
-                        <svg fill="currentColor" id="icons11" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer">
-                        <div class="flex flex-col items-center justify-center relative mains12" data-index="12">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-12 h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Обучение</p>
-                        </div>
-                        <svg fill="currentColor" id="icons12" class="hidden w-6 h-7 absolute -bottom-6 text-[#F9D914]" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
-                    </div>
-                </div>
-                <!-- 768px mobile -->
-                <div class="items-end justify-between -mx-2 lg:px-0 px-4 hidden mobile_scroll">
-                    <div class=" relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block1" data-index="1">
-                            <div class="rounded-lg py-3 px-4 image-1 w-[51px] h-[51px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для него</p>
-                        </div>
-                    </div>
-                    <div class=" relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block2" data-index="2">
-                            <div class=" rounded-lg py-3 px-4 image-2 w-[51px] h-[51px]">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для нее</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col justify-center items-center relative " id="icons_block3" data-index="3">
-                            <div class="rounded-lg py-3 px-4 w-[49px] image-3 h-[41px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Детям</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block4" data-index="4">
-                            <div class=" rounded-lg py-3 px-4 w-[51px] image-4 h-[41px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Для дома</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block5" data-index="5">
-                            <div class=" rounded-lg py-3 px-4 w-[52px] image-5 h-[50px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-3 text-white">Техника</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block6" data-index="6">
-                            <div class="rounded-lg py-3 px-4 w-[52px] image-6 h-[50px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Красота</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block7" data-index="7">
-                            <div class=" rounded-lg py-3 px-4 w-[46px] image-7 h-[44px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Услуги</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block8" data-index="8">
-                            <div class=" rounded-lg py-3 px-4 w-[56px] image-8 h-[38px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Туризм</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block9" data-index="9">
-                            <div class=" rounded-lg py-3 px-4 w-[49px] image-9 h-[42px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Магазины</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block10" data-index="10">
-                            <div class=" rounded-lg py-3 px-4 w-[48px] image-10 h-[49px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Поесть</p>
-                        </div>
-                    </div>
-                    <div class=" relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block11" data-index="11">
-                            <div class=" rounded-lg py-3  w-[40px] image-11 h-[46px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Для авто</p>
-                        </div>
-                    </div>
-                    <div class="  relative flex flex-col items-center cursor-pointer mx-2 icons_block min-w-[100px]">
-                        <div class="flex flex-col items-center justify-center relative " id="icons_block12" data-index="12">
-                            <div class=" rounded-lg py-3 px-4 w-[47px] image-12 h-[43px] ">
-                            </div>
-                            <p class="lg:text-sm font-bold mt-2 text-white">Обучение</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 768px mobile -->
-                <div class="drop_list flex-col mt-3 hidden absolute w-full h-[450px] overflow-hidden shadow-lg z-50">
-                    <div class="h-4 w-full bg-[#F9D914] rounded-t-md relative top-2 z-1">
-                    </div>
-                    <div id="blocks_list" class="flex gap-1 overflow-y-scroll bg-white h-[90vh] z-10">
-                        <ul id="lists" class="relative w-1/3 h-full  py-2  bg-white rounded-b-md z-10 overflow-y-scroll">
-                        </ul>
-                        <ul id="lists2" class="hidden relative w-1/3 h-full  py-2 bg-white rounded-b-md z-10 overflow-y-scroll">
-                        </ul>
-                        <ul id="lists3" class="hidden relative w-1/3 h-full  py-2 bg-white rounded-b-md z-10 overflow-y-scroll">
-                        </ul>
-                    </div>
-                </div>
-                <!-- mobile modal -->
-                <div class="fixed top-0 left-0 h-screen z-50 overflow-auto bg-white w-full hidden" id="modal_sub">
+            <CategoriesMenu></CategoriesMenu>
+            <!-- mobile modal -->
+            <div class="fixed top-0 left-0 h-screen z-50 overflow-auto bg-white w-full hidden" id="modal_sub">
                     <div class="relative w-full h-full  m-auto flex-col flex p-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" id="modal-closeSub" stroke="currentColor" class="w-5 h-5 text-[#7f8588] font-extrabold absolute right-5 top-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -241,7 +43,6 @@ defineProps<{
                     </div>
                 </div>
                 <!-- mobile modal -->
-            </div>
             <div class="w-full h-[1px] bg-white opacity-10"></div>
             <div class=" items-center justify-between mb-6 lg:h-full h-[46px] filter_block hidden">
                 <h3 class="text-2xl text-white font-bold text_filter">Фильтровать</h3>
@@ -1770,7 +1571,7 @@ defineProps<{
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>-->
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>-->
-<!--    <script src="/js/dropdown.js"></script>-->
+<!--    <script src="/resources/js/dropdown.js"></script>-->
 <!--    <script src="/js/promo_cost.js"></script>-->
 <!--    <script src="/js/promo.js"></script>-->
     <Footer :contact="contact"></Footer>
