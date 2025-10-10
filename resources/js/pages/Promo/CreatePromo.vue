@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
@@ -13,9 +13,15 @@ defineProps<{
     };
 }>();
 
-// Reactive состояние для hover и выбранной акции
 const hoveredPromo = ref<number | null>(null);
-const selectedPromo = ref<number>(1); // По умолчанию выбрана "Просто скидка"
+const selectedPromo = ref<number>(1);
+
+// Видимость блоков на основе выбранной акции
+const showPervyi = computed(() => [1, 2, 4, 5, 7].includes(selectedPromo.value));
+const showPerviNew = computed(() => selectedPromo.value === 6);
+const showVtoroi = computed(() => [1, 4, 5].includes(selectedPromo.value));
+const showTretiy = computed(() => [1, 4, 5, 7].includes(selectedPromo.value));
+const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
 </script>
 
 <template>
@@ -132,7 +138,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                 <div class="w-3/4 main_block bg-[#063966] p-8 md:p-2 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
                     <div class="flex flex-wrap bg-white p-8 md:p-4 md:mt-4 mt-8 rounded-2xl justify-between gap-2 sm:gap-4">
-                        <div id="promo1" 
+                        <div id="promo1"
                              :class="[selectedPromo === 1 ? 'bgColor1' : (hoveredPromo === 1 ? 'bgColor1' : 'promo_image1'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer']"
                              @mouseenter="hoveredPromo = 1"
                              @mouseleave="hoveredPromo = null"
@@ -144,7 +150,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo2" 
+                        <div id="promo2"
                              :class="[selectedPromo === 2 ? 'bgColor2' : (hoveredPromo === 2 ? 'promo_hover2' : 'promo_image2'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 2"
                              @mouseleave="hoveredPromo = null"
@@ -156,7 +162,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo3" 
+                        <div id="promo3"
                              :class="[selectedPromo === 3 ? 'bgColor3' : (hoveredPromo === 3 ? 'promo_hover3' : 'promo_image3'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 3"
                              @mouseleave="hoveredPromo = null"
@@ -168,7 +174,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo4" 
+                        <div id="promo4"
                              :class="[selectedPromo === 4 ? 'bgColor4' : (hoveredPromo === 4 ? 'promo_hover4' : 'promo_image4'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 4"
                              @mouseleave="hoveredPromo = null"
@@ -180,7 +186,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo5" 
+                        <div id="promo5"
                              :class="[selectedPromo === 5 ? 'bgColor5' : (hoveredPromo === 5 ? 'promo_hover5' : 'promo_image5'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 5"
                              @mouseleave="hoveredPromo = null"
@@ -192,7 +198,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo6" 
+                        <div id="promo6"
                              :class="[selectedPromo === 6 ? 'bgColor6' : (hoveredPromo === 6 ? 'promo_hover6' : 'promo_image6'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 6"
                              @mouseleave="hoveredPromo = null"
@@ -204,7 +210,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
 
                             </div>
                         </div>
-                        <div id="promo7" 
+                        <div id="promo7"
                              :class="[selectedPromo === 7 ? 'bgColor7' : (hoveredPromo === 7 ? 'promo_hover7' : 'promo_image7'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
                              @mouseenter="hoveredPromo = 7"
                              @mouseleave="hoveredPromo = null"
@@ -217,12 +223,12 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 flex-col sm:flex-row rounded-2xl justify-between items-center" id="pervyi">
-                        <h3 class="text-base font-bold w-full sm:w-[280px]">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
-                        <div class="flex gap-5 w-full sm:w-auto mt-4 sm:mt-0">
-                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border-gray-300 rounded-lg w-full sm:w-[120px]">
-                            <div class="relative inline-block ">
-                                <button id="toggleBtn" type="button" class="w-28 py-2 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                    <div v-show="showPervyi" class="flex bg-white p-8 mt-8 m-8 flex-row flex-wrap rounded-2xl items-center gap-6" id="pervyi">
+                        <h3 class="text-base font-bold w-auto shrink-0">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
+                        <div class="flex gap-3 items-center w-auto">
+                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[120px] h-10 px-3">
+                            <div class="relative inline-block">
+                                <button id="toggleBtn" type="button" class="w-28 h-10 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
                                     <span id="spanOfBtn">%</span>
                                     <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -235,12 +241,12 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 flex-col sm:flex-row rounded-2xl justify-between items-center" id="pervyi_new">
-                        <h3 class="text-base font-bold w-full sm:w-[280px]">Какой % кэшбэка вы готовы предоставить?</h3>
-                        <div class="flex gap-5 w-full sm:w-auto mt-4 sm:mt-0">
-                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border-gray-300 rounded-lg w-full sm:w-[120px]">
-                            <div class="relative inline-block ">
-                                <button id="toggleBtn" type="button" class="w-28 py-2 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                    <div v-show="showPerviNew" class="flex bg-white p-8 mt-8 flex-row flex-wrap rounded-2xl items-center gap-6" id="pervyi_new">
+                        <h3 class="text-base font-bold w-auto shrink-0">Какой % кэшбэка вы готовы предоставить?</h3>
+                        <div class="flex gap-3 items-center w-auto">
+                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[120px] h-10 px-3">
+                            <div class="relative inline-block">
+                                <button id="toggleBtn" type="button" class="w-28 h-10 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
                                     <span id="spanOfBtn">%</span>
 
                                 </button>
@@ -251,7 +257,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="vtoroi">
+                    <div v-show="showVtoroi" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="vtoroi">
                         <div class="flex flex-col w-[450px] price_block ">
                             <h3 class="text-base font-bold ">Если для получения скидки необходимо вводить код</h3>
                             <p class="text-black/50 all_text">(например интернет-магазин), то вы можете указать его здесь. Если ничего вводить не нужно, то оставьте поле пустым.</p>
@@ -261,7 +267,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                             <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg sm:w-[250px] mt-3">
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="tretiy">
+                    <div v-show="showTretiy" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="tretiy">
                         <div class="flex flex-col w-[450px] price_block">
                             <p class="text-black/50 all_text"> <strong class="text-black text-base">Если одним из условий является минимальная сумма заказа,</strong> то необходимо указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.</p>
                         </div>
@@ -271,7 +277,7 @@ const selectedPromo = ref<number>(1); // По умолчанию выбрана 
                             <span class="absolute bottom-2 right-3 text-black/50">₽</span>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="chetvertyi">
+                    <div v-show="showChetvertyi" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="chetvertyi">
                         <div class="flex justify-between items-center">
                             <div class="w-[450px] price_block">
                                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
