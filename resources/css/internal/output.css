@@ -4916,128 +4916,128 @@ background-color: #ededf4;
 /* card promo bg-images */
 
 .promo_image1 {
-  background-image: url(/assets/constructor/constructor_sale1.png);
+  background-image: url(/images/png/constructor/constructor_sale1.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor1 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor_sale1.png);
+  background-image: url(/images/png/constructor/constructor_sale1.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image2 {
-  background-image: url(/assets/constructor/constructor-sale2.png);
+  background-image: url(/images/png/constructor/constructor-sale2.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover2 {
-  background-image: url(/assets/constructor/constructor_sale2_hover.png);
+  background-image: url(/images/png/constructor/constructor_sale2_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor2 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor_sale2_hover.png);
+  background-image: url(/images/png/constructor/constructor_sale2_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image3 {
-  background-image: url(/assets/constructor/constructor-sale3.png);
+  background-image: url(/images/png/constructor/constructor-sale3.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover3 {
-  background-image: url(/assets/constructor/constructor-sale3_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale3_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor3 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor-sale3_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale3_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image4 {
-  background-image: url(/assets/constructor/constructor-sale4.png);
+  background-image: url(/images/png/constructor/constructor-sale4.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover4 {
-  background-image: url(/assets/constructor/constructor-sale4_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale4_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor4 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor-sale4_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale4_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image5 {
-  background-image: url(/assets/constructor/constructor-sale5.png);
+  background-image: url(/images/png/constructor/constructor-sale5.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover5 {
-  background-image: url(/assets/constructor/constructor-sale5_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale5_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor5 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor-sale5_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale5_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image6 {
-  background-image: url(/assets/constructor/constructor-sale6.png);
+  background-image: url(/images/png/constructor/constructor-sale6.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover6 {
-  background-image: url(/assets/constructor/constructor-sale6_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale6_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor6 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor-sale6_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale6_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_image7 {
-  background-image: url(/assets/constructor/constructor-sale7.png);
+  background-image: url(/images/png/constructor/constructor-sale7.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .promo_hover7 {
-  background-image: url(/assets/constructor/constructor-sale7_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale7_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .bgColor7 {
   background-color: #fae115;
-  background-image: url(/assets/constructor/constructor-sale7_hover.png);
+  background-image: url(/images/png/constructor/constructor-sale7_hover.png);
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -5305,26 +5305,26 @@ background-color: #ededf4;
 }
 
 .file_upload {
-  background-image: url(/assets/constructor/picture-sale.png);
+  background-image: url(/images/png/constructor/picture-sale.png);
   background-position: 50% 20%;
   background-repeat: no-repeat;
 }
 
 .file_uploaded {
-  background-image: url(/assets/constructor/picture-sale.png);
+  background-image: url(/images/png/constructor/picture-sale.png);
   background-position: 50% 20%;
   background-repeat: no-repeat;
 }
 
 .customPhoto1 {
-  background-image: url(/assets/constructor/picture-sale.png);
+  background-image: url(/images/png/constructor/picture-sale.png);
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
 }
 
 .file_uploadPlus {
-  background-image: url(/assets/constructor/plus.png);
+  background-image: url(/images/png/constructor/plus.png);
   background-position: 50% 20%;
   background-repeat: no-repeat;
 }
@@ -5334,7 +5334,7 @@ background-color: #ededf4;
 }
 
 .morePhoto {
-  background-image: url(/assets/constructor/plus.png);
+  background-image: url(/images/png/constructor/plus.png);
   background-position: 50% 20%;
   background-repeat: no-repeat;
 }
@@ -5549,7 +5549,7 @@ background-color: #ededf4;
 }
 
 .bg-category {
-  background-image: url(/assets/constructor/category-bg.png);
+  background-image: url(/images/png/constructor/category-bg.png);
   background-repeat: no-repeat;
   background-position: center;
 }

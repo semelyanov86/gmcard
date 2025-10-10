@@ -2,21 +2,27 @@
 import { onMounted } from 'vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 
-onMounted(() => {
-    import('@/dropdown.js').catch(err => {
+onMounted(async () => {
+    // Загружаем dropdown.js асинхронно
+    try {
+        await import('@/dropdown.js');
+    } catch (err) {
         console.error('Ошибка загрузки dropdown.js:', err);
-    });
+    }
 
-    const categoryItems = document.querySelectorAll('#lists .my-class');
-    categoryItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            const categoryName = item.getAttribute('data-category');
-            const titleElement = document.getElementById('categoryTitle');
-            if (titleElement && categoryName) {
-                titleElement.childNodes[0].textContent = categoryName + ' ';
-            }
+    // Добавляем обработчики для смены заголовка категории
+    setTimeout(() => {
+        const categoryItems = document.querySelectorAll('#lists .my-class');
+        categoryItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const categoryName = item.getAttribute('data-category');
+                const titleElement = document.getElementById('categoryTitle');
+                if (titleElement && categoryName) {
+                    titleElement.childNodes[0].textContent = categoryName + ' ';
+                }
+            });
         });
-    });
+    }, 100);
 });
 </script>
 

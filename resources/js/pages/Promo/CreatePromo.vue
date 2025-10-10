@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
@@ -11,6 +12,10 @@ defineProps<{
         phone: string;
     };
 }>();
+
+// Reactive состояние для hover и выбранной акции
+const hoveredPromo = ref<number | null>(null);
+const selectedPromo = ref<number>(1); // По умолчанию выбрана "Просто скидка"
 </script>
 
 <template>
@@ -29,8 +34,8 @@ defineProps<{
         <div class="2xl:w-full 2xl:px-4 w-[1140px] mx-auto">
            <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
-            <!-- mobile modal -->
-            <div class="fixed top-0 left-0 h-screen z-50 overflow-auto bg-white w-full hidden" id="modal_sub">
+                <!-- mobile modal -->
+                <div class="fixed top-0 left-0 h-screen z-50 overflow-auto bg-white w-full hidden" id="modal_sub">
                     <div class="relative w-full h-full  m-auto flex-col flex p-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" id="modal-closeSub" stroke="currentColor" class="w-5 h-5 text-[#7f8588] font-extrabold absolute right-5 top-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -124,10 +129,14 @@ defineProps<{
                         </ul>
                     </div>
                 </div>
-                <div class="w-3/4 main_block bg-[#063966] p-2 md:p-8 rounded-2xl">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
-                    <div class="flex flex-wrap bg-white p-4 md:p-8 md:mt-4 mt-8 rounded-2xl justify-between gap-2 sm:gap-4">
-                        <div id="promo1" class="promo_image1 hover:bg-[#fae115] promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer">
+                <div class="w-3/4 main_block bg-[#063966] p-8 md:p-2 rounded-2xl">
+                    <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
+                    <div class="flex flex-wrap bg-white p-8 md:p-4 md:mt-4 mt-8 rounded-2xl justify-between gap-2 sm:gap-4">
+                        <div id="promo1" 
+                             :class="[selectedPromo === 1 ? 'bgColor1' : (hoveredPromo === 1 ? 'bgColor1' : 'promo_image1'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer']"
+                             @mouseenter="hoveredPromo = 1"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 1">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">Просто скидка</span>
                             <span data-tooltip-target="tooltip-just" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-just" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -135,7 +144,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo2" class="promo_image2 promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo2" 
+                             :class="[selectedPromo === 2 ? 'bgColor2' : (hoveredPromo === 2 ? 'promo_hover2' : 'promo_image2'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 2"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 2">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">Купон на скидку</span>
                             <span data-tooltip-target="tooltip-sale" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-sale" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -143,7 +156,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo3" class="promo_image3 promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo3" 
+                             :class="[selectedPromo === 3 ? 'bgColor3' : (hoveredPromo === 3 ? 'promo_hover3' : 'promo_image3'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 3"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 3">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">Подарок при покупке</span>
                             <span data-tooltip-target="tooltip-buy" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-buy" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -151,7 +168,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo4" class="promo_image4 promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo4" 
+                             :class="[selectedPromo === 4 ? 'bgColor4' : (hoveredPromo === 4 ? 'promo_hover4' : 'promo_image4'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 4"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 4">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">2 по цене 1</span>
                             <span data-tooltip-target="tooltip-two" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-two" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -159,7 +180,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo5" class="promo_image5 promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo5" 
+                             :class="[selectedPromo === 5 ? 'bgColor5' : (hoveredPromo === 5 ? 'promo_hover5' : 'promo_image5'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 5"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 5">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">3 по цене 2</span>
                             <span data-tooltip-target="tooltip-three" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-three" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -167,7 +192,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo6" class="promo_image6 promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo6" 
+                             :class="[selectedPromo === 6 ? 'bgColor6' : (hoveredPromo === 6 ? 'promo_hover6' : 'promo_image6'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 6"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 6">
                             <span class="absolute bottom-4 text-bottom text-base font-bold"> Кэшбек</span>
                             <span data-tooltip-target="tooltip-cash" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-cash" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -175,7 +204,11 @@ defineProps<{
 
                             </div>
                         </div>
-                        <div id="promo7" class="promo_image7 promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer">
+                        <div id="promo7" 
+                             :class="[selectedPromo === 7 ? 'bgColor7' : (hoveredPromo === 7 ? 'promo_hover7' : 'promo_image7'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
+                             @mouseenter="hoveredPromo = 7"
+                             @mouseleave="hoveredPromo = null"
+                             @click="selectedPromo = 7">
                             <span class="absolute bottom-4 text-bottom text-base font-bold">Конкурс</span>
                             <span data-tooltip-target="tooltip-celebrity" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
                             <div id="tooltip-celebrity" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
