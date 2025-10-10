@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 
 onMounted(() => {
     import('@/dropdown.js').catch(err => {
         console.error('Ошибка загрузки dropdown.js:', err);
     });
 
-    // Добавляем обработчики для элементов категорий
     const categoryItems = document.querySelectorAll('#lists .my-class');
     categoryItems.forEach(item => {
         item.addEventListener('mouseenter', () => {
@@ -250,70 +250,70 @@ onMounted(() => {
                 <ul id="lists" class="relative w-1/3  py-2 bg-white z-10 overflow-y-scroll pr-[16px] mt-[10px]">
                     <li class="my-class" data-category="Грузоперевозки">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/carpng.png" alt="Грузоперевозки" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/carpng" alt="Грузоперевозки" image-class="category-icon" />
                             <span>Грузоперевозки</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Фото, видео, аудио">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/photo.png" alt="Фото, видео, аудио" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/photo" alt="Фото, видео, аудио" image-class="category-icon" />
                             <span>Фото, видео, аудио</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Свадьба и торжества">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/ring.png" alt="Свадьба и торжества" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/ring" alt="Свадьба и торжества" image-class="category-icon" />
                             <span>Свадьба и торжества</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Все для красоты">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/kiss.png" alt="Все для красоты" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/kiss" alt="Все для красоты" image-class="category-icon" />
                             <span>Все для красоты</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Врачи">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/hos.png" alt="Врачи" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/hos" alt="Врачи" image-class="category-icon" />
                             <span>Врачи</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="IT-фрилансеры">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/comp.png" alt="IT-фрилансеры" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/comp" alt="IT-фрилансеры" image-class="category-icon" />
                             <span>IT-фрилансеры</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Ремонт и стройка">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/tools.png" alt="Ремонт и стройка" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/tools" alt="Ремонт и стройка" image-class="category-icon" />
                             <span>Ремонт и стройка</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Для авто">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/wheel.png" alt="Для авто" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/wheel" alt="Для авто" image-class="category-icon" />
                             <span>Для авто</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Бухгалтеры и юристы">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/teach.png" alt="Бухгалтеры и юристы" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/teach" alt="Бухгалтеры и юристы" image-class="category-icon" />
                             <span>Бухгалтеры и юристы</span>
                         </div>
                         <span class="strelka">›</span>
                     </li>
                     <li class="my-class" data-category="Ветеринары">
                         <div class="icon-container">
-                            <img src="/images/png/menu_icons/dog.png" alt="Ветеринары" class="category-icon">
+                            <AdaptiveImage image-path="menu_icons/dog" alt="Ветеринары" image-class="category-icon" />
                             <span>Ветеринары</span>
                         </div>
                         <span class="strelka">›</span>
