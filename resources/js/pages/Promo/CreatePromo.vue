@@ -18,7 +18,7 @@ const selectedPromo = ref<number>(1);
 
 // Видимость блоков на основе выбранной акции
 const showPervyi = computed(() => [1, 2, 4, 5, 7].includes(selectedPromo.value));
-const showPerviNew = computed(() => selectedPromo.value === 6);
+const showPerviNew = computed(() => selectedPromo.value === 1);
 const showVtoroi = computed(() => [1, 4, 5].includes(selectedPromo.value));
 const showTretiy = computed(() => [1, 4, 5, 7].includes(selectedPromo.value));
 const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
@@ -135,9 +135,9 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                         </ul>
                     </div>
                 </div>
-                <div class="w-3/4 main_block bg-[#063966] p-8 md:p-2 rounded-2xl">
+                <div class="w-3/4 md:w-full bg-[#063966] p-8 md:p-2 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
-                    <div class="flex flex-wrap bg-white p-8 md:p-4 md:mt-4 mt-8 rounded-2xl justify-between gap-2 sm:gap-4">
+                    <div class="flex flex-wrap bg-white p-8 md:p-4 mt-4 md:mt-8 rounded-2xl justify-between gap-4 md:gap-2">
                         <div id="promo1"
                              :class="[selectedPromo === 1 ? 'bgColor1' : (hoveredPromo === 1 ? 'bgColor1' : 'promo_image1'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer']"
                              @mouseenter="hoveredPromo = 1"
@@ -223,81 +223,81 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div v-show="showPervyi" class="flex bg-white p-8 mt-8 m-8 flex-row flex-wrap rounded-2xl items-center gap-6" id="pervyi">
-                        <h3 class="text-base font-bold w-auto shrink-0">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
-                        <div class="flex gap-3 items-center w-auto">
-                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[120px] h-10 px-3">
+                    <div v-show="showPervyi" class="flex bg-white p-8 max-md:p-4 mt-8 m-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi">
+                        <h3 class="text-base font-bold max-md:w-full">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
+                        <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
+                             <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
                             <div class="relative inline-block">
-                                <button id="toggleBtn" type="button" class="w-28 h-10 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                                 <button id="toggleBtn" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
                                     <span id="spanOfBtn">%</span>
                                     <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                                <ul id="dropdownList" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                <ul id="dropdownList" class="absolute z-10 w-[232px] h-[42px] mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
                                     <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
                                     <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div v-show="showPerviNew" class="flex bg-white p-8 mt-8 flex-row flex-wrap rounded-2xl items-center gap-6" id="pervyi_new">
-                        <h3 class="text-base font-bold w-auto shrink-0">Какой % кэшбэка вы готовы предоставить?</h3>
-                        <div class="flex gap-3 items-center w-auto">
-                            <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[120px] h-10 px-3">
+                    <div v-show="showPerviNew" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi_new">
+                        <h3 class="text-base font-bold max-md:w-full">Какой % кэшбэка вы готовы предоставить?</h3>
+                        <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
+                             <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
                             <div class="relative inline-block">
-                                <button id="toggleBtn" type="button" class="w-28 h-10 px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                                 <button id="toggleBtn" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
                                     <span id="spanOfBtn">%</span>
 
                                 </button>
-                                <ul id="dropdownList" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                <ul id="dropdownList" class="absolute z-10 w-[232px] h-[42px] mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
                                     <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
                                     <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div v-show="showVtoroi" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="vtoroi">
-                        <div class="flex flex-col w-[450px] price_block ">
-                            <h3 class="text-base font-bold ">Если для получения скидки необходимо вводить код</h3>
+                    <div v-show="showVtoroi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="vtoroi">
+                        <div class="flex flex-col w-[450px] max-md:w-full">
+                            <h3 class="text-base font-bold">Если для получения скидки необходимо вводить код</h3>
                             <p class="text-black/50 all_text">(например интернет-магазин), то вы можете указать его здесь. Если ничего вводить не нужно, то оставьте поле пустым.</p>
                         </div>
-                        <div class="flex mt-4 sm:mt-0 w-full sm:w-auto flex-col sm:ml-12">
+                        <div class="flex flex-col w-[210px] h-[74px] ml-12 max-md:w-full max-md:h-auto max-md:mt-4 max-md:ml-0">
                             <label for="code_for_sale" class="text-sm font-bold">Код для скидки</label>
-                            <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg sm:w-[250px] mt-3">
+                            <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg w-full mt-3">
                         </div>
                     </div>
-                    <div v-show="showTretiy" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col sm:flex-row justify-between items-center" id="tretiy">
-                        <div class="flex flex-col w-[450px] price_block">
+                    <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">
+                        <div class="flex flex-col w-[450px] max-md:w-full">
                             <p class="text-black/50 all_text"> <strong class="text-black text-base">Если одним из условий является минимальная сумма заказа,</strong> то необходимо указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.</p>
                         </div>
-                        <div class="flex w-full sm:w-auto flex-col mt-4 sm:mt-0 ml-0 sm:ml-12 relative">
+                        <div class="flex flex-col w-[210px] h-[74px] ml-12 max-md:w-full max-md:h-auto max-md:mt-4 max-md:ml-0 relative">
                             <label for="code_for_sale" class="text-sm font-bold">Минимальная сумма заказа</label>
-                            <input type="text" name="code_for_sale" placeholder="1000" class="border-gray-300 rounded-lg sm:w-[250px] mt-3 pl-3">
+                            <input type="text" name="code_for_sale" placeholder="1000" class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8">
                             <span class="absolute bottom-2 right-3 text-black/50">₽</span>
                         </div>
                     </div>
-                    <div v-show="showChetvertyi" class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="chetvertyi">
-                        <div class="flex justify-between items-center">
-                            <div class="w-[450px] price_block">
+                    <div v-show="showChetvertyi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="chetvertyi">
+                        <div class="flex flex-row max-md:flex-col justify-between items-center">
+                            <div class="w-[450px] max-md:w-full">
                                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
                                 <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="relative inline-flex items-center cursor-pointer max-md:mt-4">
                                 <input type="checkbox" value="" id="delivary" class="sr-only peer">
                                 <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             </label>
                         </div>
                         <div class="my-4 hidden" id="delivaryBlock">
                             <div class="h-[1px] w-full bg-black/30"></div>
-                            <div class="mt-4 flex flex-col sm:flex-row justify-between items-center">
+                            <div class="mt-4 flex flex-row max-sm:flex-col justify-between items-center">
                                 <div class="">
                                     <p class="text-black/50 all_text"><strong class="text-black text-base">Есть бесплатная доставка.</strong> Если бесплатная доставка действует при заказе от определенной суммы, то необходимо указать это здесь.</p>
                                 </div>
-                                <div class="flex flex-col w-full sm:w-auto mt-4 sm:mt-0 ml-0 sm:ml-12 relative">
+                                <div class="flex flex-col w-[200px] ml-12 max-sm:w-full max-sm:mt-4 max-sm:ml-0 relative">
                                     <label for="code_for_sale" class="text-sm font-bold">Действует при заказе от</label>
-                                    <input type="number" name="code_for_sale_new_prom" placeholder="1000" class="border-gray-300 rounded-lg w-full sm:w-[200px] mt-3 pl-3">
-                                    <span class="absolute bottom-2 right-3 text-black/50">₽</span>
+                                    <input type="number" name="code_for_sale_new_prom" placeholder="1000" class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8">
+                                    <span class="absolute bottom-12 right-3 text-black/50">₽</span>
                                     <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                         Сохранить
                                     </button>
@@ -305,7 +305,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col w-full" id="pyatyi">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col w-full" id="pyatyi">
                         <h3 class="text-base font-bold">Введите заголовок (названии акции), максимум 64 символа.</h3>
                         <p class="text-black/50 all_text">Вы можете указать в заголовке имя своего бренда (пример в строке), что поможет пользователям отслеживать все ваши акции и возможно сделает вас более узнаваемым.</p>
                         <div class="relative">
@@ -1490,7 +1490,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                         <div class="flex items-center gap-4 mt-4 md:mt-0">
                             <div class="flex items-center gap-2 relative w-full md:w-[180px]">
                                 <span class="text-xs opacity-80">0</span>
-                                <input id="slider" class=" w-[150px] price_block" type="range" min="0" max="30" value="0">
+                                <input id="slider" class="w-[150px]" type="range" min="0" max="30" value="0">
                                 <div id="slider-value" class="slider-value">0</div>
                                 <span class="text-xs opacity-80">30</span>
                             </div>
@@ -1498,7 +1498,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                         </div>
                     </div>
                     <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl justify-between items-start flex-col md:flex-row" id="pyatnadsat">
-                        <div class="price_block w-[450px]">
+                        <div class="w-[450px]">
                             <h3 class="font-bold">Желаете чтобы ваша акция так же появлялась и в баннере на главной странице сайта?<span id="hiddenText" class="hidden font-normal text-black/50">В этом случае стоимость запуска акции будет в 3 раза дороже. Бесплатно, если вы предлагаете скидку более 50%.</span></h3>
                         </div>
                         <div class="flex items-center gap-2 mt-4 md:mt-0">
@@ -1541,7 +1541,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                         </div>
                     </div>
                     <div class="pt-8 flex justify-between flex-col lg:flex-row">
-                        <div class="flex flex-col price_block w-[450px]">
+                        <div class="flex flex-col w-[450px]">
                             <div class="flex pricer_blocks justify-between">
                                 <div class="">
                                     <span class="text-[#159FF5] text-base">Ваш баланс</span>
