@@ -16,11 +16,11 @@ defineProps<{
 const hoveredPromo = ref<number | null>(null);
 const selectedPromo = ref<number>(1);
 
-const showPervyi = computed(() => [1, 2, 4, 5, 7].includes(selectedPromo.value));
-const showPerviNew = computed(() => selectedPromo.value === 1);
-const showVtoroi = computed(() => [1, 4, 5].includes(selectedPromo.value));
-const showTretiy = computed(() => [1, 4, 5, 7].includes(selectedPromo.value));
-const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
+const showPervyi = computed(() => [1, 2, 3].includes(selectedPromo.value));
+const showPerviNew = computed(() => [6, 7].includes(selectedPromo.value));
+const showVtoroi = computed(() => [1, 2].includes(selectedPromo.value));
+const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(selectedPromo.value));
+const showChetvertyi = computed(() => [1, 2, 3, 7].includes(selectedPromo.value));
 
 onMounted(() => {
     if (!(window as any).ClassicEditor) {
@@ -280,16 +280,6 @@ function initializeEditors() {
                             </div>
                         </div>
                     </div>
-                    <div v-show="showVtoroi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="vtoroi">
-                        <div class="flex flex-col w-[450px] max-md:w-full">
-                            <h3 class="text-base font-bold">Если для получения скидки необходимо вводить код</h3>
-                            <p class="text-black/50 all_text">(например интернет-магазин), то вы можете указать его здесь. Если ничего вводить не нужно, то оставьте поле пустым.</p>
-                        </div>
-                        <div class="flex flex-col w-[210px] h-[74px] ml-12 max-md:w-full max-md:h-auto max-md:mt-4 max-md:ml-0">
-                            <label for="code_for_sale" class="text-sm font-bold">Код для скидки</label>
-                            <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg w-full mt-3">
-                        </div>
-                    </div>
                     <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">
                         <div class="flex flex-col w-[450px] max-md:w-full">
                             <p class="text-black/50 all_text"> <strong class="text-black text-base">Если одним из условий является минимальная сумма заказа,</strong> то необходимо указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.</p>
@@ -298,6 +288,16 @@ function initializeEditors() {
                             <label for="code_for_sale" class="text-sm font-bold">Минимальная сумма заказа</label>
                             <input type="text" name="code_for_sale" placeholder="1000" class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8">
                             <span class="absolute bottom-2 right-3 text-black/50">₽</span>
+                        </div>
+                    </div>
+                    <div v-show="showVtoroi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="vtoroi">
+                        <div class="flex flex-col w-[450px] max-md:w-full">
+                            <h3 class="text-base font-bold">Если для получения скидки необходимо вводить код</h3>
+                            <p class="text-black/50 all_text">(например интернет-магазин), то вы можете указать его здесь. Если ничего вводить не нужно, то оставьте поле пустым.</p>
+                        </div>
+                        <div class="flex flex-col w-[210px] h-[74px] ml-12 max-md:w-full max-md:h-auto max-md:mt-4 max-md:ml-0">
+                            <label for="code_for_sale" class="text-sm font-bold">Код для скидки</label>
+                            <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg w-full mt-3">
                         </div>
                     </div>
                     <div v-show="showChetvertyi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="chetvertyi">
@@ -1581,11 +1581,11 @@ function initializeEditors() {
                             </div>
                         </div>
                         <div class="flex flex-col gap-3 max-md:mt-4">
-                            <div class="p-4 w-[280px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
+                            <div class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
                                 <img class="w-6 h-6" src="/images/png/constructor/eye.svg" alt="eye">
                                 <a href="#" class="text-white all_text">Предпросмотр акции</a>
                             </div>
-                            <div class="p-4 w-[280px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
+                            <div class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
                                 <img class="w-6 h-6" src="/images/png/constructor/file.svg" alt="eye">
                                 <button class="text-white all_text">Сохранить как черновик</button>
                             </div>
