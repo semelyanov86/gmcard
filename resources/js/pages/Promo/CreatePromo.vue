@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
@@ -16,12 +16,35 @@ defineProps<{
 const hoveredPromo = ref<number | null>(null);
 const selectedPromo = ref<number>(1);
 
-// Видимость блоков на основе выбранной акции
 const showPervyi = computed(() => [1, 2, 4, 5, 7].includes(selectedPromo.value));
 const showPerviNew = computed(() => selectedPromo.value === 1);
 const showVtoroi = computed(() => [1, 4, 5].includes(selectedPromo.value));
 const showTretiy = computed(() => [1, 4, 5, 7].includes(selectedPromo.value));
 const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
+
+onMounted(() => {
+    if (!(window as any).ClassicEditor) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js';
+        script.onload = () => {
+            initializeEditors();
+        };
+        document.head.appendChild(script);
+    } else {
+        initializeEditors();
+    }
+});
+
+function initializeEditors() {
+    const ClassicEditor = (window as any).ClassicEditor;
+    ['#editor', '#editor2'].forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+            ClassicEditor.create(element)
+                .catch((error: any) => console.error(`Error initializing ${selector}:`, error));
+        }
+    });
+}
 </script>
 
 <template>
@@ -135,7 +158,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                         </ul>
                     </div>
                 </div>
-                <div class="w-3/4 md:w-full bg-[#063966] p-8 md:p-2 rounded-2xl">
+                <div class="w-3/4 md:w-full bg-[#063966] p-8 md:p-4 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
                     <div class="flex flex-wrap bg-white p-8 md:p-4 mt-4 md:mt-8 rounded-2xl justify-between gap-4 md:gap-2">
                         <div id="promo1"
@@ -313,16 +336,16 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <span id="count" class="absolute right-3 bottom-[10px] text-[#2578cf] font-bold">64</span>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col w-full" id="shestoi">
-                        <div class="flex flex-col sm:flex-row justify-between mb-8">
-                            <div class="w-3/3]">
+                    <div class="flex flex-col bg-white p-8 md:p-4 mt-8 rounded-2xl w-full" id="shestoi">
+                        <div class="flex flex-row max-md:flex-col justify-between mb-8 w-full">
+                            <div>
                                 <h3 class="text-base font-bold">Загрузите привлекательное изображение для вашей акции</h3>
                                 <p class="text-black/50 all_text">Обязательна только 1 (первая) фотография, остальные по желанию.</p>
                             </div>
-                            <div class="flex gap-2 w-3/1 mt-4 sm:mt-0">
-                                <img src="/assets/constructor/picture-sale.png" class="w-8 h-6 " alt="Картинка">
+                            <div class="flex gap-2 items-center max-md:mt-4">
+                                <img src="/images/png/constructor/picture-sale.png" class="w-8 h-6 " alt="Картинка">
                                 <button type="button" data-modal-target="staticModal" data-modal-toggle="staticModal" class="text-sm text-[#2578cf] font-semibold hover:underline">
-                                    У меня нет фото,<br class="hidden sm:block"> что делать?
+                                    У меня нет фото,<br class="max-sm:hidden"> что делать?
                                 </button>
                                 <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                     <div class="relative w-full max-w-2xl max-h-full">
@@ -451,7 +474,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                         <div class="flex items-center justify-center mt-5">
-                            <p class="text-[#2578cf] text-sm sm:text-base border-b border-dashed border-[#2578cf] cursor-pointer" id="moreImg">
+                            <p class="text-[#2578cf] text-base max-sm:text-sm border-b border-dashed border-[#2578cf] cursor-pointer" id="moreImg">
                                 Загрузить дополнительные фотографии
                             </p>
                             <svg id="svgImg" class="w-5 h-5 text-[#2578cf] cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -528,9 +551,9 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="sedmoi">
-                        <div class="flex justify-between items-center">
-                            <p class="w-[450px] text-black/50 all_text"><strong class="text-black text-base">Если у вас есть видео на YouTube о том, чем вы занимаетесь</strong>
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="sedmoi">
+                        <div class="flex flex-row max-md:flex-col justify-between items-center max-md:items-start">
+                            <p class="w-[450px] max-md:w-full text-black/50 all_text max-md:mb-4"><strong class="text-black text-base">Если у вас есть видео на YouTube о том, чем вы занимаетесь</strong>
                                 или продаете, вы можете указать здесь ссылку на него.
                             </p>
                             <label class="relative inline-flex items-center cursor-pointer">
@@ -546,13 +569,13 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col w-full" id="vosmoi">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col w-full" id="vosmoi">
                         <h3 class="font-bold mb-4">Описание акции</h3>
                         <textarea id="editor" class="w-full h-[200px]">✨ «-30% на всё от Desigual» ✨<br><br>Приготовьтесь к яркому обновлению гардероба! Бренд Desigual дарит вам уникальную возможность приобрести любую вещь из своего ассортимента со скидкой 30%.<br><br>🗓️ Срок действия акции: Предложение действует с [Укажите дату начала акции] по [Укажите последний день текущего месяца]. Успейте воспользоваться!<br><br>🛍️ Что входит в акцию: Скидка 30% распространяется на абсолютно все товары в каталоге Desigual:<br>Одежда: платья, юбки, брюки, джинсы, куртки, пальто, футболки, рубашки, свитера и многое другое для мужчин и женщин.<br>Обувь: кроссовки, ботинки, сапоги, туфли, сандалии.<br>Аксессуары: сумки, рюкзаки, шарфы, головные уборы, украшения, ремни.<br>И другие категории товаров бренда Desigual.<br><br><br>📍 Где действует акция:<br>Онлайн: на официальном сайте Desigual [укажите ссылку на сайт, если применимо].<br>Оффлайн: во всех фирменных магазинах Desigual, расположенных в [укажите города или регионы, где действует акция, например: "Москве и Санкт-Петербурге"].<br><br><br>⚠️ Важные условия:<br>Скидка 30% применяется автоматически при оформлении заказа или на кассе.<br>Акция не суммируется с другими скидками, специальными предложениями и промокодами.<br>Количество товаров ограничено.<br>Возврат и обмен товаров осуществляется согласно стандартным правилам магазина.<br>Организатор акции оставляет за собой право изменить условия или досрочно завершить акцию.<br>Не упустите шанс добавить красок в свою жизнь с Desigual! 💖</textarea>
                         <div class="my-6">
                             <div class="h-[1px] w-full bg-black/30"></div>
-                            <div class="flex justify-between items-center my-4">
-                                <p class="mr-10 text-black/50 all_text"><strong class="text-black text-base">Допополнительные условия.</strong>
+                            <div class="flex flex-row max-md:flex-col justify-between items-center max-md:items-start my-4">
+                                <p class="mr-10 max-md:mr-0 max-md:mb-4 text-black/50 all_text"><strong class="text-black text-base">Допополнительные условия.</strong>
                                     Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если никаких дополнительных условий нет, то оставьте поле пустым.
                                     <span id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
                                 </p>
@@ -610,9 +633,9 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="devyatyi">
-                        <div class="flex justify-between items-center">
-                            <h3 class="mr-4 font-bold">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="devyatyi">
+                        <div class="flex flex-row max-md:flex-col justify-between items-center max-md:items-start">
+                            <h3 class="mr-4 max-md:mr-0 max-md:mb-4 font-bold">
                                 При наличии, добавьте ссылки на ваш сайт или страницы в соцсетях.
                             </h3>
                             <label class="relative inline-flex items-center cursor-pointer">
@@ -625,49 +648,49 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <div class="flex flex-wrap gap-3 mt-6">
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socWeb">
                                     <img src="/assets/constructor/socialWeb.png" alt="web" >
-                                    <span class="text-sm sm:text-base ml-1">Веб-сайт</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Веб-сайт</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socEmail">
                                     <img src="/assets/constructor/socialemail.png" alt="Email" >
-                                    <span class="text-sm sm:text-base ml-1">Электронная почта</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Электронная почта</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socVk">
                                     <img src="/assets/constructor/socialVk.png" alt="Vk" >
-                                    <span class="text-sm sm:text-base ml-1">Вконтакте</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Вконтакте</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socIns">
                                     <img src="/assets/constructor/socialIns.png" alt="ins" >
-                                    <span class="text-sm sm:text-base ml-1">Instagram</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Instagram</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socYou">
                                     <img src="/assets/constructor/socialYou.png" alt="Youtube">
-                                    <span class="text-sm sm:text-base ml-1">YouTube</span>
+                                    <span class="text-base max-sm:text-sm ml-1">YouTube</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socLin">
                                     <img src="/assets/constructor/socialLinkedin.png" alt="Linkedin">
-                                    <span class="text-sm sm:text-base ml-1">Linkedin</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Linkedin</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socOk">
                                     <img src="/assets/constructor/socialOk.png" alt="OK">
-                                    <span class="text-sm sm:text-base ml-1">Одноклассники</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Одноклассники</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socTel">
                                     <img src="/assets/constructor/socialTelegram.png" alt="telegram">
-                                    <span class="text-sm sm:text-base ml-1">Telegram</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Telegram</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socWha">
                                     <img src="/assets/constructor/socialWha.png" alt="Whattsapp">
-                                    <span class="text-sm sm:text-base ml-1">WhatsApp</span>
+                                    <span class="text-base max-sm:text-sm ml-1">WhatsApp</span>
                                 </div>
                                 <div class="flex px-3 rounded-md items-center py-2 bg-[#E5ECF0] cursor-pointer" id="socViber">
                                     <img src="/assets/constructor/socialViber.png" alt="Viber">
-                                    <span class="text-sm sm:text-base ml-1">Viber</span>
+                                    <span class="text-base max-sm:text-sm ml-1">Viber</span>
                                 </div>
                                 <div class="text-xs text-gray-500 mt-4">Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России</div>
                             </div>
                             <div class="mt-6">
                                 <div class="hidden" id="webDiv">
-                                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                    <div class="flex flex-row max-md:flex-col items-center max-md:items-start gap-4">
                                         <div class="relative">
                                             <div class="flex items-center absolute top-3 left-2">
                                                 <img src="/assets/constructor/socialWeb.png" alt="web">
@@ -1094,7 +1117,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="desyatyi">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="desyatyi">
                         <h3 class="font-bold text-base">Укажите в блоке: график работы, адрес и телефоны</h3>
                         <p class="text-black/50 all_text">для одной акции можно заполнить не более 4-х блоков</p>
                         <div class="bg-[#e9eef1] h-full w-full rounded-lg mt-5">
@@ -1110,21 +1133,21 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                                 </div>
                             </div>
                             <div class="w-full h-[1px] bg-black/10"></div>
-                            <div class="flex flex-wrap flex-col sm:flex-row items-center w-full p-6">
-                                <div class="flex flex-col w-full sm:w-1/2 p-3" >
+                            <div class="flex flex-wrap flex-row max-md:flex-col items-center w-full p-6">
+                                <div class="flex flex-col w-full md:w-1/2 max-md:w-full p-3" >
                                     <label for="address" class="mb-2 font-bold text-sm">Адрес</label>
                                     <input type="text" name="address" class="rounded-md border-none" placeholder="Москва, проспект Мира 82 корпус 1">
                                 </div>
-                                <div class="flex flex-col w-full sm:w-1/2 p-3" >
+                                <div class="flex flex-col w-full md:w-1/2 max-md:w-full p-3" >
                                     <label for="time" class="mb-2 font-bold text-sm">Гафик работы:</label>
                                     <input type="text" name="time" class="rounded-md border-none" placeholder="пн-сб:с 10.00 до 20.00 вс с 10.00 до 16.00">
                                 </div>
-                                <div class="flex flex-col w-full sm:w-1/2 p-3" >
+                                <div class="flex flex-col w-full md:w-1/2 max-md:w-full p-3" >
                                     <label for="phone" class="mb-2 font-bold text-sm">Телефон</label>
                                     <input type="text" name="phone" class="rounded-md border-none " placeholder="+7 (000) 000-00-00">
                                 </div>
                                 <span id="showTel1" class="mt-6 ml-6 font-bold text-sm text-[#5fa0de] cursor-pointer hover:border-b-2 hover:border-dashed hover:border-[#5fa0de]">+ еще телефон</span>
-                                <div class="flex-col w-full sm:w-1/2 p-3 relative hidden" id="phone1">
+                                <div class="flex-col w-full md:w-1/2 max-md:w-full p-3 relative hidden" id="phone1">
                                     <label for="phone" class="mb-2 font-bold text-sm">Телефон</label>
                                     <input type="text" name="phone" class="rounded-md border-none pr-[40px]" placeholder="+7 (000) 000-00-00">
                                     <div class="h-[29px] w-[1px] bg-[#c6c7c6] absolute bottom-4 right-[50px]"></div>
@@ -1323,20 +1346,20 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <p id="show_org4" class="text-center mt-5 font-bold text-sm text-[#5fa0de] cursor-pointer hover:border-b-2 hover:border-dashed hover:border-[#5fa0de] hidden">Добавить еще организацию</p>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="odinnadsat">
-                        <div class="flex items-start">
-                            <div>
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="odinnadsat">
+                        <div class="flex flex-row max-md:flex-col items-start max-md:items-start">
+                            <div class="max-md:mb-4">
                                 <h3 class="font-bold">Если ваша акция доступна только в определенные дни и часы.</h3>
                                 <p class="text-black/50 all_text">Общий отсчет времени до конца акции не прекратится, она так же будет находится на сайте, но пользователи смогут перейти в нее только в указанные вами дни и часы.</p>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer ml-10">
+                            <label class="relative inline-flex items-center cursor-pointer ml-10 max-md:ml-0">
                                 <input type="checkbox" value="" class="sr-only peer" id="graphicsCkeck">
                                 <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             </label>
                         </div>
                         <div class="mt-5 hidden" id="grphicsBlock">
                             <div class="h-[1px] w-full bg-black/20"></div>
-                            <div class="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                            <div class="mt-5 flex flex-row max-md:flex-col items-center max-md:items-start gap-3">
                                 <div class="flex items-center gap-2">
                                     <input type="checkbox" name="check_day" id="checkDay" class="check_day rounded-md">
                                     <label for="check_day" class="font-bold">Акция доступна в</label>
@@ -1351,7 +1374,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                                     <li id="sn" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">вс</li>
                                 </ul>
                             </div>
-                            <div class="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                            <div class="mt-5 flex flex-row max-md:flex-col items-center max-md:items-start gap-3">
                                 <div class="flex items-center gap-2">
                                     <input type="checkbox" name="check_day" id="checkTime" class="check_day rounded-md">
                                     <label for="check_day" class="font-bold">Акция доступна с</label>
@@ -1372,7 +1395,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="dvenadsat">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="dvenadsat">
                         <h3 class="font-bold">География акции, не более 20 городов</h3>
                         <div class="custom-select relative w-full mt-5">
                             <input type="text" class="select-input w-full rounded-md border-gray-300" placeholder="Укажите город">
@@ -1393,7 +1416,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <div id="selectedCities" class="mt-5 flex flex-wrap gap-4 all_text"></div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col md:hidden" id="">
+                    <div class="flex bg-white p-4 max-md:p-4 mt-8 rounded-2xl flex-col max-md:flex hidden" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">
                                 К каким категориям относится ваша акция?
@@ -1409,7 +1432,7 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <div class="hidden md:flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col min-h-[100vh]" id="trinadsat">
+                    <div class="flex bg-white p-8 max-md:p-4 max-md:hidden mt-8 rounded-2xl flex-col min-h-[100vh]" id="trinadsat">
                         <h3 class="font-bold ml-8">Выберите категории, к которым будет прикреплена ваша акция</h3>
                         <div class="mt-5 bg-category w-full flex max-h-[100vh]" id="container_block">
                             <ul class="bg-[#fdfdfd] w-[150px] overflow-y-scroll max-h-[100vh]" id="category_list1">
@@ -1485,10 +1508,10 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl justify-between flex-col md:flex-row" id="chetyrnadsat">
-                        <p class="w-full md:w-[380px] text-black/50"><strong class="text-black">На какое количество дней будет запущена акция?</strong><br>Максимум 30 дней.</p>
-                        <div class="flex items-center gap-4 mt-4 md:mt-0">
-                            <div class="flex items-center gap-2 relative w-full md:w-[180px]">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl justify-between flex-row max-md:flex-col" id="chetyrnadsat">
+                        <p class="w-[380px] max-md:w-full text-black/50 max-md:mb-4"><strong class="text-black">На какое количество дней будет запущена акция?</strong><br>Максимум 30 дней.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2 relative w-[180px] max-md:w-full">
                                 <span class="text-xs opacity-80">0</span>
                                 <input id="slider" class="w-[150px]" type="range" min="0" max="30" value="0">
                                 <div id="slider-value" class="slider-value">0</div>
@@ -1497,11 +1520,11 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <div class="border text-center py-2 w-[50px] rounded-md text-lg" id="slider_value">0</div>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl justify-between items-start flex-col md:flex-row" id="pyatnadsat">
-                        <div class="w-[450px]">
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl justify-between items-start flex-row max-md:flex-col" id="pyatnadsat">
+                        <div class="w-[450px] max-md:w-full max-md:mb-4">
                             <h3 class="font-bold">Желаете чтобы ваша акция так же появлялась и в баннере на главной странице сайта?<span id="hiddenText" class="hidden font-normal text-black/50">В этом случае стоимость запуска акции будет в 3 раза дороже. Бесплатно, если вы предлагаете скидку более 50%.</span></h3>
                         </div>
-                        <div class="flex items-center gap-2 mt-4 md:mt-0">
+                        <div class="flex items-center gap-2">
                             <span class="text-base all_text" id="notAgree">Нет</span>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="saleValue">
@@ -1510,17 +1533,17 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             <span class="text-base all_text text_opac" id="agree">Да, желаю</span>
                         </div>
                     </div>
-                    <div class="flex bg-white p-4 md:p-8 mt-8 rounded-2xl flex-col" id="shestnadsat">
-                        <div class="flex items-center justify-between px-0 md:px-8 w-full flex-col md:flex-row">
-                            <h3 class="font-bold w-full md:w-auto">Дополнительные опции (нужен премиум)</h3>
-                            <a href="#" class="text-[#0066CB] hover:underline w-full md:w-auto">Смотреть тарифы</a>
+                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="shestnadsat">
+                        <div class="flex items-center justify-between w-full flex-row max-md:flex-col max-md:items-start">
+                            <h3 class="font-bold w-auto max-md:w-full max-md:mb-2">Дополнительные опции (нужен премиум)</h3>
+                            <a href="#" class="text-[#0066CB] hover:underline w-auto max-md:w-full">Смотреть тарифы</a>
                         </div>
                         <div class="w-full h-[1px] bg-black/20 my-5"></div>
-                        <div class="flex justify-between items-center px-0 md:px-8 ">
-                            <div class="flex items-center gap-1">
+                        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
+                            <div class="flex items-center gap-1 max-md:mb-4">
                                 <p class="text-base all_text">Поднимать акцию на первое место каждые</p>
                                 <input type="text" id="timeValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
-                                <label for="timeValue" class="text-sm md:text-base">часа</label>
+                                <label for="timeValue" class="text-base max-sm:text-sm">часа</label>
                             </div>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="timeValueCheck">
@@ -1528,8 +1551,8 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </label>
                         </div>
                         <div class="w-full h-[1px] bg-black/20 my-5"></div>
-                        <div class="flex justify-between items-center px-0 md:px-8">
-                            <div class="flex items-center gap-1">
+                        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
+                            <div class="flex items-center gap-1 max-md:mb-4">
                                 <p class="text-base all_text">Автоматически перезапускать акцию после завершения на</p>
                                 <input type="text" id="dayValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
                                 <label for="dayValue">дней</label>
@@ -1540,8 +1563,8 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                             </label>
                         </div>
                     </div>
-                    <div class="pt-8 flex justify-between flex-col lg:flex-row">
-                        <div class="flex flex-col w-[450px]">
+                    <div class="pt-8 flex justify-between flex-row max-md:flex-col">
+                        <div class="flex flex-col w-[450px] max-md:w-full">
                             <div class="flex pricer_blocks justify-between">
                                 <div class="">
                                     <span class="text-[#159FF5] text-base">Ваш баланс</span>
@@ -1557,13 +1580,13 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
                                 <label for="rules" class="text-[#607990] all_text">С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен</label>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-3 mt-4 lg:mt-0">
-                            <div class="p-4 w-full lg:w-[230px] bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
-                                <img class="w-6 h-6" src="/assets/constructor/eye.svg" alt="eye">
+                        <div class="flex flex-col gap-3 max-md:mt-4">
+                            <div class="p-4 w-[280px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
+                                <img class="w-6 h-6" src="/images/png/constructor/eye.svg" alt="eye">
                                 <a href="#" class="text-white all_text">Предпросмотр акции</a>
                             </div>
-                            <div class="p-4 w-full lg:w-[280px] bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
-                                <img class="w-6 h-6" src="/assets/constructor/file.svg" alt="eye">
+                            <div class="p-4 w-[280px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
+                                <img class="w-6 h-6" src="/images/png/constructor/file.svg" alt="eye">
                                 <button class="text-white all_text">Сохранить как черновик</button>
                             </div>
                         </div>
@@ -1605,13 +1628,11 @@ const showChetvertyi = computed(() => [1, 7].includes(selectedPromo.value));
             </button>
         </div>
     </div>
-
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>-->
-<!--    <script src="/resources/js/dropdown.js"></script>-->
-<!--    <script src="/js/promo_cost.js"></script>-->
-<!--    <script src="/js/promo.js"></script>-->
     <Footer :contact="contact"></Footer>
 </template>
+
+<style>
+.ck-editor__editable {
+    min-height: 200px;
+}
+</style>
