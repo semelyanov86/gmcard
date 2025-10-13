@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import NavBar from '@/components/NavBar.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
+import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 
 defineProps<{
     contact: {
@@ -357,10 +358,7 @@ function initializeEditors() {
                                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
                                 <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
                             </div>
-                            <label class="toggle-switch relative inline-flex items-center cursor-pointer max-md:mt-4">
-                                <input type="checkbox" v-model="deliveryOpen" value="" id="delivary" class="sr-only peer">
-                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                            </label>
+                            <ToggleSwitch v-model="deliveryOpen" class="max-md:mt-4" />
                         </div>
                         <div v-show="deliveryOpen" class="my-4" id="delivaryBlock">
                             <div class="h-[1px] w-full bg-black/30"></div>
@@ -608,10 +606,7 @@ function initializeEditors() {
                             <p class="w-[450px] max-md:w-full text-black/50 all_text max-md:mb-4"><strong class="text-black text-base">Если у вас есть видео на YouTube о том, чем вы занимаетесь</strong>
                                 или продаете, вы можете указать здесь ссылку на него.
                             </p>
-                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" v-model="youtubeOpen" value="" class="sr-only peer" id="checkYoutube">
-                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                            </label>
+                            <ToggleSwitch v-model="youtubeOpen" />
                         </div>
                         <div v-show="youtubeOpen" class="my-4" id="youtube_link">
                             <div class="h-[1px] w-full bg-black/30"></div>
@@ -631,10 +626,7 @@ function initializeEditors() {
                                     Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если никаких дополнительных условий нет, то оставьте поле пустым.
                                     <span @click="openConditionsModal" id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
                                 </p>
-                                <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" v-model="textEditorOpen" value="" class="sr-only peer" id="editor_vis">
-                                    <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                                </label>
+                                <ToggleSwitch v-model="textEditorOpen" />
                             </div>
                         </div>
                         <div v-show="textEditorOpen" class="mb-4" id="text_editor">
