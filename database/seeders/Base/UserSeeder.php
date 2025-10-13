@@ -6,6 +6,7 @@ namespace Database\Seeders\Base;
 
 use App\Models\User;
 use App\Models\City;
+use App\Models\TariffPlan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
         ];
 
         $userRole = Role::firstOrCreate(['name' => 'user']);
+        $tariffPlanIds = TariffPlan::query()->pluck('id')->all();
 
         foreach ($users as $data) {
             $cityId = City::query()->where('name', $data['city_name'])->value('id');
@@ -45,6 +47,9 @@ class UserSeeder extends Seeder
                 'birth_date' => $data['birth_date'],
                 'gender' => $data['gender'],
                 'code' => $data['code'],
+                'tariff_plan_id' => ! empty($tariffPlanIds) ? $tariffPlanIds[array_rand($tariffPlanIds)] : null,
+                'balance' => 0,
+                'email_verified_at' => now(),
                 'password' => Hash::make('password'),
             ]);
 
