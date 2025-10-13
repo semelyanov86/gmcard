@@ -306,9 +306,9 @@ function initializeEditors() {
                                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
                                 <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer max-md:mt-4">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer max-md:mt-4">
                                 <input type="checkbox" value="" id="delivary" class="sr-only peer">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                         <div class="my-4 hidden" id="delivaryBlock">
@@ -556,9 +556,9 @@ function initializeEditors() {
                             <p class="w-[450px] max-md:w-full text-black/50 all_text max-md:mb-4"><strong class="text-black text-base">Если у вас есть видео на YouTube о том, чем вы занимаетесь</strong>
                                 или продаете, вы можете указать здесь ссылку на него.
                             </p>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="checkYoutube">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                         <div class="my-4 hidden" id="youtube_link">
@@ -579,9 +579,9 @@ function initializeEditors() {
                                     Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если никаких дополнительных условий нет, то оставьте поле пустым.
                                     <span id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
                                 </p>
-                                <label class="relative inline-flex items-center cursor-pointer">
+                                <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" value="" class="sr-only peer" id="editor_vis">
-                                    <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                                 </label>
                             </div>
                         </div>
@@ -638,9 +638,9 @@ function initializeEditors() {
                             <h3 class="mr-4 max-md:mr-0 max-md:mb-4 font-bold">
                                 При наличии, добавьте ссылки на ваш сайт или страницы в соцсетях.
                             </h3>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="social">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                         <div class="my-4 hidden" id="allSocial">
@@ -1352,9 +1352,9 @@ function initializeEditors() {
                                 <h3 class="font-bold">Если ваша акция доступна только в определенные дни и часы.</h3>
                                 <p class="text-black/50 all_text">Общий отсчет времени до конца акции не прекратится, она так же будет находится на сайте, но пользователи смогут перейти в нее только в указанные вами дни и часы.</p>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer ml-10 max-md:ml-0">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer ml-10 max-md:ml-0">
                                 <input type="checkbox" value="" class="sr-only peer" id="graphicsCkeck">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                         <div class="mt-5 hidden" id="grphicsBlock">
@@ -1526,9 +1526,9 @@ function initializeEditors() {
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-base all_text" id="notAgree">Нет</span>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="saleValue">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                             <span class="text-base all_text text_opac" id="agree">Да, желаю</span>
                         </div>
@@ -1545,9 +1545,9 @@ function initializeEditors() {
                                 <input type="text" id="timeValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
                                 <label for="timeValue" class="text-base max-sm:text-sm">часа</label>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="timeValueCheck">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                         <div class="w-full h-[1px] bg-black/20 my-5"></div>
@@ -1557,9 +1557,9 @@ function initializeEditors() {
                                 <input type="text" id="dayValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
                                 <label for="dayValue">дней</label>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="dayValueCheck">
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
                     </div>
@@ -1634,5 +1634,9 @@ function initializeEditors() {
 <style>
 .ck-editor__editable {
     min-height: 200px;
+}
+
+.toggle-switch input:checked ~ div::after {
+    transform: translateX(1.75rem);
 }
 </style>
