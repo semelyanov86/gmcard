@@ -171,11 +171,6 @@ const sn = document.querySelector("#sn")
 const file_uploadPlus = document.querySelector(".file_uploadPlus")
 const fileUpload3 = document.querySelector("#fileUpload3")
 
-
-// text for count
-const textSymbol = document.querySelector("#textSymbol")
-const count = document.querySelector("#count")
-
 // Text editor visible
 const editor_vis = document.querySelector("#editor_vis")
 const text_editor = document.querySelector("#text_editor")
