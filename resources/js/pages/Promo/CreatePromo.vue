@@ -22,6 +22,55 @@ const showVtoroi = computed(() => [1, 2].includes(selectedPromo.value));
 const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(selectedPromo.value));
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(selectedPromo.value));
 
+const dropdown1Open = ref(false);
+const dropdown2Open = ref(false);
+const dropdown1Value = ref('%');
+const dropdown2Value = ref('%');
+
+const deliveryOpen = ref(false);
+
+const modalOpen = ref(false);
+
+const youtubeOpen = ref(false);
+
+const conditionsModalOpen = ref(false);
+
+const textEditorOpen = ref(false);
+
+function toggleDropdown1() {
+    dropdown1Open.value = !dropdown1Open.value;
+}
+
+function toggleDropdown2() {
+    dropdown2Open.value = !dropdown2Open.value;
+}
+
+function selectOption1(value: string) {
+    dropdown1Value.value = value;
+    dropdown1Open.value = false;
+}
+
+function selectOption2(value: string) {
+    dropdown2Value.value = value;
+    dropdown2Open.value = false;
+}
+
+function openModal() {
+    modalOpen.value = true;
+}
+
+function closeModal() {
+    modalOpen.value = false;
+}
+
+function openConditionsModal() {
+    conditionsModalOpen.value = true;
+}
+
+function closeConditionsModal() {
+    conditionsModalOpen.value = false;
+}
+
 onMounted(() => {
     if (!(window as any).ClassicEditor) {
         const script = document.createElement('script');
@@ -251,15 +300,15 @@ function initializeEditors() {
                         <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
                              <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
                             <div class="relative inline-block">
-                                 <button id="toggleBtn" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
-                                    <span id="spanOfBtn">%</span>
+                                 <button @click="toggleDropdown1" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                                    <span>{{ dropdown1Value }}</span>
                                     <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                                <ul id="dropdownList" class="absolute z-10 w-[232px] h-[42px] mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
-                                    <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
-                                    <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
+                                <ul v-show="dropdown1Open" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+                                    <li @click="selectOption1('%')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
+                                    <li @click="selectOption1('₽')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
                                 </ul>
                             </div>
                         </div>
@@ -269,13 +318,15 @@ function initializeEditors() {
                         <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
                              <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
                             <div class="relative inline-block">
-                                 <button id="toggleBtn" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
-                                    <span id="spanOfBtn">%</span>
-
+                                 <button @click="toggleDropdown2" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
+                                    <span>{{ dropdown2Value }}</span>
+                                    <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
                                 </button>
-                                <ul id="dropdownList" class="absolute z-10 w-[232px] h-[42px] mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
-                                    <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
-                                    <li class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
+                                <ul v-show="dropdown2Open" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+                                    <li @click="selectOption2('%')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
+                                    <li @click="selectOption2('₽')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
                                 </ul>
                             </div>
                         </div>
@@ -307,11 +358,11 @@ function initializeEditors() {
                                 <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
                             </div>
                             <label class="toggle-switch relative inline-flex items-center cursor-pointer max-md:mt-4">
-                                <input type="checkbox" value="" id="delivary" class="sr-only peer">
+                                <input type="checkbox" v-model="deliveryOpen" value="" id="delivary" class="sr-only peer">
                                 <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
-                        <div class="my-4 hidden" id="delivaryBlock">
+                        <div v-show="deliveryOpen" class="my-4" id="delivaryBlock">
                             <div class="h-[1px] w-full bg-black/30"></div>
                             <div class="mt-4 flex flex-row max-sm:flex-col justify-between items-center">
                                 <div class="">
@@ -344,17 +395,18 @@ function initializeEditors() {
                             </div>
                             <div class="flex gap-2 items-center max-md:mt-4">
                                 <img src="/images/png/constructor/picture-sale.png" class="w-8 h-6 " alt="Картинка">
-                                <button type="button" data-modal-target="staticModal" data-modal-toggle="staticModal" class="text-sm text-[#2578cf] font-semibold hover:underline">
+                                <button type="button" @click="openModal" class="text-sm text-[#2578cf] font-semibold hover:underline">
                                     У меня нет фото,<br class="max-sm:hidden"> что делать?
                                 </button>
-                                <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative w-full max-w-2xl max-h-full">
+                                <!-- Modal -->
+                                <div v-show="modalOpen" id="staticModal" data-modal-backdrop="static" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex" aria-modal="true" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);" @click="closeModal">
+                                    <div @click.stop class="relative w-full max-w-2xl max-h-full">
                                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 bgSh">
                                             <div class="flex items-start justify-between bg-[#0066cb] p-4 border-b rounded-t dark:border-gray-600">
                                                 <h3 class="text-xl font-semibold text-white dark:text-white">
                                                     У меня нет фото, что делать?
                                                 </h3>
-                                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
+                                                <button type="button" @click="closeModal" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                                     </svg>
@@ -389,7 +441,7 @@ function initializeEditors() {
                                                     </div>
                                                     <p class="text-sm text-center  leading-relaxed text-gray-700 dark:text-gray-400 mx-1 sm:mx-12">Вашего товара нет в примерах? <br> Ничего страшного, просто откройте любой пример и измените ключевое слово запроса или нажмите на кнопку ниже.</p>
                                                     <div class="flex items-center justify-center">
-                                                        <button data-modal-hide="staticModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Нет примеров</button>
+                                                        <button @click="closeModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Нет примеров</button>
                                                     </div>
                                                     <p class="text-sm text-center leading-relaxed text-black dark:text-gray-400 mx-1 sm:mx-12"><span class="font-black text-black">Остались вопросы?</span> Посетите наш раздел <a class="text-[#0066cb] hover:underline" href="/help.html">'GM Справка'</a> в котором можно найти различную полезную информацию или же увидеть те задачи, над которыми мы работаем в данный момент.</p>
                                                 </div>
@@ -557,11 +609,11 @@ function initializeEditors() {
                                 или продаете, вы можете указать здесь ссылку на него.
                             </p>
                             <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" id="checkYoutube">
+                                <input type="checkbox" v-model="youtubeOpen" value="" class="sr-only peer" id="checkYoutube">
                                 <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                             </label>
                         </div>
-                        <div class="my-4 hidden" id="youtube_link">
+                        <div v-show="youtubeOpen" class="my-4" id="youtube_link">
                             <div class="h-[1px] w-full bg-black/30"></div>
                             <div class="flex flex-col mt-4">
                                 <label for="" class="font-bold">Ссылка на ролик</label>
@@ -577,25 +629,25 @@ function initializeEditors() {
                             <div class="flex flex-row max-md:flex-col justify-between items-center max-md:items-start my-4">
                                 <p class="mr-10 max-md:mr-0 max-md:mb-4 text-black/50 all_text"><strong class="text-black text-base">Допополнительные условия.</strong>
                                     Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если никаких дополнительных условий нет, то оставьте поле пустым.
-                                    <span id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
+                                    <span @click="openConditionsModal" id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
                                 </p>
                                 <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" class="sr-only peer" id="editor_vis">
+                                    <input type="checkbox" v-model="textEditorOpen" value="" class="sr-only peer" id="editor_vis">
                                     <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
                                 </label>
                             </div>
                         </div>
-                        <div class="mb-4 hidden" id="text_editor">
+                        <div v-show="textEditorOpen" class="mb-4" id="text_editor">
                             <div class="h-[1px] w-full bg-black/30"></div>
                             <textarea id="editor2" class="w-full min-h-[200px]"></textarea>
                         </div>
                     </div>
-                    <div id="modal_examp" class="fixed bg-black/50 z-50 top-0 left-0 w-full h-full hidden items-start justify-center py-5">
-                        <div class="p-2 bg-white rounded-md border-4 border-[#2578cf] relative w-full max-w-2xl max-h-[300px] overflow-y-auto">
+                    <div v-show="conditionsModalOpen" id="modal_examp" class="fixed bg-black/50 z-50 top-0 left-0 w-full h-full flex items-start justify-center py-5" @click="closeConditionsModal">
+                        <div @click.stop class="p-2 bg-white rounded-md border-4 border-[#2578cf] relative w-full max-w-2xl max-h-[300px] overflow-y-auto">
                             <div class="flex flex-col gap-4">
                                 <div class="flex items-start justify-between bg-[#0066cb] p-4 border-b rounded-t dark:border-gray-600">
                                     <h3 class="text-xl font-semibold text-white">Пример вопросов</h3>
-                                    <svg id="close_morexamp" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hover:bg-black/50 hover:text-white cursor-pointer text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <svg @click="closeConditionsModal" id="close_morexamp" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hover:bg-black/50 hover:text-white cursor-pointer text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                     </svg>
                                 </div>
