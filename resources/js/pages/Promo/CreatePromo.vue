@@ -6,6 +6,7 @@ import Header from '@/components/Header.vue';
 import NavBar from '@/components/NavBar.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
+import CurrencyDropdown from '@/components/Promo/CurrencyDropdown.vue';
 
 defineProps<{
     contact: {
@@ -23,10 +24,8 @@ const showVtoroi = computed(() => [1, 2].includes(selectedPromo.value));
 const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(selectedPromo.value));
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(selectedPromo.value));
 
-const dropdown1Open = ref(false);
-const dropdown2Open = ref(false);
-const dropdown1Value = ref('%');
-const dropdown2Value = ref('%');
+const currency1Value = ref('%');
+const currency2Value = ref('%');
 
 const deliveryOpen = ref(false);
 
@@ -37,24 +36,6 @@ const youtubeOpen = ref(false);
 const conditionsModalOpen = ref(false);
 
 const textEditorOpen = ref(false);
-
-function toggleDropdown1() {
-    dropdown1Open.value = !dropdown1Open.value;
-}
-
-function toggleDropdown2() {
-    dropdown2Open.value = !dropdown2Open.value;
-}
-
-function selectOption1(value: string) {
-    dropdown1Value.value = value;
-    dropdown1Open.value = false;
-}
-
-function selectOption2(value: string) {
-    dropdown2Value.value = value;
-    dropdown2Open.value = false;
-}
 
 function openModal() {
     modalOpen.value = true;
@@ -300,36 +281,14 @@ function initializeEditors() {
                         <h3 class="text-base font-bold max-md:w-full">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
                         <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
                              <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
-                            <div class="relative inline-block">
-                                 <button @click="toggleDropdown1" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
-                                    <span>{{ dropdown1Value }}</span>
-                                    <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <ul v-show="dropdown1Open" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
-                                    <li @click="selectOption1('%')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
-                                    <li @click="selectOption1('₽')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
-                                </ul>
-                            </div>
+                            <CurrencyDropdown v-model="currency1Value" />
                         </div>
                     </div>
                     <div v-show="showPerviNew" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi_new">
                         <h3 class="text-base font-bold max-md:w-full">Какой % кэшбэка вы готовы предоставить?</h3>
                         <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
                              <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
-                            <div class="relative inline-block">
-                                 <button @click="toggleDropdown2" type="button" class="w-[112px] h-[38px] px-4 bg-white border border-gray-300 rounded-md shadow-sm text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring-blue active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out flex items-center justify-between">
-                                    <span>{{ dropdown2Value }}</span>
-                                    <svg class="w-4 h-4 ml-2 -mr-1 text-[#2578cf]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <ul v-show="dropdown2Open" class="absolute z-10 w-28 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
-                                    <li @click="selectOption2('%')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">%</li>
-                                    <li @click="selectOption2('₽')" class="py-2 px-4 text-sm leading-5 text-gray-700 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">₽</li>
-                                </ul>
-                            </div>
+                            <CurrencyDropdown v-model="currency2Value" />
                         </div>
                     </div>
                     <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">

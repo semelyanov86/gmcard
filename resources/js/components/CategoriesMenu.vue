@@ -2,15 +2,7 @@
 import { onMounted } from 'vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 
-onMounted(async () => {
-    // Загружаем dropdown.js асинхронно
-    try {
-        await import('@/dropdown.js');
-    } catch (err) {
-        console.error('Ошибка загрузки dropdown.js:', err);
-    }
-
-    // Добавляем обработчики для смены заголовка категории
+onMounted(() => {
     setTimeout(() => {
         const categoryItems = document.querySelectorAll('#lists .my-class');
         categoryItems.forEach(item => {
