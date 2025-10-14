@@ -10,6 +10,7 @@ import CurrencyDropdown from '@/components/Promo/CurrencyDropdown.vue';
 import PhotoHelpModal from '@/components/Promo/PhotoHelpModal.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
+import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 
 defineProps<{
     contact: {
@@ -18,7 +19,6 @@ defineProps<{
     };
 }>();
 
-const hoveredPromo = ref<number | null>(null);
 const selectedPromo = ref<number>(1);
 
 const showPervyi = computed(() => [1, 2, 3].includes(selectedPromo.value));
@@ -184,92 +184,10 @@ function initializeEditors() {
                 </div>
                 <div class="w-3/4 md:w-full main_block bg-[#063966] p-8 md:p-4 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
-                    <div class="flex flex-wrap bg-white p-8 md:p-4 mt-4 md:mt-8 rounded-2xl justify-between gap-4 md:gap-2">
-                        <div id="promo1"
-                             :class="[selectedPromo === 1 ? 'bgColor1' : (hoveredPromo === 1 ? 'bgColor1' : 'promo_image1'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer']"
-                             @mouseenter="hoveredPromo = 1"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 1">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">Просто скидка</span>
-                            <span data-tooltip-target="tooltip-just" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-just" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Просто скидка - вы предлагаете пользователям скидку на ваш товар или услугу, при этом она может быть применена при наборе определенной суммы или без таковой. Для скидки не требуется купон. Если у вас интернет магазин - вы можете указать промокод для скидки в конструкторе акций ниже.
-
-                            </div>
-                        </div>
-                        <div id="promo2"
-                             :class="[selectedPromo === 2 ? 'bgColor2' : (hoveredPromo === 2 ? 'promo_hover2' : 'promo_image2'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 2"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 2">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">Купон на скидку</span>
-                            <span data-tooltip-target="tooltip-sale" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-sale" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Купон на скидку - почти тоже, что и просто скидка, но в этом случае пользователю необходимо предоставить купон на скидку. Может быть применено правило что акция действует при наборе определенной суммы.
-
-                            </div>
-                        </div>
-                        <div id="promo3"
-                             :class="[selectedPromo === 3 ? 'bgColor3' : (hoveredPromo === 3 ? 'promo_hover3' : 'promo_image3'), 'promo_blocks w-[230px] h-[230px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 3"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 3">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">Подарок при покупке</span>
-                            <span data-tooltip-target="tooltip-buy" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-buy" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Подарок при покупке - вы предлагаете пользователям подарок при покупке вашего товара или услуги, при этом подарок может быть применен при наборе определенной суммы или без таковой.
-
-                            </div>
-                        </div>
-                        <div id="promo4"
-                             :class="[selectedPromo === 4 ? 'bgColor4' : (hoveredPromo === 4 ? 'promo_hover4' : 'promo_image4'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 4"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 4">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">2 по цене 1</span>
-                            <span data-tooltip-target="tooltip-two" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-two" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                2 по цене 1 - вы предлагаете пользователям воспользоваться приобретением вашего товара или услуги и получить второй аналогичный товар или услугу  бесплатно. Может быть применено правило что акция действует при наборе определенной суммы.
-
-                            </div>
-                        </div>
-                        <div id="promo5"
-                             :class="[selectedPromo === 5 ? 'bgColor5' : (hoveredPromo === 5 ? 'promo_hover5' : 'promo_image5'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 5"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 5">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">3 по цене 2</span>
-                            <span data-tooltip-target="tooltip-three" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-three" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                3 по цене 2 - вы предлагаете пользователям воспользоваться приобретением 2х ваших товаров или услуг и получить третий аналогичный товар или услугу  бесплатно. Может быть применено правило что акция действует при наборе определенной суммы.
-
-                            </div>
-                        </div>
-                        <div id="promo6"
-                             :class="[selectedPromo === 6 ? 'bgColor6' : (hoveredPromo === 6 ? 'promo_hover6' : 'promo_image6'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 6"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 6">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold"> Кэшбек</span>
-                            <span data-tooltip-target="tooltip-cash" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-cash" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Совместная покупка - вы предлагаете пользователям приобрести у вас товар или услугу с большим дисконтом, смысл ее в том что вы сразу получается поток заказов, а пользователи получают хороший дисконт.
-
-                            </div>
-                        </div>
-                        <div id="promo7"
-                             :class="[selectedPromo === 7 ? 'bgColor7' : (hoveredPromo === 7 ? 'promo_hover7' : 'promo_image7'), 'promo_blocks2 w-[160px] h-[160px] bg-[#e4ecef] rounded-2xl relative flex justify-center hover:bg-[#fae115] cursor-pointer']"
-                             @mouseenter="hoveredPromo = 7"
-                             @mouseleave="hoveredPromo = null"
-                             @click="selectedPromo = 7">
-                            <span class="absolute bottom-4 text-bottom text-base font-bold">Конкурс</span>
-                            <span data-tooltip-target="tooltip-celebrity" data-tooltip-trigger="hover" type="button" class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full">?</span>
-                            <div id="tooltip-celebrity" role="tooltip" class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Конкурс - вы предлагаете пользователям принять участие в конкурсе, где предлагаете им сделать определённое действие и по итогам конкурса вами будет разыгран какой-то ценный предмет или услуга, которых в свою очередь может быть несколько.
-
-                            </div>
-                        </div>
-                    </div>
+                    <PromoTypeSelector 
+                        :selectedPromo="selectedPromo"
+                        @update:selectedPromo="selectedPromo = $event"
+                    />
                     <div v-show="showPervyi" class="flex bg-white p-8 max-md:p-4 mt-8 m-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi">
                         <h3 class="text-base font-bold max-md:w-full">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
                         <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
