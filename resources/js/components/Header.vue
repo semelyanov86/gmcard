@@ -29,22 +29,22 @@
             </div>
             <ul id="header" class="items-center list-none flex md:hidden relative">
                 <li class="bg-[#f4d710] rounded-md focus:ring-2 hover:opacity-100 py-2 px-3 focus:ring-[#f4d710] relative">
-                    <a @click.prevent="loginModalOpen = true" href="#" class="text-black hover:text-[#983301] cursor-pointer" id="userAuth1">Запустить акцию</a>
-                    <svg v-show="loginModalOpen" fill="currentColor" id="startBTN" class="w-6 h-7 absolute -bottom-8 right-14 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
+                    <a @click.prevent="openLoginModal('start')" href="#" class="text-black hover:text-[#983301] cursor-pointer" id="userAuth1">Запустить акцию</a>
+                    <svg v-show="loginModalOpen && clickedButton === 'start'" fill="currentColor" id="startBTN" class="w-6 h-7 absolute -bottom-8 right-14 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
                 </li>
                 <div class="w-[1px] h-[60px] bg-[#202e58] ml-4"></div>
                 <li class="relative">
-                    <a @click.prevent="loginModalOpen = true" href="#" class="ml-4 text-white text-[15px] hover:border-b-2 hover:border-white " id="userAuth2" >Вход</a>
-                    <svg fill="currentColor" id="loginBTN" class="hidden w-6 h-7 absolute -bottom-10 right-0 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
+                    <a @click.prevent="openLoginModal('login')" href="#" class="ml-4 text-white text-[15px] hover:border-b-2 hover:border-white " id="userAuth2" >Вход</a>
+                    <svg v-show="loginModalOpen && clickedButton === 'login'" fill="currentColor" id="loginBTN" class="w-6 h-7 absolute -bottom-10 right-0 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
                 </li>
-                <li><a href="/register.html" class="text-[15px]  bg-[#3398cc] py-2 px-3 text-white rounded-md  hover: focus:ring-1 focus:ring-[#3398cc] ml-3">Регистрация</a></li>
+                <li><Link :href="route('register')" class="text-[15px]  bg-[#3398cc] py-2 px-3 text-white rounded-md  hover: focus:ring-1 focus:ring-[#3398cc] ml-3">Регистрация</Link></li>
                 <div class="w-[1px] h-[60px] bg-[#202e58] ml-2"></div>
                 <li class="py-2 px-2 rounded-md ml-3 bg-[#222e54]"><a href="#"><img src="/images/png/icons/reg.png" alt="Войти"></a></li>
             </ul>
-            <div v-show="loginModalOpen" @click="loginModalOpen = false" class="fixed inset-0 z-40"></div>
+            <div v-show="loginModalOpen" @click="closeLoginModal" class="fixed inset-0 z-40"></div>
             <div v-show="loginModalOpen" id="userDropdown" class="z-50 bg-white rounded-lg shadow-md w-[350px] absolute top-[70px] right-10">
                     <div class="p-5 relative">
-                        <svg @click="loginModalOpen = false" xmlns="http://www.w3.org/2000/svg" id="closeDrop" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 absolute top-6 right-6 opacity-50 cursor-pointer hover:opacity-100 text-gray-400">
+                        <svg @click="closeLoginModal" xmlns="http://www.w3.org/2000/svg" id="closeDrop" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 absolute top-6 right-6 opacity-50 cursor-pointer hover:opacity-100 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                         <div class="text-gray-900 w-[220px] relative">
@@ -180,9 +180,22 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 // Состояние модалки входа
 const loginModalOpen = ref(false);
+// Отслеживаем, какая кнопка была нажата: 'start' или 'login'
+const clickedButton = ref<'start' | 'login' | null>(null);
+
+function openLoginModal(buttonType: 'start' | 'login') {
+    loginModalOpen.value = true;
+    clickedButton.value = buttonType;
+}
+
+function closeLoginModal() {
+    loginModalOpen.value = false;
+    clickedButton.value = null;
+}
 </script>
 
 <style scoped>
