@@ -2,30 +2,41 @@
     <header id="header" class="h-[60px] w-full bg-[#152041] flex items-center">
         <div  class="2xl:w-full 2xl:px-4 w-[1140px] mx-auto relative flex items-center justify-between">
             <div id="header" class="flex items-center relative">
-                <a href="/index.html">
+                <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип">
-                </a>
+                </Link>
                 <a href="#"><h3 class="text-white font-bold text-xl ml-3 hover:border-b-2 hover:border-white">Скидки</h3></a>
                 <div class="w-[1px] h-[60px] bg-[#202e58] ml-4"></div>
-                <div class="flex items-center ml-3">
-                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="block text-white text-[15px] hover:opacity-80 " type="button">
+                <div class="flex items-center ml-3 relative">
+                    <button @click="toggleServicesDropdown" class="block text-white text-[15px] hover:opacity-80" type="button">
                         Все сервисы
                     </button>
-                    <img id="dropdownDefaultButton" data-dropdown-toggle="dropdown" src="/images/png/icons/down.png" class="w-[8px] h-[5px] ml-[10px] cursor-pointer mr-1" >
-                    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 border-4 border-[#0875AE] shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <img @click="toggleServicesDropdown" src="/images/png/icons/down.png" class="w-[8px] h-[5px] ml-[10px] cursor-pointer mr-1" >
+                    <div v-show="servicesDropdownOpen" @click="closeServicesDropdown" class="fixed inset-0 z-40"></div>
+                    <div v-show="servicesDropdownOpen" class="absolute top-[35px] -left-12 z-50 bg-white divide-y divide-gray-100 border-4 border-[#0875AE] shadow w-44">
+                        <ul class="py-2 text-sm text-gray-700">
                             <li>
-                                <a href="https://mainface.ru/" class="linkHeader block hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на mainface</a>
+                                <a href="https://mainface.ru/" class="linkHeader block hover:bg-gray-100 text-[13px] font-bold">Перейти на mainface</a>
                             </li>
                             <li>
-                                <a href="https://gmcard.ru/" class="linkHeader block  hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на gmcard</a>
+                                <a href="https://gmcard.ru/" class="linkHeader block hover:bg-gray-100 text-[13px] font-bold">Перейти на gmcard</a>
                             </li>
                             <li>
-                                <a href="#" class="linkHeader block hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на gmwork</a>
+                                <a href="#" class="linkHeader block hover:bg-gray-100 text-[13px] font-bold">Перейти на gmwork</a>
                             </li>
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div class="auth_block relative hidden items-center ml-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" id="userAuth3" @click="openLoginModal('mobile')" stroke="currentColor" class="w-5 h-5 rounded-lg text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+                </svg>
+                <svg fill="currentColor" id="mobileBTN" :class="loginModalOpen && clickedButton === 'mobile' ? '' : 'hidden'" class="w-4 h-4 absolute -bottom-4 right-12 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"></path></svg>
+                <button id="open_menu" @click="toggleMobileMenu" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </button>
             </div>
             <ul id="header" class="items-center list-none flex md:hidden relative">
                 <li class="bg-[#f4d710] rounded-md focus:ring-2 hover:opacity-100 py-2 px-3 focus:ring-[#f4d710] relative">
@@ -42,7 +53,7 @@
                 <li class="py-2 px-2 rounded-md ml-3 bg-[#222e54]"><a href="#"><img src="/images/png/icons/reg.png" alt="Войти"></a></li>
             </ul>
             <div v-show="loginModalOpen" @click="closeLoginModal" class="fixed inset-0 z-40"></div>
-            <div v-show="loginModalOpen" id="userDropdown" class="z-50 bg-white rounded-lg shadow-md w-[350px] absolute top-[70px] right-10">
+            <div v-show="loginModalOpen" id="userDropdown" class="z-50 bg-white rounded-lg shadow-md w-[350px] absolute top-[64px] md:top-[70px] right-4 md:right-10">
                     <div class="p-5 relative">
                         <svg @click="closeLoginModal" xmlns="http://www.w3.org/2000/svg" id="closeDrop" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 absolute top-6 right-6 opacity-50 cursor-pointer hover:opacity-100 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -134,7 +145,6 @@
                             </svg>
                                 </a>
                                 <a href="#">
-                                    <!-- Google+ icon -->
                                     <svg fill="#fff" class="w-8 h-8 opacity-10 hover:opacity-100" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM548.5 622.8c-43.9 61.8-132.1 79.8-200.9 53.3-69-26.3-118-99.2-112.1-173.5 1.5-90.9 85.2-170.6 176.1-167.5 43.6-2 84.6 16.9 118 43.6-14.3 16.2-29 31.8-44.8 46.3-40.1-27.7-97.2-35.6-137.3-3.6-57.4 39.7-60 133.4-4.8 176.1 53.7 48.7 155.2 24.5 170.1-50.1-33.6-.5-67.4 0-101-1.1-.1-20.1-.2-40.1-.1-60.2 56.2-.2 112.5-.3 168.8.2 3.3 47.3-3 97.5-32 136.5zM791 536.5c-16.8.2-33.6.3-50.4.4-.2 16.8-.3 33.6-.3 50.4H690c-.2-16.8-.2-33.5-.3-50.3-16.8-.2-33.6-.3-50.4-.5v-50.1c16.8-.2 33.6-.3 50.4-.3.1-16.8.3-33.6.4-50.4h50.2l.3 50.4c16.8.2 33.6.2 50.4.3v50.1z" fill="#023BA4"/>
                                     </svg>
@@ -144,9 +154,9 @@
                     </div>
                     <div class="py-4 px-4 flex justify-between items-center  w-full bg-[#EDF4FC]">
                         <span class="text-lg font-bold">Еще не в GM?</span>
-                        <a href="#" class="py-3 px-12 text-black shadow-lg text-base font-bold  bg-white rounded-md hover:shadow-sm">Регистрация</a>
+                        <Link :href="route('register')" class="py-3 px-12 text-black shadow-lg text-base font-bold  bg-white rounded-md hover:shadow-sm">Регистрация</Link>
                     </div>
-                </div>
+            </div>
             <div class="modal_acc">
                 <div id="dropdownAvatar" class="z-50 hidden bg-white border-4 border-[#0875AE] w-[350px] ">
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
@@ -176,25 +186,56 @@
             </div>
         </div>
     </header>
+    <div v-show="mobileMenuOpen" class="max-w-full overflow-hidden bg-[#041a41]">
+        <div class="py-4 px-12 bg-[#28A8EB] shadow-lg font-semibold rounded-b-md w-full animated-block">
+            <ul class="flex flex-col">
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Главная</a></li>
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Пользователям</a></li>
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Кэшбек</a></li>
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Для бизнеса</a></li>
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Правила</a></li>
+                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-white text-base">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
-// Состояние модалки входа
 const loginModalOpen = ref(false);
-// Отслеживаем, какая кнопка была нажата: 'start' или 'login'
-const clickedButton = ref<'start' | 'login' | null>(null);
+const clickedButton = ref<'start' | 'login' | 'mobile' | null>(null);
+const servicesDropdownOpen = ref(false);
+const mobileMenuOpen = ref(false);
 
-function openLoginModal(buttonType: 'start' | 'login') {
+function openLoginModal(buttonType: 'start' | 'login' | 'mobile') {
     loginModalOpen.value = true;
     clickedButton.value = buttonType;
+    servicesDropdownOpen.value = false;
+    mobileMenuOpen.value = false;
 }
 
 function closeLoginModal() {
     loginModalOpen.value = false;
     clickedButton.value = null;
+}
+
+function toggleServicesDropdown() {
+    servicesDropdownOpen.value = !servicesDropdownOpen.value;
+}
+
+function closeServicesDropdown() {
+    servicesDropdownOpen.value = false;
+}
+
+function toggleMobileMenu() {
+    mobileMenuOpen.value = !mobileMenuOpen.value;
+    loginModalOpen.value = false;
+}
+
+function closeMobileMenu() {
+    mobileMenuOpen.value = false;
 }
 </script>
 
