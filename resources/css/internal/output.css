@@ -4588,6 +4588,10 @@ background-color: #ededf4;
   .mobile_scroll {
     display: flex !important;
     overflow-x: scroll;
+    width: 100% !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    position: relative !important;
   }
 
   .mobile_scroll::-webkit-scrollbar {
@@ -5198,6 +5202,164 @@ background-color: #ededf4;
 
   .main_block {
     width: 100% !important;
+    padding: 0.5rem !important;
+  }
+
+  .main_block > h2 {
+    font-size: 1.875rem !important;
+  }
+
+  .main_block > div {
+    padding: 1rem !important;
+    margin-top: 2rem !important;
+    gap: 0.5rem !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .main_block .price_text,
+  .main_block .all_text {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  .main_block {
+    overflow-x: hidden !important;
+  }
+
+  .main_block * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .main_block .pt-8.flex.justify-between.flex-row.max-md\:flex-col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #pervyi, #pervyi_new, #vtoroi, #tretiy {
+    padding: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    flex-direction: column !important;
+  }
+
+  #chetvertyi {
+    padding: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #chetvertyi > div:first-child {
+    flex-direction: column !important;
+  }
+
+  #chetvertyi .price_block {
+    width: 100% !important;
+  }
+
+  #chetvertyi .max-md\:mt-4 {
+    margin-top: 1rem !important;
+  }
+
+  #sedmoi {
+    padding: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #sedmoi > div:first-child {
+    align-items: center !important;
+  }
+
+  #sedmoi p {
+    width: auto !important;
+    flex: 1 !important;
+    margin-right: 1rem !important;
+  }
+
+  #shestnadsat {
+    padding: 1rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #shestnadsat > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #shestnadsat > div:first-child > h3,
+  #shestnadsat > div:first-child > a {
+    width: 100% !important;
+  }
+
+  #shestnadsat > div:first-child > h3 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  #shestnadsat > div:nth-child(2),
+  #shestnadsat > div:nth-child(4) {
+    margin-top: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  #shestnadsat > div:nth-child(3),
+  #shestnadsat > div:nth-child(5) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  #shestnadsat > div:nth-child(3) > div:first-child,
+  #shestnadsat > div:nth-child(5) > div:first-child {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+
+  .price_text {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .all_text {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  #pervyi > h3 {
+    width: 100% !important;
+  }
+
+  #pervyi > div {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+    gap: 1.25rem !important;
+  }
+
+  #pervyi > div > input {
+    width: 100% !important;
+  }
+
+  #pervyi_new > h3,
+  #vtoroi > div:first-child,
+  #tretiy > div:first-child {
+    width: 100% !important;
+  }
+
+  #vtoroi > div:last-child,
+  #tretiy > div:last-child {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
   }
 
   .promo_blocks {

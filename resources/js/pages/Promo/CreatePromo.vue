@@ -182,7 +182,7 @@ function initializeEditors() {
                         </ul>
                     </div>
                 </div>
-                <div class="w-3/4 md:w-full bg-[#063966] p-8 md:p-4 rounded-2xl">
+                <div class="w-3/4 md:w-full main_block bg-[#063966] p-8 md:p-4 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
                     <div class="flex flex-wrap bg-white p-8 md:p-4 mt-4 md:mt-8 rounded-2xl justify-between gap-4 md:gap-2">
                         <div id="promo1"
@@ -284,7 +284,7 @@ function initializeEditors() {
                             <CurrencyDropdown v-model="currency2Value" />
                         </div>
                     </div>
-                    <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">
+                    <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 m-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">
                         <div class="flex flex-col w-[450px] max-md:w-full">
                             <p class="text-black/50 all_text"> <strong class="text-black text-base">Если одним из условий является минимальная сумма заказа,</strong> то необходимо указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.</p>
                         </div>
@@ -306,7 +306,7 @@ function initializeEditors() {
                     </div>
                     <div v-show="showChetvertyi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="chetvertyi">
                         <div class="flex flex-row max-md:flex-col justify-between items-center">
-                            <div class="w-[450px] max-md:w-full">
+                            <div class="w-[450px] price_block">
                                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
                                 <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
                             </div>
@@ -990,7 +990,7 @@ function initializeEditors() {
                         <div class="w-full h-[1px] bg-black/20 my-5"></div>
                         <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
                             <div class="flex items-center gap-1 max-md:mb-4">
-                                <p class="text-base all_text">Поднимать акцию на первое место каждые</p>
+                                <p class="text-base all_text">Поднимать акцию на первое<br>место каждые</p>
                                 <input type="text" id="timeValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
                                 <label for="timeValue" class="text-base max-sm:text-sm">часа</label>
                             </div>
