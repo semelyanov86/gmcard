@@ -234,9 +234,6 @@ function toggleMobileMenu() {
     loginModalOpen.value = false;
 }
 
-function closeMobileMenu() {
-    mobileMenuOpen.value = false;
-}
 </script>
 
 <style scoped>
