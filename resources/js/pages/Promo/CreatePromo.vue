@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import NavBar from '@/components/NavBar.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
-import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
@@ -19,6 +18,8 @@ import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import PremiumOptions from '@/components/Promo/PremiumOptions.vue';
 import PricingSummary from '@/components/Promo/PricingSummary.vue';
 import GeographySelector from '@/components/Promo/GeographySelector.vue';
+import PromoDescriptionBlock from '@/components/Promo/PromoDescriptionBlock.vue';
+import FreeDeliveryBlock from '@/components/Promo/FreeDeliveryBlock.vue';
 
 defineProps<{
     contact: {
@@ -40,37 +41,9 @@ const currency1Value = ref('%');
 const cashbackAmount = ref('');
 const currency2Value = ref('%');
 
-const deliveryOpen = ref(false);
-
 const conditionsModalOpen = ref(false);
 
-const textEditorOpen = ref(false);
-
 const selectedCategories = ref<string[]>([]);
-
-onMounted(() => {
-    if (!(window as any).ClassicEditor) {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js';
-        script.onload = () => {
-            initializeEditors();
-        };
-        document.head.appendChild(script);
-    } else {
-        initializeEditors();
-    }
-});
-
-function initializeEditors() {
-    const ClassicEditor = (window as any).ClassicEditor;
-    ['#editor', '#editor2'].forEach(selector => {
-        const element = document.querySelector(selector);
-        if (element) {
-            ClassicEditor.create(element)
-                .catch((error: any) => console.error(`Error initializing ${selector}:`, error));
-        }
-    });
-}
 </script>
 
 <template>
@@ -205,31 +178,7 @@ function initializeEditors() {
                             <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="border-gray-300 rounded-lg w-full mt-3">
                         </div>
                     </div>
-                    <div v-show="showChetvertyi" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="chetvertyi">
-                        <div class="flex flex-row max-md:flex-col justify-between items-center">
-                            <div class="w-[450px] price_block">
-                                <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
-                                <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
-                            </div>
-                            <ToggleSwitch v-model="deliveryOpen" class="max-md:mt-4" />
-                        </div>
-                        <div v-show="deliveryOpen" class="my-4" id="delivaryBlock">
-                            <div class="h-[1px] w-full bg-black/30"></div>
-                            <div class="mt-4 flex flex-row max-sm:flex-col justify-between items-center">
-                                <div class="">
-                                    <p class="text-black/50 all_text"><strong class="text-black text-base">Есть бесплатная доставка.</strong> Если бесплатная доставка действует при заказе от определенной суммы, то необходимо указать это здесь.</p>
-                                </div>
-                                <div class="flex flex-col w-[200px] ml-12 max-sm:w-full max-sm:mt-4 max-sm:ml-0 relative">
-                                    <label for="code_for_sale" class="text-sm font-bold">Действует при заказе от</label>
-                                    <input type="number" name="code_for_sale_new_prom" placeholder="1000" class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8">
-                                    <span class="absolute bottom-12 right-3 text-black/50">₽</span>
-                                    <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                        Сохранить
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <FreeDeliveryBlock :show="showChetvertyi" />
                     <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col w-full" id="pyatyi">
                         <h3 class="text-base font-bold">Введите заголовок (названии акции), максимум 64 символа.</h3>
                         <p class="text-black/50 all_text">Вы можете указать в заголовке имя своего бренда (пример в строке), что поможет пользователям отслеживать все ваши акции и возможно сделает вас более узнаваемым.</p>
@@ -240,27 +189,10 @@ function initializeEditors() {
                     </div>
                     <PhotoUploadBlock />
                     <YouTubeBlock />
-                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col w-full" id="vosmoi">
-                        <h3 class="font-bold mb-4">Описание акции</h3>
-                        <textarea id="editor" class="w-full h-[200px]">✨ «-30% на всё от Desigual» ✨<br><br>Приготовьтесь к яркому обновлению гардероба! Бренд Desigual дарит вам уникальную возможность приобрести любую вещь из своего ассортимента со скидкой 30%.<br><br>🗓️ Срок действия акции: Предложение действует с [Укажите дату начала акции] по [Укажите последний день текущего месяца]. Успейте воспользоваться!<br><br>🛍️ Что входит в акцию: Скидка 30% распространяется на абсолютно все товары в каталоге Desigual:<br>Одежда: платья, юбки, брюки, джинсы, куртки, пальто, футболки, рубашки, свитера и многое другое для мужчин и женщин.<br>Обувь: кроссовки, ботинки, сапоги, туфли, сандалии.<br>Аксессуары: сумки, рюкзаки, шарфы, головные уборы, украшения, ремни.<br>И другие категории товаров бренда Desigual.<br><br><br>📍 Где действует акция:<br>Онлайн: на официальном сайте Desigual [укажите ссылку на сайт, если применимо].<br>Оффлайн: во всех фирменных магазинах Desigual, расположенных в [укажите города или регионы, где действует акция, например: "Москве и Санкт-Петербурге"].<br><br><br>⚠️ Важные условия:<br>Скидка 30% применяется автоматически при оформлении заказа или на кассе.<br>Акция не суммируется с другими скидками, специальными предложениями и промокодами.<br>Количество товаров ограничено.<br>Возврат и обмен товаров осуществляется согласно стандартным правилам магазина.<br>Организатор акции оставляет за собой право изменить условия или досрочно завершить акцию.<br>Не упустите шанс добавить красок в свою жизнь с Desigual! 💖</textarea>
-                        <div class="my-6">
-                            <div class="h-[1px] w-full bg-black/30"></div>
-                            <div class="flex flex-row max-md:flex-col justify-between items-center max-md:items-start my-4">
-                                <p class="mr-10 max-md:mr-0 max-md:mb-4 text-black/50 all_text"><strong class="text-black text-base">Допополнительные условия.</strong>
-                                    Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если никаких дополнительных условий нет, то оставьте поле пустым.
-                                    <span @click="conditionsModalOpen = true" id="MOre_examp" class="text-[#2578cf] ml-3 hover:underline cursor-pointer">Подробнее</span>
-                                </p>
-                                <ToggleSwitch v-model="textEditorOpen" />
-                            </div>
-                        </div>
-                        <div v-show="textEditorOpen" class="mb-4" id="text_editor">
-                            <div class="h-[1px] w-full bg-black/30"></div>
-                            <textarea id="editor2" class="w-full min-h-[200px]"></textarea>
-                        </div>
-                    </div>
-                    <ConditionsExampleModal
-                        :isOpen="conditionsModalOpen"
-                        @close="conditionsModalOpen = false"
+                    <PromoDescriptionBlock @openConditionsModal="conditionsModalOpen = true" />
+                    <ConditionsExampleModal 
+                        :isOpen="conditionsModalOpen" 
+                        @close="conditionsModalOpen = false" 
                     />
                     <SocialLinksBlock />
                     <AddressContactBlock />
@@ -336,10 +268,6 @@ function initializeEditors() {
 </template>
 
 <style>
-.ck-editor__editable {
-    min-height: 200px;
-}
-
 .toggle-switch input:checked ~ div::after {
     transform: translateX(1.75rem);
 }

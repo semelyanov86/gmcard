@@ -13,6 +13,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const hoveredPromo = ref<number | null>(null);
+const activeTooltip = ref<number | null>(null);
 
 const promoTypes = [
     {
@@ -85,6 +86,14 @@ function getPromoClasses(id: number) {
 
     return `${blockType} ${sizeClasses} bg-[#e4ecef] rounded-2xl relative flex justify-center cursor-pointer ${colorClasses}`;
 }
+
+function showTooltip(id: number) {
+    activeTooltip.value = id;
+}
+
+function hideTooltip() {
+    activeTooltip.value = null;
+}
 </script>
 
 <template>
@@ -100,16 +109,16 @@ function getPromoClasses(id: number) {
         >
             <span class="absolute bottom-4 text-bottom text-base font-bold">{{ promo.title }}</span>
             <span
-                data-tooltip-target="tooltip"
-                data-tooltip-trigger="hover"
-                type="button"
-                class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full"
+                @mouseenter="showTooltip(promo.id)"
+                @mouseleave="hideTooltip"
+                class="absolute right-4 text-xs top-2 bg-white px-[8px] py-[2px] rounded-full cursor-pointer hover:bg-gray-100"
             >
                 ?
             </span>
             <div
+                v-show="activeTooltip === promo.id"
                 role="tooltip"
-                class="absolute w-[320px] z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                class="absolute w-[320px] z-10 inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm top-8 right-0"
             >
                 {{ promo.description }}
             </div>
