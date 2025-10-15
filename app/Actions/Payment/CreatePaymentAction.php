@@ -14,6 +14,9 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use RuntimeException;
 use Throwable;
 
+/**
+ * @method static Payment run(PaymentData $dto)
+ */
 final readonly class CreatePaymentAction
 {
     use AsAction;

@@ -22,7 +22,6 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100.50', 'RUB'),
@@ -30,8 +29,8 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test incoming payment',
         );
 
-        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
+        $user->refresh();
 
         $this->assertDatabaseHas('payments', [
             'id' => $payment->id,
@@ -41,7 +40,6 @@ class CreatePaymentActionTest extends TestCase
             'description' => 'Test incoming payment',
         ]);
 
-        $user->refresh();
         $this->assertSame(10050, (int) $user->balance);
     }
 
@@ -49,13 +47,11 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         Payment::factory()->create([
             'user_id' => $user->id,
             'amount' => 10000,
             'type' => PaymentType::INCOMING,
         ]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('50', 'RUB'),
@@ -63,8 +59,8 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test outgoing payment',
         );
 
-        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
+        $user->refresh();
 
         $this->assertDatabaseHas('payments', [
             'id' => $payment->id,
@@ -73,7 +69,6 @@ class CreatePaymentActionTest extends TestCase
             'type' => 'Списание',
         ]);
 
-        $user->refresh();
         $this->assertSame(5000, (int) $user->balance);
     }
 
@@ -81,13 +76,11 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         Payment::factory()->create([
             'user_id' => $user->id,
             'amount' => 5000,
             'type' => PaymentType::INCOMING,
         ]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100', 'RUB'),
@@ -99,22 +92,17 @@ class CreatePaymentActionTest extends TestCase
         $this->expectExceptionMessage('Недостаточно средств: нельзя списать больше, чем на счёте.');
 
         CreatePaymentAction::run($dto);
-
-        $user->refresh();
-        $this->assertSame(5000, (int) $user->balance); // Balance unchanged
     }
 
     public function test_prevents_negative_balance_when_actual_balance_differs_from_db(): void
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 10000]);
-
         Payment::factory()->create([
             'user_id' => $user->id,
             'amount' => 9000,
             'type' => PaymentType::OUTGOING,
         ]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('20', 'RUB'),
@@ -132,13 +120,11 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         Payment::factory()->create([
             'user_id' => $user->id,
             'amount' => 10000,
             'type' => PaymentType::INCOMING,
         ]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100', 'RUB'),
@@ -146,11 +132,9 @@ class CreatePaymentActionTest extends TestCase
             description: 'Exact balance',
         );
 
-        /** @var Payment $payment */
-        $payment = CreatePaymentAction::run($dto);
-
-        $this->assertInstanceOf(Payment::class, $payment);
+        CreatePaymentAction::run($dto);
         $user->refresh();
+
         $this->assertSame(0, (int) $user->balance);
     }
 
@@ -158,7 +142,6 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100', 'RUB'),
@@ -167,7 +150,6 @@ class CreatePaymentActionTest extends TestCase
             transactionId: null,
         );
 
-        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertSame($payment->id, $payment->transaction_id);
@@ -177,7 +159,6 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100', 'RUB'),
@@ -186,7 +167,6 @@ class CreatePaymentActionTest extends TestCase
             transactionId: 99999,
         );
 
-        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         $this->assertSame(99999, $payment->transaction_id);
@@ -196,7 +176,6 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         $dto = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('100', 'RUB'),
@@ -204,7 +183,6 @@ class CreatePaymentActionTest extends TestCase
             description: 'Test',
         );
 
-        /** @var Payment $payment */
         $payment = CreatePaymentAction::run($dto);
 
         /** @phpstan-ignore method.alreadyNarrowedType */
@@ -217,20 +195,17 @@ class CreatePaymentActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['balance' => 0]);
-
         Payment::factory()->create([
             'user_id' => $user->id,
             'amount' => 5000,
             'type' => PaymentType::INCOMING,
         ]);
-
         $dto1 = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('30', 'RUB'),
             type: PaymentType::OUTGOING,
             description: 'First',
         );
-
         $dto2 = new PaymentData(
             userId: $user->id,
             amount: MoneyValueObject::fromString('30', 'RUB'),
@@ -238,9 +213,7 @@ class CreatePaymentActionTest extends TestCase
             description: 'Second',
         );
 
-        /** @var Payment $payment1 */
-        $payment1 = CreatePaymentAction::run($dto1);
-        $this->assertInstanceOf(Payment::class, $payment1);
+        CreatePaymentAction::run($dto1);
 
         $this->expectException(RuntimeException::class);
         CreatePaymentAction::run($dto2);

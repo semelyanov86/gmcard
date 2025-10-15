@@ -7,6 +7,9 @@ namespace App\Actions;
 use App\Models\Category;
 use Lorisleiva\Actions\Concerns\AsAction;
 
+/**
+ * @method static void run(array $namesPath)
+ */
 final readonly class CategoryPathAction
 {
     use AsAction;
