@@ -14,6 +14,7 @@ import AddressContactBlock from '@/components/Promo/AddressContactBlock.vue';
 import DiscountInputBlock from '@/components/Promo/DiscountInputBlock.vue';
 import ConditionsExampleModal from '@/components/Promo/ConditionsExampleModal.vue';
 import CategorySelector from '@/components/Promo/CategorySelector.vue';
+import SideNavigation from '@/components/Promo/SideNavigation.vue';
 
 defineProps<{
     contact: {
@@ -161,24 +162,7 @@ function initializeEditors() {
                 </div>
             </div>
             <div class="flex myBlocks gap-10 w-full h-full mt-12">
-                <div class="hidden flex-col relative" id="mainBlock">
-                    <button id="openMyBlocks" class="w-full bg-[#FAE115] z-50 h-[50px] shadow-2xl rounded-md">Мои разделы</button>
-                    <div id="myBlocks" class="bg-white rounded-b-2xl z-10 -mt-1 hidden">
-                        <ul class="w-full flex flex-col ">
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Личный кабинет</a>
-                            <div class="w-full h-[1px] bg-black/20 "></div>
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Запустить акцию</a>
-                            <div class="w-full h-[1px] bg-black/20 "></div>
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои акции</a>
-                            <div class="w-full h-[1px] bg-black/20 "></div>
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои акции с купонами</a>
-                            <div class="w-full h-[1px] bg-black/20 "></div>
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои купоны</a>
-                            <div class="w-full h-[1px] bg-black/20 "></div>
-                            <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои черновики</a>
-                        </ul>
-                    </div>
-                </div>
+                <SideNavigation mode="mobile" />
                 <div class="w-3/4 md:w-full main_block bg-[#063966] p-8 md:p-4 rounded-2xl">
                     <h2 class="text-4xl md:text-3xl font-bold text-white">Создание новой акции, выберите тип акции</h2>
                     <PromoTypeSelector 
@@ -270,9 +254,9 @@ function initializeEditors() {
                             <textarea id="editor2" class="w-full min-h-[200px]"></textarea>
                         </div>
                     </div>
-                    <ConditionsExampleModal 
-                        :isOpen="conditionsModalOpen" 
-                        @close="conditionsModalOpen = false" 
+                    <ConditionsExampleModal
+                        :isOpen="conditionsModalOpen"
+                        @close="conditionsModalOpen = false"
                     />
                     <SocialLinksBlock />
                     <AddressContactBlock />
@@ -448,21 +432,7 @@ function initializeEditors() {
                     </div>
                     <button class="w-full text-3xl text-white font-bold py-8 mt-5 bg-[#1d89f2] rounded-md shadow-lg hover:opacity-90">Запустить акцию</button>
                 </div>
-                <div class="w-[250px] route_block bg-white rounded-2xl py-2 h-full">
-                    <ul class="w-full flex flex-col">
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Личный кабинет</a>
-                        <div class="w-full h-[1px] bg-black/20 "></div>
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Запустить акцию</a>
-                        <div class="w-full h-[1px] bg-black/20 "></div>
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои акции</a>
-                        <div class="w-full h-[1px] bg-black/20 "></div>
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои акции с купонами</a>
-                        <div class="w-full h-[1px] bg-black/20 "></div>
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои купоны</a>
-                        <div class="w-full h-[1px] bg-black/20 "></div>
-                        <a href="" class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">Мои черновики</a>
-                    </ul>
-                </div>
+                <SideNavigation mode="desktop" />
             </div>
         </div>
     </section>
