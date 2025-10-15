@@ -13,13 +13,14 @@ final class UserData extends Data
 {
     public function __construct(
         public string $name,
-        public string $last_name,
-        public int $age,
         public string $email,
         #[SensitiveParameter]
         public string $password,
+        public ?string $last_name = null,
+        public ?int $age = null,
         public ?int $id = null,
         public ?int $balance = null,
+        public ?int $virtual_balance = null,
         public ?string $job = null,
         public ?JobStatusType $job_status = null,
         public ?int $city = null,
