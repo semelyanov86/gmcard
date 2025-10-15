@@ -16,6 +16,7 @@ import ConditionsExampleModal from '@/components/Promo/ConditionsExampleModal.vu
 import CategorySelector from '@/components/Promo/CategorySelector.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
+import PremiumOptions from '@/components/Promo/PremiumOptions.vue';
 
 defineProps<{
     contact: {
@@ -325,36 +326,7 @@ function initializeEditors() {
                             <span class="text-base all_text text_opac" id="agree">Да, желаю</span>
                         </div>
                     </div>
-                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="shestnadsat">
-                        <div class="flex items-center justify-between w-full flex-row max-md:flex-col max-md:items-start">
-                            <h3 class="font-bold w-auto max-md:w-full max-md:mb-2">Дополнительные опции (нужен премиум)</h3>
-                            <a href="#" class="text-[#0066CB] hover:underline w-auto max-md:w-full">Смотреть тарифы</a>
-                        </div>
-                        <div class="w-full h-[1px] bg-black/20 my-5"></div>
-                        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
-                            <div class="flex items-center gap-1 max-md:mb-4">
-                                <p class="text-base all_text">Поднимать акцию на первое<br>место каждые</p>
-                                <input type="text" id="timeValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
-                                <label for="timeValue" class="text-base max-sm:text-sm">часа</label>
-                            </div>
-                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" id="timeValueCheck">
-                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                            </label>
-                        </div>
-                        <div class="w-full h-[1px] bg-black/20 my-5"></div>
-                        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
-                            <div class="flex items-center gap-1 max-md:mb-4">
-                                <p class="text-base all_text">Автоматически перезапускать акцию после завершения на</p>
-                                <input type="text" id="dayValue" class="w-[45px] bg_inp rounded-md border-gray-300" placeholder="0">
-                                <label for="dayValue">дней</label>
-                            </div>
-                            <label class="toggle-switch relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" id="dayValueCheck">
-                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                            </label>
-                        </div>
-                    </div>
+                    <PremiumOptions />
                     <div class="pt-8 flex justify-between flex-row max-md:flex-col">
                         <div class="flex flex-col w-[450px] max-md:w-full">
                             <div class="flex pricer_blocks justify-between">
