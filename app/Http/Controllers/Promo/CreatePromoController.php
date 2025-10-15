@@ -27,7 +27,7 @@ class CreatePromoController extends Controller
                 ->orderBy('name')
                 ->get(),
             'cities' => City::orderBy('name')->get(['id', 'name']),
-            'userBalance' => $user?->balance ?? 0,
+            'userBalance' => $user->balance ?? 0,
         ]);
     }
 }
