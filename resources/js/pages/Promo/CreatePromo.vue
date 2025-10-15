@@ -15,6 +15,7 @@ import DiscountInputBlock from '@/components/Promo/DiscountInputBlock.vue';
 import ConditionsExampleModal from '@/components/Promo/ConditionsExampleModal.vue';
 import CategorySelector from '@/components/Promo/CategorySelector.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
+import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 
 defineProps<{
     contact: {
@@ -260,55 +261,7 @@ function initializeEditors() {
                     />
                     <SocialLinksBlock />
                     <AddressContactBlock />
-                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="odinnadsat">
-                        <div class="flex flex-row max-md:flex-col items-start max-md:items-start">
-                            <div class="max-md:mb-4">
-                                <h3 class="font-bold">Если ваша акция доступна только в определенные дни и часы.</h3>
-                                <p class="text-black/50 all_text">Общий отсчет времени до конца акции не прекратится, она так же будет находится на сайте, но пользователи смогут перейти в нее только в указанные вами дни и часы.</p>
-                            </div>
-                            <label class="toggle-switch relative inline-flex items-center cursor-pointer ml-10 max-md:ml-0">
-                                <input type="checkbox" value="" class="sr-only peer" id="graphicsCkeck">
-                                <div class="w-14 h-7 bg-gray-200 border border-gray-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600 peer-checked:border-blue-600"></div>
-                            </label>
-                        </div>
-                        <div class="mt-5 hidden" id="grphicsBlock">
-                            <div class="h-[1px] w-full bg-black/20"></div>
-                            <div class="mt-5 flex flex-row max-md:flex-col items-center max-md:items-start gap-3">
-                                <div class="flex items-center gap-2">
-                                    <input type="checkbox" name="check_day" id="checkDay" class="check_day rounded-md">
-                                    <label for="check_day" class="font-bold">Акция доступна в</label>
-                                </div>
-                                <ul class="flex flex-wrap items-center gap-2">
-                                    <li id="md" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">пн</li>
-                                    <li id="tu" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">вт</li>
-                                    <li id="wd" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">ср</li>
-                                    <li id="th" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">чт</li>
-                                    <li id="fr" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">пт</li>
-                                    <li id="su" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">сб</li>
-                                    <li id="sn" class="px-3 py-2 cursor-pointer bg-[#e9eef1] rounded-md">вс</li>
-                                </ul>
-                            </div>
-                            <div class="mt-5 flex flex-row max-md:flex-col items-center max-md:items-start gap-3">
-                                <div class="flex items-center gap-2">
-                                    <input type="checkbox" name="check_day" id="checkTime" class="check_day rounded-md">
-                                    <label for="check_day" class="font-bold">Акция доступна с</label>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="flex items-center gap-2">
-                                        <input type="text" placeholder="00" maxlength="2"  class="w-[45px] rounded-lg border border-gray-300" >
-                                        <span>:</span>
-                                        <input type="text" placeholder="00" maxlength="2"  class="w-[45px] rounded-lg border border-gray-300" >
-                                    </div>
-                                    <span>- до</span>
-                                    <div class="flex items-center gap-2">
-                                        <input type="text" placeholder="00" maxlength="2"  class="w-[45px] rounded-lg border border-gray-300" >
-                                        <span>:</span>
-                                        <input type="text" placeholder="00" maxlength="2"  class="w-[45px] rounded-lg border border-gray-300" >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ScheduleBlock />
                     <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="dvenadsat">
                         <h3 class="font-bold">География акции, не более 20 городов</h3>
                         <div class="custom-select relative w-full mt-5">
