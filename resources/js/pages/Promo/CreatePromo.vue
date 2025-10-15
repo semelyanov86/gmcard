@@ -18,6 +18,7 @@ import SideNavigation from '@/components/Promo/SideNavigation.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import PremiumOptions from '@/components/Promo/PremiumOptions.vue';
 import PricingSummary from '@/components/Promo/PricingSummary.vue';
+import GeographySelector from '@/components/Promo/GeographySelector.vue';
 
 defineProps<{
     contact: {
@@ -264,27 +265,7 @@ function initializeEditors() {
                     <SocialLinksBlock />
                     <AddressContactBlock />
                     <ScheduleBlock />
-                    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col" id="dvenadsat">
-                        <h3 class="font-bold">География акции, не более 20 городов</h3>
-                        <div class="custom-select relative w-full mt-5">
-                            <input type="text" class="select-input w-full rounded-md border-gray-300" placeholder="Укажите город">
-                            <ul class="select-dropdown hidden absolute z-50 w-full p-0 mt-1 bg-white border border-[#ccc] max-h-[200px] overflow-y-auto">
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Москва</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Санкт-Петербург</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Новосибирск</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Екатеринбург</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Казань</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Нижний Новгород</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Челябинск</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Самара</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Омск</li>
-                                <li class="p-1 cursor-pointer hover:bg-[#f5f5f5]">Ростов-на-Дону</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <div id="selectedCities" class="mt-5 flex flex-wrap gap-4 all_text"></div>
-                        </div>
-                    </div>
+                    <GeographySelector />
                     <div class="flex bg-white p-4 max-md:p-4 mt-8 rounded-2xl flex-col max-md:flex hidden" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">
