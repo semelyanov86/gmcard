@@ -17,6 +17,7 @@ import CategorySelector from '@/components/Promo/CategorySelector.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import PremiumOptions from '@/components/Promo/PremiumOptions.vue';
+import PricingSummary from '@/components/Promo/PricingSummary.vue';
 
 defineProps<{
     contact: {
@@ -327,35 +328,7 @@ function initializeEditors() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <div class="pt-8 flex justify-between flex-row max-md:flex-col">
-                        <div class="flex flex-col w-[450px] max-md:w-full">
-                            <div class="flex pricer_blocks justify-between">
-                                <div class="">
-                                    <span class="text-[#159FF5] text-base">Ваш баланс</span>
-                                    <h3 class="text-white text-3xl price_text">100 000 руб.</h3>
-                                </div>
-                                <div class="">
-                                    <span class="text-[#159FF5] text-base">Стоимость акции составит</span>
-                                    <h3 class="text-white text-3xl price_text">594 руб.</h3>
-                                </div>
-                            </div>
-                            <div class="flex gap-2  items-center mt-5">
-                                <input type="checkbox" name="" id="rules" >
-                                <label for="rules" class="text-[#607990] all_text">С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен</label>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-3 max-md:mt-4">
-                            <div class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
-                                <img class="w-6 h-6" src="/images/png/constructor/eye.svg" alt="eye">
-                                <a href="#" class="text-white all_text">Предпросмотр акции</a>
-                            </div>
-                            <div class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90">
-                                <img class="w-6 h-6" src="/images/png/constructor/file.svg" alt="eye">
-                                <button class="text-white all_text">Сохранить как черновик</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="w-full text-3xl text-white font-bold py-8 mt-5 bg-[#1d89f2] rounded-md shadow-lg hover:opacity-90">Запустить акцию</button>
+                    <PricingSummary />
                 </div>
                 <SideNavigation mode="desktop" />
             </div>
