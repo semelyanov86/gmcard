@@ -2,14 +2,11 @@
 import { ref } from 'vue';
 
 interface Props {
-    balance?: string;
-    cost?: string;
+    balance?: number;
+    cost?: number;
 }
 
-withDefaults(defineProps<Props>(), {
-    balance: '100 000 руб.',
-    cost: '594 руб.',
-});
+const { balance = 0, cost = 594 } = defineProps<Props>();
 
 const agreeToTerms = ref(false);
 
@@ -26,11 +23,11 @@ const emit = defineEmits<{
             <div class="flex pricer_blocks justify-between">
                 <div>
                     <span class="text-[#159FF5] text-base">Ваш баланс</span>
-                    <h3 class="text-white text-3xl price_text">{{ balance }}</h3>
+                    <h3 class="text-white text-3xl price_text">{{ balance }} руб.</h3>
                 </div>
                 <div>
                     <span class="text-[#159FF5] text-base">Стоимость акции составит</span>
-                    <h3 class="text-white text-3xl price_text">{{ cost }}</h3>
+                    <h3 class="text-white text-3xl price_text">{{ cost }} руб.</h3>
                 </div>
             </div>
             <div class="flex gap-2 items-center mt-5">

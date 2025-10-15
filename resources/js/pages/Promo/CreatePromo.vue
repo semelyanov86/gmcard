@@ -21,11 +21,24 @@ import GeographySelector from '@/components/Promo/GeographySelector.vue';
 import PromoDescriptionBlock from '@/components/Promo/PromoDescriptionBlock.vue';
 import FreeDeliveryBlock from '@/components/Promo/FreeDeliveryBlock.vue';
 
-defineProps<{
+const props = defineProps<{
     contact: {
         email: string;
         phone: string;
     };
+    categories: Array<{
+        id: number;
+        name: string;
+        children?: Array<{
+            id: number;
+            name: string;
+        }>;
+    }>;
+    cities: Array<{
+        id: number;
+        name: string;
+    }>;
+    userBalance: number;
 }>();
 
 const selectedPromo = ref<number>(1);
@@ -197,7 +210,7 @@ const selectedCategories = ref<string[]>([]);
                     <SocialLinksBlock />
                     <AddressContactBlock />
                     <ScheduleBlock />
-                    <GeographySelector />
+                    <GeographySelector :cities="props.cities" />
                     <div class="flex bg-white p-4 max-md:p-4 mt-8 rounded-2xl flex-col max-md:flex hidden" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">
@@ -214,7 +227,10 @@ const selectedCategories = ref<string[]>([]);
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <CategorySelector v-model:selectedCategories="selectedCategories" />
+                    <CategorySelector 
+                        :categories="props.categories"
+                        v-model:selectedCategories="selectedCategories" 
+                    />
                     <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl justify-between flex-row max-md:flex-col" id="chetyrnadsat">
                         <p class="w-[380px] max-md:w-full text-black/50 max-md:mb-4"><strong class="text-black">На какое количество дней будет запущена акция?</strong><br>Максимум 30 дней.</p>
                         <div class="flex items-center gap-4">
@@ -241,7 +257,7 @@ const selectedCategories = ref<string[]>([]);
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary />
+                    <PricingSummary :balance="props.userBalance" />
                 </div>
                 <SideNavigation mode="desktop" />
             </div>

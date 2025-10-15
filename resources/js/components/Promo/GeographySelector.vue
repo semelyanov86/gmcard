@@ -1,58 +1,46 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
+interface City {
+    id: number;
+    name: string;
+}
+
 interface Props {
+    cities: City[];
     maxCities?: number;
 }
 
-withDefaults(defineProps<Props>(), {
-    maxCities: 20,
-});
+const { cities, maxCities = 20 } = defineProps<Props>();
 
 const searchQuery = ref('');
 const dropdownVisible = ref(false);
-const selectedCities = ref<string[]>([]);
-
-const allCities = [
-    'Москва',
-    'Санкт-Петербург',
-    'Новосибирск',
-    'Екатеринбург',
-    'Казань',
-    'Нижний Новгород',
-    'Челябинск',
-    'Самара',
-    'Омск',
-    'Ростов-на-Дону',
-];
+const selectedCityIds = ref<Set<number>>(new Set());
 
 const filteredCities = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    return allCities.filter(city => 
-        city.toLowerCase().includes(query) && !selectedCities.value.includes(city)
+    return cities.filter(city => 
+        city.name.toLowerCase().includes(query) && 
+        !selectedCityIds.value.has(city.id)
     );
 });
 
-function showDropdown() {
-    dropdownVisible.value = true;
+const selectedCities = computed(() => 
+    cities.filter(city => selectedCityIds.value.has(city.id))
+);
+
+function selectCity(city: City) {
+    selectedCityIds.value.add(city.id);
+    searchQuery.value = '';
+    dropdownVisible.value = false;
 }
 
-function hideDropdown() {
-    setTimeout(() => {
-        dropdownVisible.value = false;
-    }, 200);
+function removeCity(cityId: number) {
+    selectedCityIds.value.delete(cityId);
 }
 
-function selectCity(city: string) {
-    if (!selectedCities.value.includes(city)) {
-        selectedCities.value.push(city);
-        searchQuery.value = '';
-        dropdownVisible.value = false;
-    }
-}
-
-function removeCity(city: string) {
-    selectedCities.value = selectedCities.value.filter(c => c !== city);
+function closeDropdown() {
+    setTimeout(() => dropdownVisible.value = false, 200);
 }
 </script>
 
@@ -65,8 +53,8 @@ function removeCity(city: string) {
                 type="text" 
                 class="w-full rounded-md border-gray-300" 
                 placeholder="Укажите город"
-                @focus="showDropdown"
-                @blur="hideDropdown"
+                @focus="dropdownVisible = true"
+                @blur="closeDropdown"
             >
             <ul 
                 v-show="dropdownVisible && filteredCities.length > 0"
@@ -74,23 +62,23 @@ function removeCity(city: string) {
             >
                 <li 
                     v-for="city in filteredCities" 
-                    :key="city" 
+                    :key="city.id" 
                     @click="selectCity(city)"
                     class="p-2 cursor-pointer hover:bg-[#f5f5f5]"
                 >
-                    {{ city }}
+                    {{ city.name }}
                 </li>
             </ul>
         </div>
         <div class="mt-5 flex flex-wrap gap-4 all_text">
             <div 
                 v-for="city in selectedCities" 
-                :key="city"
+                :key="city.id"
                 class="flex items-center gap-2 bg-[#e9eef1] px-4 py-2 rounded-md"
             >
-                <span>{{ city }}</span>
+                <span>{{ city.name }}</span>
                 <img 
-                    @click="removeCity(city)"
+                    @click="removeCity(city.id)"
                     src="/images/png/constructor/delete.svg" 
                     alt="Удалить"
                     class="w-6 cursor-pointer hover:opacity-70"

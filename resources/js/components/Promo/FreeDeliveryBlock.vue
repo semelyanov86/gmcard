@@ -28,16 +28,16 @@ const minAmount = ref('');
             <div class="mt-4 flex flex-row max-sm:flex-col justify-between items-center">
                 <div>
                     <p class="text-black/50 all_text">
-                        <strong class="text-black text-base">Есть бесплатная доставка.</strong> 
+                        <strong class="text-black text-base">Есть бесплатная доставка.</strong>
                         Если бесплатная доставка действует при заказе от определенной суммы, то необходимо указать это здесь.
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] ml-12 max-sm:w-full max-sm:mt-4 max-sm:ml-0 relative">
                     <label class="text-sm font-bold">Действует при заказе от</label>
-                    <input 
+                    <input
                         v-model="minAmount"
-                        type="number" 
-                        placeholder="1000" 
+                        type="number"
+                        placeholder="1000"
                         class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8"
                     >
                     <span class="absolute bottom-12 right-3 text-black/50">₽</span>
@@ -49,4 +49,3 @@ const minAmount = ref('');
         </div>
     </div>
 </template>
-
