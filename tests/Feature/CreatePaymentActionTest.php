@@ -218,4 +218,44 @@ class CreatePaymentActionTest extends TestCase
         $this->expectException(RuntimeException::class);
         CreatePaymentAction::run($dto2);
     }
+
+    public function test_creates_payment_only_for_specific_user(): void
+    {
+        /** @var User $user1 */
+        $user1 = User::factory()->create(['balance' => 10000]);
+        Payment::factory()->create([
+            'user_id' => $user1->id,
+            'amount' => 10000,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user2 */
+        $user2 = User::factory()->create(['balance' => 20000]);
+        Payment::factory()->create([
+            'user_id' => $user2->id,
+            'amount' => 20000,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user3 */
+        $user3 = User::factory()->create(['balance' => 30000]);
+        Payment::factory()->create([
+            'user_id' => $user3->id,
+            'amount' => 30000,
+            'type' => PaymentType::INCOMING,
+        ]);
+        $dto = new PaymentData(
+            userId: $user1->id,
+            amount: MoneyValueObject::fromString('50', 'RUB'),
+            type: PaymentType::OUTGOING,
+            description: 'Payment for user1',
+        );
+
+        CreatePaymentAction::run($dto);
+        $user1->refresh();
+        $user2->refresh();
+        $user3->refresh();
+
+        $this->assertSame(5000, (int) $user1->balance);
+        $this->assertSame(20000, (int) $user2->balance);
+        $this->assertSame(30000, (int) $user3->balance);
+    }
 }
