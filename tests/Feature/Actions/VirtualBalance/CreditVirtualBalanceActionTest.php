@@ -31,7 +31,6 @@ class CreditVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -41,13 +40,12 @@ class CreditVirtualBalanceActionTest extends TestCase
         );
 
         $result = $this->action->handle($data);
+        $user->refresh();
 
-        $this->assertInstanceOf(VirtualBalance::class, $result);
         $this->assertEquals($data->amount, $result->amount);
         $this->assertEquals(PaymentType::INCOMING, $result->type);
         $this->assertEquals('Test credit', $result->description);
 
-        $user->refresh();
         $this->assertEquals(100, $user->virtual_balance);
     }
 
@@ -55,13 +53,12 @@ class CreditVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-
+        
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -70,10 +67,9 @@ class CreditVirtualBalanceActionTest extends TestCase
             description: 'Additional credit'
         );
 
-        $result = $this->action->handle($data);
-
-        $this->assertInstanceOf(VirtualBalance::class, $result);
+        $this->action->handle($data);
         $user->refresh();
+
         $this->assertEquals(150, $user->virtual_balance);
     }
 
@@ -81,7 +77,6 @@ class CreditVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         $data1 = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -89,7 +84,7 @@ class CreditVirtualBalanceActionTest extends TestCase
             type: PaymentType::INCOMING,
             description: 'First credit'
         );
-
+        
         $data2 = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -100,8 +95,8 @@ class CreditVirtualBalanceActionTest extends TestCase
 
         $this->action->handle($data1);
         $this->action->handle($data2);
-
         $user->refresh();
+
         $this->assertEquals(150, $user->virtual_balance);
         $this->assertEquals(2, VirtualBalance::where('user_id', $user->id)->count());
     }

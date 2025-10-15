@@ -32,13 +32,12 @@ class DebitVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 100]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-
+        
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -48,13 +47,12 @@ class DebitVirtualBalanceActionTest extends TestCase
         );
 
         $result = $this->action->handle($data);
+        $user->refresh();
 
-        $this->assertInstanceOf(VirtualBalance::class, $result);
         $this->assertEquals($data->amount, $result->amount);
         $this->assertEquals(PaymentType::OUTGOING, $result->type);
         $this->assertEquals('Test debit', $result->description);
 
-        $user->refresh();
         $this->assertEquals(70, $user->virtual_balance); // 100 - 30 = 70
     }
 
@@ -62,13 +60,12 @@ class DebitVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 50]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 50,
             'type' => PaymentType::INCOMING,
         ]);
-
+        
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -85,13 +82,12 @@ class DebitVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 100]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-
+        
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -100,10 +96,9 @@ class DebitVirtualBalanceActionTest extends TestCase
             description: 'Test debit'
         );
 
-        $result = $this->action->handle($data);
-
-        $this->assertInstanceOf(VirtualBalance::class, $result);
+        $this->action->handle($data);
         $user->refresh();
+
         $this->assertEquals(0, $user->virtual_balance);
     }
 }

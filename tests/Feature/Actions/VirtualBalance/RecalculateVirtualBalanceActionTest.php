@@ -30,13 +30,11 @@ class RecalculateVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 50,
@@ -44,8 +42,8 @@ class RecalculateVirtualBalanceActionTest extends TestCase
         ]);
 
         $this->action->handle($user->id);
-
         $user->refresh();
+
         $this->assertEquals(50, $user->virtual_balance);
     }
 
@@ -53,7 +51,6 @@ class RecalculateVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
@@ -70,8 +67,8 @@ class RecalculateVirtualBalanceActionTest extends TestCase
         $user = User::factory()->create(['virtual_balance' => 100]);
 
         $this->action->handle($user->id);
-
         $user->refresh();
+
         $this->assertEquals(0, $user->virtual_balance);
     }
 
@@ -79,13 +76,11 @@ class RecalculateVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 999]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
@@ -93,8 +88,8 @@ class RecalculateVirtualBalanceActionTest extends TestCase
         ]);
 
         $this->action->handle($user->id);
-
         $user->refresh();
+
         $this->assertEquals(0, $user->virtual_balance);
     }
 
@@ -102,7 +97,6 @@ class RecalculateVirtualBalanceActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['virtual_balance' => 0]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 100,
@@ -113,7 +107,6 @@ class RecalculateVirtualBalanceActionTest extends TestCase
             'amount' => 50,
             'type' => PaymentType::INCOMING,
         ]);
-
         VirtualBalance::factory()->create([
             'user_id' => $user->id,
             'amount' => 30,
@@ -126,8 +119,8 @@ class RecalculateVirtualBalanceActionTest extends TestCase
         ]);
 
         $this->action->handle($user->id);
-
         $user->refresh();
+
         $this->assertEquals(100, $user->virtual_balance);
     }
 }
