@@ -6,12 +6,12 @@ import Header from '@/components/Header.vue';
 import NavBar from '@/components/NavBar.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
-import CurrencyDropdown from '@/components/Promo/CurrencyDropdown.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import PhotoUploadBlock from '@/components/Promo/PhotoUploadBlock.vue';
 import AddressContactBlock from '@/components/Promo/AddressContactBlock.vue';
+import DiscountInputBlock from '@/components/Promo/DiscountInputBlock.vue';
 
 defineProps<{
     contact: {
@@ -28,7 +28,9 @@ const showVtoroi = computed(() => [1, 2].includes(selectedPromo.value));
 const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(selectedPromo.value));
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(selectedPromo.value));
 
+const discountAmount = ref('');
 const currency1Value = ref('%');
+const cashbackAmount = ref('');
 const currency2Value = ref('%');
 
 const deliveryOpen = ref(false);
@@ -187,20 +189,18 @@ function initializeEditors() {
                         :selectedPromo="selectedPromo"
                         @update:selectedPromo="selectedPromo = $event"
                     />
-                    <div v-show="showPervyi" class="flex bg-white p-8 max-md:p-4 mt-8 m-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi">
-                        <h3 class="text-base font-bold max-md:w-full">Какой % скидки или суммы в рублях вы готовы предоставить?</h3>
-                        <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
-                             <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
-                            <CurrencyDropdown v-model="currency1Value" />
-                        </div>
-                    </div>
-                    <div v-show="showPerviNew" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="pervyi_new">
-                        <h3 class="text-base font-bold max-md:w-full">Какой % кэшбэка вы готовы предоставить?</h3>
-                        <div class="flex gap-3 items-center ml-12 max-md:w-full max-md:mt-4 max-md:ml-0">
-                             <input type="text" name="" id="" placeholder="50" maxlength="4" class="border border-gray-300 rounded-lg w-[100px] h-[42px] px-3">
-                            <CurrencyDropdown v-model="currency2Value" />
-                        </div>
-                    </div>
+                    <DiscountInputBlock
+                        :show="showPervyi"
+                        label="Какой % скидки или суммы в рублях вы готовы предоставить?"
+                        v-model:amount="discountAmount"
+                        v-model:currency="currency1Value"
+                    />
+                    <DiscountInputBlock
+                        :show="showPerviNew"
+                        label="Какой % кэшбэка вы готовы предоставить?"
+                        v-model:amount="cashbackAmount"
+                        v-model:currency="currency2Value"
+                    />
                     <div v-show="showTretiy" class="flex bg-white p-8 max-md:p-4 mt-8 m-8 rounded-2xl flex-row max-md:flex-col justify-between items-center" id="tretiy">
                         <div class="flex flex-col w-[450px] max-md:w-full">
                             <p class="text-black/50 all_text"> <strong class="text-black text-base">Если одним из условий является минимальная сумма заказа,</strong> то необходимо указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.</p>
