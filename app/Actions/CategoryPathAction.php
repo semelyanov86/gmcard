@@ -8,14 +8,14 @@ use App\Models\Category;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static void run(array $namesPath)
+ * @method static void run(string[] $namesPath)
  */
 final readonly class CategoryPathAction
 {
     use AsAction;
 
     /**
-     * @param  list<string>  $namesPath
+     * @param  string[]  $namesPath
      */
     public function handle(array $namesPath): void
     {
