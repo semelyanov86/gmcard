@@ -40,7 +40,7 @@ class CreatePaymentActionTest extends TestCase
             'description' => 'Test incoming payment',
         ]);
 
-        $this->assertSame(10050, (int) $user->balance);
+        $this->assertSame(10050, $user->getRawOriginal('balance'));
     }
 
     public function test_creates_outgoing_payment_and_updates_balance(): void
@@ -69,7 +69,7 @@ class CreatePaymentActionTest extends TestCase
             'type' => 'Списание',
         ]);
 
-        $this->assertSame(5000, (int) $user->balance);
+        $this->assertSame(5000, $user->getRawOriginal('balance'));
     }
 
     public function test_prevents_negative_balance_on_outgoing_payment(): void
@@ -135,7 +135,7 @@ class CreatePaymentActionTest extends TestCase
         CreatePaymentAction::run($dto);
         $user->refresh();
 
-        $this->assertSame(0, (int) $user->balance);
+        $this->assertSame(0, $user->getRawOriginal('balance'));
     }
 
     public function test_sets_transaction_id_to_payment_id_if_null(): void
@@ -254,8 +254,8 @@ class CreatePaymentActionTest extends TestCase
         $user2->refresh();
         $user3->refresh();
 
-        $this->assertSame(5000, (int) $user1->balance);
-        $this->assertSame(20000, (int) $user2->balance);
-        $this->assertSame(30000, (int) $user3->balance);
+        $this->assertSame(5000, $user1->getRawOriginal('balance'));
+        $this->assertSame(20000, $user2->getRawOriginal('balance'));
+        $this->assertSame(30000, $user3->getRawOriginal('balance'));
     }
 }

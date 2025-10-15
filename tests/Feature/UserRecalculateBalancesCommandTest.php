@@ -44,9 +44,9 @@ class UserRecalculateBalancesCommandTest extends TestCase
         $user2->refresh();
         $user3->refresh();
 
-        $this->assertSame(10000, (int) $user1->balance);
-        $this->assertSame(5000, (int) $user2->balance);
-        $this->assertSame(3000, (int) $user3->balance);
+        $this->assertSame(10000, $user1->getRawOriginal('balance'));
+        $this->assertSame(5000, $user2->getRawOriginal('balance'));
+        $this->assertSame(3000, $user3->getRawOriginal('balance'));
     }
 
     public function test_respects_chunk_size_option(): void

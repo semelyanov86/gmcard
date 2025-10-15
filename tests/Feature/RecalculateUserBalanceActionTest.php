@@ -36,7 +36,7 @@ class RecalculateUserBalanceActionTest extends TestCase
         $newBalance = RecalculateUserBalanceAction::run($user->id);
 
         $user->refresh();
-        $this->assertSame(15000, (int) $user->balance);
+        $this->assertSame(15000, $user->getRawOriginal('balance'));
     }
 
     public function test_calculates_balance_correctly_with_outgoing_payments(): void
@@ -59,7 +59,7 @@ class RecalculateUserBalanceActionTest extends TestCase
         $newBalance = RecalculateUserBalanceAction::run($user->id);
 
         $user->refresh();
-        $this->assertSame(7000, (int) $user->balance);
+        $this->assertSame(7000, $user->getRawOriginal('balance'));
     }
 
     public function test_calculates_balance_with_mixed_payments(): void
@@ -94,7 +94,7 @@ class RecalculateUserBalanceActionTest extends TestCase
         $newBalance = RecalculateUserBalanceAction::run($user->id);
 
         $user->refresh();
-        $this->assertSame(10000, (int) $user->balance);
+        $this->assertSame(10000, $user->getRawOriginal('balance'));
     }
 
     public function test_returns_zero_when_no_payments(): void
@@ -106,7 +106,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
         $this->assertSame(0, $newBalance);
         $user->refresh();
-        $this->assertSame(0, (int) $user->balance);
+        $this->assertSame(0, $user->getRawOriginal('balance'));
     }
 
     public function test_can_result_in_negative_balance_when_old_data_exists(): void
@@ -123,7 +123,7 @@ class RecalculateUserBalanceActionTest extends TestCase
         $newBalance = RecalculateUserBalanceAction::run($user->id);
 
         $user->refresh();
-        $this->assertSame(-5000, (int) $user->balance);
+        $this->assertSame(-5000, $user->getRawOriginal('balance'));
     }
 
     public function test_updates_db_balance_only_when_different(): void
@@ -144,7 +144,7 @@ class RecalculateUserBalanceActionTest extends TestCase
         RecalculateUserBalanceAction::run($user->id);
 
         $user->refresh();
-        $this->assertSame(10000, (int) $user->balance);
+        $this->assertSame(10000, $user->getRawOriginal('balance'));
     }
 
     public function test_isolates_users_balance_calculation(): void
