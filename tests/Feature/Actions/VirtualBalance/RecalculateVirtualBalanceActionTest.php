@@ -123,4 +123,38 @@ class RecalculateVirtualBalanceActionTest extends TestCase
 
         $this->assertEquals(100, $user->virtual_balance);
     }
+
+    public function test_it_recalculates_only_for_specific_user(): void
+    {
+        /** @var User $user1 */
+        $user1 = User::factory()->create(['virtual_balance' => 0]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user1->id,
+            'amount' => 100,
+            'type' => PaymentType::INCOMING,
+        ]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user1->id,
+            'amount' => 30,
+            'type' => PaymentType::OUTGOING,
+        ]);
+        /** @var User $user2 */
+        $user2 = User::factory()->create(['virtual_balance' => 0]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user2->id,
+            'amount' => 200,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user3 */
+        $user3 = User::factory()->create(['virtual_balance' => 500]);
+
+        $this->action->handle($user1->id);
+        $user1->refresh();
+        $user2->refresh();
+        $user3->refresh();
+
+        $this->assertEquals(70, $user1->virtual_balance);
+        $this->assertEquals(0, $user2->virtual_balance);
+        $this->assertEquals(500, $user3->virtual_balance);
+    }
 }

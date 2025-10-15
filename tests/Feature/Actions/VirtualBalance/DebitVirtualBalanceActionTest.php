@@ -37,7 +37,7 @@ class DebitVirtualBalanceActionTest extends TestCase
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-        
+
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -65,7 +65,7 @@ class DebitVirtualBalanceActionTest extends TestCase
             'amount' => 50,
             'type' => PaymentType::INCOMING,
         ]);
-        
+
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -87,7 +87,7 @@ class DebitVirtualBalanceActionTest extends TestCase
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-        
+
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -100,5 +100,46 @@ class DebitVirtualBalanceActionTest extends TestCase
         $user->refresh();
 
         $this->assertEquals(0, $user->virtual_balance);
+    }
+
+    public function test_it_debits_only_for_specific_user(): void
+    {
+        /** @var User $user1 */
+        $user1 = User::factory()->create(['virtual_balance' => 100]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user1->id,
+            'amount' => 100,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user2 */
+        $user2 = User::factory()->create(['virtual_balance' => 200]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user2->id,
+            'amount' => 200,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user3 */
+        $user3 = User::factory()->create(['virtual_balance' => 300]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user3->id,
+            'amount' => 300,
+            'type' => PaymentType::INCOMING,
+        ]);
+        $data = new VirtualBalanceData(
+            user_id: $user1->id,
+            compensation_date: CarbonImmutable::now(),
+            amount: 50,
+            type: PaymentType::OUTGOING,
+            description: 'Debit for user1'
+        );
+
+        $this->action->handle($data);
+        $user1->refresh();
+        $user2->refresh();
+        $user3->refresh();
+
+        $this->assertEquals(50, $user1->virtual_balance);
+        $this->assertEquals(200, $user2->virtual_balance);
+        $this->assertEquals(300, $user3->virtual_balance);
     }
 }

@@ -58,7 +58,7 @@ class CreditVirtualBalanceActionTest extends TestCase
             'amount' => 100,
             'type' => PaymentType::INCOMING,
         ]);
-        
+
         $data = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -84,7 +84,7 @@ class CreditVirtualBalanceActionTest extends TestCase
             type: PaymentType::INCOMING,
             description: 'First credit'
         );
-        
+
         $data2 = new VirtualBalanceData(
             user_id: $user->id,
             compensation_date: CarbonImmutable::now(),
@@ -99,5 +99,41 @@ class CreditVirtualBalanceActionTest extends TestCase
 
         $this->assertEquals(150, $user->virtual_balance);
         $this->assertEquals(2, VirtualBalance::where('user_id', $user->id)->count());
+    }
+
+    public function test_it_credits_only_for_specific_user(): void
+    {
+        /** @var User $user1 */
+        $user1 = User::factory()->create(['virtual_balance' => 0]);
+        /** @var User $user2 */
+        $user2 = User::factory()->create(['virtual_balance' => 100]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user2->id,
+            'amount' => 100,
+            'type' => PaymentType::INCOMING,
+        ]);
+        /** @var User $user3 */
+        $user3 = User::factory()->create(['virtual_balance' => 200]);
+        VirtualBalance::factory()->create([
+            'user_id' => $user3->id,
+            'amount' => 200,
+            'type' => PaymentType::INCOMING,
+        ]);
+        $data = new VirtualBalanceData(
+            user_id: $user1->id,
+            compensation_date: CarbonImmutable::now(),
+            amount: 50,
+            type: PaymentType::INCOMING,
+            description: 'Credit for user1'
+        );
+
+        $this->action->handle($data);
+        $user1->refresh();
+        $user2->refresh();
+        $user3->refresh();
+
+        $this->assertEquals(50, $user1->virtual_balance);
+        $this->assertEquals(100, $user2->virtual_balance);
+        $this->assertEquals(200, $user3->virtual_balance);
     }
 }
