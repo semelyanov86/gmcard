@@ -6,20 +6,18 @@ namespace App\Data;
 
 use App\Enums\PaymentType;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\CarbonImmutable;
-use Spatie\LaravelData\Attributes\MapOutputName;
+use Carbon\Carbon;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
-#[MapOutputName(SnakeCaseMapper::class)]
 final class PaymentData extends Data
 {
     public function __construct(
-        public int $userId,
+        public int $user_id,
+        public Carbon $payment_date,
         public MoneyValueObject $amount,
         public PaymentType $type,
         public string $description,
-        public ?int $transactionId = null,
-        public ?CarbonImmutable $paymentDate = null,
+        public ?string $transaction_id = null,
+        public ?int $id = null,
     ) {}
 }

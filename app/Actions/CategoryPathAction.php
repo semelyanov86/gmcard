@@ -7,15 +7,12 @@ namespace App\Actions;
 use App\Models\Category;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-/**
- * @method static void run(string[] $namesPath)
- */
-final readonly class CategoryPathAction
+class CategoryPathAction
 {
     use AsAction;
 
     /**
-     * @param  string[]  $namesPath
+     * @param  list<string>  $namesPath
      */
     public function handle(array $namesPath): void
     {
