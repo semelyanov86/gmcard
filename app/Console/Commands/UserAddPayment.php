@@ -66,7 +66,8 @@ final class UserAddPayment extends Command
             transactionId: $transactionId,
         );
 
-        $previousBalanceCents = (int) $user->balance;
+        $rawBalance = $user->getRawOriginal('balance');
+        $previousBalanceCents = is_int($rawBalance) ? $rawBalance : 0;
         $amountCents = (int) $dto->amount->getMoney()->getAmount();
         $paymentImpactCents = $type === PaymentType::INCOMING ? $amountCents : -$amountCents;
 
@@ -84,7 +85,8 @@ final class UserAddPayment extends Command
         }
 
         $user->refresh();
-        $newBalanceCents = (int) $user->balance;
+        $rawNewBalance = $user->getRawOriginal('balance');
+        $newBalanceCents = is_int($rawNewBalance) ? $rawNewBalance : 0;
         $deltaCents = $newBalanceCents - $previousBalanceCents;
         $correctionCents = $deltaCents - $paymentImpactCents;
 

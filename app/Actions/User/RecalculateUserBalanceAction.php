@@ -38,7 +38,9 @@ final readonly class RecalculateUserBalanceAction
         $outgoing = (int) (($sums->outgoing_sum ?? 0));
         $newBalance = $incoming - $outgoing;
 
-        if ((int) $userModel->balance !== $newBalance) {
+        $rawBalance = $userModel->getRawOriginal('balance');
+        $currentBalance = is_int($rawBalance) ? $rawBalance : 0;
+        if ($currentBalance !== $newBalance) {
             $userModel->forceFill(['balance' => $newBalance])->save();
         }
 

@@ -34,7 +34,7 @@ class UserAddPaymentCommandTest extends TestCase
         ]);
 
         $user->refresh();
-        $this->assertSame(10050, (int) $user->balance);
+        $this->assertSame(10050, $user->getRawOriginal('balance'));
     }
 
     public function test_creates_outgoing_payment_via_command(): void
@@ -63,7 +63,7 @@ class UserAddPaymentCommandTest extends TestCase
         ]);
 
         $user->refresh();
-        $this->assertSame(5000, (int) $user->balance);
+        $this->assertSame(5000, $user->getRawOriginal('balance'));
     }
 
     public function test_supports_russian_type_names(): void
@@ -152,7 +152,7 @@ class UserAddPaymentCommandTest extends TestCase
             ->assertExitCode(1);
 
         $user->refresh();
-        $this->assertSame(5000, (int) $user->balance);
+        $this->assertSame(5000, $user->getRawOriginal('balance'));
     }
 
     public function test_accepts_custom_transaction_id(): void
