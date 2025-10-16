@@ -49,6 +49,8 @@ parameters:
         - message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
           path: app/Casts/MoneyValueObjectCast.php
           count: 1
+        - message: '#Cannot call method assertExitCode\(\) on Illuminate\\Testing\\PendingCommand\|int#'
+          path: tests/Feature/*
 
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php
