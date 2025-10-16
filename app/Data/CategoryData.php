@@ -9,7 +9,7 @@ use Spatie\LaravelData\Data;
 final class CategoryData extends Data
 {
     /**
-     * @param CategoryData[]|null $children
+     * @param  CategoryData[]|null  $children
      */
     public function __construct(
         public int $id,

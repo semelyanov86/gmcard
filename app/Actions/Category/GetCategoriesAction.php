@@ -30,7 +30,7 @@ final readonly class GetCategoriesAction
     }
 
     /**
-     * @param Collection<int, Category> $categories
+     * @param  Collection<int, Category>  $categories
      * @return CategoryData[]
      */
     private function mapCategoriesToData(Collection $categories): array
@@ -54,4 +54,3 @@ final readonly class GetCategoriesAction
         );
     }
 }
-

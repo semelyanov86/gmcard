@@ -33,13 +33,6 @@ class Category extends Model
         'updated_at',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'is_starred' => 'boolean',
-        ];
-    }
-
     /**
      * @return BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
      */
@@ -62,5 +55,12 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'is_starred' => 'boolean',
+        ];
     }
 }
