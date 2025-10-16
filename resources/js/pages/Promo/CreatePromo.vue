@@ -21,7 +21,7 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
-import type { CategoryModel, CityModel, ContactModel, PromoTypeModel } from '@/types';
+import type { CategoryModel, CityModel, ContactModel, DiscountFilterModel, PromoTypeModel } from '@/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
@@ -31,6 +31,7 @@ const props = defineProps<{
     categories: CategoryModel[];
     cities: CityModel[];
     promoTypes: PromoTypeModel[];
+    discountFilters: DiscountFilterModel[];
     userBalance: number;
 }>();
 
@@ -159,26 +160,14 @@ function handleLaunch() {
                         <div
                             class="custom-options_1 absolute z-50 mt-1 hidden h-[200px] w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
-                            <div class="custom-option_1 cursor-pointer bg-[#F9D914] px-4 py-2 hover:bg-gray-200">Не менее 5%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 10%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 15%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 20%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 25%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 30%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 35%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 40%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 45%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 50%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 55%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 60%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 65%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 70%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 75%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 80%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 85%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 90%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 95%</div>
-                            <div class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200">Не менее 100%</div>
+                            <div
+                                v-for="(filter, index) in props.discountFilters"
+                                :key="filter.value"
+                                class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                :class="{ 'bg-[#F9D914]': index === 0 }"
+                            >
+                                {{ filter.label }}
+                            </div>
                         </div>
                     </div>
                 </div>

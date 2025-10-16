@@ -40,4 +40,5 @@ export type BreadcrumbItemType = BreadcrumbItem;
 export type { CategoryModel } from './CategoryModel';
 export type { CityModel } from './CityModel';
 export type { ContactModel } from './ContactModel';
+export type { DiscountFilterModel } from './DiscountFilterModel';
 export type { PromoTypeModel } from './PromoTypeModel';

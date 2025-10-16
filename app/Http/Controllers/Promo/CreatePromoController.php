@@ -26,6 +26,7 @@ class CreatePromoController extends Controller
             'categories' => GetCategoriesAction::run(),
             'cities' => GetCitiesAction::run(),
             'promoTypes' => GetPromoTypesAction::run(),
+            'discountFilters' => config('promo.discount_filters'),
             'userBalance' => $user->balance ?? 0,
         ]);
     }
