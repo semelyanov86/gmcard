@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Promo;
 
+use App\Actions\Category\GetCategoriesAction;
+use App\Actions\City\GetCitiesAction;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\City;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -22,11 +22,8 @@ class CreatePromoController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
-            'categories' => Category::with('children.children.children')
-                ->whereNull('parent_id')
-                ->orderBy('name')
-                ->get(),
-            'cities' => City::orderBy('name')->get(['id', 'name']),
+            'categories' => GetCategoriesAction::run(),
+            'cities' => GetCitiesAction::run(),
             'userBalance' => $user->balance ?? 0,
         ]);
     }

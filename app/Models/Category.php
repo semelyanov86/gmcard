@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int|null $parent_id
+ * @property bool $is_starred
  */
 class Category extends Model
 {
@@ -22,6 +23,8 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
+        'is_starred',
+        'parent_id',
     ];
 
     protected $guarded = [
@@ -29,6 +32,13 @@ class Category extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_starred' => 'boolean',
+        ];
+    }
 
     /**
      * @return BelongsToMany<Promo, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'pivot'>
