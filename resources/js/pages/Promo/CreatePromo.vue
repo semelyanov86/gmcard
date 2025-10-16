@@ -22,6 +22,7 @@ import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
 import type { CategoryModel, CityModel, ContactModel, PromoTypeModel } from '@/types';
+import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
@@ -33,22 +34,58 @@ const props = defineProps<{
     userBalance: number;
 }>();
 
-const selectedPromo = ref<number>(1);
+const form = useForm({
+    promo_type_id: 1,
+    discount_amount: '',
+    discount_currency: '%',
+    cashback_amount: '',
+    cashback_currency: '%',
+    category_ids: [],
+    title: '',
+    description: '',
+    conditions: '',
+    minimum_order_amount: '',
+    promo_code: '',
+    free_delivery: false,
+    duration_days: 0,
+    show_in_banner: false,
+    addresses: [],
+    schedule: '',
+    city_ids: [],
+    youtube_url: '',
+    social_links: [],
+    photos: [],
+});
 
-const showPervyi = computed(() => [1, 2, 3].includes(selectedPromo.value));
-const showPerviNew = computed(() => [6, 7].includes(selectedPromo.value));
-const showVtoroi = computed(() => [1, 2].includes(selectedPromo.value));
-const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(selectedPromo.value));
-const showChetvertyi = computed(() => [1, 2, 3, 7].includes(selectedPromo.value));
-
-const discountAmount = ref('');
-const currency1Value = ref('%');
-const cashbackAmount = ref('');
-const currency2Value = ref('%');
+const showPervyi = computed(() => [1, 2, 3].includes(form.promo_type_id));
+const showPerviNew = computed(() => [6, 7].includes(form.promo_type_id));
+const showVtoroi = computed(() => [1, 2].includes(form.promo_type_id));
+const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(form.promo_type_id));
+const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id));
 
 const conditionsModalOpen = ref(false);
 
-const selectedCategories = ref<string[]>([]);
+function handlePreview() {
+    console.log('Preview promo', form.data());
+}
+
+function handleSaveDraft() {
+    form.transform((data) => ({
+        ...data,
+        is_draft: true,
+    })).post(route('promos.store'), {
+        preserveScroll: true,
+    });
+}
+
+function handleLaunch() {
+    form.post(route('promos.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+        },
+    });
+}
 </script>
 
 <template>
@@ -171,18 +208,22 @@ const selectedCategories = ref<string[]>([]);
                 <SideNavigation mode="mobile" />
                 <div class="main_block w-3/4 rounded-2xl bg-[#063966] p-8 md:w-full md:p-4">
                     <h2 class="text-4xl font-bold text-white md:text-3xl">Создание новой акции, выберите тип акции</h2>
-                    <PromoTypeSelector :selectedPromo="selectedPromo" :promoTypes="props.promoTypes" @update:selectedPromo="selectedPromo = $event" />
+                    <PromoTypeSelector
+                        :selectedPromo="form.promo_type_id"
+                        :promoTypes="props.promoTypes"
+                        @update:selectedPromo="form.promo_type_id = $event"
+                    />
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
-                        v-model:amount="discountAmount"
-                        v-model:currency="currency1Value"
+                        v-model:amount="form.discount_amount"
+                        v-model:currency="form.discount_currency"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
-                        v-model:amount="cashbackAmount"
-                        v-model:currency="currency2Value"
+                        v-model:amount="form.cashback_amount"
+                        v-model:currency="form.cashback_currency"
                     />
                     <div
                         v-show="showTretiy"
@@ -257,7 +298,7 @@ const selectedCategories = ref<string[]>([]);
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <CategorySelector :categories="props.categories" v-model:selectedCategories="selectedCategories" />
+                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids" />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
                         <p class="w-[380px] text-black/50 max-md:mb-4 max-md:w-full">
                             <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.
@@ -295,7 +336,7 @@ const selectedCategories = ref<string[]>([]);
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary :balance="props.userBalance" />
+                    <PricingSummary :balance="props.userBalance" @preview="handlePreview" @saveDraft="handleSaveDraft" @launch="handleLaunch" />
                 </div>
                 <SideNavigation mode="desktop" />
             </div>
