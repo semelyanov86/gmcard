@@ -29,6 +29,7 @@ class CreatePromoController extends Controller
             'discountFilters' => config('promo.discount_filters'),
             'defaultDescription' => config('promo.default_description'),
             'weekdays' => config('promo.weekdays'),
+            'socialNetworks' => config('promo.social_networks'),
             'userBalance' => $user->balance ?? 0,
         ]);
     }

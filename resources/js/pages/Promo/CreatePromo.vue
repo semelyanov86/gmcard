@@ -17,12 +17,20 @@ import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
 import CityFilterSelector from '@/components/Promo/CityFilterSelector.vue';
+import ValidationAlert from '@/components/Promo/ValidationAlert.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
-import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
-import type { CategoryModel, CityModel, ContactModel, DiscountFilterModel, PromoTypeModel, WeekdayModel } from '@/types';
+import type {
+    CategoryModel,
+    CityModel,
+    ContactModel,
+    DiscountFilterModel,
+    PromoTypeModel,
+    SocialNetworkModel,
+    WeekdayModel,
+} from '@/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
@@ -35,6 +43,7 @@ const props = defineProps<{
     discountFilters: DiscountFilterModel[];
     defaultDescription: string;
     weekdays: WeekdayModel[];
+    socialNetworks: SocialNetworkModel[];
     userBalance: number;
 }>();
 
@@ -252,7 +261,7 @@ function handleLaunch() {
                     <YouTubeBlock />
                     <PromoDescriptionBlock :defaultDescription="props.defaultDescription" @openConditionsModal="conditionsModalOpen = true" />
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
-                    <SocialLinksBlock />
+                    <SocialLinksBlock :socialNetworks="props.socialNetworks" />
                     <AddressContactBlock />
                     <ScheduleBlock :weekdays="props.weekdays" />
                     <GeographySelector :cities="props.cities" />
@@ -348,23 +357,7 @@ function handleLaunch() {
             </div>
         </div>
     </section>
-    <div id="alertFile" class="fixed top-2 left-[40%] mb-4 hidden rounded-md border-4 border-[#0066CB] bg-white p-4">
-        <div class="flex items-center">
-            <InfoIcon custom-class="w-4 h-4 mr-2 text-[#0066CB]" />
-            <span class="sr-only">Info</span>
-            <h3 class="text-lg font-black">Внимание!</h3>
-        </div>
-        <div class="mt-2 mb-4 text-sm text-black">Файл слишком большой. Максимальный размер файла - 10 МБ.</div>
-        <div class="flex">
-            <button
-                type="button"
-                id="alertClose"
-                class="focus:ring-blue/20 rounded-lg border-2 border-[#0066CB] bg-transparent px-3 py-1.5 text-center text-base font-medium text-[#0066CB] hover:bg-[#0066CB] hover:text-white focus:ring-4 focus:outline-none dark:border-red-600 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-800"
-            >
-                Понятно
-            </button>
-        </div>
-    </div>
+    <ValidationAlert />
     <Footer :contact="contact"></Footer>
 </template>
 

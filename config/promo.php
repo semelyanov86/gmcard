@@ -54,4 +54,17 @@ return [
         ['id' => 'su', 'label' => 'сб'],
         ['id' => 'sn', 'label' => 'вс'],
     ],
+
+    'social_networks' => [
+        ['id' => 'web', 'name' => 'Веб-сайт', 'icon' => '/images/png/constructor/socialWeb.png', 'placeholder' => 'Веб-сайт'],
+        ['id' => 'email', 'name' => 'Электронная почта', 'icon' => '/images/png/constructor/socialemail.png', 'placeholder' => 'Электронная почта'],
+        ['id' => 'vk', 'name' => 'Вконтакте', 'icon' => '/images/png/constructor/socialVk.png', 'placeholder' => 'Вконтакте'],
+        ['id' => 'ins', 'name' => 'Instagram', 'icon' => '/images/png/constructor/socialIns.png', 'placeholder' => 'Instagram'],
+        ['id' => 'you', 'name' => 'YouTube', 'icon' => '/images/png/constructor/socialYou.png', 'placeholder' => 'YouTube'],
+        ['id' => 'lin', 'name' => 'Linkedin', 'icon' => '/images/png/constructor/socialLinkedin.png', 'placeholder' => 'Linkedin'],
+        ['id' => 'ok', 'name' => 'Одноклассники', 'icon' => '/images/png/constructor/socialOk.png', 'placeholder' => 'Одноклассники'],
+        ['id' => 'tel', 'name' => 'Telegram', 'icon' => '/images/png/constructor/socialTelegram.png', 'placeholder' => 'Telegram'],
+        ['id' => 'wha', 'name' => 'WhatsApp', 'icon' => '/images/png/constructor/socialWha.png', 'placeholder' => 'WhatsApp'],
+        ['id' => 'vib', 'name' => 'Viber', 'icon' => '/images/png/constructor/socialViber.png', 'placeholder' => 'Viber'],
+    ],
 ];
