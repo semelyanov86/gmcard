@@ -16,6 +16,7 @@ import PromoDescriptionBlock from '@/components/Promo/PromoDescriptionBlock.vue'
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
+import CityFilterSelector from '@/components/Promo/CityFilterSelector.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
@@ -54,6 +55,7 @@ const form = useForm({
     show_in_banner: false,
     addresses: [],
     schedule: '',
+    filter_city: '',
     city_ids: [],
     youtube_url: '',
     social_links: [],
@@ -121,30 +123,7 @@ function handleLaunch() {
             <div class="h-[1px] w-full bg-white opacity-10"></div>
             <div class="filter_block mb-6 hidden h-[46px] items-center justify-between lg:h-full">
                 <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>
-                <div class="gapper filter_inp relative flex h-full items-center gap-6 lg:flex-col">
-                    <label for="city" class="text-[15px] text-white">Ваш город</label>
-                    <div class="selected_block relative inline-block h-[46px]">
-                        <div
-                            class="custom-select focus:shadow-outline flex h-[46px] w-[202px] appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
-                        >
-                            <span class="mr-2">Чебоксары</span>
-                            <img
-                                src="/assets/icons/down.png"
-                                class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-[5px] w-2"
-                                alt="Вверх"
-                                id="icons"
-                            />
-                        </div>
-                        <div
-                            class="custom-options absolute z-50 mt-1 hidden h-[200px] w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
-                        >
-                            <div class="custom-option cursor-pointer bg-[#F9D914] px-4 py-2 hover:bg-gray-200">Чебоксары</div>
-                            <div class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200">Москва</div>
-                            <div class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200">Санкт-Петербург</div>
-                            <div class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200">Другой город</div>
-                        </div>
-                    </div>
-                </div>
+                <CityFilterSelector :cities="props.cities" v-model="form.filter_city" />
                 <div class="gapper filter_inp relative flex items-center gap-6 lg:flex-col">
                     <label for="shop" class="tex-[15px] text-white">Скидки</label>
                     <div class="selected_block relative inline-block h-[46px]">
