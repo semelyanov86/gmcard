@@ -21,27 +21,15 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
+import type { CategoryModel, CityModel, ContactModel } from '@/types';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
 const props = defineProps<{
-    contact: {
-        email: string;
-        phone: string;
-    };
-    categories: Array<{
-        id: number;
-        name: string;
-        children?: Array<{
-            id: number;
-            name: string;
-        }>;
-    }>;
-    cities: Array<{
-        id: number;
-        name: string;
-    }>;
-    userBalance: number;
+    contact: ContactModel
+    categories: CategoryModel[]
+    cities: CityModel[]
+    userBalance: number
 }>();
 
 const selectedPromo = ref<number>(1);

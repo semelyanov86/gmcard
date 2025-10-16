@@ -1,14 +1,10 @@
 <script setup lang="ts">
+import type { CityModel } from '@/types';
 import { computed, ref } from 'vue';
 
-interface City {
-    id: number;
-    name: string;
-}
-
 interface Props {
-    cities: City[];
-    maxCities?: number;
+    cities: CityModel[]
+    maxCities?: number
 }
 
 const { cities, maxCities = 20 } = defineProps<Props>();
@@ -24,7 +20,7 @@ const filteredCities = computed(() => {
 
 const selectedCities = computed(() => cities.filter((city) => selectedCityIds.value.has(city.id)));
 
-function selectCity(city: City) {
+function selectCity(city: CityModel) {
     selectedCityIds.value.add(city.id);
     searchQuery.value = '';
     dropdownVisible.value = false;

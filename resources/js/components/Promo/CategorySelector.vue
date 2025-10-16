@@ -1,29 +1,24 @@
 <script setup lang="ts">
+import type { CategoryModel } from '@/types';
 import { computed, ref } from 'vue';
 
-interface Category {
-    id: number;
-    name: string;
-    children?: Category[];
-}
-
 interface Props {
-    categories: Category[];
-    selectedCategories?: string[];
+    categories: CategoryModel[]
+    selectedCategories?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
     selectedCategories: () => [],
 });
 
-const hoveredPath = ref<Category[]>([]);
+const hoveredPath = ref<CategoryModel[]>([]);
 
-function setHover(category: Category, level: number) {
+function setHover(category: CategoryModel, level: number) {
     hoveredPath.value = [...hoveredPath.value.slice(0, level), category];
 }
 
 const visibleLevels = computed(() => {
-    const levels: Category[][] = [props.categories];
+    const levels: CategoryModel[][] = [props.categories];
     hoveredPath.value.forEach((cat) => {
         if (cat.children?.length) levels.push(cat.children);
     });
