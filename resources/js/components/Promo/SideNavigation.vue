@@ -22,40 +22,34 @@ const menuItems = [
 </script>
 
 <template>
-    <div v-if="mode === 'mobile'" class="hidden flex-col relative" id="mainBlock">
-        <button 
-            @click="isOpen = !isOpen" 
-            class="w-full bg-[#FAE115] z-50 h-[50px] shadow-2xl rounded-md"
-        >
-            Мои разделы
-        </button>
-        <div v-show="isOpen" class="bg-white rounded-b-2xl z-10 -mt-1">
-            <ul class="w-full flex flex-col">
+    <div v-if="mode === 'mobile'" class="relative hidden flex-col" id="mainBlock">
+        <button @click="isOpen = !isOpen" class="z-50 h-[50px] w-full rounded-md bg-[#FAE115] shadow-2xl">Мои разделы</button>
+        <div v-show="isOpen" class="z-10 -mt-1 rounded-b-2xl bg-white">
+            <ul class="flex w-full flex-col">
                 <template v-for="(item, index) in menuItems" :key="index">
-                    <a 
-                        :href="item.href" 
-                        class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
+                    <a
+                        :href="item.href"
+                        class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
                     >
                         {{ item.label }}
                     </a>
-                    <div v-if="index < menuItems.length - 1" class="w-full h-[1px] bg-black/20"></div>
+                    <div v-if="index < menuItems.length - 1" class="h-[1px] w-full bg-black/20"></div>
                 </template>
             </ul>
         </div>
     </div>
 
-    <div v-else class="w-[250px] route_block bg-white rounded-2xl py-2 h-full">
-        <ul class="w-full flex flex-col">
+    <div v-else class="route_block h-full w-[250px] rounded-2xl bg-white py-2">
+        <ul class="flex w-full flex-col">
             <template v-for="(item, index) in menuItems" :key="index">
-                <a 
-                    :href="item.href" 
-                    class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
+                <a
+                    :href="item.href"
+                    class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
                 >
                     {{ item.label }}
                 </a>
-                <div v-if="index < menuItems.length - 1" class="w-full h-[1px] bg-black/20"></div>
+                <div v-if="index < menuItems.length - 1" class="h-[1px] w-full bg-black/20"></div>
             </template>
         </ul>
     </div>
 </template>
-

@@ -11,54 +11,50 @@ const { balance = 0, cost = 594 } = defineProps<Props>();
 const agreeToTerms = ref(false);
 
 const emit = defineEmits<{
-    'preview': [];
-    'saveDraft': [];
-    'launch': [];
+    preview: [];
+    saveDraft: [];
+    launch: [];
 }>();
 </script>
 
 <template>
-    <div class="pt-8 flex justify-between flex-row max-md:flex-col">
-        <div class="flex flex-col w-[450px] max-md:w-full">
-            <div class="flex pricer_blocks justify-between">
+    <div class="flex flex-row justify-between pt-8 max-md:flex-col">
+        <div class="flex w-[450px] flex-col max-md:w-full">
+            <div class="pricer_blocks flex justify-between">
                 <div>
-                    <span class="text-[#159FF5] text-base">Ваш баланс</span>
-                    <h3 class="text-white text-3xl price_text">{{ balance }} руб.</h3>
+                    <span class="text-base text-[#159FF5]">Ваш баланс</span>
+                    <h3 class="price_text text-3xl text-white">{{ balance }} руб.</h3>
                 </div>
                 <div>
-                    <span class="text-[#159FF5] text-base">Стоимость акции составит</span>
-                    <h3 class="text-white text-3xl price_text">{{ cost }} руб.</h3>
+                    <span class="text-base text-[#159FF5]">Стоимость акции составит</span>
+                    <h3 class="price_text text-3xl text-white">{{ cost }} руб.</h3>
                 </div>
             </div>
-            <div class="flex gap-2 items-center mt-5">
-                <input v-model="agreeToTerms" type="checkbox" id="rules">
-                <label for="rules" class="text-[#607990] all_text">
+            <div class="mt-5 flex items-center gap-2">
+                <input v-model="agreeToTerms" type="checkbox" id="rules" />
+                <label for="rules" class="all_text text-[#607990]">
                     С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен
                 </label>
             </div>
         </div>
         <div class="flex flex-col gap-3 max-md:mt-4">
-            <div 
+            <div
                 @click="emit('preview')"
-                class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90 cursor-pointer"
+                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 max-md:w-full"
             >
-                <img class="w-6 h-6" src="/images/png/constructor/eye.svg" alt="eye">
-                <span class="text-white all_text">Предпросмотр акции</span>
+                <img class="h-6 w-6" src="/images/png/constructor/eye.svg" alt="eye" />
+                <span class="all_text text-white">Предпросмотр акции</span>
             </div>
-            <div 
+            <div
                 @click="emit('saveDraft')"
-                class="w-[238px] h-[56px] max-md:w-full bg-[#1d89f2] flex items-center justify-center shadow-lg gap-3 rounded-md hover:opacity-90 cursor-pointer"
+                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 max-md:w-full"
             >
-                <img class="w-6 h-6" src="/images/png/constructor/file.svg" alt="eye">
-                <span class="text-white all_text">Сохранить как черновик</span>
+                <img class="h-6 w-6" src="/images/png/constructor/file.svg" alt="eye" />
+                <span class="all_text text-white">Сохранить как черновик</span>
             </div>
         </div>
     </div>
-    <button 
-        @click="emit('launch')"
-        class="w-full text-3xl text-white font-bold py-8 mt-5 bg-[#1d89f2] rounded-md shadow-lg hover:opacity-90"
-    >
+    <button @click="emit('launch')" class="mt-5 w-full rounded-md bg-[#1d89f2] py-8 text-3xl font-bold text-white shadow-lg hover:opacity-90">
         Запустить акцию
     </button>
 </template>
-

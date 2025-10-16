@@ -10,39 +10,28 @@ const autoRestartEnabled = ref(false);
 </script>
 
 <template>
-    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col">
-        <div class="flex items-center justify-between w-full flex-row max-md:flex-col max-md:items-start">
-            <h3 class="font-bold w-auto max-md:w-full max-md:mb-2">Дополнительные опции (нужен премиум)</h3>
-            <a href="#" class="text-[#0066CB] hover:underline w-auto max-md:w-full">Смотреть тарифы</a>
+    <div class="mt-8 flex flex-col rounded-2xl bg-white p-8 max-md:p-4">
+        <div class="flex w-full flex-row items-center justify-between max-md:flex-col max-md:items-start">
+            <h3 class="w-auto font-bold max-md:mb-2 max-md:w-full">Дополнительные опции (нужен премиум)</h3>
+            <a href="#" class="w-auto text-[#0066CB] hover:underline max-md:w-full">Смотреть тарифы</a>
         </div>
-        <div class="w-full h-[1px] bg-black/20 my-5"></div>
-        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
+        <div class="my-5 h-[1px] w-full bg-black/20"></div>
+        <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
-                <p class="text-base all_text">Поднимать акцию на первое<br>место каждые</p>
-                <input 
-                    v-model="autoRaiseHours" 
-                    type="text" 
-                    class="w-[45px] bg_inp rounded-md border-gray-300" 
-                    placeholder="0"
-                >
+                <p class="all_text text-base">Поднимать акцию на первое<br />место каждые</p>
+                <input v-model="autoRaiseHours" type="text" class="bg_inp w-[45px] rounded-md border-gray-300" placeholder="0" />
                 <label class="text-base max-sm:text-sm">часа</label>
             </div>
             <ToggleSwitch v-model="autoRaiseEnabled" />
         </div>
-        <div class="w-full h-[1px] bg-black/20 my-5"></div>
-        <div class="flex justify-between items-center flex-row max-md:flex-col max-md:items-start">
+        <div class="my-5 h-[1px] w-full bg-black/20"></div>
+        <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
-                <p class="text-base all_text">Автоматически перезапускать акцию после завершения на</p>
-                <input 
-                    v-model="autoRestartDays" 
-                    type="text" 
-                    class="w-[45px] bg_inp rounded-md border-gray-300" 
-                    placeholder="0"
-                >
+                <p class="all_text text-base">Автоматически перезапускать акцию после завершения на</p>
+                <input v-model="autoRestartDays" type="text" class="bg_inp w-[45px] rounded-md border-gray-300" placeholder="0" />
                 <label>дней</label>
             </div>
             <ToggleSwitch v-model="autoRestartEnabled" />
         </div>
     </div>
 </template>
-

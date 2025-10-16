@@ -15,35 +15,28 @@ const minAmount = ref('');
 </script>
 
 <template>
-    <div v-show="show" class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col">
-        <div class="flex flex-row max-md:flex-col justify-between items-center">
-            <div class="w-[450px] price_block">
+    <div v-show="show" class="mt-8 flex flex-col rounded-2xl bg-white p-8 max-md:p-4">
+        <div class="flex flex-row items-center justify-between max-md:flex-col">
+            <div class="price_block w-[450px]">
                 <h3 class="text-base font-bold">Если у вас есть бесплатная доставка, то вы можете отметить этот пункт.</h3>
-                <p class="text-black/50 all_text">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
+                <p class="all_text text-black/50">Если бесплатной доставки нет, то ничего отмечать не нужно.</p>
             </div>
             <ToggleSwitch v-model="deliveryOpen" class="max-md:mt-4" />
         </div>
         <div v-show="deliveryOpen" class="my-4">
             <div class="h-[1px] w-full bg-black/30"></div>
-            <div class="mt-4 flex flex-row max-sm:flex-col justify-between items-center">
+            <div class="mt-4 flex flex-row items-center justify-between max-sm:flex-col">
                 <div>
-                    <p class="text-black/50 all_text">
-                        <strong class="text-black text-base">Есть бесплатная доставка.</strong>
+                    <p class="all_text text-black/50">
+                        <strong class="text-base text-black">Есть бесплатная доставка.</strong>
                         Если бесплатная доставка действует при заказе от определенной суммы, то необходимо указать это здесь.
                     </p>
                 </div>
-                <div class="flex flex-col w-[200px] ml-12 max-sm:w-full max-sm:mt-4 max-sm:ml-0 relative">
+                <div class="relative ml-12 flex w-[200px] flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
                     <label class="text-sm font-bold">Действует при заказе от</label>
-                    <input
-                        v-model="minAmount"
-                        type="number"
-                        placeholder="1000"
-                        class="border-gray-300 rounded-lg w-full mt-3 pl-3 pr-8"
-                    >
-                    <span class="absolute bottom-12 right-3 text-black/50">₽</span>
-                    <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                        Сохранить
-                    </button>
+                    <input v-model="minAmount" type="number" placeholder="1000" class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3" />
+                    <span class="absolute right-3 bottom-12 text-black/50">₽</span>
+                    <button class="mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Сохранить</button>
                 </div>
             </div>
         </div>

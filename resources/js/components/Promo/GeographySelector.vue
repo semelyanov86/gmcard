@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 
 interface City {
     id: number;
@@ -19,15 +19,10 @@ const selectedCityIds = ref<Set<number>>(new Set());
 
 const filteredCities = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    return cities.filter(city => 
-        city.name.toLowerCase().includes(query) && 
-        !selectedCityIds.value.has(city.id)
-    );
+    return cities.filter((city) => city.name.toLowerCase().includes(query) && !selectedCityIds.value.has(city.id));
 });
 
-const selectedCities = computed(() => 
-    cities.filter(city => selectedCityIds.value.has(city.id))
-);
+const selectedCities = computed(() => cities.filter((city) => selectedCityIds.value.has(city.id)));
 
 function selectCity(city: City) {
     selectedCityIds.value.add(city.id);
@@ -40,49 +35,40 @@ function removeCity(cityId: number) {
 }
 
 function closeDropdown() {
-    setTimeout(() => dropdownVisible.value = false, 200);
+    setTimeout(() => (dropdownVisible.value = false), 200);
 }
 </script>
 
 <template>
-    <div class="flex bg-white p-8 max-md:p-4 mt-8 rounded-2xl flex-col">
+    <div class="mt-8 flex flex-col rounded-2xl bg-white p-8 max-md:p-4">
         <h3 class="font-bold">География акции, не более {{ maxCities }} городов</h3>
-        <div class="custom-select relative w-full mt-5">
-            <input 
+        <div class="custom-select relative mt-5 w-full">
+            <input
                 v-model="searchQuery"
-                type="text" 
-                class="w-full rounded-md border-gray-300" 
+                type="text"
+                class="w-full rounded-md border-gray-300"
                 placeholder="Укажите город"
                 @focus="dropdownVisible = true"
                 @blur="closeDropdown"
-            >
-            <ul 
+            />
+            <ul
                 v-show="dropdownVisible && filteredCities.length > 0"
-                class="absolute z-50 w-full p-0 mt-1 bg-white border border-[#ccc] max-h-[200px] overflow-y-auto rounded-md shadow-lg"
+                class="absolute z-50 mt-1 max-h-[200px] w-full overflow-y-auto rounded-md border border-[#ccc] bg-white p-0 shadow-lg"
             >
-                <li 
-                    v-for="city in filteredCities" 
-                    :key="city.id" 
-                    @click="selectCity(city)"
-                    class="p-2 cursor-pointer hover:bg-[#f5f5f5]"
-                >
+                <li v-for="city in filteredCities" :key="city.id" @click="selectCity(city)" class="cursor-pointer p-2 hover:bg-[#f5f5f5]">
                     {{ city.name }}
                 </li>
             </ul>
         </div>
-        <div class="mt-5 flex flex-wrap gap-4 all_text">
-            <div 
-                v-for="city in selectedCities" 
-                :key="city.id"
-                class="flex items-center gap-2 bg-[#e9eef1] px-4 py-2 rounded-md"
-            >
+        <div class="all_text mt-5 flex flex-wrap gap-4">
+            <div v-for="city in selectedCities" :key="city.id" class="flex items-center gap-2 rounded-md bg-[#e9eef1] px-4 py-2">
                 <span>{{ city.name }}</span>
-                <img 
+                <img
                     @click="removeCity(city.id)"
-                    src="/images/png/constructor/delete.svg" 
+                    src="/images/png/constructor/delete.svg"
                     alt="Удалить"
                     class="w-6 cursor-pointer hover:opacity-70"
-                >
+                />
             </div>
         </div>
     </div>
