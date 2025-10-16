@@ -28,6 +28,7 @@ import type {
     ContactModel,
     DiscountFilterModel,
     PromoTypeModel,
+    ScheduleModel,
     SocialNetworkModel,
     WeekdayModel,
 } from '@/types';
@@ -53,9 +54,9 @@ const form = useForm({
     discount_currency: '%',
     cashback_amount: '',
     cashback_currency: '%',
-    category_ids: [],
+    category_ids: [] as string[],
     title: '',
-    description: '',
+    description: props.defaultDescription,
     conditions: '',
     minimum_order_amount: '',
     promo_code: '',
@@ -63,11 +64,15 @@ const form = useForm({
     duration_days: 0,
     show_in_banner: false,
     addresses: [],
-    schedule: '',
+    schedule: {
+        enabled: false,
+        days: [],
+        timeRange: { enabled: false, start: '00:00', end: '23:59' }
+    },
     filter_city: '',
-    city_ids: [],
+    city_ids: [] as number[],
     youtube_url: '',
-    social_links: [],
+    social_links: {} as Record<string, string[]>,
     photos: [],
     agree_to_terms: false,
 });
@@ -196,14 +201,14 @@ function handleLaunch() {
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
-                        v-model:amount="form.discount_amount"
-                        v-model:currency="form.discount_currency"
+                        v-model:amount="form.discount_amount as string"
+                        v-model:currency="form.discount_currency as string"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
-                        v-model:amount="form.cashback_amount"
-                        v-model:currency="form.cashback_currency"
+                        v-model:amount="form.cashback_amount as string"
+                        v-model:currency="form.cashback_currency as string"
                     />
                     <div
                         v-show="showTretiy"
@@ -258,13 +263,17 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PhotoUploadBlock />
-                    <YouTubeBlock />
-                    <PromoDescriptionBlock :defaultDescription="props.defaultDescription" @openConditionsModal="conditionsModalOpen = true" />
+                    <YouTubeBlock v-model="form.youtube_url as string" />
+                    <PromoDescriptionBlock
+                        v-model:description="form.description as string"
+                        v-model:conditions="form.conditions as string"
+                        @openConditionsModal="conditionsModalOpen = true"
+                    />
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
-                    <SocialLinksBlock :socialNetworks="props.socialNetworks" />
+                    <SocialLinksBlock v-model="form.social_links as Record<string, string[]>" :socialNetworks="props.socialNetworks" />
                     <AddressContactBlock />
-                    <ScheduleBlock :weekdays="props.weekdays" />
-                    <GeographySelector :cities="props.cities" />
+                    <ScheduleBlock v-model="form.schedule as unknown as ScheduleModel" :weekdays="props.weekdays" />
+                    <GeographySelector v-model="form.city_ids as number[]" :cities="props.cities" />
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">К каким категориям относится ваша акция?</h2>
@@ -278,7 +287,7 @@ function handleLaunch() {
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids" />
+                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids as string[]" />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
                         <p class="w-[380px] text-black/50 max-md:mb-4 max-md:w-full">
                             <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.

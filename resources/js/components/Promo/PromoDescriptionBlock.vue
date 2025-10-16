@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { Ckeditor } from '@ckeditor/ckeditor5-vue';
 import { ClassicEditor, Bold, Essentials, Italic, Paragraph, Undo, Link, List, Heading } from 'ckeditor5';
 import ToggleSwitch from './ToggleSwitch.vue';
@@ -7,12 +7,27 @@ import ToggleSwitch from './ToggleSwitch.vue';
 import 'ckeditor5/ckeditor5.css';
 
 const props = defineProps<{
-    defaultDescription: string;
+    description: string;
+    conditions: string;
+}>();
+
+const emit = defineEmits<{
+    openConditionsModal: [];
+    'update:description': [value: string];
+    'update:conditions': [value: string];
 }>();
 
 const textEditorOpen = ref(false);
-const description = ref(props.defaultDescription);
-const conditions = ref('');
+
+const localDescription = computed({
+    get: () => props.description,
+    set: (value: string) => emit('update:description', value)
+});
+
+const localConditions = computed({
+    get: () => props.conditions,
+    set: (value: string) => emit('update:conditions', value)
+});
 
 const editor = ClassicEditor;
 const editorConfig = {
@@ -22,16 +37,12 @@ const editorConfig = {
     },
     licenseKey: 'GPL'
 };
-
-const emit = defineEmits<{
-    openConditionsModal: [];
-}>();
 </script>
 
 <template>
     <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 max-md:p-4">
         <h3 class="mb-4 font-bold">Описание акции</h3>
-        <Ckeditor v-model="description" :editor="editor" :config="editorConfig" />
+        <Ckeditor v-model="localDescription" :editor="editor" :config="editorConfig" />
         <div class="my-6">
             <div class="h-[1px] w-full bg-black/30"></div>
             <div class="my-4 flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
@@ -46,7 +57,7 @@ const emit = defineEmits<{
         </div>
         <div v-show="textEditorOpen" class="mb-4">
             <div class="h-[1px] w-full bg-black/30"></div>
-            <Ckeditor v-model="conditions" :editor="editor" :config="editorConfig" />
+            <Ckeditor v-model="localConditions" :editor="editor" :config="editorConfig" />
         </div>
     </div>
 </template>

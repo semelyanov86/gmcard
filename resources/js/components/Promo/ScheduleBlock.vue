@@ -1,15 +1,63 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { WeekdayModel } from '@/types';
+import { ref, watch } from 'vue';
+import type { ScheduleModel, WeekdayModel } from '@/types';
 import ToggleSwitch from './ToggleSwitch.vue';
 
-defineProps<{
+const props = defineProps<{
     weekdays: WeekdayModel[];
+    modelValue: ScheduleModel;
 }>();
 
-const isEnabled = ref(false);
-const showDays = ref(false);
-const showTime = ref(false);
+const emit = defineEmits<{
+    'update:modelValue': [value: ScheduleModel];
+}>();
+
+const isEnabled = ref(props.modelValue.enabled);
+const selectedDays = ref<string[]>([...props.modelValue.days]);
+const timeRangeEnabled = ref(props.modelValue.timeRange.enabled);
+
+const parseTime = (timeString: string) => {
+    const [hours = '00', minutes = '00'] = timeString.split(':');
+    return { hours, minutes };
+};
+
+const startTime = parseTime(props.modelValue.timeRange.start);
+const endTime = parseTime(props.modelValue.timeRange.end);
+
+const startHours = ref(startTime.hours);
+const startMinutes = ref(startTime.minutes);
+const endHours = ref(endTime.hours);
+const endMinutes = ref(endTime.minutes);
+
+function toggleDay(dayId: string) {
+    const index = selectedDays.value.indexOf(dayId);
+    if (index === -1) {
+        selectedDays.value.push(dayId);
+    } else {
+        selectedDays.value.splice(index, 1);
+    }
+    emitChanges();
+}
+
+function isDaySelected(dayId: string) {
+    return selectedDays.value.includes(dayId);
+}
+
+function emitChanges() {
+    emit('update:modelValue', {
+        enabled: isEnabled.value,
+        days: selectedDays.value,
+        timeRange: {
+            enabled: timeRangeEnabled.value,
+            start: `${startHours.value}:${startMinutes.value}`,
+            end: `${endHours.value}:${endMinutes.value}`
+        }
+    });
+}
+
+watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinutes], () => {
+    emitChanges();
+});
 </script>
 
 <template>
@@ -28,31 +76,36 @@ const showTime = ref(false);
             <div class="h-[1px] w-full bg-black/20"></div>
             <div class="mt-5 flex flex-row items-center gap-3 max-md:flex-col max-md:items-start">
                 <div class="flex items-center gap-2">
-                    <input v-model="showDays" type="checkbox" class="rounded-md" />
                     <label class="font-bold">Акция доступна в</label>
                 </div>
                 <ul class="flex flex-wrap items-center gap-2">
-                    <li v-for="day in weekdays" :key="day.id" class="cursor-pointer rounded-md bg-[#e9eef1] px-3 py-2 hover:bg-blue-200">
+                    <li
+                        v-for="day in weekdays"
+                        :key="day.id"
+                        @click="toggleDay(day.id)"
+                        class="cursor-pointer rounded-md px-3 py-2"
+                        :class="isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-[#e9eef1] hover:bg-blue-200'"
+                    >
                         {{ day.label }}
                     </li>
                 </ul>
             </div>
             <div class="mt-5 flex flex-row items-center gap-3 max-md:flex-col max-md:items-start">
                 <div class="flex items-center gap-2">
-                    <input v-model="showTime" type="checkbox" class="rounded-md" />
+                    <input v-model="timeRangeEnabled" type="checkbox" class="rounded-md" />
                     <label class="font-bold">Акция доступна с</label>
                 </div>
-                <div class="flex items-center gap-3">
+                <div v-if="timeRangeEnabled" class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
-                        <input type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="startHours" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
                         <span>:</span>
-                        <input type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="startMinutes" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
                     </div>
                     <span>- до</span>
                     <div class="flex items-center gap-2">
-                        <input type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="endHours" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
                         <span>:</span>
-                        <input type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="endMinutes" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
                     </div>
                 </div>
             </div>

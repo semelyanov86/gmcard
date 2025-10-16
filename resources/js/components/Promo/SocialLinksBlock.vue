@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 import type { SocialNetworkModel } from '@/types';
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 interface SocialLink {
@@ -11,6 +11,11 @@ interface SocialLink {
 
 const props = defineProps<{
     socialNetworks: SocialNetworkModel[];
+    modelValue: Record<string, string[]>;
+}>();
+
+const emit = defineEmits<{
+    'update:modelValue': [value: Record<string, string[]>];
 }>();
 
 const isOpen = ref(false);
@@ -19,13 +24,31 @@ const visibilityState = reactive<Record<string, boolean>>({});
 const linksState = reactive<Record<string, SocialLink[]>>({});
 
 props.socialNetworks.forEach((network) => {
-    visibilityState[network.id] = false;
-    linksState[network.id] = [{ id: `${network.id}1`, value: '' }];
+    const savedLinks = props.modelValue[network.id] || [];
+    visibilityState[network.id] = savedLinks.length > 0 && savedLinks.some(link => link !== '');
+    
+    if (savedLinks.length > 0) {
+        linksState[network.id] = savedLinks.map((value, idx) => ({
+            id: `${network.id}${idx + 1}`,
+            value
+        }));
+    } else {
+        linksState[network.id] = [{ id: `${network.id}1`, value: '' }];
+    }
 });
 
 const showInstagramWarning = computed(() => {
     return props.socialNetworks.some((network) => network.id === 'ins' && visibilityState[network.id]);
 });
+
+function emitChanges() {
+    const result: Record<string, string[]> = {};
+    props.socialNetworks.forEach((network) => {
+        const links = linksState[network.id];
+        result[network.id] = links.map(link => link.value).filter(value => value !== '');
+    });
+    emit('update:modelValue', result);
+}
 
 function toggleVisibility(networkId: string) {
     visibilityState[networkId] = !visibilityState[networkId];
@@ -35,6 +58,7 @@ function addLink(networkId: string) {
     const links = linksState[networkId];
     const newId = `${networkId}${links.length + 1}`;
     links.push({ id: newId, value: '' });
+    emitChanges();
 }
 
 function removeLink(networkId: string, index: number) {
@@ -45,7 +69,12 @@ function removeLink(networkId: string, index: number) {
         visibilityState[networkId] = false;
         links.push({ id: `${networkId}1`, value: '' });
     }
+    emitChanges();
 }
+
+watch(linksState, () => {
+    emitChanges();
+}, { deep: true });
 </script>
 
 <template>

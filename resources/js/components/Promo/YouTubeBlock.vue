@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
-const isOpen = ref(false);
+const props = defineProps<{
+    modelValue: string;
+}>();
+
+const emit = defineEmits<{
+    'update:modelValue': [value: string];
+}>();
+
+const isOpen = ref(props.modelValue !== '');
+
+const localValue = computed({
+    get: () => props.modelValue,
+    set: (value: string) => emit('update:modelValue', value)
+});
 </script>
 
 <template>
@@ -18,7 +31,7 @@ const isOpen = ref(false);
             <div class="h-[1px] w-full bg-black/30"></div>
             <div class="mt-4 flex flex-col">
                 <label for="" class="font-bold">Ссылка на ролик</label>
-                <input type="text" class="mt-3 w-full rounded-lg border-gray-300" placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU" />
+                <input v-model="localValue" type="text" class="mt-3 w-full rounded-lg border-gray-300" placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU" />
             </div>
         </div>
     </div>

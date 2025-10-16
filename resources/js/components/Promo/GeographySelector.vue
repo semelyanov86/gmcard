@@ -4,34 +4,48 @@ import { computed, ref } from 'vue';
 
 interface Props {
     cities: CityModel[];
+    modelValue: number[];
     maxCities?: number;
 }
 
-const { cities, maxCities = 20 } = defineProps<Props>();
+const props = defineProps<Props>();
+
+const emit = defineEmits<{
+    'update:modelValue': [value: number[]];
+}>();
 
 const searchQuery = ref('');
 const dropdownVisible = ref(false);
-const selectedCityIds = ref<Set<number>>(new Set());
+const selectedCityIds = ref<Set<number>>(new Set(props.modelValue));
 
 const filteredCities = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    return cities.filter((city) => city.name.toLowerCase().includes(query) && !selectedCityIds.value.has(city.id));
+    return props.cities.filter((city) => city.name.toLowerCase().includes(query) && !selectedCityIds.value.has(city.id));
 });
 
-const selectedCities = computed(() => cities.filter((city) => selectedCityIds.value.has(city.id)));
+const selectedCities = computed(() => props.cities.filter((city) => selectedCityIds.value.has(city.id)));
 
 function selectCity(city: CityModel) {
+    if (selectedCityIds.value.size >= (props.maxCities ?? 20)) {
+        return;
+    }
     selectedCityIds.value.add(city.id);
     searchQuery.value = '';
     dropdownVisible.value = false;
+    emitChanges();
 }
 
 function removeCity(cityId: number) {
     selectedCityIds.value.delete(cityId);
+    emitChanges();
 }
 
 function closeDropdown() {
     setTimeout(() => (dropdownVisible.value = false), 200);
+}
+
+function emitChanges() {
+    emit('update:modelValue', Array.from(selectedCityIds.value));
 }
 </script>
 
