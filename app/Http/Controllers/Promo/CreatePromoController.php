@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Promo;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
+use App\Actions\Promo\GetPromoTypesAction;
 use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
@@ -24,6 +25,7 @@ class CreatePromoController extends Controller
             ],
             'categories' => GetCategoriesAction::run(),
             'cities' => GetCitiesAction::run(),
+            'promoTypes' => GetPromoTypesAction::run(),
             'userBalance' => $user->balance ?? 0,
         ]);
     }

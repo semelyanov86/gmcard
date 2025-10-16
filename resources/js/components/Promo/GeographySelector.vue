@@ -3,8 +3,8 @@ import type { CityModel } from '@/types';
 import { computed, ref } from 'vue';
 
 interface Props {
-    cities: CityModel[]
-    maxCities?: number
+    cities: CityModel[];
+    maxCities?: number;
 }
 
 const { cities, maxCities = 20 } = defineProps<Props>();

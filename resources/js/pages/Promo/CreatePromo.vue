@@ -21,15 +21,16 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
-import type { CategoryModel, CityModel, ContactModel } from '@/types';
+import type { CategoryModel, CityModel, ContactModel, PromoTypeModel } from '@/types';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
 const props = defineProps<{
-    contact: ContactModel
-    categories: CategoryModel[]
-    cities: CityModel[]
-    userBalance: number
+    contact: ContactModel;
+    categories: CategoryModel[];
+    cities: CityModel[];
+    promoTypes: PromoTypeModel[];
+    userBalance: number;
 }>();
 
 const selectedPromo = ref<number>(1);
@@ -170,7 +171,7 @@ const selectedCategories = ref<string[]>([]);
                 <SideNavigation mode="mobile" />
                 <div class="main_block w-3/4 rounded-2xl bg-[#063966] p-8 md:w-full md:p-4">
                     <h2 class="text-4xl font-bold text-white md:text-3xl">Создание новой акции, выберите тип акции</h2>
-                    <PromoTypeSelector :selectedPromo="selectedPromo" @update:selectedPromo="selectedPromo = $event" />
+                    <PromoTypeSelector :selectedPromo="selectedPromo" :promoTypes="props.promoTypes" @update:selectedPromo="selectedPromo = $event" />
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"

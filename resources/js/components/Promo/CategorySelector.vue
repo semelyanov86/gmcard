@@ -3,8 +3,8 @@ import type { CategoryModel } from '@/types';
 import { computed, ref } from 'vue';
 
 interface Props {
-    categories: CategoryModel[]
-    selectedCategories?: string[]
+    categories: CategoryModel[];
+    selectedCategories?: string[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
