@@ -21,7 +21,7 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
-import type { CategoryModel, CityModel, ContactModel, DiscountFilterModel, PromoTypeModel } from '@/types';
+import type { CategoryModel, CityModel, ContactModel, DiscountFilterModel, PromoTypeModel, WeekdayModel } from '@/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
@@ -33,6 +33,7 @@ const props = defineProps<{
     promoTypes: PromoTypeModel[];
     discountFilters: DiscountFilterModel[];
     defaultDescription: string;
+    weekdays: WeekdayModel[];
     userBalance: number;
 }>();
 
@@ -274,7 +275,7 @@ function handleLaunch() {
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
                     <SocialLinksBlock />
                     <AddressContactBlock />
-                    <ScheduleBlock />
+                    <ScheduleBlock :weekdays="props.weekdays" />
                     <GeographySelector :cities="props.cities" />
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">
                         <div class="flex flex-col">

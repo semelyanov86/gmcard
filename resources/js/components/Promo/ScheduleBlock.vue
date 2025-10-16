@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { WeekdayModel } from '@/types';
 import ToggleSwitch from './ToggleSwitch.vue';
+
+defineProps<{
+    weekdays: WeekdayModel[];
+}>();
 
 const isEnabled = ref(false);
 const showDays = ref(false);
 const showTime = ref(false);
-
-const days = [
-    { id: 'md', label: 'пн' },
-    { id: 'tu', label: 'вт' },
-    { id: 'wd', label: 'ср' },
-    { id: 'th', label: 'чт' },
-    { id: 'fr', label: 'пт' },
-    { id: 'su', label: 'сб' },
-    { id: 'sn', label: 'вс' },
-];
 </script>
 
 <template>
@@ -37,7 +32,7 @@ const days = [
                     <label class="font-bold">Акция доступна в</label>
                 </div>
                 <ul class="flex flex-wrap items-center gap-2">
-                    <li v-for="day in days" :key="day.id" class="cursor-pointer rounded-md bg-[#e9eef1] px-3 py-2 hover:bg-blue-200">
+                    <li v-for="day in weekdays" :key="day.id" class="cursor-pointer rounded-md bg-[#e9eef1] px-3 py-2 hover:bg-blue-200">
                         {{ day.label }}
                     </li>
                 </ul>

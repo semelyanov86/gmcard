@@ -28,6 +28,7 @@ class CreatePromoController extends Controller
             'promoTypes' => GetPromoTypesAction::run(),
             'discountFilters' => config('promo.discount_filters'),
             'defaultDescription' => config('promo.default_description'),
+            'weekdays' => config('promo.weekdays'),
             'userBalance' => $user->balance ?? 0,
         ]);
     }
