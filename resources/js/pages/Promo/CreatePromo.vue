@@ -56,6 +56,7 @@ const form = useForm({
     youtube_url: '',
     social_links: [],
     photos: [],
+    agree_to_terms: false,
 });
 
 const showPervyi = computed(() => [1, 2, 3].includes(form.promo_type_id));
@@ -325,7 +326,42 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary :balance="props.userBalance" @preview="handlePreview" @saveDraft="handleSaveDraft" @launch="handleLaunch" />
+                    <PricingSummary :balance="props.userBalance" />
+                    <div class="mt-5 flex items-center gap-2">
+                        <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
+                        <label for="rules" class="all_text text-[#607990]">
+                            С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен
+                        </label>
+                    </div>
+                    <div class="mt-5 flex flex-row justify-between gap-3 max-md:flex-col">
+                        <div class="flex flex-col gap-3 max-md:w-full">
+                            <button
+                                @click="handlePreview"
+                                type="button"
+                                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 max-md:w-full"
+                            >
+                                <img class="h-6 w-6" src="/images/png/constructor/eye.svg" alt="eye" />
+                                <span class="all_text text-white">Предпросмотр акции</span>
+                            </button>
+                            <button
+                                @click="handleSaveDraft"
+                                type="button"
+                                :disabled="form.processing"
+                                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 disabled:opacity-50 max-md:w-full"
+                            >
+                                <img class="h-6 w-6" src="/images/png/constructor/file.svg" alt="eye" />
+                                <span class="all_text text-white">Сохранить как черновик</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button 
+                        @click="handleLaunch"
+                        type="button"
+                        :disabled="form.processing || !form.agree_to_terms"
+                        class="mt-5 w-full rounded-md bg-[#1d89f2] py-8 text-3xl font-bold text-white shadow-lg hover:opacity-90 disabled:opacity-50"
+                    >
+                        Запустить акцию
+                    </button>
                 </div>
                 <SideNavigation mode="desktop" />
             </div>
