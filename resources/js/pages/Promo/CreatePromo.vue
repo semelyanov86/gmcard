@@ -32,6 +32,7 @@ const props = defineProps<{
     cities: CityModel[];
     promoTypes: PromoTypeModel[];
     discountFilters: DiscountFilterModel[];
+    defaultDescription: string;
     userBalance: number;
 }>();
 
@@ -269,7 +270,7 @@ function handleLaunch() {
                     </div>
                     <PhotoUploadBlock />
                     <YouTubeBlock />
-                    <PromoDescriptionBlock @openConditionsModal="conditionsModalOpen = true" />
+                    <PromoDescriptionBlock :defaultDescription="props.defaultDescription" @openConditionsModal="conditionsModalOpen = true" />
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
                     <SocialLinksBlock />
                     <AddressContactBlock />
