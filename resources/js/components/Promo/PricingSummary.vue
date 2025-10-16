@@ -10,11 +10,17 @@ const { balance = 0, cost = 594 } = defineProps<Props>();
 
 const agreeToTerms = ref(false);
 
-const emit = defineEmits<{
-    preview: [];
-    saveDraft: [];
-    launch: [];
-}>();
+const emit = defineEmits({
+    preview() {
+        return true
+    },
+    saveDraft() {
+        return true
+    },
+    launch() {
+        return true
+    },
+});
 </script>
 
 <template>
