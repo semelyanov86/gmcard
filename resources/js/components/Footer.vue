@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import '../../css/internal/landingBusiness.css';
 
 const props = defineProps<{
     contact: { email: string };
