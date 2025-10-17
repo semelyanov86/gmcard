@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
+import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
 </script>
 
 <template>
@@ -36,7 +37,7 @@ import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
                 <div class="relative hidden w-full flex-col p-3 max-md:w-full md:w-1/2" id="phone1">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none pr-[40px]" placeholder="+7 (000) 000-00-00" />
-                    <div class="absolute right-[50px] bottom-4 h-[29px] w-[1px] bg-[#c6c7c6]"></div>
+                    <VerticalDivider custom-class="right-[50px] bottom-4" />
                     <DeleteIcon id="delPhon1" custom-class="absolute bottom-5 right-[20px]" />
                 </div>
             </div>
@@ -71,7 +72,7 @@ import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
-                    <div class="absolute right-[50px] bottom-4 h-[29px] w-[1px] bg-[#c6c7c6]"></div>
+                    <VerticalDivider custom-class="right-[50px] bottom-4" />
                     <DeleteIcon id="delPhon2" custom-class="absolute bottom-5 right-[20px]" />
                 </div>
             </div>
@@ -106,7 +107,7 @@ import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone3">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
-                    <div class="absolute right-[50px] bottom-4 h-[29px] w-[1px] bg-[#c6c7c6]"></div>
+                    <VerticalDivider custom-class="right-[50px] bottom-4" />
                     <DeleteIcon id="delPhon3" custom-class="absolute bottom-5 right-[20px]" />
                 </div>
             </div>
@@ -141,7 +142,7 @@ import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone4">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
-                    <div class="absolute right-[50px] bottom-4 h-[29px] w-[1px] bg-[#c6c7c6]"></div>
+                    <VerticalDivider custom-class="right-[50px] bottom-4" />
                     <DeleteIcon id="delPhon4" custom-class="absolute bottom-5 right-[20px]" />
                 </div>
             </div>
