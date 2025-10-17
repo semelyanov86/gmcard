@@ -53,10 +53,6 @@ final readonly class SearchCityAction
             ->limit(self::MAX_RESULTS)
             ->get();
 
-        return $cities->map(fn (City $city) => new CityData(
-            name: $city->name,
-            country: $city->country,
-            id: $city->id,
-        ))->all();
+        return CityData::collect($cities, 'array');
     }
 }
