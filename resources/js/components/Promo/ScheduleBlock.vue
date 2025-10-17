@@ -73,7 +73,7 @@ watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinut
             <ToggleSwitch v-model="isEnabled" class="ml-10 max-md:ml-0" />
         </div>
         <div v-show="isEnabled" class="mt-5">
-            <div class="h-[1px] w-full bg-black/20"></div>
+            <div class="h-px w-full bg-black/20"></div>
             <div class="mt-5 flex flex-row items-center gap-3 max-md:flex-col max-md:items-start">
                 <div class="flex items-center gap-2">
                     <label class="font-bold">Акция доступна в</label>

@@ -15,7 +15,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                     <span class="text-base font-bold">Адрес 1</span>
                 </div>
             </div>
-            <div class="h-[1px] w-full bg-black/10"></div>
+            <div class="h-px w-full bg-black/10"></div>
             <div class="flex w-full flex-row flex-wrap items-center p-6 max-md:flex-col">
                 <div class="flex w-full flex-col p-3 max-md:w-full md:w-1/2">
                     <label for="address" class="mb-2 text-sm font-bold">Адрес</label>
@@ -36,9 +36,9 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 >
                 <div class="relative hidden w-full flex-col p-3 max-md:w-full md:w-1/2" id="phone1">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none pr-[40px]" placeholder="+7 (000) 000-00-00" />
+                    <input type="text" name="phone" class="rounded-md border-none pr-10" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-[50px] bottom-4" />
-                    <DeleteIcon id="delPhon1" custom-class="absolute bottom-5 right-[20px]" />
+                    <DeleteIcon id="delPhon1" custom-class="absolute bottom-5 right-5" />
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <DeleteIcon id="delOrg2" />
             </div>
-            <div class="h-[1px] w-full bg-black/10"></div>
+            <div class="h-px w-full bg-black/10"></div>
             <div class="flex w-full flex-col flex-wrap items-center p-6 sm:flex-row">
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="address" class="mb-2 text-sm font-bold">Адрес</label>
@@ -73,7 +73,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-[50px] bottom-4" />
-                    <DeleteIcon id="delPhon2" custom-class="absolute bottom-5 right-[20px]" />
+                    <DeleteIcon id="delPhon2" custom-class="absolute bottom-5 right-5" />
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <DeleteIcon id="delOrg3" />
             </div>
-            <div class="h-[1px] w-full bg-black/10"></div>
+            <div class="h-px w-full bg-black/10"></div>
             <div class="flex w-full flex-col flex-wrap items-center p-6 sm:flex-row">
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="address" class="mb-2 text-sm font-bold">Адрес</label>
@@ -108,7 +108,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-[50px] bottom-4" />
-                    <DeleteIcon id="delPhon3" custom-class="absolute bottom-5 right-[20px]" />
+                    <DeleteIcon id="delPhon3" custom-class="absolute bottom-5 right-5" />
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <DeleteIcon id="delOrg4" />
             </div>
-            <div class="h-[1px] w-full bg-black/10"></div>
+            <div class="h-px w-full bg-black/10"></div>
             <div class="flex w-full flex-col flex-wrap items-center p-6 sm:flex-row">
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="address" class="mb-2 text-sm font-bold">Адрес</label>
@@ -143,7 +143,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
                     <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-[50px] bottom-4" />
-                    <DeleteIcon id="delPhon4" custom-class="absolute bottom-5 right-[20px]" />
+                    <DeleteIcon id="delPhon4" custom-class="absolute bottom-5 right-5" />
                 </div>
             </div>
         </div>

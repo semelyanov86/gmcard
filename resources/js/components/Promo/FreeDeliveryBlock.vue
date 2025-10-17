@@ -24,7 +24,7 @@ const minAmount = ref('');
             <ToggleSwitch v-model="deliveryOpen" class="max-md:mt-4" />
         </div>
         <div v-show="deliveryOpen" class="my-4">
-            <div class="h-[1px] w-full bg-black/30"></div>
+            <div class="h-px w-full bg-black/30"></div>
             <div class="mt-4 flex flex-row items-center justify-between max-sm:flex-col">
                 <div>
                     <p class="all_text text-black/50">

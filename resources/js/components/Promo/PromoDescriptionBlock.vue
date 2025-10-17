@@ -44,7 +44,7 @@ const editorConfig = {
         <h3 class="mb-4 font-bold">Описание акции</h3>
         <Ckeditor v-model="localDescription" :editor="editor" :config="editorConfig" />
         <div class="my-6">
-            <div class="h-[1px] w-full bg-black/30"></div>
+            <div class="h-px w-full bg-black/30"></div>
             <div class="my-4 flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
                 <p class="all_text mr-10 text-black/50 max-md:mr-0 max-md:mb-4">
                     <strong class="text-base text-black">Допополнительные условия.</strong>
@@ -56,7 +56,7 @@ const editorConfig = {
             </div>
         </div>
         <div v-show="textEditorOpen" class="mb-4">
-            <div class="h-[1px] w-full bg-black/30"></div>
+            <div class="h-px w-full bg-black/30"></div>
             <Ckeditor v-model="localConditions" :editor="editor" :config="editorConfig" />
         </div>
     </div>

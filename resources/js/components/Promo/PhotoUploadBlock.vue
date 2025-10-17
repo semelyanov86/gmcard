@@ -134,14 +134,14 @@ const photoModalOpen = ref(false);
             </p>
             <div class="add_more_photos relative mt-4 flex flex-wrap justify-between">
                 <div id="photoBlock" class="relative h-full w-[130px] overflow-hidden">
-                    <div id="photoCard" class="customPhoto1 relative h-[130px] w-full rounded-2xl bg-[#e9eef1]">
+                    <div id="photoCard" class="customPhoto1 relative h-32 w-full rounded-2xl bg-[#e9eef1]">
                         <TrashIcon
                             id="delPhoto"
                             custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
                         />
                     </div>
-                    <img src="" id="photoPlace" class="hidden h-[130px] w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile" class="relative flex h-[80px] w-full flex-col items-center">
+                    <img src="" id="photoPlace" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
+                    <div id="blockFile" class="relative flex h-20 w-full flex-col items-center">
                         <input
                             type="file"
                             id="photoOne"
@@ -151,14 +151,14 @@ const photoModalOpen = ref(false);
                     </div>
                 </div>
                 <div id="photoBlock2" class="relative h-full w-[130px] overflow-hidden">
-                    <div id="photoCard2" class="customPhoto1 relative h-[130px] w-full rounded-2xl bg-[#e9eef1]">
+                    <div id="photoCard2" class="customPhoto1 relative h-32 w-full rounded-2xl bg-[#e9eef1]">
                         <TrashIcon
                             id="delPhoto2"
                             custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
                         />
                     </div>
-                    <img src="" id="photoPlace2" class="hidden h-[130px] w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile2" class="relative flex h-[80px] w-full flex-col items-center">
+                    <img src="" id="photoPlace2" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
+                    <div id="blockFile2" class="relative flex h-20 w-full flex-col items-center">
                         <input
                             type="file"
                             id="photoOne2"
@@ -168,14 +168,14 @@ const photoModalOpen = ref(false);
                     </div>
                 </div>
                 <div id="photoBlock3" class="relative h-full w-[130px] overflow-hidden">
-                    <div id="photoCard3" class="customPhoto1 relative h-[130px] w-full rounded-2xl bg-[#e9eef1]">
+                    <div id="photoCard3" class="customPhoto1 relative h-32 w-full rounded-2xl bg-[#e9eef1]">
                         <TrashIcon
                             id="delPhoto3"
                             custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
                         />
                     </div>
-                    <img src="" id="photoPlace3" class="hidden h-[130px] w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile3" class="relative flex h-[80px] w-full flex-col items-center">
+                    <img src="" id="photoPlace3" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
+                    <div id="blockFile3" class="relative flex h-20 w-full flex-col items-center">
                         <input
                             type="file"
                             id="photoOne3"
@@ -185,14 +185,14 @@ const photoModalOpen = ref(false);
                     </div>
                 </div>
                 <div id="photoBlock4" class="relative h-full w-[130px] overflow-hidden">
-                    <div id="photoCard4" class="customPhoto1 relative h-[130px] w-full rounded-2xl bg-[#e9eef1]">
+                    <div id="photoCard4" class="customPhoto1 relative h-32 w-full rounded-2xl bg-[#e9eef1]">
                         <TrashIcon
                             id="delPhoto4"
                             custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
                         />
                     </div>
-                    <img src="" id="photoPlace4" class="hidden h-[130px] w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile4" class="relative flex h-[80px] w-full flex-col items-center">
+                    <img src="" id="photoPlace4" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
+                    <div id="blockFile4" class="relative flex h-20 w-full flex-col items-center">
                         <input
                             type="file"
                             id="photoOne4"
@@ -203,7 +203,7 @@ const photoModalOpen = ref(false);
                 </div>
                 <div
                     id="morePhotos"
-                    class="reltive morePhoto relative flex h-[200px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed hover:border-[#0066cb]"
+                    class="reltive morePhoto relative flex h-50 w-[130px] flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed hover:border-[#0066cb]"
                 >
                     <span class="absolute bottom-8 px-4 text-center text-sm"
                         >Добавить еще место <br />
@@ -211,14 +211,14 @@ const photoModalOpen = ref(false);
                     >
                 </div>
                 <div id="photoBlock5" class="relative hidden h-full w-[130px] overflow-hidden">
-                    <div id="photoCard5" class="customPhoto1 relative h-[130px] w-full rounded-2xl bg-[#e9eef1]">
+                    <div id="photoCard5" class="customPhoto1 relative h-32 w-full rounded-2xl bg-[#e9eef1]">
                         <TrashIcon
                             id="delPhoto5"
                             custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
                         />
                     </div>
-                    <img src="" id="photoPlace5" class="hidden h-[130px] w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile5" class="relative flex h-[80px] w-full flex-col items-center">
+                    <img src="" id="photoPlace5" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
+                    <div id="blockFile5" class="relative flex h-20 w-full flex-col items-center">
                         <input
                             type="file"
                             id="photoOne5"

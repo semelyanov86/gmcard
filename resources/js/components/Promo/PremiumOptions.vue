@@ -15,7 +15,7 @@ const autoRestartEnabled = ref(false);
             <h3 class="w-auto font-bold max-md:mb-2 max-md:w-full">Дополнительные опции (нужен премиум)</h3>
             <a href="#" class="w-auto text-[#0066CB] hover:underline max-md:w-full">Смотреть тарифы</a>
         </div>
-        <div class="my-5 h-[1px] w-full bg-black/20"></div>
+        <div class="my-5 h-px w-full bg-black/20"></div>
         <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
                 <p class="all_text text-base">Поднимать акцию на первое<br />место каждые</p>
@@ -24,7 +24,7 @@ const autoRestartEnabled = ref(false);
             </div>
             <ToggleSwitch v-model="autoRaiseEnabled" />
         </div>
-        <div class="my-5 h-[1px] w-full bg-black/20"></div>
+        <div class="my-5 h-px w-full bg-black/20"></div>
         <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
                 <p class="all_text text-base">Автоматически перезапускать акцию после завершения на</p>

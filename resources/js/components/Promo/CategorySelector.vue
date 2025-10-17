@@ -67,20 +67,20 @@ const selectedCategoriesNames = computed(() => {
 </script>
 
 <template>
-    <div class="mt-8 flex min-h-[100vh] flex-col rounded-2xl bg-white p-8 max-md:hidden max-md:p-4">
+    <div class="mt-8 flex min-h-screen flex-col rounded-2xl bg-white p-8 max-md:hidden max-md:p-4">
         <h3 class="ml-8 font-bold">Выберите категории, к которым будет прикреплена ваша акция</h3>
-        <div class="bg-category mt-5 flex max-h-[100vh] w-full" @mouseleave="hoveredPath = []">
+        <div class="bg-category mt-5 flex max-h-screen w-full" @mouseleave="hoveredPath = []">
             <ul
                 v-for="(levelCategories, level) in visibleLevels"
                 :key="level"
-                class="max-h-[100vh] overflow-y-scroll bg-[#fdfdfd]"
+                class="max-h-screen overflow-y-scroll bg-white"
                 :class="level === 0 ? 'w-[150px]' : level < 2 ? 'min-w-[200px]' : 'min-w-[250px]'"
             >
                 <li
                     v-for="category in levelCategories"
                     :key="category.id"
                     @mouseenter="setHover(category, level)"
-                    class="flex cursor-pointer border-t-[1px] px-4 py-2 hover:bg-[#0066cb] hover:text-white"
+                    class="flex cursor-pointer border-t px-4 py-2 hover:bg-[#0066cb] hover:text-white"
                     :class="{ 'bg-[#0066cb] text-white': hoveredPath[level]?.id === category.id }"
                 >
                     <div class="flex w-full items-center gap-3">

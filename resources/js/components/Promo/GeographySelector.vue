@@ -63,7 +63,7 @@ function emitChanges() {
             />
             <ul
                 v-show="dropdownVisible && filteredCities.length > 0"
-                class="absolute z-50 mt-1 max-h-[200px] w-full overflow-y-auto rounded-md border border-[#ccc] bg-white p-0 shadow-lg"
+                class="absolute z-50 mt-1 max-h-50 w-full overflow-y-auto rounded-md border border-[#ccc] bg-white p-0 shadow-lg"
             >
                 <li v-for="city in filteredCities" :key="city.id" @click="selectCity(city)" class="cursor-pointer p-2 hover:bg-[#f5f5f5]">
                     {{ city.name }}

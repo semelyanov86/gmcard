@@ -25,7 +25,7 @@ function getPromoClasses(id: number) {
     const isSelected = props.selectedPromo === id;
     const isHovered = hoveredPromo.value === id;
 
-    const sizeClasses = props.promoTypes.find((p) => p.id === id)?.size === 'large' ? 'w-[230px] h-[230px]' : 'w-[160px] h-[160px]';
+    const sizeClasses = props.promoTypes.find((p) => p.id === id)?.size === 'large' ? 'w-[230px] h-[230px]' : 'w-40 h-40';
 
     let colorClasses = '';
 
@@ -66,7 +66,7 @@ function hideTooltip() {
             <span
                 @mouseenter="showTooltip(promo.id)"
                 @mouseleave="hideTooltip"
-                class="absolute top-2 right-4 cursor-pointer rounded-full bg-white px-[8px] py-[2px] text-xs hover:bg-gray-100"
+                class="absolute top-2 right-4 cursor-pointer rounded-full bg-white px-2 py-0.5 text-xs hover:bg-gray-100"
             >
                 ?
             </span>

@@ -137,12 +137,12 @@ function handleLaunch() {
                 </div>
             </div>
             <!-- mobile modal -->
-            <div class="h-[1px] w-full bg-white opacity-10"></div>
+            <div class="h-px w-full bg-white opacity-10"></div>
             <div class="filter_block mb-6 hidden h-[46px] items-center justify-between lg:h-full">
                 <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>
                 <CityFilterSelector :cities="props.cities" v-model="form.filter_city" />
                 <div class="gapper filter_inp relative flex items-center gap-6 lg:flex-col">
-                    <label for="shop" class="tex-[15px] text-white">Скидки</label>
+                    <label for="shop" class="text-base text-white">Скидки</label>
                     <div class="selected_block relative inline-block h-[46px]">
                         <div
                             id="custom_select"
@@ -157,7 +157,7 @@ function handleLaunch() {
                             />
                         </div>
                         <div
-                            class="custom-options_1 absolute z-50 mt-1 hidden h-[200px] w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
+                            class="custom-options_1 absolute z-50 mt-1 hidden h-50 w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
                             <div
                                 v-for="(filter, index) in props.discountFilters"
@@ -171,7 +171,7 @@ function handleLaunch() {
                     </div>
                 </div>
                 <div class="gapper filter_inp relative flex items-center gap-6 lg:flex-col">
-                    <label for="sale" class="tex-[15px] text-white">Вид акции</label>
+                    <label for="sale" class="text-base text-white">Вид акции</label>
                     <div class="selected_block relative inline-block h-[46px]">
                         <div
                             class="custom_selected focus:shadow-outline flex h-[46px] w-[202px] appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
@@ -185,7 +185,7 @@ function handleLaunch() {
                             />
                         </div>
                         <div
-                            class="custom-options_2 absolute z-50 mt-1 hidden h-[200px] w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
+                            class="custom-options_2 absolute z-50 mt-1 hidden h-50 w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
                             <div class="custom-option_2 cursor-pointer bg-[#F9D914] px-4 py-2 hover:bg-gray-200">Все</div>
                         </div>
@@ -257,7 +257,7 @@ function handleLaunch() {
                                 id="textSymbol"
                                 maxlength="64"
                             />
-                            <span id="count" class="absolute right-3 bottom-[10px] font-bold text-[#2578cf]">64</span>
+                            <span id="count" class="absolute right-3 bottom-2.5 font-bold text-[#2578cf]">64</span>
                         </div>
                     </div>
                     <PhotoUploadBlock />

@@ -33,7 +33,7 @@ const menuItems = [
                     >
                         {{ item.label }}
                     </a>
-                    <div v-if="index < menuItems.length - 1" class="h-[1px] w-full bg-black/20"></div>
+                    <div v-if="index < menuItems.length - 1" class="h-px w-full bg-black/20"></div>
                 </template>
             </ul>
         </div>
@@ -48,7 +48,7 @@ const menuItems = [
                 >
                     {{ item.label }}
                 </a>
-                <div v-if="index < menuItems.length - 1" class="h-[1px] w-full bg-black/20"></div>
+                <div v-if="index < menuItems.length - 1" class="h-px w-full bg-black/20"></div>
             </template>
         </ul>
     </div>

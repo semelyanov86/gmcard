@@ -28,7 +28,7 @@ const localValue = computed({
             <ToggleSwitch v-model="isOpen" />
         </div>
         <div v-show="isOpen" class="my-4" id="youtube_link">
-            <div class="h-[1px] w-full bg-black/30"></div>
+            <div class="h-px w-full bg-black/30"></div>
             <div class="mt-4 flex flex-col">
                 <label for="" class="font-bold">Ссылка на ролик</label>
                 <input v-model="localValue" type="text" class="mt-3 w-full rounded-lg border-gray-300" placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU" />

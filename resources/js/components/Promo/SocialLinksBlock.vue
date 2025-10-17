@@ -84,7 +84,7 @@ watch(linksState, () => {
             <ToggleSwitch v-model="isOpen" />
         </div>
         <div v-show="isOpen" class="my-4" id="allSocial">
-            <div class="h-[1px] w-full bg-black/30"></div>
+            <div class="h-px w-full bg-black/30"></div>
 
             <div class="mt-6 flex flex-wrap gap-3">
                 <div
@@ -125,7 +125,7 @@ watch(linksState, () => {
                                 class="link_url link_social w-[450px] rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
-                            <div class="left_del absolute left-[415px] top-1 h-[34px] w-[2px] bg-black/30"></div>
+                            <div class="left_del absolute left-[415px] top-1 h-[34px] w-0.5 bg-black/30"></div>
                             <TrashIcon
                                 @click="removeLink(network.id, index)"
                                 custom-class="left_delSvg absolute left-[420px] top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
