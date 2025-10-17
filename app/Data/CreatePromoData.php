@@ -8,6 +8,14 @@ use Spatie\LaravelData\Data;
 
 final class CreatePromoData extends Data
 {
+    /**
+     * @param  array<int, string|int>  $categoryIds
+     * @param  array<int, int>  $cityIds
+     * @param  array<string, mixed>|null  $socialLinks
+     * @param  array<string, mixed>|null  $schedule
+     * @param  array<int, array<string, mixed>>|null  $addresses
+     * @param  array<int, string>|null  $photos
+     */
     public function __construct(
         public int $userId,
         public string $title,

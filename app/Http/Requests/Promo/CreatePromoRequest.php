@@ -14,6 +14,9 @@ class CreatePromoRequest extends FormRequest
         return auth()->check();
     }
 
+    /**
+     * @return array<string, array<int, mixed>>
+     */
     public function rules(): array
     {
         return [
