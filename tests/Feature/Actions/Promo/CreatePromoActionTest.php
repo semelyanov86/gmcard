@@ -20,36 +20,6 @@ class CreatePromoActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @param  Collection<int, Model>  $categories
-     * @return array<int, string>
-     */
-    private function getCategoryIds(Collection $categories): array
-    {
-        $ids = [];
-        foreach ($categories as $category) {
-            /** @var Category $category */
-            $ids[] = (string) $category->id;
-        }
-
-        return $ids;
-    }
-
-    /**
-     * @param Collection<int, Model>  $cities
-     * @return array<int, int>
-     */
-    private function getCityIds(Collection $cities): array
-    {
-        $ids = [];
-        foreach ($cities as $city) {
-            /** @var City $city */
-            $ids[] = (int) $city->id;
-        }
-
-        return $ids;
-    }
-
     public function test_creates_promo_with_required_fields(): void
     {
         /** @var User $user */
@@ -360,5 +330,35 @@ class CreatePromoActionTest extends TestCase
         $this->assertDatabaseMissing('promos', [
             'name' => 'Test Promo',
         ]);
+    }
+
+    /**
+     * @param  Collection<int, Model>  $categories
+     * @return array<int, string>
+     */
+    private function getCategoryIds(Collection $categories): array
+    {
+        $ids = [];
+        foreach ($categories as $category) {
+            /** @var Category $category */
+            $ids[] = (string) $category->id;
+        }
+
+        return $ids;
+    }
+
+    /**
+     * @param  Collection<int, Model>  $cities
+     * @return array<int, int>
+     */
+    private function getCityIds(Collection $cities): array
+    {
+        $ids = [];
+        foreach ($cities as $city) {
+            /** @var City $city */
+            $ids[] = (int) $city->id;
+        }
+
+        return $ids;
     }
 }
