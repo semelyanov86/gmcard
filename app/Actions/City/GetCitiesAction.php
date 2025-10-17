@@ -20,13 +20,9 @@ final readonly class GetCitiesAction
      */
     public function handle(): array
     {
-        return City::orderBy('name')
-            ->get(['id', 'name', 'country'])
-            ->map(fn (City $city) => new CityData(
-                name: $city->name,
-                country: $city->country,
-                id: $city->id,
-            ))
-            ->all();
+        $cities = City::orderBy('name')
+            ->get(['id', 'name', 'country']);
+
+        return CityData::collect($cities, 'array');
     }
 }
