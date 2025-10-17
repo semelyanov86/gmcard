@@ -20,6 +20,9 @@ import CityFilterSelector from '@/components/Promo/CityFilterSelector.vue';
 import ValidationAlert from '@/components/Promo/ValidationAlert.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
+import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
+import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
+import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import type {
@@ -210,39 +213,33 @@ function handleLaunch() {
                         v-model:amount="form.cashback_amount as string"
                         v-model:currency="form.cashback_currency as string"
                     />
-                    <div
-                        v-show="showTretiy"
-                        class="m-8 mt-8 flex flex-row items-center justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4"
-                        id="tretiy"
-                    >
-                        <div class="flex w-[450px] flex-col max-md:w-full">
+                    <TwoColumnFormBlock :show="showTretiy" class="m-8" id="tretiy">
+                        <template #description>
                             <p class="all_text text-black/50">
                                 <strong class="text-base text-black">Если одним из условий является минимальная сумма заказа,</strong> то необходимо
                                 указать от какой суммы именно. Если такого условия нет, то оставьте поле пустым.
                             </p>
-                        </div>
-                        <div class="relative ml-12 flex h-[74px] w-[210px] flex-col max-md:mt-4 max-md:ml-0 max-md:h-auto max-md:w-full">
-                            <label for="code_for_sale" class="text-sm font-bold">Минимальная сумма заказа</label>
-                            <input type="text" name="code_for_sale" placeholder="1000" class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3" />
-                            <span class="absolute right-3 bottom-2 text-black/50">₽</span>
-                        </div>
-                    </div>
-                    <div
-                        v-show="showVtoroi"
-                        class="mt-8 flex flex-row items-center justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4"
-                        id="vtoroi"
-                    >
-                        <div class="flex w-[450px] flex-col max-md:w-full">
+                        </template>
+                        <template #input>
+                            <div class="relative">
+                                <label for="minimum_order" class="text-sm font-bold">Минимальная сумма заказа</label>
+                                <input v-model="form.minimum_order_amount" type="text" name="minimum_order" placeholder="1000" class="mt-3 w-full rounded-lg border-gray-300 pl-3 pr-8" />
+                                <span class="absolute right-3 bottom-2 text-black/50">₽</span>
+                            </div>
+                        </template>
+                    </TwoColumnFormBlock>
+                    <TwoColumnFormBlock :show="showVtoroi" id="vtoroi">
+                        <template #description>
                             <h3 class="text-base font-bold">Если для получения скидки необходимо вводить код</h3>
                             <p class="all_text text-black/50">
                                 (например интернет-магазин), то вы можете указать его здесь. Если ничего вводить не нужно, то оставьте поле пустым.
                             </p>
-                        </div>
-                        <div class="ml-12 flex h-[74px] w-[210px] flex-col max-md:mt-4 max-md:ml-0 max-md:h-auto max-md:w-full">
-                            <label for="code_for_sale" class="text-sm font-bold">Код для скидки</label>
-                            <input type="text" name="code_for_sale" placeholder="NJTON564YNN565N56" class="mt-3 w-full rounded-lg border-gray-300" />
-                        </div>
-                    </div>
+                        </template>
+                        <template #input>
+                            <label for="promo_code" class="text-sm font-bold">Код для скидки</label>
+                            <input v-model="form.promo_code" type="text" name="promo_code" placeholder="NJTON564YNN565N56" class="mt-3 w-full rounded-lg border-gray-300" />
+                        </template>
+                    </TwoColumnFormBlock>
                     <FreeDeliveryBlock :show="showChetvertyi" />
                     <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 max-md:p-4" id="pyatyi">
                         <h3 class="text-base font-bold">Введите заголовок (названии акции), максимум 64 символа.</h3>
@@ -252,6 +249,7 @@ function handleLaunch() {
                         </p>
                         <div class="relative">
                             <input
+                                v-model="form.title"
                                 type="text"
                                 oninput="countDown(event)"
                                 class="mt-3 w-full rounded-lg border-gray-300"
@@ -315,12 +313,7 @@ function handleLaunch() {
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="all_text text-base" id="notAgree">Нет</span>
-                            <label class="toggle-switch relative inline-flex cursor-pointer items-center">
-                                <input type="checkbox" value="" class="peer sr-only" id="saleValue" />
-                                <div
-                                    class="h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white"
-                                ></div>
-                            </label>
+                            <ToggleSwitch v-model="form.show_in_banner" />
                             <span class="all_text text_opac text-base" id="agree">Да, желаю</span>
                         </div>
                     </div>
@@ -334,33 +327,19 @@ function handleLaunch() {
                     </div>
                     <div class="mt-5 flex flex-row justify-between gap-3 max-md:flex-col">
                         <div class="flex flex-col gap-3 max-md:w-full">
-                            <button
-                                @click="handlePreview"
-                                type="button"
-                                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 max-md:w-full"
-                            >
+                            <PrimaryButton @click="handlePreview" full-width>
                                 <img class="h-6 w-6" src="/images/png/constructor/eye.svg" alt="eye" />
                                 <span class="all_text text-white">Предпросмотр акции</span>
-                            </button>
-                            <button
-                                @click="handleSaveDraft"
-                                type="button"
-                                :disabled="form.processing"
-                                class="flex h-[56px] w-[238px] cursor-pointer items-center justify-center gap-3 rounded-md bg-[#1d89f2] shadow-lg hover:opacity-90 disabled:opacity-50 max-md:w-full"
-                            >
+                            </PrimaryButton>
+                            <PrimaryButton @click="handleSaveDraft" :disabled="form.processing" full-width>
                                 <img class="h-6 w-6" src="/images/png/constructor/file.svg" alt="eye" />
                                 <span class="all_text text-white">Сохранить как черновик</span>
-                            </button>
+                            </PrimaryButton>
                         </div>
                     </div>
-                    <button 
-                        @click="handleLaunch"
-                        type="button"
-                        :disabled="form.processing || !form.agree_to_terms"
-                        class="mt-5 w-full rounded-md bg-[#1d89f2] py-8 text-3xl font-bold text-white shadow-lg hover:opacity-90 disabled:opacity-50"
-                    >
-                        Запустить акцию
-                    </button>
+                    <PrimaryButton @click="handleLaunch" :disabled="form.processing || !form.agree_to_terms" large class="mt-5">
+                        <span class="text-white">Запустить акцию</span>
+                    </PrimaryButton>
                 </div>
                 <SideNavigation mode="desktop" />
             </div>
@@ -369,9 +348,3 @@ function handleLaunch() {
     <ValidationAlert />
     <Footer :contact="contact"></Footer>
 </template>
-
-<style>
-.toggle-switch input:checked ~ div::after {
-    transform: translateX(1.75rem);
-}
-</style>
