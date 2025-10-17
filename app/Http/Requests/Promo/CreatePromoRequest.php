@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Promo;
 
-use App\Enums\PromoType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

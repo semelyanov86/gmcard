@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Data;
+
+use Spatie\LaravelData\Data;
+
+final class CreatePromoData extends Data
+{
+    public function __construct(
+        public int $userId,
+        public string $title,
+        public int $promoTypeId,
+        public string $description,
+        public string $conditions,
+        public int $durationDays,
+        public array $categoryIds,
+        public array $cityIds,
+        public ?string $discountAmount = null,
+        public ?string $discountCurrency = null,
+        public ?string $cashbackAmount = null,
+        public ?string $cashbackCurrency = null,
+        public ?string $minimumOrderAmount = null,
+        public ?string $promoCode = null,
+        public ?bool $freeDelivery = false,
+        public ?bool $showInBanner = false,
+        public ?string $youtubeUrl = null,
+        public ?array $socialLinks = null,
+        public ?array $schedule = null,
+        public ?array $addresses = null,
+        public ?array $photos = null,
+        public bool $isDraft = false,
+    ) {}
+}
