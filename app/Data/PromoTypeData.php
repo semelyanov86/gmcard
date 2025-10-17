@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Enums\PromoTypeSizeEnum;
 use Spatie\LaravelData\Data;
 
 final class PromoTypeData extends Data
@@ -12,6 +13,6 @@ final class PromoTypeData extends Data
         public int $id,
         public string $title,
         public string $description,
-        public string $size,
+        public PromoTypeSizeEnum $size,
     ) {}
 }
