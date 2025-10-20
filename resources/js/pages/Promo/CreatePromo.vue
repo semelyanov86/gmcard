@@ -2,6 +2,7 @@
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
+import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import AddressContactBlock from '@/components/Promo/AddressContactBlock.vue';
 import CategorySelector from '@/components/Promo/CategorySelector.vue';
@@ -114,16 +115,7 @@ function handleLaunch() {
 <template>
     <Header></Header>
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
-        <div class="animated-block hidden w-full rounded-b-md bg-sky-500 px-12 py-4 font-semibold shadow-lg">
-            <ul class="flex flex-col">
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-base text-white">Главная</a></li>
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="discount.html" class="text-base text-white">Пользователям</a></li>
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="kashback.html" class="text-base text-white">Кэшбек</a></li>
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="buis.html" class="text-base text-white">Для бизнеса</a></li>
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="help.html" class="text-base text-white">Правила</a></li>
-                <li class="py-3 opacity-85 hover:opacity-100"><a href="help.html" class="text-base text-white">Контакты</a></li>
-            </ul>
-        </div>
+        <MobileMenu />
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
