@@ -14,6 +14,7 @@ import PhotoUploadBlock from '@/components/Promo/PhotoUploadBlock.vue';
 import PremiumOptions from '@/components/Promo/PremiumOptions.vue';
 import PricingSummary from '@/components/Promo/PricingSummary.vue';
 import PromoDescriptionBlock from '@/components/Promo/PromoDescriptionBlock.vue';
+import PromoTitleInput from '@/components/Promo/PromoTitleInput.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
@@ -233,25 +234,7 @@ function handleLaunch() {
                         </template>
                     </TwoColumnFormBlock>
                     <FreeDeliveryBlock :show="showChetvertyi" />
-                    <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 max-md:p-4" id="pyatyi">
-                        <h3 class="text-base font-bold">Введите заголовок (названии акции), максимум 64 символа.</h3>
-                        <p class="all_text text-black/50">
-                            Вы можете указать в заголовке имя своего бренда (пример в строке), что поможет пользователям отслеживать все ваши акции и
-                            возможно сделает вас более узнаваемым.
-                        </p>
-                        <div class="relative">
-                            <input
-                                v-model="form.title"
-                                type="text"
-                                oninput="countDown(event)"
-                                class="mt-3 w-full rounded-lg border-gray-300"
-                                placeholder="Скидки до 30% в Desigual! Зарядись энергией Desigual!"
-                                id="textSymbol"
-                                maxlength="64"
-                            />
-                            <span id="count" class="absolute right-3 bottom-2.5 font-bold text-blue-600">64</span>
-                        </div>
-                    </div>
+                    <PromoTitleInput v-model="form.title" />
                     <PhotoUploadBlock />
                     <YouTubeBlock v-model="form.youtube_url as string" />
                     <PromoDescriptionBlock
