@@ -17,7 +17,7 @@ defineEmits<{
             class="peer sr-only"
         />
         <div
-            class="h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white"
+            class="h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none after:absolute after:top-0.5 after:left-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white"
         ></div>
     </label>
 </template>

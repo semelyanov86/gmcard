@@ -63,15 +63,15 @@ function emitChanges() {
             />
             <ul
                 v-show="dropdownVisible && filteredCities.length > 0"
-                class="absolute z-50 mt-1 max-h-50 w-full overflow-y-auto rounded-md border border-[#ccc] bg-white p-0 shadow-lg"
+                class="absolute z-50 mt-1 max-h-50 w-full overflow-y-auto rounded-md border border-gray-300 bg-white p-0 shadow-lg"
             >
-                <li v-for="city in filteredCities" :key="city.id" @click="selectCity(city)" class="cursor-pointer p-2 hover:bg-[#f5f5f5]">
+                <li v-for="city in filteredCities" :key="city.id" @click="selectCity(city)" class="cursor-pointer p-2 hover:bg-gray-100">
                     {{ city.name }}
                 </li>
             </ul>
         </div>
         <div class="all_text mt-5 flex flex-wrap gap-4">
-            <div v-for="city in selectedCities" :key="city.id" class="flex items-center gap-2 rounded-md bg-[#e9eef1] px-4 py-2">
+            <div v-for="city in selectedCities" :key="city.id" class="flex items-center gap-2 rounded-md bg-slate-100 px-4 py-2">
                 <span>{{ city.name }}</span>
                 <img
                     @click="removeCity(city.id)"

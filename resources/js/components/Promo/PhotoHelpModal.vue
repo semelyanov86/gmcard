@@ -25,7 +25,7 @@ defineEmits<{
     >
         <div @click.stop class="relative max-h-full w-full max-w-2xl">
             <div class="bgSh relative rounded-lg bg-white shadow dark:bg-gray-700">
-                <div class="flex items-start justify-between rounded-t border-b bg-[#0066cb] p-4 dark:border-gray-600">
+                <div class="flex items-start justify-between rounded-t border-b bg-blue-700 p-4 dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-white dark:text-white">У меня нет фото, что делать?</h3>
                     <button
                         type="button"
@@ -47,28 +47,28 @@ defineEmits<{
                             <ul>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Запчасти</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Юридическая помощь</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Мебель</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Шугаринг</a
                                     >
@@ -77,21 +77,21 @@ defineEmits<{
                             <ul>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Одежда</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >SPA процедуры</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Сауны</a
                                     >
@@ -100,21 +100,21 @@ defineEmits<{
                             <ul>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Ремонт компьютеров</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Стоматология</a
                                     >
                                 </li>
                                 <li>
                                     <a
-                                        class="border-b border-dashed border-[#0066cb] text-[#0066cb] hover:border-solid"
+                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
                                         href="#"
                                         >Маникюр</a
                                     >
@@ -136,7 +136,7 @@ defineEmits<{
                         </div>
                         <p class="mx-1 text-center text-sm leading-relaxed text-black sm:mx-12 dark:text-gray-400">
                             <span class="font-black text-black">Остались вопросы?</span> Посетите наш раздел
-                            <a class="text-[#0066cb] hover:underline" href="/help.html">'GM Справка'</a> в котором можно найти различную полезную
+                            <a class="text-blue-700 hover:underline" href="/help.html">'GM Справка'</a> в котором можно найти различную полезную
                             информацию или же увидеть те задачи, над которыми мы работаем в данный момент.
                         </p>
                     </div>

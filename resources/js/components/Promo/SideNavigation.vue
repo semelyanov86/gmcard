@@ -23,13 +23,13 @@ const menuItems = [
 
 <template>
     <div v-if="mode === 'mobile'" class="relative hidden flex-col" id="mainBlock">
-        <button @click="isOpen = !isOpen" class="z-50 h-[50px] w-full rounded-md bg-[#FAE115] shadow-2xl">Мои разделы</button>
+        <button @click="isOpen = !isOpen" class="z-50 h-12 w-full rounded-md bg-yellow-300 shadow-2xl">Мои разделы</button>
         <div v-show="isOpen" class="z-10 -mt-1 rounded-b-2xl bg-white">
             <ul class="flex w-full flex-col">
                 <template v-for="(item, index) in menuItems" :key="index">
                     <a
                         :href="item.href"
-                        class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                        class="mx-4 my-2 px-4 py-2 text-blue-500 underline hover:rounded-lg hover:bg-blue-950 hover:text-white hover:no-underline"
                     >
                         {{ item.label }}
                     </a>
@@ -39,12 +39,12 @@ const menuItems = [
         </div>
     </div>
 
-    <div v-else class="route_block h-full w-[250px] rounded-2xl bg-white py-2">
+    <div v-else class="route_block h-full w-62 rounded-2xl bg-white py-2">
         <ul class="flex w-full flex-col">
             <template v-for="(item, index) in menuItems" :key="index">
                 <a
                     :href="item.href"
-                    class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                    class="mx-4 my-2 px-4 py-2 text-blue-500 underline hover:rounded-lg hover:bg-blue-950 hover:text-white hover:no-underline"
                 >
                     {{ item.label }}
                 </a>

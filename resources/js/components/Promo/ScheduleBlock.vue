@@ -84,7 +84,7 @@ watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinut
                         :key="day.id"
                         @click="toggleDay(day.id)"
                         class="cursor-pointer rounded-md px-3 py-2"
-                        :class="isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-[#e9eef1] hover:bg-blue-200'"
+                        :class="isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-slate-100 hover:bg-blue-200'"
                     >
                         {{ day.label }}
                     </li>
@@ -97,15 +97,15 @@ watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinut
                 </div>
                 <div v-if="timeRangeEnabled" class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
-                        <input v-model="startHours" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="startHours" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
                         <span>:</span>
-                        <input v-model="startMinutes" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="startMinutes" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
                     </div>
                     <span>- до</span>
                     <div class="flex items-center gap-2">
-                        <input v-model="endHours" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="endHours" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
                         <span>:</span>
-                        <input v-model="endMinutes" type="text" placeholder="00" maxlength="2" class="w-[45px] rounded-lg border border-gray-300" />
+                        <input v-model="endMinutes" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
                     </div>
                 </div>
             </div>

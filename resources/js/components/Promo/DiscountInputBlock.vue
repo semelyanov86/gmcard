@@ -39,7 +39,7 @@ function updateCurrency(value: string) {
                 @input="updateAmount"
                 placeholder="50"
                 maxlength="4"
-                class="h-[42px] w-[100px] rounded-lg border border-gray-300 px-3"
+                class="h-10 w-25 rounded-lg border border-gray-300 px-3"
             />
             <CurrencyDropdown :modelValue="currency" @update:modelValue="updateCurrency" />
         </div>

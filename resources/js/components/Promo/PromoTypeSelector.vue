@@ -73,7 +73,7 @@ function hideTooltip() {
             <div
                 v-show="activeTooltip === promo.id"
                 role="tooltip"
-                class="absolute top-8 right-0 z-10 inline-block w-[320px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white shadow-sm"
+                class="absolute top-8 right-0 z-10 inline-block w-80 rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white shadow-sm"
             >
                 {{ promo.description }}
             </div>

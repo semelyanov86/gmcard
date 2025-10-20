@@ -50,7 +50,7 @@ const editorConfig = {
                     <strong class="text-base text-black">Допополнительные условия.</strong>
                     Если по вашей акции есть какие-то дополнительные условия, о которых вы считаете нужным заявить - вы можете сделать это ниже. Если
                     никаких дополнительных условий нет, то оставьте поле пустым.
-                    <span @click="emit('openConditionsModal')" class="ml-3 cursor-pointer text-[#2578cf] hover:underline">Подробнее</span>
+                    <span @click="emit('openConditionsModal')" class="ml-3 cursor-pointer text-blue-600 hover:underline">Подробнее</span>
                 </p>
                 <ToggleSwitch v-model="textEditorOpen" />
             </div>

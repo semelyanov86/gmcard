@@ -74,14 +74,14 @@ const selectedCategoriesNames = computed(() => {
                 v-for="(levelCategories, level) in visibleLevels"
                 :key="level"
                 class="max-h-screen overflow-y-scroll bg-white"
-                :class="level === 0 ? 'w-[150px]' : level < 2 ? 'min-w-[200px]' : 'min-w-[250px]'"
+                :class="level === 0 ? 'w-36' : level < 2 ? 'min-w-48' : 'min-w-64'"
             >
                 <li
                     v-for="category in levelCategories"
                     :key="category.id"
                     @mouseenter="setHover(category, level)"
-                    class="flex cursor-pointer border-t px-4 py-2 hover:bg-[#0066cb] hover:text-white"
-                    :class="{ 'bg-[#0066cb] text-white': hoveredPath[level]?.id === category.id }"
+                    class="flex cursor-pointer border-t px-4 py-2 hover:bg-blue-700 hover:text-white"
+                    :class="{ 'bg-blue-700 text-white': hoveredPath[level]?.id === category.id }"
                 >
                     <div class="flex w-full items-center gap-3">
                         <input 
@@ -102,7 +102,7 @@ const selectedCategoriesNames = computed(() => {
                 <span 
                     v-for="name in selectedCategoriesNames" 
                     :key="name"
-                    class="rounded-md bg-[#e9eef1] px-4 py-2"
+                    class="rounded-md bg-slate-100 px-4 py-2"
                 >
                     {{ name }}
                 </span>

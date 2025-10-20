@@ -91,7 +91,7 @@ watch(linksState, () => {
                     v-for="network in socialNetworks"
                     :key="network.id"
                     @click="toggleVisibility(network.id)"
-                    class="flex cursor-pointer items-center rounded-md bg-[#E5ECF0] px-3 py-2"
+                    class="flex cursor-pointer items-center rounded-md bg-slate-100 px-3 py-2"
                     :id="`soc${network.id}`"
                 >
                     <img :src="network.icon" :alt="network.name" />
@@ -122,19 +122,19 @@ watch(linksState, () => {
                             <input
                                 v-model="link.value"
                                 type="text"
-                                class="link_url link_social w-[450px] rounded-md ring-black/30 max-md:w-full"
+                                class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
-                            <div class="left_del absolute left-[415px] top-1 h-[34px] w-0.5 bg-black/30"></div>
+                            <div class="left_del absolute left-96 top-1 h-9 w-0.5 bg-black/30"></div>
                             <TrashIcon
                                 @click="removeLink(network.id, index)"
-                                custom-class="left_delSvg absolute left-[420px] top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
+                                custom-class="left_delSvg absolute left-96 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
                             />
                         </div>
                         <span
                             v-if="index === linksState[network.id].length - 1 && linksState[network.id].length < 2"
                             @click="addLink(network.id)"
-                            class="cursor-pointer text-sm text-[#0066CC] hover:text-[#993300]"
+                            class="cursor-pointer text-sm text-blue-700 hover:text-orange-800"
                             >+ еще {{ network.name }}</span
                         >
                     </div>

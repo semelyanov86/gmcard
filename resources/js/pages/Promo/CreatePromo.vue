@@ -114,7 +114,7 @@ function handleLaunch() {
 <template>
     <Header></Header>
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
-        <div class="animated-block hidden w-full rounded-b-md bg-[#28A8EB] px-12 py-4 font-semibold shadow-lg">
+        <div class="animated-block hidden w-full rounded-b-md bg-sky-500 px-12 py-4 font-semibold shadow-lg">
             <ul class="flex flex-col">
                 <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-base text-white">Главная</a></li>
                 <li class="py-3 opacity-85 hover:opacity-100"><a href="discount.html" class="text-base text-white">Пользователям</a></li>
@@ -124,13 +124,13 @@ function handleLaunch() {
                 <li class="py-3 opacity-85 hover:opacity-100"><a href="help.html" class="text-base text-white">Контакты</a></li>
             </ul>
         </div>
-        <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
+        <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
             <!-- mobile modal -->
             <div class="fixed top-0 left-0 z-50 hidden h-screen w-full overflow-auto bg-white" id="modal_sub">
                 <div class="relative m-auto flex h-full w-full flex-col p-6">
-                    <CloseIcon id="modal-closeSub" custom-class="w-5 h-5 text-[#7f8588] font-extrabold absolute right-5 top-5" />
+                    <CloseIcon id="modal-closeSub" custom-class="w-5 h-5 text-gray-500 font-extrabold absolute right-5 top-5" />
                     <div class="rounded-lg bg-white px-4 py-8">
                         <ul class="mb-6 list-none" id="list_subMenu"></ul>
                     </div>
@@ -138,32 +138,32 @@ function handleLaunch() {
             </div>
             <!-- mobile modal -->
             <div class="h-px w-full bg-white opacity-10"></div>
-            <div class="filter_block mb-6 hidden h-[46px] items-center justify-between lg:h-full">
+            <div class="filter_block mb-6 hidden h-12 items-center justify-between lg:h-full">
                 <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>
                 <CityFilterSelector :cities="props.cities" v-model="form.filter_city" />
                 <div class="gapper filter_inp relative flex items-center gap-6 lg:flex-col">
                     <label for="shop" class="text-base text-white">Скидки</label>
-                    <div class="selected_block relative inline-block h-[46px]">
+                    <div class="selected_block relative inline-block h-12">
                         <div
                             id="custom_select"
-                            class="custom_select focus:shadow-outline flex h-[46px] w-[202px] appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                            class="custom_select focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                         >
                             <div id="spaner" class="mr-2">Не менее 5%</div>
                             <img
                                 src="/assets/icons/down.png"
-                                class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-[5px] w-2"
+                                class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
                                 alt="Вверх"
                                 id="icons"
                             />
                         </div>
                         <div
-                            class="custom-options_1 absolute z-50 mt-1 hidden h-50 w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
+                            class="custom-options_1 absolute z-50 mt-1 hidden h-50 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
                             <div
                                 v-for="(filter, index) in props.discountFilters"
                                 :key="filter.value"
                                 class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                                :class="{ 'bg-[#F9D914]': index === 0 }"
+                                :class="{ 'bg-yellow-400': index === 0 }"
                             >
                                 {{ filter.label }}
                             </div>
@@ -172,29 +172,29 @@ function handleLaunch() {
                 </div>
                 <div class="gapper filter_inp relative flex items-center gap-6 lg:flex-col">
                     <label for="sale" class="text-base text-white">Вид акции</label>
-                    <div class="selected_block relative inline-block h-[46px]">
+                    <div class="selected_block relative inline-block h-12">
                         <div
-                            class="custom_selected focus:shadow-outline flex h-[46px] w-[202px] appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                            class="custom_selected focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                         >
                             <div id="spaner1" class="mr-2">Все</div>
                             <img
                                 src="/assets/icons/down.png"
-                                class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-[5px] w-2"
+                                class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
                                 alt="Вверх"
                                 id="icons"
                             />
                         </div>
                         <div
-                            class="custom-options_2 absolute z-50 mt-1 hidden h-50 w-[202px] overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
+                            class="custom-options_2 absolute z-50 mt-1 hidden h-50 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
-                            <div class="custom-option_2 cursor-pointer bg-[#F9D914] px-4 py-2 hover:bg-gray-200">Все</div>
+                            <div class="custom-option_2 cursor-pointer bg-yellow-400 px-4 py-2 hover:bg-gray-200">Все</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="myBlocks mt-12 flex h-full w-full gap-10">
                 <SideNavigation mode="mobile" />
-                <div class="main_block w-3/4 rounded-2xl bg-[#063966] p-8 md:w-full md:p-4">
+                <div class="main_block w-3/4 rounded-2xl bg-blue-950 p-8 md:w-full md:p-4">
                     <h2 class="text-4xl font-bold text-white md:text-3xl">Создание новой акции, выберите тип акции</h2>
                     <PromoTypeSelector
                         :selectedPromo="form.promo_type_id"
@@ -257,7 +257,7 @@ function handleLaunch() {
                                 id="textSymbol"
                                 maxlength="64"
                             />
-                            <span id="count" class="absolute right-3 bottom-2.5 font-bold text-[#2578cf]">64</span>
+                            <span id="count" class="absolute right-3 bottom-2.5 font-bold text-blue-600">64</span>
                         </div>
                     </div>
                     <PhotoUploadBlock />
@@ -275,7 +275,7 @@ function handleLaunch() {
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">К каким категориям относится ваша акция?</h2>
-                            <button class="mt-2 flex justify-between rounded-lg bg-[#0066cb] px-8 py-3 text-white">
+                            <button class="mt-2 flex justify-between rounded-lg bg-blue-700 px-8 py-3 text-white">
                                 Открыть категории
                                 <ChevronRightIcon custom-class="text-white w-6" />
                             </button>
@@ -287,21 +287,21 @@ function handleLaunch() {
                     </div>
                     <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids as string[]" />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
-                        <p class="w-[380px] text-black/50 max-md:mb-4 max-md:w-full">
+                        <p class="w-96 text-black/50 max-md:mb-4 max-md:w-full">
                             <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.
                         </p>
                         <div class="flex items-center gap-4">
-                            <div class="relative flex w-[180px] items-center gap-2 max-md:w-full">
+                            <div class="relative flex w-44 items-center gap-2 max-md:w-full">
                                 <span class="text-xs opacity-80">0</span>
-                                <input id="slider" class="w-[150px]" type="range" min="0" max="30" value="0" />
+                                <input id="slider" class="w-36" type="range" min="0" max="30" value="0" />
                                 <div id="slider-value" class="slider-value">0</div>
                                 <span class="text-xs opacity-80">30</span>
                             </div>
-                            <div class="w-[50px] rounded-md border py-2 text-center text-lg" id="slider_value">0</div>
+                            <div class="w-12 rounded-md border py-2 text-center text-lg" id="slider_value">0</div>
                         </div>
                     </div>
                     <div class="mt-8 flex flex-row items-start justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="pyatnadsat">
-                        <div class="w-[450px] max-md:mb-4 max-md:w-full">
+                        <div class="max-w-md max-md:mb-4 max-md:w-full">
                             <h3 class="font-bold">
                                 Желаете чтобы ваша акция так же появлялась и в баннере на главной странице сайта?<span
                                     id="hiddenText"
@@ -321,7 +321,7 @@ function handleLaunch() {
                     <PricingSummary :balance="props.userBalance" />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
-                        <label for="rules" class="all_text text-[#607990]">
+                        <label for="rules" class="all_text text-slate-600">
                             С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен
                         </label>
                     </div>

@@ -19,9 +19,9 @@ function closeModal() {
 
 <template>
     <div v-show="isOpen" class="fixed top-0 left-0 z-50 flex h-full w-full items-start justify-center bg-black/50 py-5" @click="closeModal">
-        <div @click.stop class="relative max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-md border-4 border-[#2578cf] bg-white p-2">
+        <div @click.stop class="relative max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-md border-4 border-blue-600 bg-white p-2">
             <div class="flex flex-col gap-4">
-                <div class="flex items-start justify-between rounded-t border-b bg-[#0066cb] p-4 dark:border-gray-600">
+                <div class="flex items-start justify-between rounded-t border-b bg-blue-700 p-4 dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-white">Пример вопросов</h3>
                     <CloseIcon @click="closeModal" custom-class="w-6 h-6 hover:bg-black/50 hover:text-white cursor-pointer text-white" />
                 </div>
