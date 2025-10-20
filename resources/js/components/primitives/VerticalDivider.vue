@@ -1,10 +1,4 @@
 <template>
-    <div :class="customClass" class="absolute h-[29px] w-[1px] bg-[#c6c7c6]" />
+    <div class="absolute h-7 w-px bg-brand-gray" />
 </template>
-
-<script setup lang="ts">
-defineProps<{
-    customClass?: string;
-}>();
-</script>
 

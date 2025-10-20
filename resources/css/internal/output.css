@@ -4172,7 +4172,7 @@ a {
     .tarifs_main tr:nth-child(26) td:nth-child(2),
     .tarifs_main tr:nth-child(27) td:nth-child(2)
     {
-        background-color: #f7fbfe; 
+        background-color: #f7fbfe;
     }
      */
 /* .tarifs_main tr:nth-child(1) td:nth-child(3),
@@ -4197,7 +4197,7 @@ a {
     .tarifs_main tr:nth-child(26) td:nth-child(3),
     .tarifs_main tr:nth-child(27) td:nth-child(3)
      {
-        background-color: #f1f2fc; 
+        background-color: #f1f2fc;
     } */
 
 /* .tarifs_main tr:nth-child(1) td:nth-child(4),
@@ -4247,7 +4247,7 @@ a {
     .tarifs_main tr:nth-child(26) td:nth-child(5),
     .tarifs_main tr:nth-child(27) td:nth-child(5)
      {
-        background-color: #f7fbfe; 
+        background-color: #f7fbfe;
     } */
 
 /* .tarifs_btn {
@@ -5012,6 +5012,7 @@ a {
 /* card promo bg-images */
 
 .promo_image1 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor_sale1.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5025,12 +5026,14 @@ a {
 }
 
 .promo_image2 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale2.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover2 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor_sale2_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5044,12 +5047,14 @@ a {
 }
 
 .promo_image3 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale3.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover3 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale3_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5063,12 +5068,14 @@ a {
 }
 
 .promo_image4 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale4.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover4 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale4_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5082,12 +5089,14 @@ a {
 }
 
 .promo_image5 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale5.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover5 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale5_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5101,12 +5110,14 @@ a {
 }
 
 .promo_image6 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale6.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover6 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale6_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -5120,12 +5131,14 @@ a {
 }
 
 .promo_image7 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale7.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .promo_hover7 {
+    background-color: #e4ecef;
     background-image: url(/images/png/constructor/constructor-sale7_hover.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -6849,4 +6862,35 @@ a {
         padding-left: 5rem;
         padding-right: 5rem;
     }
+}
+
+.bg-brand-blue {
+    background-color: #1d89f2;
+}
+
+.bg-brand-gray {
+    background-color: #c6c7c6;
+}
+
+.bg-brand-gray-light {
+    background-color: #e4ecef;
+}
+
+.text-brand-gray {
+    color: #ababab;
+}
+
+.border-brand-gray {
+    border-color: #c6c7c6;
+}
+
+/* Promo type block sizes */
+.promo-block-large {
+    width: 230px;
+    height: 230px;
+}
+
+.promo-block-small {
+    width: 10rem;
+    height: 10rem;
 }
