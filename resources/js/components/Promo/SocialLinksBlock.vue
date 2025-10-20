@@ -4,11 +4,6 @@ import type { SocialNetworkModel } from '@/types';
 import { computed, reactive, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
-interface SocialLink {
-    id: string;
-    value: string;
-}
-
 const props = defineProps<{
     socialNetworks: SocialNetworkModel[];
     modelValue: Record<string, string[]>;
@@ -20,61 +15,52 @@ const emit = defineEmits<{
 
 const isOpen = ref(false);
 
-const visibilityState = reactive<Record<string, boolean>>({});
-const linksState = reactive<Record<string, SocialLink[]>>({});
+const links = reactive<Record<string, string[]>>(
+    Object.fromEntries(
+        props.socialNetworks.map((network) => [
+            network.id,
+            props.modelValue[network.id]?.length ? [...props.modelValue[network.id]] : [''],
+        ])
+    )
+);
 
-props.socialNetworks.forEach((network) => {
-    const savedLinks = props.modelValue[network.id] || [];
-    visibilityState[network.id] = savedLinks.length > 0 && savedLinks.some(link => link !== '');
-    
-    if (savedLinks.length > 0) {
-        linksState[network.id] = savedLinks.map((value, idx) => ({
-            id: `${network.id}${idx + 1}`,
-            value
-        }));
-    } else {
-        linksState[network.id] = [{ id: `${network.id}1`, value: '' }];
-    }
-});
+const visibleNetworks = reactive<Record<string, boolean>>(
+    Object.fromEntries(
+        props.socialNetworks.map((network) => [
+            network.id,
+            props.modelValue[network.id]?.some((link) => link.trim()),
+        ])
+    )
+);
 
-const showInstagramWarning = computed(() => {
-    return props.socialNetworks.some((network) => network.id === 'ins' && visibilityState[network.id]);
-});
+const showInstagramWarning = computed(() => visibleNetworks.ins && links.ins?.some((v) => v.trim()));
 
 function emitChanges() {
-    const result: Record<string, string[]> = {};
-    props.socialNetworks.forEach((network) => {
-        const links = linksState[network.id];
-        result[network.id] = links.map(link => link.value).filter(value => value !== '');
-    });
-    emit('update:modelValue', result);
+    emit(
+        'update:modelValue',
+        Object.fromEntries(Object.entries(links).map(([id, vals]) => [id, vals.filter(Boolean)]))
+    );
 }
 
 function toggleVisibility(networkId: string) {
-    visibilityState[networkId] = !visibilityState[networkId];
+    visibleNetworks[networkId] = !visibleNetworks[networkId];
 }
 
 function addLink(networkId: string) {
-    const links = linksState[networkId];
-    const newId = `${networkId}${links.length + 1}`;
-    links.push({ id: newId, value: '' });
-    emitChanges();
+    links[networkId].push('');
 }
 
 function removeLink(networkId: string, index: number) {
-    const links = linksState[networkId];
-    links.splice(index, 1);
-
-    if (links.length === 0) {
-        visibilityState[networkId] = false;
-        links.push({ id: `${networkId}1`, value: '' });
+    if (links[networkId].length > 1) {
+        links[networkId].splice(index, 1);
+    } else {
+        links[networkId][0] = '';
+        visibleNetworks[networkId] = false;
     }
     emitChanges();
 }
 
-watch(linksState, () => {
-    emitChanges();
-}, { deep: true });
+watch(links, emitChanges, { deep: true });
 </script>
 
 <template>
@@ -107,12 +93,12 @@ watch(linksState, () => {
                 <div
                     v-for="network in socialNetworks"
                     :key="`${network.id}-inputs`"
-                    v-show="visibilityState[network.id]"
+                    v-show="visibleNetworks[network.id]"
                     :id="`${network.id}Div`"
                 >
                     <div
-                        v-for="(link, index) in linksState[network.id]"
-                        :key="link.id"
+                        v-for="(link, index) in links[network.id]"
+                        :key="`${network.id}-${index}`"
                         class="mt-4 flex flex-row items-center gap-4 max-md:flex-col max-md:items-start"
                     >
                         <div class="relative">
@@ -120,7 +106,7 @@ watch(linksState, () => {
                                 <img :src="network.icon" :alt="network.name" />
                             </div>
                             <input
-                                v-model="link.value"
+                                v-model="links[network.id][index]"
                                 type="text"
                                 class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
@@ -132,7 +118,7 @@ watch(linksState, () => {
                             />
                         </div>
                         <span
-                            v-if="index === linksState[network.id].length - 1 && linksState[network.id].length < 2"
+                            v-if="index === links[network.id].length - 1 && links[network.id].length < 2"
                             @click="addLink(network.id)"
                             class="cursor-pointer text-sm text-blue-700 hover:text-orange-800"
                             >+ еще {{ network.name }}</span
