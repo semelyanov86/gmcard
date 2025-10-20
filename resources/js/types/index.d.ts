@@ -45,3 +45,5 @@ export type { PromoTypeModel } from './PromoTypeModel';
 export type { WeekdayModel } from './WeekdayModel';
 export type { SocialNetworkModel } from './SocialNetworkModel';
 export type { ScheduleModel } from './ScheduleModel';
+
+export type UIMode = 'mobile' | 'desktop';

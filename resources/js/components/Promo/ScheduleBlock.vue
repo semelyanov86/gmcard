@@ -13,7 +13,7 @@ const emit = defineEmits<{
 }>();
 
 const isEnabled = ref(props.modelValue.enabled);
-const selectedDays = ref<string[]>([...props.modelValue.days]);
+const selectedDayCodes = ref<string[]>([...props.modelValue.days]);
 const timeRangeEnabled = ref(props.modelValue.timeRange.enabled);
 
 const parseTime = (timeString: string) => {
@@ -29,24 +29,24 @@ const startMinutes = ref(startTime.minutes);
 const endHours = ref(endTime.hours);
 const endMinutes = ref(endTime.minutes);
 
-function toggleDay(dayId: string) {
-    const index = selectedDays.value.indexOf(dayId);
+function toggleDay(dayCode: string) {
+    const index = selectedDayCodes.value.indexOf(dayCode);
     if (index === -1) {
-        selectedDays.value.push(dayId);
+        selectedDayCodes.value.push(dayCode);
     } else {
-        selectedDays.value.splice(index, 1);
+        selectedDayCodes.value.splice(index, 1);
     }
     emitChanges();
 }
 
-function isDaySelected(dayId: string) {
-    return selectedDays.value.includes(dayId);
+function isDaySelected(dayCode: string) {
+    return selectedDayCodes.value.includes(dayCode);
 }
 
 function emitChanges() {
     emit('update:modelValue', {
         enabled: isEnabled.value,
-        days: selectedDays.value,
+        days: selectedDayCodes.value,
         timeRange: {
             enabled: timeRangeEnabled.value,
             start: `${startHours.value}:${startMinutes.value}`,
