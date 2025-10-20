@@ -1,10 +1,8 @@
 <script setup lang="ts">
-interface Props {
-    balance?: number;
-    cost?: number;
-}
-
-const { balance = 0, cost = 594 } = defineProps<Props>();
+const { balance, cost } = withDefaults(
+    defineProps<{ balance?: number; cost?: number }>(),
+    { balance: 0, cost: 594 }
+);
 </script>
 
 <template>
