@@ -114,7 +114,7 @@ function removeLink(networkId: string, index: number) {
                     :id="`${network.id}Div`"
                 >
                     <div
-                        v-for="(link, index) in links.value[network.id]"
+                        v-for="(link, index) in (links[network.id] ?? [])"
                         :key="`${network.id}-${index}`"
                         class="mt-4 flex flex-row items-center gap-4 max-md:flex-col max-md:items-start"
                     >
@@ -124,19 +124,19 @@ function removeLink(networkId: string, index: number) {
                             </div>
                             <input
                                 :value="link"
-                                @input="updateLink(network.id, index, ($event.target as HTMLInputElement).value)"
+                                @input="updateLink(network.id, index as number, ($event.target as HTMLInputElement).value)"
                                 type="text"
                                 class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
                             <div class="left_del absolute left-96 top-1 h-9 w-0.5 bg-black/30"></div>
                             <TrashIcon
-                                @click="removeLink(network.id, index)"
+                                @click="removeLink(network.id, index as number)"
                                 custom-class="left_delSvg absolute left-96 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
                             />
                         </div>
                         <span
-                            v-if="index === links.value[network.id].length - 1 && links.value[network.id].length < 2"
+                            v-if="index === (links[network.id] ?? []).length - 1 && (links[network.id] ?? []).length < 2"
                             @click="addLink(network.id)"
                             class="cursor-pointer text-sm text-blue-700 hover:text-orange-800"
                             >+ еще {{ network.name }}</span
