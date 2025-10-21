@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
-        <div class="mb-4 flex h-[55px] w-full items-center rounded-md bg-[#2AACF0] px-5 shadow-2xl xl:pr-5 xl:pl-7">
+        <div class="mb-4 flex h-[55px] w-full items-center rounded-md bg-brand-blue px-5 shadow-2xl xl:pr-5 xl:pl-7">
             <ul class="flex w-full items-center justify-between">
                 <li class="cursor-pointer text-[16px] text-white">
                     <a target="_blank" rel="noopener noreferrer" href="" class="hover:border-b-2 hover:border-white">Главная</a>
@@ -28,22 +28,22 @@
                 </li>
             </ul>
             <div class="flex items-center lg:hidden">
-                <div class="ml-[52px] block h-[55px] w-[1px] bg-[#065d8b]"></div>
+                <div class="ml-[52px] block h-[55px] w-[1px] bg-brand-blue-navy"></div>
                 <form name="search" class="s ml-4 flex items-center">
                     <input
                         type="text"
                         class="h-[41px] w-[280px] rounded-l-md border-none pr-4 pl-4 outline-none 2xl:w-[200px]"
                         placeholder="Что вы хотите найти?"
                     />
-                    <div class="h-[41px] w-[1px] bg-[#4890b8]"></div>
-                    <select name="location" id="location" class="h-[41px] rounded-r-md border-none outline-none focus:ring-1 focus:ring-[#2AACF0]">
+                    <div class="h-[41px] w-[1px] bg-brand-blue-medium"></div>
+                    <select name="location" id="location" class="h-[41px] rounded-r-md border-none outline-none focus:ring-1 focus:ring-brand-blue">
                         <option value="" class="text-lg">Везде</option>
                     </select>
                 </form>
                 <button
-                    class="ml-2 flex h-[41px] items-center justify-center rounded-md bg-[#f4d710] px-6 text-[16px] font-bold hover:text-[#983301] focus:ring-2 focus:ring-[#f4d710]"
+                    class="ml-2 flex h-[41px] items-center justify-center rounded-md bg-brand-yellow-dark px-6 text-[16px] font-bold hover:text-brand-orange focus:ring-2 focus:ring-brand-yellow-dark"
                 >
-                    <SearchIcon custom-class="mr-1 group-hover:stroke-[#983301]" />
+                    <SearchIcon custom-class="mr-1 group-hover:stroke-brand-orange" />
                     Найти
                 </button>
             </div>

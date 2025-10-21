@@ -28,84 +28,84 @@ onMounted(() => {
                     <div class="image-1 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для него</p>
                 </div>
-                <TriangleUpIcon id="icons1" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons1" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains2 relative flex flex-col items-center justify-center" data-index="2">
                     <div class="image-2 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для нее</p>
                 </div>
-                <TriangleUpIcon id="icons2" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons2" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains3 relative flex flex-col items-center justify-center" data-index="3">
                     <div class="image-3 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Детям</p>
                 </div>
-                <TriangleUpIcon id="icons3" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons3" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains4 relative flex flex-col items-center justify-center" data-index="4">
                     <div class="image-4 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для дома</p>
                 </div>
-                <TriangleUpIcon id="icons4" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons4" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains5 relative flex flex-col items-center justify-center" data-index="5">
                     <div class="image-5 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Техника</p>
                 </div>
-                <TriangleUpIcon id="icons5" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons5" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains6 relative flex flex-col items-center justify-center" data-index="6">
                     <div class="image-6 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Красота</p>
                 </div>
-                <TriangleUpIcon id="icons6" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons6" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains7 relative flex flex-col items-center justify-center" data-index="7">
                     <div class="image-7 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Услуги</p>
                 </div>
-                <TriangleUpIcon id="icons7" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons7" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains8 relative flex flex-col items-center justify-center" data-index="8">
                     <div class="image-8 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Туризм</p>
                 </div>
-                <TriangleUpIcon id="icons8" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons8" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains9 relative flex flex-col items-center justify-center" data-index="9">
                     <div class="image-9 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Магазины</p>
                 </div>
-                <TriangleUpIcon id="icons9" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons9" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains10 relative flex flex-col items-center justify-center" data-index="10">
                     <div class="image-10 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Поесть</p>
                 </div>
-                <TriangleUpIcon id="icons10" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons10" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains11 relative flex flex-col items-center justify-center" data-index="11">
                     <div class="image-11 h-[51px] w-[51px] rounded-lg py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для авто</p>
                 </div>
-                <TriangleUpIcon id="icons11" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons11" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains12 relative flex flex-col items-center justify-center" data-index="12">
                     <div class="image-12 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Обучение</p>
                 </div>
-                <TriangleUpIcon id="icons12" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
+                <TriangleUpIcon id="icons12" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
         </div>
         <!-- 768px mobile -->
@@ -185,7 +185,7 @@ onMounted(() => {
         </div>
         <!-- 768px mobile -->
         <div class="drop_list absolute z-50 mt-3 hidden w-full flex-col bg-white shadow-lg">
-            <div class="z-[1] h-[16px] w-full bg-[#F9D914]"></div>
+            <div class="z-[1] h-[16px] w-full bg-brand-yellow"></div>
             <div id="blocks_list" class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
                 <ul id="lists" class="relative z-10 mt-[10px] w-1/3 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li class="my-class" data-category="Грузоперевозки">
@@ -273,7 +273,7 @@ onMounted(() => {
                             <input
                                 type="text"
                                 placeholder="Найти категорию..."
-                                class="inputMenu w-full rounded-[10px]! border! border-[#1344871A]! bg-[#1344871A] py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
+                                class="inputMenu w-full rounded-[10px]! border! border-brand-blue-alpha! bg-brand-blue-alpha py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
                                 style="border-width: 1px"
                             />
                         </div>
@@ -284,97 +284,97 @@ onMounted(() => {
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-[#585858]">Подраздел 1</li>
-                                <li class="text-sm text-[#585858]">Подраздел 2</li>
-                                <li class="text-sm text-[#585858]">Подраздел 3</li>
+                                <li class="text-sm text-brand-text">Подраздел 1</li>
+                                <li class="text-sm text-brand-text">Подраздел 2</li>
+                                <li class="text-sm text-brand-text">Подраздел 3</li>
                             </ul>
                         </div>
                     </div>
