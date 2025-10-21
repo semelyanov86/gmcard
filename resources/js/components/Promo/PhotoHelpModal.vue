@@ -11,7 +11,6 @@ defineEmits<{
 </script>
 
 <template>
-    <!-- Modal -->
     <div
         v-show="isOpen"
         id="staticModal"

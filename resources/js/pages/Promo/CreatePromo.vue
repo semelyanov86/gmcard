@@ -122,7 +122,6 @@ function handleLaunch() {
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
-            <!-- mobile modal -->
             <div class="fixed top-0 left-0 z-50 hidden h-screen w-full overflow-auto bg-white" id="modal_sub">
                 <div class="relative m-auto flex h-full w-full flex-col p-6">
                     <CloseIcon id="modal-closeSub" custom-class="w-5 h-5 text-gray-500 font-extrabold absolute right-5 top-5" />
@@ -131,7 +130,6 @@ function handleLaunch() {
                     </div>
                 </div>
             </div>
-            <!-- mobile modal -->
             <div class="h-px w-full bg-white opacity-10"></div>
             <div class="filter_block mb-6 hidden h-12 items-center justify-between lg:h-full">
                 <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>

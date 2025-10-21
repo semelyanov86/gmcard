@@ -108,7 +108,6 @@ onMounted(() => {
                 <TriangleUpIcon id="icons12" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
         </div>
-        <!-- 768px mobile -->
         <div class="mobile_scroll -mx-2 hidden items-end justify-between px-4 lg:px-0">
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block1" data-index="1">
@@ -183,7 +182,6 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <!-- 768px mobile -->
         <div class="drop_list absolute z-50 mt-3 hidden w-full flex-col bg-white shadow-lg">
             <div class="z-[1] h-[16px] w-full bg-brand-yellow"></div>
             <div id="blocks_list" class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
@@ -264,8 +262,6 @@ onMounted(() => {
                         <h1 id="categoryTitle" class="align-center flex gap-3 text-2xl font-bold text-black">
                             Грузоперевозки <span class="strelka">></span>
                         </h1>
-
-                        <!-- Поле поиска -->
                         <div class="relative mb-6">
                             <div class="absolute top-1/2 left-3 -translate-y-1/2">
                                 <SearchIcon custom-class="h-5 w-5 text-gray-400" />
@@ -278,8 +274,6 @@ onMounted(() => {
                             />
                         </div>
                     </div>
-                    <!-- Заголовок -->
-
                     <div class="grid grid-cols-3 gap-7">
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>

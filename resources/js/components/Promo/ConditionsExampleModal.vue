@@ -25,8 +25,6 @@ function closeModal() {
                     <h3 class="text-xl font-semibold text-white">Пример вопросов</h3>
                     <CloseIcon @click="closeModal" custom-class="w-6 h-6 hover:bg-black/50 hover:text-white cursor-pointer text-white" />
                 </div>
-
-                <!-- Контент -->
                 <div class="space-y-4 p-3 sm:p-6">
                     <p class="text-center text-base font-semibold text-gray-700 dark:text-gray-300">
                         Пункты раздела «дополнительные условия» отображаются здесь:
