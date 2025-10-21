@@ -36,3 +36,14 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export type { CategoryModel } from './CategoryModel';
+export type { CityModel } from './CityModel';
+export type { ContactModel } from './ContactModel';
+export type { DiscountFilterModel } from './DiscountFilterModel';
+export type { PromoTypeModel } from './PromoTypeModel';
+export type { ScheduleModel } from './ScheduleModel';
+export type { SocialNetworkModel } from './SocialNetworkModel';
+export type { WeekdayModel } from './WeekdayModel';
+
+export type UIMode = 'mobile' | 'desktop';
