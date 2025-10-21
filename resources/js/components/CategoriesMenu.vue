@@ -269,8 +269,7 @@ onMounted(() => {
                             <input
                                 type="text"
                                 placeholder="Найти категорию..."
-                                class="inputMenu w-full rounded-[10px]! border! border-brand-blue-alpha! bg-brand-blue-alpha py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
-                                style="border-width: 1px"
+                                class="inputMenu w-full rounded-[10px] border border-brand-blue-alpha bg-brand-blue-alpha py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
                             />
                         </div>
                     </div>

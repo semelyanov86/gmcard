@@ -94,7 +94,7 @@ const props = defineProps<{
                                             data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
-                                            <VkFooterIcon custom-class="mr-[14px] opacity-50" style="filter: brightness(1.5)" />
+                                            <VkFooterIcon custom-class="vk-icon-bright mr-[14px] opacity-50" />
                                             Вконтакте
                                         </a>
                                     </li>
@@ -484,4 +484,8 @@ const props = defineProps<{
     </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.vk-icon-bright {
+    filter: brightness(1.5);
+}
+</style>

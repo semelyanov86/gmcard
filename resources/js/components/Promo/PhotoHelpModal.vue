@@ -16,10 +16,9 @@ defineEmits<{
         id="staticModal"
         data-modal-backdrop="static"
         tabindex="-1"
-        class="fixed top-0 right-0 left-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-x-hidden overflow-y-auto p-4 md:inset-0"
+        class="modal-backdrop fixed top-0 right-0 left-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-x-hidden overflow-y-auto p-4 md:inset-0"
         aria-modal="true"
         role="dialog"
-        style="background-color: rgba(0, 0, 0, 0.5)"
         @click="$emit('close')"
     >
         <div @click.stop class="relative max-h-full w-full max-w-2xl">
@@ -144,3 +143,9 @@ defineEmits<{
         </div>
     </div>
 </template>
+
+<style scoped>
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+</style>
