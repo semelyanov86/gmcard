@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 
 class MenuResource extends Resource
 {
@@ -28,19 +29,19 @@ class MenuResource extends Resource
 
     protected static ?int $navigationSort = 10;
 
-    #[\Override]
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return MenuForm::configure($schema);
     }
 
-    #[\Override]
+    #[Override]
     public static function table(Table $table): Table
     {
         return MenusTable::configure($table);
     }
 
-    #[\Override]
+    #[Override]
     public static function getRelations(): array
     {
         return [];
