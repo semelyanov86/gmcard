@@ -52,4 +52,3 @@ class MenuSeeder extends Seeder
         }
     }
 }
-

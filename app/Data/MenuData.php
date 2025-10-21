@@ -17,4 +17,3 @@ final class MenuData extends Data
         public bool $is_active,
     ) {}
 }
-

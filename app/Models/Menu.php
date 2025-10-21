@@ -27,14 +27,6 @@ class Menu extends Model
         'updated_at',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'is_active' => 'boolean',
-            'order' => 'integer',
-        ];
-    }
-
     public function scopeByType(Builder $query, string $type): Builder
     {
         return $query->where('type', $type);
@@ -48,5 +40,13 @@ class Menu extends Model
     public function scopeOrdered(Builder $query): Builder
     {
         return $query->orderBy('order');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+            'order' => 'integer',
+        ];
     }
 }

@@ -28,4 +28,3 @@ final readonly class GetMenuItemsAction
         return MenuData::collect($menuItems, 'array');
     }
 }
-
