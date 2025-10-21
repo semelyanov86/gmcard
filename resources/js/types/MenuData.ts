@@ -6,4 +6,3 @@ export interface MenuData {
     order: number;
     is_active: boolean;
 }
-

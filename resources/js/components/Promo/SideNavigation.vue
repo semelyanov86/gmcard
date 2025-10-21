@@ -9,7 +9,7 @@ withDefaults(
     }>(),
     {
         mode: 'desktop',
-    }
+    },
 );
 
 const isOpen = ref(false);

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { MenuData } from '@/types';
 import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
+import type { MenuData } from '@/types';
 
 defineProps<{
     menuItems: MenuData[];
