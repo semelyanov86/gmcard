@@ -1,10 +1,20 @@
+<script setup lang="ts">
+interface Props {
+    customClass?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    customClass: '',
+});
+</script>
+
 <template>
     <svg
         version="1.0"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        class="w-5 h-6 text-brand-gray"
+        :class="['w-5 h-6 text-brand-gray', props.customClass]"
         viewBox="0 0 64 64"
         enable-background="new 0 0 64 64"
         xml:space="preserve"
