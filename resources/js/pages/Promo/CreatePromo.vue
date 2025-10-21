@@ -34,6 +34,7 @@ import type {
     CityModel,
     ContactModel,
     DiscountFilterModel,
+    MenuData,
     PromoTypeModel,
     ScheduleModel,
     SocialNetworkModel,
@@ -53,6 +54,8 @@ const props = defineProps<{
     weekdays: WeekdayModel[];
     socialNetworks: SocialNetworkModel[];
     userBalance: number;
+    navbarMenu: MenuData[];
+    sidebarMenu: MenuData[];
 }>();
 
 const form = useForm({
@@ -120,7 +123,7 @@ function handleLaunch() {
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
-            <NavBar></NavBar>
+            <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu></CategoriesMenu>
             <div class="fixed top-0 left-0 z-50 hidden h-screen w-full overflow-auto bg-white" id="modal_sub">
                 <div class="relative m-auto flex h-full w-full flex-col p-6">
@@ -186,7 +189,7 @@ function handleLaunch() {
                 </div>
             </div>
             <div class="myBlocks mt-12 flex h-full w-full gap-10">
-                <SideNavigation mode="mobile" />
+                <SideNavigation mode="mobile" :menu-items="sidebarMenu" />
                 <div class="main_block w-3/4 rounded-2xl bg-blue-950 p-8 md:w-full md:p-4">
                     <h2 class="text-4xl font-bold text-white md:text-3xl">Создание новой акции, выберите тип акции</h2>
                     <PromoTypeSelector
@@ -328,7 +331,7 @@ function handleLaunch() {
                         <span class="text-white">Запустить акцию</span>
                     </PrimaryButton>
                 </div>
-                <SideNavigation mode="desktop" />
+                <SideNavigation mode="desktop" :menu-items="sidebarMenu" />
             </div>
         </div>
     </section>

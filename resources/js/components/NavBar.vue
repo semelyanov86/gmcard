@@ -1,30 +1,18 @@
+<script setup lang="ts">
+import type { MenuData } from '@/types';
+import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
+
+defineProps<{
+    menuItems: MenuData[];
+}>();
+</script>
+
 <template>
     <div class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
         <div class="bg-brand-blue mb-4 flex h-[55px] w-full items-center rounded-md px-5 shadow-2xl xl:pr-5 xl:pl-7">
             <ul class="flex w-full items-center justify-between">
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="" class="hover:border-b-2 hover:border-white">Главная</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="discount.html" class="hover:border-b-2 hover:border-white">Пользователям</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="/#popular" class="hover:border-b-2 hover:border-white">Кэшбэк</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="buis_new.html" class="hover:border-b-2 hover:border-white">Для бизнеса</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="help.html" class="hover:border-b-2 hover:border-white">Правила</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="help.html" class="hover:border-b-2 hover:border-white">Контакты</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="buis.html" class="hover:border-b-2 hover:border-white">GM</a>
-                </li>
-                <li class="cursor-pointer text-[16px] text-white">
-                    <a target="_blank" rel="noopener noreferrer" href="coupon.html" class="hover:border-b-2 hover:border-white">₽</a>
+                <li v-for="item in menuItems" :key="item.id" class="cursor-pointer text-[16px] text-white">
+                    <a target="_blank" rel="noopener noreferrer" :href="item.url" class="hover:border-b-2 hover:border-white">{{ item.label }}</a>
                 </li>
             </ul>
             <div class="flex items-center lg:hidden">
@@ -50,9 +38,5 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
-</script>
 
 <style scoped></style>
