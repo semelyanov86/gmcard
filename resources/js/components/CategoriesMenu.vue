@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
+import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -26,180 +28,84 @@ onMounted(() => {
                     <div class="image-1 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для него</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons1"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons1" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains2 relative flex flex-col items-center justify-center" data-index="2">
                     <div class="image-2 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для нее</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons2"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons2" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains3 relative flex flex-col items-center justify-center" data-index="3">
                     <div class="image-3 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Детям</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons3"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons3" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains4 relative flex flex-col items-center justify-center" data-index="4">
                     <div class="image-4 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для дома</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons4"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons4" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains5 relative flex flex-col items-center justify-center" data-index="5">
                     <div class="image-5 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Техника</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons5"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons5" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains6 relative flex flex-col items-center justify-center" data-index="6">
                     <div class="image-6 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Красота</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons6"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons6" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains7 relative flex flex-col items-center justify-center" data-index="7">
                     <div class="image-7 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Услуги</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons7"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons7" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains8 relative flex flex-col items-center justify-center" data-index="8">
                     <div class="image-8 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Туризм</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons8"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons8" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains9 relative flex flex-col items-center justify-center" data-index="9">
                     <div class="image-9 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Магазины</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons9"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons9" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains10 relative flex flex-col items-center justify-center" data-index="10">
                     <div class="image-10 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Поесть</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons10"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons10" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains11 relative flex flex-col items-center justify-center" data-index="11">
                     <div class="image-11 h-[51px] w-[51px] rounded-lg py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для авто</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons11"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons11" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains12 relative flex flex-col items-center justify-center" data-index="12">
                     <div class="image-12 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Обучение</p>
                 </div>
-                <svg
-                    fill="currentColor"
-                    id="icons12"
-                    class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]"
-                    viewBox="0 0 24 11"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M24 11H0L12 0L24 11Z" fill="currentColor" />
-                </svg>
+                <TriangleUpIcon id="icons12" custom-class="absolute -bottom-6 hidden h-7 w-6 text-[#F9D914]" />
             </div>
         </div>
         <!-- 768px mobile -->
@@ -362,14 +268,7 @@ onMounted(() => {
                         <!-- Поле поиска -->
                         <div class="relative mb-6">
                             <div class="absolute top-1/2 left-3 -translate-y-1/2">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                    />
-                                </svg>
+                                <SearchIcon custom-class="h-5 w-5 text-gray-400" />
                             </div>
                             <input
                                 type="text"

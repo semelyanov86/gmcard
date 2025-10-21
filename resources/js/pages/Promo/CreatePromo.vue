@@ -27,6 +27,8 @@ import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
+import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
+import FileIcon from '@/components/primitives/icons/FileIcon.vue';
 import type {
     CategoryModel,
     CityModel,
@@ -303,11 +305,11 @@ function handleLaunch() {
                     <div class="mt-5 flex flex-row justify-between gap-3 max-md:flex-col">
                         <div class="flex flex-col gap-3 max-md:w-full">
                             <PrimaryButton @click="handlePreview" full-width>
-                                <img class="h-6 w-6" src="/images/png/constructor/eye.svg" alt="eye" />
+                                <EyeIcon />
                                 <span class="all_text text-white">Предпросмотр акции</span>
                             </PrimaryButton>
                             <PrimaryButton @click="handleSaveDraft" :disabled="form.processing" full-width>
-                                <img class="h-6 w-6" src="/images/png/constructor/file.svg" alt="eye" />
+                                <FileIcon />
                                 <span class="all_text text-white">Сохранить как черновик</span>
                             </PrimaryButton>
                         </div>

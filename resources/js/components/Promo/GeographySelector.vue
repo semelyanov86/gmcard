@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CityModel } from '@/types';
+import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import { computed, ref } from 'vue';
 
 interface Props {
@@ -73,12 +74,7 @@ function emitChanges() {
         <div class="all_text mt-5 flex flex-wrap gap-4">
             <div v-for="city in selectedCities" :key="city.id" class="flex items-center gap-2 rounded-md bg-slate-100 px-4 py-2">
                 <span>{{ city.name }}</span>
-                <img
-                    @click="removeCity(city.id)"
-                    src="/images/png/constructor/delete.svg"
-                    alt="Удалить"
-                    class="w-6 cursor-pointer hover:opacity-70"
-                />
+                <DeleteIcon @click="removeCity(city.id)" custom-class="cursor-pointer hover:opacity-70" />
             </div>
         </div>
     </div>
