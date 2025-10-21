@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 import type { SocialNetworkModel } from '@/types';
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 const isOpen = ref(false);
 
-const links = reactive<Record<string, string[]>>(
+const links = computed<Record<string, string[]>>(() =>
     Object.fromEntries(
         props.socialNetworks.map((network) => [
             network.id,
@@ -24,43 +24,60 @@ const links = reactive<Record<string, string[]>>(
     )
 );
 
-const visibleNetworks = reactive<Record<string, boolean>>(
+const visibleNetworks = computed<Record<string, boolean>>(() =>
     Object.fromEntries(
-        props.socialNetworks.map((network) => [
-            network.id,
-            props.modelValue[network.id]?.some((link) => link.trim()),
-        ])
+        props.socialNetworks.map((network) => [network.id, links.value[network.id]?.some((link) => link.trim()) ?? false])
     )
 );
 
-const showInstagramWarning = computed(() => visibleNetworks.ins && links.ins?.some((v) => v.trim()));
+const showInstagramWarning = computed(() => visibleNetworks.value.ins && links.value.ins?.some((v) => v.trim()));
 
-function emitChanges() {
+function updateLink(networkId: string, index: number, value: string) {
+    const updated = { ...links.value };
+    updated[networkId] = [...updated[networkId]];
+    updated[networkId][index] = value;
     emit(
         'update:modelValue',
-        Object.fromEntries(Object.entries(links).map(([id, vals]) => [id, vals.filter(Boolean)]))
+        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
     );
 }
 
 function toggleVisibility(networkId: string) {
-    visibleNetworks[networkId] = !visibleNetworks[networkId];
+    const updated = { ...links.value };
+    if (visibleNetworks.value[networkId]) {
+        updated[networkId] = [''];
+    } else {
+        if (!updated[networkId] || updated[networkId].length === 0) {
+            updated[networkId] = [''];
+        }
+    }
+    emit(
+        'update:modelValue',
+        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
+    );
 }
 
 function addLink(networkId: string) {
-    links[networkId].push('');
+    const updated = { ...links.value };
+    updated[networkId] = [...updated[networkId], ''];
+    emit(
+        'update:modelValue',
+        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
+    );
 }
 
 function removeLink(networkId: string, index: number) {
-    if (links[networkId].length > 1) {
-        links[networkId].splice(index, 1);
+    const updated = { ...links.value };
+    if (updated[networkId].length > 1) {
+        updated[networkId] = updated[networkId].filter((_, i) => i !== index);
     } else {
-        links[networkId][0] = '';
-        visibleNetworks[networkId] = false;
+        updated[networkId] = [''];
     }
-    emitChanges();
+    emit(
+        'update:modelValue',
+        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
+    );
 }
-
-watch(links, emitChanges, { deep: true });
 </script>
 
 <template>
@@ -97,7 +114,7 @@ watch(links, emitChanges, { deep: true });
                     :id="`${network.id}Div`"
                 >
                     <div
-                        v-for="(link, index) in links[network.id]"
+                        v-for="(link, index) in links.value[network.id]"
                         :key="`${network.id}-${index}`"
                         class="mt-4 flex flex-row items-center gap-4 max-md:flex-col max-md:items-start"
                     >
@@ -106,7 +123,8 @@ watch(links, emitChanges, { deep: true });
                                 <img :src="network.icon" :alt="network.name" />
                             </div>
                             <input
-                                v-model="links[network.id][index]"
+                                :value="link"
+                                @input="updateLink(network.id, index, ($event.target as HTMLInputElement).value)"
                                 type="text"
                                 class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
@@ -118,7 +136,7 @@ watch(links, emitChanges, { deep: true });
                             />
                         </div>
                         <span
-                            v-if="index === links[network.id].length - 1 && links[network.id].length < 2"
+                            v-if="index === links.value[network.id].length - 1 && links.value[network.id].length < 2"
                             @click="addLink(network.id)"
                             class="cursor-pointer text-sm text-blue-700 hover:text-orange-800"
                             >+ еще {{ network.name }}</span
