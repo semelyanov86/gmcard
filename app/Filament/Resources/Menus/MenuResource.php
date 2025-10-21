@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Menus;
 
 use App\Filament\Resources\Menus\Pages\CreateMenu;
@@ -26,16 +28,19 @@ class MenuResource extends Resource
 
     protected static ?int $navigationSort = 10;
 
+    #[\Override]
     public static function form(Schema $schema): Schema
     {
         return MenuForm::configure($schema);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return MenusTable::configure($table);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
