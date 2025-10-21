@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        :class="['w-5 h-5', props.customClass]"
+        :class="['h-5 w-5', props.customClass]"
     >
         <path
             stroke-linecap="round"
@@ -24,4 +24,3 @@ const props = withDefaults(defineProps<Props>(), {
         ></path>
     </svg>
 </template>
-

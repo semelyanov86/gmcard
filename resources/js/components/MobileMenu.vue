@@ -23,4 +23,3 @@ const menuItems: MenuItem[] = [
         </ul>
     </div>
 </template>
-

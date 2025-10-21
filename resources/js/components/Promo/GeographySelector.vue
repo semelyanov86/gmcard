@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { CityModel } from '@/types';
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
+import type { CityModel } from '@/types';
 import { computed, ref } from 'vue';
 
 interface Props {

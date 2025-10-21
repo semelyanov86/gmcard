@@ -14,7 +14,7 @@ const isOpen = ref(props.modelValue !== '');
 
 const localValue = computed({
     get: () => props.modelValue,
-    set: (value: string) => emit('update:modelValue', value)
+    set: (value: string) => emit('update:modelValue', value),
 });
 </script>
 
@@ -31,7 +31,12 @@ const localValue = computed({
             <div class="h-px w-full bg-black/30"></div>
             <div class="mt-4 flex flex-col">
                 <label for="" class="font-bold">Ссылка на ролик</label>
-                <input v-model="localValue" type="text" class="mt-3 w-full rounded-lg border-gray-300" placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU" />
+                <input
+                    v-model="localValue"
+                    type="text"
+                    class="mt-3 w-full rounded-lg border-gray-300"
+                    placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU"
+                />
             </div>
         </div>
     </div>

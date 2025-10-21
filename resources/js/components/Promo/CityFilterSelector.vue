@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import type { CityModel } from '@/types';
 import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
+import type { CityModel } from '@/types';
+import { computed, ref } from 'vue';
 
 interface Props {
     cities: CityModel[];
@@ -25,9 +25,7 @@ const filteredCities = computed(() => {
         return props.cities;
     }
     const query = searchQuery.value.toLowerCase();
-    return props.cities.filter(city =>
-        city.name.toLowerCase().includes(query)
-    );
+    return props.cities.filter((city) => city.name.toLowerCase().includes(query));
 });
 
 function selectCity(cityName: string) {
@@ -56,10 +54,7 @@ function toggleDropdown() {
                 <span class="mr-2">{{ selectedCity }}</span>
                 <ChevronDownIcon custom-class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2 text-white" />
             </div>
-            <div
-                v-show="isOpen"
-                class="custom-options absolute z-50 mt-1 w-52 overflow-hidden rounded-b border border-gray-400 bg-white shadow-lg"
-            >
+            <div v-show="isOpen" class="custom-options absolute z-50 mt-1 w-52 overflow-hidden rounded-b border border-gray-400 bg-white shadow-lg">
                 <input
                     v-model="searchQuery"
                     type="text"
@@ -76,15 +71,9 @@ function toggleDropdown() {
                     >
                         {{ city.name }}
                     </div>
-                    <div
-                        v-if="filteredCities.length === 0"
-                        class="px-4 py-2 text-gray-500"
-                    >
-                        Город не найден
-                    </div>
+                    <div v-if="filteredCities.length === 0" class="px-4 py-2 text-gray-500">Город не найден</div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-

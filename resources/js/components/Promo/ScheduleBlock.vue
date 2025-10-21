@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
 import type { ScheduleModel, WeekdayModel } from '@/types';
+import { ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -50,8 +50,8 @@ function emitChanges() {
         timeRange: {
             enabled: timeRangeEnabled.value,
             start: `${startHours.value}:${startMinutes.value}`,
-            end: `${endHours.value}:${endMinutes.value}`
-        }
+            end: `${endHours.value}:${endMinutes.value}`,
+        },
     });
 }
 

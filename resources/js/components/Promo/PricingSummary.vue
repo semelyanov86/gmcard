@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { balance, cost } = withDefaults(
-    defineProps<{ balance?: number; cost?: number }>(),
-    { balance: 0, cost: 594 }
-);
+const { balance, cost } = withDefaults(defineProps<{ balance?: number; cost?: number }>(), { balance: 0, cost: 594 });
 </script>
 
 <template>

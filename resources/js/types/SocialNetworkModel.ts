@@ -4,4 +4,3 @@ export interface SocialNetworkModel {
     icon: string;
     placeholder: string;
 }
-

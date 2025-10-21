@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import CalendarIcon from '@/components/primitives/icons/CalendarIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import EmailIcon from '@/components/primitives/icons/EmailIcon.vue';
 import InstagramIcon from '@/components/primitives/icons/InstagramIcon.vue';
 import TelegramIcon from '@/components/primitives/icons/TelegramIcon.vue';
 import VkFooterIcon from '@/components/primitives/icons/VkFooterIcon.vue';
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import '../../css/internal/landingBusiness.css';
 
 const props = defineProps<{
@@ -16,7 +16,7 @@ const props = defineProps<{
 <template>
     <section class="footer bg-brand-footer">
         <div class="container">
-            <footer class="relative overflow-hidden bg-brand-footer-bg">
+            <footer class="bg-brand-footer-bg relative overflow-hidden">
                 <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
                     <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
@@ -462,11 +462,13 @@ const props = defineProps<{
                             <span class="text-sm text-white opacity-60">GM 2014 - 2025</span>
                         </div>
                         <ul class="partner_link flex items-center">
-                            <li class="relative z-10 font-bold text-brand-yellow-darker hover:opacity-80">
+                            <li class="text-brand-yellow-darker relative z-10 font-bold hover:opacity-80">
                                 <a class="text-brand-yellow-darker" href="#">+ Партнерская программа</a>
                             </li>
                             <li class="mx-5 h-[30px] w-[1px] bg-white opacity-10"></li>
-                            <li class="font-bold text-brand-yellow-darker hover:opacity-80"><a class="text-brand-yellow-darker" href="#">+ Добавить магазин</a></li>
+                            <li class="text-brand-yellow-darker font-bold hover:opacity-80">
+                                <a class="text-brand-yellow-darker" href="#">+ Добавить магазин</a>
+                            </li>
                         </ul>
                         <div
                             class="flex h-[39px] w-[141px] items-center justify-center gap-2 rounded-lg ring-1 ring-white/30 hover:ring-white"

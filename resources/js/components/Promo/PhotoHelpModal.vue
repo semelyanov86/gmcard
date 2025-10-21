@@ -44,78 +44,38 @@ defineEmits<{
                         <div class="mx-8 flex flex-wrap justify-between sm:mx-12">
                             <ul>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Запчасти</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Запчасти</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Юридическая помощь</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Юридическая помощь</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Мебель</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Мебель</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Шугаринг</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Шугаринг</a>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Одежда</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Одежда</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >SPA процедуры</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">SPA процедуры</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Сауны</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Сауны</a>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Ремонт компьютеров</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Ремонт компьютеров</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Стоматология</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Стоматология</a>
                                 </li>
                                 <li>
-                                    <a
-                                        class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid"
-                                        href="#"
-                                        >Маникюр</a
-                                    >
+                                    <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Маникюр</a>
                                 </li>
                             </ul>
                         </div>

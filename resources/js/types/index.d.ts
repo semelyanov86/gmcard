@@ -42,8 +42,8 @@ export type { CityModel } from './CityModel';
 export type { ContactModel } from './ContactModel';
 export type { DiscountFilterModel } from './DiscountFilterModel';
 export type { PromoTypeModel } from './PromoTypeModel';
-export type { WeekdayModel } from './WeekdayModel';
-export type { SocialNetworkModel } from './SocialNetworkModel';
 export type { ScheduleModel } from './ScheduleModel';
+export type { SocialNetworkModel } from './SocialNetworkModel';
+export type { WeekdayModel } from './WeekdayModel';
 
 export type UIMode = 'mobile' | 'desktop';

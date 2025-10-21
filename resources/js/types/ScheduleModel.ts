@@ -7,4 +7,3 @@ export interface ScheduleModel {
         end: string;
     };
 }
-

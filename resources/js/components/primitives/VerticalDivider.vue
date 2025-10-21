@@ -1,4 +1,3 @@
 <template>
-    <div class="absolute h-7 w-px bg-brand-gray" />
+    <div class="bg-brand-gray absolute h-7 w-px" />
 </template>
-

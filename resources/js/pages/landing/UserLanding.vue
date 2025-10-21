@@ -22,10 +22,10 @@ function openPopUp() {
                 <p class="text-center text-[40px] font-bold text-white">
                     ВЕРНЁМ ВАМ ДО <span class="bg-brand-yellow-light px-4 text-black">50%</span> <br />ОТ СТОИМОСТИ ЛЮБЫХ ПОКУПОК!
                 </p>
-                <p class="mt-5 mb-5 text-center text-[20px] font-bold text-brand-yellow-light">7 дней премиума за регистрацию в подарок</p>
+                <p class="text-brand-yellow-light mt-5 mb-5 text-center text-[20px] font-bold">7 дней премиума за регистрацию в подарок</p>
             </div>
             <button
-                class="mx-auto mb-10 w-full max-w-[320px] cursor-pointer rounded-[50px] bg-brand-yellow-light px-3 py-5 text-[19px] font-bold text-black"
+                class="bg-brand-yellow-light mx-auto mb-10 w-full max-w-[320px] cursor-pointer rounded-[50px] px-3 py-5 text-[19px] font-bold text-black"
                 @click="openPopUp"
             >
                 Присоедениться бесплатно
@@ -56,8 +56,8 @@ function openPopUp() {
             <div class="mt-10">
                 <p class="text-center text-[22px] font-bold text-white">
                     А также на сайте можно найти <br />
-                    <span class="rounded-sm bg-brand-yellow-light px-1 text-black"> бесплатные </span> купоны и промокоды <br />
-                    на скидки до <span class="rounded-sm bg-brand-yellow-light px-1 text-black">100%</span>
+                    <span class="bg-brand-yellow-light rounded-sm px-1 text-black"> бесплатные </span> купоны и промокоды <br />
+                    на скидки до <span class="bg-brand-yellow-light rounded-sm px-1 text-black">100%</span>
                 </p>
             </div>
         </section>

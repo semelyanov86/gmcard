@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
     <svg
-        :class="['text-brand-gray w-6 h-6 cursor-pointer hover:opacity-80', props.customClass]"
+        :class="['text-brand-gray h-6 w-6 cursor-pointer hover:opacity-80', props.customClass]"
         :id="props.id"
         viewBox="0 0 24 24"
         version="1.1"

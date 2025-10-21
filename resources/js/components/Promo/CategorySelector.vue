@@ -25,13 +25,13 @@ function setHover(category: CategoryModel, level: number) {
 function toggleCategory(categoryId: number) {
     const categoryIdStr = String(categoryId);
     const index = localSelectedCategories.value.indexOf(categoryIdStr);
-    
+
     if (index > -1) {
         localSelectedCategories.value.splice(index, 1);
     } else {
         localSelectedCategories.value.push(categoryIdStr);
     }
-    
+
     emit('update:selectedCategories', [...localSelectedCategories.value]);
 }
 
@@ -58,11 +58,11 @@ const selectedCategoriesNames = computed(() => {
         }
         return null;
     };
-    
+
     return localSelectedCategories.value
-        .map(id => findCategoryById(props.categories, id))
-        .filter(cat => cat !== null)
-        .map(cat => cat!.name);
+        .map((id) => findCategoryById(props.categories, id))
+        .filter((cat) => cat !== null)
+        .map((cat) => cat!.name);
 });
 </script>
 
@@ -84,9 +84,9 @@ const selectedCategoriesNames = computed(() => {
                     :class="{ 'bg-blue-700 text-white': hoveredPath[level]?.id === category.id }"
                 >
                     <div class="flex w-full items-center gap-3">
-                        <input 
-                            v-if="level >= 2" 
-                            type="checkbox" 
+                        <input
+                            v-if="level >= 2"
+                            type="checkbox"
                             :checked="isCategorySelected(category.id)"
                             @click.stop="toggleCategory(category.id)"
                         />
@@ -99,11 +99,7 @@ const selectedCategoriesNames = computed(() => {
         <div class="mx-8">
             <h3 class="mt-5 font-bold">Вы выбрали</h3>
             <div id="tag-container" class="flex flex-wrap gap-3 py-3">
-                <span 
-                    v-for="name in selectedCategoriesNames" 
-                    :key="name"
-                    class="rounded-md bg-slate-100 px-4 py-2"
-                >
+                <span v-for="name in selectedCategoriesNames" :key="name" class="rounded-md bg-slate-100 px-4 py-2">
                     {{ name }}
                 </span>
             </div>

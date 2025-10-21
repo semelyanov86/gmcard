@@ -6,6 +6,7 @@ import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import AddressContactBlock from '@/components/Promo/AddressContactBlock.vue';
 import CategorySelector from '@/components/Promo/CategorySelector.vue';
+import CityFilterSelector from '@/components/Promo/CityFilterSelector.vue';
 import ConditionsExampleModal from '@/components/Promo/ConditionsExampleModal.vue';
 import DiscountInputBlock from '@/components/Promo/DiscountInputBlock.vue';
 import FreeDeliveryBlock from '@/components/Promo/FreeDeliveryBlock.vue';
@@ -18,12 +19,11 @@ import PromoTitleInput from '@/components/Promo/PromoTitleInput.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
-import CityFilterSelector from '@/components/Promo/CityFilterSelector.vue';
-import ValidationAlert from '@/components/Promo/ValidationAlert.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
-import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
-import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
+import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
+import ValidationAlert from '@/components/Promo/ValidationAlert.vue';
+import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
@@ -74,7 +74,7 @@ const form = useForm({
     schedule: {
         enabled: false,
         days: [],
-        timeRange: { enabled: false, start: '00:00', end: '23:59' }
+        timeRange: { enabled: false, start: '00:00', end: '23:59' },
     },
     filter_city: '',
     city_ids: [] as number[],
@@ -216,7 +216,13 @@ function handleLaunch() {
                         <template #input>
                             <div class="relative">
                                 <label for="minimum_order" class="text-sm font-bold">Минимальная сумма заказа</label>
-                                <input v-model="form.minimum_order_amount" type="text" name="minimum_order" placeholder="1000" class="mt-3 w-full rounded-lg border-gray-300 pl-3 pr-8" />
+                                <input
+                                    v-model="form.minimum_order_amount"
+                                    type="text"
+                                    name="minimum_order"
+                                    placeholder="1000"
+                                    class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3"
+                                />
                                 <span class="absolute right-3 bottom-2 text-black/50">₽</span>
                             </div>
                         </template>
@@ -230,7 +236,13 @@ function handleLaunch() {
                         </template>
                         <template #input>
                             <label for="promo_code" class="text-sm font-bold">Код для скидки</label>
-                            <input v-model="form.promo_code" type="text" name="promo_code" placeholder="NJTON564YNN565N56" class="mt-3 w-full rounded-lg border-gray-300" />
+                            <input
+                                v-model="form.promo_code"
+                                type="text"
+                                name="promo_code"
+                                placeholder="NJTON564YNN565N56"
+                                class="mt-3 w-full rounded-lg border-gray-300"
+                            />
                         </template>
                     </TwoColumnFormBlock>
                     <FreeDeliveryBlock :show="showChetvertyi" />

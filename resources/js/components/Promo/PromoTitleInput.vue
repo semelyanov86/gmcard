@@ -23,4 +23,3 @@ const modelValue = defineModel<string>({ required: true });
         </div>
     </div>
 </template>
-

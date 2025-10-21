@@ -1,19 +1,19 @@
 <template>
-    <header id="header" class="flex h-[60px] w-full items-center bg-brand-dark">
+    <header id="header" class="bg-brand-dark flex h-[60px] w-full items-center">
         <div class="relative mx-auto flex w-[1140px] items-center justify-between 2xl:w-full 2xl:px-4">
             <div id="header" class="relative flex items-center">
                 <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип" />
                 </Link>
                 <a href="#"><h3 class="ml-3 text-xl font-bold text-white hover:border-b-2 hover:border-white">Скидки</h3></a>
-                <div class="ml-4 h-[60px] w-[1px] bg-brand-dark-blue"></div>
+                <div class="bg-brand-dark-blue ml-4 h-[60px] w-[1px]"></div>
                 <div class="relative ml-3 flex items-center">
                     <button @click="toggleServicesDropdown" class="block text-[15px] text-white hover:opacity-80" type="button">Все сервисы</button>
                     <img @click="toggleServicesDropdown" src="/images/png/icons/down.png" class="mr-1 ml-[10px] h-[5px] w-[8px] cursor-pointer" />
                     <div v-show="servicesDropdownOpen" @click="closeServicesDropdown" class="fixed inset-0 z-40"></div>
                     <div
                         v-show="servicesDropdownOpen"
-                        class="absolute top-[35px] -left-12 z-50 w-44 divide-y divide-gray-100 border-4 border-brand-blue-light bg-white shadow"
+                        class="border-brand-blue-light absolute top-[35px] -left-12 z-50 w-44 divide-y divide-gray-100 border-4 bg-white shadow"
                     >
                         <ul class="py-2 text-sm text-gray-700">
                             <li>
@@ -55,8 +55,8 @@
                 </button>
             </div>
             <ul id="header" class="relative flex list-none items-center md:hidden">
-                <li class="relative rounded-md bg-brand-yellow-dark px-3 py-2 hover:opacity-100 focus:ring-2 focus:ring-brand-yellow-dark">
-                    <a @click.prevent="openLoginModal('start')" href="#" class="cursor-pointer text-black hover:text-brand-orange" id="userAuth1"
+                <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
+                    <a @click.prevent="openLoginModal('start')" href="#" class="hover:text-brand-orange cursor-pointer text-black" id="userAuth1"
                         >Запустить акцию</a
                     >
                     <TriangleUpIcon
@@ -65,7 +65,7 @@
                         custom-class="absolute right-14 -bottom-8 h-7 w-6 text-white"
                     />
                 </li>
-                <div class="ml-4 h-[60px] w-[1px] bg-brand-dark-blue"></div>
+                <div class="bg-brand-dark-blue ml-4 h-[60px] w-[1px]"></div>
                 <li class="relative">
                     <a
                         @click.prevent="openLoginModal('login')"
@@ -83,12 +83,12 @@
                 <li>
                     <Link
                         :href="route('register')"
-                        class="hover: ml-3 rounded-md bg-brand-blue-dark px-3 py-2 text-[15px] text-white focus:ring-1 focus:ring-brand-blue-dark"
+                        class="hover: bg-brand-blue-dark focus:ring-brand-blue-dark ml-3 rounded-md px-3 py-2 text-[15px] text-white focus:ring-1"
                         >Регистрация</Link
                     >
                 </li>
-                <div class="ml-2 h-[60px] w-[1px] bg-brand-dark-blue"></div>
-                <li class="ml-3 rounded-md bg-brand-dark-navy px-2 py-2">
+                <div class="bg-brand-dark-blue ml-2 h-[60px] w-[1px]"></div>
+                <li class="bg-brand-dark-navy ml-3 rounded-md px-2 py-2">
                     <a href="#"><img src="/images/png/icons/reg.png" alt="Войти" /></a>
                 </li>
             </ul>
@@ -113,7 +113,7 @@
                             <label for="email" class="mb-1 text-sm text-gray-900">Email</label>
                             <input
                                 name="email"
-                                class="rounded-sm border-gray-300 outline-none focus:ring-1 focus:ring-brand-blue"
+                                class="focus:ring-brand-blue rounded-sm border-gray-300 outline-none focus:ring-1"
                                 type="email"
                                 placeholder="Адрес эл. почты или телефон"
                             />
@@ -124,7 +124,7 @@
                                 name="password"
                                 maxlength="16"
                                 minlength="8"
-                                class="rounded-sm border-gray-300 pr-[200px] outline-none focus:ring-1 focus:ring-brand-blue"
+                                class="focus:ring-brand-blue rounded-sm border-gray-300 pr-[200px] outline-none focus:ring-1"
                                 type="password"
                                 placeholder="Пароль"
                             />
@@ -134,17 +134,17 @@
                         </div>
                         <div class="mt-3 flex items-center justify-between">
                             <button
-                                class="rounded-md bg-brand-blue-darker px-16 py-3 text-base font-bold text-white focus:bg-brand-gray focus:ring-2 focus:ring-brand-gray"
+                                class="bg-brand-blue-darker focus:bg-brand-gray focus:ring-brand-gray rounded-md px-16 py-3 text-base font-bold text-white focus:ring-2"
                             >
                                 Войти
                             </button>
-                            <a href="/forgot_password.html" class="text-brand-gray hover:border-b-2 hover:border-b-brand-gray">Забыли пароль?</a>
+                            <a href="/forgot_password.html" class="text-brand-gray hover:border-b-brand-gray hover:border-b-2">Забыли пароль?</a>
                         </div>
                     </form>
                     <div class="my-3">
                         <div class="ml-3 flex items-center">
-                            <span class="w-full text-base text-brand-gray">Войти через соц. сети</span>
-                            <div class="h-[1px] w-[200px] bg-brand-gray opacity-50"></div>
+                            <span class="text-brand-gray w-full text-base">Войти через соц. сети</span>
+                            <div class="bg-brand-gray h-[1px] w-[200px] opacity-50"></div>
                         </div>
                         <div class="mt-2 flex items-center gap-2">
                             <a href="#"><TwitterIcon /></a>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex w-full items-center justify-between bg-brand-light-bg px-4 py-4">
+                <div class="bg-brand-light-bg flex w-full items-center justify-between px-4 py-4">
                     <span class="text-lg font-bold">Еще не в GM?</span>
                     <Link :href="route('register')" class="rounded-md bg-white px-12 py-3 text-base font-bold text-black shadow-lg hover:shadow-sm"
                         >Регистрация</Link
@@ -163,7 +163,7 @@
                 </div>
             </div>
             <div class="modal_acc">
-                <div id="dropdownAvatar" class="z-50 hidden w-[350px] border-4 border-brand-blue-light bg-white">
+                <div id="dropdownAvatar" class="border-brand-blue-light z-50 hidden w-[350px] border-4 bg-white">
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div class="flex items-center text-lg font-bold">
                             <img src="/assets/icons/he.png" class="mr-3 h-7 w-7" alt="" /> Николай Александрович
@@ -202,8 +202,8 @@
             </div>
         </div>
     </header>
-    <div v-show="mobileMenuOpen" class="max-w-full overflow-hidden bg-brand-darker">
-        <div class="animated-block w-full rounded-b-md bg-brand-dark-slate px-12 py-4 font-semibold shadow-lg">
+    <div v-show="mobileMenuOpen" class="bg-brand-darker max-w-full overflow-hidden">
+        <div class="animated-block bg-brand-dark-slate w-full rounded-b-md px-12 py-4 font-semibold shadow-lg">
             <ul class="flex flex-col">
                 <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-base text-white">Главная</a></li>
                 <li class="py-3 opacity-85 hover:opacity-100"><a href="#" class="text-base text-white">Пользователям</a></li>
@@ -217,8 +217,6 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import FacebookIcon from '@/components/primitives/icons/FacebookIcon.vue';
 import GoogleIcon from '@/components/primitives/icons/GoogleIcon.vue';
@@ -228,6 +226,8 @@ import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
 import TwitterIcon from '@/components/primitives/icons/TwitterIcon.vue';
 import UserIcon from '@/components/primitives/icons/UserIcon.vue';
 import VkIcon from '@/components/primitives/icons/VkIcon.vue';
+import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const loginModalOpen = ref(false);
 const clickedButton = ref<'start' | 'login' | 'mobile' | null>(null);

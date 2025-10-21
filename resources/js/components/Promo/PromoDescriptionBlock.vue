@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
 import { Ckeditor } from '@ckeditor/ckeditor5-vue';
-import { ClassicEditor, Bold, Essentials, Italic, Paragraph, Undo, Link, List, Heading } from 'ckeditor5';
+import { Bold, ClassicEditor, Essentials, Heading, Italic, Link, List, Paragraph, Undo } from 'ckeditor5';
+import { computed, ref } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 import 'ckeditor5/ckeditor5.css';
@@ -21,21 +21,21 @@ const textEditorOpen = ref(false);
 
 const localDescription = computed({
     get: () => props.description,
-    set: (value: string) => emit('update:description', value)
+    set: (value: string) => emit('update:description', value),
 });
 
 const localConditions = computed({
     get: () => props.conditions,
-    set: (value: string) => emit('update:conditions', value)
+    set: (value: string) => emit('update:conditions', value),
 });
 
 const editor = ClassicEditor;
 const editorConfig = {
     plugins: [Essentials, Bold, Italic, Paragraph, Undo, Link, List, Heading],
     toolbar: {
-        items: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'link', '|', 'bulletedList', 'numberedList']
+        items: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'link', '|', 'bulletedList', 'numberedList'],
     },
-    licenseKey: 'GPL'
+    licenseKey: 'GPL',
 };
 </script>
 

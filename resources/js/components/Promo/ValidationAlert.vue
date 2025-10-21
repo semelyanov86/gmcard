@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
 import InfoIcon from '@/components/primitives/icons/InfoIcon.vue';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const page = usePage();
 
@@ -24,14 +24,14 @@ function dismiss() {
     <div
         v-if="hasErrors"
         id="validationAlert"
-        class="fixed left-[40%] top-2 z-50 mb-4 rounded-md border-4 border-red-500 bg-white p-4 max-md:left-4 max-md:right-4"
+        class="fixed top-2 left-[40%] z-50 mb-4 rounded-md border-4 border-red-500 bg-white p-4 max-md:right-4 max-md:left-4"
     >
         <div class="flex items-center">
             <InfoIcon custom-class="mr-2 h-4 w-4 text-red-500" />
             <span class="sr-only">Ошибка</span>
             <h3 class="text-lg font-black text-red-500">Ошибка валидации!</h3>
         </div>
-        <div class="mb-4 mt-2 text-sm text-black">
+        <div class="mt-2 mb-4 text-sm text-black">
             <ul class="list-inside list-disc">
                 <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
             </ul>
@@ -40,11 +40,10 @@ function dismiss() {
             <button
                 type="button"
                 @click="dismiss"
-                class="focus:ring-red/20 rounded-lg border-2 border-red-500 bg-transparent px-3 py-1.5 text-center text-base font-medium text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-4"
+                class="focus:ring-red/20 rounded-lg border-2 border-red-500 bg-transparent px-3 py-1.5 text-center text-base font-medium text-red-500 hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none"
             >
                 Понятно
             </button>
         </div>
     </div>
 </template>
-

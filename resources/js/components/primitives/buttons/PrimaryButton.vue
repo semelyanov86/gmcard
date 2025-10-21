@@ -15,7 +15,7 @@ defineEmits<{
         @click="$emit('click')"
         :disabled="disabled"
         :class="[
-            'flex cursor-pointer items-center justify-center gap-3 rounded-md bg-brand-blue shadow-lg hover:opacity-90',
+            'bg-brand-blue flex cursor-pointer items-center justify-center gap-3 rounded-md shadow-lg hover:opacity-90',
             large ? 'w-full py-8 text-3xl font-bold' : 'h-14 w-60',
             disabled ? 'opacity-50' : '',
             fullWidth ? 'max-md:w-full' : '',
@@ -25,4 +25,3 @@ defineEmits<{
         <slot />
     </button>
 </template>
-

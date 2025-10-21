@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
     <svg
         fill="#fff"
-        :class="['w-6 h-6 opacity-10 hover:opacity-100', props.customClass]"
+        :class="['h-6 w-6 opacity-10 hover:opacity-100', props.customClass]"
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -27,4 +27,3 @@ const props = withDefaults(defineProps<Props>(), {
         />
     </svg>
 </template>
-

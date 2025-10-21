@@ -17,4 +17,3 @@ const props = withDefaults(defineProps<Props>(), {
         ></path>
     </svg>
 </template>
-

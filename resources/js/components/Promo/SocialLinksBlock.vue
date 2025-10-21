@@ -17,17 +17,12 @@ const isOpen = ref(false);
 
 const links = computed<Record<string, string[]>>(() =>
     Object.fromEntries(
-        props.socialNetworks.map((network) => [
-            network.id,
-            props.modelValue[network.id]?.length ? [...props.modelValue[network.id]] : [''],
-        ])
-    )
+        props.socialNetworks.map((network) => [network.id, props.modelValue[network.id]?.length ? [...props.modelValue[network.id]] : ['']]),
+    ),
 );
 
 const visibleNetworks = computed<Record<string, boolean>>(() =>
-    Object.fromEntries(
-        props.socialNetworks.map((network) => [network.id, links.value[network.id]?.some((link) => link.trim()) ?? false])
-    )
+    Object.fromEntries(props.socialNetworks.map((network) => [network.id, links.value[network.id]?.some((link) => link.trim()) ?? false])),
 );
 
 const showInstagramWarning = computed(() => visibleNetworks.value.ins && links.value.ins?.some((v) => v.trim()));
@@ -36,10 +31,7 @@ function updateLink(networkId: string, index: number, value: string) {
     const updated = { ...links.value };
     updated[networkId] = [...updated[networkId]];
     updated[networkId][index] = value;
-    emit(
-        'update:modelValue',
-        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
-    );
+    emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
 
 function toggleVisibility(networkId: string) {
@@ -51,19 +43,13 @@ function toggleVisibility(networkId: string) {
             updated[networkId] = [''];
         }
     }
-    emit(
-        'update:modelValue',
-        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
-    );
+    emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
 
 function addLink(networkId: string) {
     const updated = { ...links.value };
     updated[networkId] = [...updated[networkId], ''];
-    emit(
-        'update:modelValue',
-        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
-    );
+    emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
 
 function removeLink(networkId: string, index: number) {
@@ -73,10 +59,7 @@ function removeLink(networkId: string, index: number) {
     } else {
         updated[networkId] = [''];
     }
-    emit(
-        'update:modelValue',
-        Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)]))
-    );
+    emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
 </script>
 
@@ -107,19 +90,14 @@ function removeLink(networkId: string, index: number) {
             </div>
 
             <div class="mt-6">
-                <div
-                    v-for="network in socialNetworks"
-                    :key="`${network.id}-inputs`"
-                    v-show="visibleNetworks[network.id]"
-                    :id="`${network.id}Div`"
-                >
+                <div v-for="network in socialNetworks" :key="`${network.id}-inputs`" v-show="visibleNetworks[network.id]" :id="`${network.id}Div`">
                     <div
-                        v-for="(link, index) in (links[network.id] ?? [])"
+                        v-for="(link, index) in links[network.id] ?? []"
                         :key="`${network.id}-${index}`"
                         class="mt-4 flex flex-row items-center gap-4 max-md:flex-col max-md:items-start"
                     >
                         <div class="relative">
-                            <div class="absolute left-2 top-3 flex items-center">
+                            <div class="absolute top-3 left-2 flex items-center">
                                 <img :src="network.icon" :alt="network.name" />
                             </div>
                             <input
@@ -129,7 +107,7 @@ function removeLink(networkId: string, index: number) {
                                 class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
-                            <div class="left_del absolute left-96 top-1 h-9 w-0.5 bg-black/30"></div>
+                            <div class="left_del absolute top-1 left-96 h-9 w-0.5 bg-black/30"></div>
                             <TrashIcon
                                 @click="removeLink(network.id, index as number)"
                                 custom-class="left_delSvg absolute left-96 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"

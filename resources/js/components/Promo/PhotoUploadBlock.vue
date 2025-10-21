@@ -24,9 +24,7 @@ const photoModalOpen = ref(false);
             </div>
         </div>
         <div class="flex flex-wrap justify-between gap-2">
-            <div
-                class="file_upload files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-yellow-300"
-            >
+            <div class="file_upload files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-yellow-300">
                 <div id="file_block" class="relative flex h-full w-full flex-col items-center justify-center">
                     <h2 class="text-sm font-bold lg:text-base">Обложка (обязательно)</h2>
                     <label for="" class="text-sm text-gray-400">Файл не выбран</label>

@@ -22,4 +22,3 @@ const props = withDefaults(defineProps<Props>(), {
         </g>
     </svg>
 </template>
-

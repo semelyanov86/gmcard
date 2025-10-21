@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
 import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
+import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -183,7 +183,7 @@ onMounted(() => {
             </div>
         </div>
         <div class="drop_list absolute z-50 mt-3 hidden w-full flex-col bg-white shadow-lg">
-            <div class="z-[1] h-[16px] w-full bg-brand-yellow"></div>
+            <div class="bg-brand-yellow z-[1] h-[16px] w-full"></div>
             <div id="blocks_list" class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
                 <ul id="lists" class="relative z-10 mt-[10px] w-1/3 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li class="my-class" data-category="Грузоперевозки">
@@ -269,7 +269,7 @@ onMounted(() => {
                             <input
                                 type="text"
                                 placeholder="Найти категорию..."
-                                class="inputMenu w-full rounded-[10px] border border-brand-blue-alpha bg-brand-blue-alpha py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
+                                class="inputMenu border-brand-blue-alpha bg-brand-blue-alpha w-full rounded-[10px] border py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
                             />
                         </div>
                     </div>
@@ -277,97 +277,97 @@ onMounted(() => {
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                         <div class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">Заголовок категории</h3>
                             <ul class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li class="text-sm text-brand-text">Подраздел 1</li>
-                                <li class="text-sm text-brand-text">Подраздел 2</li>
-                                <li class="text-sm text-brand-text">Подраздел 3</li>
+                                <li class="text-brand-text text-sm">Подраздел 1</li>
+                                <li class="text-brand-text text-sm">Подраздел 2</li>
+                                <li class="text-brand-text text-sm">Подраздел 3</li>
                             </ul>
                         </div>
                     </div>

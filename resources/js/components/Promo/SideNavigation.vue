@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import type { UIMode } from '@/types';
+import { ref } from 'vue';
 
 withDefaults(defineProps<{ mode?: UIMode }>(), {
     mode: 'desktop',

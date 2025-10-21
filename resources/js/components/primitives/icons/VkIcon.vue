@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
         id="Capa_1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        :class="['w-6 h-6 opacity-10 hover:opacity-100', props.customClass]"
+        :class="['h-6 w-6 opacity-10 hover:opacity-100', props.customClass]"
         viewBox="0 0 94 94"
         xml:space="preserve"
     >
@@ -39,4 +39,3 @@ const props = withDefaults(defineProps<Props>(), {
         </g>
     </svg>
 </template>
-
