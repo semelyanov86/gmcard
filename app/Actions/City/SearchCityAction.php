@@ -15,9 +15,9 @@ final readonly class SearchCityAction
 {
     use AsAction;
 
-    private const MIN_QUERY_LENGTH = 2;
+    private const int MIN_QUERY_LENGTH = 2;
 
-    private const MAX_RESULTS = 20;
+    private const int MAX_RESULTS = 20;
 
     /**
      * @return CityData[]
