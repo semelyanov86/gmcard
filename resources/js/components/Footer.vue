@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import CalendarIcon from '@/components/primitives/icons/CalendarIcon.vue';
+import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
+import EmailIcon from '@/components/primitives/icons/EmailIcon.vue';
+import InstagramIcon from '@/components/primitives/icons/InstagramIcon.vue';
+import TelegramIcon from '@/components/primitives/icons/TelegramIcon.vue';
+import VkFooterIcon from '@/components/primitives/icons/VkFooterIcon.vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
+import '../../css/internal/landingBusiness.css';
 
 const props = defineProps<{
     contact: { email: string };
@@ -7,9 +14,9 @@ const props = defineProps<{
 </script>
 
 <template>
-    <section class="footer bg-[#0f1120]">
+    <section class="footer bg-brand-footer">
         <div class="container">
-            <footer class="relative overflow-hidden bg-[#101121]">
+            <footer class="bg-brand-footer-bg relative overflow-hidden">
                 <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
                     <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
@@ -86,13 +93,10 @@ const props = defineProps<{
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                             data-tooltip-target="tooltip-social"
                                             type="button"
-                                            ><img
-                                                src="/images/png/icons/vk.svg"
-                                                class="mr-[14px] h-5 w-5 opacity-50"
-                                                style="filter: brightness(1.5)"
-                                                alt="ВКонтакте"
-                                            />Вконтакте</a
                                         >
+                                            <VkFooterIcon custom-class="vk-icon-bright mr-[14px] opacity-50" />
+                                            Вконтакте
+                                        </a>
                                     </li>
                                     <li>
                                         <a
@@ -100,12 +104,10 @@ const props = defineProps<{
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                             data-tooltip-target="tooltip-social"
                                             type="button"
-                                            ><img
-                                                class="mr-[14px] h-5 w-5 text-white opacity-50"
-                                                src="/images/png/icons/tg.svg"
-                                                alt="Telegram"
-                                            />Telegramm</a
                                         >
+                                            <TelegramIcon custom-class="mr-[14px] text-white opacity-50" />
+                                            Telegramm
+                                        </a>
                                     </li>
                                     <li>
                                         <a
@@ -113,8 +115,9 @@ const props = defineProps<{
                                             class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
                                             data-tooltip-target="tooltip-social"
                                             type="button"
-                                            ><img class="h-5 w-5 text-white opacity-50" src="/images/png/icons/insta.svg" alt="Instagram"
-                                        /></a>
+                                        >
+                                            <InstagramIcon custom-class="text-white opacity-50" />
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -152,18 +155,7 @@ const props = defineProps<{
                                                                 class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                 id="close_Modal"
                                                             >
-                                                                <svg
-                                                                    class="h-5 w-5"
-                                                                    fill="currentColor"
-                                                                    viewBox="0 0 20 20"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                >
-                                                                    <path
-                                                                        fill-rule="evenodd"
-                                                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                                        clip-rule="evenodd"
-                                                                    ></path>
-                                                                </svg>
+                                                                <CloseIcon custom-class="h-5 w-5" />
                                                             </button>
                                                         </div>
                                                         <div class="space-y-1 p-6">
@@ -184,20 +176,7 @@ const props = defineProps<{
                                                                         <div
                                                                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                                                                         >
-                                                                            <svg
-                                                                                aria-hidden="true"
-                                                                                class="h-5 w-5 text-gray-500 dark:text-gray-400"
-                                                                                fill="currentColor"
-                                                                                viewBox="0 0 20 20"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                            >
-                                                                                <path
-                                                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                                                                                ></path>
-                                                                                <path
-                                                                                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                                                                                ></path>
-                                                                            </svg>
+                                                                            <EmailIcon custom-class="text-gray-500 dark:text-gray-400" />
                                                                         </div>
                                                                         <input
                                                                             type="text"
@@ -222,19 +201,7 @@ const props = defineProps<{
                                                                         <div
                                                                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                                                                         >
-                                                                            <svg
-                                                                                aria-hidden="true"
-                                                                                class="h-5 w-5 text-gray-500 dark:text-gray-400"
-                                                                                fill="currentColor"
-                                                                                viewBox="0 0 20 20"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                            >
-                                                                                <path
-                                                                                    fill-rule="evenodd"
-                                                                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                                    clip-rule="evenodd"
-                                                                                ></path>
-                                                                            </svg>
+                                                                            <CalendarIcon custom-class="text-gray-500 dark:text-gray-400" />
                                                                         </div>
                                                                         <input
                                                                             datepicker
@@ -495,11 +462,13 @@ const props = defineProps<{
                             <span class="text-sm text-white opacity-60">GM 2014 - 2025</span>
                         </div>
                         <ul class="partner_link flex items-center">
-                            <li class="relative z-10 font-bold text-[#eacc14] hover:opacity-80">
-                                <a class="text-[#eacc14]" href="#">+ Партнерская программа</a>
+                            <li class="text-brand-yellow-darker relative z-10 font-bold hover:opacity-80">
+                                <a class="text-brand-yellow-darker" href="#">+ Партнерская программа</a>
                             </li>
                             <li class="mx-5 h-[30px] w-[1px] bg-white opacity-10"></li>
-                            <li class="font-bold text-[#eacc14] hover:opacity-80"><a class="text-[#eacc14]" href="#">+ Добавить магазин</a></li>
+                            <li class="text-brand-yellow-darker font-bold hover:opacity-80">
+                                <a class="text-brand-yellow-darker" href="#">+ Добавить магазин</a>
+                            </li>
                         </ul>
                         <div
                             class="flex h-[39px] w-[141px] items-center justify-center gap-2 rounded-lg ring-1 ring-white/30 hover:ring-white"
@@ -517,4 +486,8 @@ const props = defineProps<{
     </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.vk-icon-bright {
+    filter: brightness(1.5);
+}
+</style>

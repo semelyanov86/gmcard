@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int|null $parent_id
+ * @property bool $is_starred
  */
 class Category extends Model
 {
@@ -22,6 +23,8 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
+        'is_starred',
+        'parent_id',
     ];
 
     protected $guarded = [
@@ -52,5 +55,12 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'is_starred' => 'boolean',
+        ];
     }
 }
