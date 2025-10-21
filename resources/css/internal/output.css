@@ -6894,3 +6894,10 @@ a {
     width: 10rem;
     height: 10rem;
 }
+
+/* Mobile styles */
+@media(max-width:768px) {
+    .promo_sections_btn {
+        background-color: #FAE115 !important;
+    }
+}

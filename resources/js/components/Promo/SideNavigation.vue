@@ -20,7 +20,7 @@ const menuItems = [
 
 <template>
     <div v-if="mode === 'mobile'" class="relative hidden flex-col" id="mainBlock">
-        <button @click="isOpen = !isOpen" class="z-50 h-12 w-full rounded-md bg-yellow-300 shadow-2xl">Мои разделы</button>
+        <button @click="isOpen = !isOpen" class="promo_sections_btn z-50 h-12 w-full rounded-md bg-yellow-300 shadow-2xl">Мои разделы</button>
         <div v-show="isOpen" class="z-10 -mt-1 rounded-b-2xl bg-white">
             <ul class="flex w-full flex-col">
                 <template v-for="(item, index) in menuItems" :key="index">
