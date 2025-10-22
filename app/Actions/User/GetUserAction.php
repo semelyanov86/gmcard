@@ -41,4 +41,3 @@ final readonly class GetUserAction
         ]);
     }
 }
-

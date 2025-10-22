@@ -41,7 +41,7 @@ import type {
     WeekdayModel,
 } from '@/types';
 import { useForm, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
 const props = defineProps<{
