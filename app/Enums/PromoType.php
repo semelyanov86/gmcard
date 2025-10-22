@@ -21,4 +21,18 @@ enum PromoType: string
     {
         return array_column(self::cases(), 'value', 'value');
     }
+
+    public static function fromId(int $id): self
+    {
+        return match ($id) {
+            1 => self::SIMPLE,
+            2 => self::COUPON,
+            3 => self::GIFT,
+            4 => self::ONE_PLUS_ONE,
+            5 => self::TWO_PLUS_ONE,
+            6 => self::CASHBACK,
+            7 => self::KONKURS,
+            default => throw new \ValueError("Invalid promo type id: $id"),
+        };
+    }
 }
