@@ -24,7 +24,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthCustomLayout title="Зарегистрируйтесь и подключитесь к системе">
+    <AuthCustomLayout>
         <div class="mt-5 flex flex-col items-center">
             <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
             <ul class="mt-5 flex items-center gap-8">

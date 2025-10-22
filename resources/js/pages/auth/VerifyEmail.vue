@@ -16,7 +16,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthCustomLayout title="Подтвердите email">
+    <AuthCustomLayout>
         <div v-if="status === 'verification-link-sent'" class="mt-6 mb-4 text-center text-sm font-medium text-green-600">
             Новое письмо с подтверждением отправлено на указанный при регистрации email адрес.
         </div>

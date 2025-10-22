@@ -20,7 +20,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthCustomLayout title="Подтвердите пароль">
+    <AuthCustomLayout>
         <p class="mt-10 w-full text-lg">Это безопасная область приложения. Пожалуйста, подтвердите свой пароль, чтобы продолжить.</p>
         <form @submit.prevent="submit" class="flex w-full flex-col">
             <div class="relative mt-5 flex w-full flex-col">

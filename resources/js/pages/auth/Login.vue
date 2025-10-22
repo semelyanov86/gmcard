@@ -25,7 +25,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthCustomLayout title="Войдите в свой аккаунт">
+    <AuthCustomLayout>
         <div v-if="status" class="mt-6 mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
         </div>
