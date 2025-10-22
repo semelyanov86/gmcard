@@ -8,7 +8,10 @@ use App\Contracts\VtigerCrmInterface;
 use App\Data\PopUpData;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class PopupFormAction
+/**
+ * @method static void run(PopUpData $dto)
+ */
+final readonly class PopupFormAction
 {
     use AsAction;
 

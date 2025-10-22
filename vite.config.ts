@@ -26,4 +26,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, './resources/js'),
         },
     },
+    optimizeDeps: {
+        include: ['ckeditor5', '@ckeditor/ckeditor5-vue'],
+    },
 });
