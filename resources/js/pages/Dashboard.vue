@@ -29,7 +29,7 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                                 <span class="text-base font-medium">Menu</span>
                                 <div class="mt-3 grid grid-cols-1 gap-2">
                                     <Link
-                                        :href="route('home')"
+                                        :href="route('business.landing')"
                                         class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
                                         >Главная</Link
                                     >

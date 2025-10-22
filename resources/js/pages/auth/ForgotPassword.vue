@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
-import TextLink from '@/components/TextLink.vue';
 import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 import { useForm } from '@inertiajs/vue3';
 
