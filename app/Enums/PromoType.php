@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use ValueError;
+
 enum PromoType: string
 {
     case SIMPLE = 'Простая акция';
@@ -32,7 +34,7 @@ enum PromoType: string
             5 => self::TWO_PLUS_ONE,
             6 => self::CASHBACK,
             7 => self::KONKURS,
-            default => throw new \ValueError("Invalid promo type id: $id"),
+            default => throw new ValueError("Invalid promo type id: $id"),
         };
     }
 }
