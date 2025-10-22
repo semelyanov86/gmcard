@@ -7,6 +7,7 @@ namespace App\Data;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use SensitiveParameter;
+use Spatie\LaravelData\Attributes\Hidden;
 use Spatie\LaravelData\Data;
 
 final class UserData extends Data
@@ -15,6 +16,7 @@ final class UserData extends Data
         public string $name,
         public string $email,
         #[SensitiveParameter]
+        #[Hidden]
         public string $password,
         public ?string $last_name = null,
         public ?int $age = null,

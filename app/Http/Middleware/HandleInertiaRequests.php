@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Actions\User\GetUserAction;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -53,6 +54,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'userData' => $request->user() ? GetUserAction::run($request->user()->id) : null,
             'ziggy' => [
                 ...(new Ziggy())->toArray(),
                 'location' => $request->url(),
