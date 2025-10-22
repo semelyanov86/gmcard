@@ -15,4 +15,3 @@ export interface UserDataModel {
     gender: string | null;
     code: string | null;
 }
-

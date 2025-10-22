@@ -21,6 +21,11 @@ final readonly class GetUserAction
             ->with('roles')
             ->findOrFail($id);
 
+        /** @var \Illuminate\Support\Carbon|null $birthDate */
+        $birthDate = $user->birth_date;
+        /** @var \Spatie\Permission\Models\Role|null $role */
+        $role = $user->roles->first();
+
         return UserData::from([
             'name' => $user->name,
             'email' => $user->email,
@@ -34,8 +39,8 @@ final readonly class GetUserAction
             'job_status' => $user->job_status,
             'city' => $user->city,
             'country' => $user->country,
-            'birth_date' => $user->birth_date?->format('Y-m-d'),
-            'role' => $user->roles->first()?->name,
+            'birth_date' => $birthDate?->format('Y-m-d'),
+            'role' => $role?->name,
             'gender' => $user->gender,
             'code' => $user->code,
         ]);
