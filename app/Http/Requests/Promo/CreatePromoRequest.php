@@ -23,7 +23,7 @@ class CreatePromoRequest extends FormRequest
             'promo_type_id' => ['required', 'integer', Rule::in([1, 2, 3, 4, 5, 6, 7])],
             'title' => ['required', 'string', 'max:64'],
             'description' => ['required', 'string'],
-            'conditions' => ['required', 'string'],
+            'conditions' => ['nullable', 'string'],
             'discount_amount' => ['nullable', 'string', 'max:10'],
             'discount_currency' => ['nullable', 'string', 'in:%,₽'],
             'cashback_amount' => ['nullable', 'string', 'max:10'],

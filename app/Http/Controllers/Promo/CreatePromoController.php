@@ -6,9 +6,13 @@ namespace App\Http\Controllers\Promo;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
+use App\Actions\Promo\CreatePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
+use App\Data\CreatePromoData;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Promo\CreatePromoRequest;
 use App\Settings\GeneralSettings;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -32,5 +36,15 @@ class CreatePromoController extends Controller
             'socialNetworks' => config('promo.social_networks'),
             'userBalance' => $user->balance ?? 0,
         ]);
+    }
+
+    public function store(CreatePromoRequest $request): RedirectResponse
+    {
+        $dto = CreatePromoData::from($request->validated());
+
+        $promo = CreatePromoAction::run($dto);
+
+        return redirect()
+            ->route('promos.create');
     }
 }

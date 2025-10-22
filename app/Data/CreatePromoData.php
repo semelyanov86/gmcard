@@ -12,11 +12,11 @@ final class CreatePromoData extends Data
         public int $promo_type_id,
         public string $title,
         public string $description,
-        public string $conditions,
         public int $duration_days,
         public bool $agree_to_terms,
         /** @var string[] */
         public array $category_ids,
+        public ?string $conditions = null,
         public ?string $discount_amount = null,
         public ?string $discount_currency = null,
         public ?string $cashback_amount = null,
