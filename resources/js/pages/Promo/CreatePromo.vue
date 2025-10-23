@@ -22,7 +22,6 @@ import SideNavigation from '@/components/Promo/SideNavigation.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
-import ValidationAlert from '@/components/Promo/ValidationAlert.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
@@ -41,8 +40,25 @@ import type {
     WeekdayModel,
 } from '@/types';
 import { useForm, usePage } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import '../../../css/internal/output.css';
+
+const page = usePage<AppPageProps>();
+const successMessage = ref<string | null>(null);
+
+// Отслеживаем flash сообщения
+watch(
+    () => page.props.flash,
+    (flash) => {
+        if (flash?.success) {
+            successMessage.value = flash.success as string;
+            setTimeout(() => {
+                successMessage.value = null;
+            }, 5000);
+        }
+    },
+    { immediate: true, deep: true }
+);
 
 const props = defineProps<{
     contact: ContactModel;
@@ -56,7 +72,6 @@ const props = defineProps<{
     userBalance: number;
 }>();
 
-const page = usePage<AppPageProps>();
 const userData = page.props.userData;
 
 const form = useForm({
@@ -72,7 +87,7 @@ const form = useForm({
     minimum_order_amount: '',
     promo_code: '',
     free_delivery: false,
-    duration_days: 0,
+    duration_days: 1,
     show_in_banner: false,
     addresses: [],
     schedule: {
@@ -105,15 +120,20 @@ function handleSaveDraft() {
         ...data,
         is_draft: true,
     })).post(route('promos.store'), {
-        preserveScroll: true,
+        preserveScroll: false,
+        onSuccess: () => {
+            form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
     });
 }
 
 function handleLaunch() {
     form.post(route('promos.store'), {
-        preserveScroll: true,
+        preserveScroll: false,
         onSuccess: () => {
             form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         },
     });
 }
@@ -123,6 +143,32 @@ function handleLaunch() {
     <Header :userData="userData" />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
+        
+        <!-- Уведомление об успехе -->
+        <Transition
+            enter-active-class="transition ease-out duration-300"
+            enter-from-class="translate-x-full opacity-0"
+            enter-to-class="translate-x-0 opacity-100"
+            leave-active-class="transition ease-in duration-200"
+            leave-from-class="translate-x-0 opacity-100"
+            leave-to-class="translate-x-full opacity-0"
+        >
+            <div 
+                v-if="successMessage" 
+                class="fixed top-4 right-4 z-50 max-w-md rounded-lg bg-green-500 px-6 py-4 text-white shadow-lg"
+            >
+                <div class="flex items-center gap-3">
+                    <svg class="h-6 w-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <p class="font-medium">{{ successMessage }}</p>
+                    <button @click="successMessage = null" class="ml-auto hover:opacity-80">
+                        <CloseIcon custom-class="h-5 w-5" />
+                    </button>
+                </div>
+            </div>
+        </Transition>
+        
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
@@ -203,12 +249,14 @@ function handleLaunch() {
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
                         v-model:amount="form.discount_amount as string"
                         v-model:currency="form.discount_currency as string"
+                        :error="form.errors.discount_amount || form.errors.discount_currency"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
                         v-model:amount="form.cashback_amount as string"
                         v-model:currency="form.cashback_currency as string"
+                        :error="form.errors.cashback_amount || form.errors.cashback_currency"
                     />
                     <TwoColumnFormBlock :show="showTretiy" class="m-8" id="tretiy">
                         <template #description>
@@ -226,8 +274,12 @@ function handleLaunch() {
                                     name="minimum_order"
                                     placeholder="1000"
                                     class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3"
+                                    :class="{ 'border-red-500': form.errors.minimum_order_amount }"
                                 />
                                 <span class="absolute right-3 bottom-2 text-black/50">₽</span>
+                                <p v-if="form.errors.minimum_order_amount" class="mt-2 text-sm text-red-600">
+                                    {{ form.errors.minimum_order_amount }}
+                                </p>
                             </div>
                         </template>
                     </TwoColumnFormBlock>
@@ -246,23 +298,27 @@ function handleLaunch() {
                                 name="promo_code"
                                 placeholder="NJTON564YNN565N56"
                                 class="mt-3 w-full rounded-lg border-gray-300"
+                                :class="{ 'border-red-500': form.errors.promo_code }"
                             />
+                            <p v-if="form.errors.promo_code" class="mt-2 text-sm text-red-600">{{ form.errors.promo_code }}</p>
                         </template>
                     </TwoColumnFormBlock>
                     <FreeDeliveryBlock :show="showChetvertyi" />
-                    <PromoTitleInput v-model="form.title" />
+                    <PromoTitleInput v-model="form.title" :error="form.errors.title" />
                     <PhotoUploadBlock />
-                    <YouTubeBlock v-model="form.youtube_url as string" />
+                    <YouTubeBlock v-model="form.youtube_url as string" :error="form.errors.youtube_url" />
                     <PromoDescriptionBlock
                         v-model:description="form.description as string"
                         v-model:conditions="form.conditions as string"
+                        :descriptionError="form.errors.description"
+                        :conditionsError="form.errors.conditions"
                         @openConditionsModal="conditionsModalOpen = true"
                     />
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
                     <SocialLinksBlock v-model="form.social_links as Record<string, string[]>" :socialNetworks="props.socialNetworks" />
                     <AddressContactBlock />
                     <ScheduleBlock v-model="form.schedule as unknown as ScheduleModel" :weekdays="props.weekdays" />
-                    <GeographySelector v-model="form.city_ids as number[]" :cities="props.cities" />
+                    <GeographySelector v-model="form.city_ids as number[]" :cities="props.cities" :error="form.errors.city_ids" />
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">К каким категориям относится ваша акция?</h2>
@@ -276,19 +332,34 @@ function handleLaunch() {
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids as string[]" />
+                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids as string[]" :error="form.errors.category_ids" />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
                         <p class="w-96 text-black/50 max-md:mb-4 max-md:w-full">
                             <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.
                         </p>
-                        <div class="flex items-center gap-4">
-                            <div class="relative flex w-44 items-center gap-2 max-md:w-full">
-                                <span class="text-xs opacity-80">0</span>
-                                <input id="slider" class="w-36" type="range" min="0" max="30" value="0" />
-                                <div id="slider-value" class="slider-value">0</div>
-                                <span class="text-xs opacity-80">30</span>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-4">
+                                <div class="relative flex w-44 items-center gap-2 max-md:w-full">
+                                    <span class="text-xs opacity-80">1</span>
+                                    <input 
+                                        v-model.number="form.duration_days" 
+                                        class="w-36" 
+                                        type="range" 
+                                        min="1" 
+                                        max="30" 
+                                    />
+                                    <span class="text-xs opacity-80">30</span>
+                                </div>
+                                <input 
+                                    v-model.number="form.duration_days" 
+                                    type="number" 
+                                    min="1" 
+                                    max="30" 
+                                    class="w-16 rounded-md border border-gray-300 py-2 text-center text-lg"
+                                    :class="{ 'border-red-500': form.errors.duration_days }"
+                                />
                             </div>
-                            <div class="w-12 rounded-md border py-2 text-center text-lg" id="slider_value">0</div>
+                            <p v-if="form.errors.duration_days" class="text-sm text-red-600">{{ form.errors.duration_days }}</p>
                         </div>
                     </div>
                     <div class="mt-8 flex flex-row items-start justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="pyatnadsat">
@@ -336,6 +407,5 @@ function handleLaunch() {
             </div>
         </div>
     </section>
-    <ValidationAlert />
     <Footer :contact="contact"></Footer>
 </template>

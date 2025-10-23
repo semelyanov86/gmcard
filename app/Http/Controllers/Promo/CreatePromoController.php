@@ -34,17 +34,27 @@ class CreatePromoController extends Controller
             'defaultDescription' => config('promo.default_description'),
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
-            'userBalance' => $user->balance ?? 0,
+            'userBalance' => $user->balance?->toFloat() ?? 0,
         ]);
     }
 
     public function store(CreatePromoRequest $request): RedirectResponse
     {
-        $dto = CreatePromoData::from($request->validated());
+        $validated = $request->validated();
+        
+        $dto = CreatePromoData::from([
+            ...$validated,
+            'user_id' => auth()->id(),
+        ]);
 
         $promo = CreatePromoAction::run($dto);
 
+        $message = $validated['is_draft'] ?? false
+            ? 'Акция сохранена как черновик'
+            : 'Акция успешно создана и отправлена на модерацию';
+
         return redirect()
-            ->route('promos.create');
+            ->route('promos.create')
+            ->with('success', $message);
     }
 }

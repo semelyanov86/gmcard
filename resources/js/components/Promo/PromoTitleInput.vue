@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const modelValue = defineModel<string>({ required: true });
+
+defineProps<{
+    error?: string;
+}>();
+
+const remainingChars = computed(() => 64 - (modelValue.value?.length || 0));
 </script>
 
 <template>
@@ -13,13 +21,13 @@ const modelValue = defineModel<string>({ required: true });
             <input
                 v-model="modelValue"
                 type="text"
-                oninput="countDown(event)"
                 class="mt-3 w-full rounded-lg border-gray-300"
+                :class="{ 'border-red-500': error }"
                 placeholder="Скидки до 30% в Desigual! Зарядись энергией Desigual!"
-                id="textSymbol"
                 maxlength="64"
             />
-            <span id="count" class="absolute right-3 bottom-2.5 font-bold text-blue-600">64</span>
+            <span class="absolute right-3 bottom-2.5 font-bold text-blue-600">{{ remainingChars }}</span>
         </div>
+        <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>
     </div>
 </template>

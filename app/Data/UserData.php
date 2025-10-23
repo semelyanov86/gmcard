@@ -53,7 +53,7 @@ final class UserData extends Data
             'last_name' => $user->last_name,
             'age' => $user->age,
             'id' => $user->id,
-            'balance' => $user->getRawOriginal('balance'),
+            'balance' => $user->balance?->toFloat(),
             'virtual_balance' => $user->getAttributes()['virtual_balance'] ?? null,
             'job' => $user->job,
             'job_status' => $user->job_status,

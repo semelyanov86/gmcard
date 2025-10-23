@@ -9,6 +9,8 @@ import 'ckeditor5/ckeditor5.css';
 const props = defineProps<{
     description: string;
     conditions: string;
+    descriptionError?: string;
+    conditionsError?: string;
 }>();
 
 const emit = defineEmits<{
@@ -43,6 +45,7 @@ const editorConfig = {
     <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 max-md:p-4">
         <h3 class="mb-4 font-bold">Описание акции</h3>
         <Ckeditor v-model="localDescription" :editor="editor" :config="editorConfig" />
+        <p v-if="descriptionError" class="mt-2 text-sm text-red-600">{{ descriptionError }}</p>
         <div class="my-6">
             <div class="h-px w-full bg-black/30"></div>
             <div class="my-4 flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
@@ -58,6 +61,7 @@ const editorConfig = {
         <div v-show="textEditorOpen" class="mb-4">
             <div class="h-px w-full bg-black/30"></div>
             <Ckeditor v-model="localConditions" :editor="editor" :config="editorConfig" />
+            <p v-if="conditionsError" class="mt-2 text-sm text-red-600">{{ conditionsError }}</p>
         </div>
     </div>
 </template>
