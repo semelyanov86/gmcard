@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('label');
             $table->string('url');
-            $table->enum('type', ['navbar', 'sidebar']);
+            $table->string('type');
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
