@@ -51,13 +51,7 @@ final readonly class CreatePromoAction
                 'free_delivery_from' => 0,
             ]);
 
-            $promo->categories()->sync($dto->categoryIds);
-            $promo->cities()->sync($dto->cityIds);
-
-            if ($dto->addresses && ! empty($dto->addresses)) {
-                $addressIds = array_column($dto->addresses, 'id');
-                $promo->addresses()->sync($addressIds);
-            }
+            $this->syncRelations($promo, $dto);
 
             return $promo;
         });
@@ -75,6 +69,17 @@ final readonly class CreatePromoAction
             7 => PromoType::KONKURS,
             default => PromoType::SIMPLE,
         };
+    }
+
+    private function syncRelations(Promo $promo, CreatePromoData $dto): void
+    {
+        $promo->categories()->sync($dto->categoryIds);
+        $promo->cities()->sync($dto->cityIds);
+
+        if ($dto->addresses && ! empty($dto->addresses)) {
+            $addressIds = array_column($dto->addresses, 'id');
+            $promo->addresses()->sync($addressIds);
+        }
     }
 
     private function getDiscount(CreatePromoData $dto, PromoType $type): ?string
