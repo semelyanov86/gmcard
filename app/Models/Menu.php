@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\MenuType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -57,6 +58,7 @@ class Menu extends Model
     protected function casts(): array
     {
         return [
+            'type' => MenuType::class,
             'is_active' => 'boolean',
             'order' => 'integer',
         ];

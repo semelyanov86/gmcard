@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Menus\Schemas;
 
+use App\Enums\MenuType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -29,8 +30,8 @@ class MenuForm
                 Select::make('type')
                     ->label('Тип меню')
                     ->options([
-                        'navbar' => 'Верхнее меню (NavBar)',
-                        'sidebar' => 'Боковое меню (Sidebar)',
+                        MenuType::NAVBAR->value => 'Верхнее меню (NavBar)',
+                        MenuType::SIDEBAR->value => 'Боковое меню (Sidebar)',
                     ])
                     ->required()
                     ->native(false),

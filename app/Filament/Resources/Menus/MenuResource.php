@@ -23,9 +23,9 @@ class MenuResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $modelLabel = 'Пункт меню';
+    protected static ?string $modelLabel = 'Menu Item';
 
-    protected static ?string $pluralModelLabel = 'Меню';
+    protected static ?string $pluralModelLabel = 'Menu';
 
     protected static ?int $navigationSort = 10;
 

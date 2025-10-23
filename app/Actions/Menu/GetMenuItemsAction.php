@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Actions\Menu;
 
 use App\Data\MenuData;
+use App\Enums\MenuType;
 use App\Models\Menu;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static MenuData[] run(string $type)
+ * @method static MenuData[] run(MenuType $type)
  */
 final readonly class GetMenuItemsAction
 {
@@ -18,10 +19,10 @@ final readonly class GetMenuItemsAction
     /**
      * @return MenuData[]
      */
-    public function handle(string $type): array
+    public function handle(MenuType $type): array
     {
         $menuItems = Menu::active()
-            ->byType($type)
+            ->byType($type->value)
             ->ordered()
             ->get();
 

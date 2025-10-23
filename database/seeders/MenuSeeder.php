@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\MenuType;
 use App\Models\Menu;
 use Illuminate\Database\Seeder;
 
@@ -26,7 +27,7 @@ class MenuSeeder extends Seeder
             Menu::query()->create([
                 'label' => $item['label'],
                 'url' => $item['url'],
-                'type' => 'navbar',
+                'type' => MenuType::NAVBAR,
                 'order' => $item['order'],
                 'is_active' => true,
             ]);
@@ -45,7 +46,7 @@ class MenuSeeder extends Seeder
             Menu::query()->create([
                 'label' => $item['label'],
                 'url' => $item['url'],
-                'type' => 'sidebar',
+                'type' => MenuType::SIDEBAR,
                 'order' => $item['order'],
                 'is_active' => true,
             ]);

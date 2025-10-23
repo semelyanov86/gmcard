@@ -8,6 +8,7 @@ use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\GetPromoTypesAction;
+use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
@@ -32,8 +33,8 @@ class CreatePromoController extends Controller
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
             'userBalance' => $user->balance ?? 0,
-            'navbarMenu' => GetMenuItemsAction::run('navbar'),
-            'sidebarMenu' => GetMenuItemsAction::run('sidebar'),
+            'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
+            'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
         ]);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Menus\Tables;
 
+use App\Enums\MenuType;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -30,15 +31,13 @@ class MenusTable
                 TextColumn::make('type')
                     ->label('Тип')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'navbar' => 'info',
-                        'sidebar' => 'success',
-                        default => 'gray',
+                    ->color(fn (MenuType $state): string => match ($state) {
+                        MenuType::NAVBAR => 'info',
+                        MenuType::SIDEBAR => 'success',
                     })
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
-                        'navbar' => 'NavBar',
-                        'sidebar' => 'Sidebar',
-                        default => $state,
+                    ->formatStateUsing(fn (MenuType $state): string => match ($state) {
+                        MenuType::NAVBAR => 'NavBar',
+                        MenuType::SIDEBAR => 'Sidebar',
                     })
                     ->sortable(),
                 TextColumn::make('order')
@@ -64,8 +63,8 @@ class MenusTable
                 SelectFilter::make('type')
                     ->label('Тип меню')
                     ->options([
-                        'navbar' => 'NavBar',
-                        'sidebar' => 'Sidebar',
+                        MenuType::NAVBAR->value => 'NavBar',
+                        MenuType::SIDEBAR->value => 'Sidebar',
                     ]),
                 SelectFilter::make('is_active')
                     ->label('Статус')
