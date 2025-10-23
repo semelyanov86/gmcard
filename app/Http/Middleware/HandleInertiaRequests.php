@@ -47,14 +47,21 @@ class HandleInertiaRequests extends Middleware
         $str = Inspiring::quotes()->random();
         [$message, $author] = str($str)->explode('-');
 
+        $user = $request->user();
+
+        $userData = null;
+        if ($user && ! $request->routeIs('logout')) {
+            $userData = UserData::fromModel($user, loadRoles: false);
+        }
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'quote' => ['message' => mb_trim((string) $message), 'author' => mb_trim((string) $author)],
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user,
             ],
-            'userData' => $request->user() ? UserData::fromModel($request->user()) : null,
+            'userData' => $userData,
             'ziggy' => [
                 ...(new Ziggy())->toArray(),
                 'location' => $request->url(),

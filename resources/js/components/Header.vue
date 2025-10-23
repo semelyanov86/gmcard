@@ -106,7 +106,11 @@ function toggleMobileMenu() {
             </div>
             <ul id="header" class="relative flex list-none items-center md:hidden">
                 <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
-                    <a @click.prevent="openLoginModal(LoginButtonType.Start)" href="#" class="hover:text-brand-orange cursor-pointer text-black" id="userAuth1"
+                    <a
+                        @click.prevent="openLoginModal(LoginButtonType.Start)"
+                        href="#"
+                        class="hover:text-brand-orange cursor-pointer text-black"
+                        id="userAuth1"
                         >Запустить акцию</a
                     >
                     <TriangleUpIcon

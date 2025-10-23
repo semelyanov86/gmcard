@@ -5,4 +5,3 @@ export const LoginButtonType = {
 } as const;
 
 export type LoginButtonType = (typeof LoginButtonType)[keyof typeof LoginButtonType];
-

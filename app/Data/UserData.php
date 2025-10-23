@@ -7,9 +7,11 @@ namespace App\Data;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use SensitiveParameter;
 use Spatie\LaravelData\Attributes\Hidden;
 use Spatie\LaravelData\Data;
+use Spatie\Permission\Models\Role;
 
 final class UserData extends Data
 {
@@ -34,16 +36,15 @@ final class UserData extends Data
         public ?string $code = null,
     ) {}
 
-    public static function fromModel(User $user): self
+    public static function fromModel(User $user, bool $loadRoles = true): self
     {
-        if (! $user->relationLoaded('roles')) {
-            $user->load('roles');
-        }
+        /** @var Role|null $role */
+        $role = $user->relationLoaded('roles')
+            ? $user->roles->first()
+            : ($loadRoles ? $user->roles()->first() : null);
 
-        /** @var \Illuminate\Support\Carbon|null $birthDate */
+        /** @var Carbon|null $birthDate */
         $birthDate = $user->birth_date;
-        /** @var \Spatie\Permission\Models\Role|null $role */
-        $role = $user->roles->first();
 
         return self::from([
             'name' => $user->name,
@@ -53,7 +54,7 @@ final class UserData extends Data
             'age' => $user->age,
             'id' => $user->id,
             'balance' => $user->getRawOriginal('balance'),
-            'virtual_balance' => $user->virtual_balance,
+            'virtual_balance' => $user->getAttributes()['virtual_balance'] ?? null,
             'job' => $user->job,
             'job_status' => $user->job_status,
             'city' => $user->city,
