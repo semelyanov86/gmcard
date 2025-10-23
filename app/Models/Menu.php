@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\MenuType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\AsUri;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,6 +59,7 @@ class Menu extends Model
     protected function casts(): array
     {
         return [
+            'url' => AsUri::class,
             'type' => MenuType::class,
             'is_active' => 'boolean',
             'order' => 'integer',
