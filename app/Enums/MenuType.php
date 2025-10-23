@@ -12,9 +12,39 @@ enum MenuType: string
     /**
      * @return array<string,string>
      */
-    public static function options(): array
+    public static function formOptions(): array
     {
-        return array_column(self::cases(), 'value', 'value');
+        return [
+            self::NAVBAR->value => 'Верхнее меню (NavBar)',
+            self::SIDEBAR->value => 'Боковое меню (Sidebar)',
+        ];
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public static function filterOptions(): array
+    {
+        return [
+            self::NAVBAR->value => 'NavBar',
+            self::SIDEBAR->value => 'Sidebar',
+        ];
+    }
+
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::NAVBAR => 'info',
+            self::SIDEBAR => 'success',
+        };
+    }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::NAVBAR => 'NavBar',
+            self::SIDEBAR => 'Sidebar',
+        };
     }
 }
 

@@ -31,14 +31,8 @@ class MenusTable
                 TextColumn::make('type')
                     ->label('Тип')
                     ->badge()
-                    ->color(fn (MenuType $state): string => match ($state) {
-                        MenuType::NAVBAR => 'info',
-                        MenuType::SIDEBAR => 'success',
-                    })
-                    ->formatStateUsing(fn (MenuType $state): string => match ($state) {
-                        MenuType::NAVBAR => 'NavBar',
-                        MenuType::SIDEBAR => 'Sidebar',
-                    })
+                    ->color(fn (MenuType $state): string => $state->getColor())
+                    ->formatStateUsing(fn (MenuType $state): string => $state->getLabel())
                     ->sortable(),
                 TextColumn::make('order')
                     ->label('Порядок')
@@ -62,10 +56,7 @@ class MenusTable
             ->filters([
                 SelectFilter::make('type')
                     ->label('Тип меню')
-                    ->options([
-                        MenuType::NAVBAR->value => 'NavBar',
-                        MenuType::SIDEBAR->value => 'Sidebar',
-                    ]),
+                    ->options(MenuType::filterOptions()),
                 SelectFilter::make('is_active')
                     ->label('Статус')
                     ->options([

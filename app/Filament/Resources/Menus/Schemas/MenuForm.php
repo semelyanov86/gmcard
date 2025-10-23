@@ -29,10 +29,7 @@ class MenuForm
                     ->helperText('Относительный или полный URL'),
                 Select::make('type')
                     ->label('Тип меню')
-                    ->options([
-                        MenuType::NAVBAR->value => 'Верхнее меню (NavBar)',
-                        MenuType::SIDEBAR->value => 'Боковое меню (Sidebar)',
-                    ])
+                    ->options(MenuType::formOptions())
                     ->required()
                     ->native(false),
                 TextInput::make('order')
