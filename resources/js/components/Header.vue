@@ -9,6 +9,7 @@ import TwitterIcon from '@/components/primitives/icons/TwitterIcon.vue';
 import UserIcon from '@/components/primitives/icons/UserIcon.vue';
 import VkIcon from '@/components/primitives/icons/VkIcon.vue';
 import type { UserDataModel } from '@/types';
+import { LoginButtonType } from '@/types/LoginButtonType';
 import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -17,11 +18,11 @@ const props = defineProps<{
 }>();
 
 const loginModalOpen = ref(false);
-const clickedButton = ref<'start' | 'login' | 'mobile' | null>(null);
+const clickedButton = ref<LoginButtonType | null>(null);
 const servicesDropdownOpen = ref(false);
 const mobileMenuOpen = ref(false);
 
-function openLoginModal(buttonType: 'start' | 'login' | 'mobile') {
+function openLoginModal(buttonType: LoginButtonType) {
     loginModalOpen.value = true;
     clickedButton.value = buttonType;
     servicesDropdownOpen.value = false;
@@ -83,12 +84,12 @@ function toggleMobileMenu() {
             <div class="auth_block relative ml-3 hidden items-center">
                 <UserIcon
                     id="userAuth3"
-                    @click="openLoginModal('mobile')"
+                    @click="openLoginModal(LoginButtonType.Mobile)"
                     custom-class="h-5 w-5 rounded-lg text-gray-500 focus:ring-2 focus:ring-gray-200 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 />
                 <TriangleUpIcon
                     id="mobileBTN"
-                    :class="loginModalOpen && clickedButton === 'mobile' ? '' : 'hidden'"
+                    :class="loginModalOpen && clickedButton === LoginButtonType.Mobile ? '' : 'hidden'"
                     custom-class="absolute right-12 -bottom-4 h-4 w-4 text-white"
                 />
                 <button
@@ -105,11 +106,11 @@ function toggleMobileMenu() {
             </div>
             <ul id="header" class="relative flex list-none items-center md:hidden">
                 <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
-                    <a @click.prevent="openLoginModal('start')" href="#" class="hover:text-brand-orange cursor-pointer text-black" id="userAuth1"
+                    <a @click.prevent="openLoginModal(LoginButtonType.Start)" href="#" class="hover:text-brand-orange cursor-pointer text-black" id="userAuth1"
                         >Запустить акцию</a
                     >
                     <TriangleUpIcon
-                        v-show="loginModalOpen && clickedButton === 'start'"
+                        v-show="loginModalOpen && clickedButton === LoginButtonType.Start"
                         id="startBTN"
                         custom-class="absolute right-14 -bottom-8 h-7 w-6 text-white"
                     />
@@ -117,14 +118,14 @@ function toggleMobileMenu() {
                 <div class="bg-brand-dark-blue ml-4 h-[60px] w-[1px]"></div>
                 <li class="relative">
                     <a
-                        @click.prevent="openLoginModal('login')"
+                        @click.prevent="openLoginModal(LoginButtonType.Login)"
                         href="#"
                         class="ml-4 text-[15px] text-white hover:border-b-2 hover:border-white"
                         id="userAuth2"
                         >Вход</a
                     >
                     <TriangleUpIcon
-                        v-show="loginModalOpen && clickedButton === 'login'"
+                        v-show="loginModalOpen && clickedButton === LoginButtonType.Login"
                         id="loginBTN"
                         custom-class="absolute right-0 -bottom-10 h-7 w-6 text-white"
                     />
