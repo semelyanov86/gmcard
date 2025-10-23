@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
+/**
+ * @method static Promo run(CreatePromoData $dto)
+ */
 final readonly class CreatePromoAction
 {
     use AsAction;
