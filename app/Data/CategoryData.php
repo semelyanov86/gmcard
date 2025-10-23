@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 use Spatie\LaravelData\Data;
 
 final class CategoryData extends Data
@@ -19,4 +21,29 @@ final class CategoryData extends Data
         public ?string $description,
         public ?array $children,
     ) {}
+
+    public static function fromModel(Category $category): self
+    {
+        return new self(
+            id: $category->id,
+            name: $category->name,
+            is_starred: $category->is_starred,
+            parent_id: $category->parent_id,
+            description: $category->description,
+            children: $category->children->isNotEmpty()
+                ? self::collectFromModels($category->children)
+                : null
+        );
+    }
+
+    /**
+     * @param  Collection<int, Category>  $categories
+     * @return CategoryData[]
+     */
+    public static function collectFromModels(Collection $categories): array
+    {
+        return $categories->map(
+            fn (Category $category) => self::fromModel($category)
+        )->all();
+    }
 }
