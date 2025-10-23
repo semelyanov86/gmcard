@@ -41,7 +41,7 @@ class CreatePromoController extends Controller
     public function store(CreatePromoRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        
+
         $dto = CreatePromoData::from([
             ...$validated,
             'user_id' => auth()->id(),
