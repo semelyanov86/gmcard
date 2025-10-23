@@ -8,7 +8,6 @@ use App\Actions\Promo\CreatePromoAction;
 use App\Data\CreatePromoData;
 use App\Models\Category;
 use App\Models\City;
-use App\Models\Promo;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -40,7 +39,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
-        $this->assertInstanceOf(Promo::class, $promo);
+        $this->assertNotEmpty($promo->id);
         $this->assertDatabaseHas('promos', [
             'id' => $promo->id,
             'user_id' => $user->id,
@@ -72,6 +71,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertDatabaseHas('promos', [
             'id' => $promo->id,
             'discount' => '25%',
@@ -100,6 +100,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertDatabaseHas('promos', [
             'id' => $promo->id,
             'discount' => '500₽',
@@ -126,6 +127,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertCount(3, $promo->categories);
         $firstCategory = $categories->first();
         assert($firstCategory instanceof Category);
@@ -152,6 +154,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertCount(3, $promo->cities);
         $firstCity = $cities->first();
         assert($firstCity instanceof City);
@@ -179,6 +182,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertNull($promo->started_at);
     }
 
@@ -203,6 +207,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertNotNull($promo->started_at);
     }
 
@@ -227,6 +232,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertSame(10050, $promo->sales_order_from);
     }
 
@@ -250,6 +256,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $promo->refresh();
         $expectedDate = now()->addDays(7);
         /** @var \Carbon\CarbonImmutable $availableTill */
@@ -286,6 +293,7 @@ class CreatePromoActionTest extends TestCase
 
         $promo = CreatePromoAction::run($dto);
 
+        $this->assertNotEmpty($promo->id);
         $this->assertDatabaseHas('promos', [
             'id' => $promo->id,
             'code' => 'TEST123',
