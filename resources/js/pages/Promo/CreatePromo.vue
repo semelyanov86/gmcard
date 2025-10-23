@@ -30,6 +30,7 @@ import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
 import type {
+    AppPageProps,
     CategoryModel,
     CityModel,
     ContactModel,
@@ -39,7 +40,7 @@ import type {
     SocialNetworkModel,
     WeekdayModel,
 } from '@/types';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
@@ -54,6 +55,9 @@ const props = defineProps<{
     socialNetworks: SocialNetworkModel[];
     userBalance: number;
 }>();
+
+const page = usePage<AppPageProps>();
+const userData = page.props.userData;
 
 const form = useForm({
     promo_type_id: 1,
@@ -116,7 +120,7 @@ function handleLaunch() {
 </script>
 
 <template>
-    <Header></Header>
+    <Header :userData="userData" />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
@@ -305,7 +309,7 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary :balance="props.userBalance" />
+                    <PricingSummary :balance="userData?.balance ?? props.userBalance" />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
                         <label for="rules" class="all_text text-slate-600">
