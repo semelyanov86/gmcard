@@ -36,6 +36,10 @@ final class UserData extends Data
 
     public static function fromModel(User $user): self
     {
+        if (! $user->relationLoaded('roles')) {
+            $user->load('roles');
+        }
+
         /** @var \Illuminate\Support\Carbon|null $birthDate */
         $birthDate = $user->birth_date;
         /** @var \Spatie\Permission\Models\Role|null $role */
