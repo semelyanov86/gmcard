@@ -6,7 +6,7 @@ namespace App\Models;
 
 use App\Casts\UrlValueObjectCast;
 use App\Enums\MenuType;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Builders\MenuBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,31 +29,9 @@ class Menu extends Model
         'updated_at',
     ];
 
-    /**
-     * @param  Builder<self>  $query
-     * @return Builder<self>
-     */
-    public function scopeByType(Builder $query, MenuType $type): Builder
+    public function newEloquentBuilder($query): MenuBuilder
     {
-        return $query->where('type', $type);
-    }
-
-    /**
-     * @param  Builder<self>  $query
-     * @return Builder<self>
-     */
-    public function scopeActive(Builder $query): Builder
-    {
-        return $query->where('is_active', true);
-    }
-
-    /**
-     * @param  Builder<self>  $query
-     * @return Builder<self>
-     */
-    public function scopeOrdered(Builder $query): Builder
-    {
-        return $query->orderBy('order');
+        return new MenuBuilder($query);
     }
 
     protected function casts(): array

@@ -35,7 +35,7 @@ final readonly class UrlValueObject implements Cast, Stringable
         return $this->uri->host();
     }
 
-    public function path(): string
+    public function path(): ?string
     {
         return $this->uri->path();
     }
