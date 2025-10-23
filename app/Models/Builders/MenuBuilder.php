@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Models\Builders;
 
 use App\Enums\MenuType;
+use App\Models\Menu;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @extends Builder<Menu>
+ */
 class MenuBuilder extends Builder
 {
     public function byType(MenuType $type): self

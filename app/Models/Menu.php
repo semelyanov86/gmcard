@@ -9,6 +9,7 @@ use App\Enums\MenuType;
 use App\Models\Builders\MenuBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 class Menu extends Model
 {
@@ -29,6 +30,7 @@ class Menu extends Model
         'updated_at',
     ];
 
+    #[Override]
     public function newEloquentBuilder($query): MenuBuilder
     {
         return new MenuBuilder($query);
