@@ -22,7 +22,7 @@ final readonly class GetMenuItemsAction
     public function handle(MenuType $type): array
     {
         $menuItems = Menu::active()
-            ->byType($type->value)
+            ->byType($type)
             ->ordered()
             ->get();
 

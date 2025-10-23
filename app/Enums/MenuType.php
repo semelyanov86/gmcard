@@ -47,4 +47,3 @@ enum MenuType: string
         };
     }
 }
-

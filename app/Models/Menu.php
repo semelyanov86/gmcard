@@ -32,7 +32,7 @@ class Menu extends Model
      * @param  Builder<self>  $query
      * @return Builder<self>
      */
-    public function scopeByType(Builder $query, string $type): Builder
+    public function scopeByType(Builder $query, MenuType $type): Builder
     {
         return $query->where('type', $type);
     }
