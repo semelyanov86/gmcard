@@ -16,8 +16,26 @@ defineEmits<{
             @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
             class="peer sr-only"
         />
-        <div
-            class="h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none after:absolute after:top-0.5 after:left-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-[1.75rem] peer-checked:after:border-white"
-        ></div>
+        <div class="toggle-bg relative h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none"></div>
     </label>
 </template>
+
+<style scoped>
+.toggle-bg::after {
+    content: '';
+    position: absolute;
+    top: 0.0625rem;
+    left: 0.125rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(209, 213, 219);
+    background-color: white;
+    transition: transform 0.2s ease-in-out;
+}
+
+.peer:checked ~ .toggle-bg::after {
+    transform: translateX(1.55rem);
+    border-color: white;
+}
+</style>

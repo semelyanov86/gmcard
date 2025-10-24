@@ -36,7 +36,7 @@ class CreatePromoRequestTest extends TestCase
         $this->assertTrue($validator->passes() || $validator->errors()->missing('promo_type_id'));
     }
 
-    public function test_discount_amount_is_numeric(): void
+    public function test_discount_amount_is_integer(): void
     {
         $validator = $this->makeValidator([
             'discount_amount' => 'not-numeric',
@@ -44,12 +44,26 @@ class CreatePromoRequestTest extends TestCase
 
         $this->assertFalse($validator->passes());
         $this->assertArrayHasKey('discount_amount', $validator->errors()->toArray());
+
+        $validator = $this->makeValidator([
+            'discount_amount' => '50.5',
+        ]);
+
+        $this->assertFalse($validator->passes());
+        $this->assertArrayHasKey('discount_amount', $validator->errors()->toArray());
     }
 
-    public function test_cashback_amount_is_numeric(): void
+    public function test_cashback_amount_is_integer(): void
     {
         $validator = $this->makeValidator([
             'cashback_amount' => 'not-numeric',
+        ]);
+
+        $this->assertFalse($validator->passes());
+        $this->assertArrayHasKey('cashback_amount', $validator->errors()->toArray());
+
+        $validator = $this->makeValidator([
+            'cashback_amount' => '10.25',
         ]);
 
         $this->assertFalse($validator->passes());
@@ -100,7 +114,7 @@ class CreatePromoRequestTest extends TestCase
         $this->assertTrue($validator->passes() || $validator->errors()->missing('title'));
     }
 
-    public function test_requires_description_and_conditions(): void
+    public function test_requires_description(): void
     {
         $validator = $this->makeValidator([
             'promo_type_id' => 1,
@@ -109,7 +123,6 @@ class CreatePromoRequestTest extends TestCase
 
         $this->assertFalse($validator->passes());
         $this->assertArrayHasKey('description', $validator->errors()->toArray());
-        $this->assertArrayHasKey('conditions', $validator->errors()->toArray());
     }
 
     public function test_requires_duration_days(): void
@@ -214,7 +227,7 @@ class CreatePromoRequestTest extends TestCase
             'title' => 'Test Promo',
             'description' => 'Test description',
             'conditions' => 'Test conditions',
-            'minimum_order_amount' => '100',
+            'minimum_order_amount' => 100,
             'promo_code' => 'TEST123',
             'free_delivery' => true,
             'duration_days' => 7,
@@ -228,10 +241,17 @@ class CreatePromoRequestTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
-    public function test_validates_minimum_order_amount_must_be_numeric(): void
+    public function test_validates_minimum_order_amount_must_be_integer(): void
     {
         $validator = $this->makeValidator([
             'minimum_order_amount' => 'not-a-number',
+        ]);
+
+        $this->assertFalse($validator->passes());
+        $this->assertArrayHasKey('minimum_order_amount', $validator->errors()->toArray());
+
+        $validator = $this->makeValidator([
+            'minimum_order_amount' => '100.50',
         ]);
 
         $this->assertFalse($validator->passes());

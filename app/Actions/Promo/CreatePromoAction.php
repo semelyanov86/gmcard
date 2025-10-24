@@ -37,7 +37,7 @@ final readonly class CreatePromoAction
                 'show_on_home' => $dto->showInBanner ?? false,
                 'available_till' => Carbon::now()->addDays($dto->durationDays),
                 'discount' => $this->getDiscount($dto, $promoType),
-                'sales_order_from' => $dto->minimumOrderAmount ? (int) ((float) $dto->minimumOrderAmount * 100) : 0,
+                'sales_order_from' => $dto->minimumOrderAmount ? $dto->minimumOrderAmount * 100 : 0,
                 'code' => $dto->promoCode,
                 'video_link' => $dto->youtubeUrl,
                 'smm_links' => $dto->socialLinks,
@@ -48,7 +48,7 @@ final readonly class CreatePromoAction
                 'started_at' => $dto->isDraft ? null : now(),
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
-                'free_delivery_from' => 0,
+                'free_delivery_from' => $dto->freeDeliveryFrom ? $dto->freeDeliveryFrom * 100 : 0,
             ]);
 
             $this->syncRelations($promo, $dto);

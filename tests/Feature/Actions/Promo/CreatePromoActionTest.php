@@ -65,7 +65,7 @@ class CreatePromoActionTest extends TestCase
             durationDays: 10,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            discountAmount: '25',
+            discountAmount: 25,
             discountCurrency: '%',
         );
 
@@ -94,7 +94,7 @@ class CreatePromoActionTest extends TestCase
             durationDays: 14,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            cashbackAmount: '500',
+            cashbackAmount: 500,
             cashbackCurrency: '₽',
         );
 
@@ -227,13 +227,13 @@ class CreatePromoActionTest extends TestCase
             durationDays: 7,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            minimumOrderAmount: '100.50',
+            minimumOrderAmount: 100,
         );
 
         $promo = CreatePromoAction::run($dto);
 
         $this->assertNotEmpty($promo->id);
-        $this->assertSame(10050, $promo->sales_order_from);
+        $this->assertSame(10000, $promo->sales_order_from);
     }
 
     public function test_calculates_available_till_correctly(): void

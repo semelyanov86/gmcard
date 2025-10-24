@@ -13,7 +13,17 @@ const emit = defineEmits<{
     'update:modelValue': [value: Record<string, string[]>];
 }>();
 
-const isOpen = ref(false);
+const hasData = Object.keys(props.modelValue).some(key => props.modelValue[key]?.length > 0);
+const isOpen = ref(hasData);
+
+const visibleNetworksState = ref<Record<string, boolean>>(
+    Object.fromEntries(
+        props.socialNetworks.map((network) => [
+            network.id,
+            props.modelValue[network.id]?.some((link: string) => link.trim()) ?? false
+        ])
+    )
+);
 
 const links = computed<Record<string, string[]>>(() =>
     Object.fromEntries(
@@ -21,9 +31,7 @@ const links = computed<Record<string, string[]>>(() =>
     ),
 );
 
-const visibleNetworks = computed<Record<string, boolean>>(() =>
-    Object.fromEntries(props.socialNetworks.map((network) => [network.id, links.value[network.id]?.some((link) => link.trim()) ?? false])),
-);
+const visibleNetworks = computed<Record<string, boolean>>(() => visibleNetworksState.value);
 
 const showInstagramWarning = computed(() => visibleNetworks.value.ins && links.value.ins?.some((v) => v.trim()));
 
@@ -35,15 +43,17 @@ function updateLink(networkId: string, index: number, value: string) {
 }
 
 function toggleVisibility(networkId: string) {
-    const updated = { ...links.value };
-    if (visibleNetworks.value[networkId]) {
-        updated[networkId] = [''];
-    } else {
-        if (!updated[networkId] || updated[networkId].length === 0) {
-            updated[networkId] = [''];
-        }
+    if (!isOpen.value) {
+        isOpen.value = true;
     }
-    emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
+    
+    visibleNetworksState.value[networkId] = !visibleNetworksState.value[networkId];
+    
+    if (!visibleNetworksState.value[networkId]) {
+        const updated = { ...links.value };
+        updated[networkId] = [];
+        emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
+    }
 }
 
 function addLink(networkId: string) {
@@ -57,7 +67,8 @@ function removeLink(networkId: string, index: number) {
     if (updated[networkId].length > 1) {
         updated[networkId] = updated[networkId].filter((_, i) => i !== index);
     } else {
-        updated[networkId] = [''];
+        updated[networkId] = [];
+        visibleNetworksState.value[networkId] = false;
     }
     emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
@@ -104,13 +115,13 @@ function removeLink(networkId: string, index: number) {
                                 :value="link"
                                 @input="updateLink(network.id, index as number, ($event.target as HTMLInputElement).value)"
                                 type="text"
-                                class="link_url link_social max-w-md rounded-md ring-black/30 max-md:w-full"
+                                class="link_url link_social max-w-md rounded-md ring-black/30 pr-12 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
-                            <div class="left_del absolute top-1 left-96 h-9 w-0.5 bg-black/30"></div>
+                            <div class="left_del absolute top-1 right-9 h-9 w-0.5 bg-black/30"></div>
                             <TrashIcon
-                                @click="removeLink(network.id, index as number)"
-                                custom-class="left_delSvg absolute left-96 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
+                                @click.stop="removeLink(network.id, index as number)"
+                                custom-class="left_delSvg absolute right-1 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
                             />
                         </div>
                         <span

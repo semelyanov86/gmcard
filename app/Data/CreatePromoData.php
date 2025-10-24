@@ -14,8 +14,8 @@ final class CreatePromoData extends Data
     /**
      * @param  array<int, string|int>  $categoryIds
      * @param  array<int, int>  $cityIds
-     * @param  array<string, mixed>|null  $socialLinks
-     * @param  array<string, mixed>|null  $schedule
+     * @param  array<string, string>|null  $socialLinks
+     * @param  array<string, string>|null  $schedule
      * @param  array<int, array<string, mixed>>|null  $addresses
      * @param  array<int, string>|null  $photos
      */
@@ -28,13 +28,14 @@ final class CreatePromoData extends Data
         public int $durationDays,
         public array $categoryIds,
         public array $cityIds,
-        public ?string $discountAmount = null,
+        public ?int $discountAmount = null,
         public ?string $discountCurrency = null,
-        public ?string $cashbackAmount = null,
+        public ?int $cashbackAmount = null,
         public ?string $cashbackCurrency = null,
-        public ?string $minimumOrderAmount = null,
+        public ?int $minimumOrderAmount = null,
         public ?string $promoCode = null,
         public ?bool $freeDelivery = false,
+        public ?int $freeDeliveryFrom = null,
         public ?bool $showInBanner = false,
         public ?string $youtubeUrl = null,
         public ?array $socialLinks = null,

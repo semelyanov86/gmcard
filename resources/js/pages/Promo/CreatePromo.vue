@@ -62,17 +62,18 @@ const userData = page.props.userData;
 
 const form = useForm({
     promo_type_id: 1,
-    discount_amount: '',
+    discount_amount: null,
     discount_currency: '%',
-    cashback_amount: '',
+    cashback_amount: null,
     cashback_currency: '%',
     category_ids: [] as string[],
     title: '',
     description: props.defaultDescription,
-    conditions: '',
-    minimum_order_amount: '',
+    conditions: null,
+    minimum_order_amount: null,
     promo_code: '',
     free_delivery: false,
+    free_delivery_from: null,
     duration_days: 1,
     show_in_banner: false,
     addresses: [],
@@ -254,15 +255,15 @@ function handleLaunch() {
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
-                        v-model:amount="form.discount_amount as string"
-                        v-model:currency="form.discount_currency as string"
+                        v-model:amount="form.discount_amount"
+                        v-model:currency="form.discount_currency"
                         :error="form.errors.discount_amount || form.errors.discount_currency"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
-                        v-model:amount="form.cashback_amount as string"
-                        v-model:currency="form.cashback_currency as string"
+                        v-model:amount="form.cashback_amount"
+                        v-model:currency="form.cashback_currency"
                         :error="form.errors.cashback_amount || form.errors.cashback_currency"
                     />
                     <TwoColumnFormBlock :show="showTretiy" class="m-8" id="tretiy">
@@ -276,10 +277,12 @@ function handleLaunch() {
                             <div class="relative">
                                 <label for="minimum_order" class="text-sm font-bold">Минимальная сумма заказа</label>
                                 <input
-                                    v-model="form.minimum_order_amount"
-                                    type="text"
+                                    v-model.number="form.minimum_order_amount"
+                                    type="number"
                                     name="minimum_order"
                                     placeholder="1000"
+                                    min="0"
+                                    step="1"
                                     class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3"
                                     :class="{ 'border-red-500': form.errors.minimum_order_amount }"
                                 />
@@ -310,13 +313,17 @@ function handleLaunch() {
                             <p v-if="form.errors.promo_code" class="mt-2 text-sm text-red-600">{{ form.errors.promo_code }}</p>
                         </template>
                     </TwoColumnFormBlock>
-                    <FreeDeliveryBlock :show="showChetvertyi" />
+                    <FreeDeliveryBlock
+                        :show="showChetvertyi"
+                        v-model:freeDelivery="form.free_delivery"
+                        v-model:freeDeliveryFrom="form.free_delivery_from"
+                    />
                     <PromoTitleInput v-model="form.title" :error="form.errors.title" />
                     <PhotoUploadBlock />
                     <YouTubeBlock v-model="form.youtube_url as string" :error="form.errors.youtube_url" />
                     <PromoDescriptionBlock
-                        v-model:description="form.description as string"
-                        v-model:conditions="form.conditions as string"
+                        v-model:description="form.description"
+                        v-model:conditions="form.conditions"
                         :descriptionError="form.errors.description"
                         :conditionsError="form.errors.conditions"
                         @openConditionsModal="conditionsModalOpen = true"

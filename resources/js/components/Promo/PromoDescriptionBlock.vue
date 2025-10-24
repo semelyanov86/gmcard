@@ -8,7 +8,7 @@ import 'ckeditor5/ckeditor5.css';
 
 const props = defineProps<{
     description: string;
-    conditions: string;
+    conditions: string | null;
     descriptionError?: string;
     conditionsError?: string;
 }>();
@@ -16,7 +16,7 @@ const props = defineProps<{
 const emit = defineEmits<{
     openConditionsModal: [];
     'update:description': [value: string];
-    'update:conditions': [value: string];
+    'update:conditions': [value: string | null];
 }>();
 
 const textEditorOpen = ref(false);
@@ -27,8 +27,8 @@ const localDescription = computed({
 });
 
 const localConditions = computed({
-    get: () => props.conditions,
-    set: (value: string) => emit('update:conditions', value),
+    get: () => props.conditions ?? '',
+    set: (value: string) => emit('update:conditions', value === '' ? null : value),
 });
 
 const editor = ClassicEditor;
