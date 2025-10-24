@@ -24,7 +24,7 @@ final class CreatePromoData extends Data
         public string $title,
         public int $promoTypeId,
         public string $description,
-        public string $conditions,
+        public ?string $conditions,
         public int $durationDays,
         public array $categoryIds,
         public array $cityIds,

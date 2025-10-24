@@ -6,7 +6,10 @@ import { onMounted } from 'vue';
 
 onMounted(() => {
     setTimeout(() => {
+        const dropList = document.querySelector('.drop_list') as HTMLElement;
         const categoryItems = document.querySelectorAll('#lists .my-class');
+        
+        // Обработчики для категорий в левом списке
         categoryItems.forEach((item) => {
             item.addEventListener('mouseenter', () => {
                 const categoryName = item.getAttribute('data-category');
@@ -16,6 +19,69 @@ onMounted(() => {
                 }
             });
         });
+
+        // Обработчики для основных категорий (десктоп)
+        const mainCategories = document.querySelectorAll('.mains, .mains2, .mains3, .mains4, .mains5, .mains6, .mains7, .mains8, .mains9, .mains10, .mains11, .mains12');
+        mainCategories.forEach((category, index) => {
+            const icon = document.getElementById(`icons${index + 1}`);
+            
+            category.addEventListener('mouseenter', () => {
+                if (dropList) {
+                    dropList.classList.remove('hidden');
+                    dropList.classList.add('flex');
+                }
+                
+                // Сначала скрываем все стрелочки
+                mainCategories.forEach((_, idx) => {
+                    const otherIcon = document.getElementById(`icons${idx + 1}`);
+                    if (otherIcon) {
+                        otherIcon.classList.add('hidden');
+                    }
+                });
+                
+                // Затем показываем только текущую
+                if (icon) {
+                    icon.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Обработчики для мобильных категорий
+        const mobileCategories = document.querySelectorAll('.icons_block');
+        mobileCategories.forEach((category) => {
+            category.addEventListener('click', () => {
+                if (dropList) {
+                    dropList.classList.remove('hidden');
+                    dropList.classList.add('flex');
+                }
+            });
+        });
+
+        // Скрытие меню при уходе мыши
+        const categoryContainer = document.querySelector('.relative.w-full.py-4') as HTMLElement;
+        if (categoryContainer) {
+            categoryContainer.addEventListener('mouseleave', () => {
+                if (dropList) {
+                    dropList.classList.remove('flex');
+                    dropList.classList.add('hidden');
+                }
+                // Скрываем все стрелки
+                mainCategories.forEach((_, index) => {
+                    const icon = document.getElementById(`icons${index + 1}`);
+                    if (icon) {
+                        icon.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        // Показывать меню при наведении на dropList
+        if (dropList) {
+            dropList.addEventListener('mouseenter', () => {
+                dropList.classList.remove('hidden');
+                dropList.classList.add('flex');
+            });
+        }
     }, 100);
 });
 </script>

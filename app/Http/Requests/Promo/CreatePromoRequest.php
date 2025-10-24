@@ -47,7 +47,7 @@ class CreatePromoRequest extends FormRequest
             'category_ids.*' => ['required', 'string', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:64'],
             'description' => ['required', 'string'],
-            'conditions' => ['required', 'string'],
+            'conditions' => ['nullable', 'string'],
             'minimum_order_amount' => ['nullable', 'numeric', 'min:0'],
             'promo_code' => ['nullable', 'string', 'max:255'],
             'free_delivery' => ['boolean'],

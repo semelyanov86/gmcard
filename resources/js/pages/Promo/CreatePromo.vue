@@ -46,20 +46,6 @@ import '../../../css/internal/output.css';
 const page = usePage<AppPageProps>();
 const successMessage = ref<string | null>(null);
 
-// Отслеживаем flash сообщения
-watch(
-    () => page.props.flash,
-    (flash) => {
-        if (flash?.success) {
-            successMessage.value = flash.success as string;
-            setTimeout(() => {
-                successMessage.value = null;
-            }, 5000);
-        }
-    },
-    { immediate: true, deep: true }
-);
-
 const props = defineProps<{
     contact: ContactModel;
     categories: CategoryModel[];
@@ -111,6 +97,23 @@ const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id))
 
 const conditionsModalOpen = ref(false);
 
+// Отслеживаем flash сообщения
+watch(
+    () => page.props.flash,
+    (flash) => {
+        if (flash?.success) {
+            successMessage.value = flash.success as string;
+            // Сбрасываем форму при успешной отправке
+            form.reset();
+            form.clearErrors();
+            setTimeout(() => {
+                successMessage.value = null;
+            }, 5000);
+        }
+    },
+    { immediate: true, deep: true }
+);
+
 function handlePreview() {
     console.log('Preview promo', form.data());
 }
@@ -122,7 +125,9 @@ function handleSaveDraft() {
     })).post(route('promos.store'), {
         preserveScroll: false,
         onSuccess: () => {
-            form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+        onError: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
     });
@@ -132,7 +137,9 @@ function handleLaunch() {
     form.post(route('promos.store'), {
         preserveScroll: false,
         onSuccess: () => {
-            form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+        onError: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
     });
