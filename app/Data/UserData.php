@@ -46,6 +46,9 @@ final class UserData extends Data
         /** @var Carbon|null $birthDate */
         $birthDate = $user->birth_date;
 
+        /** @var \App\ValueObjects\MoneyValueObject|null $balance */
+        $balance = $user->balance;
+
         return self::from([
             'name' => $user->name,
             'email' => $user->email,
@@ -53,7 +56,7 @@ final class UserData extends Data
             'last_name' => $user->last_name,
             'age' => $user->age,
             'id' => $user->id,
-            'balance' => $user->balance?->toFloat(),
+            'balance' => $balance?->toFloat(),
             'virtual_balance' => $user->getAttributes()['virtual_balance'] ?? null,
             'job' => $user->job,
             'job_status' => $user->job_status,

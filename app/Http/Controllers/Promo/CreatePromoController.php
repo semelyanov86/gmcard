@@ -34,7 +34,7 @@ class CreatePromoController extends Controller
             'defaultDescription' => config('promo.default_description'),
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
-            'userBalance' => $user->balance?->toFloat() ?? 0,
+            'userBalance' => $user?->balance?->toFloat() ?? 0,
         ]);
     }
 
