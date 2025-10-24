@@ -42,8 +42,8 @@ final readonly class CreatePromoAction
                 'video_link' => $dto->youtubeUrl,
                 'smm_links' => $dto->socialLinks,
                 'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
-                'availabe_from' => is_array($dto->schedule) && isset($dto->schedule['timeRange']) && is_array($dto->schedule['timeRange']) ? ($dto->schedule['timeRange']['start'] ?? null) : null,
-                'available_to' => is_array($dto->schedule) && isset($dto->schedule['timeRange']) && is_array($dto->schedule['timeRange']) ? ($dto->schedule['timeRange']['end'] ?? null) : null,
+                'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
+                'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
                 'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
                 'started_at' => $dto->isDraft ? null : now(),
                 'raise_on_top_hours' => 0,
@@ -93,5 +93,24 @@ final readonly class CreatePromoAction
         }
 
         return null;
+    }
+
+    /**
+     * @param array<string, mixed>|null $schedule
+     */
+    private function getScheduleTime(?array $schedule, string $key): ?string
+    {
+        if (! is_array($schedule)) {
+            return null;
+        }
+
+        $timeRange = $schedule['timeRange'] ?? null;
+        if (! is_array($timeRange)) {
+            return null;
+        }
+
+        $value = $timeRange[$key] ?? null;
+        
+        return is_string($value) ? $value : null;
     }
 }
