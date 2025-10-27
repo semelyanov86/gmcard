@@ -233,7 +233,7 @@ class CreatePromoActionTest extends TestCase
         $promo = CreatePromoAction::run($dto);
 
         $this->assertNotEmpty($promo->id);
-        $this->assertSame(10000, $promo->sales_order_from);
+        $this->assertSame('10000', $promo->sales_order_from->getMoney()->getAmount());
     }
 
     public function test_calculates_available_till_correctly(): void

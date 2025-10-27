@@ -40,11 +40,11 @@ final readonly class CreatePromoAction
                 'show_on_home' => $dto->showInBanner ?? false,
                 'available_till' => Carbon::now()->addDays($dto->durationDays),
                 'discount' => $discount,
-                'amount' => $dto->discountAmount 
-                    ? MoneyValueObject::fromString((string) $dto->discountAmount) 
+                'amount' => $dto->discountAmount
+                    ? MoneyValueObject::fromString((string) $dto->discountAmount)
                     : null,
-                'sales_order_from' => $dto->minimumOrderAmount 
-                    ? MoneyValueObject::fromString((string) $dto->minimumOrderAmount) 
+                'sales_order_from' => $dto->minimumOrderAmount
+                    ? MoneyValueObject::fromString((string) $dto->minimumOrderAmount)
                     : MoneyValueObject::fromCents(0),
                 'code' => $dto->promoCode,
                 'video_link' => $dto->youtubeUrl,
@@ -56,8 +56,8 @@ final readonly class CreatePromoAction
                 'started_at' => $dto->isDraft ? null : now(),
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
-                'free_delivery_from' => $dto->freeDeliveryFrom 
-                    ? MoneyValueObject::fromString((string) $dto->freeDeliveryFrom) 
+                'free_delivery_from' => $dto->freeDeliveryFrom
+                    ? MoneyValueObject::fromString((string) $dto->freeDeliveryFrom)
                     : MoneyValueObject::fromCents(0),
             ];
 
@@ -97,7 +97,7 @@ final readonly class CreatePromoAction
 
                 $address = Address::create([
                     'name' => $addressData['address'] ?? '',
-                    'open_hours' => !empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
+                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
                     'phone' => $addressData['phone'] ?? '',
                     'phone_secondary' => $addressData['phone2'] ?? null,
                 ]);
@@ -105,7 +105,7 @@ final readonly class CreatePromoAction
                 $addressIds[] = $address->id;
             }
 
-            if (!empty($addressIds)) {
+            if (! empty($addressIds)) {
                 $promo->addresses()->sync($addressIds);
             }
         }
