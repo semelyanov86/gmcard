@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 import type { SocialNetworkModel } from '@/types';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -72,6 +72,20 @@ function removeLink(networkId: string, index: number) {
     }
     emit('update:modelValue', Object.fromEntries(Object.entries(updated).map(([id, vals]) => [id, vals.filter(Boolean)])));
 }
+
+watch(isOpen, (newValue) => {
+    if (!newValue) {
+        const emptyLinks: Record<string, string[]> = {};
+        props.socialNetworks.forEach(network => {
+            emptyLinks[network.id] = [];
+        });
+        emit('update:modelValue', emptyLinks);
+        
+        props.socialNetworks.forEach(network => {
+            visibleNetworksState.value[network.id] = false;
+        });
+    }
+});
 </script>
 
 <template>
@@ -87,8 +101,9 @@ function removeLink(networkId: string, index: number) {
                 <div
                     v-for="network in socialNetworks"
                     :key="network.id"
-                    @click="toggleVisibility(network.id)"
-                    class="flex cursor-pointer items-center rounded-md bg-slate-100 px-3 py-2"
+                    @click="isOpen ? toggleVisibility(network.id) : null"
+                    class="flex items-center rounded-md bg-slate-100 px-3 py-2"
+                    :class="!isOpen ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
                     :id="`soc${network.id}`"
                 >
                     <img :src="network.icon" :alt="network.name" />
@@ -115,19 +130,28 @@ function removeLink(networkId: string, index: number) {
                                 :value="link"
                                 @input="updateLink(network.id, index as number, ($event.target as HTMLInputElement).value)"
                                 type="text"
+                                :disabled="!isOpen || !visibleNetworks[network.id]"
                                 class="link_url link_social max-w-md rounded-md ring-black/30 pr-12 max-md:w-full"
+                                :class="{ 'opacity-50 cursor-not-allowed': !isOpen || !visibleNetworks[network.id] }"
                                 :placeholder="network.placeholder"
                             />
                             <div class="left_del absolute top-1 right-9 h-9 w-0.5 bg-black/30"></div>
                             <TrashIcon
-                                @click.stop="removeLink(network.id, index as number)"
-                                custom-class="left_delSvg absolute right-1 top-2 h-6 w-6 cursor-pointer text-black/50 hover:text-black/30"
+                                @click.stop="(isOpen && visibleNetworks[network.id]) ? removeLink(network.id, index as number) : null"
+                                :custom-class="`left_delSvg absolute right-1 top-2 h-6 w-6 text-black/50 ${
+                                    isOpen && visibleNetworks[network.id] 
+                                        ? 'cursor-pointer hover:text-black/30' 
+                                        : 'cursor-not-allowed opacity-50'
+                                }`"
                             />
                         </div>
                         <span
                             v-if="index === (links[network.id] ?? []).length - 1 && (links[network.id] ?? []).length < 2"
-                            @click="addLink(network.id)"
-                            class="cursor-pointer text-sm text-blue-700 hover:text-orange-800"
+                            @click="(isOpen && visibleNetworks[network.id]) ? addLink(network.id) : null"
+                            class="text-sm"
+                            :class="isOpen && visibleNetworks[network.id] 
+                                ? 'cursor-pointer text-blue-700 hover:text-orange-800' 
+                                : 'cursor-not-allowed opacity-50 text-gray-400'"
                             >+ еще {{ network.name }}</span
                         >
                     </div>

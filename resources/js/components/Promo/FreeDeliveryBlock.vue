@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 interface Props {
@@ -28,6 +28,12 @@ const minAmount = computed({
     get: () => props.freeDeliveryFrom,
     set: (value: number | null) => emit('update:freeDeliveryFrom', value),
 });
+
+watch(deliveryOpen, (newValue) => {
+    if (!newValue) {
+        minAmount.value = null;
+    }
+});
 </script>
 
 <template>
@@ -51,7 +57,16 @@ const minAmount = computed({
                 <div class="ml-12 flex w-50 flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
                     <label class="text-sm font-bold">Действует при заказе от</label>
                     <div class="relative mt-3">
-                        <input v-model.number="minAmount" type="number" placeholder="1000" min="0" step="1" class="w-full rounded-lg border-gray-300 pr-8 pl-3" />
+                        <input 
+                            v-model.number="minAmount" 
+                            type="number" 
+                            :disabled="!deliveryOpen"
+                            placeholder="1000" 
+                            min="0" 
+                            step="1" 
+                            class="w-full rounded-lg border-gray-300 pr-8 pl-3" 
+                            :class="{ 'opacity-50 cursor-not-allowed': !deliveryOpen }"
+                        />
                         <span class="absolute right-3 top-2 text-black/50">₽</span>
                     </div>
                 </div>

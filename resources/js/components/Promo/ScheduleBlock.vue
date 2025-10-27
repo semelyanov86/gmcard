@@ -58,6 +58,26 @@ function emitChanges() {
 watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinutes], () => {
     emitChanges();
 });
+
+watch(isEnabled, (newValue) => {
+    if (!newValue) {
+        selectedDayCodes.value = [];
+        timeRangeEnabled.value = false;
+        startHours.value = '00';
+        startMinutes.value = '00';
+        endHours.value = '00';
+        endMinutes.value = '00';
+    }
+});
+
+watch(timeRangeEnabled, (newValue) => {
+    if (!newValue) {
+        startHours.value = '00';
+        startMinutes.value = '00';
+        endHours.value = '00';
+        endMinutes.value = '00';
+    }
+});
 </script>
 
 <template>
@@ -82,9 +102,12 @@ watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinut
                     <li
                         v-for="day in weekdays"
                         :key="day.id"
-                        @click="toggleDay(day.id)"
-                        class="cursor-pointer rounded-md px-3 py-2"
-                        :class="isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-slate-100 hover:bg-blue-200'"
+                        @click="isEnabled ? toggleDay(day.id) : null"
+                        class="rounded-md px-3 py-2"
+                        :class="[
+                            !isEnabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+                            isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-slate-100 hover:bg-blue-200'
+                        ]"
                     >
                         {{ day.label }}
                     </li>
@@ -92,20 +115,58 @@ watch([isEnabled, timeRangeEnabled, startHours, startMinutes, endHours, endMinut
             </div>
             <div class="mt-5 flex flex-row items-center gap-3 max-md:flex-col max-md:items-start">
                 <div class="flex items-center gap-2">
-                    <input v-model="timeRangeEnabled" type="checkbox" class="rounded-md" />
-                    <label class="font-bold">Акция доступна с</label>
+                    <input 
+                        v-model="timeRangeEnabled" 
+                        type="checkbox" 
+                        :disabled="!isEnabled"
+                        class="rounded-md" 
+                        :class="{ 'opacity-50 cursor-not-allowed': !isEnabled }"
+                    />
+                    <label class="font-bold" :class="{ 'opacity-50': !isEnabled }">Акция доступна с</label>
                 </div>
                 <div v-if="timeRangeEnabled" class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
-                        <input v-model="startHours" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
+                        <input 
+                            v-model="startHours" 
+                            type="text" 
+                            :disabled="!isEnabled || !timeRangeEnabled"
+                            placeholder="00" 
+                            maxlength="2" 
+                            class="w-11 rounded-lg border border-gray-300" 
+                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                        />
                         <span>:</span>
-                        <input v-model="startMinutes" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
+                        <input 
+                            v-model="startMinutes" 
+                            type="text" 
+                            :disabled="!isEnabled || !timeRangeEnabled"
+                            placeholder="00" 
+                            maxlength="2" 
+                            class="w-11 rounded-lg border border-gray-300" 
+                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                        />
                     </div>
                     <span>- до</span>
                     <div class="flex items-center gap-2">
-                        <input v-model="endHours" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
+                        <input 
+                            v-model="endHours" 
+                            type="text" 
+                            :disabled="!isEnabled || !timeRangeEnabled"
+                            placeholder="00" 
+                            maxlength="2" 
+                            class="w-11 rounded-lg border border-gray-300" 
+                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                        />
                         <span>:</span>
-                        <input v-model="endMinutes" type="text" placeholder="00" maxlength="2" class="w-11 rounded-lg border border-gray-300" />
+                        <input 
+                            v-model="endMinutes" 
+                            type="text" 
+                            :disabled="!isEnabled || !timeRangeEnabled"
+                            placeholder="00" 
+                            maxlength="2" 
+                            class="w-11 rounded-lg border border-gray-300" 
+                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                        />
                     </div>
                 </div>
             </div>

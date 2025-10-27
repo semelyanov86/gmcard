@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -16,6 +16,12 @@ const isOpen = ref(props.modelValue !== '');
 const localValue = computed({
     get: () => props.modelValue,
     set: (value: string) => emit('update:modelValue', value),
+});
+
+watch(isOpen, (newValue) => {
+    if (!newValue) {
+        localValue.value = '';
+    }
 });
 </script>
 
@@ -35,8 +41,12 @@ const localValue = computed({
                 <input
                     v-model="localValue"
                     type="text"
+                    :disabled="!isOpen"
                     class="mt-3 w-full rounded-lg border-gray-300"
-                    :class="{ 'border-red-500': error }"
+                    :class="{
+                        'border-red-500': error,
+                        'opacity-50 cursor-not-allowed': !isOpen
+                    }"
                     placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU"
                 />
                 <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>
