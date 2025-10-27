@@ -331,7 +331,7 @@ function handleLaunch() {
                     />
                     <ConditionsExampleModal :isOpen="conditionsModalOpen" @close="conditionsModalOpen = false" />
                     <SocialLinksBlock v-model="form.social_links as Record<string, string[]>" :socialNetworks="props.socialNetworks" />
-                    <AddressContactBlock />
+                    <AddressContactBlock v-model="form.addresses" />
                     <ScheduleBlock v-model="form.schedule as unknown as ScheduleModel" :weekdays="props.weekdays" />
                     <GeographySelector v-model="form.city_ids as number[]" :cities="props.cities" :error="form.errors.city_ids" />
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">

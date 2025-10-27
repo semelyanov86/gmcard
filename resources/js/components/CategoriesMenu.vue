@@ -329,7 +329,7 @@ onMounted(() => {
                             Грузоперевозки <span class="strelka">></span>
                         </h1>
                         <div class="relative mb-6">
-                            <div class="absolute top-1/2 left-3 -translate-y-1/2">
+                            <div class="absolute inset-y-0 left-3 flex items-center">
                                 <SearchIcon custom-class="h-5 w-5 text-gray-400" />
                             </div>
                             <input

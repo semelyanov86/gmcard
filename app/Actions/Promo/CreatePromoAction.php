@@ -6,7 +6,9 @@ namespace App\Actions\Promo;
 
 use App\Data\CreatePromoData;
 use App\Enums\PromoType;
+use App\Models\Address;
 use App\Models\Promo;
+use App\ValueObjects\MoneyValueObject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -26,8 +28,9 @@ final readonly class CreatePromoAction
     {
         return DB::transaction(function () use ($dto): Promo {
             $promoType = $this->getPromoType($dto->promoTypeId);
+            $discount = $this->getDiscount($dto, $promoType);
 
-            $promo = Promo::create([
+            $createData = [
                 'user_id' => $dto->userId,
                 'name' => $dto->title,
                 'type' => $promoType,
@@ -36,8 +39,13 @@ final readonly class CreatePromoAction
                 'free_delivery' => $dto->freeDelivery ?? false,
                 'show_on_home' => $dto->showInBanner ?? false,
                 'available_till' => Carbon::now()->addDays($dto->durationDays),
-                'discount' => $this->getDiscount($dto, $promoType),
-                'sales_order_from' => $dto->minimumOrderAmount ? $dto->minimumOrderAmount * 100 : 0,
+                'discount' => $discount,
+                'amount' => $dto->discountAmount 
+                    ? MoneyValueObject::fromString((string) $dto->discountAmount) 
+                    : null,
+                'sales_order_from' => $dto->minimumOrderAmount 
+                    ? MoneyValueObject::fromString((string) $dto->minimumOrderAmount) 
+                    : MoneyValueObject::fromCents(0),
                 'code' => $dto->promoCode,
                 'video_link' => $dto->youtubeUrl,
                 'smm_links' => $dto->socialLinks,
@@ -48,8 +56,12 @@ final readonly class CreatePromoAction
                 'started_at' => $dto->isDraft ? null : now(),
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
-                'free_delivery_from' => $dto->freeDeliveryFrom ? $dto->freeDeliveryFrom * 100 : 0,
-            ]);
+                'free_delivery_from' => $dto->freeDeliveryFrom 
+                    ? MoneyValueObject::fromString((string) $dto->freeDeliveryFrom) 
+                    : MoneyValueObject::fromCents(0),
+            ];
+
+            $promo = Promo::create($createData);
 
             $this->syncRelations($promo, $dto);
 
@@ -77,8 +89,25 @@ final readonly class CreatePromoAction
         $promo->cities()->sync($dto->cityIds);
 
         if ($dto->addresses && ! empty($dto->addresses)) {
-            $addressIds = array_column($dto->addresses, 'id');
-            $promo->addresses()->sync($addressIds);
+            $addressIds = [];
+            foreach ($dto->addresses as $addressData) {
+                if (empty($addressData['address']) && empty($addressData['phone'])) {
+                    continue;
+                }
+
+                $address = Address::create([
+                    'name' => $addressData['address'] ?? '',
+                    'open_hours' => !empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
+                    'phone' => $addressData['phone'] ?? '',
+                    'phone_secondary' => $addressData['phone2'] ?? null,
+                ]);
+
+                $addressIds[] = $address->id;
+            }
+
+            if (!empty($addressIds)) {
+                $promo->addresses()->sync($addressIds);
+            }
         }
     }
 

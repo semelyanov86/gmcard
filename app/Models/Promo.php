@@ -124,10 +124,10 @@ class Promo extends Model
             'free_delivery' => 'boolean',
             'approved_at' => 'immutable_datetime',
             'amount' => MoneyValueObjectCast::class,
+            'sales_order_from' => MoneyValueObjectCast::class,
+            'free_delivery_from' => MoneyValueObjectCast::class,
             'raise_on_top_hours' => 'integer',
             'restart_after_finish_days' => 'integer',
-            'sales_order_from' => 'integer',
-            'free_delivery_from' => 'integer',
             'crmid' => 'string',
             'type' => PromoType::class,
         ];
