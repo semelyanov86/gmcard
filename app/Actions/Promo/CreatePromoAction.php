@@ -96,7 +96,7 @@ final readonly class CreatePromoAction
     }
 
     /**
-     * @param array<string, mixed>|null $schedule
+     * @param  array<string, mixed>|null  $schedule
      */
     private function getScheduleTime(?array $schedule, string $key): ?string
     {
@@ -110,7 +110,7 @@ final readonly class CreatePromoAction
         }
 
         $value = $timeRange[$key] ?? null;
-        
+
         return is_string($value) ? $value : null;
     }
 }

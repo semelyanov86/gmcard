@@ -2,6 +2,15 @@
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
 import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
+import { IMaskDirective } from 'vue-imask';
+
+const vImask = IMaskDirective;
+
+const phoneMask = {
+    mask: '+{7} (000) 000-00-00',
+    lazy: false,
+    placeholderChar: '_',
+};
 </script>
 
 <template>
@@ -27,7 +36,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <div class="flex w-full flex-col p-3 max-md:w-full md:w-1/2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                 </div>
                 <span
                     id="showTel1"
@@ -36,7 +45,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 >
                 <div class="relative hidden w-full flex-col p-3 max-md:w-full md:w-1/2" id="phone1">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none pr-10" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none pr-10" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-12 bottom-4" />
                     <DeleteIcon id="delPhon1" custom-class="absolute bottom-5 right-5" />
                 </div>
@@ -62,7 +71,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                 </div>
                 <span
                     id="showTel2"
@@ -71,7 +80,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 >
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-12 bottom-4" />
                     <DeleteIcon id="delPhon2" custom-class="absolute bottom-5 right-5" />
                 </div>
@@ -97,7 +106,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                 </div>
                 <span
                     id="showTel3"
@@ -106,7 +115,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 >
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone3">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-12 bottom-4" />
                     <DeleteIcon id="delPhon3" custom-class="absolute bottom-5 right-5" />
                 </div>
@@ -132,7 +141,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 </div>
                 <div class="flex w-full flex-col p-3 sm:w-1/2">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                 </div>
                 <span
                     id="showTel4"
@@ -141,7 +150,7 @@ import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
                 >
                 <div class="relative hidden w-full flex-col p-3 sm:w-1/2" id="phone4">
                     <label for="phone" class="mb-2 text-sm font-bold">Телефон</label>
-                    <input type="text" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
+                    <input v-imask="phoneMask" type="tel" name="phone" class="rounded-md border-none" placeholder="+7 (000) 000-00-00" />
                     <VerticalDivider custom-class="right-12 bottom-4" />
                     <DeleteIcon id="delPhon4" custom-class="absolute bottom-5 right-5" />
                 </div>

@@ -116,14 +116,15 @@ watch(
 );
 
 function handlePreview() {
-    console.log('Preview promo', form.data());
 }
 
 function handleSaveDraft() {
-    form.transform((data) => ({
-        ...data,
-        is_draft: true,
-    })).post(route('promos.store'), {
+    form.transform((data) => {
+        return {
+            ...data,
+            is_draft: true,
+        };
+    }).post(route('promos.store'), {
         preserveScroll: false,
         onSuccess: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -201,7 +202,7 @@ function handleLaunch() {
                         >
                             <div id="spaner" class="mr-2">Не менее 5%</div>
                             <img
-                                src="/assets/icons/down.png"
+                                src="/images/png/icons/down.png"
                                 class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
                                 alt="Вверх"
                                 id="icons"
@@ -229,7 +230,7 @@ function handleLaunch() {
                         >
                             <div id="spaner1" class="mr-2">Все</div>
                             <img
-                                src="/assets/icons/down.png"
+                                src="/images/png/icons/down.png"
                                 class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
                                 alt="Вверх"
                                 id="icons"
