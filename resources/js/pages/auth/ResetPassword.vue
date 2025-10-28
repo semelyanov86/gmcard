@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
+import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
+import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
-interface Props {
-    token: string;
+const props = defineProps<{
     email: string;
-}
-
-const props = defineProps<Props>();
+    token: string;
+}>();
 
 const form = useForm({
     token: props.token,
@@ -20,6 +18,9 @@ const form = useForm({
     password: '',
     password_confirmation: '',
 });
+
+const showPassword = ref(false);
+const showPasswordConfirmation = ref(false);
 
 const submit = () => {
     form.post(route('password.store'), {
@@ -31,51 +32,53 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Reset password" description="Please enter your new password below">
-        <Head title="Reset password" />
+    <AuthCustomLayout>
+        <h2 class="mt-10 text-2xl font-bold">Создание нового пароля</h2>
+        <p class="mt-2 text-gray-600">Введите новый пароль для вашей учетной записи</p>
 
-        <form @submit.prevent="submit">
-            <div class="grid gap-6">
-                <div class="grid gap-2">
-                    <Label for="email">Email</Label>
-                    <Input id="email" type="email" name="email" autocomplete="email" v-model="form.email" class="mt-1 block w-full" readonly />
-                    <InputError :message="form.errors.email" class="mt-2" />
-                </div>
-
-                <div class="grid gap-2">
-                    <Label for="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        autocomplete="new-password"
-                        v-model="form.password"
-                        class="mt-1 block w-full"
-                        autofocus
-                        placeholder="Password"
-                    />
-                    <InputError :message="form.errors.password" />
-                </div>
-
-                <div class="grid gap-2">
-                    <Label for="password_confirmation"> Confirm Password </Label>
-                    <Input
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        autocomplete="new-password"
-                        v-model="form.password_confirmation"
-                        class="mt-1 block w-full"
-                        placeholder="Confirm password"
-                    />
-                    <InputError :message="form.errors.password_confirmation" />
-                </div>
-
-                <Button type="submit" class="mt-4 w-full" :disabled="form.processing">
-                    <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                    Reset password
-                </Button>
+        <form @submit.prevent="submit" class="mt-6 flex w-full flex-col">
+            <div class="relative mt-5 flex w-full flex-col">
+                <label for="email" class="mb-2 text-sm font-semibold">Ваш адрес электронной почты</label>
+                <input id="email" type="email" v-model="form.email" disabled class="w-full rounded-md border border-black/40 bg-gray-100 p-3" />
+                <InputError :message="form.errors.email" />
             </div>
+
+            <div class="relative mt-5 flex w-full flex-col">
+                <label for="password" class="mb-2 text-sm font-semibold">Новый пароль</label>
+                <input
+                    id="password"
+                    :type="showPassword ? 'text' : 'password'"
+                    minlength="8"
+                    placeholder="Новый пароль"
+                    required
+                    autofocus
+                    autocomplete="new-password"
+                    v-model="form.password"
+                    class="w-full rounded-md border border-black/40 p-3 pr-10"
+                />
+                <PasswordToggleIcon :show="showPassword" @toggle="showPassword = !showPassword" />
+                <RequiredFieldHint />
+                <InputError :message="form.errors.password" />
+            </div>
+
+            <div class="relative mt-5 flex w-full flex-col">
+                <label for="password_confirmation" class="mb-2 text-sm font-semibold">Подтвердите новый пароль</label>
+                <input
+                    id="password_confirmation"
+                    :type="showPasswordConfirmation ? 'text' : 'password'"
+                    minlength="8"
+                    placeholder="Подтвердите пароль"
+                    required
+                    autocomplete="new-password"
+                    v-model="form.password_confirmation"
+                    class="w-full rounded-md border border-black/40 p-3 pr-10"
+                />
+                <PasswordToggleIcon :show="showPasswordConfirmation" @toggle="showPasswordConfirmation = !showPasswordConfirmation" />
+                <RequiredFieldHint />
+                <InputError :message="form.errors.password_confirmation" />
+            </div>
+
+            <PrimaryButton type="submit" :disabled="form.processing" :loading="form.processing" class="mt-10"> Сбросить пароль </PrimaryButton>
         </form>
-    </AuthLayout>
+    </AuthCustomLayout>
 </template>
