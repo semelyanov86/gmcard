@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\ValueObjects;
 
+use InvalidArgumentException;
+use JsonSerializable;
 use Money\Currency;
 use Money\Money;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
-use InvalidArgumentException;
 
-final readonly class MoneyValueObject implements Cast, Stringable
+final readonly class MoneyValueObject implements Cast, Stringable, JsonSerializable
 {
     public function __construct(
         private Money $money
@@ -90,5 +91,10 @@ final readonly class MoneyValueObject implements Cast, Stringable
     public function __toString(): string
     {
         return (string) $this->toString();
+    }
+
+    public function jsonSerialize(): float
+    {
+        return $this->toFloat();
     }
 }
