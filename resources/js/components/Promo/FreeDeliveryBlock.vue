@@ -57,17 +57,17 @@ watch(deliveryOpen, (newValue) => {
                 <div class="ml-12 flex w-50 flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
                     <label class="text-sm font-bold">Действует при заказе от</label>
                     <div class="relative mt-3">
-                        <input 
-                            v-model.number="minAmount" 
-                            type="number" 
+                        <input
+                            v-model.number="minAmount"
+                            type="number"
                             :disabled="!deliveryOpen"
-                            placeholder="1000" 
-                            min="0" 
-                            step="1" 
-                            class="w-full rounded-lg border-gray-300 pr-8 pl-3" 
-                            :class="{ 'opacity-50 cursor-not-allowed': !deliveryOpen }"
+                            placeholder="1000"
+                            min="0"
+                            step="1"
+                            class="w-full rounded-lg border-gray-300 pr-8 pl-3"
+                            :class="{ 'cursor-not-allowed opacity-50': !deliveryOpen }"
                         />
-                        <span class="absolute right-3 top-2 text-black/50">₽</span>
+                        <span class="absolute top-2 right-3 text-black/50">₽</span>
                     </div>
                 </div>
             </div>

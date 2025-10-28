@@ -105,8 +105,8 @@ watch(timeRangeEnabled, (newValue) => {
                         @click="isEnabled ? toggleDay(day.id) : null"
                         class="rounded-md px-3 py-2"
                         :class="[
-                            !isEnabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-                            isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-slate-100 hover:bg-blue-200'
+                            !isEnabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+                            isDaySelected(day.id) ? 'bg-blue-500 text-white' : 'bg-slate-100 hover:bg-blue-200',
                         ]"
                     >
                         {{ day.label }}
@@ -115,57 +115,57 @@ watch(timeRangeEnabled, (newValue) => {
             </div>
             <div class="mt-5 flex flex-row items-center gap-3 max-md:flex-col max-md:items-start">
                 <div class="flex items-center gap-2">
-                    <input 
-                        v-model="timeRangeEnabled" 
-                        type="checkbox" 
+                    <input
+                        v-model="timeRangeEnabled"
+                        type="checkbox"
                         :disabled="!isEnabled"
-                        class="rounded-md" 
-                        :class="{ 'opacity-50 cursor-not-allowed': !isEnabled }"
+                        class="rounded-md"
+                        :class="{ 'cursor-not-allowed opacity-50': !isEnabled }"
                     />
                     <label class="font-bold" :class="{ 'opacity-50': !isEnabled }">Акция доступна с</label>
                 </div>
                 <div v-if="timeRangeEnabled" class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
-                        <input 
-                            v-model="startHours" 
-                            type="text" 
+                        <input
+                            v-model="startHours"
+                            type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
-                            placeholder="00" 
-                            maxlength="2" 
-                            class="w-11 rounded-lg border border-gray-300" 
-                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                            placeholder="00"
+                            maxlength="2"
+                            class="w-11 rounded-lg border border-gray-300"
+                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
                         />
                         <span>:</span>
-                        <input 
-                            v-model="startMinutes" 
-                            type="text" 
+                        <input
+                            v-model="startMinutes"
+                            type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
-                            placeholder="00" 
-                            maxlength="2" 
-                            class="w-11 rounded-lg border border-gray-300" 
-                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                            placeholder="00"
+                            maxlength="2"
+                            class="w-11 rounded-lg border border-gray-300"
+                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
                         />
                     </div>
                     <span>- до</span>
                     <div class="flex items-center gap-2">
-                        <input 
-                            v-model="endHours" 
-                            type="text" 
+                        <input
+                            v-model="endHours"
+                            type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
-                            placeholder="00" 
-                            maxlength="2" 
-                            class="w-11 rounded-lg border border-gray-300" 
-                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                            placeholder="00"
+                            maxlength="2"
+                            class="w-11 rounded-lg border border-gray-300"
+                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
                         />
                         <span>:</span>
-                        <input 
-                            v-model="endMinutes" 
-                            type="text" 
+                        <input
+                            v-model="endMinutes"
+                            type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
-                            placeholder="00" 
-                            maxlength="2" 
-                            class="w-11 rounded-lg border border-gray-300" 
-                            :class="{ 'opacity-50 cursor-not-allowed': !isEnabled || !timeRangeEnabled }"
+                            placeholder="00"
+                            maxlength="2"
+                            class="w-11 rounded-lg border border-gray-300"
+                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
                         />
                     </div>
                 </div>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Casts\MoneyValueObjectCast;
+use App\ValueObjects\MoneyValueObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\PromoType;
 
 /**
+ * @property int $id
+ * @property MoneyValueObject $sales_order_from
+ * @property MoneyValueObject $free_delivery_from
  * @property array<string, string> $smm_links
  */
 class Promo extends Model

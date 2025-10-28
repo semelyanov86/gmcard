@@ -16,7 +16,9 @@ defineEmits<{
             @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
             class="peer sr-only"
         />
-        <div class="toggle-bg relative h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none"></div>
+        <div
+            class="toggle-bg relative h-7 w-14 rounded-full border border-gray-200 bg-gray-200 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:outline-none"
+        ></div>
     </label>
 </template>
 

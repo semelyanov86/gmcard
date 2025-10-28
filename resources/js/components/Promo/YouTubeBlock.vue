@@ -45,7 +45,7 @@ watch(isOpen, (newValue) => {
                     class="mt-3 w-full rounded-lg border-gray-300"
                     :class="{
                         'border-red-500': error,
-                        'opacity-50 cursor-not-allowed': !isOpen
+                        'cursor-not-allowed opacity-50': !isOpen,
                     }"
                     placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU"
                 />

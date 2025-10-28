@@ -45,33 +45,13 @@ class CreatePromoController extends Controller
         $validated = $request->validated();
         $userId = auth()->id();
 
-        Log::info('🎟️ Начало создания промо/купона', [
-            'user_id' => $userId,
-            'validated_data' => $validated,
-            'request_ip' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-        ]);
-
         $dto = CreatePromoData::from([
             ...$validated,
             'user_id' => $userId,
         ]);
 
-        Log::info('📋 DTO для создания промо подготовлен', [
-            'dto' => $dto->toArray(),
-        ]);
-
         try {
             $promo = CreatePromoAction::run($dto);
-
-            Log::info('✅ Промо/купон успешно создан', [
-                'promo_id' => $promo->id,
-                'promo_name' => $promo->name,
-                'promo_type' => $promo->type->value,
-                'is_draft' => $promo->started_at === null,
-                'discount' => $promo->discount,
-                'user_id' => $userId,
-            ]);
         } catch (Throwable $e) {
             Log::error('❌ Ошибка при создании промо/купона', [
                 'user_id' => $userId,

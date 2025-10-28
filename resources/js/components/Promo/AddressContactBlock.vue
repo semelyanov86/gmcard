@@ -2,8 +2,8 @@
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
 import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
-import { IMaskDirective } from 'vue-imask';
 import { computed } from 'vue';
+import { IMaskDirective } from 'vue-imask';
 
 const vImask = IMaskDirective;
 
@@ -84,11 +84,7 @@ if (addresses.value.length === 0) {
                     <LocationPinIcon />
                     <span class="text-base font-bold">Адрес {{ index + 1 }}</span>
                 </div>
-                <DeleteIcon
-                    v-if="index > 0"
-                    @click="removeAddress(index)"
-                    class="cursor-pointer"
-                />
+                <DeleteIcon v-if="index > 0" @click="removeAddress(index)" class="cursor-pointer" />
             </div>
             <div class="h-px w-full bg-black/10"></div>
             <div class="flex w-full flex-row flex-wrap items-center p-6 max-md:flex-col">
@@ -139,17 +135,15 @@ if (addresses.value.length === 0) {
                             placeholder="+7 (000) 000-00-00"
                         />
                         <VerticalDivider custom-class="right-12 bottom-4" />
-                        <DeleteIcon
-                            @click="updateAddress(index, 'phone2', undefined)"
-                            custom-class="absolute bottom-5 right-5 cursor-pointer"
-                        />
+                        <DeleteIcon @click="updateAddress(index, 'phone2', undefined)" custom-class="absolute bottom-5 right-5 cursor-pointer" />
                     </div>
                 </div>
                 <span
                     v-if="!address.phone2"
                     @click="updateAddress(index, 'phone2', '+7 (')"
                     class="mt-6 ml-6 cursor-pointer text-sm font-bold text-blue-400 hover:border-b-2 hover:border-dashed hover:border-blue-400"
-                >+ еще телефон</span>
+                    >+ еще телефон</span
+                >
             </div>
         </div>
 

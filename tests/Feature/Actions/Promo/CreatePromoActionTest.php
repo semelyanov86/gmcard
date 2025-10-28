@@ -231,6 +231,8 @@ class CreatePromoActionTest extends TestCase
         );
 
         $promo = CreatePromoAction::run($dto);
+        /** @var \App\Models\Promo $promo */
+        $promo = $promo->fresh();
 
         $this->assertNotEmpty($promo->id);
         $this->assertSame('10000', $promo->sales_order_from->getMoney()->getAmount());

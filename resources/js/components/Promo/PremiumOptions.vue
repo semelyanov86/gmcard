@@ -35,8 +35,8 @@ watch(autoRestartEnabled, (newValue) => {
                     v-model.number="autoRaiseHours"
                     type="number"
                     :disabled="!autoRaiseEnabled"
-                    class="bg_inp w-11 rounded-md border-gray-300 no-spinner"
-                    :class="{ 'opacity-50 cursor-not-allowed': !autoRaiseEnabled }"
+                    class="bg_inp no-spinner w-11 rounded-md border-gray-300"
+                    :class="{ 'cursor-not-allowed opacity-50': !autoRaiseEnabled }"
                     placeholder="0"
                 />
                 <label class="text-base max-sm:text-sm">часа</label>
@@ -51,8 +51,8 @@ watch(autoRestartEnabled, (newValue) => {
                     v-model.number="autoRestartDays"
                     type="number"
                     :disabled="!autoRestartEnabled"
-                    class="bg_inp w-11 rounded-md border-gray-300 no-spinner"
-                    :class="{ 'opacity-50 cursor-not-allowed': !autoRestartEnabled }"
+                    class="bg_inp no-spinner w-11 rounded-md border-gray-300"
+                    :class="{ 'cursor-not-allowed opacity-50': !autoRestartEnabled }"
                     placeholder="0"
                 />
                 <label>дней</label>

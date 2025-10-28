@@ -11,7 +11,6 @@ use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
@@ -27,23 +26,9 @@ final readonly class CreatePromoAction
      */
     public function handle(CreatePromoData $dto): Promo
     {
-        Log::info('🏭 CreatePromoAction: Начало обработки', [
-            'dto_user_id' => $dto->userId,
-            'promo_type_id' => $dto->promoTypeId,
-            'title' => $dto->title,
-            'is_draft' => $dto->isDraft,
-        ]);
-
         return DB::transaction(function () use ($dto): Promo {
             $promoType = $this->getPromoType($dto->promoTypeId);
             $discount = $this->getDiscount($dto, $promoType);
-
-            Log::info('💰 Промо данные подготовлены', [
-                'promo_type' => $promoType->value,
-                'discount' => $discount,
-                'minimum_order_amount' => $dto->minimumOrderAmount,
-                'duration_days' => $dto->durationDays,
-            ]);
 
             $createData = [
                 'user_id' => $dto->userId,
@@ -76,41 +61,9 @@ final readonly class CreatePromoAction
                     : MoneyValueObject::fromCents(0),
             ];
 
-            Log::info('📝 Создание промо в базе данных', [
-                'create_data' => array_merge($createData, [
-                    'amount' => $createData['amount'] ? [
-                        'amount' => $createData['amount']->getMoney()->getAmount(),
-                        'currency' => $createData['amount']->getCurrency(),
-                    ] : null,
-                    'sales_order_from' => $createData['sales_order_from'] ? [
-                        'amount' => $createData['sales_order_from']->getMoney()->getAmount(),
-                        'currency' => $createData['sales_order_from']->getCurrency(),
-                    ] : null,
-                    'free_delivery_from' => $createData['free_delivery_from'] ? [
-                        'amount' => $createData['free_delivery_from']->getMoney()->getAmount(),
-                        'currency' => $createData['free_delivery_from']->getCurrency(),
-                    ] : null,
-                ]),
-            ]);
-
             $promo = Promo::create($createData);
 
-            Log::info('🔗 Синхронизация связей промо', [
-                'promo_id' => $promo->id,
-                'categories_count' => count($dto->categoryIds),
-                'cities_count' => count($dto->cityIds),
-                'addresses_count' => $dto->addresses ? count($dto->addresses) : 0,
-            ]);
-
             $this->syncRelations($promo, $dto);
-
-            Log::info('🎉 Промо создан и готов', [
-                'promo_id' => $promo->id,
-                'promo_name' => $promo->name,
-                'promo_code' => $promo->code,
-                'available_till' => $promo->available_till?->format('Y-m-d H:i:s'),
-                'started_at' => $promo->started_at?->format('Y-m-d H:i:s'),
-            ]);
 
             return $promo;
         });
@@ -132,26 +85,14 @@ final readonly class CreatePromoAction
 
     private function syncRelations(Promo $promo, CreatePromoData $dto): void
     {
-        Log::info('🔄 Синхронизация категорий и городов', [
-            'promo_id' => $promo->id,
-            'category_ids' => $dto->categoryIds,
-            'city_ids' => $dto->cityIds,
-        ]);
-
         $promo->categories()->sync($dto->categoryIds);
         $promo->cities()->sync($dto->cityIds);
 
         if ($dto->addresses && ! empty($dto->addresses)) {
             $addressIds = [];
-            Log::info('📍 Обработка адресов для промо', [
-                'promo_id' => $promo->id,
-                'addresses_data' => $dto->addresses,
-            ]);
 
             foreach ($dto->addresses as $index => $addressData) {
                 if (empty($addressData['address']) && empty($addressData['phone'])) {
-                    Log::info('⏭️ Пропускаем пустой адрес', ['index' => $index]);
-
                     continue;
                 }
 
@@ -162,28 +103,12 @@ final readonly class CreatePromoAction
                     'phone_secondary' => $addressData['phone2'] ?? null,
                 ];
 
-                Log::info('🏪 Создание нового адреса', [
-                    'promo_id' => $promo->id,
-                    'address_index' => $index,
-                    'address_data' => $addressCreateData,
-                ]);
-
                 $address = Address::create($addressCreateData);
-
-                Log::info('✅ Адрес создан', [
-                    'promo_id' => $promo->id,
-                    'address_id' => $address->id,
-                    'address_name' => $address->name,
-                ]);
 
                 $addressIds[] = $address->id;
             }
 
             if (! empty($addressIds)) {
-                Log::info('🔗 Привязка адресов к промо', [
-                    'promo_id' => $promo->id,
-                    'address_ids' => $addressIds,
-                ]);
                 $promo->addresses()->sync($addressIds);
             }
         }

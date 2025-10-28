@@ -44,7 +44,7 @@ function updateCurrency(value: string) {
                     placeholder="50"
                     min="0"
                     step="1"
-                    class="h-10 w-25 rounded-lg border border-gray-300 px-3"
+                    class="h-10 w-35 rounded-lg border border-gray-300 px-3 md:w-25"
                     :class="{ 'border-red-500': error }"
                 />
                 <CurrencyDropdown :modelValue="currency" @update:modelValue="updateCurrency" />

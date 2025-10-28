@@ -112,11 +112,10 @@ watch(
             }, 5000);
         }
     },
-    { immediate: true, deep: true }
+    { immediate: true, deep: true },
 );
 
-function handlePreview() {
-}
+function handlePreview() {}
 
 function handleSaveDraft() {
     form.transform((data) => {
@@ -152,7 +151,7 @@ function handleLaunch() {
     <Header :userData="userData" />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
-        
+
         <!-- Уведомление об успехе -->
         <Transition
             enter-active-class="transition ease-out duration-300"
@@ -162,10 +161,7 @@ function handleLaunch() {
             leave-from-class="translate-x-0 opacity-100"
             leave-to-class="translate-x-full opacity-0"
         >
-            <div 
-                v-if="successMessage" 
-                class="fixed top-4 right-4 z-50 max-w-md rounded-lg bg-green-500 px-6 py-4 text-white shadow-lg"
-            >
+            <div v-if="successMessage" class="fixed top-4 right-4 z-50 max-w-md rounded-lg bg-green-500 px-6 py-4 text-white shadow-lg">
                 <div class="flex items-center gap-3">
                     <svg class="h-6 w-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -177,7 +173,7 @@ function handleLaunch() {
                 </div>
             </div>
         </Transition>
-        
+
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar></NavBar>
             <CategoriesMenu></CategoriesMenu>
@@ -347,7 +343,11 @@ function handleLaunch() {
                             <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
                         </div> -->
                     </div>
-                    <CategorySelector :categories="props.categories" v-model:selectedCategories="form.category_ids as string[]" :error="form.errors.category_ids" />
+                    <CategorySelector
+                        :categories="props.categories"
+                        v-model:selectedCategories="form.category_ids as string[]"
+                        :error="form.errors.category_ids"
+                    />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
                         <p class="w-96 text-black/50 max-md:mb-4 max-md:w-full">
                             <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.
@@ -356,20 +356,14 @@ function handleLaunch() {
                             <div class="flex items-center gap-4">
                                 <div class="relative flex w-44 items-center gap-2 max-md:w-full">
                                     <span class="text-xs opacity-80">1</span>
-                                    <input 
-                                        v-model.number="form.duration_days" 
-                                        class="w-36" 
-                                        type="range" 
-                                        min="1" 
-                                        max="30" 
-                                    />
+                                    <input v-model.number="form.duration_days" class="w-36" type="range" min="1" max="30" />
                                     <span class="text-xs opacity-80">30</span>
                                 </div>
-                                <input 
-                                    v-model.number="form.duration_days" 
-                                    type="number" 
-                                    min="1" 
-                                    max="30" 
+                                <input
+                                    v-model.number="form.duration_days"
+                                    type="number"
+                                    min="1"
+                                    max="30"
                                     class="w-16 rounded-md border border-gray-300 py-2 text-center text-lg"
                                     :class="{ 'border-red-500': form.errors.duration_days }"
                                 />

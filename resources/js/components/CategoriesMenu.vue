@@ -19,7 +19,9 @@ onMounted(() => {
             });
         });
 
-        const mainCategories = document.querySelectorAll('.mains, .mains2, .mains3, .mains4, .mains5, .mains6, .mains7, .mains8, .mains9, .mains10, .mains11, .mains12');
+        const mainCategories = document.querySelectorAll(
+            '.mains, .mains2, .mains3, .mains4, .mains5, .mains6, .mains7, .mains8, .mains9, .mains10, .mains11, .mains12',
+        );
         mainCategories.forEach((category, index) => {
             const icon = document.getElementById(`icons${index + 1}`);
 
