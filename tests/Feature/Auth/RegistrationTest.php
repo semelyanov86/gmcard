@@ -139,6 +139,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -168,6 +169,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('name');
         $this->assertGuest();
     }
@@ -180,6 +182,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -193,6 +196,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -210,6 +214,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -221,6 +226,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('password');
         $this->assertGuest();
     }
@@ -233,6 +239,7 @@ class RegistrationTest extends TestCase
             'password' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('password');
         $this->assertGuest();
     }
@@ -246,6 +253,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'different-password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('password');
         $this->assertGuest();
     }
@@ -259,6 +267,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('name');
         $this->assertGuest();
     }
@@ -274,6 +283,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -301,6 +311,7 @@ class RegistrationTest extends TestCase
             'code' => str_repeat('a', 21),
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('code');
         $this->assertGuest();
     }

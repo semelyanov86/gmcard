@@ -56,6 +56,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
     }
 
@@ -137,6 +138,7 @@ class AuthenticationTest extends TestCase
             'password' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -147,6 +149,7 @@ class AuthenticationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('password');
         $this->assertGuest();
     }
@@ -158,6 +161,7 @@ class AuthenticationTest extends TestCase
             'password' => 'password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
@@ -179,6 +183,7 @@ class AuthenticationTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
 
@@ -301,6 +306,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+        $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
     }
 }
