@@ -26,4 +26,3 @@ defineEmits<{
         {{ tab.label }}
     </button>
 </template>
-

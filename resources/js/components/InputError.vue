@@ -6,14 +6,7 @@ defineProps<{
 
 <template>
     <p v-show="message" class="mt-1 flex items-center gap-1 text-xs text-red-500">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-5 w-5 text-red-500"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-red-500">
             <path
                 stroke-linecap="round"
                 stroke-linejoin="round"

@@ -7,12 +7,13 @@ import LoginTab from './components/LoginTab.vue';
 import RegisterTab from './components/RegisterTab.vue';
 import ResetTab from './components/ResetTab.vue';
 
-defineProps<{
+const props = defineProps<{
     status?: string;
     canResetPassword?: boolean;
+    initialTab?: 'register' | 'login' | 'reset';
 }>();
 
-const activeTab = ref<AuthTab>(AuthTab.Register);
+const activeTab = ref<AuthTab>(props.initialTab === 'login' ? AuthTab.Login : props.initialTab === 'reset' ? AuthTab.Reset : AuthTab.Register);
 
 const tabs = [
     { value: AuthTab.Register, label: 'Регистрация' },
@@ -24,13 +25,7 @@ const tabs = [
 <template>
     <AuthCustomLayout>
         <div class="mt-5 flex w-full gap-2 rounded-lg bg-gray-100 p-1">
-            <AuthTabButton
-                v-for="tab in tabs"
-                :key="tab.value"
-                :tab="tab"
-                :is-active="activeTab === tab.value"
-                @click="activeTab = tab.value"
-            />
+            <AuthTabButton v-for="tab in tabs" :key="tab.value" :tab="tab" :is-active="activeTab === tab.value" @click="activeTab = tab.value" />
         </div>
 
         <RegisterTab v-if="activeTab === AuthTab.Register" />
@@ -38,4 +33,3 @@ const tabs = [
         <ResetTab v-if="activeTab === AuthTab.Reset" :status="status" />
     </AuthCustomLayout>
 </template>
-

@@ -16,19 +16,15 @@ use Inertia\Response;
 
 final class RegisteredUserController extends Controller
 {
-    /**
-     * Show the registration page.
-     */
     public function create(): Response
     {
         return Inertia::render('auth/AuthPage', [
+            'initialTab' => 'register',
             'canResetPassword' => true,
         ]);
     }
 
     /**
-     * Handle an incoming registration request.
-     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(RegisteredUserRequest $request): RedirectResponse

@@ -3,4 +3,3 @@ export enum AuthTab {
     Login = 'login',
     Reset = 'reset',
 }
-
