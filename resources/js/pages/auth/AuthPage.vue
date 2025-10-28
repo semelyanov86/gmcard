@@ -3,6 +3,7 @@ import InputError from '@/components/InputError.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import TextLink from '@/components/TextLink.vue';
 import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
+import { AuthTab } from '@/types/enums/auth/AuthTab';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,11 +12,8 @@ defineProps<{
     canResetPassword?: boolean;
 }>();
 
-type TabType = 'register' | 'login' | 'reset';
+const activeTab = ref<AuthTab>(AuthTab.Register);
 
-const activeTab = ref<TabType>('register');
-
-// Forms
 const registerForm = useForm({
     name: '',
     email: '',
@@ -59,37 +57,37 @@ const submitReset = () => {
         <div class="mt-5 flex w-full gap-2 rounded-lg bg-gray-100 p-1">
             <button
                 type="button"
-                @click="activeTab = 'register'"
+                @click="activeTab = AuthTab.Register"
                 :class="[
                     'flex-1 rounded-md px-4 py-3 text-center text-sm font-semibold transition-all',
-                    activeTab === 'register' ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
+                    activeTab === AuthTab.Register ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
                 ]"
             >
                 Регистрация
             </button>
             <button
                 type="button"
-                @click="activeTab = 'login'"
+                @click="activeTab = AuthTab.Login"
                 :class="[
                     'flex-1 rounded-md px-4 py-3 text-center text-sm font-semibold transition-all',
-                    activeTab === 'login' ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
+                    activeTab === AuthTab.Login ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
                 ]"
             >
                 Войти
             </button>
             <button
                 type="button"
-                @click="activeTab = 'reset'"
+                @click="activeTab = AuthTab.Reset"
                 :class="[
                     'flex-1 rounded-md px-4 py-3 text-center text-sm font-semibold transition-all',
-                    activeTab === 'reset' ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
+                    activeTab === AuthTab.Reset ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black',
                 ]"
             >
                 Сброс
             </button>
         </div>
 
-        <div v-if="activeTab === 'register'" class="w-full">
+        <div v-if="activeTab === AuthTab.Register" class="w-full">
             <div class="mt-5 flex flex-col items-center">
                 <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
                 <ul class="mt-5 flex items-center gap-8">
@@ -232,7 +230,7 @@ const submitReset = () => {
             </p>
         </div>
 
-        <div v-if="activeTab === 'login'" class="w-full">
+        <div v-if="activeTab === AuthTab.Login" class="w-full">
             <div v-if="status" class="mt-6 mb-4 text-center text-sm font-medium text-green-600">
                 {{ status }}
             </div>
@@ -283,7 +281,7 @@ const submitReset = () => {
             </form>
         </div>
 
-        <div v-if="activeTab === 'reset'" class="w-full">
+        <div v-if="activeTab === AuthTab.Reset" class="w-full">
             <div v-if="status" class="mt-6 mb-4 text-center text-sm font-medium text-green-600">
                 {{ status }}
             </div>
