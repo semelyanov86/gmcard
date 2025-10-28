@@ -8,8 +8,7 @@ onMounted(() => {
     setTimeout(() => {
         const dropList = document.querySelector('.drop_list') as HTMLElement;
         const categoryItems = document.querySelectorAll('#lists .my-class');
-        
-        // Обработчики для категорий в левом списке
+
         categoryItems.forEach((item) => {
             item.addEventListener('mouseenter', () => {
                 const categoryName = item.getAttribute('data-category');
@@ -20,33 +19,29 @@ onMounted(() => {
             });
         });
 
-        // Обработчики для основных категорий (десктоп)
         const mainCategories = document.querySelectorAll('.mains, .mains2, .mains3, .mains4, .mains5, .mains6, .mains7, .mains8, .mains9, .mains10, .mains11, .mains12');
         mainCategories.forEach((category, index) => {
             const icon = document.getElementById(`icons${index + 1}`);
-            
+
             category.addEventListener('mouseenter', () => {
                 if (dropList) {
                     dropList.classList.remove('hidden');
                     dropList.classList.add('flex');
                 }
-                
-                // Сначала скрываем все стрелочки
+
                 mainCategories.forEach((_, idx) => {
                     const otherIcon = document.getElementById(`icons${idx + 1}`);
                     if (otherIcon) {
                         otherIcon.classList.add('hidden');
                     }
                 });
-                
-                // Затем показываем только текущую
+
                 if (icon) {
                     icon.classList.remove('hidden');
                 }
             });
         });
 
-        // Обработчики для мобильных категорий
         const mobileCategories = document.querySelectorAll('.icons_block');
         mobileCategories.forEach((category) => {
             category.addEventListener('click', () => {
@@ -57,7 +52,6 @@ onMounted(() => {
             });
         });
 
-        // Скрытие меню при уходе мыши
         const categoryContainer = document.querySelector('.relative.w-full.py-4') as HTMLElement;
         if (categoryContainer) {
             categoryContainer.addEventListener('mouseleave', () => {
@@ -65,7 +59,6 @@ onMounted(() => {
                     dropList.classList.remove('flex');
                     dropList.classList.add('hidden');
                 }
-                // Скрываем все стрелки
                 mainCategories.forEach((_, index) => {
                     const icon = document.getElementById(`icons${index + 1}`);
                     if (icon) {
@@ -75,7 +68,6 @@ onMounted(() => {
             });
         }
 
-        // Показывать меню при наведении на dropList
         if (dropList) {
             dropList.addEventListener('mouseenter', () => {
                 dropList.classList.remove('hidden');
@@ -91,84 +83,84 @@ onMounted(() => {
         <div class="mobile_desctop -mx-2 flex items-end justify-between px-4 lg:px-0">
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains relative flex flex-col items-center justify-center" data-index="1">
-                    <div class="image-1 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-1 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для него</p>
                 </div>
                 <TriangleUpIcon id="icons1" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains2 relative flex flex-col items-center justify-center" data-index="2">
-                    <div class="image-2 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-2 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для нее</p>
                 </div>
                 <TriangleUpIcon id="icons2" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains3 relative flex flex-col items-center justify-center" data-index="3">
-                    <div class="image-3 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-3 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Детям</p>
                 </div>
                 <TriangleUpIcon id="icons3" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains4 relative flex flex-col items-center justify-center" data-index="4">
-                    <div class="image-4 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-4 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для дома</p>
                 </div>
                 <TriangleUpIcon id="icons4" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains5 relative flex flex-col items-center justify-center" data-index="5">
-                    <div class="image-5 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-5 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Техника</p>
                 </div>
                 <TriangleUpIcon id="icons5" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains6 relative flex flex-col items-center justify-center" data-index="6">
-                    <div class="image-6 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-6 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Красота</p>
                 </div>
                 <TriangleUpIcon id="icons6" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains7 relative flex flex-col items-center justify-center" data-index="7">
-                    <div class="image-7 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-7 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Услуги</p>
                 </div>
                 <TriangleUpIcon id="icons7" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains8 relative flex flex-col items-center justify-center" data-index="8">
-                    <div class="image-8 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-8 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Туризм</p>
                 </div>
                 <TriangleUpIcon id="icons8" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains9 relative flex flex-col items-center justify-center" data-index="9">
-                    <div class="image-9 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-9 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Магазины</p>
                 </div>
                 <TriangleUpIcon id="icons9" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains10 relative flex flex-col items-center justify-center" data-index="10">
-                    <div class="image-10 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-10 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Поесть</p>
                 </div>
                 <TriangleUpIcon id="icons10" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains11 relative flex flex-col items-center justify-center" data-index="11">
-                    <div class="image-11 h-[51px] w-[51px] rounded-lg py-3"></div>
+                    <div class="image-11 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для авто</p>
                 </div>
                 <TriangleUpIcon id="icons11" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
             </div>
             <div class="relative flex cursor-pointer flex-col items-center">
                 <div class="mains12 relative flex flex-col items-center justify-center" data-index="12">
-                    <div class="image-12 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-12 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Обучение</p>
                 </div>
                 <TriangleUpIcon id="icons12" custom-class="absolute -bottom-6 hidden h-7 w-6 text-brand-yellow" />
@@ -177,73 +169,73 @@ onMounted(() => {
         <div class="mobile_scroll -mx-2 hidden items-end justify-between px-4 lg:px-0">
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block1" data-index="1">
-                    <div class="image-1 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-1 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для него</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block2" data-index="2">
-                    <div class="image-2 h-[51px] w-[51px] rounded-lg px-4 py-3"></div>
+                    <div class="image-2 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для нее</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block3" data-index="3">
-                    <div class="image-3 h-[41px] w-[49px] rounded-lg px-4 py-3"></div>
-                    <p class="mt-3 font-bold text-white lg:text-sm">Детям</p>
+                    <div class="image-3 h-13 w-13 rounded-lg px-4 py-3"></div>
+                    <p class="mt-2 font-bold text-white lg:text-sm">Детям</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block4" data-index="4">
-                    <div class="image-4 h-[41px] w-[51px] rounded-lg px-4 py-3"></div>
-                    <p class="mt-3 font-bold text-white lg:text-sm">Для дома</p>
+                    <div class="image-4 h-13 w-13 rounded-lg px-4 py-3"></div>
+                    <p class="mt-2 font-bold text-white lg:text-sm">Для дома</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block5" data-index="5">
-                    <div class="image-5 h-[50px] w-[52px] rounded-lg px-4 py-3"></div>
-                    <p class="mt-3 font-bold text-white lg:text-sm">Техника</p>
+                    <div class="image-5 h-13 w-13 rounded-lg px-4 py-3"></div>
+                    <p class="mt-2 font-bold text-white lg:text-sm">Техника</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block6" data-index="6">
-                    <div class="image-6 h-[50px] w-[52px] rounded-lg px-4 py-3"></div>
+                    <div class="image-6 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Красота</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block7" data-index="7">
-                    <div class="image-7 h-[44px] w-[46px] rounded-lg px-4 py-3"></div>
+                    <div class="image-7 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Услуги</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block8" data-index="8">
-                    <div class="image-8 h-[38px] w-[56px] rounded-lg px-4 py-3"></div>
+                    <div class="image-8 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Туризм</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block9" data-index="9">
-                    <div class="image-9 h-[42px] w-[49px] rounded-lg px-4 py-3"></div>
+                    <div class="image-9 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Магазины</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block10" data-index="10">
-                    <div class="image-10 h-[49px] w-[48px] rounded-lg px-4 py-3"></div>
+                    <div class="image-10 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Поесть</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block11" data-index="11">
-                    <div class="image-11 h-[46px] w-[40px] rounded-lg py-3"></div>
+                    <div class="image-11 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Для авто</p>
                 </div>
             </div>
             <div class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center">
                 <div class="relative flex flex-col items-center justify-center" id="icons_block12" data-index="12">
-                    <div class="image-12 h-[43px] w-[47px] rounded-lg px-4 py-3"></div>
+                    <div class="image-12 h-13 w-13 rounded-lg px-4 py-3"></div>
                     <p class="mt-2 font-bold text-white lg:text-sm">Обучение</p>
                 </div>
             </div>
