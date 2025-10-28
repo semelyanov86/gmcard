@@ -17,7 +17,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screen_can_be_rendered(): void
     {
-        $response = $this->get('/login');
+        $response = $this->get(route('login'));
         $response->assertStatus(200);
     }
 
@@ -26,7 +26,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -40,7 +40,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $this->post('/login', [
+        $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -50,7 +50,7 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_not_authenticate_with_invalid_email(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'nonexistent@example.com',
             'password' => 'password',
         ]);
@@ -64,10 +64,10 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/logout');
+        $response = $this->actingAs($user)->post(route('logout'));
 
         $this->assertGuest();
-        $response->assertRedirect('/');
+        $response->assertRedirect(route('business.landing'));
     }
 
     public function test_session_is_regenerated_on_login(): void
@@ -75,7 +75,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $this->post('/login', [
+        $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -91,7 +91,7 @@ class AuthenticationTest extends TestCase
         $this->actingAs($user);
         $this->assertAuthenticated();
 
-        $this->post('/logout');
+        $this->post(route('logout'));
 
         $this->assertGuest();
     }
@@ -101,7 +101,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
             'remember' => true,
@@ -121,7 +121,7 @@ class AuthenticationTest extends TestCase
             'remember_token' => null,
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
             'remember' => false,
@@ -133,7 +133,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_requires_email(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'password' => 'password',
         ]);
 
@@ -143,7 +143,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_requires_password(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'test@example.com',
         ]);
 
@@ -153,7 +153,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_requires_valid_email_format(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'not-an-email',
             'password' => 'password',
         ]);
@@ -168,13 +168,13 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         for ($i = 0; $i < 5; $i++) {
-            $this->post('/login', [
+            $this->post(route('login'), [
                 'email' => $user->email,
                 'password' => 'wrong-password',
             ]);
         }
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -199,13 +199,13 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         for ($i = 0; $i < 5; $i++) {
-            $this->post('/login', [
+            $this->post(route('login'), [
                 'email' => $user->email,
                 'password' => 'wrong-password',
             ]);
         }
 
-        $this->post('/login', [
+        $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -220,13 +220,13 @@ class AuthenticationTest extends TestCase
 
 
         for ($i = 0; $i < 3; $i++) {
-            $this->post('/login', [
+            $this->post(route('login'), [
                 'email' => $user->email,
                 'password' => 'wrong-password',
             ]);
         }
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -240,7 +240,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/login');
+        $response = $this->actingAs($user)->get(route('login'));
 
         $response->assertRedirect(route('dashboard', absolute: false));
     }
@@ -250,7 +250,7 @@ class AuthenticationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/login', [
+        $response = $this->actingAs($user)->post(route('login'), [
             'email' => 'another@example.com',
             'password' => 'password',
         ]);
@@ -260,7 +260,7 @@ class AuthenticationTest extends TestCase
 
     public function test_guests_cannot_logout(): void
     {
-        $response = $this->post('/logout');
+        $response = $this->post(route('logout'));
 
         $response->assertRedirect(route('login'));
     }
@@ -279,7 +279,7 @@ class AuthenticationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'test@example.com',
             'password' => 'password',
         ]);
@@ -295,7 +295,7 @@ class AuthenticationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'TEST@EXAMPLE.COM',
             'password' => 'password',
         ]);

@@ -37,14 +37,14 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered(): void
     {
-        $response = $this->get('/register');
+        $response = $this->get(route('register'));
 
         $response->assertStatus(200);
     }
 
     public function test_new_users_can_register(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -57,7 +57,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register_with_code(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -75,7 +75,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_assigns_user_role(): void
     {
-        $this->post('/register', [
+        $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -90,7 +90,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_logs_user_in_automatically(): void
     {
-        $this->post('/register', [
+        $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -104,7 +104,7 @@ class RegistrationTest extends TestCase
     {
         Event::fake();
 
-        $this->post('/register', [
+        $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -116,7 +116,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_hashes_password(): void
     {
-        $this->post('/register', [
+        $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'my-secure-password',
@@ -132,7 +132,7 @@ class RegistrationTest extends TestCase
 
     public function test_email_must_be_lowercase(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'TEST@EXAMPLE.COM',
             'password' => 'password',
@@ -145,7 +145,7 @@ class RegistrationTest extends TestCase
 
     public function test_lowercase_email_is_accepted(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -162,7 +162,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_name(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -174,7 +174,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_email(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -186,7 +186,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_valid_email(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'not-a-valid-email',
             'password' => 'password',
@@ -203,7 +203,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -216,7 +216,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_password(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
@@ -227,7 +227,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_password_confirmation(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -239,7 +239,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_matching_password_confirmation(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -252,7 +252,7 @@ class RegistrationTest extends TestCase
 
     public function test_name_must_not_exceed_255_characters(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => str_repeat('a', 256),
             'email' => 'test@example.com',
             'password' => 'password',
@@ -267,7 +267,7 @@ class RegistrationTest extends TestCase
     {
         $longEmail = str_repeat('a', 244) . '@example.com';
 
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => $longEmail,
             'password' => 'password',
@@ -280,7 +280,7 @@ class RegistrationTest extends TestCase
 
     public function test_code_is_optional(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -293,7 +293,7 @@ class RegistrationTest extends TestCase
 
     public function test_code_must_not_exceed_20_characters(): void
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
@@ -310,7 +310,7 @@ class RegistrationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/register');
+        $response = $this->actingAs($user)->get(route('register'));
 
         $response->assertRedirect(route('dashboard', absolute: false));
     }
@@ -320,7 +320,7 @@ class RegistrationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/register', [
+        $response = $this->actingAs($user)->post(route('register'), [
             'name' => 'Another User',
             'email' => 'another@example.com',
             'password' => 'password',
