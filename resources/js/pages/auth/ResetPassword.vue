@@ -39,13 +39,7 @@ const submit = () => {
         <form @submit.prevent="submit" class="mt-6 flex w-full flex-col">
             <div class="relative mt-5 flex w-full flex-col">
                 <label for="email" class="mb-2 text-sm font-semibold">Ваш адрес электронной почты</label>
-                <input
-                    id="email"
-                    type="email"
-                    v-model="form.email"
-                    disabled
-                    class="w-full rounded-md border border-black/40 bg-gray-100 p-3"
-                />
+                <input id="email" type="email" v-model="form.email" disabled class="w-full rounded-md border border-black/40 bg-gray-100 p-3" />
                 <InputError :message="form.errors.email" />
             </div>
 
@@ -84,10 +78,7 @@ const submit = () => {
                 <InputError :message="form.errors.password_confirmation" />
             </div>
 
-            <PrimaryButton type="submit" :disabled="form.processing" :loading="form.processing" class="mt-10">
-                Сбросить пароль
-            </PrimaryButton>
+            <PrimaryButton type="submit" :disabled="form.processing" :loading="form.processing" class="mt-10"> Сбросить пароль </PrimaryButton>
         </form>
     </AuthCustomLayout>
 </template>
-

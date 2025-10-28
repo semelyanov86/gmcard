@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
 import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
-import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
+import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
 import TextLink from '@/components/TextLink.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
