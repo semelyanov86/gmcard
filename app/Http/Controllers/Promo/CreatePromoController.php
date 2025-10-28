@@ -12,6 +12,7 @@ use App\Data\CreatePromoData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Promo\CreatePromoRequest;
 use App\Settings\GeneralSettings;
+use App\ValueObjects\MoneyValueObject;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -45,10 +46,49 @@ class CreatePromoController extends Controller
         $validated = $request->validated();
         $userId = auth()->id();
 
-        $dto = CreatePromoData::from([
+        $dataForDto = [
             ...$validated,
             'user_id' => $userId,
-        ]);
+        ];
+
+        // Преобразуем discount_amount и discount_currency в MoneyValueObject
+        if (isset($validated['discount_amount']) && $validated['discount_amount'] !== null) {
+            $currency = $this->getCurrency($validated['discount_currency'] ?? '%');
+            $dataForDto['discount'] = MoneyValueObject::fromString(
+                (string) $validated['discount_amount'],
+                $currency
+            );
+            unset($dataForDto['discount_amount'], $dataForDto['discount_currency']);
+        }
+
+        // Преобразуем cashback_amount и cashback_currency в MoneyValueObject
+        if (isset($validated['cashback_amount']) && $validated['cashback_amount'] !== null) {
+            $currency = $this->getCurrency($validated['cashback_currency'] ?? '%');
+            $dataForDto['cashback'] = MoneyValueObject::fromString(
+                (string) $validated['cashback_amount'],
+                $currency
+            );
+            unset($dataForDto['cashback_amount'], $dataForDto['cashback_currency']);
+        }
+
+        // Преобразуем minimum_order_amount в MoneyValueObject
+        if (isset($validated['minimum_order_amount']) && $validated['minimum_order_amount'] !== null) {
+            $dataForDto['minimum_order'] = MoneyValueObject::fromString(
+                (string) $validated['minimum_order_amount'],
+                'RUB'
+            );
+            unset($dataForDto['minimum_order_amount']);
+        }
+
+        // Преобразуем free_delivery_from в MoneyValueObject
+        if (isset($validated['free_delivery_from']) && $validated['free_delivery_from'] !== null) {
+            $dataForDto['free_delivery_from'] = MoneyValueObject::fromString(
+                (string) $validated['free_delivery_from'],
+                'RUB'
+            );
+        }
+
+        $dto = CreatePromoData::from($dataForDto);
 
         try {
             $promo = CreatePromoAction::run($dto);
@@ -71,5 +111,14 @@ class CreatePromoController extends Controller
         return redirect()
             ->route('promos.create')
             ->with('success', $message);
+    }
+
+    private function getCurrency(string $currencyInput): string
+    {
+        return match ($currencyInput) {
+            '%' => 'PCT',
+            '₽', 'руб' => 'RUB',
+            default => 'RUB',
+        };
     }
 }

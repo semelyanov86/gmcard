@@ -9,6 +9,7 @@ use App\Data\CreatePromoData;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\User;
+use App\ValueObjects\MoneyValueObject;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -65,8 +66,7 @@ class CreatePromoActionTest extends TestCase
             durationDays: 10,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            discountAmount: 25,
-            discountCurrency: '%',
+            discount: MoneyValueObject::fromString('25', 'PCT'),
         );
 
         $promo = CreatePromoAction::run($dto);
@@ -94,8 +94,7 @@ class CreatePromoActionTest extends TestCase
             durationDays: 14,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            cashbackAmount: 500,
-            cashbackCurrency: '₽',
+            cashback: MoneyValueObject::fromString('500', 'RUB'),
         );
 
         $promo = CreatePromoAction::run($dto);
@@ -227,7 +226,7 @@ class CreatePromoActionTest extends TestCase
             durationDays: 7,
             categoryIds: $this->getCategoryIds($categories),
             cityIds: $this->getCityIds($cities),
-            minimumOrderAmount: 100,
+            minimumOrder: MoneyValueObject::fromString('100', 'RUB'),
         );
 
         $promo = CreatePromoAction::run($dto);
