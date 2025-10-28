@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import TextLink from '@/components/TextLink.vue';
 import { useForm } from '@inertiajs/vue3';
@@ -60,12 +61,7 @@ const submitLogin = () => {
                     v-model="loginForm.password"
                     class="w-full rounded-md border border-black/40 p-3 pr-10"
                 />
-                <img
-                    src="/images/svg/passSee.svg"
-                    alt="Показать пароль"
-                    @click="showLoginPassword = !showLoginPassword"
-                    class="absolute top-10 right-4 h-5 w-5 cursor-pointer opacity-70 hover:opacity-100"
-                />
+                <PasswordToggleIcon :show="showLoginPassword" @toggle="showLoginPassword = !showLoginPassword" />
                 <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
                 <InputError :message="loginForm.errors.password" />
             </div>

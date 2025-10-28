@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -112,12 +113,7 @@ const submitRegister = () => {
                     v-model="registerForm.password"
                     class="w-full rounded-md border border-black/40 p-3 pr-10"
                 />
-                <img
-                    src="/images/svg/passSee.svg"
-                    alt="Показать пароль"
-                    @click="showPassword = !showPassword"
-                    class="absolute top-10 right-4 h-5 w-5 cursor-pointer opacity-70 hover:opacity-100"
-                />
+                <PasswordToggleIcon :show="showPassword" @toggle="showPassword = !showPassword" />
                 <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
                 <InputError :message="registerForm.errors.password" />
             </div>
@@ -134,12 +130,7 @@ const submitRegister = () => {
                     placeholder="Подтвердите пароль"
                     class="w-full rounded-md border border-black/40 p-3 pr-10"
                 />
-                <img
-                    src="/images/svg/passSee.svg"
-                    alt="Показать пароль"
-                    @click="showPasswordConfirmation = !showPasswordConfirmation"
-                    class="absolute top-10 right-4 h-5 w-5 cursor-pointer opacity-70 hover:opacity-100"
-                />
+                <PasswordToggleIcon :show="showPasswordConfirmation" @toggle="showPasswordConfirmation = !showPasswordConfirmation" />
                 <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
                 <InputError :message="registerForm.errors.password_confirmation" />
             </div>
