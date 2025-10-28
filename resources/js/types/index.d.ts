@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-vue-next';
 import type { Config } from 'ziggy-js';
+import type { UserDataModel } from './UserDataModel';
 
 export interface Auth {
     user: User;
@@ -21,6 +22,7 @@ export type AppPageProps<T extends Record<string, unknown> = Record<string, unkn
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
+    userData: UserDataModel | null;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
 };
@@ -44,6 +46,7 @@ export type { DiscountFilterModel } from './DiscountFilterModel';
 export type { PromoTypeModel } from './PromoTypeModel';
 export type { ScheduleModel } from './ScheduleModel';
 export type { SocialNetworkModel } from './SocialNetworkModel';
+export type { UserDataModel } from './UserDataModel';
 export type { WeekdayModel } from './WeekdayModel';
 
 export type UIMode = 'mobile' | 'desktop';

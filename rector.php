@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Set\ValueObject\LevelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -14,6 +15,12 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/public',
         __DIR__ . '/resources',
         __DIR__ . '/tests',
+    ]);
+
+    $rectorConfig->skip([
+        RenameClassRector::class => [
+            __DIR__ . '/tests/Feature/Promo/CreatePromoRequestTest.php',
+        ],
     ]);
 
     // register a single rule
