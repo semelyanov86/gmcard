@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 
@@ -36,7 +37,7 @@ const submitReset = () => {
                     v-model="resetForm.email"
                     class="w-full rounded-md border border-black/40 p-3"
                 />
-                <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
+                <RequiredFieldHint />
                 <InputError :message="resetForm.errors.email" />
             </div>
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
 import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
+import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
 import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
 import { useForm } from '@inertiajs/vue3';
@@ -62,7 +63,7 @@ const submit = () => {
                     class="w-full rounded-md border border-black/40 p-3 pr-10"
                 />
                 <PasswordToggleIcon :show="showPassword" @toggle="showPassword = !showPassword" />
-                <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
+                <RequiredFieldHint />
                 <InputError :message="form.errors.password" />
             </div>
 
@@ -79,7 +80,7 @@ const submit = () => {
                     class="w-full rounded-md border border-black/40 p-3 pr-10"
                 />
                 <PasswordToggleIcon :show="showPasswordConfirmation" @toggle="showPasswordConfirmation = !showPasswordConfirmation" />
-                <i class="absolute top-0 right-1 text-[12px] opacity-50">* обязательное поле</i>
+                <RequiredFieldHint />
                 <InputError :message="form.errors.password_confirmation" />
             </div>
 
