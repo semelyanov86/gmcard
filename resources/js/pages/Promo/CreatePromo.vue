@@ -96,7 +96,6 @@ const showVtoroi = computed(() => [1, 2].includes(form.promo_type_id));
 const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(form.promo_type_id));
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id));
 
-// Computed для конвертации plain объектов в MoneyValueObject
 const discountMoney = computed({
     get: () => new MoneyValueObject(form.discount.amount, form.discount.currency),
     set: (value: MoneyValueObject) => {
