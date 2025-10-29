@@ -14,8 +14,8 @@ const emit = defineEmits<{
     'update:modelValue': [value: Record<string, string[]>];
 }>();
 
-const hasData = Object.keys(props.modelValue).some((key) => props.modelValue[key]?.length > 0);
-const isOpen = ref(hasData);
+const hasData: boolean = Object.keys(props.modelValue).some((key) => props.modelValue[key]?.length > 0);
+const isOpen = ref<boolean>(hasData);
 
 const visibleNetworksState = ref<Record<string, boolean>>(
     Object.fromEntries(
@@ -31,7 +31,7 @@ const links = computed<Record<string, string[]>>(() =>
 
 const visibleNetworks = computed<Record<string, boolean>>(() => visibleNetworksState.value);
 
-const showInstagramWarning = computed(() => visibleNetworks.value.ins && links.value.ins?.some((v) => v.trim()));
+const showInstagramWarning = computed<boolean>(() => visibleNetworks.value.ins && links.value.ins?.some((v) => v.trim()));
 
 function updateLink(networkId: string, index: number, value: string) {
     const updated = { ...links.value };
