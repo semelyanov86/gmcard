@@ -13,7 +13,7 @@ use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
 
-final readonly class MoneyValueObject implements Cast, Stringable, JsonSerializable
+final readonly class MoneyValueObject implements Cast, JsonSerializable, Stringable
 {
     public function __construct(
         private Money $money
