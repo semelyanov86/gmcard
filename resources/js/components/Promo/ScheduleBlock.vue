@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import Input from '@/components/primitives/Input.vue';
 import type { ScheduleModel, WeekdayModel } from '@/types';
 import { ref, watch } from 'vue';
-import Input from '@/components/primitives/Input.vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{

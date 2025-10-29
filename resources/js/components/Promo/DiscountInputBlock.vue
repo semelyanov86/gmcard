@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import Input from '@/components/primitives/Input.vue';
 import { MoneyValueObject } from '@/types/MoneyValueObject';
 import { computed } from 'vue';
-import Input from '@/components/primitives/Input.vue';
 import CurrencyDropdown from './CurrencyDropdown.vue';
 
 interface Props {

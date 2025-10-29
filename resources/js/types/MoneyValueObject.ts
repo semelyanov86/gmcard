@@ -82,4 +82,3 @@ export function toMoneyValueObject(input: MoneyValueInput | null): MoneyValueObj
     }
     return new MoneyValueObject(input.amount, input.currency);
 }
-

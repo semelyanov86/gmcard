@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import Input from '@/components/primitives/Input.vue';
+import { computed } from 'vue';
 
 const modelValue = defineModel<string>({ required: true });
 

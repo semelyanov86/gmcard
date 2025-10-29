@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
 import Input from '@/components/primitives/Input.vue';
+import { computed, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{

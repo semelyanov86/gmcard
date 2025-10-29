@@ -75,10 +75,7 @@ const handleSubCategoryHover = (categoryName: string) => {
                     <div :class="getImageClass(index)" class="h-13 w-13 rounded-lg px-4 py-3" />
                     <p class="mt-2 font-bold text-white lg:text-sm">{{ category.name }}</p>
                 </div>
-                <TriangleUpIcon
-                    :class="{ hidden: activeCategoryIndex !== index }"
-                    custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow"
-                />
+                <TriangleUpIcon :class="{ hidden: activeCategoryIndex !== index }" custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow" />
             </div>
         </div>
 
@@ -96,11 +93,7 @@ const handleSubCategoryHover = (categoryName: string) => {
             </div>
         </div>
 
-        <div
-            v-show="isDropdownOpen"
-            class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg"
-            @mouseenter="isDropdownOpen = true"
-        >
+        <div v-show="isDropdownOpen" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg" @mouseenter="isDropdownOpen = true">
             <div class="bg-brand-yellow z-[1] h-[16px] w-full" />
             <div class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
                 <ul class="relative z-10 mt-[10px] w-1/3 overflow-y-scroll bg-white py-2 pr-[16px]">
@@ -111,11 +104,7 @@ const handleSubCategoryHover = (categoryName: string) => {
                         @mouseenter="handleSubCategoryHover(subCategory.name)"
                     >
                         <div class="icon-container">
-                            <AdaptiveImage
-                                :image-path="subCategory.iconPath"
-                                :alt="subCategory.name"
-                                image-class="category-icon"
-                            />
+                            <AdaptiveImage :image-path="subCategory.iconPath" :alt="subCategory.name" image-class="category-icon" />
                             <span>{{ subCategory.name }}</span>
                         </div>
                         <span class="strelka">›</span>
