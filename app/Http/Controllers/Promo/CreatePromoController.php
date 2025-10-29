@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Promo;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
+use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\CreatePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Data\CreatePromoData;
+use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Promo\CreatePromoRequest;
 use App\Settings\GeneralSettings;
@@ -37,6 +39,8 @@ class CreatePromoController extends Controller
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
             'userBalance' => $user?->balance?->toFloat() ?? 0,
+            'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
+            'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
         ]);
     }
 
