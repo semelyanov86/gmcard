@@ -21,28 +21,20 @@ class CreatePromoRequest extends FormRequest
     {
         return [
             'promo_type_id' => ['required', 'integer', 'min:1', 'max:7'],
-            'discount_amount' => [
+            'discount' => [
                 'nullable',
-                'integer',
-                'min:0',
+                'array',
                 Rule::requiredIf(fn () => in_array($this->input('promo_type_id'), [1, 2, 3])),
             ],
-            'discount_currency' => [
+            'discount.amount' => ['nullable', 'numeric', 'min:0'],
+            'discount.currency' => ['nullable', 'string', Rule::in(['%', '₽'])],
+            'cashback' => [
                 'nullable',
-                'string',
-                Rule::in(['%', '₽', 'руб']),
-            ],
-            'cashback_amount' => [
-                'nullable',
-                'integer',
-                'min:0',
+                'array',
                 Rule::requiredIf(fn () => in_array($this->input('promo_type_id'), [6, 7])),
             ],
-            'cashback_currency' => [
-                'nullable',
-                'string',
-                Rule::in(['%', '₽', 'руб']),
-            ],
+            'cashback.amount' => ['nullable', 'numeric', 'min:0'],
+            'cashback.currency' => ['nullable', 'string', Rule::in(['%', '₽'])],
             'category_ids' => ['required', 'array', 'min:1'],
             'category_ids.*' => ['required', 'string', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:64'],

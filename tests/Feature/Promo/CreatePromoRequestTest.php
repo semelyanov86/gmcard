@@ -36,38 +36,36 @@ class CreatePromoRequestTest extends TestCase
         $this->assertTrue($validator->passes() || $validator->errors()->missing('promo_type_id'));
     }
 
-    public function test_discount_amount_is_integer(): void
+    public function test_discount_amount_is_numeric(): void
     {
         $validator = $this->makeValidator([
-            'discount_amount' => 'not-numeric',
+            'discount' => ['amount' => 'not-numeric', 'currency' => '%'],
         ]);
 
         $this->assertFalse($validator->passes());
-        $this->assertArrayHasKey('discount_amount', $validator->errors()->toArray());
+        $this->assertArrayHasKey('discount.amount', $validator->errors()->toArray());
 
         $validator = $this->makeValidator([
-            'discount_amount' => '50.5',
+            'discount' => ['amount' => 50.5, 'currency' => '%'],
         ]);
 
-        $this->assertFalse($validator->passes());
-        $this->assertArrayHasKey('discount_amount', $validator->errors()->toArray());
+        $this->assertTrue($validator->passes() || $validator->errors()->missing('discount.amount'));
     }
 
-    public function test_cashback_amount_is_integer(): void
+    public function test_cashback_amount_is_numeric(): void
     {
         $validator = $this->makeValidator([
-            'cashback_amount' => 'not-numeric',
+            'cashback' => ['amount' => 'not-numeric', 'currency' => '%'],
         ]);
 
         $this->assertFalse($validator->passes());
-        $this->assertArrayHasKey('cashback_amount', $validator->errors()->toArray());
+        $this->assertArrayHasKey('cashback.amount', $validator->errors()->toArray());
 
         $validator = $this->makeValidator([
-            'cashback_amount' => '10.25',
+            'cashback' => ['amount' => 10.25, 'currency' => '%'],
         ]);
 
-        $this->assertFalse($validator->passes());
-        $this->assertArrayHasKey('cashback_amount', $validator->errors()->toArray());
+        $this->assertTrue($validator->passes() || $validator->errors()->missing('cashback.amount'));
     }
 
     public function test_requires_category_ids(): void

@@ -39,6 +39,7 @@ import type {
     SocialNetworkModel,
     WeekdayModel,
 } from '@/types';
+import { MoneyValueObject } from '@/types/MoneyValueObject';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
 import '../../../css/internal/output.css';
@@ -62,10 +63,8 @@ const userData = page.props.userData;
 
 const form = useForm({
     promo_type_id: 1,
-    discount_amount: null,
-    discount_currency: '%',
-    cashback_amount: null,
-    cashback_currency: '%',
+    discount: MoneyValueObject.create(null, '%'),
+    cashback: MoneyValueObject.create(null, '%'),
     category_ids: [] as string[],
     title: '',
     description: props.defaultDescription,
@@ -98,13 +97,11 @@ const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id))
 
 const conditionsModalOpen = ref(false);
 
-// Отслеживаем flash сообщения
 watch(
     () => page.props.flash,
     (flash) => {
         if (flash?.success) {
             successMessage.value = flash.success as string;
-            // Сбрасываем форму при успешной отправке
             form.reset();
             form.clearErrors();
             setTimeout(() => {
@@ -118,12 +115,7 @@ watch(
 function handlePreview() {}
 
 function handleSaveDraft() {
-    form.transform((data) => {
-        return {
-            ...data,
-            is_draft: true,
-        };
-    }).post(route('promos.store'), {
+    form.transform((data) => ({ ...data, is_draft: true })).post(route('promos.store'), {
         preserveScroll: false,
         onSuccess: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -252,16 +244,14 @@ function handleLaunch() {
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
-                        v-model:amount="form.discount_amount"
-                        v-model:currency="form.discount_currency"
-                        :error="form.errors.discount_amount || form.errors.discount_currency"
+                        v-model="form.discount"
+                        :error="form.errors['discount.amount'] || form.errors['discount.currency']"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
-                        v-model:amount="form.cashback_amount"
-                        v-model:currency="form.cashback_currency"
-                        :error="form.errors.cashback_amount || form.errors.cashback_currency"
+                        v-model="form.cashback"
+                        :error="form.errors['cashback.amount'] || form.errors['cashback.currency']"
                     />
                     <TwoColumnFormBlock :show="showTretiy" class="m-8" id="tretiy">
                         <template #description>

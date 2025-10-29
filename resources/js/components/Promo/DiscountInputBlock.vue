@@ -1,34 +1,34 @@
 <script setup lang="ts">
+import { MoneyValueObject } from '@/types/MoneyValueObject';
+import { computed } from 'vue';
 import CurrencyDropdown from './CurrencyDropdown.vue';
 
 interface Props {
     label: string;
-    amount?: number | null;
-    currency?: string;
+    modelValue?: MoneyValueObject | null;
     show?: boolean;
     error?: string;
 }
 
-withDefaults(defineProps<Props>(), {
-    amount: null,
-    currency: '%',
+const props = withDefaults(defineProps<Props>(), {
+    modelValue: null,
     show: true,
     error: '',
 });
 
 const emit = defineEmits<{
-    'update:amount': [value: number | null];
-    'update:currency': [value: string];
+    'update:modelValue': [value: MoneyValueObject];
 }>();
 
+const currentMoney = computed(() => props.modelValue ?? MoneyValueObject.create());
+
 function updateAmount(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value === '' ? null : Number(target.value);
-    emit('update:amount', value);
+    const amount = (event.target as HTMLInputElement).value;
+    emit('update:modelValue', currentMoney.value.withAmount(amount === '' ? null : Number(amount)));
 }
 
-function updateCurrency(value: string) {
-    emit('update:currency', value);
+function updateCurrency(currency: string) {
+    emit('update:modelValue', currentMoney.value.withCurrency(currency));
 }
 </script>
 
@@ -39,7 +39,7 @@ function updateCurrency(value: string) {
             <div class="ml-12 flex items-center gap-3 max-md:mt-4 max-md:ml-0 max-md:w-full">
                 <input
                     type="number"
-                    :value="amount ?? ''"
+                    :value="currentMoney.amount ?? ''"
                     @input="updateAmount"
                     placeholder="50"
                     min="0"
@@ -47,7 +47,7 @@ function updateCurrency(value: string) {
                     class="h-10 w-35 rounded-lg border border-gray-300 px-3 md:w-25"
                     :class="{ 'border-red-500': error }"
                 />
-                <CurrencyDropdown :modelValue="currency" @update:modelValue="updateCurrency" />
+                <CurrencyDropdown :modelValue="currentMoney.currency" @update:modelValue="updateCurrency" />
             </div>
         </div>
         <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>

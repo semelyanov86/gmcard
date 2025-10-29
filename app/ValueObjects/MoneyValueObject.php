@@ -81,6 +81,23 @@ final readonly class MoneyValueObject implements Cast, JsonSerializable, Stringa
             return $value;
         }
 
+        if (is_array($value) && isset($value['amount'])) {
+            $amount = $value['amount'];
+            $currency = $value['currency'] ?? 'RUB';
+
+            if (! is_numeric($amount)) {
+                return null;
+            }
+
+            $currency = match ($currency) {
+                '%' => 'PCT',
+                '₽' => 'RUB',
+                default => $currency,
+            };
+
+            return self::fromString((string) $amount, $currency);
+        }
+
         if (is_string($value) || is_numeric($value)) {
             return self::fromString((string) $value);
         }

@@ -12,7 +12,6 @@ use App\Data\CreatePromoData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Promo\CreatePromoRequest;
 use App\Settings\GeneralSettings;
-use App\ValueObjects\MoneyValueObject;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -49,10 +48,6 @@ class CreatePromoController extends Controller
         $dto = CreatePromoData::from([
             ...$validated,
             'user_id' => $userId,
-            'discount' => $this->createMoneyValueObject($validated, 'discount_amount', 'discount_currency'),
-            'cashback' => $this->createMoneyValueObject($validated, 'cashback_amount', 'cashback_currency'),
-            'minimum_order' => $this->createMoneyValueObject($validated, 'minimum_order_amount'),
-            'free_delivery_from' => $this->createMoneyValueObject($validated, 'free_delivery_from'),
         ]);
 
         try {
@@ -76,32 +71,5 @@ class CreatePromoController extends Controller
         return redirect()
             ->route('promos.create')
             ->with('success', $message);
-    }
-
-    /**
-     * @param  array<string, mixed>  $data
-     */
-    private function createMoneyValueObject(array $data, string $amountKey, ?string $currencyKey = null): ?MoneyValueObject
-    {
-        $amount = $data[$amountKey] ?? null;
-
-        if (! is_int($amount) && ! is_string($amount)) {
-            return null;
-        }
-
-        $currency = 'RUB';
-
-        if ($currencyKey !== null && isset($data[$currencyKey])) {
-            $currencyValue = $data[$currencyKey];
-            if (is_string($currencyValue)) {
-                $currency = match ($currencyValue) {
-                    '%' => 'PCT',
-                    '₽', 'руб' => 'RUB',
-                    default => 'RUB',
-                };
-            }
-        }
-
-        return MoneyValueObject::fromString((string) $amount, $currency);
     }
 }
