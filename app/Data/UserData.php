@@ -26,7 +26,7 @@ final class UserData extends Data
         public ?int $age = null,
         public ?int $id = null,
         public ?MoneyValueObject $balance = null,
-        public ?MoneyValueObject $bonus_balance = null,
+        public ?int $bonus_balance = null,
         public ?int $virtual_balance = null,
         public ?string $job = null,
         public ?JobStatusType $job_status = null,

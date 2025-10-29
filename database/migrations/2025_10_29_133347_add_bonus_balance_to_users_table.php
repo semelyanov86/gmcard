@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table): void {
-            $table->bigInteger('bonus_balance')->default(0)->nullable();
+            $table->integer('bonus_balance')->default(0)->nullable();
         });
     }
 

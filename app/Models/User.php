@@ -21,7 +21,7 @@ use App\ValueObjects\MoneyValueObject;
 
 /**
  * @property MoneyValueObject|null $balance
- * @property MoneyValueObject|null $bonus_balance
+ * @property int|null $bonus_balance
  */
 class User extends Authenticatable implements FilamentUser
 {
@@ -168,7 +168,7 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
             'balance' => MoneyValueObjectCast::class,
-            'bonus_balance' => MoneyValueObjectCast::class,
+            'bonus_balance' => 'integer',
             'virtual_balance' => 'integer',
             'birth_date' => 'date',
             'job_status' => JobStatusType::class,
