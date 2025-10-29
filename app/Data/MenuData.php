@@ -13,7 +13,7 @@ final class MenuData extends Data
     public function __construct(
         public int $id,
         public string $label,
-        public UrlValueObject $url,
+        public ?UrlValueObject $url,
         public MenuType $type,
         public int $order,
         public bool $is_active,

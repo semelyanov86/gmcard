@@ -11,7 +11,7 @@ use Spatie\LaravelData\Support\DataProperty;
 
 final class MoneyValueObjectDataCast implements Cast
 {
-    /** @phpstan-ignore-next-line */
+    /** @param array<string, mixed> $properties */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): ?MoneyValueObject
     {
         if ($value === null) {

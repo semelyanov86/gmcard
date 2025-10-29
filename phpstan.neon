@@ -51,6 +51,11 @@ parameters:
           count: 1
         - message: '#Cannot call method assertExitCode\(\) on Illuminate\\Testing\\PendingCommand\|int#'
           path: tests/Feature/*
+        -
+            message: '#::cast\(\) has parameter \$context with generic class Spatie\\LaravelData\\Support\\Creation\\CreationContext but does not specify its types#'
+            paths:
+                - app/Casts/*
+                - app/ValueObjects/*
 
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php

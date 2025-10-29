@@ -40,7 +40,7 @@ final readonly class UrlValueObject implements Cast, Stringable
         return $this->uri->path();
     }
 
-    /** @phpstan-ignore-next-line */
+    /** @param array<string, mixed> $properties */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): mixed
     {
         if ($value === null) {
