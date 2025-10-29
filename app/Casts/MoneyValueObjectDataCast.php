@@ -22,7 +22,7 @@ final class MoneyValueObjectDataCast implements Cast
             return $value;
         }
 
-        if (is_array($value) && isset($value['amount'])) {
+        if (is_array($value) && array_key_exists('amount', $value)) {
             $amount = $value['amount'];
             $currency = $value['currency'] ?? 'RUB';
 
@@ -34,13 +34,14 @@ final class MoneyValueObjectDataCast implements Cast
                 return null;
             }
 
-            $currency = match ($currency) {
+            $normalizedCurrency = match ($currency) {
                 '%' => 'PCT',
                 '₽', 'руб' => 'RUB',
-                default => $currency,
+                default => 'RUB',
             };
+            /** @var non-empty-string $normalizedCurrency */
 
-            return MoneyValueObject::fromString((string) $amount, $currency);
+            return MoneyValueObject::fromString((string) $amount, $normalizedCurrency);
         }
 
         if (is_string($value) || is_numeric($value)) {
