@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'balance' => fake()->randomFloat(2, 0, 10000),
+            'bonus_balance' => fake()->numberBetween(0, 10000),
             'job' => fake()->jobTitle(),
             'job_status' => fake()->randomElement([JobStatusType::EMPLOYED->value, JobStatusType::SELF_EMPLOYED->value, JobStatusType::FREELANCER->value]),
             'city' => fake()->numberBetween(1, 100),
