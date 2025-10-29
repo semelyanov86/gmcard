@@ -34,12 +34,12 @@ class MenuSeeder extends Seeder
         }
 
         $sidebarItems = [
-            ['label' => 'Личный кабинет', 'url' => '', 'order' => 1],
-            ['label' => 'Запустить акцию', 'url' => '', 'order' => 2],
-            ['label' => 'Мои акции', 'url' => '', 'order' => 3],
-            ['label' => 'Мои акции с купонами', 'url' => '', 'order' => 4],
-            ['label' => 'Мои купоны', 'url' => '', 'order' => 5],
-            ['label' => 'Мои черновики', 'url' => '', 'order' => 6],
+            ['label' => 'Личный кабинет', 'url' => '/profile', 'order' => 1],
+            ['label' => 'Запустить акцию', 'url' => '/promos/create', 'order' => 2],
+            ['label' => 'Мои акции', 'url' => '/promos', 'order' => 3],
+            ['label' => 'Мои акции с купонами', 'url' => '/promos/coupons', 'order' => 4],
+            ['label' => 'Мои купоны', 'url' => '/coupons', 'order' => 5],
+            ['label' => 'Мои черновики', 'url' => '/promos/drafts', 'order' => 6],
         ];
 
         foreach ($sidebarItems as $item) {

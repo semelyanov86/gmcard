@@ -15,7 +15,7 @@ return new class () extends Migration {
         Schema::create('menus', function (Blueprint $table): void {
             $table->id();
             $table->string('label', 255);
-            $table->string('url', 2048);
+            $table->string('url', 190);
             $table->string('type', 50);
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);

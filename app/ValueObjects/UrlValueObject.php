@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ValueObjects;
 
+use App\Data\MenuData;
 use Illuminate\Support\Uri;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
@@ -40,7 +41,10 @@ final readonly class UrlValueObject implements Cast, Stringable
         return $this->uri->path();
     }
 
-    /** @param array<string, mixed> $properties */
+    /**
+     * @param array<string, mixed> $properties
+     * @param CreationContext<MenuData> $context
+     */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): mixed
     {
         if ($value === null) {
