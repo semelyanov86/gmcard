@@ -13,8 +13,8 @@ use Spatie\LaravelData\Support\DataProperty;
 final class MoneyValueObjectDataCast implements Cast
 {
     /**
-     * @param array<string, string> $properties
-     * @param CreationContext<CreatePromoData> $context
+     * @param  array<string, string>  $properties
+     * @param  CreationContext<CreatePromoData>  $context
      */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): ?MoneyValueObject
     {

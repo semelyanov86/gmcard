@@ -42,8 +42,8 @@ final readonly class UrlValueObject implements Cast, Stringable
     }
 
     /**
-     * @param array<string, mixed> $properties
-     * @param CreationContext<MenuData> $context
+     * @param  array<string, mixed>  $properties
+     * @param  CreationContext<MenuData>  $context
      */
     public function cast(DataProperty $property, mixed $value, array $properties, CreationContext $context): mixed
     {
