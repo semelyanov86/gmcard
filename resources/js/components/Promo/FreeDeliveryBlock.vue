@@ -1,17 +1,40 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import Input from '@/components/primitives/Input.vue';
+import { computed, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 interface Props {
     show?: boolean;
+    freeDelivery: boolean;
+    freeDeliveryFrom: number | null;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     show: true,
+    freeDelivery: false,
+    freeDeliveryFrom: null,
 });
 
-const deliveryOpen = ref(false);
-const minAmount = ref('');
+const emit = defineEmits<{
+    'update:freeDelivery': [value: boolean];
+    'update:freeDeliveryFrom': [value: number | null];
+}>();
+
+const deliveryOpen = computed({
+    get: () => props.freeDelivery,
+    set: (value: boolean) => emit('update:freeDelivery', value),
+});
+
+const minAmount = computed({
+    get: () => props.freeDeliveryFrom,
+    set: (value: number | null) => emit('update:freeDeliveryFrom', value),
+});
+
+watch(deliveryOpen, (newValue) => {
+    if (!newValue) {
+        minAmount.value = null;
+    }
+});
 </script>
 
 <template>
@@ -32,11 +55,12 @@ const minAmount = ref('');
                         Если бесплатная доставка действует при заказе от определенной суммы, то необходимо указать это здесь.
                     </p>
                 </div>
-                <div class="relative ml-12 flex w-50 flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
+                <div class="ml-12 flex w-50 flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
                     <label class="text-sm font-bold">Действует при заказе от</label>
-                    <input v-model="minAmount" type="number" placeholder="1000" class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3" />
-                    <span class="absolute right-3 bottom-12 text-black/50">₽</span>
-                    <button class="mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Сохранить</button>
+                    <div class="relative mt-3">
+                        <Input v-model="minAmount" type="number" :disabled="!deliveryOpen" placeholder="1000" min="0" step="1" class="w-full pr-8" />
+                        <span class="absolute top-2 right-3 text-black/50">₽</span>
+                    </div>
                 </div>
             </div>
         </div>

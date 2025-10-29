@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const autoRaiseHours = ref(0);
@@ -7,6 +7,18 @@ const autoRaiseEnabled = ref(false);
 
 const autoRestartDays = ref(0);
 const autoRestartEnabled = ref(false);
+
+watch(autoRaiseEnabled, (newValue) => {
+    if (!newValue) {
+        autoRaiseHours.value = 0;
+    }
+});
+
+watch(autoRestartEnabled, (newValue) => {
+    if (!newValue) {
+        autoRestartDays.value = 0;
+    }
+});
 </script>
 
 <template>
@@ -19,7 +31,14 @@ const autoRestartEnabled = ref(false);
         <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
                 <p class="all_text text-base">Поднимать акцию на первое<br />место каждые</p>
-                <input v-model.number="autoRaiseHours" type="number" class="bg_inp w-11 rounded-md border-gray-300" placeholder="0" />
+                <input
+                    v-model.number="autoRaiseHours"
+                    type="number"
+                    :disabled="!autoRaiseEnabled"
+                    class="bg_inp no-spinner w-11 rounded-md border-gray-300"
+                    :class="{ 'cursor-not-allowed opacity-50': !autoRaiseEnabled }"
+                    placeholder="0"
+                />
                 <label class="text-base max-sm:text-sm">часа</label>
             </div>
             <ToggleSwitch v-model="autoRaiseEnabled" />
@@ -28,10 +47,29 @@ const autoRestartEnabled = ref(false);
         <div class="flex flex-row items-center justify-between max-md:flex-col max-md:items-start">
             <div class="flex items-center gap-1 max-md:mb-4">
                 <p class="all_text text-base">Автоматически перезапускать акцию после завершения на</p>
-                <input v-model.number="autoRestartDays" type="number" class="bg_inp w-11 rounded-md border-gray-300" placeholder="0" />
+                <input
+                    v-model.number="autoRestartDays"
+                    type="number"
+                    :disabled="!autoRestartEnabled"
+                    class="bg_inp no-spinner w-11 rounded-md border-gray-300"
+                    :class="{ 'cursor-not-allowed opacity-50': !autoRestartEnabled }"
+                    placeholder="0"
+                />
                 <label>дней</label>
             </div>
             <ToggleSwitch v-model="autoRestartEnabled" />
         </div>
     </div>
 </template>
+
+<style scoped>
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.no-spinner {
+    -moz-appearance: textfield;
+}
+</style>

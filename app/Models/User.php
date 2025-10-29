@@ -17,7 +17,11 @@ use App\Enums\JobStatusType;
 use App\Enums\RoleType;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use App\Casts\MoneyValueObjectCast;
+use App\ValueObjects\MoneyValueObject;
 
+/**
+ * @property MoneyValueObject|null $balance
+ */
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */

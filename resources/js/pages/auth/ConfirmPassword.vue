@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import PasswordToggleIcon from '@/components/PasswordToggleIcon.vue';
+import RequiredFieldHint from '@/components/RequiredFieldHint.vue';
+import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
+import AuthCustomLayout from '@/layouts/auth/AuthCustomLayout.vue';
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const form = useForm({
     password: '',
 });
+
+const showPassword = ref(false);
 
 const submit = () => {
     form.post(route('password.confirm'), {
@@ -21,33 +23,28 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Confirm your password" description="This is a secure area of the application. Please confirm your password before continuing.">
-        <Head title="Confirm password" />
-
-        <form @submit.prevent="submit">
-            <div class="space-y-6">
-                <div class="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        class="mt-1 block w-full"
-                        v-model="form.password"
-                        required
-                        autocomplete="current-password"
-                        autofocus
-                    />
-
-                    <InputError :message="form.errors.password" />
-                </div>
-
-                <div class="flex items-center">
-                    <Button class="w-full" :disabled="form.processing">
-                        <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                        Confirm Password
-                    </Button>
-                </div>
+    <AuthCustomLayout>
+        <p class="mt-10 w-full text-lg">Это безопасная область приложения. Пожалуйста, подтвердите свой пароль, чтобы продолжить.</p>
+        <form @submit.prevent="submit" class="flex w-full flex-col">
+            <div class="relative mt-5 flex w-full flex-col">
+                <label for="password" class="mb-2 text-sm font-semibold">Ваш пароль</label>
+                <input
+                    id="password"
+                    :type="showPassword ? 'text' : 'password'"
+                    minlength="8"
+                    placeholder="Ваш пароль"
+                    name="password"
+                    required
+                    autofocus
+                    autocomplete="current-password"
+                    v-model="form.password"
+                    class="w-full rounded-md border border-black/40 p-3 pr-10"
+                />
+                <PasswordToggleIcon :show="showPassword" @toggle="showPassword = !showPassword" />
+                <RequiredFieldHint />
+                <InputError :message="form.errors.password" />
             </div>
+            <PrimaryButton type="submit" :loading="form.processing" :disabled="form.processing" class="mt-10"> Подтвердить пароль </PrimaryButton>
         </form>
-    </AuthLayout>
+    </AuthCustomLayout>
 </template>
