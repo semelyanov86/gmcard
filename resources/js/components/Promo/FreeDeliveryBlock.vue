@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
+import Input from '@/components/primitives/Input.vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 interface Props {
@@ -57,15 +58,14 @@ watch(deliveryOpen, (newValue) => {
                 <div class="ml-12 flex w-50 flex-col max-sm:mt-4 max-sm:ml-0 max-sm:w-full">
                     <label class="text-sm font-bold">Действует при заказе от</label>
                     <div class="relative mt-3">
-                        <input
-                            v-model.number="minAmount"
+                        <Input
+                            v-model="minAmount"
                             type="number"
                             :disabled="!deliveryOpen"
                             placeholder="1000"
                             min="0"
                             step="1"
-                            class="w-full rounded-lg border-gray-300 pr-8 pl-3"
-                            :class="{ 'cursor-not-allowed opacity-50': !deliveryOpen }"
+                            class="w-full pr-8"
                         />
                         <span class="absolute top-2 right-3 text-black/50">₽</span>
                     </div>

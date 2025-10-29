@@ -23,6 +23,7 @@ import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
 import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
+import Input from '@/components/primitives/Input.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
@@ -63,29 +64,29 @@ const userData = page.props.userData;
 
 const form = useForm({
     promo_type_id: 1,
-    discount: MoneyValueObject.create(null, '%'),
-    cashback: MoneyValueObject.create(null, '%'),
+    discount: { amount: null as number | null, currency: '%' },
+    cashback: { amount: null as number | null, currency: '%' },
     category_ids: [] as string[],
     title: '',
     description: props.defaultDescription,
-    conditions: null,
-    minimum_order_amount: null,
+    conditions: null as string | null,
+    minimum_order_amount: null as number | null,
     promo_code: '',
     free_delivery: false,
-    free_delivery_from: null,
+    free_delivery_from: null as number | null,
     duration_days: 1,
     show_in_banner: false,
-    addresses: [],
+    addresses: [] as any[],
     schedule: {
         enabled: false,
-        days: [],
+        days: [] as string[],
         timeRange: { enabled: false, start: '00:00', end: '23:59' },
     },
     filter_city: '',
     city_ids: [] as number[],
     youtube_url: '',
     social_links: {} as Record<string, string[]>,
-    photos: [],
+    photos: [] as File[],
     agree_to_terms: false,
 });
 
@@ -94,6 +95,21 @@ const showPerviNew = computed(() => [6, 7].includes(form.promo_type_id));
 const showVtoroi = computed(() => [1, 2].includes(form.promo_type_id));
 const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(form.promo_type_id));
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id));
+
+// Computed для конвертации plain объектов в MoneyValueObject
+const discountMoney = computed({
+    get: () => new MoneyValueObject(form.discount.amount, form.discount.currency),
+    set: (value: MoneyValueObject) => {
+        form.discount = { amount: value.amount, currency: value.currency };
+    },
+});
+
+const cashbackMoney = computed({
+    get: () => new MoneyValueObject(form.cashback.amount, form.cashback.currency),
+    set: (value: MoneyValueObject) => {
+        form.cashback = { amount: value.amount, currency: value.currency };
+    },
+});
 
 const conditionsModalOpen = ref(false);
 
@@ -244,13 +260,13 @@ function handleLaunch() {
                     <DiscountInputBlock
                         :show="showPervyi"
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
-                        v-model="form.discount"
+                        v-model="discountMoney"
                         :error="form.errors['discount.amount'] || form.errors['discount.currency']"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
                         label="Какой % кэшбэка вы готовы предоставить?"
-                        v-model="form.cashback"
+                        v-model="cashbackMoney"
                         :error="form.errors['cashback.amount'] || form.errors['cashback.currency']"
                     />
                     <TwoColumnFormBlock :show="showTretiy" class="m-8" id="tretiy">
@@ -263,15 +279,15 @@ function handleLaunch() {
                         <template #input>
                             <div class="relative">
                                 <label for="minimum_order" class="text-sm font-bold">Минимальная сумма заказа</label>
-                                <input
-                                    v-model.number="form.minimum_order_amount"
+                                <Input
+                                    v-model="form.minimum_order_amount"
                                     type="number"
                                     name="minimum_order"
                                     placeholder="1000"
                                     min="0"
                                     step="1"
-                                    class="mt-3 w-full rounded-lg border-gray-300 pr-8 pl-3"
-                                    :class="{ 'border-red-500': form.errors.minimum_order_amount }"
+                                    class="mt-3 w-full pr-8"
+                                    :error="!!form.errors.minimum_order_amount"
                                 />
                                 <span class="absolute right-3 bottom-2 text-black/50">₽</span>
                                 <p v-if="form.errors.minimum_order_amount" class="mt-2 text-sm text-red-600">
@@ -289,13 +305,13 @@ function handleLaunch() {
                         </template>
                         <template #input>
                             <label for="promo_code" class="text-sm font-bold">Код для скидки</label>
-                            <input
+                            <Input
                                 v-model="form.promo_code"
                                 type="text"
                                 name="promo_code"
                                 placeholder="NJTON564YNN565N56"
-                                class="mt-3 w-full rounded-lg border-gray-300"
-                                :class="{ 'border-red-500': form.errors.promo_code }"
+                                class="mt-3 w-full"
+                                :error="!!form.errors.promo_code"
                             />
                             <p v-if="form.errors.promo_code" class="mt-2 text-sm text-red-600">{{ form.errors.promo_code }}</p>
                         </template>
@@ -349,13 +365,13 @@ function handleLaunch() {
                                     <input v-model.number="form.duration_days" class="w-36" type="range" min="1" max="30" />
                                     <span class="text-xs opacity-80">30</span>
                                 </div>
-                                <input
-                                    v-model.number="form.duration_days"
+                                <Input
+                                    v-model="form.duration_days"
                                     type="number"
                                     min="1"
                                     max="30"
-                                    class="w-16 rounded-md border border-gray-300 py-2 text-center text-lg"
-                                    :class="{ 'border-red-500': form.errors.duration_days }"
+                                    class="w-16 text-center text-lg"
+                                    :error="!!form.errors.duration_days"
                                 />
                             </div>
                             <p v-if="form.errors.duration_days" class="text-sm text-red-600">{{ form.errors.duration_days }}</p>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ScheduleModel, WeekdayModel } from '@/types';
 import { ref, watch } from 'vue';
+import Input from '@/components/primitives/Input.vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -126,46 +127,42 @@ watch(timeRangeEnabled, (newValue) => {
                 </div>
                 <div v-if="timeRangeEnabled" class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
-                        <input
+                        <Input
                             v-model="startHours"
                             type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
                             placeholder="00"
                             maxlength="2"
-                            class="w-11 rounded-lg border border-gray-300"
-                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
+                            class="w-11"
                         />
                         <span>:</span>
-                        <input
+                        <Input
                             v-model="startMinutes"
                             type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
                             placeholder="00"
                             maxlength="2"
-                            class="w-11 rounded-lg border border-gray-300"
-                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
+                            class="w-11"
                         />
                     </div>
                     <span>- до</span>
                     <div class="flex items-center gap-2">
-                        <input
+                        <Input
                             v-model="endHours"
                             type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
                             placeholder="00"
                             maxlength="2"
-                            class="w-11 rounded-lg border border-gray-300"
-                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
+                            class="w-11"
                         />
                         <span>:</span>
-                        <input
+                        <Input
                             v-model="endMinutes"
                             type="text"
                             :disabled="!isEnabled || !timeRangeEnabled"
                             placeholder="00"
                             maxlength="2"
-                            class="w-11 rounded-lg border border-gray-300"
-                            :class="{ 'cursor-not-allowed opacity-50': !isEnabled || !timeRangeEnabled }"
+                            class="w-11"
                         />
                     </div>
                 </div>

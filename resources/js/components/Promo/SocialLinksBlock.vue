@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Input from '@/components/primitives/Input.vue';
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 import type { SocialNetworkModel } from '@/types';
 import { computed, ref, watch } from 'vue';
@@ -123,13 +124,12 @@ watch(isOpen, (newValue) => {
                             <div class="absolute top-3 left-2 flex items-center">
                                 <img :src="network.icon" :alt="network.name" />
                             </div>
-                            <input
-                                :value="link"
-                                @input="updateLink(network.id, index as number, ($event.target as HTMLInputElement).value)"
+                            <Input
+                                :model-value="link"
+                                @update:model-value="(val) => updateLink(network.id, index as number, val as string)"
                                 type="text"
                                 :disabled="!isOpen || !visibleNetworks[network.id]"
-                                class="link_url link_social max-w-md rounded-md pr-12 ring-black/30 max-md:w-full"
-                                :class="{ 'cursor-not-allowed opacity-50': !isOpen || !visibleNetworks[network.id] }"
+                                class="link_url link_social max-w-md pr-12 ring-black/30 max-md:w-full"
                                 :placeholder="network.placeholder"
                             />
                             <div class="left_del absolute top-1 right-9 h-9 w-0.5 bg-black/30"></div>

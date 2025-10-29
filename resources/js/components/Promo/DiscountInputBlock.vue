@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { MoneyValueObject } from '@/types/MoneyValueObject';
 import { computed } from 'vue';
+import Input from '@/components/primitives/Input.vue';
 import CurrencyDropdown from './CurrencyDropdown.vue';
 
 interface Props {
@@ -22,11 +23,6 @@ const emit = defineEmits<{
 
 const currentMoney = computed(() => props.modelValue ?? MoneyValueObject.create());
 
-function updateAmount(event: Event) {
-    const amount = (event.target as HTMLInputElement).value;
-    emit('update:modelValue', currentMoney.value.withAmount(amount === '' ? null : Number(amount)));
-}
-
 function updateCurrency(currency: string) {
     emit('update:modelValue', currentMoney.value.withCurrency(currency));
 }
@@ -37,15 +33,15 @@ function updateCurrency(currency: string) {
         <div class="flex flex-row items-center justify-between max-md:flex-col">
             <h3 class="text-base font-bold max-md:w-full">{{ label }}</h3>
             <div class="ml-12 flex items-center gap-3 max-md:mt-4 max-md:ml-0 max-md:w-full">
-                <input
+                <Input
                     type="number"
-                    :value="currentMoney.amount ?? ''"
-                    @input="updateAmount"
+                    :model-value="currentMoney.amount"
+                    @update:model-value="(val) => emit('update:modelValue', currentMoney.withAmount(val as number | null))"
                     placeholder="50"
                     min="0"
                     step="1"
-                    class="h-10 w-35 rounded-lg border border-gray-300 px-3 md:w-25"
-                    :class="{ 'border-red-500': error }"
+                    class="h-10 w-35 md:w-25"
+                    :error="!!error"
                 />
                 <CurrencyDropdown :modelValue="currentMoney.currency" @update:modelValue="updateCurrency" />
             </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
+import Input from '@/components/primitives/Input.vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
@@ -38,15 +39,12 @@ watch(isOpen, (newValue) => {
             <div class="h-px w-full bg-black/30"></div>
             <div class="mt-4 flex flex-col">
                 <label for="" class="font-bold">Ссылка на ролик</label>
-                <input
+                <Input
                     v-model="localValue"
-                    type="text"
+                    type="url"
                     :disabled="!isOpen"
-                    class="mt-3 w-full rounded-lg border-gray-300"
-                    :class="{
-                        'border-red-500': error,
-                        'cursor-not-allowed opacity-50': !isOpen,
-                    }"
+                    class="mt-3 w-full"
+                    :error="!!error"
                     placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU"
                 />
                 <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>

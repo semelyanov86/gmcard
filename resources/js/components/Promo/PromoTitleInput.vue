@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import Input from '@/components/primitives/Input.vue';
 
 const modelValue = defineModel<string>({ required: true });
 
@@ -18,11 +19,11 @@ const remainingChars = computed(() => 64 - (modelValue.value?.length || 0));
             вас более узнаваемым.
         </p>
         <div class="relative">
-            <input
+            <Input
                 v-model="modelValue"
                 type="text"
-                class="mt-3 w-full rounded-lg border-gray-300"
-                :class="{ 'border-red-500': error }"
+                class="mt-3 w-full pr-12"
+                :error="!!error"
                 placeholder="Скидки до 30% в Desigual! Зарядись энергией Desigual!"
                 maxlength="64"
             />
