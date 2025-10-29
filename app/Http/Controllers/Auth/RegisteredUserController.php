@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\CreditBonusBalanceAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisteredUserRequest;
 use App\Models\User;
@@ -37,6 +38,8 @@ final class RegisteredUserController extends Controller
         ]);
 
         $user->assignRole('user');
+
+        CreditBonusBalanceAction::run($user->id, config('bonus.registration_bonus'));
 
         event(new Registered($user));
 
