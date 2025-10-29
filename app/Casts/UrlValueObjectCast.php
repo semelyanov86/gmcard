@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 final class UrlValueObjectCast implements CastsAttributes
 {
     /**
+     * @param  string|null  $value
      * @param  array<string, string>  $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?UrlValueObject
@@ -22,11 +23,7 @@ final class UrlValueObjectCast implements CastsAttributes
             return null;
         }
 
-        if (is_string($value)) {
-            return UrlValueObject::from($value);
-        }
-
-        return null;
+        return UrlValueObject::from($value);
     }
 
     /**
