@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\ValueObjects;
 
+use InvalidArgumentException;
+use JsonSerializable;
 use Money\Currency;
 use Money\Money;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
-use InvalidArgumentException;
 
-final readonly class MoneyValueObject implements Cast, Stringable
+final readonly class MoneyValueObject implements Cast, JsonSerializable, Stringable
 {
     public function __construct(
         private Money $money
@@ -80,6 +81,23 @@ final readonly class MoneyValueObject implements Cast, Stringable
             return $value;
         }
 
+        if (is_array($value) && isset($value['amount'])) {
+            $amount = $value['amount'];
+            $currency = $value['currency'] ?? 'RUB';
+
+            if (! is_numeric($amount)) {
+                return null;
+            }
+
+            $currency = match ($currency) {
+                '%' => 'PCT',
+                '₽' => 'RUB',
+                default => $currency,
+            };
+
+            return self::fromString((string) $amount, $currency);
+        }
+
         if (is_string($value) || is_numeric($value)) {
             return self::fromString((string) $value);
         }
@@ -90,5 +108,10 @@ final readonly class MoneyValueObject implements Cast, Stringable
     public function __toString(): string
     {
         return (string) $this->toString();
+    }
+
+    public function jsonSerialize(): float
+    {
+        return $this->toFloat();
     }
 }

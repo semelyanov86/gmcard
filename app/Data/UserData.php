@@ -7,6 +7,7 @@ namespace App\Data;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Models\User;
+use App\ValueObjects\MoneyValueObject;
 use Illuminate\Support\Carbon;
 use SensitiveParameter;
 use Spatie\LaravelData\Attributes\Hidden;
@@ -24,7 +25,7 @@ final class UserData extends Data
         public ?string $last_name = null,
         public ?int $age = null,
         public ?int $id = null,
-        public ?int $balance = null,
+        public ?MoneyValueObject $balance = null,
         public ?int $virtual_balance = null,
         public ?string $job = null,
         public ?JobStatusType $job_status = null,
@@ -53,7 +54,7 @@ final class UserData extends Data
             'last_name' => $user->last_name,
             'age' => $user->age,
             'id' => $user->id,
-            'balance' => $user->getRawOriginal('balance'),
+            'balance' => $user->balance,
             'virtual_balance' => $user->getAttributes()['virtual_balance'] ?? null,
             'job' => $user->job,
             'job_status' => $user->job_status,

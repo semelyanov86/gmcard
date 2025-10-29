@@ -7,6 +7,7 @@ interface Props {
     cities: CityModel[];
     modelValue: number[];
     maxCities?: number;
+    error?: string;
 }
 
 const props = defineProps<Props>();
@@ -77,5 +78,6 @@ function emitChanges() {
                 <DeleteIcon @click="removeCity(city.id)" custom-class="cursor-pointer hover:opacity-70" />
             </div>
         </div>
+        <p v-if="error" class="mt-4 text-sm text-red-600">{{ error }}</p>
     </div>
 </template>

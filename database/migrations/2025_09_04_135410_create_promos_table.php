@@ -21,7 +21,7 @@ return new class () extends Migration {
             $table->string('img')->nullable();
             $table->bigInteger('amount')->nullable();
             $table->text('description');
-            $table->text('extra_conditions');
+            $table->text('extra_conditions')->nullable();
             $table->string('video_link', 2083)->nullable();
             $table->json('smm_links')->nullable();
             $table->json('days_availability')->nullable();

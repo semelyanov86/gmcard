@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import Input from '@/components/primitives/Input.vue';
+import { computed, ref, watch } from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
 
 const props = defineProps<{
     modelValue: string;
+    error?: string;
 }>();
 
 const emit = defineEmits<{
@@ -15,6 +17,12 @@ const isOpen = ref(props.modelValue !== '');
 const localValue = computed({
     get: () => props.modelValue,
     set: (value: string) => emit('update:modelValue', value),
+});
+
+watch(isOpen, (newValue) => {
+    if (!newValue) {
+        localValue.value = '';
+    }
 });
 </script>
 
@@ -31,12 +39,15 @@ const localValue = computed({
             <div class="h-px w-full bg-black/30"></div>
             <div class="mt-4 flex flex-col">
                 <label for="" class="font-bold">Ссылка на ролик</label>
-                <input
+                <Input
                     v-model="localValue"
-                    type="text"
-                    class="mt-3 w-full rounded-lg border-gray-300"
+                    type="url"
+                    :disabled="!isOpen"
+                    class="mt-3 w-full"
+                    :error="!!error"
                     placeholder="https://www.youtube.com/watch?v=4kwHJWwJxnU"
                 />
+                <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>
             </div>
         </div>
     </div>

@@ -16,7 +16,10 @@ Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
 Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/promos/create', [CreatePromoController::class, 'index'])->name('promos.create');
+Route::middleware(['auth', 'verified'])->group(function (): void {
+    Route::get('/promos/create', [CreatePromoController::class, 'index'])->name('promos.create');
+    Route::post('/promos', [CreatePromoController::class, 'store'])->name('promos.store');
+});
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

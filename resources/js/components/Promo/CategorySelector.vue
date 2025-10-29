@@ -5,10 +5,12 @@ import { computed, ref } from 'vue';
 interface Props {
     categories: CategoryModel[];
     selectedCategories?: string[];
+    error?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     selectedCategories: () => [],
+    error: '',
 });
 
 const emit = defineEmits<{
@@ -103,6 +105,7 @@ const selectedCategoriesNames = computed(() => {
                     {{ name }}
                 </span>
             </div>
+            <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>
         </div>
     </div>
 </template>

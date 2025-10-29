@@ -25,6 +25,10 @@ export type AppPageProps<T extends Record<string, unknown> = Record<string, unkn
     userData: UserDataModel | null;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    flash: {
+        success?: string;
+        error?: string;
+    };
 };
 
 export interface User {
