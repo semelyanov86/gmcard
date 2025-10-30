@@ -39,8 +39,9 @@ final readonly class CreatePromoAction
 
             if (! $cost['is_free']) {
                 $actualBalance = RecalculateUserBalanceAction::run($user->id);
-                if ($actualBalance < $cost['total_cost']) {
-                    $required = MoneyValueObject::fromCents($cost['total_cost']);
+                $totalCost = is_int($cost['total_cost']) ? $cost['total_cost'] : 0;
+                if ($actualBalance < $totalCost) {
+                    $required = MoneyValueObject::fromCents($totalCost);
                     $available = MoneyValueObject::fromCents($actualBalance);
                     throw ValidationException::withMessages([
                         'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
@@ -49,7 +50,7 @@ final readonly class CreatePromoAction
 
                 CreatePaymentAction::run(new PaymentData(
                     userId: $dto->userId,
-                    amount: MoneyValueObject::fromCents($cost['total_cost']),
+                    amount: MoneyValueObject::fromCents($totalCost),
                     type: PaymentType::OUTGOING,
                     description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
                     transactionId: null,
@@ -85,7 +86,7 @@ final readonly class CreatePromoAction
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
                 'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
-                'daily_cost' => MoneyValueObject::fromCents($cost['daily_cost']),
+                'daily_cost' => MoneyValueObject::fromCents(is_int($cost['daily_cost']) ? $cost['daily_cost'] : 0),
                 'payment_required' => ! $cost['is_free'],
             ];
 

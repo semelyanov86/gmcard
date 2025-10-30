@@ -9,12 +9,15 @@ use App\Models\TariffPlan;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static array run(User $user)
+ * @method static array<string, mixed> run(User $user)
  */
 final readonly class GetUserTariffLimitsAction
 {
     use AsAction;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function handle(User $user): array
     {
         $activePromosCount = $this->getActivePromosCount($user);
@@ -24,7 +27,7 @@ final readonly class GetUserTariffLimitsAction
             'active_promos_count' => $activePromosCount,
             'can_create_free_ad' => $this->canCreateFreeAd($user, $activePromosCount, $tariff),
             'is_next_ad_first_free' => $activePromosCount === 0,
-            'tariff_ads_limit' => $tariff?->ads_count ?? 0,
+            'tariff_ads_limit' => $tariff->ads_count ?? 0,
         ];
     }
 

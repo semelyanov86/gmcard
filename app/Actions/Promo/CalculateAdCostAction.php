@@ -9,12 +9,15 @@ use App\Models\User;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static array run(User $user, int $durationDays, bool $isShowInBanner = false)
+ * @method static array<string, mixed> run(User $user, int $durationDays, bool $isShowInBanner = false)
  */
 final readonly class CalculateAdCostAction
 {
     use AsAction;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function handle(User $user, int $durationDays, bool $isShowInBanner = false): array
     {
         $limits = GetUserTariffLimitsAction::run($user);
@@ -32,6 +35,7 @@ final readonly class CalculateAdCostAction
             return $this->buildFreeResult($durationDays, 'no_tariff');
         }
 
+        /** @var int $dailyCost */
         $dailyCost = $isShowInBanner
             ? $tariff->getRawOriginal('banner_price')
             : $tariff->getRawOriginal('extra_ad_price');
@@ -47,6 +51,9 @@ final readonly class CalculateAdCostAction
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function buildFreeResult(int $durationDays, string $reason): array
     {
         return [
