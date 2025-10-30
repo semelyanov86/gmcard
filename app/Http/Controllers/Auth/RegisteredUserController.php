@@ -39,7 +39,10 @@ final class RegisteredUserController extends Controller
 
         $user->assignRole('user');
 
-        CreditBonusBalanceAction::run($user->id, config('bonus.registration_bonus'));
+        $registrationBonus = config('bonus.registration_bonus');
+        if (is_numeric($registrationBonus)) {
+            CreditBonusBalanceAction::run($user->id, (int) $registrationBonus);
+        }
 
         event(new Registered($user));
 

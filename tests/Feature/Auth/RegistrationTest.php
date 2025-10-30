@@ -340,4 +340,58 @@ class RegistrationTest extends TestCase
 
         $response->assertRedirect(route('dashboard', absolute: false));
     }
+
+    public function test_registration_credits_bonus_balance(): void
+    {
+        config(['bonus.registration_bonus' => 100]);
+
+        $this->post(route('register'), [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'code' => 'TEST123',
+        ]);
+
+        $user = User::where('email', 'test@example.com')->first();
+
+        $this->assertNotNull($user);
+        $this->assertEquals(100, $user->bonus_balance);
+    }
+
+    public function test_registration_handles_zero_bonus_config(): void
+    {
+        config(['bonus.registration_bonus' => 0]);
+
+        $this->post(route('register'), [
+            'name' => 'Test User',
+            'email' => 'test2@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'code' => 'TEST456',
+        ]);
+
+        $user = User::where('email', 'test2@example.com')->first();
+
+        $this->assertNotNull($user);
+        $this->assertEquals(0, $user->bonus_balance);
+    }
+
+    public function test_registration_handles_invalid_bonus_config(): void
+    {
+        config(['bonus.registration_bonus' => 'invalid']);
+
+        $this->post(route('register'), [
+            'name' => 'Test User',
+            'email' => 'test3@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'code' => 'TEST789',
+        ]);
+
+        $user = User::where('email', 'test3@example.com')->first();
+
+        $this->assertNotNull($user);
+        $this->assertEquals(0, $user->bonus_balance);
+    }
 }
