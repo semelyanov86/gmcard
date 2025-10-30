@@ -51,6 +51,8 @@ class Promo extends Model
         'organisation_id',
         'discount',
         'user_id',
+        'daily_cost',
+        'payment_required',
     ];
 
     protected $guarded = [
@@ -130,6 +132,8 @@ class Promo extends Model
             'amount' => MoneyValueObjectCast::class,
             'sales_order_from' => MoneyValueObjectCast::class,
             'free_delivery_from' => MoneyValueObjectCast::class,
+            'daily_cost' => MoneyValueObjectCast::class,
+            'payment_required' => 'boolean',
             'raise_on_top_hours' => 'integer',
             'restart_after_finish_days' => 'integer',
             'crmid' => 'string',

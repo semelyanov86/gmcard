@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace App\Actions\Promo;
 
+use App\Actions\Promo\CalculateAdCostAction;
+use App\Actions\Payment\CreatePaymentAction;
+use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
+use App\Data\PaymentData;
 use App\Enums\PromoType;
+use App\Enums\PaymentType;
 use App\Models\Address;
 use App\Models\Promo;
+use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
@@ -27,6 +34,30 @@ final readonly class CreatePromoAction
     public function handle(CreatePromoData $dto): Promo
     {
         return DB::transaction(function () use ($dto): Promo {
+            $user = User::findOrFail($dto->userId);
+            
+            $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
+            
+            if (!$cost['is_free']) {
+                $actualBalance = RecalculateUserBalanceAction::run($user->id);
+                if ($actualBalance < $cost['total_cost']) {
+                    $required = MoneyValueObject::fromCents($cost['total_cost']);
+                    $available = MoneyValueObject::fromCents($actualBalance);
+                    throw ValidationException::withMessages([
+                        'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}"
+                    ]);
+                }
+                
+                CreatePaymentAction::run(new PaymentData(
+                    userId: $dto->userId,
+                    amount: MoneyValueObject::fromCents($cost['total_cost']),
+                    type: PaymentType::OUTGOING,
+                    description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
+                    transactionId: null,
+                    paymentDate: null
+                ));
+            }
+
             $promoType = $this->getPromoType($dto->promoTypeId);
             $discount = $this->getDiscount($dto, $promoType);
 
@@ -55,6 +86,8 @@ final readonly class CreatePromoAction
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
                 'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
+                'daily_cost' => MoneyValueObject::fromCents($cost['daily_cost']),
+                'payment_required' => !$cost['is_free'],
             ];
 
             $promo = Promo::create($createData);
