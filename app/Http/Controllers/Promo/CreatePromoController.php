@@ -25,6 +25,10 @@ class CreatePromoController extends Controller
     public function index(GeneralSettings $settings): Response
     {
         $user = auth()->user();
+        if ($user) {
+            $user->load('tariffPlan')
+                 ->loadCount('activePromos as active_promos_count');
+        }
 
         return Inertia::render('Promo/CreatePromo', [
             'contact' => [
@@ -38,8 +42,7 @@ class CreatePromoController extends Controller
             'defaultDescription' => config('promo.default_description'),
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
-            'userBalance' => $user?->balance?->toFloat() ?? 0,
-            'activePromosCount' => $user?->activePromos()->count() ?? 0,
+            'user' => $user,
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
         ]);

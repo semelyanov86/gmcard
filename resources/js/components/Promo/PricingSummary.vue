@@ -6,19 +6,25 @@ const props = defineProps<{
     durationDays?: number
     showInBanner?: boolean
     activePromosCount?: number
+    userTariff?: {
+        id: number
+        slug: string
+        name: string
+        ads_count: number
+        extra_ad_price: number
+        banner_price: number
+    } | null
 }>()
 
 const cost = computed(() => {
-    const days = props.durationDays || 1
-
-    if ((props.activePromosCount || 0) === 0) {
+    if (!props.userTariff || (props.activePromosCount || 0) < props.userTariff.ads_count) {
         return 'БЕСПЛАТНО'
     }
-
-    const dailyRate = props.showInBanner ? 30 : 3
-    const totalCost = dailyRate * days
-
-    return `${totalCost} ₽`
+    
+    const days = props.durationDays || 1
+    const price = props.showInBanner ? props.userTariff.banner_price : props.userTariff.extra_ad_price
+    
+    return `${price * days} ₽`
 })
 </script>
 

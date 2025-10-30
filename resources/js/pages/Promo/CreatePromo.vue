@@ -49,6 +49,22 @@ import '../../../css/internal/output.css';
 const page = usePage<AppPageProps>();
 const successMessage = ref<string | null>(null);
 
+interface UserWithTariff {
+    id: number
+    name: string
+    email: string
+    balance: number
+    active_promos_count: number
+    tariff_plan?: {
+        id: number
+        slug: string
+        name: string
+        ads_count: number
+        extra_ad_price: number
+        banner_price: number
+    }
+}
+
 const props = defineProps<{
     contact: ContactModel;
     categories: CategoryModel[];
@@ -58,8 +74,7 @@ const props = defineProps<{
     defaultDescription: string;
     weekdays: WeekdayModel[];
     socialNetworks: SocialNetworkModel[];
-    userBalance: number;
-    activePromosCount: number;
+    user?: UserWithTariff;
     navbarMenu: MenuData[];
     sidebarMenu: MenuData[];
 }>();
@@ -398,11 +413,12 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary 
-                        :balance="userData?.balance ?? props.userBalance"
+                    <PricingSummary
+                        :balance="props.user?.balance"
                         :duration-days="form.duration_days"
                         :show-in-banner="form.show_in_banner"
-                        :active-promos-count="props.activePromosCount"
+                        :active-promos-count="props.user?.active_promos_count"
+                        :user-tariff="props.user?.tariff_plan"
                     />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
