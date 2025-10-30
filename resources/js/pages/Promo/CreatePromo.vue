@@ -59,6 +59,7 @@ const props = defineProps<{
     weekdays: WeekdayModel[];
     socialNetworks: SocialNetworkModel[];
     userBalance: number;
+    activePromosCount: number;
     navbarMenu: MenuData[];
     sidebarMenu: MenuData[];
 }>();
@@ -397,7 +398,12 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary :balance="userData?.balance ?? props.userBalance" />
+                    <PricingSummary 
+                        :balance="userData?.balance ?? props.userBalance"
+                        :duration-days="form.duration_days"
+                        :show-in-banner="form.show_in_banner"
+                        :active-promos-count="props.activePromosCount"
+                    />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
                         <label for="rules" class="all_text text-slate-600">

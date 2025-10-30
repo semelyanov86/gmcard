@@ -39,6 +39,7 @@ class CreatePromoController extends Controller
             'weekdays' => config('promo.weekdays'),
             'socialNetworks' => config('promo.social_networks'),
             'userBalance' => $user?->balance?->toFloat() ?? 0,
+            'activePromosCount' => $user?->activePromos()->count() ?? 0,
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
         ]);

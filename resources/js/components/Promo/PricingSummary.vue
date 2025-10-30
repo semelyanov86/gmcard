@@ -1,5 +1,25 @@
 <script setup lang="ts">
-const { balance = 0, cost = 594 } = defineProps<{ balance?: number; cost?: number }>();
+import { computed } from 'vue'
+
+const props = defineProps<{
+    balance?: number
+    durationDays?: number
+    showInBanner?: boolean
+    activePromosCount?: number
+}>()
+
+const cost = computed(() => {
+    const days = props.durationDays || 1
+
+    if ((props.activePromosCount || 0) === 0) {
+        return 'БЕСПЛАТНО'
+    }
+
+    const dailyRate = props.showInBanner ? 30 : 3
+    const totalCost = dailyRate * days
+
+    return `${totalCost} ₽`
+})
 </script>
 
 <template>
@@ -12,7 +32,7 @@ const { balance = 0, cost = 594 } = defineProps<{ balance?: number; cost?: numbe
                 </div>
                 <div>
                     <span class="text-base text-blue-500">Стоимость акции составит</span>
-                    <h3 class="price_text text-3xl text-white">{{ cost }} руб.</h3>
+                    <h3 class="price_text text-3xl text-white">{{ cost }}</h3>
                 </div>
             </div>
         </div>
