@@ -26,6 +26,7 @@ class CreditBonusBalanceActionTest extends TestCase
 
     public function test_it_sets_bonus_balance_for_new_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['bonus_balance' => 0]);
         $bonusAmount = 100;
 
@@ -37,6 +38,7 @@ class CreditBonusBalanceActionTest extends TestCase
 
     public function test_it_overwrites_existing_bonus_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['bonus_balance' => 50]);
         $newBonusAmount = 200;
 
@@ -48,6 +50,7 @@ class CreditBonusBalanceActionTest extends TestCase
 
     public function test_it_can_set_zero_bonus_balance(): void
     {
+        /** @var User $user */
         $user = User::factory()->create(['bonus_balance' => 100]);
 
         $this->action->handle($user->id, 0);
@@ -63,5 +66,4 @@ class CreditBonusBalanceActionTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->action->handle($nonExistentUserId, 100);
     }
-
 }
