@@ -27,7 +27,7 @@ class CreatePromoController extends Controller
         $user = auth()->user();
         if ($user) {
             $user->load('tariffPlan')
-                 ->loadCount('activePromos as active_promos_count');
+                ->loadCount('activePromos as active_promos_count');
         }
 
         return Inertia::render('Promo/CreatePromo', [

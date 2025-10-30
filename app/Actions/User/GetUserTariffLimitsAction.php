@@ -19,7 +19,7 @@ final readonly class GetUserTariffLimitsAction
     {
         $activePromosCount = $this->getActivePromosCount($user);
         $tariff = $user->tariffPlan;
-        
+
         return [
             'active_promos_count' => $activePromosCount,
             'can_create_free_ad' => $this->canCreateFreeAd($user, $activePromosCount, $tariff),
@@ -35,7 +35,7 @@ final readonly class GetUserTariffLimitsAction
 
     private function canCreateFreeAd(User $user, int $activePromosCount, ?TariffPlan $tariff): bool
     {
-        if (!$tariff) {
+        if (! $tariff) {
             return false;
         }
 

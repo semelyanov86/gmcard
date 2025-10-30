@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps<{
-    balance?: number
-    durationDays?: number
-    showInBanner?: boolean
-    activePromosCount?: number
+    balance?: number;
+    durationDays?: number;
+    showInBanner?: boolean;
+    activePromosCount?: number;
     userTariff?: {
-        id: number
-        slug: string
-        name: string
-        ads_count: number
-        extra_ad_price: number
-        banner_price: number
-    } | null
-}>()
+        id: number;
+        slug: string;
+        name: string;
+        ads_count: number;
+        extra_ad_price: number;
+        banner_price: number;
+    } | null;
+}>();
 
 const cost = computed(() => {
     if (!props.userTariff || (props.activePromosCount || 0) < props.userTariff.ads_count) {
-        return 'БЕСПЛАТНО'
+        return 'БЕСПЛАТНО';
     }
-    
-    const days = props.durationDays || 1
-    const price = props.showInBanner ? props.userTariff.banner_price : props.userTariff.extra_ad_price
-    
-    return `${price * days} ₽`
-})
+
+    const days = props.durationDays || 1;
+    const price = props.showInBanner ? props.userTariff.banner_price : props.userTariff.extra_ad_price;
+
+    return `${price * days} ₽`;
+});
 </script>
 
 <template>

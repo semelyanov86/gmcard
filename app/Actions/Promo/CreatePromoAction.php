@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions\Promo;
 
-use App\Actions\Promo\CalculateAdCostAction;
 use App\Actions\Payment\CreatePaymentAction;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
@@ -35,26 +34,26 @@ final readonly class CreatePromoAction
     {
         return DB::transaction(function () use ($dto): Promo {
             $user = User::findOrFail($dto->userId);
-            
+
             $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
-            
-            if (!$cost['is_free']) {
+
+            if (! $cost['is_free']) {
                 $actualBalance = RecalculateUserBalanceAction::run($user->id);
                 if ($actualBalance < $cost['total_cost']) {
                     $required = MoneyValueObject::fromCents($cost['total_cost']);
                     $available = MoneyValueObject::fromCents($actualBalance);
                     throw ValidationException::withMessages([
-                        'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}"
+                        'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
                     ]);
                 }
-                
+
                 CreatePaymentAction::run(new PaymentData(
                     userId: $dto->userId,
                     amount: MoneyValueObject::fromCents($cost['total_cost']),
                     type: PaymentType::OUTGOING,
                     description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
                     transactionId: null,
-                    paymentDate: null
+                    paymentDate: null,
                 ));
             }
 
@@ -87,7 +86,7 @@ final readonly class CreatePromoAction
                 'restart_after_finish_days' => 0,
                 'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
                 'daily_cost' => MoneyValueObject::fromCents($cost['daily_cost']),
-                'payment_required' => !$cost['is_free'],
+                'payment_required' => ! $cost['is_free'],
             ];
 
             $promo = Promo::create($createData);

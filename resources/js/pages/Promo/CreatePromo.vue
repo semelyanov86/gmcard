@@ -50,19 +50,19 @@ const page = usePage<AppPageProps>();
 const successMessage = ref<string | null>(null);
 
 interface UserWithTariff {
-    id: number
-    name: string
-    email: string
-    balance: number
-    active_promos_count: number
+    id: number;
+    name: string;
+    email: string;
+    balance: number;
+    active_promos_count: number;
     tariff_plan?: {
-        id: number
-        slug: string
-        name: string
-        ads_count: number
-        extra_ad_price: number
-        banner_price: number
-    }
+        id: number;
+        slug: string;
+        name: string;
+        ads_count: number;
+        extra_ad_price: number;
+        banner_price: number;
+    };
 }
 
 const props = defineProps<{

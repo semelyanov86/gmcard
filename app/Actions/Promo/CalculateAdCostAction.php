@@ -28,11 +28,11 @@ final readonly class CalculateAdCostAction
             return $this->buildFreeResult($durationDays, 'within_tariff_limit');
         }
 
-        if (!$tariff) {
+        if (! $tariff) {
             return $this->buildFreeResult($durationDays, 'no_tariff');
         }
 
-        $dailyCost = $isShowInBanner 
+        $dailyCost = $isShowInBanner
             ? $tariff->getRawOriginal('banner_price')
             : $tariff->getRawOriginal('extra_ad_price');
 
