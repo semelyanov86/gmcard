@@ -12,9 +12,8 @@ import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
 import type { MetaData } from '@/types/schema';
 
-import { usePage } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
-import { useToast } from 'vue-toastification';
+import { ref } from 'vue';
+import FlashToaster from '@/components/system/FlashToaster.vue';
 
 const props = defineProps<{
     slides: SlideModel[];
@@ -32,31 +31,11 @@ function openPopUp() {
     isPopUpVisible.value = true;
 }
 
-const page = usePage();
-const toast = useToast();
-
-type FlashProps = {
-    success?: string;
-    error?: string;
-};
-
-watch(
-    () => page.props.flash as FlashProps,
-    (flash) => {
-        if (flash?.success) {
-            toast.success(flash.success);
-        }
-        if (flash?.error) {
-            toast.error(flash.error);
-        }
-    },
-    { immediate: true },
-);
-
 useSchema(props.meta, 'landing');
 </script>
 
 <template>
+    <FlashToaster />
     <section class="section-1">
         <div class="container">
             <div class="header-block">
