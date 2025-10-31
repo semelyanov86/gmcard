@@ -12,8 +12,8 @@ import { ReviewModel } from '@/models/ReviewModel';
 import { SlideModel } from '@/models/SlideModel';
 import type { MetaData } from '@/types/schema';
 
-import { ref } from 'vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
+import { ref } from 'vue';
 
 const props = defineProps<{
     slides: SlideModel[];

@@ -28,6 +28,7 @@ import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
+import { notify } from '@/services/notifications';
 import type {
     AppPageProps,
     CategoryModel,
@@ -43,7 +44,6 @@ import type {
 import { MoneyValueObject } from '@/types/MoneyValueObject';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
-import { notify } from '@/services/notifications';
 import '../../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
@@ -157,7 +157,7 @@ function handleLaunch() {
     <Header :userData="userData" />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
-        
+
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu></CategoriesMenu>

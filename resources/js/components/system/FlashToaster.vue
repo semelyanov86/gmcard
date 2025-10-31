@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { notify } from '@/services/notifications';
 import { usePage } from '@inertiajs/vue3';
 import { watch } from 'vue';
-import { notify } from '@/services/notifications';
 
 type Flash = {
     success?: string;
@@ -37,6 +37,5 @@ watch(
 </script>
 
 <template>
+    <span style="display: none"></span>
 </template>
-
-
