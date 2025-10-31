@@ -25,10 +25,10 @@ final readonly class GetUserTariffLimitsAction
         $tariff = $user->tariffPlan;
 
         return new UserTariffLimitsData(
-            activePromosCount: $activePromosCount,
-            canCreateFreeAd: $this->canCreateFreeAd($user, $activePromosCount, $tariff),
-            isNextAdFirstFree: $activePromosCount === 0,
-            tariffAdsLimit: $tariff->ads_count ?? 0,
+            activePromos: $activePromosCount,
+            hasFreeSlot: $this->canCreateFreeAd($user, $activePromosCount, $tariff),
+            firstAdFree: $activePromosCount === 0,
+            adsLimit: $tariff->ads_count ?? 0,
         );
     }
 
