@@ -22,6 +22,7 @@ class TariffPlan extends Model
         'price',
         'ads_count',
         'banner_price',
+        'extra_ad_price',
     ];
 
     protected $guarded = [
@@ -43,6 +44,7 @@ class TariffPlan extends Model
         return [
             'price' => MoneyValueObjectCast::class,
             'banner_price' => MoneyValueObjectCast::class,
+            'extra_ad_price' => MoneyValueObjectCast::class,
         ];
     }
 }

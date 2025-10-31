@@ -8,6 +8,7 @@ use App\Actions\Promo\CreatePromoAction;
 use App\Data\CreatePromoData;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Promo;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
 use Exception;
@@ -38,11 +39,11 @@ class CreatePromoActionTest extends TestCase
             cityIds: $this->getCityIds($cities),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
         $this->assertDatabaseHas('promos', [
-            'id' => $promo->id,
+            'id' => $dto->id,
             'user_id' => $user->id,
             'name' => 'Test Promo',
             'description' => 'Test description',
@@ -69,11 +70,11 @@ class CreatePromoActionTest extends TestCase
             discount: MoneyValueObject::fromString('25', 'PCT'),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
         $this->assertDatabaseHas('promos', [
-            'id' => $promo->id,
+            'id' => $dto->id,
             'discount' => '25%',
         ]);
     }
@@ -97,11 +98,11 @@ class CreatePromoActionTest extends TestCase
             cashback: MoneyValueObject::fromString('500', 'RUB'),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
         $this->assertDatabaseHas('promos', [
-            'id' => $promo->id,
+            'id' => $dto->id,
             'discount' => '500₽',
         ]);
     }
@@ -124,9 +125,10 @@ class CreatePromoActionTest extends TestCase
             cityIds: $this->getCityIds($cities),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
+        $promo = Promo::with('categories')->findOrFail($dto->id);
         $this->assertCount(3, $promo->categories);
         $firstCategory = $categories->first();
         assert($firstCategory instanceof Category);
@@ -151,9 +153,10 @@ class CreatePromoActionTest extends TestCase
             cityIds: $this->getCityIds($cities),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
+        $promo = Promo::with('cities')->findOrFail($dto->id);
         $this->assertCount(3, $promo->cities);
         $firstCity = $cities->first();
         assert($firstCity instanceof City);
@@ -179,9 +182,10 @@ class CreatePromoActionTest extends TestCase
             isDraft: true,
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
+        $promo = Promo::findOrFail($dto->id);
         $this->assertNull($promo->started_at);
     }
 
@@ -204,9 +208,10 @@ class CreatePromoActionTest extends TestCase
             isDraft: false,
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
+        $promo = Promo::findOrFail($dto->id);
         $this->assertNotNull($promo->started_at);
     }
 
@@ -229,11 +234,10 @@ class CreatePromoActionTest extends TestCase
             minimumOrder: MoneyValueObject::fromString('100', 'RUB'),
         );
 
-        $promo = CreatePromoAction::run($dto);
-        /** @var \App\Models\Promo $promo */
-        $promo = $promo->fresh();
+        $dto = CreatePromoAction::run($dto);
+        $promo = Promo::findOrFail($dto->id);
 
-        $this->assertNotEmpty($promo->id);
+        $this->assertNotEmpty($dto->id);
         $this->assertSame('10000', $promo->sales_order_from->getMoney()->getAmount());
     }
 
@@ -255,10 +259,10 @@ class CreatePromoActionTest extends TestCase
             cityIds: $this->getCityIds($cities),
         );
 
-        $promo = CreatePromoAction::run($dto);
+        $dto = CreatePromoAction::run($dto);
 
-        $this->assertNotEmpty($promo->id);
-        $promo->refresh();
+        $this->assertNotEmpty($dto->id);
+        $promo = Promo::findOrFail($dto->id);
         $expectedDate = now()->addDays(7);
         /** @var \Carbon\CarbonImmutable $availableTill */
         $availableTill = $promo->available_till;

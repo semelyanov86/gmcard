@@ -27,6 +27,8 @@ class TariffPlanForm
                 Money::input('price')
                     ->required(),
                 Money::input('banner_price'),
+                Money::input('extra_ad_price')
+                    ->label('Cost of additional shares per day'),
                 TextInput::make('ads_count')
                     ->numeric()
                     ->default(0)
