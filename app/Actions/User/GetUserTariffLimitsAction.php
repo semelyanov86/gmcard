@@ -16,9 +16,6 @@ final readonly class GetUserTariffLimitsAction
 {
     use AsAction;
 
-    /**
-     * @return UserTariffLimitsData
-     */
     public function handle(User $user): UserTariffLimitsData
     {
         $activePromosCount = $this->getActivePromosCount($user);

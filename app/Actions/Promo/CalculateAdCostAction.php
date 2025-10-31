@@ -17,9 +17,6 @@ final readonly class CalculateAdCostAction
 {
     use AsAction;
 
-    /**
-     * @return PromoCostData
-     */
     public function handle(User $user, int $durationDays, bool $isShowInBanner = false): PromoCostData
     {
         $limits = GetUserTariffLimitsAction::run($user);
@@ -53,9 +50,6 @@ final readonly class CalculateAdCostAction
         );
     }
 
-    /**
-     * @return PromoCostData
-     */
     private function buildFreeResult(int $durationDays, PromoCostType $type): PromoCostData
     {
         return new PromoCostData(

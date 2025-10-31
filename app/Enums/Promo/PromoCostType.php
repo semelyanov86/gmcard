@@ -12,5 +12,3 @@ enum PromoCostType: string
     case BANNER = 'banner';
     case EXTRA = 'extra';
 }
-
-

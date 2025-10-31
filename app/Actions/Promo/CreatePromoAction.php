@@ -10,7 +10,6 @@ use App\Data\CreatePromoData;
 use App\Data\PromoCostData;
 use App\Data\PaymentData;
 use App\Enums\PromoType;
- 
 use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
@@ -106,6 +105,9 @@ final readonly class CreatePromoAction
         ));
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function buildCreateData(CreatePromoData $dto, PromoCostData $cost): array
     {
         $promoType = $this->getPromoType($dto->promoTypeId);

@@ -6,6 +6,7 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 use App\Enums\Promo\PromoCostType;
+
 final class PromoCostData extends Data
 {
     public function __construct(
@@ -16,5 +17,3 @@ final class PromoCostData extends Data
         public int $totalCost,
     ) {}
 }
-
-

@@ -15,5 +15,3 @@ final class UserTariffLimitsData extends Data
         public int $adsLimit,
     ) {}
 }
-
-
