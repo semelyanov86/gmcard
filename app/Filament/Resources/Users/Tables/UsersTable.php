@@ -40,6 +40,10 @@ final class UsersTable
                     ->sortable(),
                 Money::column('balance')
                     ->sortable(),
+                TextColumn::make('bonus_balance')
+                    ->label('Bonus Balance')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('job')
                     ->searchable(),
                 TextColumn::make('job_status')

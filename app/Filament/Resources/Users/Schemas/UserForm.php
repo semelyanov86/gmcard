@@ -35,6 +35,10 @@ class UserForm
                     ->numeric()
                     ->default(0),
                 Money::input('balance'),
+                TextInput::make('bonus_balance')
+                    ->label('Bonus Balance')
+                    ->numeric()
+                    ->default(0),
                 TextInput::make('job'),
                 Select::make('job_status')
                     ->options(JobStatusType::options()),
