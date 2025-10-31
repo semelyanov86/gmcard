@@ -42,7 +42,14 @@ final readonly class CreatePromoAction
 
                 if ($dto->useBonusBalance) {
                     $user->refresh();
-                    $availableBonusRub = (int) ($user->getAttribute('bonus_balance') ?? 0);
+                    $bonusAttr = $user->getAttribute('bonus_balance');
+                    $availableBonusRub = 0;
+                    if (is_int($bonusAttr)) {
+                        $availableBonusRub = $bonusAttr;
+                    } elseif (is_string($bonusAttr) && is_numeric($bonusAttr)) {
+                        $availableBonusRub = (int) $bonusAttr;
+                    }
+
                     $neededRub = (int) ceil($totalCost / 100);
                     $debitRub = min($availableBonusRub, $neededRub);
 
