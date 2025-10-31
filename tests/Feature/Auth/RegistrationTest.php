@@ -44,12 +44,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload());
 
         $response->assertRedirect(route('dashboard', absolute: false));
         $this->get(route('dashboard', absolute: false))->assertOk();
@@ -57,13 +52,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register_with_code(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'code' => 'PROMO2024',
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload('PROMO2024'));
 
         $response->assertRedirect(route('dashboard', absolute: false));
 
@@ -75,12 +64,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_assigns_user_role(): void
     {
-        $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $this->post(route('register'), $this->registrationPayload());
 
         $user = User::where('email', 'test@example.com')->first();
 
@@ -90,12 +74,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_logs_user_in_automatically(): void
     {
-        $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $this->post(route('register'), $this->registrationPayload());
 
         $this->assertAuthenticated();
     }
@@ -104,24 +83,17 @@ class RegistrationTest extends TestCase
     {
         Event::fake();
 
-        $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $this->post(route('register'), $this->registrationPayload());
 
         Event::assertDispatched(Registered::class);
     }
 
     public function test_registration_hashes_password(): void
     {
-        $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->post(route('register'), $this->registrationPayload(null, [
             'password' => 'my-secure-password',
             'password_confirmation' => 'my-secure-password',
-        ]);
+        ]));
 
         $user = User::where('email', 'test@example.com')->first();
 
@@ -132,12 +104,9 @@ class RegistrationTest extends TestCase
 
     public function test_email_must_be_lowercase(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
+        $response = $this->post(route('register'), $this->registrationPayload(null, [
             'email' => 'TEST@EXAMPLE.COM',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        ]));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
@@ -146,12 +115,7 @@ class RegistrationTest extends TestCase
 
     public function test_lowercase_email_is_accepted(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload());
 
         $response->assertRedirect(route('dashboard', absolute: false));
         $this->assertAuthenticated();
@@ -189,12 +153,9 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_valid_email(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
+        $response = $this->post(route('register'), $this->registrationPayload(null, [
             'email' => 'not-a-valid-email',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        ]));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
@@ -207,12 +168,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload());
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
@@ -246,12 +202,9 @@ class RegistrationTest extends TestCase
 
     public function test_registration_requires_matching_password_confirmation(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
+        $response = $this->post(route('register'), $this->registrationPayload(null, [
             'password_confirmation' => 'different-password',
-        ]);
+        ]));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('password');
@@ -260,12 +213,9 @@ class RegistrationTest extends TestCase
 
     public function test_name_must_not_exceed_255_characters(): void
     {
-        $response = $this->post(route('register'), [
+        $response = $this->post(route('register'), $this->registrationPayload(null, [
             'name' => str_repeat('a', 256),
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        ]));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('name');
@@ -276,12 +226,9 @@ class RegistrationTest extends TestCase
     {
         $longEmail = str_repeat('a', 244) . '@example.com';
 
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
+        $response = $this->post(route('register'), $this->registrationPayload(null, [
             'email' => $longEmail,
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        ]));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
@@ -290,12 +237,7 @@ class RegistrationTest extends TestCase
 
     public function test_code_is_optional(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload());
 
         $response->assertRedirect(route('dashboard', absolute: false));
         $this->assertAuthenticated();
@@ -303,13 +245,7 @@ class RegistrationTest extends TestCase
 
     public function test_code_must_not_exceed_20_characters(): void
     {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'code' => str_repeat('a', 21),
-        ]);
+        $response = $this->post(route('register'), $this->registrationPayload(str_repeat('a', 21)));
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('code');
@@ -331,12 +267,10 @@ class RegistrationTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post(route('register'), [
+        $response = $this->actingAs($user)->post(route('register'), $this->registrationPayload(null, [
             'name' => 'Another User',
             'email' => 'another@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        ]));
 
         $response->assertRedirect(route('dashboard', absolute: false));
     }
@@ -345,13 +279,7 @@ class RegistrationTest extends TestCase
     {
         config(['bonus.registration_bonus' => 100]);
 
-        $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'code' => 'TEST123',
-        ]);
+        $this->post(route('register'), $this->registrationPayload('TEST123'));
 
         $user = User::where('email', 'test@example.com')->first();
 
@@ -363,13 +291,9 @@ class RegistrationTest extends TestCase
     {
         config(['bonus.registration_bonus' => 0]);
 
-        $this->post(route('register'), [
-            'name' => 'Test User',
+        $this->post(route('register'), $this->registrationPayload('TEST456', [
             'email' => 'test2@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'code' => 'TEST456',
-        ]);
+        ]));
 
         $user = User::where('email', 'test2@example.com')->first();
 
@@ -381,17 +305,33 @@ class RegistrationTest extends TestCase
     {
         config(['bonus.registration_bonus' => 'invalid']);
 
-        $this->post(route('register'), [
-            'name' => 'Test User',
+        $this->post(route('register'), $this->registrationPayload('TEST789', [
             'email' => 'test3@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'code' => 'TEST789',
-        ]);
+        ]));
 
         $user = User::where('email', 'test3@example.com')->first();
 
         $this->assertNotNull($user);
         $this->assertEquals(0, $user->bonus_balance);
+    }
+
+    /**
+     * @param  array<string, string>  $overrides
+     * @return array<string, string>
+     */
+    private function registrationPayload(?string $code = null, array $overrides = []): array
+    {
+        $payload = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ];
+
+        if ($code !== null) {
+            $payload['code'] = $code;
+        }
+
+        return array_replace($payload, $overrides);
     }
 }
