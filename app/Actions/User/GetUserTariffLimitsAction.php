@@ -6,29 +6,30 @@ namespace App\Actions\User;
 
 use App\Models\User;
 use App\Models\TariffPlan;
+use App\Data\UserTariffLimitsData;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static array<string, mixed> run(User $user)
+ * @method static UserTariffLimitsData run(User $user)
  */
 final readonly class GetUserTariffLimitsAction
 {
     use AsAction;
 
     /**
-     * @return array<string, mixed>
+     * @return UserTariffLimitsData
      */
-    public function handle(User $user): array
+    public function handle(User $user): UserTariffLimitsData
     {
         $activePromosCount = $this->getActivePromosCount($user);
         $tariff = $user->tariffPlan;
 
-        return [
-            'active_promos_count' => $activePromosCount,
-            'can_create_free_ad' => $this->canCreateFreeAd($user, $activePromosCount, $tariff),
-            'is_next_ad_first_free' => $activePromosCount === 0,
-            'tariff_ads_limit' => $tariff->ads_count ?? 0,
-        ];
+        return new UserTariffLimitsData(
+            activePromosCount: $activePromosCount,
+            canCreateFreeAd: $this->canCreateFreeAd($user, $activePromosCount, $tariff),
+            isNextAdFirstFree: $activePromosCount === 0,
+            tariffAdsLimit: $tariff->ads_count ?? 0,
+        );
     }
 
     private function getActivePromosCount(User $user): int

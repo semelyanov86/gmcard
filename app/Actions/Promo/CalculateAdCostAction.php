@@ -24,11 +24,11 @@ final readonly class CalculateAdCostAction
         $limits = GetUserTariffLimitsAction::run($user);
         $tariff = $user->tariffPlan;
 
-        if ($limits['is_next_ad_first_free']) {
+        if ($limits->isNextAdFirstFree) {
             return $this->buildFreeResult($durationDays, 'first_ad_always_free');
         }
 
-        if ($limits['can_create_free_ad']) {
+        if ($limits->canCreateFreeAd) {
             return $this->buildFreeResult($durationDays, 'within_tariff_limit');
         }
 
