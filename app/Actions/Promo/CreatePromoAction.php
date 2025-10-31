@@ -10,7 +10,7 @@ use App\Data\CreatePromoData;
 use App\Data\PromoCostData;
 use App\Data\PaymentData;
 use App\Enums\PromoType;
-use App\Enums\PaymentType;
+ 
 use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
@@ -71,13 +71,11 @@ final readonly class CreatePromoAction
                         ]);
                     }
 
-                    CreatePaymentAction::run(new PaymentData(
-                        userId: $dto->userId,
-                        amount: MoneyValueObject::fromCents($totalCost),
-                        type: PaymentType::OUTGOING,
-                        description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
-                        transactionId: null,
-                        paymentDate: null,
+                    CreatePaymentAction::run(PaymentData::forPromoPlacement(
+                        $dto->userId,
+                        MoneyValueObject::fromCents($totalCost),
+                        $dto->durationDays,
+                        $dto->title,
                     ));
                 }
             }

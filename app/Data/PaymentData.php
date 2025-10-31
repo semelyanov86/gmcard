@@ -22,4 +22,20 @@ final class PaymentData extends Data
         public ?int $transactionId = null,
         public ?CarbonImmutable $paymentDate = null,
     ) {}
+
+    public static function forPromoPlacement(
+        int $userId,
+        MoneyValueObject $amount,
+        int $durationDays,
+        string $title
+    ): self {
+        return new self(
+            userId: $userId,
+            amount: $amount,
+            type: PaymentType::OUTGOING,
+            description: "Оплата размещения акции '{$title}' на {$durationDays} дней",
+            transactionId: null,
+            paymentDate: null,
+        );
+    }
 }
