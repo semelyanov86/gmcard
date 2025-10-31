@@ -3,6 +3,8 @@ import { computed } from 'vue';
 
 const props = defineProps<{
     balance?: number;
+    bonusBalance?: number;
+    useBonusBalance?: boolean;
     durationDays?: number;
     showInBanner?: boolean;
     activePromosCount?: number;
@@ -16,6 +18,8 @@ const props = defineProps<{
     } | null;
 }>();
 
+const emit = defineEmits(['update:useBonusBalance']);
+
 const cost = computed(() => {
     if (!props.userTariff || (props.activePromosCount || 0) < props.userTariff.ads_count) {
         return 'БЕСПЛАТНО';
@@ -26,6 +30,11 @@ const cost = computed(() => {
 
     return `${price * days} ₽`;
 });
+
+const useBonus = computed({
+    get: () => Boolean(props.useBonusBalance),
+    set: (val: boolean) => emit('update:useBonusBalance', val),
+});
 </script>
 
 <template>
@@ -35,6 +44,11 @@ const cost = computed(() => {
                 <div>
                     <span class="text-base text-blue-500">Ваш баланс</span>
                     <h3 class="price_text text-3xl text-white">{{ balance }} руб.</h3>
+                    <div class="mt-1 text-sm text-white/70">Ваш бонусный баланс {{ bonusBalance ?? 0 }} руб.</div>
+                    <label class="mt-2 flex items-center gap-2 text-sm text-white/80">
+                        <input type="checkbox" v-model="useBonus" />
+                        <span>Использовать бонусный баланс</span>
+                    </label>
                 </div>
                 <div>
                     <span class="text-base text-blue-500">Стоимость акции составит</span>

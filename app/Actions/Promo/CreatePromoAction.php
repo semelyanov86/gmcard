@@ -38,24 +38,39 @@ final readonly class CreatePromoAction
             $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
 
             if (! $cost['is_free']) {
-                $actualBalance = RecalculateUserBalanceAction::run($user->id);
                 $totalCost = is_int($cost['total_cost']) ? $cost['total_cost'] : 0;
-                if ($actualBalance < $totalCost) {
-                    $required = MoneyValueObject::fromCents($totalCost);
-                    $available = MoneyValueObject::fromCents($actualBalance);
-                    throw ValidationException::withMessages([
-                        'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
-                    ]);
+
+                if ($dto->useBonusBalance) {
+                    $user->refresh();
+                    $availableBonusRub = (int) ($user->getAttribute('bonus_balance') ?? 0);
+                    $neededRub = (int) ceil($totalCost / 100);
+                    $debitRub = min($availableBonusRub, $neededRub);
+
+                    if ($debitRub > 0) {
+                        $user->forceFill(['bonus_balance' => $availableBonusRub - $debitRub])->save();
+                        $totalCost -= $debitRub * 100;
+                    }
                 }
 
-                CreatePaymentAction::run(new PaymentData(
-                    userId: $dto->userId,
-                    amount: MoneyValueObject::fromCents($totalCost),
-                    type: PaymentType::OUTGOING,
-                    description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
-                    transactionId: null,
-                    paymentDate: null,
-                ));
+                if ($totalCost > 0) {
+                    $actualBalance = RecalculateUserBalanceAction::run($user->id);
+                    if ($actualBalance < $totalCost) {
+                        $required = MoneyValueObject::fromCents($totalCost);
+                        $available = MoneyValueObject::fromCents($actualBalance);
+                        throw ValidationException::withMessages([
+                            'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
+                        ]);
+                    }
+
+                    CreatePaymentAction::run(new PaymentData(
+                        userId: $dto->userId,
+                        amount: MoneyValueObject::fromCents($totalCost),
+                        type: PaymentType::OUTGOING,
+                        description: "Оплата размещения акции '{$dto->title}' на {$dto->durationDays} дней",
+                        transactionId: null,
+                        paymentDate: null,
+                    ));
+                }
             }
 
             $promoType = $this->getPromoType($dto->promoTypeId);

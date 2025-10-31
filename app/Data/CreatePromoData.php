@@ -42,6 +42,7 @@ final class CreatePromoData extends Data
         #[WithCast(MoneyValueObjectDataCast::class)]
         public ?MoneyValueObject $freeDeliveryFrom = null,
         public ?bool $showInBanner = false,
+        public ?bool $useBonusBalance = false,
         public ?string $youtubeUrl = null,
         public ?array $socialLinks = null,
         public ?array $schedule = null,
