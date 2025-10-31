@@ -22,7 +22,7 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
 /**
- * @method static Promo run(CreatePromoData $dto)
+ * @method static CreatePromoData run(CreatePromoData $dto)
  */
 final readonly class CreatePromoAction
 {
@@ -31,9 +31,9 @@ final readonly class CreatePromoAction
     /**
      * @throws Throwable
      */
-    public function handle(CreatePromoData $dto): Promo
+    public function handle(CreatePromoData $dto): CreatePromoData
     {
-        return DB::transaction(function () use ($dto): Promo {
+        return DB::transaction(function () use ($dto): CreatePromoData {
             $user = User::findOrFail($dto->userId);
 
             /** @var PromoCostData $cost */
@@ -116,7 +116,9 @@ final readonly class CreatePromoAction
 
             $this->syncRelations($promo, $dto);
 
-            return $promo;
+            $dto->id = $promo->id;
+
+            return $dto;
         });
     }
 
