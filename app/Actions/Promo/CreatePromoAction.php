@@ -35,82 +35,18 @@ final readonly class CreatePromoAction
     {
         return DB::transaction(function () use ($dto): CreatePromoData {
             $user = User::findOrFail($dto->userId);
-
             /** @var PromoCostData $cost */
             $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
 
             if (! $cost->isFree) {
-                $totalCost = $cost->totalCost;
-
-                if ($dto->useBonusBalance) {
-                    $user->refresh();
-                    $bonusAttr = $user->getAttribute('bonus_balance');
-                    $availableBonusRub = 0;
-                    if (is_int($bonusAttr)) {
-                        $availableBonusRub = $bonusAttr;
-                    } elseif (is_string($bonusAttr) && is_numeric($bonusAttr)) {
-                        $availableBonusRub = (int) $bonusAttr;
-                    }
-
-                    $neededRub = (int) ceil($totalCost / 100);
-                    $debitRub = min($availableBonusRub, $neededRub);
-
-                    if ($debitRub > 0) {
-                        $user->forceFill(['bonus_balance' => $availableBonusRub - $debitRub])->save();
-                        $totalCost -= $debitRub * 100;
-                    }
-                }
-
+                $totalCost = $this->applyBonusBalance($user, $cost->totalCost, $dto->useBonusBalance ?? false);
                 if ($totalCost > 0) {
-                    $actualBalance = RecalculateUserBalanceAction::run($user->id);
-                    if ($actualBalance < $totalCost) {
-                        $required = MoneyValueObject::fromCents($totalCost);
-                        $available = MoneyValueObject::fromCents($actualBalance);
-                        throw ValidationException::withMessages([
-                            'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
-                        ]);
-                    }
-
-                    CreatePaymentAction::run(PaymentData::forPromoPlacement(
-                        $dto->userId,
-                        MoneyValueObject::fromCents($totalCost),
-                        $dto->durationDays,
-                        $dto->title,
-                    ));
+                    $this->ensureSufficientBalance($user, $totalCost);
+                    $this->createPaymentForPromo($dto, $totalCost);
                 }
             }
 
-            $promoType = $this->getPromoType($dto->promoTypeId);
-            $discount = $this->getDiscount($dto, $promoType);
-
-            $amount = $this->getAmount($dto, $promoType);
-
-            $createData = [
-                'user_id' => $dto->userId,
-                'name' => $dto->title,
-                'type' => $promoType,
-                'description' => $dto->description,
-                'extra_conditions' => $dto->conditions,
-                'free_delivery' => $dto->freeDelivery ?? false,
-                'show_on_home' => $dto->showInBanner ?? false,
-                'available_till' => Carbon::now()->addDays($dto->durationDays),
-                'discount' => $discount,
-                'amount' => $amount,
-                'sales_order_from' => $dto->minimumOrder ?? MoneyValueObject::fromCents(0),
-                'code' => $dto->promoCode,
-                'video_link' => $dto->youtubeUrl,
-                'smm_links' => $dto->socialLinks,
-                'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
-                'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
-                'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-                'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
-                'started_at' => $dto->isDraft ? null : now(),
-                'raise_on_top_hours' => 0,
-                'restart_after_finish_days' => 0,
-                'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
-                'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
-                'payment_required' => ! $cost->isFree,
-            ];
+            $createData = $this->buildCreateData($dto, $cost);
 
             $promo = Promo::create($createData);
 
@@ -120,6 +56,88 @@ final readonly class CreatePromoAction
 
             return $dto;
         });
+    }
+
+    private function applyBonusBalance(User $user, int $totalCost, bool $useBonusBalance): int
+    {
+        if (! $useBonusBalance) {
+            return $totalCost;
+        }
+
+        $user->refresh();
+        $bonusAttr = $user->getAttribute('bonus_balance');
+        $availableBonusRub = 0;
+        if (is_int($bonusAttr)) {
+            $availableBonusRub = $bonusAttr;
+        } elseif (is_string($bonusAttr) && is_numeric($bonusAttr)) {
+            $availableBonusRub = (int) $bonusAttr;
+        }
+
+        $neededRub = (int) ceil($totalCost / 100);
+        $debitRub = min($availableBonusRub, $neededRub);
+
+        if ($debitRub > 0) {
+            $user->forceFill(['bonus_balance' => $availableBonusRub - $debitRub])->save();
+            $totalCost -= $debitRub * 100;
+        }
+
+        return $totalCost;
+    }
+
+    private function ensureSufficientBalance(User $user, int $totalCost): void
+    {
+        $actualBalance = RecalculateUserBalanceAction::run($user->id);
+        if ($actualBalance < $totalCost) {
+            $required = MoneyValueObject::fromCents($totalCost);
+            $available = MoneyValueObject::fromCents($actualBalance);
+            throw ValidationException::withMessages([
+                'balance' => "Недостаточно средств. Требуется: {$required->toDisplayValue()}, доступно: {$available->toDisplayValue()}",
+            ]);
+        }
+    }
+
+    private function createPaymentForPromo(CreatePromoData $dto, int $totalCost): void
+    {
+        CreatePaymentAction::run(PaymentData::forPromoPlacement(
+            $dto->userId,
+            MoneyValueObject::fromCents($totalCost),
+            $dto->durationDays,
+            $dto->title,
+        ));
+    }
+
+    private function buildCreateData(CreatePromoData $dto, PromoCostData $cost): array
+    {
+        $promoType = $this->getPromoType($dto->promoTypeId);
+        $discount = $this->getDiscount($dto, $promoType);
+        $amount = $this->getAmount($dto, $promoType);
+
+        return [
+            'user_id' => $dto->userId,
+            'name' => $dto->title,
+            'type' => $promoType,
+            'description' => $dto->description,
+            'extra_conditions' => $dto->conditions,
+            'free_delivery' => $dto->freeDelivery ?? false,
+            'show_on_home' => $dto->showInBanner ?? false,
+            'available_till' => Carbon::now()->addDays($dto->durationDays),
+            'discount' => $discount,
+            'amount' => $amount,
+            'sales_order_from' => $dto->minimumOrder ?? MoneyValueObject::fromCents(0),
+            'code' => $dto->promoCode,
+            'video_link' => $dto->youtubeUrl,
+            'smm_links' => $dto->socialLinks,
+            'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
+            'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
+            'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
+            'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
+            'started_at' => $dto->isDraft ? null : now(),
+            'raise_on_top_hours' => 0,
+            'restart_after_finish_days' => 0,
+            'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
+            'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
+            'payment_required' => ! $cost->isFree,
+        ];
     }
 
     private function getPromoType(int $id): PromoType
