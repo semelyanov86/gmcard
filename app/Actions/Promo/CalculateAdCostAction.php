@@ -5,20 +5,21 @@ declare(strict_types=1);
 namespace App\Actions\Promo;
 
 use App\Actions\User\GetUserTariffLimitsAction;
+use App\Data\PromoCostData;
 use App\Models\User;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static array<string, mixed> run(User $user, int $durationDays, bool $isShowInBanner = false)
+ * @method static PromoCostData run(User $user, int $durationDays, bool $isShowInBanner = false)
  */
 final readonly class CalculateAdCostAction
 {
     use AsAction;
 
     /**
-     * @return array<string, mixed>
+     * @return PromoCostData
      */
-    public function handle(User $user, int $durationDays, bool $isShowInBanner = false): array
+    public function handle(User $user, int $durationDays, bool $isShowInBanner = false): PromoCostData
     {
         $limits = GetUserTariffLimitsAction::run($user);
         $tariff = $user->tariffPlan;
@@ -42,26 +43,26 @@ final readonly class CalculateAdCostAction
 
         $totalCost = $dailyCost * $durationDays;
 
-        return [
-            'daily_cost' => $dailyCost,
-            'is_free' => false,
-            'reason' => $isShowInBanner ? 'banner_placement' : 'extra_ad',
-            'duration_days' => $durationDays,
-            'total_cost' => $totalCost,
-        ];
+        return new PromoCostData(
+            dailyCost: $dailyCost,
+            isFree: false,
+            reason: $isShowInBanner ? 'banner_placement' : 'extra_ad',
+            durationDays: $durationDays,
+            totalCost: $totalCost,
+        );
     }
 
     /**
-     * @return array<string, mixed>
+     * @return PromoCostData
      */
-    private function buildFreeResult(int $durationDays, string $reason): array
+    private function buildFreeResult(int $durationDays, string $reason): PromoCostData
     {
-        return [
-            'daily_cost' => 0,
-            'is_free' => true,
-            'reason' => $reason,
-            'duration_days' => $durationDays,
-            'total_cost' => 0,
-        ];
+        return new PromoCostData(
+            dailyCost: 0,
+            isFree: true,
+            reason: $reason,
+            durationDays: $durationDays,
+            totalCost: 0,
+        );
     }
 }

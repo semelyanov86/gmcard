@@ -7,6 +7,7 @@ namespace App\Actions\Promo;
 use App\Actions\Payment\CreatePaymentAction;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
+use App\Data\PromoCostData;
 use App\Data\PaymentData;
 use App\Enums\PromoType;
 use App\Enums\PaymentType;
@@ -35,10 +36,11 @@ final readonly class CreatePromoAction
         return DB::transaction(function () use ($dto): Promo {
             $user = User::findOrFail($dto->userId);
 
+            /** @var PromoCostData $cost */
             $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
 
-            if (! $cost['is_free']) {
-                $totalCost = is_int($cost['total_cost']) ? $cost['total_cost'] : 0;
+            if (! $cost->isFree) {
+                $totalCost = $cost->totalCost;
 
                 if ($dto->useBonusBalance) {
                     $user->refresh();
@@ -108,8 +110,8 @@ final readonly class CreatePromoAction
                 'raise_on_top_hours' => 0,
                 'restart_after_finish_days' => 0,
                 'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
-                'daily_cost' => MoneyValueObject::fromCents(is_int($cost['daily_cost']) ? $cost['daily_cost'] : 0),
-                'payment_required' => ! $cost['is_free'],
+                'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
+                'payment_required' => ! $cost->isFree,
             ];
 
             $promo = Promo::create($createData);
