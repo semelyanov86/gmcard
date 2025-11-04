@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\OwnerRoleType;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,7 +16,7 @@ class OrganisationFactory extends Factory
         return [
             'address_id' => Address::factory(),
             'name' => fake()->company(),
-            'owner_role' => fake()->randomElement(['owner', 'manager', 'secretary', 'other']),
+            'owner_role' => fake()->randomElement(OwnerRoleType::cases())->value,
             'inn' => fake()->numerify('##########'),
             'ogrn' => fake()->numerify('###############'),
             'contact' => fake()->phoneNumber(),
