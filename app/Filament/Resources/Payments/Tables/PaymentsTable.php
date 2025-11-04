@@ -21,19 +21,25 @@ final class PaymentsTable
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('payment_date')
+                    ->label('Дата платежа')
                     ->dateTime()
                     ->sortable(),
                 Money::column('amount')
-                    ->sortable(),
-                TextColumn::make('type'),
+                    ->label('Сумма'),
+                TextColumn::make('type')
+                    ->label('Тип'),
                 TextColumn::make('description')
+                    ->label('Описание')
                     ->searchable(),
                 TextColumn::make('transaction_id')
+                    ->label('ID транзакции')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('user.name')
+                    ->label('Пользователь')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

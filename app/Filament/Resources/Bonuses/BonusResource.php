@@ -21,6 +21,8 @@ class BonusResource extends Resource
 {
     protected static ?string $model = Bonus::class;
 
+    protected static ?string $navigationLabel = 'Бонусы';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

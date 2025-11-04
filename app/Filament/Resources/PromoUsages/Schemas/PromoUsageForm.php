@@ -16,13 +16,17 @@ class PromoUsageForm
         return $schema
             ->components([
                 Select::make('promo_id')
+                    ->label('Промо')
                     ->relationship('promo', 'name')
                     ->required(),
                 DateTimePicker::make('used_at')
+                    ->label('Использовано')
                     ->required(),
                 Select::make('user_id')
+                    ->label('Пользователь')
                     ->relationship('user', 'name'),
                 TextInput::make('ip')
+                    ->label('IP-адрес')
                     ->required(),
             ]);
     }

@@ -21,6 +21,8 @@ class AdvCampaignResource extends Resource
 {
     protected static ?string $model = AdvCampaign::class;
 
+    protected static ?string $navigationLabel = 'Рекламные кампании';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

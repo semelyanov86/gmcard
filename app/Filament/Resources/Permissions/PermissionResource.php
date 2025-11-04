@@ -21,6 +21,8 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
+    protected static ?string $navigationLabel = 'Права доступа';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

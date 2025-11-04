@@ -18,15 +18,20 @@ final class CategoriesTable
     {
         return $table
             ->columns([
-                CategoryNameColumn::make(),
-                CategoryPathColumn::make(),
+                CategoryNameColumn::make()
+                    ->label('Название'),
+                CategoryPathColumn::make()
+                    ->label('Путь'),
                 IconColumn::make('is_starred')
+                    ->label('Избранное')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Обновлено')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

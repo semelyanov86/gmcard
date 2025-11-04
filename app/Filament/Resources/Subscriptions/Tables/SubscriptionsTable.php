@@ -21,14 +21,18 @@ final class SubscriptionsTable
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('user.name')
+                    ->label('Пользователь')
                     ->searchable(),
                 TextColumn::make('type')
+                    ->label('Тип')
                     ->searchable(),
                 Money::column('amount')
-                    ->sortable(),
+                    ->label('Сумма'),
                 TextColumn::make('periodicity')
+                    ->label('Периодичность')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

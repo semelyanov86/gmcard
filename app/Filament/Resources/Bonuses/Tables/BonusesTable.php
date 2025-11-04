@@ -18,18 +18,23 @@ final class BonusesTable
         return $table
             ->columns([
                 Money::column('amount')
-                    ->sortable(),
+                    ->label('Сумма'),
                 TextColumn::make('code')
+                    ->label('Код')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('sender.name')
+                    ->label('Отправитель')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('receiver.name')
+                    ->label('Получатель')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('type'),
+                TextColumn::make('type')
+                    ->label('Тип'),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

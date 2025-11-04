@@ -21,6 +21,8 @@ class AddressResource extends Resource
 {
     protected static ?string $model = Address::class;
 
+    protected static ?string $navigationLabel = 'Адреса';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]
