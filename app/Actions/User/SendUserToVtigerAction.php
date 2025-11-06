@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Listeners;
+namespace App\Actions\User;
 
 use App\Contracts\VtigerCrmInterface;
 use App\Data\VtigerContactData;
 use App\Data\VtigerPotentialData;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
-use Illuminate\Events\Attributes\ListensTo;
-use Illuminate\Support\Facades\Log;
-use Salaros\Vtiger\VTWSCLib\WSException;
+use App\Models\User;
+use Lorisleiva\Actions\Concerns\AsAction;
+use Throwable;
 
-#[ListensTo(Registered::class)]
-final readonly class SendUserToVtigerListener implements ShouldHandleEventsAfterCommit
+/**
+ * @method static void run(User $user)
+ */
+final readonly class SendUserToVtigerAction
 {
+    use AsAction;
+
     public function __construct(
-        private VtigerCrmInterface $crm
+        protected VtigerCrmInterface $crm
     ) {}
 
-    public function handle(Registered $event): void
+    public function handle(User $user): void
     {
-        $user = $event->user;
-
         try {
             $nameParts = explode(' ', $user->name, 2);
-            $firstname = $nameParts[0] ?? $user->name;
+            $firstname = $nameParts[0];
             $lastname = $nameParts[1] ?? '';
 
             $contactData = new VtigerContactData(
@@ -51,17 +51,7 @@ final readonly class SendUserToVtigerListener implements ShouldHandleEventsAfter
 
                 $this->crm->createPotential($potentialData);
             }
-
-            Log::info('User synced to Vtiger', [
-                'user_id' => $user->id,
-                'contact_id' => $contactId,
-            ]);
-        } catch (WSException $e) {
-            Log::error('Failed to sync user to Vtiger', [
-                'user_id' => $user->id,
-                'error' => $e->getMessage(),
-            ]);
+        } catch (Throwable) {
         }
     }
 }
-

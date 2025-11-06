@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Actions\CreditBonusBalanceAction;
+use App\Actions\User\SendUserToVtigerAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisteredUserRequest;
 use App\Models\User;
@@ -45,6 +46,8 @@ final class RegisteredUserController extends Controller
         }
 
         event(new Registered($user));
+
+        SendUserToVtigerAction::run($user);
 
         Auth::login($user);
 

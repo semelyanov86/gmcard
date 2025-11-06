@@ -19,4 +19,3 @@ final class VtigerPotentialData extends Data
         public ?string $leadsource = null,
     ) {}
 }
-

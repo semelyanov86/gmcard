@@ -20,4 +20,3 @@ final class VtigerContactData extends Data
         public ?string $assigned_user_id = null,
     ) {}
 }
-

@@ -33,6 +33,8 @@ class RegistrationTest extends TestCase
         if (! Role::query()->where('name', 'user')->exists()) {
             Role::create(['name' => 'user', 'guard_name' => 'web']);
         }
+
+        $this->app->bind(\App\Contracts\VtigerCrmInterface::class, \Tests\Mocks\MockVtigerAdapter::class);
     }
 
     public function test_registration_screen_can_be_rendered(): void
