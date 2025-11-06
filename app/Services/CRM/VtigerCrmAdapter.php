@@ -6,6 +6,8 @@ namespace App\Services\CRM;
 
 use App\Contracts\VtigerCrmInterface;
 use App\Data\PopUpData;
+use App\Data\VtigerContactData;
+use App\Data\VtigerPotentialData;
 use Salaros\Vtiger\VTWSCLib\WSClient;
 use Salaros\Vtiger\VTWSCLib\WSException;
 
@@ -30,11 +32,47 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
     public function createLead(PopUpData $dto): array
     {
         return $this->client->entities->createOne('Leads', [
-            'lastname'         => $dto->name,
-            'email'            => $dto->email,
-            'phone'            => $dto->phone?->toE164(),
-            'city'             => $dto->city,
+            'lastname' => $dto->name,
+            'email' => $dto->email,
+            'phone' => $dto->phone?->toE164(),
+            'city' => $dto->city,
             'assigned_user_id' => '19x6',
+        ]);
+    }
+
+    /**
+     * @return array<string, mixed>
+     * @throws WSException
+     */
+    public function createContact(VtigerContactData $dto): array
+    {
+        return $this->client->entities->createOne('Contacts', [
+            'firstname' => $dto->firstname,
+            'lastname' => $dto->lastname,
+            'email' => $dto->email,
+            'phone' => $dto->phone?->toE164(),
+            'mailingcity' => $dto->city,
+            'mailingcountry' => $dto->country,
+            'leadsource' => $dto->leadsource,
+            'assigned_user_id' => $dto->assigned_user_id,
+        ]);
+    }
+
+    /**
+     * @return array<string, mixed>
+     * @throws WSException
+     */
+    public function createPotential(VtigerPotentialData $dto): array
+    {
+        return $this->client->entities->createOne('Potentials', [
+            'potentialname' => $dto->potentialname,
+            'sales_stage' => $dto->sales_stage,
+            'related_to' => $dto->related_to,
+            'amount' => $dto->amount,
+            'closingdate' => $dto->closingdate,
+            'assigned_user_id' => $dto->assigned_user_id,
+            'description' => $dto->description,
+            'leadsource' => $dto->leadsource,
         ]);
     }
 }
