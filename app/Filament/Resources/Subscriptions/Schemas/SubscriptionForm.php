@@ -17,14 +17,18 @@ class SubscriptionForm
         return $schema
             ->components([
                 Select::make('user_id')
+                    ->label('Пользователь')
                     ->relationship('user', 'name')
                     ->required(),
                 Select::make('type')
+                    ->label('Тип')
                     ->options(SubscriptionType::options())
                     ->required(),
                 Money::input('amount')
+                    ->label('Сумма')
                     ->required(),
                 TextInput::make('periodicity')
+                    ->label('Периодичность')
                     ->required(),
             ]);
     }

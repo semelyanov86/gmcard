@@ -22,49 +22,70 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Имя')
                     ->required(),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->email()
                     ->required(),
-                DateTimePicker::make('email_verified_at'),
+                DateTimePicker::make('email_verified_at')
+                    ->label('Email подтвержден'),
                 Password::make(),
-                TextInput::make('last_name'),
+                TextInput::make('last_name')
+                    ->label('Фамилия'),
                 TextInput::make('age')
+                    ->label('Возраст')
                     ->required()
                     ->numeric()
                     ->default(0),
-                Money::input('balance'),
-                TextInput::make('job'),
+                Money::input('balance')
+                    ->label('Баланс'),
+                TextInput::make('bonus_balance')
+                    ->label('Бонусный баланс')
+                    ->numeric()
+                    ->default(0),
+                TextInput::make('job')
+                    ->label('Работа'),
                 Select::make('job_status')
+                    ->label('Статус работы')
                     ->options(JobStatusType::options()),
                 TextInput::make('city')
+                    ->label('Город')
                     ->numeric(),
-                TextInput::make('country'),
+                TextInput::make('country')
+                    ->label('Страна'),
                 Select::make('tariff_plan_id')
-                    ->label('TariffPlan')
+                    ->label('Тарифный план')
                     ->relationship('tariffPlan', 'name')
                     ->searchable()
                     ->preload()
                     ->createOptionForm([
                         TextInput::make('name')
+                            ->label('Название')
                             ->required()
                             ->maxLength(255),
-                        TextInput::make('description'),
+                        TextInput::make('description')
+                            ->label('Описание'),
                         Money::input('price')
+                            ->label('Цена')
                             ->required(),
-                        Money::input('banner_price'),
+                        Money::input('banner_price')
+                            ->label('Цена баннера'),
                         TextInput::make('ads_count')
+                            ->label('Количество объявлений')
                             ->numeric()
                             ->default(0)
                             ->required(),
                     ])
                     ->placeholder('Выберите тарифный план'),
-                DatePicker::make('birth_date'),
+                DatePicker::make('birth_date')
+                    ->label('Дата рождения'),
                 RolesSelect::make(),
                 Select::make('gender')
+                    ->label('Пол')
                     ->options(GenderType::options()),
-                TextInput::make('code'),
+                TextInput::make('code')
+                    ->label('Код'),
             ]);
     }
 }

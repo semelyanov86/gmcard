@@ -17,19 +17,25 @@ final class PromoUsagesTable
         return $table
             ->columns([
                 TextColumn::make('promo.name')
+                    ->label('Промо')
                     ->searchable(),
                 TextColumn::make('used_at')
+                    ->label('Использовано')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('user.name')
+                    ->label('Пользователь')
                     ->searchable(),
                 TextColumn::make('ip')
+                    ->label('IP-адрес')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Обновлено')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

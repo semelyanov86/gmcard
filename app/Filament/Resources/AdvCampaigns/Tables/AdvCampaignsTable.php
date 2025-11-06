@@ -17,13 +17,17 @@ final class AdvCampaignsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Название кампании')
                     ->searchable(),
                 TextColumn::make('description')
+                    ->label('Описание')
                     ->searchable(),
                 TextColumn::make('crmid')
+                    ->label('Crm id')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('deeplink')
+                    ->label('Ссылка на сайт')
                     ->searchable(),
                 TextColumn::make('avg_hold_time')
                     ->searchable(),

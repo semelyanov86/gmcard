@@ -16,20 +16,25 @@ class TariffPlanForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('slug')
+                    ->label('Слаг')
                     ->required()
                     ->unique(ignoreRecord: true),
                 Textarea::make('description')
+                    ->label('Описание')
                     ->rows(3)
                     ->columnSpanFull(),
                 Money::input('price')
+                    ->label('Цена')
                     ->required(),
                 Money::input('banner_price'),
                 Money::input('extra_ad_price')
                     ->label('Cost of additional shares per day'),
                 TextInput::make('ads_count')
+                    ->label('Количество объявлений')
                     ->numeric()
                     ->default(0)
                     ->minValue(0)

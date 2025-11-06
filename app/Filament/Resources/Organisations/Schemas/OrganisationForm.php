@@ -16,21 +16,30 @@ class OrganisationForm
         return $schema
             ->components([
                 Select::make('address_id')
+                    ->label('Адрес')
                     ->relationship('address', 'name')
                     ->required(),
                 TextInput::make('name')
+                    ->label('Название')
                     ->required(),
                 Select::make('owner_role')
+                    ->label('Роль владельца')
                     ->options(OwnerRoleType::options())
                     ->required(),
                 TextInput::make('inn')
+                    ->label('ИНН')
                     ->maxLength(15)
                     ->rule('max:15'),
-                TextInput::make('ogrn'),
-                TextInput::make('contact'),
-                TextInput::make('contact_fio'),
-                TextInput::make('opening_hours'),
+                TextInput::make('ogrn')
+                    ->label('ОГРН'),
+                TextInput::make('contact')
+                    ->label('Контакт'),
+                TextInput::make('contact_fio')
+                    ->label('ФИО контакта'),
+                TextInput::make('opening_hours')
+                    ->label('Часы работы'),
                 Select::make('user_id')
+                    ->label('Пользователь')
                     ->relationship('user', 'name')
                     ->required(),
             ]);

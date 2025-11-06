@@ -21,6 +21,8 @@ class OrganisationResource extends Resource
 {
     protected static ?string $model = Organisation::class;
 
+    protected static ?string $navigationLabel = 'Организации';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

@@ -16,13 +16,18 @@ class AddressForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Адрес')
                     ->required(),
                 Textarea::make('open_hours')
+                    ->label('Часы работы')
                     ->columnSpanFull(),
                 Phone::input('phone')
+                    ->label('Телефон')
                     ->required(),
-                Phone::input('phone_secondary'),
-                TextInput::make('website'),
+                Phone::input('phone_secondary')
+                    ->label('Дополнительный телефон'),
+                TextInput::make('website')
+                    ->label('Веб-сайт'),
             ]);
     }
 }

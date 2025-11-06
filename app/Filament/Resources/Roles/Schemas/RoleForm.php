@@ -15,7 +15,7 @@ class RoleForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('Role Name')
+                    ->label('Название роли')
                     ->unique(ignoreRecord: true)
                     ->required(),
                 TextInput::make('guard_name')
@@ -24,7 +24,7 @@ class RoleForm
                     ->placeholder('web')
                     ->required(),
                 Select::make('permissions')
-                    ->label('Permissions')
+                    ->label('Права доступа')
                     ->multiple()
                     ->relationship('permissions', 'name')
                     ->preload(),

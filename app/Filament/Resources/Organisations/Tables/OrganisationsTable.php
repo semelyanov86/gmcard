@@ -17,25 +17,35 @@ final class OrganisationsTable
         return $table
             ->columns([
                 TextColumn::make('address.name')
+                    ->label('Адрес')
                     ->searchable(),
                 TextColumn::make('name')
+                    ->label('Название')
                     ->searchable(),
-                TextColumn::make('owner_role'),
+                TextColumn::make('owner_role')
+                    ->label('Роль владельца'),
                 TextColumn::make('inn')
+                    ->label('ИНН')
                     ->searchable(),
                 TextColumn::make('ogrn')
+                    ->label('ОГРН')
                     ->searchable(),
                 TextColumn::make('contact')
+                    ->label('Контакт')
                     ->searchable(),
                 TextColumn::make('contact_fio')
+                    ->label('ФИО контакта')
                     ->searchable(),
                 TextColumn::make('user.name')
+                    ->label('Пользователь')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Обновлено')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
