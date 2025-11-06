@@ -117,8 +117,8 @@ const conditionsModalOpen = ref(false);
 watch(
     () => page.props.flash,
     (flash) => {
-        if (flash?.success) {
-            notify.success(flash.success as string);
+        if (flash.success) {
+            notify.success(flash.success);
             form.reset();
             form.clearErrors();
         }

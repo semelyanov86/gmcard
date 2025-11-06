@@ -3,11 +3,6 @@ import { notify } from '@/services/notifications';
 import { usePage } from '@inertiajs/vue3';
 import { watch } from 'vue';
 
-type Flash = {
-    success?: string;
-    error?: string;
-};
-
 const props = defineProps<{
     success?: string;
     error?: string;
@@ -18,7 +13,7 @@ const page = usePage();
 
 watch(
     () => {
-        const flash = (page.props.flash as Flash) ?? {};
+        const flash = page.props.flash ?? {};
         return {
             success: props.success ?? flash.success,
             error: props.error ?? flash.error,

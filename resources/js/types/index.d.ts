@@ -18,6 +18,11 @@ export interface NavItem {
     isActive?: boolean;
 }
 
+export interface Flash {
+    success?: string;
+    error?: string;
+}
+
 export type AppPageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     name: string;
     quote: { message: string; author: string };
@@ -25,10 +30,7 @@ export type AppPageProps<T extends Record<string, unknown> = Record<string, unkn
     userData: UserDataModel | null;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
-    flash: {
-        success?: string;
-        error?: string;
-    };
+    flash: Flash;
 };
 
 export interface User {
