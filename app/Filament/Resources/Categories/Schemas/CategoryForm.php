@@ -17,11 +17,13 @@ class CategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название')
                     ->required(),
                 Textarea::make('description')
+                    ->label('Описание')
                     ->columnSpanFull(),
                 SelectTree::make('parent_id')
-                    ->label('Parent')
+                    ->label('Родительская категория')
                     ->relationship('parent', 'name', 'parent_id')
                     ->nullable()
                     ->multiple(false)
@@ -33,6 +35,7 @@ class CategoryForm
                     ->emptyLabel(__('Oops, no results have been found!'))
                     ->withCount(),
                 Toggle::make('is_starred')
+                    ->label('Избранное')
                     ->default(false)
                     ->required(),
             ]);

@@ -15,16 +15,16 @@ class PermissionForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Название права')
                     ->required()
-                    ->unique(ignoreRecord: true)
-                    ->label('Permission Name'),
+                    ->unique(ignoreRecord: true),
                 TextInput::make('guard_name')
+                    ->label('Защита')
                     ->default('web')
-                    ->required()
-                    ->label('Guard Name'),
+                    ->required(),
                 CheckboxList::make('roles')
+                    ->label('Назначить ролям')
                     ->relationship('roles', 'name')
-                    ->label('Assign to Roles')
                     ->columns(2),
             ]);
     }

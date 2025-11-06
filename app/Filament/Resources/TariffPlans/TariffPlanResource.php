@@ -21,6 +21,8 @@ class TariffPlanResource extends Resource
 {
     protected static ?string $model = TariffPlan::class;
 
+    protected static ?string $navigationLabel = 'Тарифные планы';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

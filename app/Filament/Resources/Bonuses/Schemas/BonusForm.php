@@ -16,20 +16,25 @@ class BonusForm
     {
         return $schema
             ->components([
-                Money::input('amount'),
+                Money::input('amount')
+                    ->label('Сумма'),
                 TextInput::make('code')
+                    ->label('Код')
                     ->numeric()
                     ->inputMode('numeric')
                     ->rule('integer'),
                 Select::make('source_id')
+                    ->label('Отправитель')
                     ->relationship('sender', 'name')
                     ->searchable()
                     ->preload(),
                 Select::make('target_id')
+                    ->label('Получатель')
                     ->relationship('receiver', 'name')
                     ->searchable()
                     ->preload(),
                 Select::make('type')
+                    ->label('Тип')
                     ->options(PaymentType::options()),
             ]);
     }

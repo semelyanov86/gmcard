@@ -21,6 +21,8 @@ class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
 
+    protected static ?string $navigationLabel = 'Платежи';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

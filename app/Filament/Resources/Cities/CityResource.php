@@ -21,6 +21,8 @@ class CityResource extends Resource
 {
     protected static ?string $model = City::class;
 
+    protected static ?string $navigationLabel = 'Города';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

@@ -20,7 +20,7 @@ final class RolesTable
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Name')
+                    ->label('Название')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('guard_name')
@@ -28,12 +28,12 @@ final class RolesTable
                     ->badge()
                     ->color('success'),
                 TextColumn::make('permissions_count')
-                    ->label('Permissions')
+                    ->label('Количество прав')
                     ->counts('permissions')
                     ->badge()
                     ->color('info'),
                 TextColumn::make('created_at')
-                    ->label('Created')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

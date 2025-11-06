@@ -20,19 +20,19 @@ final class PermissionsTable
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Permission Name')
+                    ->label('Название права')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('guard_name')
-                    ->label('Guard')
+                    ->label('Защита')
                     ->badge()
                     ->color('success'),
                 TextColumn::make('roles.name')
-                    ->label('Assigned Roles')
+                    ->label('Назначенные роли')
                     ->badge()
                     ->color('info'),
                 TextColumn::make('created_at')
-                    ->label('Created')
+                    ->label('Создано')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

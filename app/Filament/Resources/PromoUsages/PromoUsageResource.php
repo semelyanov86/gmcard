@@ -21,6 +21,8 @@ class PromoUsageResource extends Resource
 {
     protected static ?string $model = PromoUsage::class;
 
+    protected static ?string $navigationLabel = 'Использование промо';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     #[Override]

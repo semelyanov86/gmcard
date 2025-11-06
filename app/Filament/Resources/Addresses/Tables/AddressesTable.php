@@ -18,17 +18,23 @@ final class AddressesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Адрес')
                     ->searchable(),
-                Phone::column('phone'),
-                Phone::column('phone_secondary'),
+                Phone::column('phone')
+                    ->label('Телефон'),
+                Phone::column('phone_secondary')
+                    ->label('Дополнительный телефон'),
                 TextColumn::make('website')
+                    ->label('Ссылка на сайт')
                     ->url(fn ($record) => $record->website ?: null, shouldOpenInNewTab: true)
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Дата создания')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Дата обновления')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
