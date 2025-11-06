@@ -49,6 +49,23 @@ import '../../../css/internal/output.css';
 const page = usePage<AppPageProps>();
 const successMessage = ref<string | null>(null);
 
+interface UserWithTariff {
+    id: number;
+    name: string;
+    email: string;
+    balance: number;
+    bonus_balance: number;
+    active_promos_count: number;
+    tariff_plan?: {
+        id: number;
+        slug: string;
+        name: string;
+        ads_count: number;
+        extra_ad_price: number;
+        banner_price: number;
+    };
+}
+
 const props = defineProps<{
     contact: ContactModel;
     categories: CategoryModel[];
@@ -58,7 +75,7 @@ const props = defineProps<{
     defaultDescription: string;
     weekdays: WeekdayModel[];
     socialNetworks: SocialNetworkModel[];
-    userBalance: number;
+    user?: UserWithTariff;
     navbarMenu: MenuData[];
     sidebarMenu: MenuData[];
 }>();
@@ -79,6 +96,7 @@ const form = useForm({
     free_delivery_from: null as number | null,
     duration_days: 1,
     show_in_banner: false,
+    use_bonus_balance: false,
     addresses: [] as any[],
     schedule: {
         enabled: false,
@@ -385,8 +403,7 @@ function handleLaunch() {
                                 Желаете чтобы ваша акция так же появлялась и в баннере на главной странице сайта?<span
                                     id="hiddenText"
                                     class="hidden font-normal text-black/50"
-                                    >В этом случае стоимость запуска акции будет в 3 раза дороже. Бесплатно, если вы предлагаете скидку более
-                                    50%.</span
+                                    >В этом случае стоимость запуска акции составит x10 от стандартной цены.</span
                                 >
                             </h3>
                         </div>
@@ -397,7 +414,15 @@ function handleLaunch() {
                         </div>
                     </div>
                     <PremiumOptions />
-                    <PricingSummary :balance="userData?.balance ?? props.userBalance" />
+                    <PricingSummary
+                        :balance="props.user?.balance"
+                        :bonus-balance="props.user?.bonus_balance"
+                        v-model:use-bonus-balance="form.use_bonus_balance"
+                        :duration-days="form.duration_days"
+                        :show-in-banner="form.show_in_banner"
+                        :active-promos-count="props.user?.active_promos_count"
+                        :user-tariff="props.user?.tariff_plan"
+                    />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
                         <label for="rules" class="all_text text-slate-600">

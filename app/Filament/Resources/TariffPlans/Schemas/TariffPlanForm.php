@@ -30,8 +30,9 @@ class TariffPlanForm
                 Money::input('price')
                     ->label('Цена')
                     ->required(),
-                Money::input('banner_price')
-                    ->label('Цена баннера'),
+                Money::input('banner_price'),
+                Money::input('extra_ad_price')
+                    ->label('Cost of additional shares per day'),
                 TextInput::make('ads_count')
                     ->label('Количество объявлений')
                     ->numeric()

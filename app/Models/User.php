@@ -158,6 +158,16 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * @return HasMany<Promo, $this>
+     */
+    public function activePromos(): HasMany
+    {
+        return $this->promos()
+            ->whereNotNull('started_at')
+            ->where('available_till', '>=', now());
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

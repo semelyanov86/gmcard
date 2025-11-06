@@ -46,6 +46,7 @@ class CreatePromoRequest extends FormRequest
             'free_delivery_from' => ['nullable', 'integer', 'min:0'],
             'duration_days' => ['required', 'integer', 'min:1', 'max:30'],
             'show_in_banner' => ['boolean'],
+            'use_bonus_balance' => ['boolean'],
             'addresses' => ['nullable', 'array', 'max:4'],
             'addresses.*.address' => ['nullable', 'string', 'max:500'],
             'addresses.*.schedule' => ['nullable', 'string', 'max:255'],
