@@ -26,9 +26,9 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import Input from '@/components/primitives/Input.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
-import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
+import { notify } from '@/services/notifications';
 import type {
     AppPageProps,
     CategoryModel,
@@ -47,7 +47,6 @@ import { computed, ref, watch } from 'vue';
 import '../../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
-const successMessage = ref<string | null>(null);
 
 interface UserWithTariff {
     id: number;
@@ -136,13 +135,10 @@ const conditionsModalOpen = ref(false);
 watch(
     () => page.props.flash,
     (flash) => {
-        if (flash?.success) {
-            successMessage.value = flash.success as string;
+        if (flash.success) {
+            notify.success(flash.success);
             form.reset();
             form.clearErrors();
-            setTimeout(() => {
-                successMessage.value = null;
-            }, 5000);
         }
     },
     { immediate: true, deep: true },
@@ -179,28 +175,6 @@ function handleLaunch() {
     <Header :userData="userData" />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
-
-        <!-- Уведомление об успехе -->
-        <Transition
-            enter-active-class="transition ease-out duration-300"
-            enter-from-class="translate-x-full opacity-0"
-            enter-to-class="translate-x-0 opacity-100"
-            leave-active-class="transition ease-in duration-200"
-            leave-from-class="translate-x-0 opacity-100"
-            leave-to-class="translate-x-full opacity-0"
-        >
-            <div v-if="successMessage" class="fixed top-4 right-4 z-50 max-w-md rounded-lg bg-green-500 px-6 py-4 text-white shadow-lg">
-                <div class="flex items-center gap-3">
-                    <svg class="h-6 w-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <p class="font-medium">{{ successMessage }}</p>
-                    <button @click="successMessage = null" class="ml-auto hover:opacity-80">
-                        <CloseIcon custom-class="h-5 w-5" />
-                    </button>
-                </div>
-            </div>
-        </Transition>
 
         <div class="mx-auto max-w-6xl 2xl:w-full 2xl:px-4">
             <NavBar :menu-items="navbarMenu" />
