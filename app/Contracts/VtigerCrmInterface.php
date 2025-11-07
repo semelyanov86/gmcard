@@ -24,4 +24,6 @@ interface VtigerCrmInterface
      * @return array<string, mixed>
      */
     public function createPotential(VtigerPotentialData $dto): array;
+
+    public function findContactByEmail(string $email): ?string;
 }

@@ -37,21 +37,24 @@ final readonly class SendUserToVtigerAction
                 leadsource: 'Website',
             );
 
-            $contact = $this->crm->createContact($contactData);
-            $contactId = $contact['id'] ?? null;
+            $this->crm->createContact($contactData);
+
+            $contactId = $this->crm->findContactByEmail($user->email);
 
             if ($contactId) {
-                $potentialData = new VtigerPotentialData(
+                $user->update(['crmid' => $contactId]);
+
+                $this->crm->createPotential(new VtigerPotentialData(
                     potentialname: "Регистрация: {$user->name}",
                     sales_stage: 'Prospecting',
+                    contact_id: $contactId,
                     assigned_user_id: '19x6',
                     leadsource: 'Website',
                     closingdate: now()->addDays(30)->format('Y-m-d'),
-                );
-
-                $this->crm->createPotential($potentialData);
+                ));
             }
-        } catch (Throwable) {
+        } catch (Throwable $e) {
+            report($e);
         }
     }
 }

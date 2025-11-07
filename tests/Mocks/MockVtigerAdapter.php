@@ -38,4 +38,9 @@ class MockVtigerAdapter implements VtigerCrmInterface
             'sales_stage' => $dto->sales_stage,
         ];
     }
+
+    public function findContactByEmail(string $email): ?string
+    {
+        return '12x456';
+    }
 }

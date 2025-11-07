@@ -12,6 +12,7 @@ final class VtigerPotentialData extends Data
         public string $potentialname,
         public string $sales_stage,
         public ?string $related_to = null,
+        public ?string $contact_id = null,
         public ?float $amount = null,
         public ?string $closingdate = null,
         public ?string $assigned_user_id = null,
