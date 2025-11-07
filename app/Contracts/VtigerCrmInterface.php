@@ -11,17 +11,17 @@ use App\Data\VtigerPotentialData;
 interface VtigerCrmInterface
 {
     /**
-     * @return array<string, mixed>
+     * @return array<string, scalar>
      */
     public function createLead(PopUpData $dto): array;
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, scalar>
      */
     public function createContact(VtigerContactData $dto): array;
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, scalar>
      */
     public function createPotential(VtigerPotentialData $dto): array;
 

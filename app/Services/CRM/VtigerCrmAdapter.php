@@ -43,7 +43,7 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, scalar>
      * @throws WSException
      */
     public function createContact(VtigerContactData $dto): array
@@ -63,7 +63,7 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, scalar>
      * @throws WSException
      */
     public function createPotential(VtigerPotentialData $dto): array
