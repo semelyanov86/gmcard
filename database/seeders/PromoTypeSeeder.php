@@ -67,4 +67,3 @@ class PromoTypeSeeder extends Seeder
         }
     }
 }
-

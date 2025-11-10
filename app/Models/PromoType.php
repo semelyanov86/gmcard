@@ -17,14 +17,6 @@ class PromoType extends Model
         'sort_order',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'is_active' => 'boolean',
-            'sort_order' => 'integer',
-        ];
-    }
-
     /**
      * @return HasMany<Promo, $this>
      */
@@ -32,5 +24,12 @@ class PromoType extends Model
     {
         return $this->hasMany(Promo::class, 'promo_type_id');
     }
-}
 
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+            'sort_order' => 'integer',
+        ];
+    }
+}

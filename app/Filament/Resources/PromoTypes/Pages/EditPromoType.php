@@ -19,4 +19,3 @@ class EditPromoType extends EditRecord
         ];
     }
 }
-

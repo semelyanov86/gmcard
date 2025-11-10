@@ -52,4 +52,3 @@ class PromoTypeResource extends Resource
         ];
     }
 }
-

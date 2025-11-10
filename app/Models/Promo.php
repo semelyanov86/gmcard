@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\PromoType as PromoTypeEnum;
-use App\Models\PromoType;
 
 /**
  * @property int $id

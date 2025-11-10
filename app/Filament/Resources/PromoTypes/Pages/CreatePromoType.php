@@ -11,4 +11,3 @@ class CreatePromoType extends CreateRecord
 {
     protected static string $resource = PromoTypeResource::class;
 }
-

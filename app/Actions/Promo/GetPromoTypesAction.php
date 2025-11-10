@@ -21,7 +21,7 @@ final readonly class GetPromoTypesAction
      */
     public function handle(): array
     {
-        return PromoType::query()
+        $types = PromoType::query()
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get()
@@ -31,6 +31,9 @@ final readonly class GetPromoTypesAction
                 description: $type->description ?? '',
                 size: $type->id <= 3 ? PromoTypeSizeEnum::LARGE : PromoTypeSizeEnum::SMALL
             ))
-            ->toArray();
+            ->all();
+
+        /** @var PromoTypeData[] $types */
+        return $types;
     }
 }

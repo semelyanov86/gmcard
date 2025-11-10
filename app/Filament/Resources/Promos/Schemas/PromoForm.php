@@ -12,7 +12,6 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
-use App\Enums\PromoType;
 use App\Filament\Components\Money;
 use Filament\Forms\Components\KeyValue;
 
