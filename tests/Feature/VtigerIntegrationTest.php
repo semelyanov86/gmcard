@@ -42,9 +42,9 @@ class VtigerIntegrationTest extends TestCase
     public function test_vtiger_job_stores_crmid(): void
     {
         $response = $this->post(route('register'), $this->registrationPayload());
-        
+
         $response->assertRedirect(route('dashboard', absolute: false));
-        
+
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
             'crmid' => '12x456',

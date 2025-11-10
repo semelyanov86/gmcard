@@ -10,6 +10,7 @@ use App\Data\VtigerContactData;
 use App\Data\VtigerPotentialData;
 use Salaros\Vtiger\VTWSCLib\WSClient;
 use Salaros\Vtiger\VTWSCLib\WSException;
+use Throwable;
 
 final readonly class VtigerCrmAdapter implements VtigerCrmInterface
 {
@@ -83,14 +84,16 @@ final readonly class VtigerCrmAdapter implements VtigerCrmInterface
         return $result ?? [];
     }
 
-    //?????????????
+    // ?????????????
     public function findContactByEmail(string $email): ?string
     {
         try {
             $result = $this->client->runQuery("SELECT id FROM Contacts WHERE email='{$email}';");
+
             return $result[0]['id'] ?? null;
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             report($e);
+
             return null;
         }
     }

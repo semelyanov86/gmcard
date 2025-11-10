@@ -14,7 +14,10 @@ use Illuminate\Queue\SerializesModels;
 
 final class SendUserToVtigerJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct(
         protected int $userId
@@ -29,4 +32,3 @@ final class SendUserToVtigerJob implements ShouldQueue
         }
     }
 }
-
