@@ -16,7 +16,6 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->bigInteger('parent_id')->nullable();
             $table->boolean('is_starred')->default(false);
             $table->timestamps();
         });
