@@ -15,6 +15,11 @@ return new class () extends Migration {
         Schema::table('categories', function (Blueprint $table): void {
             $table->nestedSet();
         });
+
+
+        if (\App\Models\Category::count() > 0) {
+            \App\Models\Category::fixTree();
+        }
     }
 
     /**

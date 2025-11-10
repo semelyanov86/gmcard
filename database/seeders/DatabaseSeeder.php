@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Database\Seeders\Auth\PermissionsSeeder;
 use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Base\CitySeeder;
@@ -73,5 +74,7 @@ class DatabaseSeeder extends Seeder
             SubscriptionSeeder::class,
             VirtualBalanceSeeder::class,
         ]);
+
+        Category::fixTree();
     }
 }
