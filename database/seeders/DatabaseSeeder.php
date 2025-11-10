@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
             OrganisationSeeder::class,
             AdvCampaignSeeder::class,
 
+            PromoTypeSeeder::class,
             PromoSeeder::class,
             PromoUsageSeeder::class,
             BonusSeeder::class,

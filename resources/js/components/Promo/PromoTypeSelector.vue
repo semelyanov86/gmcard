@@ -25,7 +25,8 @@ function getPromoClasses(id: number) {
     const isSelected = props.selectedPromo === id;
     const isHovered = hoveredPromo.value === id;
 
-    const sizeClasses = props.promoTypes.find((p) => p.id === id)?.size === 'large' ? 'promo-block-large' : 'promo-block-small';
+    const isLarge = id <= 3;
+    const sizeClasses = isLarge ? 'promo-block-large' : 'promo-block-small';
 
     let colorClasses = '';
 
@@ -37,7 +38,7 @@ function getPromoClasses(id: number) {
         colorClasses = `promo_image${id}`;
     }
 
-    const blockType = props.promoTypes.find((p) => p.id === id)?.size === 'large' ? 'promo_blocks' : 'promo_blocks2';
+    const blockType = isLarge ? 'promo_blocks' : 'promo_blocks2';
 
     return `${blockType} ${sizeClasses} rounded-2xl relative flex justify-center cursor-pointer ${colorClasses}`;
 }

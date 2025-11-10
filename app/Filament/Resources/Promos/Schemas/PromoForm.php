@@ -29,9 +29,9 @@ class PromoForm
                     ->label('Пользователь')
                     ->relationship('user', 'name')
                     ->required(),
-                Select::make('type')
-                    ->label('Тип')
-                    ->options(PromoType::options())
+                Select::make('promo_type_id')
+                    ->label('Тип акции')
+                    ->relationship('promoType', 'name')
                     ->required(),
                 TextInput::make('code')
                     ->label('Код'),
