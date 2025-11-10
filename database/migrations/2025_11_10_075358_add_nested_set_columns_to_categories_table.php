@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,9 +17,8 @@ return new class () extends Migration {
             $table->nestedSet();
         });
 
-
-        if (\App\Models\Category::count() > 0) {
-            \App\Models\Category::fixTree();
+        if (Category::count() > 0) {
+            Category::fixTree();
         }
     }
 

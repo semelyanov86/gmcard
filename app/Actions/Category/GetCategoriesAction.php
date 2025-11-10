@@ -20,10 +20,7 @@ final readonly class GetCategoriesAction
      */
     public function handle(): array
     {
-        $categories = Category::with('children.children.children')
-            ->whereNull('parent_id')
-            ->orderBy('name')
-            ->get();
+        $categories = Category::get()->toTree();
 
         return CategoryData::collectFromModels($categories);
     }
