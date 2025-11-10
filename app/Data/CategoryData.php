@@ -24,14 +24,17 @@ final class CategoryData extends Data
 
     public static function fromModel(Category $category): self
     {
+        /** @var Collection<int, Category> $children */
+        $children = $category->children;
+
         return new self(
             id: $category->id,
             name: $category->name,
             is_starred: $category->is_starred,
             parent_id: $category->parent_id,
             description: $category->description,
-            children: $category->children->isNotEmpty()
-                ? self::collectFromModels($category->children)
+            children: $children->isNotEmpty()
+                ? self::collectFromModels($children)
                 : null
         );
     }

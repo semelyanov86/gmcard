@@ -16,10 +16,12 @@ final readonly class GetCategoriesAction
     use AsAction;
 
     /**
-     * @return CategoryData[]
+     * @return array<int, CategoryData>
      */
     public function handle(): array
     {
+        // ????
+        // @phpstan-ignore method.notFound
         $categories = Category::get()->toTree();
 
         return CategoryData::collectFromModels($categories);
