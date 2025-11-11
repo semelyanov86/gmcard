@@ -7,6 +7,7 @@ namespace App\Actions\User;
 use App\Contracts\VtigerCrmInterface;
 use App\Data\VtigerContactData;
 use App\Data\VtigerPotentialData;
+use App\Exceptions\VtigerCrmException;
 use App\Models\User;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -23,33 +24,37 @@ final readonly class SendUserToVtigerAction
 
     public function handle(User $user): void
     {
-        $nameParts = explode(' ', $user->name, 2);
-        $firstname = $nameParts[0];
-        $lastname = $nameParts[1] ?? '';
+        try {
+            $nameParts = explode(' ', $user->name, 2);
+            $firstname = $nameParts[0];
+            $lastname = $nameParts[1] ?? '';
 
-        $contactData = new VtigerContactData(
-            firstname: $firstname,
-            lastname: $lastname,
-            email: $user->email,
-            assigned_user_id: '19x6',
-            leadsource: 'Website',
-        );
-
-        $this->crm->createContact($contactData);
-
-        $contactId = $this->crm->findContactByEmail($user->email);
-
-        if ($contactId) {
-            $user->update(['crmid' => $contactId]);
-
-            $this->crm->createPotential(new VtigerPotentialData(
-                potentialname: "Регистрация: {$user->name}",
-                sales_stage: 'Prospecting',
-                contact_id: $contactId,
+            $contactData = new VtigerContactData(
+                firstname: $firstname,
+                lastname: $lastname,
+                email: $user->email,
                 assigned_user_id: '19x6',
                 leadsource: 'Website',
-                closingdate: now()->addDays(30)->format('Y-m-d'),
-            ));
+            );
+
+            $this->crm->createContact($contactData);
+
+            $contactId = $this->crm->findContactByEmail($user->email);
+
+            if ($contactId) {
+                $user->update(['crmid' => $contactId]);
+
+                $this->crm->createPotential(new VtigerPotentialData(
+                    potentialname: "Регистрация: {$user->name}",
+                    sales_stage: 'Prospecting',
+                    contact_id: $contactId,
+                    assigned_user_id: '19x6',
+                    leadsource: 'Website',
+                    closingdate: now()->addDays(30)->format('Y-m-d'),
+                ));
+            }
+        } catch (VtigerCrmException $e) {
+            report($e);
         }
     }
 }
