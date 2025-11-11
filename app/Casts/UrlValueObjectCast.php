@@ -6,12 +6,13 @@ namespace App\Casts;
 
 use App\ValueObjects\UrlValueObject;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @implements CastsAttributes<UrlValueObject|null, string|null>
  */
-final class UrlValueObjectCast implements CastsAttributes
+final class UrlValueObjectCast implements CastsAttributes, SerializesCastableAttributes
 {
     /**
      * @param  string|null  $value
@@ -41,5 +42,18 @@ final class UrlValueObjectCast implements CastsAttributes
         }
 
         return null;
+    }
+
+    public function serialize(Model $model, string $key, mixed $value, array $attributes): mixed
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($value instanceof UrlValueObject) {
+            return (string) $value;
+        }
+
+        return $value;
     }
 }
