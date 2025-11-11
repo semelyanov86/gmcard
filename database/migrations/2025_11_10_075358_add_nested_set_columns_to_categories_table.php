@@ -13,15 +13,21 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        if (! Schema::hasColumn('categories', 'parent_id')) {
+            Schema::table('categories', function (Blueprint $table): void {
+                $table->unsignedBigInteger('parent_id')->nullable();
+            });
+        }
+
         if (! Schema::hasColumn('categories', '_lft')) {
             Schema::table('categories', function (Blueprint $table): void {
                 $table->unsignedInteger('_lft')->default(0);
                 $table->unsignedInteger('_rgt')->default(0);
             });
+        }
 
-            if (Category::count() > 0) {
-                Category::fixTree();
-            }
+        if (Category::count() > 0) {
+            Category::fixTree();
         }
     }
 
