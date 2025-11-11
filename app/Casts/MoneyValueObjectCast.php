@@ -6,12 +6,13 @@ namespace App\Casts;
 
 use App\ValueObjects\MoneyValueObject;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @implements CastsAttributes<MoneyValueObject|null, int|null>
  */
-final class MoneyValueObjectCast implements CastsAttributes
+final class MoneyValueObjectCast implements CastsAttributes, SerializesCastableAttributes
 {
     /**
      * @param  array<string, string>  $attributes
@@ -52,5 +53,18 @@ final class MoneyValueObjectCast implements CastsAttributes
         }
 
         return is_int($value) ? $value : (is_string($value) && is_numeric($value) ? (int) $value : null);
+    }
+
+    public function serialize(Model $model, string $key, mixed $value, array $attributes): mixed
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($value instanceof MoneyValueObject) {
+            return $value->toFloat();
+        }
+
+        return $value;
     }
 }
