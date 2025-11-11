@@ -7,28 +7,11 @@ namespace Tests\Feature;
 use App\Jobs\SendUserToVtigerJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Override;
-use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class VtigerIntegrationTest extends TestCase
 {
     use RefreshDatabase;
-
-    #[Override]
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        config([
-            'session.driver' => 'array',
-            'auth.defaults.guard' => 'web',
-        ]);
-
-        if (! Role::query()->where('name', 'user')->exists()) {
-            Role::create(['name' => 'user', 'guard_name' => 'web']);
-        }
-    }
 
     public function test_registration_dispatches_vtiger_job(): void
     {
