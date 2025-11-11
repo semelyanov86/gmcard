@@ -20,7 +20,7 @@ final class VtigerCrmException extends Exception
     public static function failedToCreateLead(string $email, Throwable $previous): self
     {
         return new self(
-            message: "Failed to create lead in Vtiger CRM",
+            message: 'Failed to create lead in Vtiger CRM',
             context: $email,
             previous: $previous
         );
@@ -29,7 +29,7 @@ final class VtigerCrmException extends Exception
     public static function failedToCreateContact(string $email, Throwable $previous): self
     {
         return new self(
-            message: "Failed to create contact in Vtiger CRM",
+            message: 'Failed to create contact in Vtiger CRM',
             context: $email,
             previous: $previous
         );
@@ -38,7 +38,7 @@ final class VtigerCrmException extends Exception
     public static function failedToCreatePotential(string $name, Throwable $previous): self
     {
         return new self(
-            message: "Failed to create potential in Vtiger CRM",
+            message: 'Failed to create potential in Vtiger CRM',
             context: $name,
             previous: $previous
         );
@@ -47,10 +47,9 @@ final class VtigerCrmException extends Exception
     public static function failedToFindContact(string $email, Throwable $previous): self
     {
         return new self(
-            message: "Failed to find contact by email in Vtiger CRM",
+            message: 'Failed to find contact by email in Vtiger CRM',
             context: $email,
             previous: $previous
         );
     }
 }
-

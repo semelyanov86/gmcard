@@ -10,7 +10,6 @@ use App\Data\VtigerContactData;
 use App\Data\VtigerPotentialData;
 use App\Exceptions\VtigerCrmException;
 use Salaros\Vtiger\VTWSCLib\WSClient;
-use Salaros\Vtiger\VTWSCLib\WSException;
 use Throwable;
 
 final readonly class VtigerCrmAdapter implements VtigerCrmInterface
