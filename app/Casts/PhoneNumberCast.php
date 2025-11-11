@@ -6,12 +6,13 @@ namespace App\Casts;
 
 use App\ValueObjects\PhoneNumberValueObject;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @implements CastsAttributes<PhoneNumberValueObject|null, string|null>
  */
-final class PhoneNumberCast implements CastsAttributes
+final class PhoneNumberCast implements CastsAttributes, SerializesCastableAttributes
 {
     /**
      * @param  array<string, string>  $attributes
@@ -44,5 +45,18 @@ final class PhoneNumberCast implements CastsAttributes
         }
 
         return null;
+    }
+
+    public function serialize(Model $model, string $key, mixed $value, array $attributes): mixed
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($value instanceof PhoneNumberValueObject) {
+            return $value->toE164();
+        }
+
+        return $value;
     }
 }

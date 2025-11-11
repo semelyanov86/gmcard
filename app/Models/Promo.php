@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\PromoType;
+use App\Enums\PromoType as PromoTypeEnum;
 
 /**
  * @property int $id
@@ -27,6 +27,7 @@ class Promo extends Model
     protected $fillable = [
         'name',
         'type',
+        'promo_type_id',
         'code',
         'img',
         'description',
@@ -67,6 +68,14 @@ class Promo extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsTo<PromoType, $this>
+     */
+    public function promoType(): BelongsTo
+    {
+        return $this->belongsTo(PromoType::class);
     }
 
     /**
@@ -137,7 +146,7 @@ class Promo extends Model
             'raise_on_top_hours' => 'integer',
             'restart_after_finish_days' => 'integer',
             'crmid' => 'string',
-            'type' => PromoType::class,
+            'type' => PromoTypeEnum::class,
         ];
     }
 }

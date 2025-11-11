@@ -31,8 +31,8 @@ final class PromosTable
                     ->label('Пользователь')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('type')
-                    ->label('Тип')
+                TextColumn::make('promoType.name')
+                    ->label('Тип акции')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('code')
