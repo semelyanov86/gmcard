@@ -13,12 +13,15 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::table('categories', function (Blueprint $table): void {
-            $table->nestedSet();
-        });
+        if (! Schema::hasColumn('categories', '_lft')) {
+            Schema::table('categories', function (Blueprint $table): void {
+                $table->unsignedInteger('_lft')->default(0);
+                $table->unsignedInteger('_rgt')->default(0);
+            });
 
-        if (Category::count() > 0) {
-            Category::fixTree();
+            if (Category::count() > 0) {
+                Category::fixTree();
+            }
         }
     }
 
@@ -27,8 +30,10 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table): void {
-            $table->dropNestedSet();
-        });
+        if (Schema::hasColumn('categories', '_lft')) {
+            Schema::table('categories', function (Blueprint $table): void {
+                $table->dropNestedSet();
+            });
+        }
     }
 };
