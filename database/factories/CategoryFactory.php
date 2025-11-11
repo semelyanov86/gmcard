@@ -13,7 +13,7 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->words(2, true),
             'description' => fake()->optional(0.7)->paragraph(),
-            'parent_id' => fake()->numberBetween(1, 10),
+            'parent_id' => null,
             'is_starred' => fake()->boolean(20),
         ];
     }
