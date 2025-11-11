@@ -49,6 +49,7 @@ class User extends Authenticatable implements FilamentUser
         'birth_date',
         'gender',
         'code',
+        'crmid',
         'tariff_plan_id',
     ];
 

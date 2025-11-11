@@ -22,7 +22,6 @@ class AdminPanelAccessTest extends TestCase
         Role::create(['name' => 'super-admin', 'guard_name' => 'web']);
         Role::create(['name' => 'admin', 'guard_name' => 'web']);
         Role::create(['name' => 'moderator', 'guard_name' => 'web']);
-        Role::create(['name' => 'user', 'guard_name' => 'web']);
     }
 
     public function test_unauthenticated_users_cannot_access_admin_panel(): void
