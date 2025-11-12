@@ -15,7 +15,8 @@ use Filament\Panel;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Enums\RoleType;
-use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as BreezyTwoFactor;
+use Laravel\Fortify\TwoFactorAuthenticatable as FortifyTwoFactor;
 use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
 
@@ -30,7 +31,8 @@ class User extends Authenticatable implements FilamentUser
 
     use HasRoles;
     use Notifiable;
-    use TwoFactorAuthenticatable;
+    use BreezyTwoFactor;
+    use FortifyTwoFactor;
 
     /**
      * The attributes that are mass assignable.

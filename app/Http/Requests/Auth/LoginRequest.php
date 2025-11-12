@@ -52,6 +52,21 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+        
+        $user = Auth::user();
+        
+        if ($user?->hasEnabledTwoFactorAuthentication()) {
+            Auth::logout();
+            
+            $this->session()->put([
+                'login.id' => $user->getAuthIdentifier(),
+                'login.remember' => $this->boolean('remember'),
+            ]);
+            
+            throw ValidationException::withMessages([
+                'email' => 'Требуется двухфакторная аутентификация',
+            ])->redirectTo(route('two-factor.login'));
+        }
     }
 
     /**
