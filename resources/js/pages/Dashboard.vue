@@ -47,7 +47,7 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                                         >Подтвердить email</Link
                                     >
                                     <Link
-                                        :href="route('promo.create')"
+                                        :href="route('promos.create')"
                                         class="w-full rounded-md border px-3 py-2 text-left text-sm font-medium hover:bg-muted"
                                         >Создать промо</Link
                                     >
