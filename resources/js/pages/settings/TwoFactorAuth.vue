@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Head, router } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 import axios from 'axios';
+import { ref } from 'vue';
 
 import HeadingSmall from '@/components/HeadingSmall.vue';
 import ConfirmTwoFactorSection from '@/components/two-factor/ConfirmTwoFactorSection.vue';
@@ -40,12 +40,10 @@ const twoFactorEnabled = ref(props.twoFactorEnabled);
 const enableTwoFactorAuthentication = () => {
     enabling.value = true;
 
-    axios.post(route('two-factor.enable'))
+    axios
+        .post(route('two-factor.enable'))
         .then(() => {
-            return Promise.all([
-                showQrCode(),
-                showSetupKey()
-            ]);
+            return Promise.all([showQrCode(), showSetupKey()]);
         })
         .then(() => {
             enabling.value = false;
@@ -58,49 +56,46 @@ const enableTwoFactorAuthentication = () => {
 };
 
 const showQrCode = () => {
-    return axios.get(route('two-factor.qr-code'))
-        .then(response => {
-            qrCode.value = response.data.svg;
-        });
+    return axios.get(route('two-factor.qr-code')).then((response) => {
+        qrCode.value = response.data.svg;
+    });
 };
 
 const showSetupKey = () => {
-    return axios.get(route('two-factor.secret-key'))
-        .then(response => {
-            setupKey.value = response.data.secretKey;
-        });
+    return axios.get(route('two-factor.secret-key')).then((response) => {
+        setupKey.value = response.data.secretKey;
+    });
 };
 
 const showRecoveryCodesFunc = () => {
-    return axios.get(route('two-factor.recovery-codes'))
-        .then(response => {
-            recoveryCodes.value = response.data;
-            showRecoveryCodes.value = true;
-        });
+    return axios.get(route('two-factor.recovery-codes')).then((response) => {
+        recoveryCodes.value = response.data;
+        showRecoveryCodes.value = true;
+    });
 };
 
 const confirmTwoFactorAuthentication = () => {
     confirmationError.value = '';
 
-    axios.post(route('two-factor.confirm'), {
-        code: confirmationCode.value
-    })
-    .then(() => {
-        confirming.value = false;
-        updateTwoFactorStatus(true);
-        confirmationCode.value = '';
-        return showRecoveryCodesFunc();
-    })
-    .catch((error) => {
-        confirmationError.value = error.response?.data?.errors?.code?.[0] || 'Введённый код неверный.';
-    });
+    axios
+        .post(route('two-factor.confirm'), {
+            code: confirmationCode.value,
+        })
+        .then(() => {
+            confirming.value = false;
+            updateTwoFactorStatus(true);
+            confirmationCode.value = '';
+            return showRecoveryCodesFunc();
+        })
+        .catch((error) => {
+            confirmationError.value = error.response?.data?.errors?.code?.[0] || 'Введённый код неверный.';
+        });
 };
 
 const regenerateRecoveryCodes = () => {
-    axios.post(route('two-factor.regenerate-recovery-codes'))
-        .then(() => {
-            return showRecoveryCodesFunc();
-        });
+    axios.post(route('two-factor.regenerate-recovery-codes')).then(() => {
+        return showRecoveryCodesFunc();
+    });
 };
 
 const disableTwoFactorAuthentication = () => {
@@ -110,7 +105,8 @@ const disableTwoFactorAuthentication = () => {
 
     disabling.value = true;
 
-    axios.delete(route('two-factor.disable'))
+    axios
+        .delete(route('two-factor.disable'))
         .then(() => {
             disabling.value = false;
             updateTwoFactorStatus(false);
@@ -141,11 +137,7 @@ const updateTwoFactorStatus = (enabled: boolean) => {
                     description="Добавьте дополнительную защиту вашему аккаунту с помощью двухфакторной аутентификации"
                 />
 
-                <EnableTwoFactorSection
-                    v-if="!twoFactorEnabled && !confirming"
-                    :enabling="enabling"
-                    @enable="enableTwoFactorAuthentication"
-                />
+                <EnableTwoFactorSection v-if="!twoFactorEnabled && !confirming" :enabling="enabling" @enable="enableTwoFactorAuthentication" />
 
                 <ConfirmTwoFactorSection
                     v-if="confirming"
@@ -154,7 +146,10 @@ const updateTwoFactorStatus = (enabled: boolean) => {
                     v-model:confirmation-code="confirmationCode"
                     :confirmation-error="confirmationError"
                     @confirm="confirmTwoFactorAuthentication"
-                    @cancel="confirming = false; qrCode = ''"
+                    @cancel="
+                        confirming = false;
+                        qrCode = '';
+                    "
                 />
 
                 <TwoFactorEnabledSection
@@ -170,4 +165,3 @@ const updateTwoFactorStatus = (enabled: boolean) => {
         </SettingsLayout>
     </AppLayout>
 </template>
-

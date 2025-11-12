@@ -26,13 +26,14 @@ use App\ValueObjects\MoneyValueObject;
  */
 class User extends Authenticatable implements FilamentUser
 {
+    use BreezyTwoFactor;
+    use FortifyTwoFactor;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
     use HasRoles;
     use Notifiable;
-    use BreezyTwoFactor;
-    use FortifyTwoFactor;
 
     /**
      * The attributes that are mass assignable.

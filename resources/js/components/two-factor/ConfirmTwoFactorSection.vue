@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import InputError from '@/components/InputError.vue';
 
 interface Props {
     qrCode: string;
@@ -22,18 +22,18 @@ const emit = defineEmits<{
 
 <template>
     <div class="space-y-6">
-        <div class="rounded-lg border p-6 space-y-4">
+        <div class="space-y-4 rounded-lg border p-6">
             <h3 class="text-lg font-medium">Завершите настройку двухфакторной аутентификации</h3>
 
             <p class="text-sm text-muted-foreground">
-                Для завершения настройки отсканируйте QR код с помощью приложения-аутентификатора на вашем телефоне 
-                или введите ключ настройки вручную, а затем укажите сгенерированный код.
+                Для завершения настройки отсканируйте QR код с помощью приложения-аутентификатора на вашем телефоне или введите ключ настройки
+                вручную, а затем укажите сгенерированный код.
             </p>
 
-            <div v-if="qrCode" class="p-4 bg-white rounded-lg inline-block" v-html="qrCode"></div>
+            <div v-if="qrCode" class="inline-block rounded-lg bg-white p-4" v-html="qrCode"></div>
 
-            <div v-if="setupKey" class="p-4 bg-muted rounded-lg">
-                <p class="text-sm font-medium mb-2">Ключ настройки:</p>
+            <div v-if="setupKey" class="rounded-lg bg-muted p-4">
+                <p class="mb-2 text-sm font-medium">Ключ настройки:</p>
                 <p class="font-mono text-sm">{{ setupKey }}</p>
             </div>
 
@@ -43,7 +43,7 @@ const emit = defineEmits<{
                     <Input
                         id="code"
                         :model-value="confirmationCode"
-                        @update:model-value="emit('update:confirmationCode', $event)"
+                        @update:model-value="emit('update:confirmationCode', String($event))"
                         type="text"
                         inputmode="numeric"
                         class="mt-1 block w-full"
@@ -63,4 +63,3 @@ const emit = defineEmits<{
         </div>
     </div>
 </template>
-

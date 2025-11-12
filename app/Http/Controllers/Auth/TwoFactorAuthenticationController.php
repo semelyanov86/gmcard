@@ -33,9 +33,26 @@ class TwoFactorAuthenticationController extends Controller
         }
 
         if ($request->filled('code')) {
+            $secret = $user->two_factor_secret;
+            $code = $request->input('code');
+
+            if (! is_string($secret) || ! is_string($code)) {
+                throw ValidationException::withMessages([
+                    'code' => ['Код аутентификации недействителен.'],
+                ]);
+            }
+
+            $decryptedSecret = decrypt($secret);
+
+            if (! is_string($decryptedSecret)) {
+                throw ValidationException::withMessages([
+                    'code' => ['Код аутентификации недействителен.'],
+                ]);
+            }
+
             $isValid = app(TwoFactorAuthenticationProvider::class)->verify(
-                decrypt($user->two_factor_secret),
-                $request->code
+                $decryptedSecret,
+                $code
             );
 
             if (! $isValid) {
@@ -44,7 +61,15 @@ class TwoFactorAuthenticationController extends Controller
                 ]);
             }
         } elseif ($request->filled('recovery_code')) {
-            $isValid = $this->validRecoveryCode($user, $request->recovery_code);
+            $recoveryCode = $request->input('recovery_code');
+
+            if (! is_string($recoveryCode)) {
+                throw ValidationException::withMessages([
+                    'recovery_code' => ['Код восстановления недействителен.'],
+                ]);
+            }
+
+            $isValid = $this->validRecoveryCode($user, $recoveryCode);
 
             if (! $isValid) {
                 throw ValidationException::withMessages([
@@ -57,7 +82,7 @@ class TwoFactorAuthenticationController extends Controller
             ]);
         }
 
-        Auth::login($user, $request->session()->pull('login.remember', false));
+        Auth::login($user, (bool) $request->session()->pull('login.remember', false));
 
         $request->session()->regenerate();
 
@@ -66,8 +91,12 @@ class TwoFactorAuthenticationController extends Controller
 
     protected function challengedUser(Request $request): ?User
     {
-        if ($userId = $request->session()->get('login.id')) {
-            return User::find($userId);
+        $userId = $request->session()->get('login.id');
+
+        if ($userId) {
+            $user = User::find($userId);
+
+            return $user instanceof User ? $user : null;
         }
 
         return null;
@@ -75,7 +104,19 @@ class TwoFactorAuthenticationController extends Controller
 
     protected function validRecoveryCode(User $user, string $code): bool
     {
-        $recoveryCodes = json_decode(decrypt($user->two_factor_recovery_codes), true);
+        $encryptedCodes = $user->two_factor_recovery_codes;
+
+        if (! is_string($encryptedCodes)) {
+            return false;
+        }
+
+        $decryptedCodes = decrypt($encryptedCodes);
+
+        if (! is_string($decryptedCodes)) {
+            return false;
+        }
+
+        $recoveryCodes = json_decode($decryptedCodes, true);
 
         if (! is_array($recoveryCodes)) {
             return false;

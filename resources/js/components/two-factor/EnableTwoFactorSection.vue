@@ -15,8 +15,8 @@ const emit = defineEmits<{
 <template>
     <div class="space-y-4">
         <p class="text-sm text-muted-foreground">
-            Когда двухфакторная аутентификация включена, вам потребуется вводить защищённый код при входе. 
-            Вы можете получить этот код из приложения Google Authenticator на вашем телефоне.
+            Когда двухфакторная аутентификация включена, вам потребуется вводить защищённый код при входе. Вы можете получить этот код из приложения
+            Google Authenticator на вашем телефоне.
         </p>
 
         <Button @click="emit('enable')" :disabled="enabling">
@@ -24,4 +24,3 @@ const emit = defineEmits<{
         </Button>
     </div>
 </template>
-

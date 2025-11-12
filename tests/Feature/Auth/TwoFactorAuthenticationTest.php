@@ -20,8 +20,10 @@ class TwoFactorAuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post('/user/two-factor-authentication');
 
         $response->assertSessionHasNoErrors();
-        $this->assertNotNull($user->fresh()->two_factor_secret);
-        $this->assertNotNull($user->fresh()->two_factor_recovery_codes);
+        /** @var User $freshUser */
+        $freshUser = $user->fresh();
+        $this->assertNotNull($freshUser->two_factor_secret);
+        $this->assertNotNull($freshUser->two_factor_recovery_codes);
     }
 
     public function test_two_factor_authentication_requires_authentication(): void
@@ -76,15 +78,18 @@ class TwoFactorAuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)->post('/user/two-factor-authentication');
-        $this->assertNotNull($user->fresh()->two_factor_secret);
+        /** @var User $freshUser */
+        $freshUser = $user->fresh();
+        $this->assertNotNull($freshUser->two_factor_secret);
 
         $response = $this->actingAs($user)->delete('/user/two-factor-authentication');
 
         $response->assertSessionHasNoErrors();
-        $user = $user->fresh();
-        $this->assertNull($user->two_factor_secret);
-        $this->assertNull($user->two_factor_recovery_codes);
-        $this->assertNull($user->two_factor_confirmed_at);
+        /** @var User $freshUser */
+        $freshUser = $user->fresh();
+        $this->assertNull($freshUser->two_factor_secret);
+        $this->assertNull($freshUser->two_factor_recovery_codes);
+        $this->assertNull($freshUser->two_factor_confirmed_at);
     }
 
     public function test_recovery_codes_can_be_regenerated(): void
@@ -93,12 +98,16 @@ class TwoFactorAuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)->post('/user/two-factor-authentication');
-        $oldRecoveryCodes = $user->fresh()->two_factor_recovery_codes;
+        /** @var User $freshUser */
+        $freshUser = $user->fresh();
+        $oldRecoveryCodes = $freshUser->two_factor_recovery_codes;
 
         $response = $this->actingAs($user)->post('/user/two-factor-recovery-codes');
 
         $response->assertSessionHasNoErrors();
-        $newRecoveryCodes = $user->fresh()->two_factor_recovery_codes;
+        /** @var User $freshUser */
+        $freshUser = $user->fresh();
+        $newRecoveryCodes = $freshUser->two_factor_recovery_codes;
         $this->assertNotEquals($oldRecoveryCodes, $newRecoveryCodes);
         $this->assertNotNull($newRecoveryCodes);
     }
@@ -124,4 +133,3 @@ class TwoFactorAuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard', absolute: false));
     }
 }
-

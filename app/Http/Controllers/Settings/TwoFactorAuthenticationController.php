@@ -16,8 +16,8 @@ class TwoFactorAuthenticationController extends Controller
         $user = $request->user();
 
         return Inertia::render('settings/TwoFactorAuth', [
-            'twoFactorEnabled' => ! is_null($user->two_factor_secret),
-            'twoFactorConfirmed' => ! is_null($user->two_factor_confirmed_at),
+            'twoFactorEnabled' => ! is_null($user?->two_factor_secret),
+            'twoFactorConfirmed' => ! is_null($user?->two_factor_confirmed_at),
         ]);
     }
 }

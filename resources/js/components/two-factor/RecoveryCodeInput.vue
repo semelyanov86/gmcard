@@ -32,4 +32,3 @@ const emit = defineEmits<{
         <InputError :message="error" />
     </div>
 </template>
-
