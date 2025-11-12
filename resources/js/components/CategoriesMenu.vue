@@ -47,6 +47,11 @@ const selectedSubCategory = ref('Грузоперевозки');
 
 const getImageClass = (index: number): string => `image-${index + 1}`;
 
+const getMainClass = (index: number): string => {
+    if (index === 0) return 'mains';
+    return `mains${index + 1}`;
+};
+
 const handleMainCategoryHover = (index: number) => {
     activeCategoryIndex.value = index;
     isDropdownOpen.value = true;
@@ -68,7 +73,7 @@ const handleSubCategoryHover = (categoryName: string) => {
             <div
                 v-for="(category, index) in mainCategories"
                 :key="category.name"
-                class="relative flex cursor-pointer flex-col items-center"
+                :class="[getMainClass(index), 'relative flex cursor-pointer flex-col items-center']"
                 @mouseenter="handleMainCategoryHover(index)"
             >
                 <div class="relative flex flex-col items-center justify-center">
@@ -83,7 +88,7 @@ const handleSubCategoryHover = (categoryName: string) => {
             <div
                 v-for="(category, index) in mainCategories"
                 :key="`mobile-${category.name}`"
-                class="icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center"
+                :class="[getMainClass(index), 'icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center']"
                 @click="isDropdownOpen = true"
             >
                 <div class="relative flex flex-col items-center justify-center">
