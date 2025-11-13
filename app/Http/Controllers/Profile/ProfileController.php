@@ -12,12 +12,15 @@ class ProfileController extends Controller
 {
     public function index(GeneralSettings $settings)
     {
+        $user = auth()->user();
+
         return Inertia::render('Profile/Profile', [
             'contact' => [
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
+            'user' => $user,
         ]);
     }
 }
