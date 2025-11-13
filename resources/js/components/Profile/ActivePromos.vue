@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="mt-7 flex flex-col items-center gap-4">
-                    <button data-tooltip-target="tooltip-delete">
+                    <button data-tooltip-target="tooltip-delete-active" data-tooltip-placement="top" class="relative">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -63,7 +63,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <button data-tooltip-target="tooltip-up">
+                    <button data-tooltip-target="tooltip-up" data-tooltip-placement="top" class="relative">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -75,7 +75,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
                         </svg>
                     </button>
-                    <button data-tooltip-target="tooltip-write">
+                    <button data-tooltip-target="tooltip-write-active" data-tooltip-placement="top" class="relative">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -91,7 +91,8 @@
                             />
                         </svg>
                     </button>
-                    <button data-tooltip-target="tooltip-end">
+
+                    <button data-tooltip-target="tooltip-end" data-tooltip-placement="top" class="relative">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -110,7 +111,7 @@
                     <div
                         id="tooltip-end"
                         role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip"
                     >
                         Завершить акцию
                         <div class="tooltip-arrow" data-popper-arrow></div>
@@ -118,23 +119,23 @@
                     <div
                         id="tooltip-up"
                         role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip"
                     >
                         Поднять акцию
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <div
-                        id="tooltip-write"
+                        id="tooltip-write-active"
                         role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip"
                     >
                         Редактировать
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <div
-                        id="tooltip-delete"
+                        id="tooltip-delete-active"
                         role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip"
                     >
                         Удалить
                         <div class="tooltip-arrow" data-popper-arrow></div>

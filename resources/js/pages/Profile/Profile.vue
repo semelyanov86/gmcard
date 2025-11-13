@@ -13,7 +13,8 @@ import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import { ProfileTab } from '@/types/enums/profile';
 import type { AppPageProps, ContactModel, MenuData } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
+
+import {ref} from 'vue';
 
 const page = usePage<AppPageProps>();
 
@@ -145,8 +146,8 @@ const activeTab = ref(ProfileTab.Profile);
                                         <div class="flex items-center gap-4">
                                             <span class="text-[#152041] text-3xl">0 руб.</span>
                                             <p class="text-[#1d89f2] hover:underline text-sm cursor-pointer">Пополнить</p>
-                                            <p data-tooltip-target="tooltip-not-money" class="text-[#1d89f2] hover:underline text-sm cursor-pointer">Вывести</p>
-                                            <div id="tooltip-not-money" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                            <p data-tooltip-target="tooltip-not-money" data-tooltip-placement="top" class="text-[#1d89f2] hover:underline text-sm cursor-pointer relative">Вывести</p>
+                                            <div id="tooltip-not-money" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip">
                                                 Вывод средств недоступно
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
