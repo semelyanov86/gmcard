@@ -11,7 +11,7 @@ import NavBar from '@/components/NavBar.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import { ProfileTab } from '@/types/enums/profile';
-import type { AppPageProps, ContactModel, MenuData } from '@/types';
+import type { AppPageProps, ContactModel, MenuData, User } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 
 import {ref} from 'vue';
@@ -21,83 +21,20 @@ const page = usePage<AppPageProps>();
 const props = defineProps<{
     contact: ContactModel;
     navbarMenu: MenuData[];
+    user: User | null;
 }>();
-
-const userData = page.props.userData;
 
 const activeTab = ref(ProfileTab.Profile);
 
 </script>
 
 <template>
-    <Header :user-data="userData"></Header>
+    <Header :user-data="page.props.userData"></Header>
     <section id="section-1" class="body max-w-full h-full pb-9 overflow-visible">
         <MobileMenu />
         <div class="2xl:w-full 2xl:px-4 w-[1140px] mx-auto">
             <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu />
-            <div class="w-full h-[1px] bg-white opacity-10"></div>
-            <div class="items-center justify-between mb-6 lg:h-full h-[46px] filter_block hidden">
-                <h3 class="text-2xl text-white font-bold text_filter">Фильтровать</h3>
-                <div class="flex items-center lg:flex-col gapper gap-6 h-full relative filter_inp">
-                    <label for="city" class="text-white text-[15px]">Ваш город</label>
-                    <div class="relative inline-block selected_block h-[46px]">
-                        <div class="custom-select h-[46px] flex items-center appearance-none w-[202px] bg-none border text-white border-white hover:border-gray-300 px-4 py-2 pr-8 rounded-md shadow leading-tight focus:outline-none focus:shadow-outline">
-                            <span class=" mr-2">Чебоксары</span>
-                            <img src="/images/png/icons/down.png" class="h-[5px] w-2 absolute right-0 top-2 mt-3 mr-2 pointer-events-none" alt="Вверх" id="icons">
-                        </div>
-                        <div class="custom-options absolute hidden mt-1 w-[202px] h-[200px] overflow-y-scroll bg-white shadow-lg rounded-b border border-gray-400 z-50">
-                            <div class="custom-option px-4 py-2 cursor-pointer bg-[#F9D914] hover:bg-gray-200">Чебоксары</div>
-                            <div class="custom-option px-4 py-2 cursor-pointer hover:bg-gray-200">Москва </div>
-                            <div class="custom-option px-4 py-2 cursor-pointer hover:bg-gray-200">Санкт-Петербург</div>
-                            <div class="custom-option px-4 py-2 cursor-pointer hover:bg-gray-200">Другой город</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center lg:flex-col gapper gap-6 relative filter_inp">
-                    <label for="shop" class="text-white tex-[15px]">Скидки</label>
-                    <div class="relative inline-block selected_block h-[46px]">
-                        <div id="custom_select" class="custom_select h-[46px] flex items-center appearance-none w-[202px] bg-none border text-white border-white hover:border-gray-300 px-4 py-2 pr-8 rounded-md shadow leading-tight focus:outline-none focus:shadow-outline">
-                            <div id="spaner" class="mr-2">Не менее 5%</div>
-                            <img src="/images/png/icons/down.png" class="h-[5px] w-2 absolute right-0 top-2 mt-3 mr-2 pointer-events-none" alt="Вверх" id="icons">
-                        </div>
-                        <div class="custom-options_1 absolute hidden mt-1 w-[202px] h-[200px] overflow-y-scroll bg-white shadow-lg rounded-b border border-gray-400 z-50">
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer bg-[#F9D914] hover:bg-gray-200">Не менее 5%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 10%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 15%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 20%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 25%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 30%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 35%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 40%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 45%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 50%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 55%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 60%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 65%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 70%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 75%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 80%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 85%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 90%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 95%</div>
-                            <div class="custom-option_1 px-4 py-2 cursor-pointer hover:bg-gray-200">Не менее 100%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center lg:flex-col gapper gap-6 relative filter_inp">
-                    <label for="sale" class="text-white tex-[15px]">Вид акции</label>
-                    <div class="relative inline-block selected_block h-[46px]">
-                        <div class="custom_selected h-[46px] flex items-center appearance-none w-[202px] bg-none border text-white border-white hover:border-gray-300 px-4 py-2 pr-8 rounded-md shadow leading-tight focus:outline-none focus:shadow-outline">
-                            <div id="spaner1" class="mr-2">Все</div>
-                            <img src="/images/png/icons/down.png" class="h-[5px] w-2 absolute right-0 top-2 mt-3 mr-2 pointer-events-none" alt="Вверх" id="icons">
-                        </div>
-                        <div class="custom-options_2 absolute hidden mt-1 w-[202px] h-[200px] overflow-y-scroll bg-white shadow-lg rounded-b border border-gray-400 z-50">
-                            <div class="custom-option_2 px-4 py-2 cursor-pointer bg-[#F9D914] hover:bg-gray-200">Все</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="w-full h-[1px] bg-white opacity-10"></div>
             <div class="flex justify-between my-12">
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
@@ -133,18 +70,18 @@ const activeTab = ref(ProfileTab.Profile);
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-start gap-3">
-                                    <h2 class="text-3xl w-full">Дмитрий Шошин</h2>
-                                    <p class="text-[#1d89f2] w-full">27 лет</p>
+                                    <h2 class="text-3xl w-full">{{ props.user?.name || 'Гость' }}</h2>
+                                    <p class="text-[#1d89f2] w-full">{{ page.props.userData?.age || 'Возраст не указан' }} лет</p>
                                     <ul>
-                                        <li><span>Место работы:</span> <span class="text-[#1d89f2]">Программист</span></li>
-                                        <li><span>Место проживания:</span> <span class="text-[#1d89f2]">город Санкт-Петербург</span></li>
-                                        <li><span>Страна:</span> <span class="text-[#1d89f2]">Россия</span></li>
+                                        <li><span>Место работы:</span> <span class="text-[#1d89f2]">{{ page.props.userData?.job || 'Не указано' }}</span></li>
+                                        <li><span>Место проживания:</span> <span class="text-[#1d89f2]">{{ page.props.userData?.city || 'Не указано' }}</span></li>
+                                        <li><span>Страна:</span> <span class="text-[#1d89f2]">{{ page.props.userData?.country || 'Не указано' }}</span></li>
                                     </ul>
-                                    <p class="text-[#1d89f2] w-full">27 лет</p>
+                                    <p class="text-[#1d89f2] w-full">{{ props.user?.email }}</p>
                                     <div class="py-2 border-t border-b w-full">
                                         <p class="font-semibold">Баланс</p>
                                         <div class="flex items-center gap-4">
-                                            <span class="text-[#152041] text-3xl">0 руб.</span>
+                                            <span class="text-[#152041] text-3xl">{{ page.props.userData?.balance || 0 }} руб.</span>
                                             <p class="text-[#1d89f2] hover:underline text-sm cursor-pointer">Пополнить</p>
                                             <p data-tooltip-target="tooltip-not-money" data-tooltip-placement="top" class="text-[#1d89f2] hover:underline text-sm cursor-pointer relative">Вывести</p>
                                             <div id="tooltip-not-money" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-[#041f35] rounded-lg shadow-sm opacity-0 tooltip">
