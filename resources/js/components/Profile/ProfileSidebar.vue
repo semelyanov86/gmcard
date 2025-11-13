@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ProfileTab } from '@/types/enums/profile/ProfileTab';
+import ModerationButton from '@/components/Profile/ModerationButton.vue';
+import ProfileMenuItem from '@/components/Profile/ProfileMenuItem.vue';
+import { ProfileTab } from '@/types/enums/profile';
 import { Link } from '@inertiajs/vue3';
 
-const activeTab = defineModel<ProfileTab>({
-    required: true,
-});
+const activeTab = defineModel<ProfileTab>();
 </script>
 
 <template>
@@ -28,65 +28,35 @@ const activeTab = defineModel<ProfileTab>({
                     class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
                     >Запустить акцию</Link
                 >
-                <div class="w-full h-[1px] bg-black/20"></div>
-                <p
+                <ProfileMenuItem
+                    label="Мои активные акции"
+                    :is-active="activeTab === ProfileTab.Active"
                     @click="activeTab = ProfileTab.Active"
-                    :class="[
-                        'px-4 mx-4 py-2 my-2 cursor-pointer',
-                        activeTab === ProfileTab.Active
-                            ? 'bg-[#063966] text-white rounded-lg hover:no-underline'
-                            : 'underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline',
-                    ]"
-                >
-                    Мои активные акции
-                </p>
-                <div class="w-full h-[1px] bg-black/20"></div>
-                <p
+                />
+                <ProfileMenuItem
+                    label="Мои завершенные акции"
+                    :is-active="activeTab === ProfileTab.Completed"
                     @click="activeTab = ProfileTab.Completed"
-                    :class="[
-                        'px-4 mx-4 py-2 my-2 cursor-pointer',
-                        activeTab === ProfileTab.Completed
-                            ? 'bg-[#063966] text-white rounded-lg hover:no-underline'
-                            : 'underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline',
-                    ]"
-                >
-                    Мои завершенные акции
-                </p>
-                <div class="w-full h-[1px] bg-black/20"></div>
-                <p
+                />
+                <ProfileMenuItem
+                    label="Мои отклоненные акции"
+                    :is-active="activeTab === ProfileTab.Rejected"
                     @click="activeTab = ProfileTab.Rejected"
-                    :class="[
-                        'px-4 mx-4 py-2 my-2 cursor-pointer',
-                        activeTab === ProfileTab.Rejected
-                            ? 'bg-[#063966] text-white rounded-lg hover:no-underline'
-                            : 'underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline',
-                    ]"
-                >
-                    Мои отклоненные акции
-                </p>
+                />
                 <div class="w-full h-[1px] bg-black/20"></div>
-                <p
-                    class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
-                >
+                <p class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">
                     Черновики
                 </p>
                 <div class="w-full h-[1px] bg-black/20"></div>
-                <p
-                    class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
-                >
+                <p class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">
                     Избранное
                 </p>
             </ul>
         </div>
-        <button
+        <ModerationButton
+            :is-active="activeTab === ProfileTab.Moderation"
             @click="activeTab = ProfileTab.Moderation"
-            :class="[
-                'px-6 py-2 h-[41px] text-[16px] rounded-lg font-bold ml-2 focus:ring-2',
-                activeTab === ProfileTab.Moderation ? 'bg-[#063966] text-white' : 'bg-[#f4d710] hover:text-[#983301] focus:ring-[#f4d710]',
-            ]"
-        >
-            Заявки на модерацию
-        </button>
+        />
     </div>
 </template>
 

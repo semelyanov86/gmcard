@@ -10,7 +10,7 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import NavBar from '@/components/NavBar.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
-import { ProfileTab } from '@/types/enums/profile/ProfileTab';
+import { ProfileTab } from '@/types/enums/profile';
 import type { AppPageProps, ContactModel, MenuData } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -98,9 +98,7 @@ const activeTab = ref(ProfileTab.Profile);
                 </div>
             </div>
             <div class="w-full h-[1px] bg-white opacity-10"></div>
-            <!-- Личный кабинет -->
             <div class="flex justify-between my-12">
-                <!-- Личный кабинет -->
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
                     <div class="p-8 md:p-2 rounded-2xl min-h-[500px] bg-white flex flex-col gap-5">
                         <h2 class="text-start text-5xl font-medium">Личный кабинет</h2>
@@ -162,13 +160,9 @@ const activeTab = ref(ProfileTab.Profile);
                     </div>
                     <div></div>
                 </div>
-                <!-- На модерации -->
                 <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
-                <!-- активные акции -->
                 <ActivePromos v-show="activeTab === ProfileTab.Active" />
-                <!-- завершенные акции -->
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" />
-                <!-- отклоненные акции -->
                 <RejectedPromos v-show="activeTab === ProfileTab.Rejected" />
                 <div class="fixed top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center z-50 hidden" id="modalFromService">
                     <div class="flex flex-col w-[600px] shadow-2xl relative z-50 rounded-xl overflow-hidden">
