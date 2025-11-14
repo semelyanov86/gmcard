@@ -13,8 +13,8 @@ import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import { ProfileTab } from '@/types/enums/profile';
 import type { AppPageProps, ContactModel, MenuData, User } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-
-import {ref} from 'vue';
+import FlashToaster from '@/components/system/FlashToaster.vue';
+import { ref } from 'vue';
 
 const page = usePage<AppPageProps>();
 
@@ -40,6 +40,7 @@ const closeAdminModal = () => {
 
 <template>
     <Header :user-data="page.props.userData"></Header>
+    <FlashToaster />
     <section id="section-1" class="body max-w-full h-full pb-9 overflow-visible">
         <MobileMenu />
         <div class="2xl:w-full 2xl:px-4 w-[1140px] mx-auto">

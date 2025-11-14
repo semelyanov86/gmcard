@@ -6,6 +6,10 @@ import PhotoHelpModal from './PhotoHelpModal.vue';
 
 const photoModalOpen = ref(false);
 
+const props = defineProps<{
+    existingPhoto?: string | null;
+}>();
+
 const photos = defineModel<File[]>({ required: true });
 
 function handleFileChange(event: Event) {
@@ -129,6 +133,14 @@ function handleFileChange(event: Event) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="photos.length === 0 && props.existingPhoto" class="mt-5">
+            <p class="text-sm text-black/60">Текущее изображение</p>
+            <img
+                :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
+                alt="Текущее изображение акции"
+                class="mt-2 h-56 w-56 rounded-2xl object-cover"
+            />
         </div>
         <div class="mt-5 flex items-center justify-center">
             <p class="cursor-pointer border-b border-dashed border-blue-600 text-base text-blue-600 max-sm:text-sm" id="moreImg">
