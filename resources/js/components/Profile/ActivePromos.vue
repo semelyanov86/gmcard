@@ -1,16 +1,27 @@
 <script setup lang="ts">
+const props = defineProps<{
+    promos: any[];
+}>();
 </script>
 
 <template>
     <div class="w-3/4 p-10 rounded-2xl" style="background-color:#063965" id="activePromo">
         <h2 class="text-4xl text-white mb-5">Мои активные акции</h2>
-        <div class="flex flex-wrap justify-between gap-4">
-            <div class="bg-none border border-white/10 px-5 pb-5 min-w-[300px] rounded-xl flex gap-5">
+
+        <!-- Если нет активных промо -->
+        <div v-if="!props.promos || props.promos.length === 0" class="text-white text-center py-10">
+            <p class="text-xl">У вас пока нет активных акций</p>
+            <p class="text-gray-400 mt-2">Создайте свою первую акцию!</p>
+        </div>
+
+        <!-- Список активных промо -->
+        <div v-else class="flex flex-wrap justify-between gap-4">
+            <div v-for="promo in props.promos" :key="promo.id" class="bg-none border border-white/10 px-5 pb-5 min-w-[300px] rounded-xl flex gap-5">
                 <div>
                     <div class="rounded-xl lg:w-[232px] w-[262px] mt-7 relative main_card">
-                        <img src="/images/png/profile/product6.png" class="w-full" alt="Товар">
+                        <img :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" class="w-full object-cover" alt="Товар">
                         <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                            <img class="w-[77px] h-[52px]" src="/images/png/profile/sale4.png" alt="Скидка на товар">
+                            <img class="w-[77px] h-[52px] object-cover" :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" alt="Скидка на товар">
                             <div
                                 id="tooltip-default"
                                 role="tooltip"
@@ -21,16 +32,16 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-b-3xl lg:h-[150px] h-[136px] down_block text-[15px] text-[#000000]">
-                            <h3 class="px-6 py-4">При покупке двух часов третьи в подарок от производителя</h3>
+                            <h3 class="px-6 py-4 line-clamp-2 overflow-hidden">{{ promo.description || 'Без описания' }}</h3>
                             <div class="w-full h-[1px] bg-black opacity-10"></div>
                             <div class="flex items-center justify-between px-6 py-4">
-                                <span class="text-[17px] font-bold">Акция 2+1</span>
-                                <img src="/images/png/profile/sale4.png" class="w-[26px] h-[26px]" alt="скидка на товар">
+                                <span class="text-[17px] font-bold">{{ promo.type }}</span>
+                                <img :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" class="w-[26px] h-[26px] object-cover" alt="скидка на товар">
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-between mt-5 items-center">
-                        <span class="text-sm" style="color: #648099;">18 сентября 2014 23:10</span>
+                        <span class="text-sm" style="color: #648099;">{{ promo.created_at }}</span>
                         <div class="flex items-center gap-1">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +57,7 @@
                                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
                                 />
                             </svg>
-                            <span class="text-sm" style="color: #648099;">2000</span>
+                            <span class="text-sm" style="color: #648099;">{{ promo.likes_count || 0 }}</span>
                         </div>
                     </div>
                 </div>

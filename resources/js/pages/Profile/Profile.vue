@@ -22,6 +22,7 @@ const props = defineProps<{
     contact: ContactModel;
     navbarMenu: MenuData[];
     user: User | null;
+    activePromos: any[];  // TODO: добавить тип Promo[]
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
@@ -93,13 +94,13 @@ const activeTab = ref(ProfileTab.Profile);
                                     <Link :href="route('promos.create')" class="py-2 px-4 bg-[#1d89f2] hover:opacity-90 text-white rounded-lg">Запустить акцию</Link>
                                 </div>
                             </div>
-                            <p class="text-[#1d89f2] cursor-pointer hover:underline">Редактировать</p>
+                            <Link :href="route('profile.edit')" class="text-[#1d89f2] cursor-pointer hover:underline">Редактировать</Link>
                         </div>
                     </div>
                     <div></div>
                 </div>
                 <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
-                <ActivePromos v-show="activeTab === ProfileTab.Active" />
+                <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" />
                 <RejectedPromos v-show="activeTab === ProfileTab.Rejected" />
                 <div class="fixed top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center z-50 hidden" id="modalFromService">
