@@ -316,7 +316,7 @@ function handleLaunch() {
                         v-model:freeDeliveryFrom="form.free_delivery_from"
                     />
                     <PromoTitleInput v-model="form.title" :error="form.errors.title" />
-                    <PhotoUploadBlock />
+                    <PhotoUploadBlock v-model="form.photos" />
                     <YouTubeBlock v-model="form.youtube_url as string" :error="form.errors.youtube_url" />
                     <PromoDescriptionBlock
                         v-model:description="form.description"

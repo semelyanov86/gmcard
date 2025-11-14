@@ -18,10 +18,14 @@ const props = defineProps<{
         <div v-else class="flex flex-wrap justify-between gap-4">
             <div v-for="promo in props.promos" :key="promo.id" class="bg-none border border-white/10 px-5 pb-5 min-w-[300px] rounded-xl flex gap-5">
                 <div>
-                    <div class="rounded-xl lg:w-[232px] w-[262px] mt-7 relative main_card">
-                        <img :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" class="w-full object-cover" alt="Товар">
-                        <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                            <img class="w-[77px] h-[52px] object-cover" :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" alt="Скидка на товар">
+                    <div class="rounded-3xl lg:w-[232px] w-[262px] mt-7 relative main_card border border-white/10">
+                        <img
+                            :src="promo.img ? (promo.img.startsWith('http') ? promo.img : `/storage/${promo.img}`) : '/images/png/profile/product6.png'"
+                            class="w-full object-cover h-[180px] rounded-t-3xl"
+                            alt="Товар"
+                        />
+                        <div class="absolute -top-6 left-4 z-50" data-tooltip-target="tooltip-default" type="button">
+                            <img class="w-[77px] h-[52px]" src="/images/png/profile/sale4.png" alt="Скидка на товар">
                             <div
                                 id="tooltip-default"
                                 role="tooltip"
@@ -36,7 +40,7 @@ const props = defineProps<{
                             <div class="w-full h-[1px] bg-black opacity-10"></div>
                             <div class="flex items-center justify-between px-6 py-4">
                                 <span class="text-[17px] font-bold">{{ promo.type }}</span>
-                                <img :src="promo.img?.startsWith('http') ? promo.img : `/storage/${promo.img}`" class="w-[26px] h-[26px] object-cover" alt="скидка на товар">
+                                <img src="/images/png/profile/sale4.png" class="w-[26px] h-[26px]" alt="скидка на товар">
                             </div>
                         </div>
                     </div>
