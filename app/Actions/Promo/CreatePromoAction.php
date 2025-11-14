@@ -234,7 +234,7 @@ final readonly class CreatePromoAction
     }
 
     /**
-     * @param  array<int, mixed>|null  $photos
+     * @param  array<int, UploadedFile|string>|null  $photos
      */
     private function handlePhotoUpload(?array $photos): ?string
     {
@@ -244,14 +244,12 @@ final readonly class CreatePromoAction
 
         $file = $photos[0];
 
-        // Если это UploadedFile - сохраняем
         if ($file instanceof UploadedFile) {
             $path = $file->store('promos', 'public');
 
-            return $path;
+            return $path === false ? null : $path;
         }
 
-        // Если это уже строка (путь) - возвращаем как есть
         if (is_string($file)) {
             return $file;
         }

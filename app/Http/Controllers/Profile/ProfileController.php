@@ -9,10 +9,11 @@ use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    public function index(GeneralSettings $settings)
+    public function index(GeneralSettings $settings): Response
     {
         $user = auth()->user();
 
