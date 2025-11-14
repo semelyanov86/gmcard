@@ -91,7 +91,6 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <VkFooterIcon custom-class="vk-icon-bright mr-[14px] opacity-50" />
@@ -102,7 +101,6 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <TelegramIcon custom-class="mr-[14px] text-white opacity-50" />
@@ -113,7 +111,6 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
-                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <InstagramIcon custom-class="text-white opacity-50" />
@@ -472,7 +469,6 @@ const props = defineProps<{
                         </ul>
                         <div
                             class="flex h-[39px] w-[141px] items-center justify-center gap-2 rounded-lg ring-1 ring-white/30 hover:ring-white"
-                            data-tooltip-target="tooltip-country"
                             type="button"
                         >
                             <AdaptiveImage image-path="icons/russia" image-class="h-[9px] w-[13px]" alt="Россия" />

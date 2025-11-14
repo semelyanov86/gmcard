@@ -28,7 +28,7 @@ import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
-import { notify } from '@/services/notifications';
+import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import type {
     AppPageProps,
     CategoryModel,
@@ -44,25 +44,41 @@ import type {
 import { MoneyValueObject } from '@/types/MoneyValueObject';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
+import { notify } from '@/services/notifications';
 import '../../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
 
-interface UserWithTariff {
+interface PromoFormPayload {
     id: number;
-    name: string;
-    email: string;
-    balance: number;
-    bonus_balance: number;
-    active_promos_count: number;
-    tariff_plan?: {
-        id: number;
-        slug: string;
-        name: string;
-        ads_count: number;
-        extra_ad_price: number;
-        banner_price: number;
+    promo_type_id: number;
+    discount: { amount: number | null; currency: string } | null;
+    cashback: { amount: number | null; currency: string } | null;
+    category_ids: string[];
+    city_ids: number[];
+    title: string;
+    description: string;
+    conditions: string | null;
+    minimum_order_amount: number | null;
+    promo_code: string | null;
+    free_delivery: boolean;
+    free_delivery_from: number | null;
+    duration_days: number;
+    show_in_banner: boolean;
+    addresses: any[];
+    schedule: {
+        enabled: boolean;
+        days: string[];
+        timeRange: { enabled: boolean; start: string; end: string };
     };
+    filter_city: string;
+    youtube_url: string | null;
+    social_links: Record<string, string[]>;
+    photos: File[];
+    existing_photo: string | null;
+    free_delivery_from_value?: number | null;
+    is_draft: boolean;
+    use_bonus_balance: boolean;
 }
 
 const props = defineProps<{
@@ -74,40 +90,43 @@ const props = defineProps<{
     defaultDescription: string;
     weekdays: WeekdayModel[];
     socialNetworks: SocialNetworkModel[];
-    user?: UserWithTariff;
+    user?: any;
     navbarMenu: MenuData[];
     sidebarMenu: MenuData[];
+    promo: PromoFormPayload;
 }>();
 
 const userData = page.props.userData;
 
 const form = useForm({
-    promo_type_id: 1,
-    discount: { amount: null as number | null, currency: '%' },
-    cashback: { amount: null as number | null, currency: '%' },
-    category_ids: [] as string[],
-    title: '',
-    description: props.defaultDescription,
-    conditions: null as string | null,
-    minimum_order_amount: null as number | null,
-    promo_code: '',
-    free_delivery: false,
-    free_delivery_from: null as number | null,
-    duration_days: 1,
-    show_in_banner: false,
-    use_bonus_balance: false,
-    addresses: [] as any[],
-    schedule: {
+    promo_type_id: props.promo.promo_type_id,
+    discount: props.promo.discount ?? { amount: null as number | null, currency: '%' },
+    cashback: props.promo.cashback ?? { amount: null as number | null, currency: '%' },
+    category_ids: props.promo.category_ids ?? [],
+    title: props.promo.title ?? '',
+    description: props.promo.description ?? props.defaultDescription,
+    conditions: props.promo.conditions ?? null,
+    minimum_order_amount: props.promo.minimum_order_amount ?? null,
+    promo_code: props.promo.promo_code ?? '',
+    free_delivery: props.promo.free_delivery ?? false,
+    free_delivery_from: props.promo.free_delivery_from ?? null,
+    duration_days: props.promo.duration_days ?? 1,
+    show_in_banner: props.promo.show_in_banner ?? false,
+    use_bonus_balance: props.promo.use_bonus_balance ?? false,
+    addresses: props.promo.addresses ?? [],
+    schedule: props.promo.schedule ?? {
         enabled: false,
-        days: [] as string[],
+        days: [],
         timeRange: { enabled: false, start: '00:00', end: '23:59' },
     },
-    filter_city: '',
-    city_ids: [] as number[],
-    youtube_url: '',
-    social_links: {} as Record<string, string[]>,
+    filter_city: props.promo.filter_city ?? '',
+    city_ids: props.promo.city_ids ?? [],
+    youtube_url: props.promo.youtube_url ?? '',
+    social_links: props.promo.social_links ?? {},
     photos: [] as File[],
-    agree_to_terms: false,
+    existing_photo: props.promo.existing_photo ?? null,
+    agree_to_terms: true,
+    is_draft: props.promo.is_draft ?? false,
 });
 
 const showPervyi = computed(() => [1, 2, 3].includes(form.promo_type_id));
@@ -117,14 +136,14 @@ const showTretiy = computed(() => [1, 2, 3, 4, 5, 6, 7].includes(form.promo_type
 const showChetvertyi = computed(() => [1, 2, 3, 7].includes(form.promo_type_id));
 
 const discountMoney = computed({
-    get: () => new MoneyValueObject(form.discount.amount, form.discount.currency),
+    get: () => new MoneyValueObject(form.discount?.amount ?? null, form.discount?.currency ?? '%'),
     set: (value: MoneyValueObject) => {
         form.discount = { amount: value.amount, currency: value.currency };
     },
 });
 
 const cashbackMoney = computed({
-    get: () => new MoneyValueObject(form.cashback.amount, form.cashback.currency),
+    get: () => new MoneyValueObject(form.cashback?.amount ?? null, form.cashback?.currency ?? '%'),
     set: (value: MoneyValueObject) => {
         form.cashback = { amount: value.amount, currency: value.currency };
     },
@@ -133,23 +152,22 @@ const cashbackMoney = computed({
 const conditionsModalOpen = ref(false);
 
 watch(
-    () => page.props.flash,
-    (flash) => {
-        if (flash.success) {
-            notify.success(flash.success);
-            form.reset();
-            form.clearErrors();
+    () => form.photos,
+    (photos) => {
+        if (photos && photos.length > 0) {
+            form.existing_photo = null;
         }
     },
-    { immediate: true, deep: true },
+    { deep: true },
 );
 
 function handlePreview() {}
 
 function handleSaveDraft() {
-    form.transform((data) => ({ ...data, is_draft: true })).post(route('promos.store'), {
+    form.transform((data) => ({ ...data, is_draft: true })).put(route('promos.update', props.promo.id), {
         preserveScroll: false,
         onSuccess: () => {
+            notify.success('Черновик обновлён');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         onError: () => {
@@ -158,10 +176,11 @@ function handleSaveDraft() {
     });
 }
 
-function handleLaunch() {
-    form.post(route('promos.store'), {
+function handleUpdate() {
+    form.transform((data) => ({ ...data, is_draft: false })).put(route('promos.update', props.promo.id), {
         preserveScroll: false,
         onSuccess: () => {
+            notify.success('Акция обновлена');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         onError: () => {
@@ -245,7 +264,7 @@ function handleLaunch() {
             <div class="myBlocks mt-12 flex h-full w-full gap-10">
                 <SideNavigation mode="mobile" :menu-items="sidebarMenu" />
                 <div class="main_block w-3/4 rounded-2xl bg-blue-950 p-8 md:w-full md:p-4">
-                    <h2 class="text-4xl font-bold text-white md:text-3xl">Создание новой акции, выберите тип акции</h2>
+                    <h2 class="text-4xl font-bold text-white md:text-3xl">Редактирование акции</h2>
                     <PromoTypeSelector
                         :selectedPromo="form.promo_type_id"
                         :promoTypes="props.promoTypes"
@@ -316,7 +335,7 @@ function handleLaunch() {
                         v-model:freeDeliveryFrom="form.free_delivery_from"
                     />
                     <PromoTitleInput v-model="form.title" :error="form.errors.title" />
-                    <PhotoUploadBlock v-model="form.photos" />
+                    <PhotoUploadBlock v-model="form.photos" :existing-photo="form.existing_photo" />
                     <YouTubeBlock v-model="form.youtube_url as string" :error="form.errors.youtube_url" />
                     <PromoDescriptionBlock
                         v-model:description="form.description"
@@ -338,10 +357,6 @@ function handleLaunch() {
                                 <ChevronRightIcon custom-class="text-white w-6" />
                             </button>
                         </div>
-                        <!-- <div class="mx-8">
-                            <h3 class="font-bold mt-5">Вы выбрали</h3>
-                            <div id="tag-container" class="flex flex-wrap gap-3 py-3"></div>
-                        </div> -->
                     </div>
                     <CategorySelector
                         :categories="props.categories"
@@ -350,7 +365,7 @@ function handleLaunch() {
                     />
                     <div class="mt-8 flex flex-row justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="chetyrnadsat">
                         <p class="w-96 text-black/50 max-md:mb-4 max-md:w-full">
-                            <strong class="text-black">На какое количество дней будет запущена акция?</strong><br />Максимум 30 дней.
+                            <strong class="text-black">На какое количество дней будет работать акция?</strong><br />Максимум 30 дней.
                         </p>
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-4">
@@ -374,7 +389,7 @@ function handleLaunch() {
                     <div class="mt-8 flex flex-row items-start justify-between rounded-2xl bg-white p-8 max-md:flex-col max-md:p-4" id="pyatnadsat">
                         <div class="max-w-md max-md:mb-4 max-md:w-full">
                             <h3 class="font-bold">
-                                Желаете чтобы ваша акция так же появлялась и в баннере на главной странице сайта?<span
+                                Желаете чтобы акция появлялась в баннере на главной странице?<span
                                     id="hiddenText"
                                     class="hidden font-normal text-black/50"
                                     >В этом случае стоимость запуска акции составит x10 от стандартной цены.</span
@@ -400,7 +415,7 @@ function handleLaunch() {
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
                         <label for="rules" class="all_text text-slate-600">
-                            С условиями пользования сервисом и стоимостью ознакомлен и полностью согласен
+                            С условиями пользования сервисом ознакомлен и полностью согласен
                         </label>
                     </div>
                     <div class="mt-5 flex flex-row justify-between gap-3 max-md:flex-col">
@@ -415,8 +430,8 @@ function handleLaunch() {
                             </PrimaryButton>
                         </div>
                     </div>
-                    <PrimaryButton @click="handleLaunch" :disabled="form.processing || !form.agree_to_terms" large class="mt-5">
-                        <span class="text-white">Запустить акцию</span>
+                    <PrimaryButton @click="handleUpdate" :disabled="form.processing || !form.agree_to_terms" large class="mt-5">
+                        <span class="text-white">Сохранить изменения</span>
                     </PrimaryButton>
                 </div>
                 <SideNavigation mode="desktop" :menu-items="sidebarMenu" />
@@ -425,3 +440,4 @@ function handleLaunch() {
     </section>
     <Footer :contact="contact"></Footer>
 </template>
+

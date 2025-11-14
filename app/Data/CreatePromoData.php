@@ -48,6 +48,7 @@ final class CreatePromoData extends Data
         public ?array $schedule = null,
         public ?array $addresses = null,
         public ?array $photos = null,
+        public ?string $existingPhoto = null,
         public bool $isDraft = false,
         public ?int $id = null,
     ) {}

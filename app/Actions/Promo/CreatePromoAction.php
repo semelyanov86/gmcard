@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Actions\Promo;
 
 use App\Actions\Payment\CreatePaymentAction;
+use App\Actions\Promo\Concerns\InteractsWithPromoFields;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
-use App\Data\PromoCostData;
 use App\Data\PaymentData;
-use App\Enums\PromoType;
+use App\Data\PromoCostData;
 use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
@@ -26,6 +26,7 @@ use Throwable;
 final readonly class CreatePromoAction
 {
     use AsAction;
+    use InteractsWithPromoFields;
 
     /**
      * @throws Throwable
@@ -132,7 +133,7 @@ final readonly class CreatePromoAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
+            'img' => $this->handlePhotoUpload($dto->photos),
             'started_at' => $dto->isDraft ? null : now(),
             'raise_on_top_hours' => 0,
             'restart_after_finish_days' => 0,
@@ -140,20 +141,6 @@ final readonly class CreatePromoAction
             'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
             'payment_required' => ! $cost->isFree,
         ];
-    }
-
-    private function getPromoType(int $id): PromoType
-    {
-        return match ($id) {
-            1 => PromoType::SIMPLE,
-            2 => PromoType::COUPON,
-            3 => PromoType::GIFT,
-            4 => PromoType::ONE_PLUS_ONE,
-            5 => PromoType::TWO_PLUS_ONE,
-            6 => PromoType::CASHBACK,
-            7 => PromoType::KONKURS,
-            default => PromoType::SIMPLE,
-        };
     }
 
     private function syncRelations(Promo $promo, CreatePromoData $dto): void
@@ -187,48 +174,4 @@ final readonly class CreatePromoAction
         }
     }
 
-    private function getDiscount(CreatePromoData $dto, PromoType $type): ?string
-    {
-        if (in_array($type, [PromoType::SIMPLE, PromoType::COUPON, PromoType::GIFT]) && $dto->discount) {
-            return $dto->discount->toString() . ($dto->discount->getCurrency() === 'RUB' ? '₽' : '%');
-        }
-
-        if (in_array($type, [PromoType::CASHBACK, PromoType::KONKURS]) && $dto->cashback) {
-            return $dto->cashback->toString() . ($dto->cashback->getCurrency() === 'RUB' ? '₽' : '%');
-        }
-
-        return null;
-    }
-
-    private function getAmount(CreatePromoData $dto, PromoType $type): ?MoneyValueObject
-    {
-        if (in_array($type, [PromoType::SIMPLE, PromoType::COUPON, PromoType::GIFT]) && $dto->discount) {
-            return $dto->discount->getCurrency() === 'RUB' ? $dto->discount : null;
-        }
-
-        if (in_array($type, [PromoType::CASHBACK, PromoType::KONKURS]) && $dto->cashback) {
-            return $dto->cashback->getCurrency() === 'RUB' ? $dto->cashback : null;
-        }
-
-        return null;
-    }
-
-    /**
-     * @param  array<string, mixed>|null  $schedule
-     */
-    private function getScheduleTime(?array $schedule, string $key): ?string
-    {
-        if (! is_array($schedule)) {
-            return null;
-        }
-
-        $timeRange = $schedule['timeRange'] ?? null;
-        if (! is_array($timeRange)) {
-            return null;
-        }
-
-        $value = $timeRange[$key] ?? null;
-
-        return is_string($value) ? $value : null;
-    }
 }

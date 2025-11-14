@@ -5,6 +5,19 @@ import { ref } from 'vue';
 import PhotoHelpModal from './PhotoHelpModal.vue';
 
 const photoModalOpen = ref(false);
+
+const props = defineProps<{
+    existingPhoto?: string | null;
+}>();
+
+const photos = defineModel<File[]>({ required: true });
+
+function handleFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+        photos.value = [input.files[0]];
+    }
+}
 </script>
 
 <template>
@@ -31,6 +44,8 @@ const photoModalOpen = ref(false);
                     <input
                         type="file"
                         id="uploadImage"
+                        @change="handleFileChange"
+                        accept="image/*"
                         class="files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none"
                     />
                 </div>
@@ -118,6 +133,14 @@ const photoModalOpen = ref(false);
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="photos.length === 0 && props.existingPhoto" class="mt-5">
+            <p class="text-sm text-black/60">Текущее изображение</p>
+            <img
+                :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
+                alt="Текущее изображение акции"
+                class="mt-2 h-56 w-56 rounded-2xl object-cover"
+            />
         </div>
         <div class="mt-5 flex items-center justify-center">
             <p class="cursor-pointer border-b border-dashed border-blue-600 text-base text-blue-600 max-sm:text-sm" id="moreImg">

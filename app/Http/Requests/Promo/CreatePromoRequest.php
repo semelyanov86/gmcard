@@ -68,7 +68,7 @@ class CreatePromoRequest extends FormRequest
             'social_links.*' => ['nullable', 'array'],
             'social_links.*.*' => ['nullable', 'string', 'url', 'max:2083'],
             'photos' => ['nullable', 'array', 'max:10'],
-            'photos.*' => ['nullable', 'string'],
+            'photos.*' => ['nullable', 'file', 'image', 'max:10240'],
             'agree_to_terms' => ['accepted'],
             'is_draft' => ['nullable', 'boolean'],
         ];
