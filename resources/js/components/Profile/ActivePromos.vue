@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ProfilePromo } from '@/types/promo/ProfilePromo';
+
 const props = defineProps<{
-    promos: any[];
+    promos: ProfilePromo[];
 }>();
 </script>
 
