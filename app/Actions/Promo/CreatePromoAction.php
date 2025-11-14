@@ -17,7 +17,6 @@ use App\ValueObjects\MoneyValueObject;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
@@ -248,6 +247,7 @@ final readonly class CreatePromoAction
         // Если это UploadedFile - сохраняем
         if ($file instanceof UploadedFile) {
             $path = $file->store('promos', 'public');
+
             return $path;
         }
 
