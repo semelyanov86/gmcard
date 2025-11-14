@@ -26,10 +26,8 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import Input from '@/components/primitives/Input.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
-import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
-import { notify } from '@/services/notifications';
 import type {
     AppPageProps,
     CategoryModel,
@@ -414,7 +412,6 @@ function handleUpdate() {
                     />
                     <div class="mt-5 flex items-center gap-2">
                         <input v-model="form.agree_to_terms" type="checkbox" id="rules" />
-                        <label for="rules" class="all_text text-slate-600"> С условиями пользования сервисом ознакомлен и полностью согласен </label>
                     </div>
                     <div class="mt-5 flex flex-row justify-between gap-3 max-md:flex-col">
                         <div class="flex flex-col gap-3 max-md:w-full">
