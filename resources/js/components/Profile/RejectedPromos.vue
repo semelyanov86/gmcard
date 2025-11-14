@@ -1,4 +1,12 @@
 <script setup lang="ts">
+const emit = defineEmits<{
+    (e: 'show-admin-message'): void;
+}>();
+
+function handleAdminMessageClick(): void
+{
+    emit('show-admin-message');
+}
 </script>
 
 <template>
@@ -79,7 +87,13 @@
                             />
                         </svg>
                     </button>
-                    <button data-tooltip-target="tooltip-defaulter" data-tooltip-placement="top" class="hovBg relative" id="feedBack">
+                    <button
+                        data-tooltip-target="tooltip-defaulter"
+                        data-tooltip-placement="top"
+                        class="hovBg relative"
+                        type="button"
+                        @click="handleAdminMessageClick"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

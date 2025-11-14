@@ -22,10 +22,19 @@ const props = defineProps<{
     contact: ContactModel;
     navbarMenu: MenuData[];
     user: User | null;
-    activePromos: any[];  // TODO: добавить тип Promo[]
+    activePromos: any[];
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
+const isAdminModalOpen = ref(false);
+
+const openAdminModal = () => {
+    isAdminModalOpen.value = true;
+};
+
+const closeAdminModal = () => {
+    isAdminModalOpen.value = false;
+};
 
 </script>
 
@@ -102,12 +111,17 @@ const activeTab = ref(ProfileTab.Profile);
                 <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
                 <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" />
-                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" />
-                <div class="fixed top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center z-50 hidden" id="modalFromService">
+                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" @show-admin-message="openAdminModal" />
+                <div
+                    class="fixed top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center z-50"
+                    id="modalFromService"
+                    v-show="isAdminModalOpen"
+                    @click.self="closeAdminModal"
+                >
                     <div class="flex flex-col w-[600px] shadow-2xl relative z-50 rounded-xl overflow-hidden">
                         <div class="bg-[#0066CC] h-14 flex items-center px-4 justify-between">
                             <span class="text-2xl text-white font-medium">Сообщение от администрации</span>
-                            <button id="closeModal">
+                            <button id="closeModal" type="button" @click="closeAdminModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 text-white hover:bg-black/20 rounded-md">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
