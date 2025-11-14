@@ -15,7 +15,9 @@ use App\Models\Promo;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
 use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
@@ -132,7 +134,7 @@ final readonly class CreatePromoAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
+            'img' => $this->handlePhotoUpload($dto->photos),
             'started_at' => $dto->isDraft ? null : now(),
             'raise_on_top_hours' => 0,
             'restart_after_finish_days' => 0,
@@ -230,5 +232,30 @@ final readonly class CreatePromoAction
         $value = $timeRange[$key] ?? null;
 
         return is_string($value) ? $value : null;
+    }
+
+    /**
+     * @param  array<int, mixed>|null  $photos
+     */
+    private function handlePhotoUpload(?array $photos): ?string
+    {
+        if (empty($photos) || ! isset($photos[0])) {
+            return null;
+        }
+
+        $file = $photos[0];
+
+        // Если это UploadedFile - сохраняем
+        if ($file instanceof UploadedFile) {
+            $path = $file->store('promos', 'public');
+            return $path;
+        }
+
+        // Если это уже строка (путь) - возвращаем как есть
+        if (is_string($file)) {
+            return $file;
+        }
+
+        return null;
     }
 }
