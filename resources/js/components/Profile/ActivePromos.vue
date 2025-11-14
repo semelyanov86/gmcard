@@ -1,9 +1,20 @@
 <script setup lang="ts">
+import { router } from '@inertiajs/vue3';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
 
 const props = defineProps<{
     promos: ProfilePromo[];
 }>();
+
+function deletePromo(promoId: number): void {
+    if (!confirm('Удалить акцию?')) {
+        return;
+    }
+
+    router.delete(route('promos.destroy', promoId), {
+        preserveScroll: true,
+    });
+}
 </script>
 
 <template>
@@ -26,16 +37,8 @@ const props = defineProps<{
                             class="w-full object-cover h-[180px] rounded-t-3xl"
                             alt="Товар"
                         />
-                        <div class="absolute -top-6 left-4 z-50" data-tooltip-target="tooltip-default" type="button">
+                        <div class="absolute -top-6 left-4 z-10 pointer-events-none">
                             <img class="w-[77px] h-[52px]" src="/images/png/profile/sale4.png" alt="Скидка на товар">
-                            <div
-                                id="tooltip-default"
-                                role="tooltip"
-                                class="absolute z-10 w-[250px] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                            >
-                                Скидки по промокодам и кэшбэк от онлайн-магазинов и сервисов - на одежду. Каждый день что-то новое.
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
                         </div>
                         <div class="bg-white rounded-b-3xl lg:h-[150px] h-[136px] down_block text-[15px] text-[#000000]">
                             <h3 class="px-6 py-4 line-clamp-2 overflow-hidden">{{ promo.description || 'Без описания' }}</h3>
@@ -68,7 +71,13 @@ const props = defineProps<{
                     </div>
                 </div>
                 <div class="mt-7 flex flex-col items-center gap-4">
-                    <button data-tooltip-target="tooltip-delete-active" data-tooltip-placement="top" class="relative">
+                    <button
+                        type="button"
+                        data-tooltip-target="tooltip-delete-active"
+                        data-tooltip-placement="top"
+                        class="relative"
+                        @click="deletePromo(promo.id)"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
