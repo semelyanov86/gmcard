@@ -14,6 +14,8 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
+        $activePromos = $user ? $user->activePromos()->with(['categories', 'cities'])->get() : collect();
+
         return Inertia::render('Profile/Profile', [
             'contact' => [
                 'email' => $settings->email,
@@ -21,6 +23,7 @@ class ProfileController extends Controller
             ],
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'user' => $user,
+            'activePromos' => $activePromos,
         ]);
     }
 }
