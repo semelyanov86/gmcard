@@ -159,8 +159,8 @@ final class PromoFormData extends Data
             fn (Address $address) => [
                 'address' => $address->name,
                 'schedule' => data_get($address->open_hours, 'schedule'),
-                'phone' => $address->phone,
-                'phone2' => $address->phone_secondary,
+                'phone' => $address->phone ? (string) $address->phone : '',
+                'phone2' => $address->phone_secondary ? (string) $address->phone_secondary : null,
             ]
         )->values()->all();
     }
@@ -179,13 +179,13 @@ final class PromoFormData extends Data
         if ($promo->started_at !== null && $promo->available_till !== null) {
             $days = $promo->started_at->diffInDays($promo->available_till);
 
-            return (int) max(1, $days);
+            return (int) max(1, (int) $days);
         }
 
         if ($promo->available_till !== null && $promo->created_at !== null) {
             $days = $promo->created_at->diffInDays($promo->available_till);
 
-            return (int) max(1, $days);
+            return (int) max(1, (int) $days);
         }
 
         return 1;
