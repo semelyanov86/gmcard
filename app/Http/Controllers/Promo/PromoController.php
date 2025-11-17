@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Promo;
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Actions\Promo\CompletePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Actions\Promo\UpdatePromoAction;
 use App\Data\CreatePromoData;
@@ -24,8 +25,9 @@ class PromoController extends Controller
 {
     public function edit(Promo $promo, GeneralSettings $settings): Response
     {
+        abort_if($promo->user_id !== auth()->id(), 403);
+        
         $user = auth()->user();
-        abort_if(! $user || $promo->user_id !== $user->id, 403);
 
         return Inertia::render('Promo/EditPromo', [
             'contact' => [
@@ -48,8 +50,9 @@ class PromoController extends Controller
 
     public function update(UpdatePromoRequest $request, Promo $promo): RedirectResponse
     {
+        abort_if($promo->user_id !== auth()->id(), 403);
+        
         $user = auth()->user();
-        abort_if(! $user || $promo->user_id !== $user->id, 403);
 
         $dto = CreatePromoData::from([
             ...$request->validated(),
@@ -67,13 +70,23 @@ class PromoController extends Controller
 
     public function destroy(Promo $promo): RedirectResponse
     {
-        $user = auth()->user();
-        abort_if(! $user || $promo->user_id !== $user->id, 403);
+        abort_if($promo->user_id !== auth()->id(), 403);
 
         $promo->delete();
 
         return redirect()
             ->back()
             ->with('success', 'Акция удалена');
+    }
+
+    public function complete(Promo $promo): RedirectResponse
+    {
+        abort_if($promo->user_id !== auth()->id(), 403);
+
+        CompletePromoAction::run($promo);
+
+        return redirect()
+            ->route('profile')
+            ->with('success', 'Акция завершена');
     }
 }
