@@ -2,24 +2,10 @@
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
 import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
+import type { AddressData } from '@/types/address/AddressData';
 import { computed } from 'vue';
-import { IMaskDirective } from 'vue-imask';
 
-const vImask = IMaskDirective;
-
-const phoneMask = {
-    mask: '+{7} (000) 000-00-00',
-    lazy: false,
-    placeholderChar: '_',
-};
-
-interface AddressData {
-    id?: number;
-    address: string;
-    schedule: string;
-    phone: string;
-    phone2?: string;
-}
+const phoneMask = '+{7} (000) 000-00-00';
 
 interface Props {
     modelValue: AddressData[];
