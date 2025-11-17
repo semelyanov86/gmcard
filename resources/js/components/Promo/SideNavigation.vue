@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MenuData, UIMode } from '@/types';
+import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 withDefaults(
@@ -13,6 +14,19 @@ withDefaults(
 );
 
 const isOpen = ref(false);
+
+function getUrl(item: MenuData): string {
+    const routeMap: Record<string, string> = {
+        'Личный кабинет': route('profile'),
+        'Запустить акцию': route('promos.create'),
+        'Мои акции': route('profile'),
+        'Мои акции с купонами': route('profile'),
+        'Мои купоны': route('profile'),
+        'Мои черновики': route('profile'),
+    };
+
+    return routeMap[item.label] || item.url;
+}
 </script>
 
 <template>
@@ -21,12 +35,12 @@ const isOpen = ref(false);
         <div v-show="isOpen" class="z-10 -mt-1 rounded-b-2xl bg-white">
             <ul class="flex w-full flex-col">
                 <template v-for="(item, index) in menuItems" :key="item.id">
-                    <a
-                        :href="item.url"
+                    <Link
+                        :href="getUrl(item)"
                         class="mx-4 my-2 px-4 py-2 text-blue-500 underline hover:rounded-lg hover:bg-blue-950 hover:text-white hover:no-underline"
                     >
                         {{ item.label }}
-                    </a>
+                    </Link>
                     <div v-if="index < menuItems.length - 1" class="h-px w-full bg-black/20"></div>
                 </template>
             </ul>
@@ -36,12 +50,12 @@ const isOpen = ref(false);
     <div v-else class="route_block h-full w-62 rounded-2xl bg-white py-2">
         <ul class="flex w-full flex-col">
             <template v-for="(item, index) in menuItems" :key="item.id">
-                <a
-                    :href="item.url"
+                <Link
+                    :href="getUrl(item)"
                     class="mx-4 my-2 px-4 py-2 text-blue-500 underline hover:rounded-lg hover:bg-blue-950 hover:text-white hover:no-underline"
                 >
                     {{ item.label }}
-                </a>
+                </Link>
                 <div v-if="index < menuItems.length - 1" class="h-px w-full bg-black/20"></div>
             </template>
         </ul>

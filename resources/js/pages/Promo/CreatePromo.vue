@@ -26,6 +26,7 @@ import YouTubeBlock from '@/components/Promo/YouTubeBlock.vue';
 import Input from '@/components/primitives/Input.vue';
 import PrimaryButton from '@/components/primitives/buttons/PrimaryButton.vue';
 import ChevronRightIcon from '@/components/primitives/icons/ChevronRightIcon.vue';
+import CloseIcon from '@/components/primitives/icons/CloseIcon.vue';
 import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
 import { notify } from '@/services/notifications';
