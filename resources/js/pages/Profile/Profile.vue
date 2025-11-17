@@ -23,6 +23,7 @@ const props = defineProps<{
     navbarMenu: MenuData[];
     user: User | null;
     activePromos: any[];
+    completedPromos: any[];
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
@@ -157,14 +158,14 @@ const closeAdminModal = () => {
                                     >
                                 </div>
                             </div>
-                            <Link :href="route('profile.edit')" class="cursor-pointer text-[#1d89f2] hover:underline">Редактировать</Link>
+                            <a :href="route('profile.edit')" class="cursor-pointer text-[#1d89f2] hover:underline">Редактировать</a>
                         </div>
                     </div>
                     <div></div>
                 </div>
                 <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
                 <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
-                <CompletedPromos v-show="activeTab === ProfileTab.Completed" />
+                <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
                 <RejectedPromos v-show="activeTab === ProfileTab.Rejected" @show-admin-message="openAdminModal" />
                 <div
                     class="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/10"

@@ -146,8 +146,8 @@ function toggleMobileMenu() {
                     >
                 </li>
                 <div class="bg-brand-dark-blue ml-2 h-[60px] w-[1px]"></div>
-                <li v-if="userData" class="bg-brand-dark-navy ml-3 rounded-md px-2 py-2">
-                    <Link :href="route('profile')">
+                <li v-if="userData">
+                    <Link :href="route('profile')" class="bg-brand-dark-navy ml-3 rounded-md px-2 py-2 block">
                         <img src="/images/png/icons/reg.png" alt="Профиль" />
                     </Link>
                 </li>

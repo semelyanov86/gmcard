@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::delete('/promos/{promo}', [PromoController::class, 'destroy'])->name('promos.destroy');
     Route::get('/promos/{promo}/edit', [PromoController::class, 'edit'])->name('promos.edit');
     Route::put('/promos/{promo}', [PromoController::class, 'update'])->name('promos.update');
+    Route::post('/promos/{promo}/complete', [PromoController::class, 'complete'])->name('promos.complete');
 });
 
 require __DIR__ . '/settings.php';
