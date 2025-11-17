@@ -27,7 +27,10 @@ final readonly class UpdatePromoAction
 
             $this->syncRelations($promo, $dto);
 
-            return $promo->fresh();
+            $fresh = $promo->fresh();
+            assert($fresh !== null);
+
+            return $fresh;
         });
     }
 
@@ -40,8 +43,8 @@ final readonly class UpdatePromoAction
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
 
-        $availableTill = $promo->started_at
-            ? $promo->started_at->copy()->addDays($dto->durationDays)
+        $availableTill = $promo->started_at !== null
+            ? $promo->started_at->addDays($dto->durationDays)
             : Carbon::now()->addDays($dto->durationDays);
 
         return [
@@ -112,6 +115,4 @@ final readonly class UpdatePromoAction
             $promo->addresses()->detach();
         }
     }
-
 }
-

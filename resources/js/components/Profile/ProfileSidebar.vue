@@ -9,30 +9,26 @@ const activeTab = defineModel<ProfileTab>();
 
 <template>
     <div class="flex flex-col gap-5">
-        <div class="w-[250px] route_block bg-white rounded-2xl py-2">
-            <ul class="w-full flex flex-col">
+        <div class="route_block w-[250px] rounded-2xl bg-white py-2">
+            <ul class="flex w-full flex-col">
                 <p
                     @click="activeTab = ProfileTab.Profile"
                     :class="[
-                        'px-4 mx-4 py-2 my-2 cursor-pointer hover:no-underline',
+                        'mx-4 my-2 cursor-pointer px-4 py-2 hover:no-underline',
                         activeTab === ProfileTab.Profile
-                            ? 'bg-[#063966] text-white rounded-lg'
-                            : 'underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline',
+                            ? 'rounded-lg bg-[#063966] text-white'
+                            : 'text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline',
                     ]"
                 >
                     Личный кабинет
                 </p>
-                <div class="w-full h-[1px] bg-black/20"></div>
+                <div class="h-[1px] w-full bg-black/20"></div>
                 <Link
                     :href="route('promos.create')"
-                    class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline"
+                    class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
                     >Запустить акцию</Link
                 >
-                <ProfileMenuItem
-                    label="Мои активные акции"
-                    :is-active="activeTab === ProfileTab.Active"
-                    @click="activeTab = ProfileTab.Active"
-                />
+                <ProfileMenuItem label="Мои активные акции" :is-active="activeTab === ProfileTab.Active" @click="activeTab = ProfileTab.Active" />
                 <ProfileMenuItem
                     label="Мои завершенные акции"
                     :is-active="activeTab === ProfileTab.Completed"
@@ -43,20 +39,20 @@ const activeTab = defineModel<ProfileTab>();
                     :is-active="activeTab === ProfileTab.Rejected"
                     @click="activeTab = ProfileTab.Rejected"
                 />
-                <div class="w-full h-[1px] bg-black/20"></div>
-                <p class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">
+                <div class="h-[1px] w-full bg-black/20"></div>
+                <p
+                    class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                >
                     Черновики
                 </p>
-                <div class="w-full h-[1px] bg-black/20"></div>
-                <p class="px-4 mx-4 py-2 my-2 underline text-[#1d89f2] cursor-pointer hover:bg-[#063966] hover:text-white hover:rounded-lg hover:no-underline">
+                <div class="h-[1px] w-full bg-black/20"></div>
+                <p
+                    class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                >
                     Избранное
                 </p>
             </ul>
         </div>
-        <ModerationButton
-            :is-active="activeTab === ProfileTab.Moderation"
-            @click="activeTab = ProfileTab.Moderation"
-        />
+        <ModerationButton :is-active="activeTab === ProfileTab.Moderation" @click="activeTab = ProfileTab.Moderation" />
     </div>
 </template>
-

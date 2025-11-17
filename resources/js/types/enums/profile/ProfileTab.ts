@@ -5,4 +5,3 @@ export enum ProfileTab {
     Completed = 'completed',
     Rejected = 'rejected',
 }
-

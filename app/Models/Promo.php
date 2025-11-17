@@ -6,6 +6,8 @@ namespace App\Models;
 
 use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +20,12 @@ use App\Enums\PromoType as PromoTypeEnum;
  * @property MoneyValueObject $sales_order_from
  * @property MoneyValueObject $free_delivery_from
  * @property array<string, string> $smm_links
+ * @property CarbonImmutable|null $started_at
+ * @property CarbonImmutable|null $available_till
+ * @property Carbon|null $availabe_from
+ * @property Carbon|null $available_to
+ * @property PromoTypeEnum $type
+ * @property string|null $discount
  */
 class Promo extends Model
 {

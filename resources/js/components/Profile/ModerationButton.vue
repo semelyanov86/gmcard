@@ -14,11 +14,10 @@ const emit = defineEmits<{
     <button
         @click="emit('click')"
         :class="[
-            'px-6 py-2 h-[41px] text-[16px] rounded-lg font-bold ml-2 focus:ring-2',
+            'ml-2 h-[41px] rounded-lg px-6 py-2 text-[16px] font-bold focus:ring-2',
             isActive ? 'bg-[#063966] text-white' : 'bg-[#f4d710] hover:text-[#983301] focus:ring-[#f4d710]',
         ]"
     >
         Заявки на модерацию
     </button>
 </template>
-
