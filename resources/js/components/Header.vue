@@ -106,10 +106,7 @@ function toggleMobileMenu() {
             </div>
             <ul id="header" class="relative flex list-none items-center md:hidden">
                 <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
-                    <Link
-                        v-if="userData"
-                        :href="route('promos.create')"
-                        class="hover:text-brand-orange cursor-pointer text-black"
+                    <Link v-if="userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
                         >Запустить акцию</Link
                     >
                     <a
@@ -241,7 +238,9 @@ function toggleMobileMenu() {
                     <ul class="px-2 py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
                         <li class="flex items-center justify-between border-b-2 border-b-black/5">
                             <span class="text-[15px] font-bold">Профиль</span>
-                            <Link :href="route('profile')" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Перейти</Link>
+                            <Link :href="route('profile')" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >Перейти</Link
+                            >
                         </li>
                         <li class="flex items-center justify-between border-b-2 border-b-black/5">
                             <span class="text-[15px] font-bold">Баланс: {{ props.userData?.balance ?? 0 }} руб.</span

@@ -87,11 +87,7 @@ trait InteractsWithPromoFields
             return $path === false ? null : $path;
         }
 
-        if (is_string($file)) {
-            return $file;
-        }
-
-        return null;
+        /** @var string|mixed $file */
+        return is_string($file) ? $file : null;
     }
 }
-

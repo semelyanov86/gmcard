@@ -8,6 +8,7 @@ use App\Enums\PromoType as PromoTypeEnum;
 use App\Models\Address;
 use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Data;
@@ -21,7 +22,10 @@ final class PromoFormData extends Data
      * @param  array<int, int>  $cityIds
      * @param  array<int, array<string, mixed>>  $addresses
      * @param  array<string, mixed>  $schedule
-     * @param  array<string, mixed>  $socialLinks
+     * @param  array<string, string>  $socialLinks
+     * @param  array<string, float|string>|null  $discount
+     * @param  array<string, float|string>|null  $cashback
+     * @param  array<int, UploadedFile|string>  $photos
      */
     public function __construct(
         public int $id,
@@ -57,6 +61,11 @@ final class PromoFormData extends Data
 
         [$discount, $cashback] = self::splitDiscounts($promo);
 
+        /** @var array<int|string, int> $categoryIdsRaw */
+        $categoryIdsRaw = $promo->categories->pluck('id')->all();
+        /** @var array<int|string, int> $cityIdsRaw */
+        $cityIdsRaw = $promo->cities->pluck('id')->all();
+
         return new self(
             id: $promo->id,
             promoTypeId: $promo->promo_type_id ?? self::mapPromoTypeToId($promo->type),
@@ -65,8 +74,8 @@ final class PromoFormData extends Data
             conditions: $promo->extra_conditions,
             discount: $discount,
             cashback: $cashback,
-            categoryIds: $promo->categories->pluck('id')->map(fn ($id) => (string) $id)->all(),
-            cityIds: $promo->cities->pluck('id')->map(fn ($id) => (int) $id)->all(),
+            categoryIds: array_values(array_map(fn (int $id): string => (string) $id, $categoryIdsRaw)),
+            cityIds: array_values(array_map(fn (int $id): int => $id, $cityIdsRaw)),
             addresses: self::transformAddresses($promo->addresses),
             schedule: self::buildSchedule($promo),
             socialLinks: $promo->smm_links ?? [],
@@ -86,6 +95,9 @@ final class PromoFormData extends Data
         );
     }
 
+    /**
+     * @return array{0: array<string, float|string>|null, 1: array<string, float|string>|null} [discount, cashback]
+     */
     private static function splitDiscounts(Promo $promo): array
     {
         $discountValue = self::parseDiscountValue($promo->discount);
@@ -97,6 +109,9 @@ final class PromoFormData extends Data
         ];
     }
 
+    /**
+     * @return array<string, float|string>|null
+     */
     private static function parseDiscountValue(?string $value): ?array
     {
         if (! $value) {
@@ -116,9 +131,12 @@ final class PromoFormData extends Data
         return null;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private static function buildSchedule(Promo $promo): array
     {
-        $hasTimeRange = $promo->availabe_from && $promo->available_to;
+        $hasTimeRange = $promo->availabe_from !== null && $promo->available_to !== null;
 
         return [
             'enabled' => ! empty($promo->days_availability) || $hasTimeRange,
@@ -132,6 +150,7 @@ final class PromoFormData extends Data
     }
 
     /**
+     * @param  Collection<int, Address>  $addresses
      * @return array<int, array<string, mixed>>
      */
     private static function transformAddresses(Collection $addresses): array
@@ -157,13 +176,13 @@ final class PromoFormData extends Data
 
     private static function resolveDurationDays(Promo $promo): int
     {
-        if ($promo->started_at && $promo->available_till) {
+        if ($promo->started_at !== null && $promo->available_till !== null) {
             $days = $promo->started_at->diffInDays($promo->available_till);
 
             return (int) max(1, $days);
         }
 
-        if ($promo->available_till && $promo->created_at) {
+        if ($promo->available_till !== null && $promo->created_at !== null) {
             $days = $promo->created_at->diffInDays($promo->available_till);
 
             return (int) max(1, $days);
@@ -186,4 +205,3 @@ final class PromoFormData extends Data
         };
     }
 }
-

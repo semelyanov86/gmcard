@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Requests\Promo;
 
 use App\Models\Promo;
+use Override;
 
 class UpdatePromoRequest extends CreatePromoRequest
 {
+    #[Override]
     public function authorize(): bool
     {
         /** @var Promo|null $promo */
@@ -18,8 +20,9 @@ class UpdatePromoRequest extends CreatePromoRequest
             && $promo->user_id === $this->user()->id;
     }
 
+    #[Override]
     /**
-     * @return array<string, array<int, mixed>>
+     * @return ValidationRules
      */
     public function rules(): array
     {
@@ -31,4 +34,3 @@ class UpdatePromoRequest extends CreatePromoRequest
         return $rules;
     }
 }
-
