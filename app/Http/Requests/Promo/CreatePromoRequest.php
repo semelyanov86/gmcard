@@ -70,7 +70,7 @@ class CreatePromoRequest extends FormRequest
             'social_links.*.*' => ['nullable', 'string', 'url', 'max:2083'],
             'photos' => ['nullable', 'array', 'max:10'],
             'photos.*' => ['nullable', 'file', 'image', 'max:10240'],
-            'agree_to_terms' => [Rule::requiredIf(fn () => ! ($this->input('is_draft') ?? false)), 'accepted'],
+            'agree_to_terms' => [Rule::requiredIf(fn () => ! $this->input('is_draft', false)), 'accepted'],
             'is_draft' => ['nullable', 'boolean'],
         ];
     }
