@@ -6,6 +6,7 @@ import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import ActivePromos from '@/components/Profile/ActivePromos.vue';
 import CompletedPromos from '@/components/Profile/CompletedPromos.vue';
+import DraftPromos from '@/components/Profile/DraftPromos.vue';
 import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
@@ -24,6 +25,7 @@ const props = defineProps<{
     user: User | null;
     activePromos: any[];
     completedPromos: any[];
+    draftPromos: any[];
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
@@ -163,10 +165,21 @@ const closeAdminModal = () => {
                     </div>
                     <div></div>
                 </div>
-                <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
-                <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
-                <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
-                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" @show-admin-message="openAdminModal" />
+                <div v-show="activeTab === ProfileTab.Moderation">
+                    <ModerationPromos />
+                </div>
+                <div v-show="activeTab === ProfileTab.Active">
+                    <ActivePromos :promos="props.activePromos" />
+                </div>
+                <div v-show="activeTab === ProfileTab.Completed">
+                    <CompletedPromos :promos="props.completedPromos" />
+                </div>
+                <div v-show="activeTab === ProfileTab.Drafts">
+                    <DraftPromos :promos="props.draftPromos" />
+                </div>
+                <div v-show="activeTab === ProfileTab.Rejected">
+                    <RejectedPromos @show-admin-message="openAdminModal" />
+                </div>
                 <div
                     class="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/10"
                     id="modalFromService"
