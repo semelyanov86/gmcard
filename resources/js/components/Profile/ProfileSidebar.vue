@@ -40,11 +40,11 @@ const activeTab = defineModel<ProfileTab>();
                     @click="activeTab = ProfileTab.Rejected"
                 />
                 <div class="h-[1px] w-full bg-black/20"></div>
-                <p
-                    class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
-                >
-                    Черновики
-                </p>
+                <ProfileMenuItem
+                    label="Черновики"
+                    :is-active="activeTab === ProfileTab.Drafts"
+                    @click="activeTab = ProfileTab.Drafts"
+                />
                 <div class="h-[1px] w-full bg-black/20"></div>
                 <p
                     class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
