@@ -4,4 +4,5 @@ export enum ProfileTab {
     Active = 'active',
     Completed = 'completed',
     Rejected = 'rejected',
+    Drafts = 'drafts',
 }

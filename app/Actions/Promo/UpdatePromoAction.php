@@ -47,7 +47,7 @@ final readonly class UpdatePromoAction
             ? $promo->started_at->addDays($dto->durationDays)
             : Carbon::now()->addDays($dto->durationDays);
 
-        return [
+        $updateData = [
             'name' => $dto->title,
             'type' => $promoType,
             'description' => $dto->description,
@@ -67,6 +67,14 @@ final readonly class UpdatePromoAction
             'img' => $this->resolvePhoto($promo, $dto),
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
         ];
+
+        if ($dto->isDraft) {
+            $updateData['started_at'] = null;
+        } elseif ($promo->started_at === null) {
+            $updateData['started_at'] = Carbon::now();
+        }
+
+        return $updateData;
     }
 
     private function resolvePhoto(Promo $promo, CreatePromoData $dto): ?string
