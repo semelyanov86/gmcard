@@ -2,31 +2,24 @@
 import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
 import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
 import AdaptiveImage from '@/components/ui/AdaptiveImage.vue';
-import { ref } from 'vue';
+import CategoriesMenuMobile from '@/components/CategoriesMenuMobile.vue';
+import type { CategoryModel } from '@/types';
+import { computed, ref } from 'vue';
 
-interface Category {
-    name: string;
+interface Props {
+    categories?: CategoryModel[];
 }
+
+const props = withDefaults(defineProps<Props>(), {
+    categories: () => [],
+});
 
 interface SubCategory {
     name: string;
     iconPath: string;
 }
 
-const mainCategories: Category[] = [
-    { name: 'Для него' },
-    { name: 'Для нее' },
-    { name: 'Детям' },
-    { name: 'Для дома' },
-    { name: 'Техника' },
-    { name: 'Красота' },
-    { name: 'Услуги' },
-    { name: 'Туризм' },
-    { name: 'Магазины' },
-    { name: 'Поесть' },
-    { name: 'Для авто' },
-    { name: 'Обучение' },
-];
+const mainCategories = computed(() => props.categories || []);
 
 const subCategories: SubCategory[] = [
     { name: 'Грузоперевозки', iconPath: 'menu_icons/carpng' },
@@ -44,13 +37,6 @@ const subCategories: SubCategory[] = [
 const activeCategoryIndex = ref<number | null>(null);
 const isDropdownOpen = ref(false);
 const selectedSubCategory = ref('Грузоперевозки');
-
-const getImageClass = (index: number): string => `image-${index + 1}`;
-
-const getMainClass = (index: number): string => {
-    if (index === 0) return 'mains';
-    return `mains${index + 1}`;
-};
 
 const handleMainCategoryHover = (index: number) => {
     activeCategoryIndex.value = index;
@@ -72,31 +58,19 @@ const handleSubCategoryHover = (categoryName: string) => {
         <div class="mobile_desctop -mx-2 flex items-end justify-between px-4 lg:px-0">
             <div
                 v-for="(category, index) in mainCategories"
-                :key="category.name"
-                :class="[getMainClass(index), 'relative flex cursor-pointer flex-col items-center']"
+                :key="category.id || category.name"
+                :class="[`mains${category.icon_index ?? index + 1}`, 'relative flex cursor-pointer flex-col items-center flex-shrink-0 min-w-0 w-[95px]']"
                 @mouseenter="handleMainCategoryHover(index)"
             >
-                <div class="relative flex flex-col items-center justify-center">
-                    <div :class="getImageClass(index)" class="h-13 w-13 rounded-lg px-4 py-3" />
-                    <p class="mt-2 font-bold text-white lg:text-sm">{{ category.name }}</p>
+                <div class="relative flex flex-col items-center justify-center w-full">
+                    <div :class="`image-${category.icon_index ?? index + 1}`" class="h-13 w-13 rounded-lg px-4 py-3" />
+                    <p class="mt-2 font-bold text-white lg:text-sm text-center w-full px-1 line-clamp-3 break-words" style="min-height: 5em; max-height: 5em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ category.name }}</p>
                 </div>
                 <TriangleUpIcon :class="{ hidden: activeCategoryIndex !== index }" custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow" />
             </div>
         </div>
 
-        <div class="mobile_scroll -mx-2 hidden items-end justify-between px-4 lg:px-0">
-            <div
-                v-for="(category, index) in mainCategories"
-                :key="`mobile-${category.name}`"
-                :class="[getMainClass(index), 'icons_block relative mx-2 flex min-w-[100px] cursor-pointer flex-col items-center']"
-                @click="isDropdownOpen = true"
-            >
-                <div class="relative flex flex-col items-center justify-center">
-                    <div :class="getImageClass(index)" class="h-13 w-13 rounded-lg px-4 py-3" />
-                    <p class="mt-2 font-bold text-white lg:text-sm">{{ category.name }}</p>
-                </div>
-            </div>
-        </div>
+        <CategoriesMenuMobile :categories="mainCategories" :is-dropdown-open="isDropdownOpen" @open-dropdown="isDropdownOpen = true" />
 
         <div v-show="isDropdownOpen" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg" @mouseenter="isDropdownOpen = true">
             <div class="bg-brand-yellow z-[1] h-[16px] w-full" />

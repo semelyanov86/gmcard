@@ -19,6 +19,7 @@ final class CategoryData extends Data
         public bool $is_starred,
         public ?int $parent_id,
         public ?string $description,
+        public ?int $icon_index,
         public ?array $children,
     ) {}
 
@@ -33,6 +34,7 @@ final class CategoryData extends Data
             is_starred: $category->is_starred,
             parent_id: $category->parent_id,
             description: $category->description,
+            icon_index: $category->icon_index,
             children: $children->isNotEmpty()
                 ? self::collectFromModels($children)
                 : null

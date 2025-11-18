@@ -241,7 +241,7 @@
     color: white !important;
 }
 
-.mains:hover .drop_list {
+.mains1:hover .drop_list {
     display: flex;
 }
 
@@ -310,7 +310,7 @@
     background-color: #ededf4;
 }
 
-.mains:hover #icons1 {
+.mains1:hover #icons1 {
     display: block;
 }
 
@@ -367,7 +367,7 @@
     opacity: 0.3;
 }
 
-.mains:hover .image-1 {
+.mains1:hover .image-1 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
