@@ -46,7 +46,7 @@ const closeAdminModal = () => {
     <FlashToaster />
     <section id="section-1" class="body h-full max-w-full overflow-visible pb-9">
         <MobileMenu />
-        <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
+        <div class="mx-auto w-1140 2xl:w-full 2xl:px-4">
             <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu :categories="categories" />
             <div class="h-[1px] w-full bg-white opacity-10"></div>

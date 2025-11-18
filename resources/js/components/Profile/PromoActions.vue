@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import Tooltip from '@/components/Profile/Tooltip.vue';
 
 interface Props {
     promoId: number;
@@ -20,6 +21,8 @@ const props = withDefaults(defineProps<Props>(), {
     showRaise: false,
     showAdminMessage: false,
 });
+
+const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white';
 </script>
 
 <template>
@@ -33,31 +36,19 @@ const props = withDefaults(defineProps<Props>(), {
             class="relative"
             @click="props.onDelete?.()"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-9 cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-9', iconClass]">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
         </button>
+        <Tooltip id="tooltip-delete" text="Удалить" :show="props.showDelete" />
 
         <!-- Кнопка поднять -->
         <button v-if="props.showRaise" data-tooltip-target="tooltip-up" data-tooltip-placement="top" class="relative">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-8 cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
             </svg>
         </button>
+        <Tooltip id="tooltip-up" text="Поднять акцию" :show="props.showRaise" />
 
         <!-- Кнопка редактирования -->
         <Link
@@ -67,14 +58,7 @@ const props = withDefaults(defineProps<Props>(), {
             data-tooltip-placement="top"
             class="relative"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-8 cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -82,6 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
                 />
             </svg>
         </Link>
+        <Tooltip id="tooltip-edit" text="Редактировать" :show="props.showEdit" />
 
         <!-- Кнопка завершения -->
         <button
@@ -92,14 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
             class="relative"
             @click="props.onComplete?.()"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-9 cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-9', iconClass]">
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -107,6 +85,7 @@ const props = withDefaults(defineProps<Props>(), {
                 />
             </svg>
         </button>
+        <Tooltip id="tooltip-complete" text="Завершить акцию" :show="props.showComplete" />
 
         <!-- Кнопка сообщения от админа -->
         <button
@@ -117,14 +96,7 @@ const props = withDefaults(defineProps<Props>(), {
             class="relative"
             @click="props.onAdminMessage?.()"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-8 cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -132,52 +104,6 @@ const props = withDefaults(defineProps<Props>(), {
                 />
             </svg>
         </button>
-
-        <!-- Tooltips -->
-        <div
-            v-if="props.showDelete"
-            id="tooltip-delete"
-            role="tooltip"
-            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-        >
-            Удалить
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <div
-            v-if="props.showRaise"
-            id="tooltip-up"
-            role="tooltip"
-            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-        >
-            Поднять акцию
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <div
-            v-if="props.showEdit"
-            id="tooltip-edit"
-            role="tooltip"
-            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-        >
-            Редактировать
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <div
-            v-if="props.showComplete"
-            id="tooltip-complete"
-            role="tooltip"
-            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-        >
-            Завершить акцию
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <div
-            v-if="props.showAdminMessage"
-            id="tooltip-admin-message"
-            role="tooltip"
-            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-        >
-            Сообщение от администрации
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
+        <Tooltip id="tooltip-admin-message" text="Сообщение от администрации" :show="props.showAdminMessage" />
     </div>
 </template>
