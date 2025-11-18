@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Profile;
 
+use App\Actions\Category\GetCategoriesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
@@ -27,6 +28,7 @@ class ProfileController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
+            'categories' => GetCategoriesAction::run(),
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'user' => $user,
             'activePromos' => $activePromos,

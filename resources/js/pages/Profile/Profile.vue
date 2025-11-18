@@ -11,7 +11,7 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
-import type { AppPageProps, ContactModel, MenuData, User } from '@/types';
+import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
 import { Link, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -21,6 +21,7 @@ const page = usePage<AppPageProps>();
 
 const props = defineProps<{
     contact: ContactModel;
+    categories?: CategoryModel[];
     navbarMenu: MenuData[];
     user: User | null;
     activePromos: any[];
@@ -47,7 +48,7 @@ const closeAdminModal = () => {
         <MobileMenu />
         <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
             <NavBar :menu-items="navbarMenu" />
-            <CategoriesMenu />
+            <CategoriesMenu :categories="categories" />
             <div class="h-[1px] w-full bg-white opacity-10"></div>
             <div class="my-12 flex justify-between">
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">

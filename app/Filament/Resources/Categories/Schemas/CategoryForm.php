@@ -38,6 +38,13 @@ class CategoryForm
                     ->label('Избранное')
                     ->default(false)
                     ->required(),
+                TextInput::make('icon_index')
+                    ->label('Номер иконки (1-12)')
+                    ->numeric()
+                    ->minValue(1)
+                    ->maxValue(12)
+                    ->nullable()
+                    ->helperText('Номер иконки для отображения в навбаре'),
             ]);
     }
 }
