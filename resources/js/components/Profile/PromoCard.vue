@@ -13,8 +13,8 @@ const props = defineProps<{
                 :src="
                     props.promo.img
                         ? props.promo.img.startsWith('http')
-                          ? props.promo.img
-                          : `/storage/${props.promo.img}`
+                            ? props.promo.img
+                            : `/storage/${props.promo.img}`
                         : '/images/png/profile/product6.png'
                 "
                 class="h-[180px] w-full rounded-t-3xl object-cover"

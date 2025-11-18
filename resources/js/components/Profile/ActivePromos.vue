@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ProfilePromo } from '@/types/promo/ProfilePromo';
-import { usePromoActions } from '@/composables/usePromoActions';
-import PromoCard from '@/components/Profile/PromoCard.vue';
 import PromoActions from '@/components/Profile/PromoActions.vue';
+import PromoCard from '@/components/Profile/PromoCard.vue';
+import { usePromoActions } from '@/composables/usePromoActions';
+import { ProfilePromo } from '@/types/promo/ProfilePromo';
 
 const props = defineProps<{
     promos: ProfilePromo[];
@@ -23,11 +23,7 @@ const { deletePromo, completePromo } = usePromoActions();
 
         <!-- Список активных промо -->
         <div v-else class="flex flex-wrap justify-between gap-4">
-            <div
-                v-for="promo in props.promos"
-                :key="promo.id"
-                class="flex min-w-[300px] gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5"
-            >
+            <div v-for="promo in props.promos" :key="promo.id" class="flex min-w-[300px] gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5">
                 <PromoCard :promo="promo" />
                 <PromoActions
                     :promo-id="promo.id"

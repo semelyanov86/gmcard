@@ -5,4 +5,3 @@ export interface AddressData {
     phone: string;
     phone2?: string;
 }
-

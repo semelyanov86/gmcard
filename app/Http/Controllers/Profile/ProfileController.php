@@ -16,6 +16,7 @@ class ProfileController extends Controller
     public function index(GeneralSettings $settings): Response
     {
         $user = auth()->user();
+        assert($user !== null);
 
         $activePromos = $user->activePromos()->get();
         $completedPromos = $user->completedPromos()->get();

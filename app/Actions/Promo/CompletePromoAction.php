@@ -21,6 +21,9 @@ final readonly class CompletePromoAction
             'available_till' => CarbonImmutable::now(),
         ]);
 
-        return $promo->fresh();
+        $fresh = $promo->fresh();
+        assert($fresh !== null);
+
+        return $fresh;
     }
 }

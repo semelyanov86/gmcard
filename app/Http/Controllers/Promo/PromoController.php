@@ -53,6 +53,7 @@ class PromoController extends Controller
         abort_if($promo->user_id !== auth()->id(), 403);
 
         $user = auth()->user();
+        assert($user !== null);
 
         $dto = CreatePromoData::from([
             ...$request->validated(),
