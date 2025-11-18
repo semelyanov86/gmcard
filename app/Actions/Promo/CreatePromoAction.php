@@ -10,6 +10,7 @@ use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
 use App\Data\PaymentData;
 use App\Data\PromoCostData;
+use App\Enums\Promo\PromoCostType;
 use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
@@ -35,16 +36,10 @@ final readonly class CreatePromoAction
     {
         return DB::transaction(function () use ($dto): CreatePromoData {
             $user = User::findOrFail($dto->userId);
-            /** @var PromoCostData $cost */
-            $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
 
-            if (! $cost->isFree) {
-                $totalCost = $this->applyBonusBalance($user, $cost->totalCost, $dto->useBonusBalance ?? false);
-                if ($totalCost > 0) {
-                    $this->ensureSufficientBalance($user, $totalCost);
-                    $this->createPaymentForPromo($dto, $totalCost);
-                }
-            }
+            $cost = $dto->isDraft
+                ? $this->calculateCostForDraft($dto)
+                : $this->calculateCostForPublication($user, $dto);
 
             $createData = $this->buildCreateData($dto, $cost);
 
@@ -56,6 +51,33 @@ final readonly class CreatePromoAction
 
             return $dto;
         });
+    }
+
+    private function calculateCostForDraft(CreatePromoData $dto): PromoCostData
+    {
+        return new PromoCostData(
+            dailyCost: 0,
+            isFree: true,
+            type: PromoCostType::NO_TARIFF,
+            durationDays: $dto->durationDays,
+            totalCost: 0,
+        );
+    }
+
+    private function calculateCostForPublication(User $user, CreatePromoData $dto): PromoCostData
+    {
+        /** @var PromoCostData $cost */
+        $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
+
+        if (! $cost->isFree) {
+            $totalCost = $this->applyBonusBalance($user, $cost->totalCost, $dto->useBonusBalance ?? false);
+            if ($totalCost > 0) {
+                $this->ensureSufficientBalance($user, $totalCost);
+                $this->createPaymentForPromo($dto, $totalCost);
+            }
+        }
+
+        return $cost;
     }
 
     private function applyBonusBalance(User $user, int $totalCost, bool $useBonusBalance): int
