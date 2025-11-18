@@ -26,7 +26,7 @@ class PromoController extends Controller
     public function edit(Promo $promo, GeneralSettings $settings): Response
     {
         abort_if($promo->user_id !== auth()->id(), 403);
-        
+
         $user = auth()->user();
 
         return Inertia::render('Promo/EditPromo', [
@@ -51,7 +51,7 @@ class PromoController extends Controller
     public function update(UpdatePromoRequest $request, Promo $promo): RedirectResponse
     {
         abort_if($promo->user_id !== auth()->id(), 403);
-        
+
         $user = auth()->user();
 
         $dto = CreatePromoData::from([
