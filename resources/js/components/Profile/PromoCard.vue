@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
     <div>
-        <div class="main_card relative mt-7 w-[262px] rounded-3xl border border-white/10 lg:w-[232px]">
+        <div class="main_card relative mt-7 w-262 rounded-3xl border border-white/10 lg:w-232">
             <img
                 :src="
                     props.promo.img
@@ -17,18 +17,18 @@ const props = defineProps<{
                             : `/storage/${props.promo.img}`
                         : '/images/png/profile/product6.png'
                 "
-                class="h-[180px] w-full rounded-t-3xl object-cover"
+                class="h-44 w-full rounded-t-3xl object-cover"
                 alt="Товар"
             />
             <div class="pointer-events-none absolute -top-6 left-4 z-10">
-                <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
+                <img class="h-14 w-20" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>
-            <div class="down_block h-[136px] rounded-b-3xl bg-white text-[15px] text-[#000000] lg:h-[150px]">
+            <div class="down_block h-36 rounded-b-3xl bg-white text-sm text-[#000000] lg:h-36">
                 <h3 class="line-clamp-2 overflow-hidden px-6 py-4">{{ props.promo.description || 'Без описания' }}</h3>
-                <div class="h-[1px] w-full bg-black opacity-10"></div>
+                <div class="h-line w-full bg-black opacity-10"></div>
                 <div class="flex items-center justify-between px-6 py-4">
                     <span class="text-[17px] font-bold">{{ props.promo.type }}</span>
-                    <img src="/images/png/profile/sale4.png" class="h-[26px] w-[26px]" alt="скидка на товар" />
+                    <img src="/images/png/profile/sale4.png" class="h-7 w-7" alt="скидка на товар" />
                 </div>
             </div>
         </div>

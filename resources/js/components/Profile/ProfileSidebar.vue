@@ -9,7 +9,7 @@ const activeTab = defineModel<ProfileTab>();
 
 <template>
     <div class="flex flex-col gap-5">
-        <div class="route_block w-[250px] rounded-2xl bg-white py-2">
+        <div class="route_block rounded-2xl bg-white py-2">
             <ul class="flex w-full flex-col">
                 <p
                     @click="activeTab = ProfileTab.Profile"
@@ -22,7 +22,7 @@ const activeTab = defineModel<ProfileTab>();
                 >
                     Личный кабинет
                 </p>
-                <div class="h-[1px] w-full bg-black/20"></div>
+                <div class="h-line w-full bg-black/20"></div>
                 <Link
                     :href="route('promos.create')"
                     class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
@@ -40,7 +40,7 @@ const activeTab = defineModel<ProfileTab>();
                     @click="activeTab = ProfileTab.Rejected"
                 />
                 <ProfileMenuItem label="Черновики" :is-active="activeTab === ProfileTab.Drafts" @click="activeTab = ProfileTab.Drafts" />
-                <div class="h-[1px] w-full bg-black/20"></div>
+                <div class="h-line w-full bg-black/20"></div>
                 <p
                     class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
                 >
