@@ -165,21 +165,11 @@ const closeAdminModal = () => {
                     </div>
                     <div></div>
                 </div>
-                <div v-show="activeTab === ProfileTab.Moderation">
-                    <ModerationPromos />
-                </div>
-                <div v-show="activeTab === ProfileTab.Active">
-                    <ActivePromos :promos="props.activePromos" />
-                </div>
-                <div v-show="activeTab === ProfileTab.Completed">
-                    <CompletedPromos :promos="props.completedPromos" />
-                </div>
-                <div v-show="activeTab === ProfileTab.Drafts">
-                    <DraftPromos :promos="props.draftPromos" />
-                </div>
-                <div v-show="activeTab === ProfileTab.Rejected">
-                    <RejectedPromos @show-admin-message="openAdminModal" />
-                </div>
+                <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
+                <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
+                <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
+                <DraftPromos v-show="activeTab === ProfileTab.Drafts" :promos="props.draftPromos" />
+                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" @show-admin-message="openAdminModal" />
                 <div
                     class="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/10"
                     id="modalFromService"

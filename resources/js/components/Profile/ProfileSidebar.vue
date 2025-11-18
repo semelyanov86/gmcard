@@ -39,7 +39,6 @@ const activeTab = defineModel<ProfileTab>();
                     :is-active="activeTab === ProfileTab.Rejected"
                     @click="activeTab = ProfileTab.Rejected"
                 />
-                <div class="h-[1px] w-full bg-black/20"></div>
                 <ProfileMenuItem
                     label="Черновики"
                     :is-active="activeTab === ProfileTab.Drafts"
