@@ -17,7 +17,7 @@ const props = defineProps<{
     <section class="footer bg-brand-footer">
         <div class="container">
             <footer class="bg-brand-footer-bg relative overflow-hidden">
-                <div class="relative mx-auto w-[1140px] py-9 2xl:w-full 2xl:px-4">
+                <div class="relative mx-auto w-1140 py-9 2xl:w-full 2xl:px-4">
                     <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
                         <li>
