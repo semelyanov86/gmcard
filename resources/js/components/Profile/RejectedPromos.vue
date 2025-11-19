@@ -16,12 +16,12 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
     <div class="w-3/4 rounded-2xl p-10" style="background-color: #063965" id="rejectPromo">
         <h2 class="mb-5 text-4xl text-white">Мои отклоненные акции</h2>
         <div class="flex flex-wrap justify-between gap-4">
-            <div class="bg-none border border-white/10 px-5 pb-5 min-w-[300px] rounded-xl flex gap-5">
+            <div class="flex min-w-[300px] gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5">
                 <div>
-                    <div class="rounded-xl lg:w-[232px] w-[262px] mt-7 relative main_card">
+                    <div class="main_card relative mt-7 w-[262px] rounded-xl lg:w-[232px]">
                         <img src="/images/png/profile/product6.png" class="w-full" alt="Товар" />
                         <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                            <img class="w-[77px] h-[52px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
+                            <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
                             <div
                                 id="tooltip-default"
                                 role="tooltip"
@@ -31,16 +31,16 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </div>
-                        <div class="bg-white rounded-b-3xl lg:h-[150px] h-[136px] down_block text-[15px] text-[#000000]">
+                        <div class="down_block h-[136px] rounded-b-3xl bg-white text-[15px] text-[#000000] lg:h-[150px]">
                             <h3 class="px-6 py-4">При покупке двух часов третьи в подарок от производителя</h3>
-                            <div class="w-full h-[1px] bg-black opacity-10"></div>
+                            <div class="h-[1px] w-full bg-black opacity-10"></div>
                             <div class="flex items-center justify-between px-6 py-4">
                                 <span class="text-[17px] font-bold">Акция 2+1</span>
-                                <img src="/images/png/profile/sale4.png" class="w-[26px] h-[26px]" alt="скидка на товар" />
+                                <img src="/images/png/profile/sale4.png" class="h-[26px] w-[26px]" alt="скидка на товар" />
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between mt-5 items-center">
+                    <div class="mt-5 flex items-center justify-between">
                         <span class="text-sm" style="color: #648099">18 сентября 2014 23:10</span>
                         <div class="flex items-center gap-1">
                             <svg

@@ -4,11 +4,18 @@ import { ProfilePromo } from '@/types/promo/ProfilePromo';
 const props = defineProps<{
     promo: ProfilePromo;
 }>();
+
+function handleImageError(e: Event) {
+    const target = e.target as HTMLImageElement;
+    if (target) {
+        target.src = '/images/png/profile/product6.png';
+    }
+}
 </script>
 
 <template>
     <div>
-        <div class="rounded-xl lg:w-[232px] w-[262px] mt-7 relative main_card">
+        <div class="main_card relative mt-7 w-[262px] rounded-xl lg:w-[232px]">
             <img
                 :src="
                     props.promo.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== ''
@@ -19,21 +26,21 @@ const props = defineProps<{
                 "
                 class="w-full rounded-t-3xl"
                 alt="Товар"
-                @error="$event.target.src = '/images/png/profile/product6.png'"
+                @error="handleImageError"
             />
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                <img class="w-[77px] h-[52px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
+                <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>
-            <div class="bg-white rounded-b-3xl lg:h-[150px] h-[136px] down_block text-[15px] text-[#000000] overflow-hidden">
-                <h3 class="px-6 py-4 line-clamp-2">{{ props.promo.description || 'Без описания' }}</h3>
-                <div class="w-full h-[1px] bg-black opacity-10"></div>
+            <div class="down_block h-[136px] overflow-hidden rounded-b-3xl bg-white text-[15px] text-[#000000] lg:h-[150px]">
+                <h3 class="line-clamp-2 px-6 py-4">{{ props.promo.description || 'Без описания' }}</h3>
+                <div class="h-[1px] w-full bg-black opacity-10"></div>
                 <div class="flex items-center justify-between px-6 py-4">
                     <span class="text-[17px] font-bold">{{ props.promo.type }}</span>
-                    <img src="/images/png/profile/sale4.png" class="w-[26px] h-[26px]" alt="скидка на товар" />
+                    <img src="/images/png/profile/sale4.png" class="h-[26px] w-[26px]" alt="скидка на товар" />
                 </div>
             </div>
         </div>
-        <div class="flex justify-between mt-5 items-center">
+        <div class="mt-5 flex items-center justify-between">
             <span class="text-sm" style="color: #648099">{{ props.promo.created_at }}</span>
             <div class="flex items-center gap-1">
                 <svg
