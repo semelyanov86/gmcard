@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\PromoType as PromoTypeEnum;
+use App\Enums\Promo\PromoModerationStatus;
 
 /**
  * @property int $id
@@ -26,6 +27,11 @@ use App\Enums\PromoType as PromoTypeEnum;
  * @property Carbon|null $available_to
  * @property PromoTypeEnum $type
  * @property string|null $discount
+ * @property PromoModerationStatus $moderation_status
+ * @property CarbonImmutable|null $rejected_at
+ * @property int|null $rejected_by
+ * @property string|null $rejection_reason
+ * @property int|null $approved_by
  */
 class Promo extends Model
 {
@@ -55,6 +61,11 @@ class Promo extends Model
         'free_delivery',
         'approved_at',
         'approving_notes',
+        'moderation_status',
+        'rejected_at',
+        'rejected_by',
+        'rejection_reason',
+        'approved_by',
         'crmid',
         'adv_campaign_id',
         'organisation_id',
@@ -134,6 +145,22 @@ class Promo extends Model
         return $this->hasMany(PromoUsage::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function approvedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function rejectedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'rejected_by');
+    }
+
     protected function casts(): array
     {
         return [
@@ -146,6 +173,8 @@ class Promo extends Model
             'show_on_home' => 'boolean',
             'free_delivery' => 'boolean',
             'approved_at' => 'immutable_datetime',
+            'rejected_at' => 'immutable_datetime',
+            'moderation_status' => PromoModerationStatus::class,
             'amount' => MoneyValueObjectCast::class,
             'sales_order_from' => MoneyValueObjectCast::class,
             'free_delivery_from' => MoneyValueObjectCast::class,
