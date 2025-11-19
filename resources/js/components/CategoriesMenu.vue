@@ -22,9 +22,7 @@ const filteredSubSubCategories = computed(() => {
     if (!searchQuery.value.trim()) return selectedSubCategory.value.children;
 
     const query = searchQuery.value.toLowerCase();
-    return selectedSubCategory.value.children.filter(cat =>
-        cat.name.toLowerCase().includes(query)
-    );
+    return selectedSubCategory.value.children.filter((cat) => cat.name.toLowerCase().includes(query));
 });
 
 const handleMainCategoryHover = (category: CategoryModel) => {
@@ -72,11 +70,18 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                         {{ category.name }}
                     </p>
                 </div>
-                <TriangleUpIcon :class="{ hidden: activeMainCategory?.id !== category.id }" custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow" />
+                <TriangleUpIcon
+                    :class="{ hidden: activeMainCategory?.id !== category.id }"
+                    custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow"
+                />
             </div>
         </div>
 
-        <CategoriesMenuMobile :categories="props.categories" :is-dropdown-open="!!activeMainCategory" @open-dropdown="activeMainCategory = props.categories[0]" />
+        <CategoriesMenuMobile
+            :categories="props.categories"
+            :is-dropdown-open="!!activeMainCategory"
+            @open-dropdown="activeMainCategory = props.categories[0]"
+        />
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
             <div class="bg-brand-yellow z-[1] h-[16px] w-full" />
@@ -85,7 +90,7 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
-                        class="my-class cursor-pointer rounded-lg py-3 px-4 transition-colors hover:bg-[#F2F6FB]"
+                        class="my-class cursor-pointer rounded-lg px-4 py-3 transition-colors hover:bg-[#F2F6FB]"
                         :class="{ 'bg-[#F2F6FB]': selectedSubCategory?.id === subCategory.id }"
                         @mouseenter="handleSubCategoryHover(subCategory)"
                     >
@@ -114,32 +119,24 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                         </div>
                     </div>
                     <div v-if="filteredSubSubCategories.length > 0" class="grid grid-cols-3 gap-7">
-                        <div
-                            v-for="category in filteredSubSubCategories"
-                            :key="category.id"
-                            class="category-block"
-                        >
+                        <div v-for="category in filteredSubSubCategories" :key="category.id" class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">{{ category.name }}</h3>
                             <ul v-if="category.children && category.children.length > 0" class="mt-3 flex flex-col gap-2 space-y-1">
                                 <li
                                     v-for="child in category.children"
                                     :key="child.id"
-                                    class="text-brand-text text-sm cursor-pointer hover:text-blue-600"
+                                    class="text-brand-text cursor-pointer text-sm hover:text-blue-600"
                                 >
                                     {{ child.name }}
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div v-else-if="selectedSubCategory && !selectedSubCategory.children?.length" class="text-center py-8 text-gray-500">
+                    <div v-else-if="selectedSubCategory && !selectedSubCategory.children?.length" class="py-8 text-center text-gray-500">
                         Нет подкатегорий
                     </div>
-                    <div v-else-if="!selectedSubCategory" class="text-center py-8 text-gray-500">
-                        Выберите категорию из списка слева
-                    </div>
-                    <div v-else class="text-center py-8 text-gray-500">
-                        Ничего не найдено
-                    </div>
+                    <div v-else-if="!selectedSubCategory" class="py-8 text-center text-gray-500">Выберите категорию из списка слева</div>
+                    <div v-else class="py-8 text-center text-gray-500">Ничего не найдено</div>
                 </div>
             </div>
         </div>

@@ -41,11 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
         </div>
 
         <div v-else class="flex flex-wrap justify-between gap-4">
-            <div
-                v-for="promo in props.promos"
-                :key="promo.id"
-                class="flex min-w-80 gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5"
-            >
+            <div v-for="promo in props.promos" :key="promo.id" class="flex min-w-80 gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5">
                 <PromoCard :promo="promo" />
                 <PromoActions
                     :promo-id="promo.id"
@@ -60,4 +56,3 @@ const props = withDefaults(defineProps<Props>(), {
         </div>
     </div>
 </template>
-

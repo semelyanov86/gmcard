@@ -21,4 +21,3 @@ withDefaults(defineProps<Props>(), {
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </template>
-
