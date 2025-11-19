@@ -11,6 +11,7 @@ use App\Data\CreatePromoData;
 use App\Data\PaymentData;
 use App\Data\PromoCostData;
 use App\Enums\Promo\PromoCostType;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
@@ -136,6 +137,9 @@ final readonly class CreatePromoAction
         $promoType = $this->getPromoType($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
+        $moderationStatus = $dto->isDraft
+            ? PromoModerationStatus::DRAFT
+            : PromoModerationStatus::PENDING;
 
         return [
             'user_id' => $dto->userId,
@@ -156,7 +160,8 @@ final readonly class CreatePromoAction
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
             'img' => $this->handlePhotoUpload($dto->photos),
-            'started_at' => $dto->isDraft ? null : now(),
+            'moderation_status' => $moderationStatus,
+            'started_at' => null,
             'raise_on_top_hours' => 0,
             'restart_after_finish_days' => 0,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
