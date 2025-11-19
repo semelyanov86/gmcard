@@ -177,13 +177,13 @@ function handleLaunch() {
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
 
-        <div class="mx-auto max-w-6xl 2xl:w-full 2xl:cell_padding">
+        <div class="2xl:cell_padding mx-auto max-w-6xl 2xl:w-full">
             <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu :categories="categories" />
             <div class="fixed top-0 left-0 z-50 hidden h-screen w-full overflow-auto bg-white" id="modal_sub">
                 <div class="relative m-auto flex h-full w-full flex-col p-6">
                     <CloseIcon id="modal-closeSub" custom-class="w-5 h-5 text-gray-500 font-extrabold absolute right-5 top-5" />
-                    <div class="rounded-lg bg-white cell_padding py-8">
+                    <div class="cell_padding rounded-lg bg-white py-8">
                         <ul class="mb-6 list-none" id="list_subMenu"></ul>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ function handleLaunch() {
                     <div class="selected_block relative inline-block h-12">
                         <div
                             id="custom_select"
-                            class="custom_select focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none cell_padding py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                            class="custom_select focus:shadow-outline cell_padding flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                         >
                             <div id="spaner" class="mr-2">Не менее 5%</div>
                             <img
@@ -213,7 +213,7 @@ function handleLaunch() {
                             <div
                                 v-for="(filter, index) in props.discountFilters"
                                 :key="filter.value"
-                                class="custom-option_1 cursor-pointer cell_padding py-2 hover:bg-gray-200"
+                                class="custom-option_1 cell_padding cursor-pointer py-2 hover:bg-gray-200"
                                 :class="{ 'bg-yellow-400': index === 0 }"
                             >
                                 {{ filter.label }}
@@ -225,7 +225,7 @@ function handleLaunch() {
                     <label for="sale" class="text-base text-white">Вид акции</label>
                     <div class="selected_block relative inline-block h-12">
                         <div
-                            class="custom_selected focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none cell_padding py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                            class="custom_selected focus:shadow-outline cell_padding flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                         >
                             <div id="spaner1" class="mr-2">Все</div>
                             <img
@@ -238,7 +238,7 @@ function handleLaunch() {
                         <div
                             class="custom-options_2 absolute z-50 mt-1 hidden h-50 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
                         >
-                            <div class="custom-option_2 cursor-pointer bg-yellow-400 cell_padding py-2 hover:bg-gray-200">Все</div>
+                            <div class="custom-option_2 cell_padding cursor-pointer bg-yellow-400 py-2 hover:bg-gray-200">Все</div>
                         </div>
                     </div>
                 </div>
@@ -334,7 +334,7 @@ function handleLaunch() {
                     <div class="mt-8 flex hidden flex-col rounded-2xl bg-white p-4 max-md:flex max-md:p-4" id="">
                         <div class="flex flex-col">
                             <h2 class="font-bold">К каким категориям относится ваша акция?</h2>
-                            <button class="mt-2 flex justify-between rounded-lg bg-blue-700 padding-x-8 py-3 text-white">
+                            <button class="padding-x-8 mt-2 flex justify-between rounded-lg bg-blue-700 py-3 text-white">
                                 Открыть категории
                                 <ChevronRightIcon custom-class="text-white w-6" />
                             </button>

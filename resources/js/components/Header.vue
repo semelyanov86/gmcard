@@ -49,17 +49,21 @@ function toggleMobileMenu() {
 </script>
 
 <template>
-    <header id="header" class="bg-brand-dark flex height-60 w-full items-center">
+    <header id="header" class="bg-brand-dark height-60 flex w-full items-center">
         <div class="relative mx-auto flex w-1140 items-center justify-between 2xl:w-full 2xl:px-4">
             <div id="header" class="relative flex items-center">
                 <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип" />
                 </Link>
                 <a href="#"><h3 class="ml-3 text-xl font-bold text-white hover:border-b-2 hover:border-white">Скидки</h3></a>
-                <div class="bg-brand-dark-blue ml-4 height-60 w-[1px]"></div>
+                <div class="bg-brand-dark-blue height-60 ml-4 w-[1px]"></div>
                 <div class="relative ml-3 flex items-center">
                     <button @click="toggleServicesDropdown" class="block text-base text-white hover:opacity-80" type="button">Все сервисы</button>
-                    <img @click="toggleServicesDropdown" src="/images/png/icons/down.png" class="mr-1 margin-left-10 height-5 width-8 cursor-pointer" />
+                    <img
+                        @click="toggleServicesDropdown"
+                        src="/images/png/icons/down.png"
+                        class="margin-left-10 height-5 width-8 mr-1 cursor-pointer"
+                    />
                     <div v-show="servicesDropdownOpen" @click="closeServicesDropdown" class="fixed inset-0 z-40"></div>
                     <div
                         v-show="servicesDropdownOpen"
@@ -67,9 +71,7 @@ function toggleMobileMenu() {
                     >
                         <ul class="py-2 text-sm text-gray-700">
                             <li>
-                                <a href="https://mainface.ru/" class="linkHeader block text-sm font-bold hover:bg-gray-100"
-                                    >Перейти на mainface</a
-                                >
+                                <a href="https://mainface.ru/" class="linkHeader block text-sm font-bold hover:bg-gray-100">Перейти на mainface</a>
                             </li>
                             <li>
                                 <a href="https://gmcard.ru/" class="linkHeader block text-sm font-bold hover:bg-gray-100">Перейти на gmcard</a>
@@ -123,7 +125,7 @@ function toggleMobileMenu() {
                         custom-class="absolute right-14 -bottom-8 h-7 w-6 text-white"
                     />
                 </li>
-                <div class="bg-brand-dark-blue ml-4 height-60 w-[1px]"></div>
+                <div class="bg-brand-dark-blue height-60 ml-4 w-[1px]"></div>
                 <li class="relative">
                     <a
                         @click.prevent="openLoginModal(LoginButtonType.Login)"
@@ -145,7 +147,7 @@ function toggleMobileMenu() {
                         >Регистрация</Link
                     >
                 </li>
-                <div class="bg-brand-dark-blue ml-2 height-60 w-[1px]"></div>
+                <div class="bg-brand-dark-blue height-60 ml-2 w-[1px]"></div>
                 <li v-if="userData">
                     <Link :href="route('profile')" class="bg-brand-dark-navy ml-3 block rounded-md px-2 py-2">
                         <img src="/images/png/icons/reg.png" alt="Профиль" />
@@ -161,7 +163,7 @@ function toggleMobileMenu() {
             <div
                 v-show="loginModalOpen"
                 id="userDropdown"
-                class="absolute top-16 right-4 z-50 width-350 rounded-lg bg-white shadow-md md:top-70 md:right-10"
+                class="width-350 absolute top-16 right-4 z-50 rounded-lg bg-white shadow-md md:top-70 md:right-10"
             >
                 <div class="relative p-5">
                     <CloseIcon
@@ -169,7 +171,7 @@ function toggleMobileMenu() {
                         id="closeDrop"
                         custom-class="absolute top-6 right-6 h-8 w-8 cursor-pointer text-gray-400 opacity-50 hover:opacity-100"
                     />
-                    <div class="relative width-220 text-gray-900">
+                    <div class="width-220 relative text-gray-900">
                         <h2 class="text-3xl font-bold text-black">Войти в GM</h2>
                         <p class="text-base font-medium">Выполните вход для доступа ко всей системе сайтов GM</p>
                     </div>
@@ -189,7 +191,7 @@ function toggleMobileMenu() {
                                 name="password"
                                 maxlength="16"
                                 minlength="8"
-                                class="focus:ring-brand-blue rounded-sm border-gray-300 padding-right-200 outline-none focus:ring-1"
+                                class="focus:ring-brand-blue padding-right-200 rounded-sm border-gray-300 outline-none focus:ring-1"
                                 type="password"
                                 placeholder="Пароль"
                             />
@@ -228,7 +230,7 @@ function toggleMobileMenu() {
                 </div>
             </div>
             <div class="modal_acc">
-                <div id="dropdownAvatar" class="border-brand-blue-light z-50 hidden width-350 border-4 bg-white">
+                <div id="dropdownAvatar" class="border-brand-blue-light width-350 z-50 hidden border-4 bg-white">
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div class="flex items-center text-lg font-bold">
                             <img src="/images/png/icons/he.png" class="mr-3 h-7 w-7" alt="" />

@@ -12,7 +12,7 @@ use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
 
-final readonly class UrlValueObject implements Cast, Stringable, JsonSerializable
+final readonly class UrlValueObject implements Cast, JsonSerializable, Stringable
 {
     public function __construct(
         private Uri $uri
