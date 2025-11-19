@@ -18,12 +18,17 @@ class PermissionsSeeder extends Seeder
             ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
         );
 
+        $moderatePromosPermission = Permission::firstOrCreate(
+            ['name' => 'moderate promos'],
+            ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+        );
+
         $superAdminRole = Role::where('name', 'super-admin')->first();
         $adminRole = Role::where('name', 'admin')->first();
         $moderatorRole = Role::where('name', 'moderator')->first();
 
-        $superAdminRole?->givePermissionTo($accessAdminPermission);
-        $adminRole?->givePermissionTo($accessAdminPermission);
-        $moderatorRole?->givePermissionTo($accessAdminPermission);
+        $superAdminRole?->givePermissionTo([$accessAdminPermission, $moderatePromosPermission]);
+        $adminRole?->givePermissionTo([$accessAdminPermission, $moderatePromosPermission]);
+        $moderatorRole?->givePermissionTo([$accessAdminPermission, $moderatePromosPermission]);
     }
 }

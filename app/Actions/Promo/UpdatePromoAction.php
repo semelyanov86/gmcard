@@ -6,6 +6,7 @@ namespace App\Actions\Promo;
 
 use App\Actions\Promo\Concerns\InteractsWithPromoFields;
 use App\Data\CreatePromoData;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Address;
 use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
@@ -70,8 +71,16 @@ final readonly class UpdatePromoAction
 
         if ($dto->isDraft) {
             $updateData['started_at'] = null;
-        } elseif ($promo->started_at === null) {
-            $updateData['started_at'] = Carbon::now();
+            $updateData['moderation_status'] = PromoModerationStatus::DRAFT;
+        } else {
+            if ($promo->moderation_status === PromoModerationStatus::REJECTED) {
+                $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+                $updateData['rejected_at'] = null;
+                $updateData['rejected_by'] = null;
+                $updateData['rejection_reason'] = null;
+            } elseif ($promo->moderation_status === PromoModerationStatus::DRAFT) {
+                $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+            }
         }
 
         return $updateData;
