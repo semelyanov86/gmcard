@@ -188,6 +188,24 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * @return HasMany<Promo, $this>
+     */
+    public function moderationPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', 'pending');
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function rejectedPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', 'rejected');
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
