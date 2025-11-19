@@ -49,16 +49,16 @@ const closeAdminModal = () => {
         <div class="mx-auto w-1140 2xl:w-full 2xl:px-4">
             <NavBar :menu-items="navbarMenu" />
             <CategoriesMenu :categories="categories" />
-            <div class="h-[1px] w-full bg-white opacity-10"></div>
+            <div class="h-line w-full bg-white opacity-10"></div>
             <div class="my-12 flex justify-between">
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
-                    <div class="flex min-h-[500px] flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
+                    <div class="flex min-h-500 flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
                         <h2 class="text-start text-5xl font-medium">Личный кабинет</h2>
                         <div class="flex justify-between border-2 p-8">
                             <div class="profMenu flex gap-10">
                                 <div>
                                     <div id="cropModal2" class="modal z-50 h-auto w-full">
-                                        <div class="modal-content w-[600px] bg-white p-4">
+                                        <div class="modal-content w-600 bg-white p-4">
                                             <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
                                             <div class="cropper-container">
                                                 <img id="cropperImage2" alt="Crop Image" class="w-full" />
@@ -80,7 +80,7 @@ const closeAdminModal = () => {
                                         </div>
                                     </div>
                                     <div
-                                        class="relative flex h-[200px] w-[200px] items-center justify-center overflow-hidden rounded-full"
+                                        class="relative flex h-200 w-200 items-center justify-center overflow-hidden rounded-full"
                                         id="photoBlock"
                                     >
                                         <img
@@ -177,7 +177,7 @@ const closeAdminModal = () => {
                     v-show="isAdminModalOpen"
                     @click.self="closeAdminModal"
                 >
-                    <div class="relative z-50 flex w-[600px] flex-col overflow-hidden rounded-xl shadow-2xl">
+                    <div class="relative z-50 flex w-600 flex-col overflow-hidden rounded-xl shadow-2xl">
                         <div class="flex h-14 items-center justify-between bg-[#0066CC] px-4">
                             <span class="text-2xl font-medium text-white">Сообщение от администрации</span>
                             <button id="closeModal" type="button" @click="closeAdminModal">
@@ -198,7 +198,7 @@ const closeAdminModal = () => {
                                 name=""
                                 id=""
                                 placeholder="Напишите что-нибудь"
-                                class="h-[200px] w-full rounded-lg border border-black/20 placeholder:font-semibold"
+                                class="h-200 w-full rounded-lg border border-black/20 placeholder:font-semibold"
                             ></textarea>
                             <p class="text-sm text-black/70">
                                 Вы получили сообщение от администрации сервиса. В сообщении указываются причины, почему ваше объявление на данный

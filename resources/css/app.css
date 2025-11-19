@@ -106,6 +106,22 @@
         width: 1140px;
     }
 
+    .w-600 {
+        width: 600px;
+    }
+
+    .w-200 {
+        width: 200px;
+    }
+
+    .h-200 {
+        height: 200px;
+    }
+
+    .min-h-500 {
+        min-height: 500px;
+    }
+
     .h-line {
         height: 1px;
     }
