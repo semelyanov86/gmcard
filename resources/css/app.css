@@ -104,6 +104,7 @@
 
     .w-1140 {
         width: 1140px;
+        max-width: 1140px;
     }
 
     .w-600 {
@@ -901,6 +902,58 @@
 .cell_padding {
     padding: 0 10px;
 }
+
+.padding-x-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.height-60 {
+    height: 60px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.height-5 {
+    height: 5px;
+}
+
+.width-8 {
+    width: 8px;
+}
+
+.width-350 {
+    width: 350px;
+}
+
+.width-220 {
+    width: 220px;
+}
+
+.width-200 {
+    width: 200px;
+}
+
+.padding-right-200 {
+    padding-right: 200px;
+}
+
+.height-1 {
+    height: 1px;
+}
+
+.top-70 {
+    top: 70px;
+}
+
+@media (min-width: 768px) {
+    .md\:top-70 {
+        top: 70px;
+    }
+}
+
 
 .text-yellow {
     color: #fae115;
