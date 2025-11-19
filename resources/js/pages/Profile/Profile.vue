@@ -52,9 +52,9 @@ const closeAdminModal = () => {
             <div class="h-line w-full bg-white opacity-10"></div>
             <div class="my-12 flex justify-between">
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
-                    <div class="flex min-h-500 flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
+                    <div class="p-8 md:p-2 rounded-2xl min-h-[500px] bg-white flex flex-col gap-5">
                         <h2 class="text-start text-5xl font-medium">Личный кабинет</h2>
-                        <div class="flex justify-between border-2 p-8">
+                        <div class="flex border-2 p-8 justify-between">
                             <div class="profMenu flex gap-10">
                                 <div>
                                     <div id="cropModal2" class="modal z-50 h-auto w-full">
@@ -79,7 +79,7 @@ const closeAdminModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="relative flex h-200 w-200 items-center justify-center overflow-hidden rounded-full" id="photoBlock">
+                                    <div class="w-[200px] h-[200px] rounded-full overflow-hidden relative flex items-center justify-center" id="photoBlock">
                                         <img
                                             src="/images/png/profile/product8.png"
                                             id="cropperResult2"
@@ -131,7 +131,7 @@ const closeAdminModal = () => {
                                         </li>
                                     </ul>
                                     <p class="w-full text-[#1d89f2]">{{ props.user?.email }}</p>
-                                    <div class="w-full border-t border-b py-2">
+                                    <div class="py-2 border-t border-b w-full">
                                         <p class="font-semibold">Баланс</p>
                                         <div class="flex items-center gap-4">
                                             <span class="text-3xl text-[#152041]">{{ page.props.userData?.balance || 0 }} руб.</span>
@@ -158,7 +158,7 @@ const closeAdminModal = () => {
                                     >
                                 </div>
                             </div>
-                            <a :href="route('profile.edit')" class="cursor-pointer text-[#1d89f2] hover:underline">Редактировать</a>
+                        <p class="text-[#1d89f2] cursor-pointer hover:underline">Редактировать</p>
                         </div>
                     </div>
                     <div></div>

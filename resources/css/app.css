@@ -111,6 +111,32 @@
         width: 600px;
     }
 
+    .h-136 {
+        height: 136px;
+    }
+
+    .h-150 {
+        height: 150px;
+    }
+
+    .text-15 {
+        font-size: 15px;
+    }
+
+    .w-26 {
+        width: 26px;
+    }
+
+    .h-26 {
+        height: 26px;
+    }
+
+    @media (min-width: 1024px) {
+        .lg\:h-150 {
+            height: 150px;
+        }
+    }
+
     .w-200 {
         width: 200px;
     }
