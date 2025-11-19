@@ -14,9 +14,9 @@ class MenuSeeder extends Seeder
     {
         $navbarItems = [
             ['label' => 'Главная', 'url' => '/', 'order' => 1],
-            ['label' => 'Пользователям', 'url' => '/discount.html', 'order' => 2],
+            ['label' => 'Пользователям', 'url' => '/user-landing', 'order' => 2],
             ['label' => 'Кэшбэк', 'url' => '/#popular', 'order' => 3],
-            ['label' => 'Для бизнеса', 'url' => '/buis_new.html', 'order' => 4],
+            ['label' => 'Для бизнеса', 'url' => '/', 'order' => 4],
             ['label' => 'Правила', 'url' => '/help.html', 'order' => 5],
             ['label' => 'Контакты', 'url' => '/help.html', 'order' => 6],
             ['label' => 'GM', 'url' => '/buis.html', 'order' => 7],

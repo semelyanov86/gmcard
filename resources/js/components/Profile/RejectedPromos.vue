@@ -63,14 +63,28 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
                 </div>
                 <div class="mt-7 flex flex-col items-center gap-4">
                     <button data-tooltip-target="tooltip-delete-rejected" data-tooltip-placement="top" class="hovBg relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-9', iconClass]">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            :class="['w-9', iconClass]"
+                        >
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <Tooltip id="tooltip-delete-rejected" text="Удалить" />
 
                     <button data-tooltip-target="tooltip-write-rejected" data-tooltip-placement="top" class="hovBg relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            :class="['w-8', iconClass]"
+                        >
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -87,7 +101,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
                         type="button"
                         @click="handleAdminMessageClick"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            :class="['w-8', iconClass]"
+                        >
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"

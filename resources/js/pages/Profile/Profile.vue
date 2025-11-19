@@ -79,10 +79,7 @@ const closeAdminModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="relative flex h-200 w-200 items-center justify-center overflow-hidden rounded-full"
-                                        id="photoBlock"
-                                    >
+                                    <div class="relative flex h-200 w-200 items-center justify-center overflow-hidden rounded-full" id="photoBlock">
                                         <img
                                             src="/images/png/profile/product8.png"
                                             id="cropperResult2"

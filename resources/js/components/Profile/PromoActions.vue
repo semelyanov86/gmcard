@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
 import Tooltip from '@/components/Profile/Tooltip.vue';
+import { Link } from '@inertiajs/vue3';
 
 interface Props {
     promoId: number;
@@ -36,7 +36,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
             class="relative"
             @click="props.onDelete?.()"
         >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-9', iconClass]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                :class="['w-9', iconClass]"
+            >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
         </button>
@@ -44,7 +51,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
 
         <!-- Кнопка поднять -->
         <button v-if="props.showRaise" data-tooltip-target="tooltip-up" data-tooltip-placement="top" class="relative">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                :class="['w-8', iconClass]"
+            >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
             </svg>
         </button>
@@ -58,7 +72,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
             data-tooltip-placement="top"
             class="relative"
         >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                :class="['w-8', iconClass]"
+            >
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -77,7 +98,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
             class="relative"
             @click="props.onComplete?.()"
         >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-9', iconClass]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                :class="['w-9', iconClass]"
+            >
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -96,7 +124,14 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
             class="relative"
             @click="props.onAdminMessage?.()"
         >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" :class="['w-8', iconClass]">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                :class="['w-8', iconClass]"
+            >
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
