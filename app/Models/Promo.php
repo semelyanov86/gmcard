@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,7 +23,7 @@ use App\Enums\Promo\PromoModerationStatus;
  * @property CarbonImmutable|null $started_at
  * @property CarbonImmutable|null $available_till
  * @property CarbonImmutable|null $availabe_from
- * @property Carbon|null $available_to
+ * @property CarbonImmutable|null $available_to
  * @property PromoTypeEnum $type
  * @property string|null $discount
  * @property PromoModerationStatus $moderation_status
@@ -167,7 +166,7 @@ class Promo extends Model
             'smm_links' => 'array',
             'days_availability' => 'array',
             'availabe_from' => 'immutable_date',
-            'available_to' => 'datetime',
+            'available_to' => 'immutable_datetime',
             'started_at' => 'immutable_datetime',
             'available_till' => 'immutable_datetime',
             'show_on_home' => 'boolean',
