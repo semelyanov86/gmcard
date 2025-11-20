@@ -43,7 +43,7 @@ class PromoController extends Controller
             'socialNetworks' => config('promo.social_networks'),
             'user' => $user,
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
-            'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
+            'sidebarMenu' => GetMenuItemsAction::run(MenuType::PROMO_SIDEBAR),
             'promo' => PromoFormData::fromPromo($promo),
         ]);
     }

@@ -51,5 +51,24 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ]);
         }
+
+        $promoSidebarItems = [
+            ['label' => 'Личный кабинет', 'url' => '/profile', 'order' => 1],
+            ['label' => 'Запустить акцию', 'url' => '/promos/create', 'order' => 2],
+            ['label' => 'Мои акции', 'url' => '/profile', 'order' => 3],
+            ['label' => 'Мои акции с купонами', 'url' => '/profile', 'order' => 4],
+            ['label' => 'Мои купоны', 'url' => '/profile', 'order' => 5],
+            ['label' => 'Мои черновики', 'url' => '/profile', 'order' => 6],
+        ];
+
+        foreach ($promoSidebarItems as $item) {
+            Menu::query()->create([
+                'label' => $item['label'],
+                'url' => $item['url'],
+                'type' => MenuType::PROMO_SIDEBAR,
+                'order' => $item['order'],
+                'is_active' => true,
+            ]);
+        }
     }
 }
