@@ -5,30 +5,25 @@ declare(strict_types=1);
 namespace App\Actions\Promo;
 
 use App\Actions\Payment\CreatePaymentAction;
-use App\Actions\Promo\Concerns\InteractsWithPromoFields;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
 use App\Data\PaymentData;
 use App\Data\PromoCostData;
 use App\Enums\Promo\PromoCostType;
 use App\Enums\Promo\PromoModerationStatus;
-use App\Models\Address;
 use App\Models\Promo;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
 /**
  * @method static CreatePromoData run(CreatePromoData $dto)
  */
-final readonly class CreatePromoAction
+final readonly class CreatePromoAction extends AbstractPromoSaveAction
 {
-    use AsAction;
-    use InteractsWithPromoFields;
 
     /**
      * @throws Throwable
@@ -149,7 +144,7 @@ final readonly class CreatePromoAction
             'extra_conditions' => $dto->conditions,
             'free_delivery' => $dto->freeDelivery ?? false,
             'show_on_home' => $dto->showInBanner ?? false,
-            'available_till' => Carbon::now()->addDays($dto->durationDays),
+            'available_till' => CarbonImmutable::now()->addDays($dto->durationDays),
             'discount' => $discount,
             'amount' => $amount,
             'sales_order_from' => $dto->minimumOrder ?? MoneyValueObject::fromCents(0),
@@ -170,34 +165,4 @@ final readonly class CreatePromoAction
         ];
     }
 
-    private function syncRelations(Promo $promo, CreatePromoData $dto): void
-    {
-        $promo->categories()->sync($dto->categoryIds);
-        $promo->cities()->sync($dto->cityIds);
-
-        if ($dto->addresses && ! empty($dto->addresses)) {
-            $addressIds = [];
-
-            foreach ($dto->addresses as $index => $addressData) {
-                if (empty($addressData['address']) && empty($addressData['phone'])) {
-                    continue;
-                }
-
-                $addressCreateData = [
-                    'name' => $addressData['address'] ?? '',
-                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
-                    'phone' => $addressData['phone'] ?? '',
-                    'phone_secondary' => $addressData['phone2'] ?? null,
-                ];
-
-                $address = Address::create($addressCreateData);
-
-                $addressIds[] = $address->id;
-            }
-
-            if (! empty($addressIds)) {
-                $promo->addresses()->sync($addressIds);
-            }
-        }
-    }
 }

@@ -4,21 +4,15 @@ declare(strict_types=1);
 
 namespace App\Actions\Promo;
 
-use App\Actions\Promo\Concerns\InteractsWithPromoFields;
 use App\Data\CreatePromoData;
 use App\Enums\Promo\PromoModerationStatus;
-use App\Models\Address;
 use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
-use Lorisleiva\Actions\Concerns\AsAction;
 
-final readonly class UpdatePromoAction
+final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 {
-    use AsAction;
-    use InteractsWithPromoFields;
-
     public function handle(Promo $promo, CreatePromoData $dto): Promo
     {
         return DB::transaction(function () use ($promo, $dto): Promo {
@@ -46,7 +40,7 @@ final readonly class UpdatePromoAction
 
         $availableTill = $promo->started_at !== null
             ? $promo->started_at->addDays($dto->durationDays)
-            : Carbon::now()->addDays($dto->durationDays);
+            : CarbonImmutable::now()->addDays($dto->durationDays);
 
         $updateData = [
             'name' => $dto->title,
@@ -101,35 +95,4 @@ final readonly class UpdatePromoAction
         return $promo->img;
     }
 
-    private function syncRelations(Promo $promo, CreatePromoData $dto): void
-    {
-        $promo->categories()->sync($dto->categoryIds);
-        $promo->cities()->sync($dto->cityIds);
-
-        $addressIds = [];
-
-        if ($dto->addresses && ! empty($dto->addresses)) {
-            foreach ($dto->addresses as $addressData) {
-                if (empty($addressData['address']) && empty($addressData['phone'])) {
-                    continue;
-                }
-
-                $addressCreateData = [
-                    'name' => $addressData['address'] ?? '',
-                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
-                    'phone' => $addressData['phone'] ?? '',
-                    'phone_secondary' => $addressData['phone2'] ?? null,
-                ];
-
-                $address = Address::create($addressCreateData);
-                $addressIds[] = $address->id;
-            }
-        }
-
-        if (! empty($addressIds)) {
-            $promo->addresses()->sync($addressIds);
-        } else {
-            $promo->addresses()->detach();
-        }
-    }
 }

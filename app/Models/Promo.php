@@ -23,7 +23,7 @@ use App\Enums\Promo\PromoModerationStatus;
  * @property array<string, string> $smm_links
  * @property CarbonImmutable|null $started_at
  * @property CarbonImmutable|null $available_till
- * @property Carbon|null $availabe_from
+ * @property CarbonImmutable|null $availabe_from
  * @property Carbon|null $available_to
  * @property PromoTypeEnum $type
  * @property string|null $discount
@@ -166,7 +166,7 @@ class Promo extends Model
         return [
             'smm_links' => 'array',
             'days_availability' => 'array',
-            'availabe_from' => 'date',
+            'availabe_from' => 'immutable_date',
             'available_to' => 'datetime',
             'started_at' => 'immutable_datetime',
             'available_till' => 'immutable_datetime',
