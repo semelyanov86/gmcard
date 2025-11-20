@@ -10,12 +10,24 @@ use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
+/**
+ * @method static Promo run(CreatePromoData $dto)
+ */
 final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 {
-    public function handle(Promo $promo, CreatePromoData $dto): Promo
+    public function handle(CreatePromoData $dto): Promo
     {
-        return DB::transaction(function () use ($promo, $dto): Promo {
+        if ($dto->id === null) {
+            throw ValidationException::withMessages([
+                'id' => 'Promo ID is required for update',
+            ]);
+        }
+
+        return DB::transaction(function () use ($dto): Promo {
+            $promo = Promo::findOrFail($dto->id);
+            
             $updateData = $this->buildUpdateData($promo, $dto);
 
             $promo->fill($updateData)->save();
@@ -34,7 +46,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
      */
     private function buildUpdateData(Promo $promo, CreatePromoData $dto): array
     {
-        $promoType = $this->getPromoType($dto->promoTypeId);
+        $promoType = $this->getPromoTypeEnum($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
 

@@ -129,7 +129,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
      */
     private function buildCreateData(CreatePromoData $dto, PromoCostData $cost): array
     {
-        $promoType = $this->getPromoType($dto->promoTypeId);
+        $promoType = $this->getPromoTypeEnum($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
         $moderationStatus = $dto->isDraft
