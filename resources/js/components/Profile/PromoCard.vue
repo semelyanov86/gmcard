@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
 
 const props = defineProps<{
     promo: ProfilePromo;
 }>();
+
+const imageSrc = computed(() => {
+    if (props.promo.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== '') {
+        return props.promo.img.startsWith('http') ? props.promo.img : `/storage/${props.promo.img}`;
+    }
+    return '/images/png/profile/product6.png';
+});
 
 function handleImageError(e: Event) {
     const target = e.target as HTMLImageElement;
@@ -17,13 +25,7 @@ function handleImageError(e: Event) {
     <div>
         <div class="main_card relative mt-7 w-[262px] rounded-xl lg:w-[232px]">
             <img
-                :src="
-                    props.promo.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== ''
-                        ? props.promo.img.startsWith('http')
-                            ? props.promo.img
-                            : `/storage/${props.promo.img}`
-                        : '/images/png/profile/product6.png'
-                "
+                :src="imageSrc"
                 class="w-full rounded-t-3xl"
                 alt="Товар"
                 @error="handleImageError"

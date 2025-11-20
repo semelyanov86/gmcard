@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import Tooltip from '@/components/Profile/Tooltip.vue';
+import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
+import EditIcon from '@/components/Promo/icons/EditIcon.vue';
+import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
 
 const emit = defineEmits<{
     (e: 'show-admin-message'): void;
@@ -8,8 +11,6 @@ const emit = defineEmits<{
 function handleAdminMessageClick(): void {
     emit('show-admin-message');
 }
-
-const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#648099] hover:text-white';
 </script>
 
 <template>
@@ -63,34 +64,12 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
                 </div>
                 <div class="mt-7 flex flex-col items-center gap-4">
                     <button data-tooltip-target="tooltip-delete-rejected" data-tooltip-placement="top" class="hovBg relative">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="2"
-                            stroke="currentColor"
-                            :class="['w-9', iconClass]"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                        <DeleteIcon />
                     </button>
                     <Tooltip id="tooltip-delete-rejected" text="Удалить" />
 
                     <button data-tooltip-target="tooltip-write-rejected" data-tooltip-placement="top" class="hovBg relative">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="2"
-                            stroke="currentColor"
-                            :class="['w-8', iconClass]"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                            />
-                        </svg>
+                        <EditIcon />
                     </button>
                     <Tooltip id="tooltip-write-rejected" text="Редактировать" />
 
@@ -101,20 +80,7 @@ const iconClass = 'cursor-pointer rounded-md p-1 text-[#648099] hover:bg-[#64809
                         type="button"
                         @click="handleAdminMessageClick"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="2"
-                            stroke="currentColor"
-                            :class="['w-8', iconClass]"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                            />
-                        </svg>
+                        <AdminMessageIcon />
                     </button>
                     <Tooltip id="tooltip-defaulter" text="Сообщение от администрации" />
                 </div>
