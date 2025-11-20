@@ -27,7 +27,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 
         return DB::transaction(function () use ($dto): Promo {
             $promo = Promo::findOrFail($dto->id);
-            
+
             $updateData = $this->buildUpdateData($promo, $dto);
 
             $promo->fill($updateData)->save();
@@ -106,5 +106,4 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 
         return $promo->img;
     }
-
 }

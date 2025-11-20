@@ -14,4 +14,3 @@ final class ApprovePromoData extends Data
         public ?string $message = null,
     ) {}
 }
-

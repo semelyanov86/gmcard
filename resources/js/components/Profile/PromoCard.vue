@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { ProfilePromo } from '@/types/promo/ProfilePromo';
 import LikeIcon from '@/components/Promo/icons/LikeIcon.vue';
+import { ProfilePromo } from '@/types/promo/ProfilePromo';
+import { computed } from 'vue';
 
 const props = defineProps<{
     promo: ProfilePromo;
@@ -25,12 +25,7 @@ function handleImageError(e: Event) {
 <template>
     <div>
         <div class="main_card relative mt-7 w-[262px] rounded-xl lg:w-[232px]">
-            <img
-                :src="imageSrc"
-                class="w-full rounded-t-3xl"
-                alt="Товар"
-                @error="handleImageError"
-            />
+            <img :src="imageSrc" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
                 <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>

@@ -3,4 +3,3 @@ export enum MenuType {
     Sidebar = 'sidebar',
     PromoSidebar = 'promo_sidebar',
 }
-

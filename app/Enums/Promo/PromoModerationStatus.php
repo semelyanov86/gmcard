@@ -11,11 +11,17 @@ enum PromoModerationStatus: string
     case REJECTED = 'rejected';
     case DRAFT = 'draft';
 
+    /**
+     * @return list<string>
+     */
     public static function values(): array
     {
         return array_column(self::cases(), 'value');
     }
 
+    /**
+     * @return list<string>
+     */
     public static function moderationStatuses(): array
     {
         return [
@@ -35,4 +41,3 @@ enum PromoModerationStatus: string
         return $this === self::APPROVED || $this === self::REJECTED;
     }
 }
-

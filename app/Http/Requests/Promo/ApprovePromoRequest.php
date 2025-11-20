@@ -23,4 +23,3 @@ class ApprovePromoRequest extends FormRequest
         ];
     }
 }
-
