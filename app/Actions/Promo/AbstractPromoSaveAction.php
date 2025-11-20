@@ -2,15 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Promo\Concerns;
+namespace App\Actions\Promo;
 
 use App\Data\CreatePromoData;
 use App\Enums\PromoType;
+use App\Models\Address;
+use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
 use Illuminate\Http\UploadedFile;
+use Lorisleiva\Actions\Concerns\AsAction;
 
-trait InteractsWithPromoFields
+abstract readonly class AbstractPromoSaveAction
 {
+    use AsAction;
+
     protected function getPromoType(int $id): PromoType
     {
         return match ($id) {
@@ -90,4 +95,37 @@ trait InteractsWithPromoFields
         /** @var string|mixed $file */
         return is_string($file) ? $file : null;
     }
+
+    protected function syncRelations(Promo $promo, CreatePromoData $dto): void
+    {
+        $promo->categories()->sync($dto->categoryIds);
+        $promo->cities()->sync($dto->cityIds);
+
+        $addressIds = [];
+
+        if ($dto->addresses && ! empty($dto->addresses)) {
+            foreach ($dto->addresses as $addressData) {
+                if (empty($addressData['address']) && empty($addressData['phone'])) {
+                    continue;
+                }
+
+                $addressCreateData = [
+                    'name' => $addressData['address'] ?? '',
+                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
+                    'phone' => $addressData['phone'] ?? '',
+                    'phone_secondary' => $addressData['phone2'] ?? null,
+                ];
+
+                $address = Address::create($addressCreateData);
+                $addressIds[] = $address->id;
+            }
+        }
+
+        if (! empty($addressIds)) {
+            $promo->addresses()->sync($addressIds);
+        } else {
+            $promo->addresses()->detach();
+        }
+    }
 }
+
