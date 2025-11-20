@@ -25,7 +25,7 @@ class PromoController extends Controller
 {
     public function edit(Promo $promo, GeneralSettings $settings): Response
     {
-        abort_if($promo->user_id !== auth()->id(), 403);
+        $this->authorizePromo($promo);
 
         $user = auth()->user();
 
@@ -50,7 +50,7 @@ class PromoController extends Controller
 
     public function update(UpdatePromoRequest $request, Promo $promo): RedirectResponse
     {
-        abort_if($promo->user_id !== auth()->id(), 403);
+        $this->authorizePromo($promo);
 
         $user = auth()->user();
         assert($user !== null);
@@ -71,7 +71,7 @@ class PromoController extends Controller
 
     public function destroy(Promo $promo): RedirectResponse
     {
-        abort_if($promo->user_id !== auth()->id(), 403);
+        $this->authorizePromo($promo);
 
         $promo->delete();
 
@@ -82,12 +82,17 @@ class PromoController extends Controller
 
     public function complete(Promo $promo): RedirectResponse
     {
-        abort_if($promo->user_id !== auth()->id(), 403);
+        $this->authorizePromo($promo);
 
         CompletePromoAction::run($promo);
 
         return redirect()
             ->route('profile')
             ->with('success', 'Акция завершена');
+    }
+
+    private function authorizePromo(Promo $promo): void
+    {
+        abort_if($promo->user_id !== auth()->id(), 403);
     }
 }

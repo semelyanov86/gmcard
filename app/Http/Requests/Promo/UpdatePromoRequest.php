@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Promo;
 
-use App\Models\Promo;
+use Illuminate\Support\Facades\Auth;
 use Override;
 
 class UpdatePromoRequest extends CreatePromoRequest
@@ -12,12 +12,7 @@ class UpdatePromoRequest extends CreatePromoRequest
     #[Override]
     public function authorize(): bool
     {
-        /** @var Promo|null $promo */
-        $promo = $this->route('promo');
-
-        return $promo !== null
-            && $this->user() !== null
-            && $promo->user_id === $this->user()->id;
+        return Auth::check();
     }
 
     #[Override]
