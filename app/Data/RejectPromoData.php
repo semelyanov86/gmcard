@@ -15,4 +15,3 @@ final class RejectPromoData extends Data
         public ?string $message = null,
     ) {}
 }
-

@@ -58,4 +58,3 @@ final class PromoListItemData extends Data
         return 'active';
     }
 }
-

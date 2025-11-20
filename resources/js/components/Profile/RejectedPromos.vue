@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Tooltip from '@/components/Profile/Tooltip.vue';
+import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
 import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
 import EditIcon from '@/components/Promo/icons/EditIcon.vue';
-import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
 import LikeIcon from '@/components/Promo/icons/LikeIcon.vue';
 
 const emit = defineEmits<{

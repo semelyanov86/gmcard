@@ -39,4 +39,3 @@ final readonly class GetUserPromosAction
         return $promos->map(fn ($promo) => PromoListItemData::fromPromo($promo))->all();
     }
 }
-

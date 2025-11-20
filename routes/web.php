@@ -19,7 +19,7 @@ Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
-Route::get('dashboard', fn() => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/promos/create', [CreatePromoController::class, 'index'])->name('promos.create');

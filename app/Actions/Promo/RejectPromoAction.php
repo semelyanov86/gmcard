@@ -18,7 +18,7 @@ final readonly class RejectPromoAction
     {
         return DB::transaction(function () use ($dto): Promo {
             $promo = Promo::findOrFail($dto->promoId);
-            
+
             $promo->update([
                 'moderation_status' => PromoModerationStatus::REJECTED,
                 'rejected_at' => now(),
@@ -29,8 +29,10 @@ final readonly class RejectPromoAction
                 'approving_notes' => null,
             ]);
 
-            return $promo->fresh();
+            /** @var Promo $promo */
+            $promo = $promo->fresh();
+
+            return $promo;
         });
     }
 }
-

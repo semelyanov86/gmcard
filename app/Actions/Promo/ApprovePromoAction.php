@@ -18,7 +18,7 @@ final readonly class ApprovePromoAction
     {
         return DB::transaction(function () use ($dto): Promo {
             $promo = Promo::findOrFail($dto->promoId);
-            
+
             $promo->update([
                 'moderation_status' => PromoModerationStatus::APPROVED,
                 'approved_at' => now(),
@@ -33,8 +33,10 @@ final readonly class ApprovePromoAction
                 $promo->update(['started_at' => now()]);
             }
 
-            return $promo->fresh();
+            /** @var Promo $promo */
+            $promo = $promo->fresh();
+
+            return $promo;
         });
     }
 }
-

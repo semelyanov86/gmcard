@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Tooltip from '@/components/Profile/Tooltip.vue';
-import { Link } from '@inertiajs/vue3';
-import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
-import RaiseIcon from '@/components/Promo/icons/RaiseIcon.vue';
-import EditIcon from '@/components/Promo/icons/EditIcon.vue';
-import CompleteIcon from '@/components/Promo/icons/CompleteIcon.vue';
 import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
+import CompleteIcon from '@/components/Promo/icons/CompleteIcon.vue';
+import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
+import EditIcon from '@/components/Promo/icons/EditIcon.vue';
+import RaiseIcon from '@/components/Promo/icons/RaiseIcon.vue';
+import { Link } from '@inertiajs/vue3';
 
 interface Props {
     promoId: number;
@@ -26,7 +26,6 @@ const props = withDefaults(defineProps<Props>(), {
     showRaise: false,
     showAdminMessage: false,
 });
-
 </script>
 
 <template>

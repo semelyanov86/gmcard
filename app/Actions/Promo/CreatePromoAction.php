@@ -24,7 +24,6 @@ use Throwable;
  */
 final readonly class CreatePromoAction extends AbstractPromoSaveAction
 {
-
     /**
      * @throws Throwable
      */
@@ -156,7 +155,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
             'img' => $this->handlePhotoUpload($dto->photos),
             'moderation_status' => $moderationStatus,
-            'started_at' => null,
+            'started_at' => $dto->isDraft ? null : CarbonImmutable::now(),
             'raise_on_top_hours' => 0,
             'restart_after_finish_days' => 0,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
@@ -164,5 +163,4 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
             'payment_required' => ! $cost->isFree,
         ];
     }
-
 }
