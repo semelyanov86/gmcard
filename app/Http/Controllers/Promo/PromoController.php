@@ -62,7 +62,7 @@ class PromoController extends Controller
             'existing_photo' => $request->input('existing_photo'),
         ]);
 
-        UpdatePromoAction::run($promo, $dto);
+        UpdatePromoAction::run($dto);
 
         return redirect()
             ->route('profile')

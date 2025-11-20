@@ -16,7 +16,7 @@ abstract readonly class AbstractPromoSaveAction
 {
     use AsAction;
 
-    protected function getPromoType(int $id): PromoType
+    protected function getPromoTypeEnum(int $id): PromoType
     {
         return match ($id) {
             1 => PromoType::SIMPLE,
