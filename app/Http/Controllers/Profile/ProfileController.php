@@ -22,6 +22,7 @@ class ProfileController extends Controller
         $activePromos = $user->activePromos()->get();
         $completedPromos = $user->completedPromos()->get();
         $draftPromos = $user->draftPromos()->get();
+        $moderationPromos = $user->moderationPromos()->get();
 
         return Inertia::render('Profile/Profile', [
             'contact' => [
@@ -34,6 +35,7 @@ class ProfileController extends Controller
             'activePromos' => $activePromos,
             'completedPromos' => $completedPromos,
             'draftPromos' => $draftPromos,
+            'moderationPromos' => $moderationPromos,
         ]);
     }
 }

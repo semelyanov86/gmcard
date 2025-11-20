@@ -27,6 +27,7 @@ const props = defineProps<{
     activePromos: any[];
     completedPromos: any[];
     draftPromos: any[];
+    moderationPromos: any[];
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
@@ -166,7 +167,7 @@ const closeAdminModal = () => {
                     </div>
                     <div></div>
                 </div>
-                <ModerationPromos v-show="activeTab === ProfileTab.Moderation" />
+                <ModerationPromos v-show="activeTab === ProfileTab.Moderation" :promos="props.moderationPromos" />
                 <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
                 <DraftPromos v-show="activeTab === ProfileTab.Drafts" :promos="props.draftPromos" />
