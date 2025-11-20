@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Actions\Promo\GetUserPromosAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
 use App\Settings\GeneralSettings;
@@ -19,10 +20,7 @@ class ProfileController extends Controller
         $user = auth()->user();
         assert($user !== null);
 
-        $activePromos = $user->activePromos()->get();
-        $completedPromos = $user->completedPromos()->get();
-        $draftPromos = $user->draftPromos()->get();
-        $moderationPromos = $user->moderationPromos()->get();
+        $promosData = GetUserPromosAction::run($user);
 
         return Inertia::render('Profile/Profile', [
             'contact' => [
@@ -32,10 +30,10 @@ class ProfileController extends Controller
             'categories' => GetCategoriesAction::run(),
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'user' => $user,
-            'activePromos' => $activePromos,
-            'completedPromos' => $completedPromos,
-            'draftPromos' => $draftPromos,
-            'moderationPromos' => $moderationPromos,
+            'activePromos' => $promosData['activePromos'],
+            'completedPromos' => $promosData['completedPromos'],
+            'draftPromos' => $promosData['draftPromos'],
+            'moderationPromos' => $promosData['moderationPromos'],
         ]);
     }
 }
