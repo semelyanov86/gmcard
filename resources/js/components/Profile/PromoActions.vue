@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Tooltip from '@/components/Profile/Tooltip.vue';
 import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
+import ApproveIcon from '@/components/Promo/icons/ApproveIcon.vue';
 import CompleteIcon from '@/components/Promo/icons/CompleteIcon.vue';
 import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
 import EditIcon from '@/components/Promo/icons/EditIcon.vue';
@@ -13,6 +14,7 @@ interface Props {
     showEdit?: boolean;
     showComplete?: boolean;
     showRaise?: boolean;
+    showApprove?: boolean;
     showAdminMessage?: boolean;
     onDelete?: () => void;
     onComplete?: () => void;
@@ -24,13 +26,13 @@ const props = withDefaults(defineProps<Props>(), {
     showEdit: false,
     showComplete: false,
     showRaise: false,
+    showApprove: false,
     showAdminMessage: false,
 });
 </script>
 
 <template>
     <div class="mt-7 flex flex-col items-center gap-4">
-        <!-- Кнопка удаления -->
         <button
             v-if="props.showDelete"
             type="button"
@@ -43,13 +45,22 @@ const props = withDefaults(defineProps<Props>(), {
         </button>
         <Tooltip id="tooltip-delete" text="Удалить" :show="props.showDelete" />
 
-        <!-- Кнопка поднять -->
+        <button
+            v-if="props.showApprove"
+            type="button"
+            data-tooltip-target="tooltip-approve"
+            data-tooltip-placement="top"
+            class="relative"
+        >
+            <ApproveIcon />
+        </button>
+        <Tooltip id="tooltip-approve" text="Одобрить" :show="props.showApprove" />
+
         <button v-if="props.showRaise" data-tooltip-target="tooltip-up" data-tooltip-placement="top" class="relative">
             <RaiseIcon />
         </button>
         <Tooltip id="tooltip-up" text="Поднять акцию" :show="props.showRaise" />
 
-        <!-- Кнопка редактирования -->
         <Link
             v-if="props.showEdit"
             :href="route('promos.edit', props.promoId)"
@@ -61,7 +72,6 @@ const props = withDefaults(defineProps<Props>(), {
         </Link>
         <Tooltip id="tooltip-edit" text="Редактировать" :show="props.showEdit" />
 
-        <!-- Кнопка завершения -->
         <button
             v-if="props.showComplete"
             type="button"
@@ -74,7 +84,6 @@ const props = withDefaults(defineProps<Props>(), {
         </button>
         <Tooltip id="tooltip-complete" text="Завершить акцию" :show="props.showComplete" />
 
-        <!-- Кнопка сообщения от админа -->
         <button
             v-if="props.showAdminMessage"
             type="button"

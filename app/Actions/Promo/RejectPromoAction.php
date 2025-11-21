@@ -24,6 +24,7 @@ final readonly class RejectPromoAction
                 'rejected_at' => now(),
                 'rejected_by' => $dto->moderatorId,
                 'rejection_reason' => $dto->rejectionReason,
+                'rejection_message' => $dto->message,
                 'approved_at' => null,
                 'approved_by' => null,
                 'approving_notes' => null,

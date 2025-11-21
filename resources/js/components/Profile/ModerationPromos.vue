@@ -1,26 +1,59 @@
 <script setup lang="ts">
-import PromosList from '@/components/Profile/PromosList.vue';
-import { usePromoActions } from '@/composables/usePromoActions';
+import ModerationPromosList from '@/components/Moderation/ModerationPromosList.vue';
+import RejectPromoModal from '@/components/Moderation/RejectPromoModal.vue';
+import type { UserDataModel } from '@/types';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
+import { usePage } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
+import { MODERATOR_ROLES } from '@/composables/useUserRoles';
+
+const page = usePage();
+const userData = page.props.userData as UserDataModel | null;
 
 const props = defineProps<{
     promos: ProfilePromo[];
 }>();
 
-const { deletePromo } = usePromoActions();
+const isModerator = computed(() => {
+    return userData?.role && MODERATOR_ROLES.includes(userData.role);
+});
+
+const selectedPromoId = ref<number | null>(null);
+const isModalOpen = ref(false);
+
+const openRejectModal = (promoId: number) => {
+    selectedPromoId.value = promoId;
+    isModalOpen.value = true;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    selectedPromoId.value = null;
+};
+
+const approvePromo = (promoId: number) => {
+    router.post(route('moderation.promos.approve', promoId), {}, {
+        preserveScroll: true,
+    });
+};
 </script>
 
 <template>
-    <PromosList
+    <ModerationPromosList
+        v-if="isModerator"
         title="Заявки на модерацию"
-        empty-message="У вас пока нет заявок на модерацию"
-        empty-sub-message="Создайте свою первую акцию!"
+        empty-message="Нет заявок на модерацию"
+        empty-sub-message=""
         :promos="props.promos"
         container-id="namoderasii"
-        :actions-config="{
-            showDelete: true,
-            showEdit: true,
-            onDelete: deletePromo,
-        }"
+        :on-reject="openRejectModal"
+        :on-approve="approvePromo"
+    />
+    <RejectPromoModal
+        v-if="isModerator && selectedPromoId !== null"
+        :promo-id="selectedPromoId"
+        :is-open="isModalOpen"
+        @close="closeModal"
     />
 </template>

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Actions\Promo\GetPendingPromosAction;
 use App\Actions\Promo\GetUserPromosAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
@@ -22,6 +23,11 @@ class ProfileController extends Controller
 
         $promosData = GetUserPromosAction::run($user);
 
+        $moderationPromos = [];
+        if ($user->can('moderate promos')) {
+            $moderationPromos = GetPendingPromosAction::run();
+        }
+
         return Inertia::render('Profile/Profile', [
             'contact' => [
                 'email' => $settings->email,
@@ -33,7 +39,8 @@ class ProfileController extends Controller
             'activePromos' => $promosData['activePromos'],
             'completedPromos' => $promosData['completedPromos'],
             'draftPromos' => $promosData['draftPromos'],
-            'moderationPromos' => $promosData['moderationPromos'],
+            'rejectedPromos' => $promosData['rejectedPromos'],
+            'moderationPromos' => $moderationPromos,
         ]);
     }
 }

@@ -30,6 +30,7 @@ use App\Enums\Promo\PromoModerationStatus;
  * @property CarbonImmutable|null $rejected_at
  * @property int|null $rejected_by
  * @property string|null $rejection_reason
+ * @property string|null $rejection_message
  * @property int|null $approved_by
  */
 class Promo extends Model
@@ -64,6 +65,7 @@ class Promo extends Model
         'rejected_at',
         'rejected_by',
         'rejection_reason',
+        'rejection_message',
         'approved_by',
         'crmid',
         'adv_campaign_id',

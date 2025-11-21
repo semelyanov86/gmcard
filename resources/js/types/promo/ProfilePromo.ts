@@ -5,4 +5,6 @@ export interface ProfilePromo {
     type?: string | null;
     created_at: string;
     likes_count?: number;
+    rejectionReason?: string | null;
+    rejectionMessage?: string | null;
 }

@@ -8,8 +8,10 @@ interface ActionsConfig {
     showEdit?: boolean;
     showComplete?: boolean;
     showRaise?: boolean;
+    showAdminMessage?: boolean;
     onDelete?: (promoId: number) => void;
     onComplete?: (promoId: number) => void;
+    onAdminMessage?: (promo: ProfilePromo) => void;
 }
 
 interface Props {
@@ -49,8 +51,10 @@ const props = withDefaults(defineProps<Props>(), {
                     :show-edit="props.actionsConfig?.showEdit ?? true"
                     :show-complete="props.actionsConfig?.showComplete ?? false"
                     :show-raise="props.actionsConfig?.showRaise ?? false"
+                    :show-admin-message="props.actionsConfig?.showAdminMessage ?? false"
                     :on-delete="props.actionsConfig?.onDelete ? () => props.actionsConfig?.onDelete?.(promo.id) : undefined"
                     :on-complete="props.actionsConfig?.onComplete ? () => props.actionsConfig?.onComplete?.(promo.id) : undefined"
+                    :on-admin-message="props.actionsConfig?.onAdminMessage ? () => props.actionsConfig?.onAdminMessage?.(promo) : undefined"
                 />
             </div>
         </div>
