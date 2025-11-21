@@ -72,6 +72,7 @@ class ModerationControllerTest extends TestCase
             fn ($page) => $page
                 ->has('pendingPromos')
                 ->where('pendingPromos.0.id', $pendingPromo->id)
+                ->missing('pendingPromos.1')
         );
     }
 
