@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import AdminMessageContent from '@/components/AdminMessageContent.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
+import ModalWindow from '@/components/ModalWindow.vue';
 import NavBar from '@/components/NavBar.vue';
 import ActivePromos from '@/components/Profile/ActivePromos.vue';
 import CompletedPromos from '@/components/Profile/CompletedPromos.vue';
@@ -11,14 +13,12 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
-import ModalWindow from '@/components/ModalWindow.vue';
-import AdminMessageContent from '@/components/AdminMessageContent.vue';
+import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
-import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 
 const page = usePage<AppPageProps>();
 
@@ -178,21 +178,22 @@ const closeAdminModal = () => {
                     </div>
                     <div></div>
                 </div>
-                <ModerationPromos
-                    v-if="isModerator && activeTab === ProfileTab.Moderation"
-                    :promos="props.moderationPromos"
-                />
+                <ModerationPromos v-if="isModerator && activeTab === ProfileTab.Moderation" :promos="props.moderationPromos" />
                 <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
                 <DraftPromos v-show="activeTab === ProfileTab.Drafts" :promos="props.draftPromos" />
-                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" :promos="props.rejectedPromos" @show-admin-message="(promo) => openAdminModal(promo)" />
+                <RejectedPromos
+                    v-show="activeTab === ProfileTab.Rejected"
+                    :promos="props.rejectedPromos"
+                    @show-admin-message="(promo) => openAdminModal(promo)"
+                />
                 <ModalWindow :is-open="isAdminModalOpen" title="Сообщение от администрации" @close="closeAdminModal">
                     <AdminMessageContent :promo="selectedRejectedPromo" />
                     <div class="flex items-center justify-center">
                         <button
                             type="button"
                             @click="closeAdminModal"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             ОК
                         </button>

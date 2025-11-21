@@ -45,13 +45,7 @@ const props = withDefaults(defineProps<Props>(), {
         </button>
         <Tooltip id="tooltip-delete" text="Удалить" :show="props.showDelete" />
 
-        <button
-            v-if="props.showApprove"
-            type="button"
-            data-tooltip-target="tooltip-approve"
-            data-tooltip-placement="top"
-            class="relative"
-        >
+        <button v-if="props.showApprove" type="button" data-tooltip-target="tooltip-approve" data-tooltip-placement="top" class="relative">
             <ApproveIcon />
         </button>
         <Tooltip id="tooltip-approve" text="Одобрить" :show="props.showApprove" />
