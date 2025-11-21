@@ -51,7 +51,7 @@ class HandleInertiaRequests extends Middleware
 
         $userData = null;
         if ($user && ! $request->routeIs('logout')) {
-            $userData = UserData::fromModel($user, loadRoles: false);
+            $userData = UserData::fromModel($user, loadRoles: true);
         }
 
         return [

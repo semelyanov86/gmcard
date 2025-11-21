@@ -19,6 +19,8 @@ final class PromoListItemData extends Data
         public ?string $startedAt,
         public ?string $availableTill,
         public ?string $code,
+        public ?string $rejectionReason = null,
+        public ?string $rejectionMessage = null,
     ) {}
 
     public static function fromPromo(Promo $promo): self
@@ -34,6 +36,8 @@ final class PromoListItemData extends Data
             startedAt: $promo->started_at?->toIso8601String(),
             availableTill: $promo->available_till?->toIso8601String(),
             code: $promo->code,
+            rejectionReason: $promo->rejection_reason,
+            rejectionMessage: $promo->rejection_message,
         );
     }
 

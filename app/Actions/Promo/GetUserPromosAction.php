@@ -27,6 +27,7 @@ final readonly class GetUserPromosAction
             'completedPromos' => $this->mapPromos($user->completedPromos()->get()),
             'draftPromos' => $this->mapPromos($user->draftPromos()->get()),
             'moderationPromos' => $this->mapPromos($user->moderationPromos()->get()),
+            'rejectedPromos' => $this->mapPromos($user->rejectedPromos()->get()),
         ];
     }
 

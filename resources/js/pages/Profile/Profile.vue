@@ -11,11 +11,14 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
+import ModalWindow from '@/components/ModalWindow.vue';
+import AdminMessageContent from '@/components/AdminMessageContent.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
 import { Link, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
+import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 
 const page = usePage<AppPageProps>();
 
@@ -27,18 +30,26 @@ const props = defineProps<{
     activePromos: any[];
     completedPromos: any[];
     draftPromos: any[];
+    rejectedPromos: any[];
     moderationPromos: any[];
 }>();
 
 const activeTab = ref(ProfileTab.Profile);
 const isAdminModalOpen = ref(false);
+const selectedRejectedPromo = ref<any>(null);
 
-const openAdminModal = () => {
+const isModerator = computed(() => {
+    return page.props.userData?.role && MODERATOR_ROLES.includes(page.props.userData.role);
+});
+
+const openAdminModal = (promo: any) => {
+    selectedRejectedPromo.value = promo;
     isAdminModalOpen.value = true;
 };
 
 const closeAdminModal = () => {
     isAdminModalOpen.value = false;
+    selectedRejectedPromo.value = null;
 };
 </script>
 
@@ -167,50 +178,27 @@ const closeAdminModal = () => {
                     </div>
                     <div></div>
                 </div>
-                <ModerationPromos v-show="activeTab === ProfileTab.Moderation" :promos="props.moderationPromos" />
+                <ModerationPromos
+                    v-if="isModerator && activeTab === ProfileTab.Moderation"
+                    :promos="props.moderationPromos"
+                />
                 <ActivePromos v-show="activeTab === ProfileTab.Active" :promos="props.activePromos" />
                 <CompletedPromos v-show="activeTab === ProfileTab.Completed" :promos="props.completedPromos" />
                 <DraftPromos v-show="activeTab === ProfileTab.Drafts" :promos="props.draftPromos" />
-                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" @show-admin-message="openAdminModal" />
-                <div
-                    class="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/10"
-                    id="modalFromService"
-                    v-show="isAdminModalOpen"
-                    @click.self="closeAdminModal"
-                >
-                    <div class="relative z-50 flex w-600 flex-col overflow-hidden rounded-xl shadow-2xl">
-                        <div class="flex h-14 items-center justify-between bg-[#0066CC] px-4">
-                            <span class="text-2xl font-medium text-white">Сообщение от администрации</span>
-                            <button id="closeModal" type="button" @click="closeAdminModal">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="w-10 rounded-md text-white hover:bg-black/20"
-                                >
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="bg-white p-5">
-                            <textarea
-                                name=""
-                                id=""
-                                placeholder="Напишите что-нибудь"
-                                class="h-200 w-full rounded-lg border border-black/20 placeholder:font-semibold"
-                            ></textarea>
-                            <p class="text-sm text-black/70">
-                                Вы получили сообщение от администрации сервиса. В сообщении указываются причины, почему ваше объявление на данный
-                                момент не может быть опубликовано. Устраните данные нарушения и отправьте заявку на публикацию заново. После проверки,
-                                если все недочеты устранены - ваша акция будет опубликована. Подробнее в разделе
-                                <a href="/rules.html" class="text-blue-500">"GM Справка"</a>
-                            </p>
-                        </div>
+                <RejectedPromos v-show="activeTab === ProfileTab.Rejected" :promos="props.rejectedPromos" @show-admin-message="(promo) => openAdminModal(promo)" />
+                <ModalWindow :is-open="isAdminModalOpen" title="Сообщение от администрации" @close="closeAdminModal">
+                    <AdminMessageContent :promo="selectedRejectedPromo" />
+                    <div class="flex items-center justify-center">
+                        <button
+                            type="button"
+                            @click="closeAdminModal"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            ОК
+                        </button>
                     </div>
-                </div>
-                <ProfileSidebar v-model="activeTab" />
+                </ModalWindow>
+                <ProfileSidebar v-model="activeTab" :user-data="page.props.userData" />
             </div>
         </div>
     </section>

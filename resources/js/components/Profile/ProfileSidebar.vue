@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import ModerationButton from '@/components/Profile/ModerationButton.vue';
 import ProfileMenuItem from '@/components/Profile/ProfileMenuItem.vue';
+import type { UserDataModel } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
 import { Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 
 const activeTab = defineModel<ProfileTab>();
+
+const props = defineProps<{
+    userData?: UserDataModel | null;
+}>();
+
+const isAdminOrModerator = computed(() => {
+    return props.userData?.role && MODERATOR_ROLES.includes(props.userData.role);
+});
 </script>
 
 <template>
@@ -48,6 +59,10 @@ const activeTab = defineModel<ProfileTab>();
                 </p>
             </ul>
         </div>
-        <ModerationButton :is-active="activeTab === ProfileTab.Moderation" @click="activeTab = ProfileTab.Moderation" />
+        <ModerationButton
+            v-if="isAdminOrModerator"
+            :is-active="activeTab === ProfileTab.Moderation"
+            @click="activeTab = ProfileTab.Moderation"
+        />
     </div>
 </template>
