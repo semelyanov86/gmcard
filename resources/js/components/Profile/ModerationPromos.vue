@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import ModerationPromosList from '@/components/Moderation/ModerationPromosList.vue';
 import RejectPromoModal from '@/components/Moderation/RejectPromoModal.vue';
+import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 import type { UserDataModel } from '@/types';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
-import { usePage } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 
 const page = usePage();
 const userData = page.props.userData as UserDataModel | null;
@@ -33,9 +32,13 @@ const closeModal = () => {
 };
 
 const approvePromo = (promoId: number) => {
-    router.post(route('moderation.promos.approve', promoId), {}, {
-        preserveScroll: true,
-    });
+    router.post(
+        route('moderation.promos.approve', promoId),
+        {},
+        {
+            preserveScroll: true,
+        },
+    );
 };
 </script>
 
@@ -50,10 +53,5 @@ const approvePromo = (promoId: number) => {
         :on-reject="openRejectModal"
         :on-approve="approvePromo"
     />
-    <RejectPromoModal
-        v-if="isModerator && selectedPromoId !== null"
-        :promo-id="selectedPromoId"
-        :is-open="isModalOpen"
-        @close="closeModal"
-    />
+    <RejectPromoModal v-if="isModerator && selectedPromoId !== null" :promo-id="selectedPromoId" :is-open="isModalOpen" @close="closeModal" />
 </template>

@@ -22,37 +22,19 @@ const handleReject = (event: MouseEvent) => {
 
 <template>
     <div class="mt-7 flex flex-col items-center gap-4">
-        <button
-            type="button"
-            data-tooltip-target="tooltip-reject"
-            data-tooltip-placement="top"
-            class="relative"
-            @click.stop.prevent="handleReject"
-        >
+        <button type="button" data-tooltip-target="tooltip-reject" data-tooltip-placement="top" class="relative" @click.stop.prevent="handleReject">
             <DeleteIcon />
         </button>
         <Tooltip id="tooltip-reject" text="Отклонить" :show="true" />
 
-        <button
-            type="button"
-            data-tooltip-target="tooltip-approve"
-            data-tooltip-placement="top"
-            class="relative"
-            @click="props.onApprove?.()"
-        >
+        <button type="button" data-tooltip-target="tooltip-approve" data-tooltip-placement="top" class="relative" @click="props.onApprove?.()">
             <ApproveIcon />
         </button>
         <Tooltip id="tooltip-approve" text="Одобрить" :show="true" />
 
-        <Link
-            :href="route('promos.edit', props.promoId)"
-            data-tooltip-target="tooltip-edit"
-            data-tooltip-placement="top"
-            class="relative"
-        >
+        <Link :href="route('promos.edit', props.promoId)" data-tooltip-target="tooltip-edit" data-tooltip-placement="top" class="relative">
             <EditIcon />
         </Link>
         <Tooltip id="tooltip-edit" text="Редактировать" :show="true" />
     </div>
 </template>
-
