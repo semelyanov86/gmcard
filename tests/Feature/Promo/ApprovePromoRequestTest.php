@@ -68,4 +68,3 @@ class ApprovePromoRequestTest extends TestCase
         return Validator::make($data, $request->rules());
     }
 }
-

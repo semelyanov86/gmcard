@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PromoType extends Model
 {
+    /** @use HasFactory<\Database\Factories\PromoTypeFactory> */
     use HasFactory;
 
     protected $fillable = [

@@ -11,8 +11,9 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
 use App\Models\User;
-use App\ValueObjects\MoneyValueObject;
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
@@ -25,6 +26,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'name' => 'Old Title',
@@ -53,6 +55,7 @@ class UpdatePromoActionTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
         $startedAt = CarbonImmutable::now()->subDays(2);
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'started_at' => $startedAt,
@@ -68,6 +71,7 @@ class UpdatePromoActionTest extends TestCase
         $result = UpdatePromoAction::run($dto);
 
         $expectedAvailableTill = $startedAt->addDays(10);
+        $this->assertNotNull($result->available_till);
         $this->assertEqualsWithDelta(
             $expectedAvailableTill->timestamp,
             $result->available_till->timestamp,
@@ -79,6 +83,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'started_at' => null,
@@ -93,6 +98,7 @@ class UpdatePromoActionTest extends TestCase
         $result = UpdatePromoAction::run($dto);
 
         $after = CarbonImmutable::now();
+        $this->assertNotNull($result->available_till);
         $expectedMin = $before->addDays(7)->timestamp;
         $expectedMax = $after->addDays(7)->timestamp;
         $actualTimestamp = $result->available_till->timestamp;
@@ -105,6 +111,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create(['user_id' => $user->id]);
         $oldCategories = Category::factory()->count(2)->create();
         $promo->categories()->attach($oldCategories->pluck('id')->toArray());
@@ -118,14 +125,19 @@ class UpdatePromoActionTest extends TestCase
 
         $promo->refresh();
         $this->assertCount(3, $promo->categories);
-        $this->assertTrue($promo->categories->contains($newCategories->first()));
-        $this->assertFalse($promo->categories->contains($oldCategories->first()));
+        $firstNewCategory = $newCategories->first();
+        assert($firstNewCategory instanceof Category);
+        $this->assertTrue($promo->categories->contains($firstNewCategory));
+        $firstOldCategory = $oldCategories->first();
+        assert($firstOldCategory instanceof Category);
+        $this->assertFalse($promo->categories->contains($firstOldCategory));
     }
 
     public function test_syncs_cities(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create(['user_id' => $user->id]);
         $oldCities = City::factory()->count(2)->create();
         $promo->cities()->attach($oldCities->pluck('id')->toArray());
@@ -139,14 +151,19 @@ class UpdatePromoActionTest extends TestCase
 
         $promo->refresh();
         $this->assertCount(3, $promo->cities);
-        $this->assertTrue($promo->cities->contains($newCities->first()));
-        $this->assertFalse($promo->cities->contains($oldCities->first()));
+        $firstNewCity = $newCities->first();
+        assert($firstNewCity instanceof City);
+        $this->assertTrue($promo->cities->contains($firstNewCity));
+        $firstOldCity = $oldCities->first();
+        assert($firstOldCity instanceof City);
+        $this->assertFalse($promo->cities->contains($firstOldCity));
     }
 
     public function test_sets_draft_status_when_is_draft_is_true(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'moderation_status' => PromoModerationStatus::PENDING,
@@ -169,6 +186,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'moderation_status' => PromoModerationStatus::REJECTED,
@@ -195,6 +213,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'moderation_status' => PromoModerationStatus::DRAFT,
@@ -232,6 +251,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'img' => 'existing-photo.jpg',
@@ -253,6 +273,7 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'img' => 'old-photo.jpg',
@@ -271,54 +292,67 @@ class UpdatePromoActionTest extends TestCase
     }
 
     /**
-     * @param  Promo|null  $promo
-     * @param  User  $user
-     * @param  \Illuminate\Database\Eloquent\Collection<int, Category>  $categories
-     * @param  \Illuminate\Database\Eloquent\Collection<int, City>  $cities
-     * @param  array<string, mixed>  $override
-     * @return CreatePromoData
+     * @param  Collection<int, Model>  $categories
+     * @param  Collection<int, Model>  $cities
+     * @param  array{title?: string, description?: string, conditions?: string|null, durationDays?: int, isDraft?: bool, id?: int|null, photos?: array<int, string>|null, existingPhoto?: string|null}  $override
      */
-    private function createUpdateDto($promo, User $user, $categories, $cities, array $override = []): CreatePromoData
+    private function createUpdateDto(?Promo $promo, User $user, Collection $categories, Collection $cities, array $override = []): CreatePromoData
     {
-        $data = array_merge([
-            'id' => $promo?->id,
-            'userId' => $user->id,
-            'title' => 'Test Promo',
-            'promoTypeId' => 1,
-            'description' => 'Description',
-            'conditions' => null,
-            'durationDays' => 7,
-            'categoryIds' => $categories->pluck('id')->map(fn ($id) => (string) $id)->toArray(),
-            'cityIds' => $cities->pluck('id')->toArray(),
-            'isDraft' => false,
-        ], $override);
-
         return new CreatePromoData(
-            id: $data['id'] ?? null,
-            userId: $data['userId'],
-            title: $data['title'],
-            promoTypeId: $data['promoTypeId'],
-            description: $data['description'],
-            conditions: $data['conditions'] ?? null,
-            durationDays: $data['durationDays'],
-            categoryIds: $data['categoryIds'],
-            cityIds: $data['cityIds'],
-            discount: $data['discount'] ?? null,
-            cashback: $data['cashback'] ?? null,
-            minimumOrder: $data['minimumOrder'] ?? null,
-            promoCode: $data['promoCode'] ?? null,
-            freeDelivery: $data['freeDelivery'] ?? false,
-            freeDeliveryFrom: $data['freeDeliveryFrom'] ?? null,
-            showInBanner: $data['showInBanner'] ?? false,
-            useBonusBalance: $data['useBonusBalance'] ?? false,
-            youtubeUrl: $data['youtubeUrl'] ?? null,
-            socialLinks: $data['socialLinks'] ?? null,
-            schedule: $data['schedule'] ?? null,
-            addresses: $data['addresses'] ?? null,
-            photos: $data['photos'] ?? null,
-            existingPhoto: $data['existingPhoto'] ?? null,
-            isDraft: $data['isDraft'] ?? false,
+            id: $override['id'] ?? $promo?->id,
+            userId: $user->id,
+            title: $override['title'] ?? 'Test Promo',
+            promoTypeId: 1,
+            description: $override['description'] ?? 'Description',
+            conditions: $override['conditions'] ?? null,
+            durationDays: $override['durationDays'] ?? 7,
+            categoryIds: $this->getCategoryIds($categories),
+            cityIds: $this->getCityIds($cities),
+            discount: null,
+            cashback: null,
+            minimumOrder: null,
+            promoCode: null,
+            freeDelivery: false,
+            freeDeliveryFrom: null,
+            showInBanner: false,
+            useBonusBalance: false,
+            youtubeUrl: null,
+            socialLinks: null,
+            schedule: null,
+            addresses: null,
+            photos: $override['photos'] ?? null,
+            existingPhoto: $override['existingPhoto'] ?? null,
+            isDraft: $override['isDraft'] ?? false,
         );
     }
-}
 
+    /**
+     * @param  Collection<int, Model>  $categories
+     * @return array<int, string>
+     */
+    private function getCategoryIds(Collection $categories): array
+    {
+        $ids = [];
+        foreach ($categories as $category) {
+            /** @var Category $category */
+            $ids[] = (string) $category->id;
+        }
+
+        return $ids;
+    }
+
+    /**
+     * @param  Collection<int, Model>  $cities
+     * @return array<int, int>
+     */
+    private function getCityIds(Collection $cities): array
+    {
+        $ids = [];
+        foreach ($cities as $city) {
+            /** @var City $city */
+            $ids[] = (int) $city->id;
+        }
+
+        return $ids;
+    }
+}

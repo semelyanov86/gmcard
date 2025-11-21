@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -196,11 +198,11 @@ class PromoControllerTest extends TestCase
     }
 
     /**
-     * @param  \Illuminate\Database\Eloquent\Collection<int, Category>  $categories
-     * @param  \Illuminate\Database\Eloquent\Collection<int, City>  $cities
+     * @param  Collection<int, Model>  $categories
+     * @param  Collection<int, Model>  $cities
      * @return array<string, mixed>
      */
-    private function getValidData($categories, $cities): array
+    private function getValidData(Collection $categories, Collection $cities): array
     {
         $categoryIds = [];
         foreach ($categories as $category) {
