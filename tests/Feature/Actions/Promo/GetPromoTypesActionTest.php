@@ -6,7 +6,6 @@ namespace Tests\Feature\Actions\Promo;
 
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Data\PromoTypeData;
-use App\Enums\PromoTypeSizeEnum;
 use App\Models\PromoType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -63,4 +62,3 @@ class GetPromoTypesActionTest extends TestCase
         ]);
     }
 }
-

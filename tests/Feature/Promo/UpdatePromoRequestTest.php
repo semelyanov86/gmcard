@@ -81,7 +81,9 @@ class UpdatePromoRequestTest extends TestCase
      */
     private function getValidData(array $override = []): array
     {
+        /** @var \Illuminate\Database\Eloquent\Collection<int, Category> $categories */
         $categories = Category::factory()->count(1)->create();
+        /** @var \Illuminate\Database\Eloquent\Collection<int, City> $cities */
         $cities = City::factory()->count(1)->create();
 
         return array_merge([
@@ -109,4 +111,3 @@ class UpdatePromoRequestTest extends TestCase
         return $ids;
     }
 }
-

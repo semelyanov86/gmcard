@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -121,8 +123,12 @@ class CreatePromoControllerTest extends TestCase
         $promo->load(['categories', 'cities']);
         $this->assertCount(2, $promo->categories);
         $this->assertCount(2, $promo->cities);
-        $this->assertTrue($promo->categories->contains($categories->first()));
-        $this->assertTrue($promo->cities->contains($cities->first()));
+        $firstCategory = $categories->first();
+        assert($firstCategory instanceof Category);
+        $this->assertTrue($promo->categories->contains($firstCategory));
+        $firstCity = $cities->first();
+        assert($firstCity instanceof City);
+        $this->assertTrue($promo->cities->contains($firstCity));
     }
 
     public function test_store_creates_draft_promo_with_draft_message(): void
@@ -151,11 +157,11 @@ class CreatePromoControllerTest extends TestCase
     }
 
     /**
-     * @param  \Illuminate\Database\Eloquent\Collection<int, Category>  $categories
-     * @param  \Illuminate\Database\Eloquent\Collection<int, City>  $cities
+     * @param  Collection<int, Model>  $categories
+     * @param  Collection<int, Model>  $cities
      * @return array<string, mixed>
      */
-    private function getValidData($categories, $cities): array
+    private function getValidData(Collection $categories, Collection $cities): array
     {
         $categoryIds = [];
         foreach ($categories as $category) {

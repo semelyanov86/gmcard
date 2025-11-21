@@ -20,6 +20,9 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         RenameClassRector::class => [
             __DIR__ . '/tests/Feature/Promo/CreatePromoRequestTest.php',
+            __DIR__ . '/tests/Feature/Promo/ApprovePromoRequestTest.php',
+            __DIR__ . '/tests/Feature/Promo/RejectPromoRequestTest.php',
+            __DIR__ . '/tests/Feature/Promo/UpdatePromoRequestTest.php',
         ],
     ]);
 

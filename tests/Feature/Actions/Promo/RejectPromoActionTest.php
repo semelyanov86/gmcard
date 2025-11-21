@@ -48,11 +48,13 @@ class RejectPromoActionTest extends TestCase
     {
         /** @var User $moderator */
         $moderator = User::factory()->create();
+        /** @var User $approvedBy */
+        $approvedBy = User::factory()->create();
         /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'moderation_status' => PromoModerationStatus::APPROVED,
             'approved_at' => now()->subDay(),
-            'approved_by' => User::factory()->create()->id,
+            'approved_by' => $approvedBy->id,
             'approving_notes' => 'Looks good!',
         ]);
 
@@ -73,4 +75,3 @@ class RejectPromoActionTest extends TestCase
         ]);
     }
 }
-

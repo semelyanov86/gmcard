@@ -9,7 +9,6 @@ use App\Data\PromoListItemData;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\User;
-use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -42,6 +41,7 @@ class GetUserPromosActionTest extends TestCase
             'moderation_status' => PromoModerationStatus::DRAFT,
         ]);
 
+        /** @var Promo $moderationPromo */
         $moderationPromo = Promo::factory()->create([
             'user_id' => $user->id,
             'started_at' => null,
@@ -80,6 +80,7 @@ class GetUserPromosActionTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
 
+        /** @var Promo $promo */
         $promo = Promo::factory()->create([
             'user_id' => $user->id,
             'name' => 'Test Promo',
@@ -92,10 +93,10 @@ class GetUserPromosActionTest extends TestCase
         $result = GetUserPromosAction::run($user);
 
         $this->assertCount(1, $result['activePromos']);
-        $this->assertInstanceOf(PromoListItemData::class, $result['activePromos'][0]);
-        $this->assertEquals($promo->id, $result['activePromos'][0]->id);
-        $this->assertEquals('Test Promo', $result['activePromos'][0]->name);
-        $this->assertEquals('Test description', $result['activePromos'][0]->description);
+        $firstActivePromo = $result['activePromos'][0];
+        $this->assertInstanceOf(PromoListItemData::class, $firstActivePromo);
+        $this->assertEquals($promo->id, $firstActivePromo->id);
+        $this->assertEquals('Test Promo', $firstActivePromo->name);
+        $this->assertEquals('Test description', $firstActivePromo->description);
     }
 }
-

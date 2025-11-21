@@ -25,4 +25,3 @@ class PromoTypeFactory extends Factory
         ];
     }
 }
-

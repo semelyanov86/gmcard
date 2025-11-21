@@ -43,8 +43,8 @@ class CompletePromoActionTest extends TestCase
         $after = CarbonImmutable::now();
 
         $promo->refresh();
+        $this->assertNotNull($promo->available_till);
         $this->assertGreaterThanOrEqual($before->timestamp, $promo->available_till->timestamp);
         $this->assertLessThanOrEqual($after->timestamp, $promo->available_till->timestamp);
     }
 }
-
