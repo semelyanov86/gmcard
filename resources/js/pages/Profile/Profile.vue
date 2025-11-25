@@ -78,13 +78,13 @@ const closeAdminModal = () => {
                                             <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
                                                 <h2 class="text-base">Выберите длинное изображение</h2>
                                                 <div class="flex gap-4">
-                                                    <button id="cancelButton2" class="rounded-md bg-divider-light px-10 py-2 text-black hover:bg-divider">
+                                                    <button
+                                                        id="cancelButton2"
+                                                        class="bg-divider-light hover:bg-divider rounded-md px-10 py-2 text-black"
+                                                    >
                                                         Отмена
                                                     </button>
-                                                    <button
-                                                        id="cropButton2"
-                                                        class="hover:bg-opacity-80 rounded-md bg-button px-10 py-2 text-white"
-                                                    >
+                                                    <button id="cropButton2" class="hover:bg-opacity-80 bg-button rounded-md px-10 py-2 text-white">
                                                         Сохранить
                                                     </button>
                                                 </div>
@@ -102,7 +102,7 @@ const closeAdminModal = () => {
                                             alt="Account"
                                         />
                                         <div
-                                            class="absolute bottom-0 flex hidden h-full w-full items-center justify-center bg-divider-dark"
+                                            class="bg-divider-dark absolute bottom-0 flex hidden h-full w-full items-center justify-center"
                                             id="photoChangeBtn"
                                         >
                                             <svg
@@ -149,7 +149,7 @@ const closeAdminModal = () => {
                                     <div class="w-full border-t border-b py-2">
                                         <p class="font-semibold">Баланс</p>
                                         <div class="flex items-center gap-4">
-                                            <span class="text-3xl text-header">{{ page.props.userData?.balance || 0 }} руб.</span>
+                                            <span class="text-header text-3xl">{{ page.props.userData?.balance || 0 }} руб.</span>
                                             <p class="cursor-pointer text-sm text-primary hover:underline">Пополнить</p>
                                             <p
                                                 data-tooltip-target="tooltip-not-money"
@@ -161,7 +161,7 @@ const closeAdminModal = () => {
                                             <div
                                                 id="tooltip-not-money"
                                                 role="tooltip"
-                                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-tooltip px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                                                class="tooltip bg-tooltip invisible absolute z-10 inline-block rounded-lg px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
                                             >
                                                 Вывод средств недоступно
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
@@ -193,7 +193,7 @@ const closeAdminModal = () => {
                         <button
                             type="button"
                             @click="closeAdminModal"
-                            class="rounded-lg bg-button px-5 py-2.5 text-center text-base font-medium text-white hover:opacity-90 focus:ring-4 focus:ring-button focus:outline-none"
+                            class="bg-button focus:ring-button rounded-lg px-5 py-2.5 text-center text-base font-medium text-white hover:opacity-90 focus:ring-4 focus:outline-none"
                         >
                             ОК
                         </button>

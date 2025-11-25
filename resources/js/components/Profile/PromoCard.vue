@@ -39,10 +39,10 @@ function handleImageError(e: Event) {
             </div>
         </div>
         <div class="mt-5 flex items-center justify-between">
-            <span class="text-sm text-icon">{{ props.promo.created_at }}</span>
+            <span class="text-icon text-sm">{{ props.promo.created_at }}</span>
             <div class="flex items-center gap-1">
                 <LikeIcon />
-                <span class="text-sm text-icon">{{ props.promo.likes_count || 0 }}</span>
+                <span class="text-icon text-sm">{{ props.promo.likes_count || 0 }}</span>
             </div>
         </div>
     </div>
