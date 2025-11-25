@@ -86,8 +86,8 @@ class CreatePromoControllerTest extends TestCase
 
     public function test_guests_cannot_store_promo(): void
     {
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $response = $this->post(route('promos.store'), $this->getValidData($categories, $cities));
 
@@ -137,8 +137,8 @@ class CreatePromoControllerTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create(['tariff_plan_id' => null]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
         $data = $this->getValidData($categories, $cities);
         $data['is_draft'] = true;
 

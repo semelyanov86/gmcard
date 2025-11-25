@@ -55,8 +55,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -83,8 +83,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -112,7 +112,7 @@ class CreatePromoActionTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
         $categories = Category::factory()->count(3)->create();
-        $cities = City::factory()->count(1)->create();
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -140,7 +140,7 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
         $cities = City::factory()->count(3)->create();
 
         $dto = new CreatePromoData(
@@ -169,8 +169,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -195,8 +195,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -221,8 +221,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -247,8 +247,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -279,8 +279,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -315,7 +315,7 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,

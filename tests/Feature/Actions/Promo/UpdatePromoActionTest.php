@@ -61,8 +61,8 @@ class UpdatePromoActionTest extends TestCase
             'started_at' => $startedAt,
             'available_till' => $startedAt->addDays(5),
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'durationDays' => 10,
@@ -88,8 +88,8 @@ class UpdatePromoActionTest extends TestCase
             'user_id' => $user->id,
             'started_at' => null,
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $before = CarbonImmutable::now();
 
@@ -117,7 +117,7 @@ class UpdatePromoActionTest extends TestCase
         $promo->categories()->attach($oldCategories->pluck('id')->toArray());
 
         $newCategories = Category::factory()->count(3)->create();
-        $cities = City::factory()->count(1)->create();
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $newCategories, $cities);
 
@@ -145,7 +145,7 @@ class UpdatePromoActionTest extends TestCase
         $promo->cities()->attach($oldCities->pluck('id')->toArray());
 
         $newCities = City::factory()->count(3)->create();
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $newCities);
 
@@ -173,8 +173,8 @@ class UpdatePromoActionTest extends TestCase
             'moderation_status' => PromoModerationStatus::PENDING,
             'started_at' => CarbonImmutable::now(),
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'isDraft' => true,
@@ -198,8 +198,8 @@ class UpdatePromoActionTest extends TestCase
             'rejected_by' => 1,
             'rejection_reason' => 'Test rejection',
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'isDraft' => false,
@@ -222,8 +222,8 @@ class UpdatePromoActionTest extends TestCase
             'user_id' => $user->id,
             'moderation_status' => PromoModerationStatus::DRAFT,
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'isDraft' => false,
@@ -238,8 +238,8 @@ class UpdatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto(null, $user, $categories, $cities, [
             'id' => null,
@@ -260,8 +260,8 @@ class UpdatePromoActionTest extends TestCase
             'user_id' => $user->id,
             'img' => 'existing-photo.jpg',
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'photos' => null,
@@ -282,8 +282,8 @@ class UpdatePromoActionTest extends TestCase
             'user_id' => $user->id,
             'img' => 'old-photo.jpg',
         ]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = $this->createUpdateDto($promo, $user, $categories, $cities, [
             'photos' => null,
