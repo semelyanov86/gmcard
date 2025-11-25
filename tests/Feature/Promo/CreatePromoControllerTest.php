@@ -124,10 +124,12 @@ class CreatePromoControllerTest extends TestCase
         $this->assertCount(2, $promo->categories);
         $this->assertCount(2, $promo->cities);
         $firstCategory = $categories->first();
-        assert($firstCategory instanceof Category);
+        $this->assertNotNull($firstCategory);
+        $this->assertInstanceOf(Category::class, $firstCategory);
         $this->assertTrue($promo->categories->contains($firstCategory));
         $firstCity = $cities->first();
-        assert($firstCity instanceof City);
+        $this->assertNotNull($firstCity);
+        $this->assertInstanceOf(City::class, $firstCity);
         $this->assertTrue($promo->cities->contains($firstCity));
     }
 

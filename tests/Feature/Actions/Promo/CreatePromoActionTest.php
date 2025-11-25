@@ -131,7 +131,8 @@ class CreatePromoActionTest extends TestCase
         $promo = Promo::with('categories')->findOrFail($dto->id);
         $this->assertCount(3, $promo->categories);
         $firstCategory = $categories->first();
-        assert($firstCategory instanceof Category);
+        $this->assertNotNull($firstCategory);
+        $this->assertInstanceOf(Category::class, $firstCategory);
         $this->assertTrue($promo->categories->contains($firstCategory));
     }
 
@@ -159,7 +160,8 @@ class CreatePromoActionTest extends TestCase
         $promo = Promo::with('cities')->findOrFail($dto->id);
         $this->assertCount(3, $promo->cities);
         $firstCity = $cities->first();
-        assert($firstCity instanceof City);
+        $this->assertNotNull($firstCity);
+        $this->assertInstanceOf(City::class, $firstCity);
         $this->assertTrue($promo->cities->contains($firstCity));
     }
 
