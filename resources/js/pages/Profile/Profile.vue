@@ -78,7 +78,7 @@ const closeAdminModal = () => {
                                             <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
                                                 <h2 class="text-base">Выберите длинное изображение</h2>
                                                 <div class="flex gap-4">
-                                                    <button id="cancelButton2" class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20">
+                                                    <button id="cancelButton2" class="rounded-md bg-divider-light px-10 py-2 text-black hover:bg-divider">
                                                         Отмена
                                                     </button>
                                                     <button
@@ -102,7 +102,7 @@ const closeAdminModal = () => {
                                             alt="Account"
                                         />
                                         <div
-                                            class="absolute bottom-0 flex hidden h-full w-full items-center justify-center bg-black/50"
+                                            class="absolute bottom-0 flex hidden h-full w-full items-center justify-center bg-divider-dark"
                                             id="photoChangeBtn"
                                         >
                                             <svg
@@ -193,7 +193,7 @@ const closeAdminModal = () => {
                         <button
                             type="button"
                             @click="closeAdminModal"
-                            class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            class="rounded-lg bg-button px-5 py-2.5 text-center text-base font-medium text-white hover:opacity-90 focus:ring-4 focus:ring-button focus:outline-none"
                         >
                             ОК
                         </button>

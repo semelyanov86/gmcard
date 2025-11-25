@@ -3202,9 +3202,15 @@
     --color-hover: #F2F6FB;
     --color-yellow: #F9D914;
     --color-yellow-dark: #F4D710;
+    --color-divider: rgba(0, 0, 0, 0.2);
+    --color-divider-light: rgba(0, 0, 0, 0.1);
+    --color-divider-dark: rgba(0, 0, 0, 0.5);
+    --color-divider-darker: rgba(0, 0, 0, 0.8);
+    --color-divider-border: rgba(0, 0, 0, 0.4);
+    --color-muted: rgba(0, 0, 0, 0.5);
+    --color-muted-light: rgba(0, 0, 0, 0.3);
 }
 
-/* Background Colors */
 .bg-secondary {
     background-color: var(--color-secondary);
 }
@@ -3273,6 +3279,10 @@
     border-color: var(--color-button);
 }
 
+.focus\:ring-button:focus {
+    --tw-ring-color: var(--color-button);
+}
+
 .bg-hover {
     background-color: var(--color-hover);
 }
@@ -3283,6 +3293,57 @@
 
 .bg-yellow-dark {
     background-color: var(--color-yellow-dark);
+}
+
+/* Divider Colors */
+.bg-divider {
+    background-color: var(--color-divider);
+}
+
+.bg-divider-light {
+    background-color: var(--color-divider-light);
+}
+
+.bg-divider-dark {
+    background-color: var(--color-divider-dark);
+}
+
+.bg-divider-darker {
+    background-color: var(--color-divider-darker);
+}
+
+.hover\:bg-divider-light:hover {
+    background-color: var(--color-divider-light);
+}
+
+.hover\:bg-divider:hover {
+    background-color: var(--color-divider);
+}
+
+/* Border Divider */
+.border-divider {
+    border-color: var(--color-divider);
+}
+
+.border-divider-light {
+    border-color: var(--color-divider-light);
+}
+
+.border-divider-dark {
+    border-color: var(--color-divider-border);
+}
+
+/* Text Muted */
+.text-muted {
+    color: var(--color-muted);
+}
+
+.text-muted-light {
+    color: var(--color-muted-light);
+}
+
+.hover\:text-muted-light:hover {
+    color: var(--color-muted-light);
 }
 
 .bg-promo-container {

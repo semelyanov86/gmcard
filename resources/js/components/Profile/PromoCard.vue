@@ -24,17 +24,17 @@ function handleImageError(e: Event) {
 
 <template>
     <div>
-        <div class="main_card relative mt-7 w-[262px] rounded-xl lg:w-[232px]">
+        <div class="main_card promo-card relative mt-7 rounded-xl">
             <img :src="imageSrc" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
+                <img class="promo-card-discount-badge" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>
-            <div class="down_block h-[136px] overflow-hidden rounded-b-3xl bg-white text-[15px] text-black lg:h-[150px]">
+            <div class="down_block promo-card-content overflow-hidden rounded-b-3xl bg-white text-black">
                 <h3 class="line-clamp-2 px-6 py-4">{{ props.promo.description || 'Без описания' }}</h3>
-                <div class="h-[1px] w-full bg-black opacity-10"></div>
+                <div class="promo-card-divider w-full bg-black opacity-10"></div>
                 <div class="flex items-center justify-between px-6 py-4">
-                    <span class="text-[17px] font-bold">{{ props.promo.type }}</span>
-                    <img src="/images/png/profile/sale4.png" class="h-[26px] w-[26px]" alt="скидка на товар" />
+                    <span class="promo-card-type font-bold">{{ props.promo.type }}</span>
+                    <img src="/images/png/profile/sale4.png" class="promo-card-icon" alt="скидка на товар" />
                 </div>
             </div>
         </div>
@@ -47,3 +47,42 @@ function handleImageError(e: Event) {
         </div>
     </div>
 </template>
+
+<style scoped>
+.promo-card {
+    width: 262px;
+}
+
+.promo-card-discount-badge {
+    height: 52px;
+    width: 77px;
+}
+
+.promo-card-content {
+    height: 136px;
+    font-size: 15px;
+}
+
+.promo-card-divider {
+    height: 1px;
+}
+
+.promo-card-type {
+    font-size: 17px;
+}
+
+.promo-card-icon {
+    height: 26px;
+    width: 26px;
+}
+
+@media (min-width: 1024px) {
+    .promo-card {
+        width: 232px;
+    }
+
+    .promo-card-content {
+        height: 150px;
+    }
+}
+</style>
