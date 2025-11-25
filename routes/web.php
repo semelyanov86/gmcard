@@ -29,7 +29,6 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::post('/promos/{promo}/complete', [PromoController::class, 'complete'])->name('promos.complete');
 
     Route::middleware('can:moderate promos')->group(function (): void {
-        Route::get('/moderation/promos', [ModerationController::class, 'index'])->name('moderation.promos.index');
         Route::post('/moderation/promos/{promo}/approve', [ModerationController::class, 'approve'])->name('moderation.promos.approve');
         Route::post('/moderation/promos/{promo}/reject', [ModerationController::class, 'reject'])->name('moderation.promos.reject');
     });

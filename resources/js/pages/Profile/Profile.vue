@@ -83,7 +83,7 @@ const closeAdminModal = () => {
                                                     </button>
                                                     <button
                                                         id="cropButton2"
-                                                        class="hover:bg-opacity-80 rounded-md bg-[#0066cb] px-10 py-2 text-white"
+                                                        class="hover:bg-opacity-80 rounded-md bg-button px-10 py-2 text-white"
                                                     >
                                                         Сохранить
                                                     </button>
@@ -130,50 +130,50 @@ const closeAdminModal = () => {
                                 </div>
                                 <div class="flex flex-col items-start gap-3">
                                     <h2 class="w-full text-3xl">{{ props.user?.name || 'Гость' }}</h2>
-                                    <p class="w-full text-[#1d89f2]">{{ page.props.userData?.age || 'Возраст не указан' }} лет</p>
+                                    <p class="w-full text-primary">{{ page.props.userData?.age || 'Возраст не указан' }} лет</p>
                                     <ul>
                                         <li>
                                             <span>Место работы:</span>
-                                            <span class="text-[#1d89f2]">{{ page.props.userData?.job || 'Не указано' }}</span>
+                                            <span class="text-primary">{{ page.props.userData?.job || 'Не указано' }}</span>
                                         </li>
                                         <li>
                                             <span>Место проживания:</span>
-                                            <span class="text-[#1d89f2]">{{ page.props.userData?.city || 'Не указано' }}</span>
+                                            <span class="text-primary">{{ page.props.userData?.city || 'Не указано' }}</span>
                                         </li>
                                         <li>
                                             <span>Страна:</span>
-                                            <span class="text-[#1d89f2]">{{ page.props.userData?.country || 'Не указано' }}</span>
+                                            <span class="text-primary">{{ page.props.userData?.country || 'Не указано' }}</span>
                                         </li>
                                     </ul>
-                                    <p class="w-full text-[#1d89f2]">{{ props.user?.email }}</p>
+                                    <p class="w-full text-primary">{{ props.user?.email }}</p>
                                     <div class="w-full border-t border-b py-2">
                                         <p class="font-semibold">Баланс</p>
                                         <div class="flex items-center gap-4">
-                                            <span class="text-3xl text-[#152041]">{{ page.props.userData?.balance || 0 }} руб.</span>
-                                            <p class="cursor-pointer text-sm text-[#1d89f2] hover:underline">Пополнить</p>
+                                            <span class="text-3xl text-header">{{ page.props.userData?.balance || 0 }} руб.</span>
+                                            <p class="cursor-pointer text-sm text-primary hover:underline">Пополнить</p>
                                             <p
                                                 data-tooltip-target="tooltip-not-money"
                                                 data-tooltip-placement="top"
-                                                class="relative cursor-pointer text-sm text-[#1d89f2] hover:underline"
+                                                class="relative cursor-pointer text-sm text-primary hover:underline"
                                             >
                                                 Вывести
                                             </p>
                                             <div
                                                 id="tooltip-not-money"
                                                 role="tooltip"
-                                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-[#041f35] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-tooltip px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
                                             >
                                                 Вывод средств недоступно
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <Link :href="route('promos.create')" class="rounded-lg bg-[#1d89f2] px-4 py-2 text-white hover:opacity-90"
+                                    <Link :href="route('promos.create')" class="rounded-lg bg-primary px-4 py-2 text-white hover:opacity-90"
                                         >Запустить акцию</Link
                                     >
                                 </div>
                             </div>
-                            <p class="cursor-pointer text-[#1d89f2] hover:underline">Редактировать</p>
+                            <p class="cursor-pointer text-primary hover:underline">Редактировать</p>
                         </div>
                     </div>
                     <div></div>

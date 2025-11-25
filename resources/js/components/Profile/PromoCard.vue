@@ -29,7 +29,7 @@ function handleImageError(e: Event) {
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
                 <img class="h-[52px] w-[77px]" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>
-            <div class="down_block h-[136px] overflow-hidden rounded-b-3xl bg-white text-[15px] text-[#000000] lg:h-[150px]">
+            <div class="down_block h-[136px] overflow-hidden rounded-b-3xl bg-white text-[15px] text-black lg:h-[150px]">
                 <h3 class="line-clamp-2 px-6 py-4">{{ props.promo.description || 'Без описания' }}</h3>
                 <div class="h-[1px] w-full bg-black opacity-10"></div>
                 <div class="flex items-center justify-between px-6 py-4">
@@ -39,10 +39,10 @@ function handleImageError(e: Event) {
             </div>
         </div>
         <div class="mt-5 flex items-center justify-between">
-            <span class="text-sm" style="color: #648099">{{ props.promo.created_at }}</span>
+            <span class="text-sm text-icon">{{ props.promo.created_at }}</span>
             <div class="flex items-center gap-1">
                 <LikeIcon />
-                <span class="text-sm" style="color: #648099">{{ props.promo.likes_count || 0 }}</span>
+                <span class="text-sm text-icon">{{ props.promo.likes_count || 0 }}</span>
             </div>
         </div>
     </div>

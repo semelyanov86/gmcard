@@ -33,20 +33,21 @@ const handleClick = () => {
         >
             <div class="relative flex w-full flex-col items-center justify-center">
                 <div :class="`image-${category.icon_index ?? index + 1}`" class="h-13 w-13 rounded-lg px-4 py-3" />
-                <p
-                    class="mt-2 line-clamp-3 w-full px-1 text-center font-bold break-words text-white lg:text-sm"
-                    style="
-                        min-height: 5em;
-                        max-height: 5em;
-                        overflow: hidden;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 3;
-                        -webkit-box-orient: vertical;
-                    "
-                >
+                <p class="category-name mt-2 line-clamp-3 w-full px-1 text-center font-bold break-words text-white lg:text-sm">
                     {{ category.name }}
                 </p>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.category-name {
+    min-height: 5em;
+    max-height: 5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+</style>

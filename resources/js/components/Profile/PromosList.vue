@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <div class="w-3/4 rounded-2xl p-10" style="background-color: #063965" :id="props.containerId">
+    <div class="w-3/4 rounded-2xl p-10 bg-promo-container" :id="props.containerId">
         <h2 class="mb-5 text-4xl text-white">{{ props.title }}</h2>
 
         <div v-if="!props.promos || props.promos.length === 0" class="py-10 text-center text-white">

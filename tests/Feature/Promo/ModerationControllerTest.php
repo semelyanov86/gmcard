@@ -34,48 +34,6 @@ class ModerationControllerTest extends TestCase
         $moderatorRole->givePermissionTo('moderate promos');
     }
 
-    public function test_index_requires_authentication(): void
-    {
-        $response = $this->get(route('moderation.promos.index'));
-
-        $response->assertRedirect('/login');
-    }
-
-    public function test_index_requires_moderation_permission(): void
-    {
-        /** @var User $user */
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get(route('moderation.promos.index'));
-
-        $response->assertStatus(403);
-    }
-
-    public function test_index_shows_pending_promos(): void
-    {
-        /** @var User $moderator */
-        $moderator = User::factory()->create();
-        $moderator->assignRole('moderator');
-        /** @var Promo $pendingPromo */
-        $pendingPromo = Promo::factory()->create([
-            'moderation_status' => PromoModerationStatus::PENDING,
-        ]);
-        /** @var Promo $approvedPromo */
-        $approvedPromo = Promo::factory()->create([
-            'moderation_status' => PromoModerationStatus::APPROVED,
-        ]);
-
-        $response = $this->actingAs($moderator)->get(route('moderation.promos.index'));
-
-        $response->assertStatus(200);
-        $response->assertInertia(
-            fn ($page) => $page
-                ->has('pendingPromos')
-                ->where('pendingPromos.0.id', $pendingPromo->id)
-                ->missing('pendingPromos.1')
-        );
-    }
-
     public function test_approve_requires_authentication(): void
     {
         /** @var Promo $promo */

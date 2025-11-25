@@ -47,7 +47,7 @@ const submitReject = () => {
                     minlength="10"
                     maxlength="1000"
                     rows="4"
-                    class="w-full rounded-lg border border-black/20 p-2 placeholder:font-semibold focus:border-[#0066cb] focus:outline-none"
+                    class="w-full rounded-lg border border-black/20 p-2 placeholder:font-semibold focus:border-button focus:outline-none"
                     placeholder="Укажите причину отклонения акции"
                 ></textarea>
                 <p v-if="form.errors.rejection_reason" class="mt-1 text-sm text-red-500">
@@ -61,7 +61,7 @@ const submitReject = () => {
                     v-model="form.message"
                     maxlength="500"
                     rows="3"
-                    class="w-full rounded-lg border border-black/20 p-2 placeholder:font-semibold focus:border-[#0066cb] focus:outline-none"
+                    class="w-full rounded-lg border border-black/20 p-2 placeholder:font-semibold focus:border-button focus:outline-none"
                     placeholder="Дополнительное сообщение для владельца акции"
                 ></textarea>
                 <p v-if="form.errors.message" class="mt-1 text-sm text-red-500">{{ form.errors.message }}</p>
