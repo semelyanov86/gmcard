@@ -44,7 +44,7 @@ class AdminPanelAccessTest extends TestCase
 
         $response = $this->actingAs($user)->get('/admin');
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_admin_users_can_access_admin_panel(): void
@@ -55,7 +55,7 @@ class AdminPanelAccessTest extends TestCase
 
         $response = $this->actingAs($user)->get('/admin');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_super_admin_users_can_access_admin_panel(): void
@@ -66,7 +66,7 @@ class AdminPanelAccessTest extends TestCase
 
         $response = $this->actingAs($user)->get('/admin');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_moderator_users_can_access_admin_panel(): void
@@ -77,7 +77,7 @@ class AdminPanelAccessTest extends TestCase
 
         $response = $this->actingAs($user)->get('/admin');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_unauthenticated_users_cannot_access_admin_subpages(): void
@@ -128,7 +128,7 @@ class AdminPanelAccessTest extends TestCase
 
         foreach ($adminRoutes as $route) {
             $response = $this->actingAs($user)->get($route);
-            $response->assertStatus(403);
+            $response->assertForbidden();
         }
     }
 }

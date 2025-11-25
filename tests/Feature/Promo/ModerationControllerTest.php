@@ -43,7 +43,7 @@ class ModerationControllerTest extends TestCase
 
         $response = $this->post(route('moderation.promos.approve', $promo));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_approve_requires_moderation_permission(): void
@@ -57,7 +57,7 @@ class ModerationControllerTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('moderation.promos.approve', $promo));
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_approve_approves_promo(): void
@@ -94,7 +94,7 @@ class ModerationControllerTest extends TestCase
             'rejection_reason' => 'Test rejection reason',
         ]);
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_reject_requires_moderation_permission(): void
@@ -110,7 +110,7 @@ class ModerationControllerTest extends TestCase
             'rejection_reason' => 'Test rejection reason',
         ]);
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_reject_rejects_promo(): void

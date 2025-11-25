@@ -24,7 +24,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->get(route('promos.edit', $promo));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_edit_authorizes_only_owner(): void
@@ -38,7 +38,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->actingAs($otherUser)->get(route('promos.edit', $promo));
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_edit_renders_promo_edit_page(): void
@@ -50,7 +50,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('promos.edit', $promo));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page
                 ->component('Promo/EditPromo')
@@ -70,7 +70,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->put(route('promos.update', $promo), $this->getValidData($categories, $cities));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_update_authorizes_only_owner(): void
@@ -86,7 +86,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->actingAs($otherUser)->put(route('promos.update', $promo), $this->getValidData($categories, $cities));
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_update_updates_promo_successfully(): void
@@ -122,7 +122,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->delete(route('promos.destroy', $promo));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_destroy_authorizes_only_owner(): void
@@ -136,7 +136,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->actingAs($otherUser)->delete(route('promos.destroy', $promo));
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_destroy_deletes_promo(): void
@@ -160,7 +160,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->post(route('promos.complete', $promo));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_complete_authorizes_only_owner(): void
@@ -174,7 +174,7 @@ class PromoControllerTest extends TestCase
 
         $response = $this->actingAs($otherUser)->post(route('promos.complete', $promo));
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     public function test_complete_completes_promo(): void

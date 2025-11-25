@@ -21,7 +21,7 @@ class CreatePromoControllerTest extends TestCase
     {
         $response = $this->get(route('promos.create'));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_authenticated_users_can_access_index(): void
@@ -31,7 +31,7 @@ class CreatePromoControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('promos.create'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_index_renders_correct_inertia_component(): void
@@ -41,7 +41,7 @@ class CreatePromoControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('promos.create'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page->component('Promo/CreatePromo')
         );
@@ -54,7 +54,7 @@ class CreatePromoControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('promos.create'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page
                 ->has('contact.email')
@@ -78,7 +78,7 @@ class CreatePromoControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('promos.create'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page->has('user')
         );
@@ -91,7 +91,7 @@ class CreatePromoControllerTest extends TestCase
 
         $response = $this->post(route('promos.store'), $this->getValidData($categories, $cities));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_store_creates_promo_successfully(): void

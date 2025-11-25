@@ -53,14 +53,14 @@ class LandingPagesTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_business_landing_page_has_required_props(): void
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page
                 ->component('landing/BusinessLanding')
@@ -76,14 +76,14 @@ class LandingPagesTest extends TestCase
     {
         $response = $this->get('/user-landing');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_user_landing_page_renders_correct_component(): void
     {
         $response = $this->get('/user-landing');
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page
                 ->component('landing/UserLanding')
@@ -94,7 +94,7 @@ class LandingPagesTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertInertia(
             fn ($page) => $page
                 ->where('contact.phone', '+7 (927) 997-888-44')
