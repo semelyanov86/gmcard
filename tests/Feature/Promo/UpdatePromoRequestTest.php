@@ -8,6 +8,7 @@ use App\Http\Requests\Promo\UpdatePromoRequest;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
@@ -82,9 +83,9 @@ class UpdatePromoRequestTest extends TestCase
     private function getValidData(array $override = []): array
     {
         /** @var \Illuminate\Database\Eloquent\Collection<int, Category> $categories */
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
         /** @var \Illuminate\Database\Eloquent\Collection<int, City> $cities */
-        $cities = City::factory()->count(1)->create();
+        $cities = new Collection([City::factory()->createOne()]);
 
         return array_merge([
             'promo_type_id' => 1,

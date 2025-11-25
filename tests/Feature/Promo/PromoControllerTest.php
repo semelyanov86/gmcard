@@ -65,8 +65,8 @@ class PromoControllerTest extends TestCase
     {
         /** @var Promo $promo */
         $promo = Promo::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $response = $this->put(route('promos.update', $promo), $this->getValidData($categories, $cities));
 
@@ -81,8 +81,8 @@ class PromoControllerTest extends TestCase
         $otherUser = User::factory()->create(['tariff_plan_id' => null]);
         /** @var Promo $promo */
         $promo = Promo::factory()->create(['user_id' => $owner->id]);
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $response = $this->actingAs($otherUser)->put(route('promos.update', $promo), $this->getValidData($categories, $cities));
 
