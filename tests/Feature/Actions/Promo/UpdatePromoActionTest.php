@@ -126,10 +126,12 @@ class UpdatePromoActionTest extends TestCase
         $promo->refresh();
         $this->assertCount(3, $promo->categories);
         $firstNewCategory = $newCategories->first();
-        assert($firstNewCategory instanceof Category);
+        $this->assertNotNull($firstNewCategory);
+        $this->assertInstanceOf(Category::class, $firstNewCategory);
         $this->assertTrue($promo->categories->contains($firstNewCategory));
         $firstOldCategory = $oldCategories->first();
-        assert($firstOldCategory instanceof Category);
+        $this->assertNotNull($firstOldCategory);
+        $this->assertInstanceOf(Category::class, $firstOldCategory);
         $this->assertFalse($promo->categories->contains($firstOldCategory));
     }
 
@@ -152,10 +154,12 @@ class UpdatePromoActionTest extends TestCase
         $promo->refresh();
         $this->assertCount(3, $promo->cities);
         $firstNewCity = $newCities->first();
-        assert($firstNewCity instanceof City);
+        $this->assertNotNull($firstNewCity);
+        $this->assertInstanceOf(City::class, $firstNewCity);
         $this->assertTrue($promo->cities->contains($firstNewCity));
         $firstOldCity = $oldCities->first();
-        assert($firstOldCity instanceof City);
+        $this->assertNotNull($firstOldCity);
+        $this->assertInstanceOf(City::class, $firstOldCity);
         $this->assertFalse($promo->cities->contains($firstOldCity));
     }
 
