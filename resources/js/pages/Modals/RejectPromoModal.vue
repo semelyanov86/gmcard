@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import ModalWindow from '@/components/ModalWindow.vue';
-import { useForm } from '@inertiajs/vue3';
+import { Modal } from '@inertiaui/modal-vue';
+import { router, useForm } from '@inertiajs/vue3';
 
 interface Props {
     promoId: number;
-    isOpen: boolean;
 }
 
 const props = defineProps<Props>();
-
-const emit = defineEmits<{
-    (e: 'close'): void;
-}>();
 
 const form = useForm({
     rejection_reason: '',
@@ -19,8 +14,10 @@ const form = useForm({
 });
 
 const closeModal = () => {
-    form.reset();
-    emit('close');
+    router.visit(route('profile'), {
+        preserveScroll: true,
+        preserveState: true,
+    });
 };
 
 const submitReject = () => {
@@ -35,7 +32,7 @@ const submitReject = () => {
 </script>
 
 <template>
-    <ModalWindow :is-open="props.isOpen" title="Сообщение владельцу акции" @close="closeModal">
+    <Modal title="Сообщение владельцу акции">
         <form @submit.prevent="submitReject">
             <div class="mb-4">
                 <label for="rejection_reason" class="mb-2 block text-sm font-medium text-gray-700">
@@ -84,5 +81,5 @@ const submitReject = () => {
                 </button>
             </div>
         </form>
-    </ModalWindow>
+    </Modal>
 </template>

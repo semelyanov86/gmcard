@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LikeIcon from '@/components/Promo/icons/LikeIcon.vue';
+import Tooltip from '@/components/Profile/Tooltip.vue';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { computed } from 'vue';
 
@@ -29,6 +30,7 @@ function handleImageError(e: Event) {
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
                 <img class="promo-card-discount-badge" src="/images/png/profile/sale4.png" alt="Скидка на товар" />
             </div>
+            <Tooltip id="tooltip-default" text="Скидка" :show="true" />
             <div class="down_block promo-card-content overflow-hidden rounded-b-3xl bg-white text-black">
                 <h3 class="line-clamp-2 px-6 py-4">{{ props.promo.description || 'Без описания' }}</h3>
                 <div class="promo-card-divider w-full bg-black opacity-10"></div>

@@ -4,27 +4,21 @@ import ApproveIcon from '@/components/Promo/icons/ApproveIcon.vue';
 import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
 import EditIcon from '@/components/Promo/icons/EditIcon.vue';
 import { Link } from '@inertiajs/vue3';
+import { ModalLink } from '@inertiaui/modal-vue';
 
 interface Props {
     promoId: number;
-    onReject?: () => void;
     onApprove?: () => void;
 }
 
 const props = defineProps<Props>();
-
-const handleReject = (event: MouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    props.onReject?.();
-};
 </script>
 
 <template>
     <div class="mt-7 flex flex-col items-center gap-4">
-        <button type="button" data-tooltip-target="tooltip-reject" data-tooltip-placement="top" class="relative" @click.stop.prevent="handleReject">
+        <ModalLink :href="route('moderation.promos.reject-form', props.promoId)" data-tooltip-target="tooltip-reject" data-tooltip-placement="top" class="relative">
             <DeleteIcon />
-        </button>
+        </ModalLink>
         <Tooltip id="tooltip-reject" text="Отклонить" :show="true" />
 
         <button type="button" data-tooltip-target="tooltip-approve" data-tooltip-placement="top" class="relative" @click="props.onApprove?.()">
