@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
         v-if="show"
         :id="id"
         role="tooltip"
-        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-tooltip px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+        class="tooltip bg-tooltip invisible absolute z-10 inline-block rounded-lg px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
     >
         {{ text }}
         <div class="tooltip-arrow" data-popper-arrow></div>

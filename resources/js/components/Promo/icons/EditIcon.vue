@@ -5,7 +5,7 @@
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="w-8 cursor-pointer rounded-md p-1 text-icon hover:bg-icon hover:text-white"
+        class="text-icon hover:bg-icon w-8 cursor-pointer rounded-md p-1 hover:text-white"
     >
         <path
             stroke-linecap="round"

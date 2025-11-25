@@ -82,9 +82,9 @@ class UpdatePromoRequestTest extends TestCase
      */
     private function getValidData(array $override = []): array
     {
-        /** @var \Illuminate\Database\Eloquent\Collection<int, Category> $categories */
+        /** @var Collection<int, Category> $categories */
         $categories = new Collection([Category::factory()->createOne()]);
-        /** @var \Illuminate\Database\Eloquent\Collection<int, City> $cities */
+        /** @var Collection<int, City> $cities */
         $cities = new Collection([City::factory()->createOne()]);
 
         return array_merge([
@@ -98,7 +98,7 @@ class UpdatePromoRequestTest extends TestCase
     }
 
     /**
-     * @param  \Illuminate\Database\Eloquent\Collection<int, Category>  $categories
+     * @param  Collection<int, Category>  $categories
      * @return array<int, string>
      */
     private function getCategoryIds($categories): array

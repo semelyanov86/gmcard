@@ -23,7 +23,7 @@ const closeModal = () => {
                     class="relative rounded-lg bg-white shadow dark:bg-gray-700"
                     style="background: repeating-linear-gradient(-45deg, #e3e9ef, #e3e9ef 2.5%, #fff 0, #fff 10%)"
                 >
-                    <div class="flex items-start justify-between rounded-t border-b bg-button p-4 dark:border-gray-600">
+                    <div class="bg-button flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-white dark:text-white">{{ props.title }}</h3>
                         <button
                             type="button"

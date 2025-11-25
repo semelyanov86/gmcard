@@ -33,7 +33,7 @@ const isAdminOrModerator = computed(() => {
                 >
                     Личный кабинет
                 </p>
-                <div class="h-line w-full bg-divider"></div>
+                <div class="h-line bg-divider w-full"></div>
                 <Link
                     :href="route('promos.create')"
                     class="mx-4 my-2 px-4 py-2 text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline"
@@ -51,7 +51,7 @@ const isAdminOrModerator = computed(() => {
                     @click="activeTab = ProfileTab.Rejected"
                 />
                 <ProfileMenuItem label="Черновики" :is-active="activeTab === ProfileTab.Drafts" @click="activeTab = ProfileTab.Drafts" />
-                <div class="h-line w-full bg-divider"></div>
+                <div class="h-line bg-divider w-full"></div>
                 <p
                     class="mx-4 my-2 cursor-pointer px-4 py-2 text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline"
                 >

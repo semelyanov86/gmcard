@@ -12,7 +12,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="h-[1px] w-full bg-divider"></div>
+    <div class="bg-divider h-[1px] w-full"></div>
     <p
         @click="emit('click')"
         :class="[
