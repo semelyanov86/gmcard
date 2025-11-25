@@ -9,15 +9,10 @@ interface Props {
     emptySubMessage?: string;
     promos: ProfilePromo[];
     containerId: string;
-    onReject?: (promoId: number) => void;
     onApprove?: (promoId: number) => void;
 }
 
 const props = defineProps<Props>();
-
-function handleReject(promoId: number): void {
-    props.onReject?.(promoId);
-}
 
 function handleApprove(promoId: number): void {
     props.onApprove?.(promoId);
@@ -36,7 +31,7 @@ function handleApprove(promoId: number): void {
         <div v-else class="flex flex-wrap justify-between gap-4">
             <div v-for="promo in props.promos" :key="promo.id" class="flex min-w-[300px] gap-5 rounded-xl border border-white/10 bg-none px-5 pb-5">
                 <PromoCard :promo="promo" />
-                <ModerationPromoActions :promo-id="promo.id" :on-reject="() => handleReject(promo.id)" :on-approve="() => handleApprove(promo.id)" />
+                <ModerationPromoActions :promo-id="promo.id" :on-approve="() => handleApprove(promo.id)" />
             </div>
         </div>
     </div>

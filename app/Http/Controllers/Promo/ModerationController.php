@@ -13,9 +13,18 @@ use App\Http\Requests\Promo\ApprovePromoRequest;
 use App\Http\Requests\Promo\RejectPromoRequest;
 use App\Models\Promo;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ModerationController extends Controller
 {
+    public function rejectForm(Promo $promo)
+    {
+        return inertia()->modal('Modals/RejectPromoModal', [
+            'promoId' => $promo->id,
+        ])->baseRoute('profile');
+    }
+
     public function approve(Promo $promo, ApprovePromoRequest $request): RedirectResponse
     {
         $user = auth()->user();
@@ -45,7 +54,7 @@ class ModerationController extends Controller
         ]));
 
         return redirect()
-            ->back()
+            ->route('profile')
             ->with('success', 'Акция отклонена');
     }
 }
