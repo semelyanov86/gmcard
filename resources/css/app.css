@@ -3189,3 +3189,102 @@
         padding-right: 5rem;
     }
 }
+
+/* Color Palette - Semantic Colors */
+:root {
+    --color-secondary: #063966;
+    --color-secondary-dark: #063965;
+    --color-primary: #1d89f2;
+    --color-button: #0066cb;
+    --color-tooltip: #041f35;
+    --color-header: #152041;
+    --color-icon: #648099;
+    --color-hover: #F2F6FB;
+    --color-yellow: #F9D914;
+    --color-yellow-dark: #F4D710;
+}
+
+/* Background Colors */
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-secondary-dark {
+    background-color: var(--color-secondary-dark);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-button {
+    background-color: var(--color-button);
+}
+
+.bg-tooltip {
+    background-color: var(--color-tooltip);
+}
+
+.bg-icon {
+    background-color: var(--color-icon);
+}
+
+.hover\:bg-secondary:hover {
+    background-color: var(--color-secondary);
+}
+
+.hover\:bg-icon:hover {
+    background-color: var(--color-icon);
+}
+
+.hover\:bg-hover:hover {
+    background-color: var(--color-hover);
+}
+
+.hover\:bg-yellow:hover {
+    background-color: var(--color-yellow);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-header {
+    color: var(--color-header);
+}
+
+.text-icon {
+    color: var(--color-icon);
+}
+
+.hover\:text-primary:hover {
+    color: var(--color-primary);
+}
+
+.hover\:text-yellow:hover {
+    color: var(--color-yellow);
+}
+
+.border-button {
+    border-color: var(--color-button);
+}
+
+.focus\:border-button:focus {
+    border-color: var(--color-button);
+}
+
+.bg-hover {
+    background-color: var(--color-hover);
+}
+
+.bg-yellow {
+    background-color: var(--color-yellow);
+}
+
+.bg-yellow-dark {
+    background-color: var(--color-yellow-dark);
+}
+
+.bg-promo-container {
+    background-color: var(--color-secondary-dark);
+}

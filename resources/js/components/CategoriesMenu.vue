@@ -90,8 +90,8 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
-                        class="my-class cursor-pointer rounded-lg px-4 py-3 transition-colors hover:bg-[#F2F6FB]"
-                        :class="{ 'bg-[#F2F6FB]': selectedSubCategory?.id === subCategory.id }"
+                        class="my-class cursor-pointer rounded-lg px-4 py-3 transition-colors hover:bg-hover"
+                        :class="{ 'bg-hover': selectedSubCategory?.id === subCategory.id }"
                         @mouseenter="handleSubCategoryHover(subCategory)"
                     >
                         <div class="icon-container flex items-center gap-3">

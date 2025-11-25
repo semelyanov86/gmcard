@@ -15,7 +15,7 @@ const emit = defineEmits<{
         @click="emit('click')"
         :class="[
             'ml-2 h-10 rounded-lg px-6 py-2 text-base font-bold focus:ring-2',
-            isActive ? 'bg-[#063966] text-white' : 'bg-brand-yellow-dark hover:text-brand-orange focus:ring-brand-yellow-dark',
+            isActive ? 'bg-secondary text-white' : 'bg-brand-yellow-dark hover:text-brand-orange focus:ring-brand-yellow-dark',
         ]"
     >
         Заявки на модерацию

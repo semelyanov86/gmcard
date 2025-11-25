@@ -18,8 +18,8 @@ const emit = defineEmits<{
         :class="[
             'mx-4 my-2 cursor-pointer px-4 py-2',
             isActive
-                ? 'rounded-lg bg-[#063966] text-white hover:no-underline'
-                : 'text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline',
+                ? 'rounded-lg bg-secondary text-white hover:no-underline'
+                : 'text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline',
         ]"
     >
         {{ label }}

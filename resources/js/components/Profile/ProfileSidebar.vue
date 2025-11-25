@@ -27,8 +27,8 @@ const isAdminOrModerator = computed(() => {
                     :class="[
                         'mx-4 my-2 cursor-pointer px-4 py-2 hover:no-underline',
                         activeTab === ProfileTab.Profile
-                            ? 'rounded-lg bg-[#063966] text-white'
-                            : 'text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline',
+                            ? 'rounded-lg bg-secondary text-white'
+                            : 'text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline',
                     ]"
                 >
                     Личный кабинет
@@ -36,7 +36,7 @@ const isAdminOrModerator = computed(() => {
                 <div class="h-line w-full bg-black/20"></div>
                 <Link
                     :href="route('promos.create')"
-                    class="mx-4 my-2 px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                    class="mx-4 my-2 px-4 py-2 text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline"
                     >Запустить акцию</Link
                 >
                 <ProfileMenuItem label="Мои активные акции" :is-active="activeTab === ProfileTab.Active" @click="activeTab = ProfileTab.Active" />
@@ -53,7 +53,7 @@ const isAdminOrModerator = computed(() => {
                 <ProfileMenuItem label="Черновики" :is-active="activeTab === ProfileTab.Drafts" @click="activeTab = ProfileTab.Drafts" />
                 <div class="h-line w-full bg-black/20"></div>
                 <p
-                    class="mx-4 my-2 cursor-pointer px-4 py-2 text-[#1d89f2] underline hover:rounded-lg hover:bg-[#063966] hover:text-white hover:no-underline"
+                    class="mx-4 my-2 cursor-pointer px-4 py-2 text-primary underline hover:rounded-lg hover:bg-secondary hover:text-white hover:no-underline"
                 >
                     Избранное
                 </p>
