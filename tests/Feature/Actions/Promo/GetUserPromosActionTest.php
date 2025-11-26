@@ -58,7 +58,8 @@ class GetUserPromosActionTest extends TestCase
 
         $this->assertCount(1, $result['activePromos']);
         $this->assertCount(1, $result['completedPromos']);
-        $this->assertCount(2, $result['draftPromos']);
+        $this->assertCount(1, $result['draftPromos']);
+        $this->assertCount(1, $result['moderationPromos']);
         $this->assertContains($moderationPromo->id, array_column($result['moderationPromos'], 'id'));
     }
 
