@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Modal } from '@inertiaui/modal-vue';
 import { useForm } from '@inertiajs/vue3';
+import { Modal } from '@inertiaui/modal-vue';
 
 interface Props {
     promoId: number;
@@ -26,9 +26,7 @@ const submitReject = (close: () => void) => {
 
 <template>
     <Modal title="Сообщение владельцу акции" v-slot="{ close }">
-        <form
-            @submit.prevent="submitReject(close)"
-        >
+        <form @submit.prevent="submitReject(close)">
             <div class="mb-4">
                 <label for="rejection_reason" class="mb-2 block text-sm font-medium text-gray-700">
                     Причина отклонения <span class="text-red-500">*</span>
