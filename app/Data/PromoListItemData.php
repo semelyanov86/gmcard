@@ -43,20 +43,20 @@ final class PromoListItemData extends Data
 
     private static function determineStatus(Promo $promo): string
     {
-        if ($promo->started_at === null) {
-            return 'draft';
-        }
-
-        if ($promo->available_till !== null && $promo->available_till->isPast()) {
-            return 'completed';
-        }
-
         if ($promo->moderation_status === PromoModerationStatus::PENDING) {
             return 'moderation';
         }
 
         if ($promo->moderation_status === PromoModerationStatus::REJECTED) {
             return 'rejected';
+        }
+
+        if ($promo->moderation_status === PromoModerationStatus::DRAFT || $promo->started_at === null) {
+            return 'draft';
+        }
+
+        if ($promo->available_till !== null && $promo->available_till->isPast()) {
+            return 'completed';
         }
 
         return 'active';

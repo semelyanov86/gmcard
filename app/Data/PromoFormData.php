@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Enums\Promo\PromoModerationStatus;
 use App\Enums\PromoType as PromoTypeEnum;
 use App\Models\Address;
 use App\Models\Promo;
@@ -89,7 +90,7 @@ final class PromoFormData extends Data
             existingPhoto: $promo->img,
             photos: [],
             useBonusBalance: false,
-            isDraft: $promo->started_at === null,
+            isDraft: $promo->moderation_status === PromoModerationStatus::DRAFT,
             agreeToTerms: true,
             filterCity: '',
         );

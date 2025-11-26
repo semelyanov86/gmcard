@@ -6,6 +6,7 @@ namespace Tests\Feature\Actions\Promo;
 
 use App\Actions\Promo\CreatePromoAction;
 use App\Data\CreatePromoData;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
@@ -189,6 +190,7 @@ class CreatePromoActionTest extends TestCase
         $this->assertNotEmpty($dto->id);
         $promo = Promo::findOrFail($dto->id);
         $this->assertNull($promo->started_at);
+        $this->assertEquals(PromoModerationStatus::DRAFT, $promo->moderation_status);
     }
 
     public function test_creates_published_promo(): void
@@ -214,7 +216,8 @@ class CreatePromoActionTest extends TestCase
 
         $this->assertNotEmpty($dto->id);
         $promo = Promo::findOrFail($dto->id);
-        $this->assertNotNull($promo->started_at);
+        $this->assertNull($promo->started_at);
+        $this->assertEquals(PromoModerationStatus::PENDING, $promo->moderation_status);
     }
 
     public function test_converts_minimum_order_amount_to_minor_units(): void
