@@ -51,6 +51,9 @@ const closeAdminModal = () => {
     isAdminModalOpen.value = false;
     selectedRejectedPromo.value = null;
 };
+
+const selectedRejectionReason = computed(() => selectedRejectedPromo.value?.rejectionReason ?? null);
+const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rejectionMessage ?? null);
 </script>
 
 <template>
@@ -188,12 +191,15 @@ const closeAdminModal = () => {
                     @show-admin-message="(promo) => openAdminModal(promo)"
                 />
                 <ModalWindow :is-open="isAdminModalOpen" title="Сообщение от администрации" @close="closeAdminModal">
-                    <AdminMessageContent :promo="selectedRejectedPromo" />
+                    <AdminMessageContent
+                        :rejection-reason="selectedRejectionReason"
+                        :rejection-message="selectedRejectionMessage"
+                    />
                     <div class="flex items-center justify-center">
                         <button
                             type="button"
                             @click="closeAdminModal"
-                            class="bg-button focus:ring-button rounded-lg px-5 py-2.5 text-center text-base font-medium text-white hover:opacity-90 focus:ring-4 focus:outline-none"
+                            class="rounded-lg text-blue-500 px-5 py-2.5 text-center text-base font-semibold shadow hover:bg-blue/80 focus:ring-4 focus:ring-black/40 focus:outline-none"
                         >
                             ОК
                         </button>
