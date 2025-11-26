@@ -7,6 +7,7 @@ namespace Tests\Feature;
 use App\Actions\Promo\CalculateAdCostAction;
 use App\Actions\User\GetUserTariffLimitsAction;
 use App\Enums\Promo\PromoCostType;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\TariffPlan;
 use App\Models\User;
@@ -225,6 +226,7 @@ class TariffPlanLimitsTest extends TestCase
             'user_id' => $user->id,
             'started_at' => now(),
             'available_till' => now()->addDays(7),
+            'moderation_status' => PromoModerationStatus::APPROVED->value,
         ]);
     }
 }
