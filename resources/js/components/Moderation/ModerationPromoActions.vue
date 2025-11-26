@@ -16,7 +16,12 @@ const props = defineProps<Props>();
 
 <template>
     <div class="mt-7 flex flex-col items-center gap-4">
-        <ModalLink :href="route('moderation.promos.reject-form', props.promoId)" data-tooltip-target="tooltip-reject" data-tooltip-placement="top" class="relative">
+        <ModalLink
+            :href="route('moderation.promos.reject-form', props.promoId)"
+            data-tooltip-target="tooltip-reject"
+            data-tooltip-placement="top"
+            class="relative"
+        >
             <DeleteIcon />
         </ModalLink>
         <Tooltip id="tooltip-reject" text="Отклонить" :show="true" />

@@ -9,20 +9,19 @@ use App\Actions\Promo\RejectPromoAction;
 use App\Data\ApprovePromoData;
 use App\Data\RejectPromoData;
 use App\Http\Controllers\Controller;
+use App\Data\Modals\RejectPromoModalData;
 use App\Http\Requests\Promo\ApprovePromoRequest;
 use App\Http\Requests\Promo\RejectPromoRequest;
 use App\Models\Promo;
 use Illuminate\Http\RedirectResponse;
-use Inertia\Inertia;
-use Inertia\Response;
+use InertiaUI\Modal\Modal;
 
 class ModerationController extends Controller
 {
-    public function rejectForm(Promo $promo)
+    public function rejectForm(Promo $promo): Modal
     {
-        return inertia()->modal('Modals/RejectPromoModal', [
-            'promoId' => $promo->id,
-        ])->baseRoute('profile');
+        return new Modal('Modals/RejectPromoModal', RejectPromoModalData::fromPromo($promo)->toArray())
+            ->baseRoute('profile');
     }
 
     public function approve(Promo $promo, ApprovePromoRequest $request): RedirectResponse

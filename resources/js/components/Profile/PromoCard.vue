@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import LikeIcon from '@/components/Promo/icons/LikeIcon.vue';
 import Tooltip from '@/components/Profile/Tooltip.vue';
+import LikeIcon from '@/components/Promo/icons/LikeIcon.vue';
 import { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { computed } from 'vue';
 
