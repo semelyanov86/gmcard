@@ -55,7 +55,7 @@ const submitReject = (close: () => void) => {
                     class="focus:border-button w-full rounded-lg border border-black/20 p-2 placeholder:font-semibold focus:outline-none"
                     placeholder="Дополнительное сообщение для владельца акции"
                 ></textarea>
-                <p v-if="form.errors.message" class="mt-1 текст-sm text-red-500">{{ form.errors.message }}</p>
+                <p v-if="form.errors.message" class="текст-sm mt-1 text-red-500">{{ form.errors.message }}</p>
             </div>
             <div class="flex items-center justify-center gap-4">
                 <button

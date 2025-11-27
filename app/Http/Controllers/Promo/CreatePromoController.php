@@ -87,5 +87,4 @@ class CreatePromoController extends Controller
         return new Modal('Modals/PhotoHelpModal')
             ->baseRoute('promos.create');
     }
-
 }
