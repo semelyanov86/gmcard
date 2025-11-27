@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
-import { ref } from 'vue';
-import PhotoHelpModal from './PhotoHelpModal.vue';
-
-const photoModalOpen = ref(false);
+import { ModalLink } from '@inertiaui/modal-vue';
 
 const props = defineProps<{
     existingPhoto?: string | null;
@@ -29,11 +26,14 @@ function handleFileChange(event: Event) {
             </div>
             <div class="flex items-center gap-2 max-md:mt-4">
                 <img src="/images/png/constructor/picture-sale.png" class="h-6 w-8" alt="Картинка" />
-                <button type="button" @click="photoModalOpen = true" class="text-sm font-semibold text-blue-600 hover:underline">
+                <ModalLink
+                    :href="route('promos.photo-help')"
+                    :navigate="true"
+                    class="text-left text-sm font-semibold text-blue-600 hover:underline"
+                >
                     У меня нет фото,<br class="max-sm:hidden" />
                     что делать?
-                </button>
-                <PhotoHelpModal :isOpen="photoModalOpen" @close="photoModalOpen = false" />
+                </ModalLink>
             </div>
         </div>
         <div class="flex flex-wrap justify-between gap-2">

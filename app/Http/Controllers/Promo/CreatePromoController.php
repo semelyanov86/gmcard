@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
+use InertiaUI\Modal\Modal;
 use Throwable;
 
 class CreatePromoController extends Controller
@@ -80,4 +81,11 @@ class CreatePromoController extends Controller
             ->route('promos.create')
             ->with('success', $message);
     }
+
+    public function photoHelp(): Modal
+    {
+        return new Modal('Modals/PhotoHelpModal')
+            ->baseRoute('promos.create');
+    }
+
 }

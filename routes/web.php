@@ -23,6 +23,7 @@ Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['aut
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/promos/create', [CreatePromoController::class, 'index'])->name('promos.create');
+    Route::get('/promos/photo-help', [CreatePromoController::class, 'photoHelp'])->name('promos.photo-help');
     Route::post('/promos', [CreatePromoController::class, 'store'])->name('promos.store');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::delete('/promos/{promo}', [PromoController::class, 'destroy'])->name('promos.destroy');
