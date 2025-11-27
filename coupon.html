@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт с Tailwind CSS</title>
+    <link href="./outputsec.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styleSecond.css">
+
+</head>
+    <body class="bg-[#041A41] font-sans overflow-visible">
+    <header id="header" class="h-[60px] w-full bg-transparent justify-center flex items-center border-b-[1px] border-b-[#2a3c5e]">
+        
+        <div  class="gap-[10%] 2xl:w-full 2xl:px-4 w-[1140px] mx-auto relative flex items-center justify-center ">
+            <div id="header" class="flex items-center relative">
+                <a href="/index.html">
+                    <img src="/assets/icons/logo.png" alt="Логотип">
+                </a>
+                <a href="#"><h3 class="text-white font-bold text-xl ml-3 hover:border-b-2 hover:border-white">Скидки</h3></a>
+                <div class="w-[1px] h-[60px] bg-[#202e58] ml-4"></div>
+                <div class="flex items-center ml-3">
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="block text-white text-[15px] hover:opacity-80 " type="button">
+                    Все сервисы
+                </button>
+                <img id="dropdownDefaultButton" data-dropdown-toggle="dropdown" src="/assets/icons/down.png" class="w-[8px] h-[5px] ml-[10px] cursor-pointer mr-1" >
+                <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 border-4 border-[#0875AE] shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                         <li>
+                            <a href="https://mainface.ru/" class="linkHeader block hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на mainface</a>
+                        </li>
+                        <li>
+                            <a href="https://gmcard.ru/" class="linkHeader block  hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на gmcard</a>
+                        </li>
+                         <li>
+                            <a href="#" class="linkHeader block hover:bg-gray-100 dark:hover:bg-gray-600 text-[13px] font-bold dark:hover:text-white">Перейти на gmwork</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <ul id="header" class="items-center list-none hidden md:flex relative left-[10%]">
+                <li class="bg-[#f4d710] rounded-md focus:ring-2 hover:opacity-100 py-2 px-3 focus:ring-[#f4d710] relative">
+                    <a href="#" class=" text-black hover:text-[#983301]" id="userAuth1" >Запустить акцию</a>
+                    <svg fill="currentColor" id="startBTN" class="hidden w-6 h-7 absolute -bottom-8 right-14 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
+                </li>
+                <div class="w-[1px] h-[60px] bg-[#202e58] ml-4"></div>
+                <li class="relative">
+                    <a href="#" class="ml-4 text-white text-[15px] hover:border-b-2 hover:border-white " id="userAuth2" >Вход</a>
+                    <svg fill="currentColor" id="loginBTN" class="hidden w-6 h-7 absolute -bottom-10 right-0 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
+                </li>
+                <li><a href="/" class="text-[15px]  bg-[#3398cc] py-2 px-3 text-white rounded-md  hover: focus:ring-1 focus:ring-[#3398cc] ml-3">Регистрация</a></li>
+                <div class="w-[1px] h-[60px] bg-[#202e58] ml-2"></div>
+                <li class="py-2 px-2 rounded-md ml-3 bg-[#222e54]"><a href="#"><img src="/assets/icons/reg.png" alt="Войти"></a></li>
+                <div id="userDropdown" class="hidden z-50 bg-white  rounded-lg shadow-md w-[350px] dark:bg-gray-700 absolute top-[70px] right-10">
+                <div class="p-5 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="closeDrop" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 absolute top-6 right-6 opacity-50 cursor-pointer hover:opacity-100 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                <div class="text-gray-900 w-[220px] relative">
+                    <h2 class="text-3xl font-bold text-black">Войти в GM</h2>
+                    <p class="font-medium text-base">Выполните вход для доступа ко всей системе сайтов GM</p>
+                </div>
+                <form action="" class="w-full mt-3">
+                    <div class="flex flex-col">
+                        <label for="email" class="text-sm mb-1 text-gray-900">Email</label>
+                        <input name="email" class="border-gray-300 rounded-sm outline-none focus:ring-[#2AACF0] focus:ring-1" type="email" placeholder="Адрес эл. почты или телефон">
+                    </div>
+                    <div class="flex flex-col relative mt-2">
+                        <label for="password" class="text-sm mb-1 text-gray-900">Пароль</label>
+                        <input name="password"  minlength="8" class="border-gray-300 rounded-sm pr-[200px] outline-none focus:ring-[#2AACF0] focus:ring-1" type="password" placeholder="Пароль">
+                        <span class="absolute bottom-2 right-3 text-black font-medium cursor-pointer hover:border-b-2 hover:border-black">Показать</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-3">
+                        <button class="py-3 px-16 text-white text-base font-bold  bg-[#023BA4] rounded-md focus:ring-2 focus:ring-[#AAAAAA] focus:bg-[#AAAAAA]">Войти</button>
+                        <a href="/forgot_password.html" class="text-[#AAAAAA] hover:border-b-2 hover:border-[#AAAAAA]">Забыли пароль?</a>
+                    </div>
+                </form>
+                <div class="my-3">
+                    <div class="ml-3 flex items-center">
+                        <span class="text-[#AAAAAA] w-full text-base">Войти через соц. сети</span>
+                        <div class="h-[1px] w-[200px] opacity-50 bg-[#AAAAAA]"></div>
+                    </div>
+                    <div class="flex items-center gap-2 mt-2">
+                        <a href="#">
+                            <svg fill="#fff" class="w-6 h-6 opacity-10 hover:opacity-100"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            viewBox="-143 145 512 512" xml:space="preserve">
+                            <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z
+	                            M215.2,361.2c0.1,2.2,0.1,4.5,0.1,6.8c0,69.5-52.9,149.7-149.7,149.7c-29.7,0-57.4-8.7-80.6-23.6c4.1,0.5,8.3,0.7,12.6,0.7
+	                            c24.6,0,47.3-8.4,65.3-22.5c-23-0.4-42.5-15.6-49.1-36.5c3.2,0.6,6.5,0.9,9.9,0.9c4.8,0,9.5-0.6,13.9-1.9
+	                            C13.5,430-4.6,408.7-4.6,383.2v-0.6c7.1,3.9,15.2,6.3,23.8,6.6c-14.1-9.4-23.4-25.6-23.4-43.8c0-9.6,2.6-18.7,7.1-26.5
+	                            c26,31.9,64.7,52.8,108.4,55c-0.9-3.8-1.4-7.8-1.4-12c0-29,23.6-52.6,52.6-52.6c15.1,0,28.8,6.4,38.4,16.6
+	                            c12-2.4,23.2-6.7,33.4-12.8c-3.9,12.3-12.3,22.6-23.1,29.1c10.6-1.3,20.8-4.1,30.2-8.3C234.4,344.5,225.5,353.7,215.2,361.2z" fill="#023BA4"
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" class="w-6 h-6 opacity-10 hover:opacity-100" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            viewBox="-143 145 512 512" xml:space="preserve">
+                            <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z
+	                            M169.5,357.6l-2.9,38.3h-39.3v133H77.7v-133H51.2v-38.3h26.5v-25.7c0-11.3,0.3-28.8,8.5-39.7c8.7-11.5,20.6-19.3,41.1-19.3
+	                            c33.4,0,47.4,4.8,47.4,4.8l-6.6,39.2c0,0-11-3.2-21.3-3.2c-10.3,0-19.5,3.7-19.5,14v29.9H169.5z" fill="#023BA4"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            class="w-6 h-6 opacity-10 hover:opacity-100" viewBox="0 0 94 94" xml:space="preserve">
+                            <g>
+	                            <path d="M89,0H5C2.238,0,0,2.239,0,5v84c0,2.761,2.238,5,5,5h84c2.762,0,5-2.239,5-5V5C94,2.239,91.762,0,89,0z M74.869,52.943
+		                            c2.562,2.5,5.271,4.854,7.572,7.617c1.018,1.22,1.978,2.48,2.709,3.899c1.041,2.024,0.101,4.247-1.713,4.366l-11.256-0.003
+		                            c-2.906,0.239-5.22-0.931-7.172-2.918c-1.555-1.585-3.001-3.277-4.5-4.914c-0.611-0.673-1.259-1.306-2.025-1.806
+		                            c-1.534-0.996-2.867-0.692-3.748,0.909c-0.896,1.63-1.103,3.438-1.185,5.255c-0.125,2.655-0.925,3.348-3.588,3.471
+		                            c-5.69,0.268-11.091-0.596-16.108-3.463c-4.429-2.53-7.854-6.104-10.838-10.146c-5.816-7.883-10.27-16.536-14.27-25.437
+		                            c-0.901-2.005-0.242-3.078,1.967-3.119c3.676-0.073,7.351-0.063,11.022-0.004c1.496,0.023,2.485,0.879,3.058,2.289
+		                            c1.985,4.885,4.421,9.533,7.471,13.843c0.813,1.147,1.643,2.292,2.823,3.103c1.304,0.896,2.298,0.601,2.913-0.854
+		                            c0.393-0.928,0.563-1.914,0.647-2.906c0.292-3.396,0.327-6.792-0.177-10.175c-0.315-2.116-1.507-3.483-3.617-3.883
+		                            c-1.074-0.204-0.917-0.602-0.395-1.215c0.906-1.062,1.76-1.718,3.456-1.718l12.721-0.002c2.006,0.392,2.452,1.292,2.725,3.311
+		                            l0.012,14.133c-0.021,0.782,0.391,3.098,1.795,3.61c1.123,0.371,1.868-0.53,2.54-1.244c3.048-3.235,5.22-7.056,7.167-11.009
+		                            c0.857-1.743,1.6-3.549,2.32-5.356c0.533-1.337,1.367-1.995,2.875-1.971l12.246,0.013c0.36,0,0.729,0.004,1.086,0.063
+		                            c2.062,0.355,2.627,1.243,1.99,3.257c-1.004,3.163-2.959,5.799-4.871,8.441c-2.043,2.825-4.224,5.557-6.252,8.396
+		                            C72.411,49.38,72.561,50.688,74.869,52.943z" fill="#023BA4"/>
+                            </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            class="w-6 h-6 opacity-10 hover:opacity-100" viewBox="0 0 94 94" xml:space="preserve">
+                            <g>
+	                            <g>
+		                            <path d="M47.051,37.59c5.247-0.017,9.426-4.23,9.407-9.489c-0.021-5.259-4.207-9.448-9.456-9.452
+			                            c-5.293-0.005-9.52,4.259-9.479,9.566C37.562,33.454,41.788,37.612,47.051,37.59z" fill="#023BA4"/>
+		                            <path d="M89,0H5C2.239,0,0,2.238,0,5v84c0,2.762,2.239,5,5,5h84c2.762,0,5-2.238,5-5V5C94,2.238,91.762,0,89,0z M47.08,8.766
+			                            c10.699,0.027,19.289,8.781,19.236,19.602c-0.057,10.57-8.787,19.138-19.469,19.102c-10.576-0.036-19.248-8.803-19.188-19.396
+			                            C27.722,17.365,36.4,8.734,47.08,8.766z M68.753,55.072c-2.366,2.431-5.214,4.187-8.378,5.416
+			                            c-2.991,1.156-6.268,1.742-9.512,2.13c0.49,0.534,0.721,0.793,1.025,1.102c4.404,4.425,8.826,8.832,13.215,13.27
+			                            c1.494,1.511,1.81,3.386,0.985,5.145c-0.901,1.925-2.916,3.188-4.894,3.052c-1.252-0.088-2.228-0.711-3.094-1.582
+			                            c-3.324-3.345-6.711-6.627-9.965-10.031c-0.947-0.992-1.403-0.807-2.241,0.056c-3.343,3.442-6.738,6.831-10.155,10.2
+			                            c-1.535,1.514-3.36,1.785-5.143,0.922c-1.892-0.917-3.094-2.848-3.001-4.791c0.064-1.312,0.71-2.314,1.611-3.214
+			                            c4.356-4.351,8.702-8.713,13.05-13.072c0.289-0.288,0.557-0.597,0.976-1.045c-5.929-0.619-11.275-2.077-15.85-5.657
+			                            c-0.567-0.445-1.154-0.875-1.674-1.373c-2.002-1.924-2.203-4.125-0.618-6.396c1.354-1.942,3.632-2.464,5.997-1.349
+			                            c0.459,0.215,0.895,0.486,1.313,0.775c8.528,5.86,20.245,6.023,28.806,0.266c0.847-0.647,1.754-1.183,2.806-1.449
+			                            c2.045-0.525,3.947,0.224,5.045,2.012C70.314,51.496,70.297,53.488,68.753,55.072z" fill="#023BA4"/>
+	                            </g>
+                            </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" class="w-8 h-8 opacity-10 hover:opacity-100" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM548.5 622.8c-43.9 61.8-132.1 79.8-200.9 53.3-69-26.3-118-99.2-112.1-173.5 1.5-90.9 85.2-170.6 176.1-167.5 43.6-2 84.6 16.9 118 43.6-14.3 16.2-29 31.8-44.8 46.3-40.1-27.7-97.2-35.6-137.3-3.6-57.4 39.7-60 133.4-4.8 176.1 53.7 48.7 155.2 24.5 170.1-50.1-33.6-.5-67.4 0-101-1.1-.1-20.1-.2-40.1-.1-60.2 56.2-.2 112.5-.3 168.8.2 3.3 47.3-3 97.5-32 136.5zM791 536.5c-16.8.2-33.6.3-50.4.4-.2 16.8-.3 33.6-.3 50.4H690c-.2-16.8-.2-33.5-.3-50.3-16.8-.2-33.6-.3-50.4-.5v-50.1c16.8-.2 33.6-.3 50.4-.3.1-16.8.3-33.6.4-50.4h50.2l.3 50.4c16.8.2 33.6.2 50.4.3v50.1z" fill="#023BA4"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                </div>
+                <div class="py-4 px-4 flex justify-between items-center  w-full bg-[#EDF4FC]">
+                    <span class="text-lg font-bold">Еще не в GM?</span>
+                    <a href="#" class="py-3 px-12 text-black shadow-lg text-base font-bold  bg-white rounded-md hover:shadow-sm">Регистрация</a>
+                </div>
+                </div>
+            </ul>   
+        
+            <div class="modal_acc">
+                    <div id="dropdownAvatar" class="z-50 hidden bg-white border-4 border-[#0875AE] w-[350px] ">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                            <div class="flex items-center text-lg font-bold"><img src="/assets/icons/he.png" class="w-7 h-7 mr-3" alt=""> Николай Александрович</div>
+                        </div>
+                        <ul class="py-2 px-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+                            <li class="flex items-center justify-between border-b-2 border-b-black/5">
+                                <span class="text-[15px] font-bold">Профиль</span><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Редактировать</a>
+                            </li>
+                            <li class="flex items-center justify-between border-b-2 border-b-black/5">
+                                <span class="text-[15px] font-bold">Баланс</span><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Оперировать</a>
+                            </li>
+                            <li class="flex items-center justify-between border-b-2 border-b-black/5">
+                                <span class="text-[15px] font-bold">Учетная запись<span class="text-[15px] text-red-500 ml-2">Стандарт</span> </span><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Повысить</a>
+                            </li>
+                            <li class="flex items-center justify-between border-b-2 border-b-black/5">
+                                <span class="text-[15px] font-bold">Настройки и конфиденциальность</span><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Проверить</a>
+                            </li>
+                            <li class="flex items-center justify-between border-b-2 border-b-black/5">
+                                <span class="text-[15px] font-bold">Справка</span><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Получить помощь</a>
+                            </li>
+                        </ul>
+                        <div class="py-2">
+                            <a href="#" class="block text-center text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white text-[15px] font-bold">Выйти</a>
+                        </div>
+                    </div>
+            </div>
+            <div class="relative hidden auth_block items-center ml-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" id="userAuth3" stroke="currentColor" class="w-5 h-5 rounded-lg text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+                <svg fill="currentColor" id="mobileBTN" class="hidden w-4 h-4 absolute -bottom-4 right-12 text-white" viewBox="0 0 24 11" xmlns="http://www.w3.org/2000/svg"><path d="M24 11H0L12 0L24 11Z" fill="currentColor"/></svg>
+                <button id="open_menu" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+           
+            <div id="userDropdownMobile" class="hidden z-50 py-[80px] absolute -top-5 right-4">
+                <div class="bg-white  rounded-lg shadow-md w-[350px] h-full dark:bg-gray-700 ">
+                <div class="p-5 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="closeDropMob" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 absolute top-6 right-6 opacity-50 cursor-pointer hover:opacity-100 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                <div class="text-gray-900 w-[220px] relative">
+                    <h2 class="text-3xl font-bold text-black">Войти в GM</h2>
+                    <p class="font-medium text-base">Выполните вход для доступа ко всей системе сайтов GM</p>
+                </div>
+                <form action="" class="w-full mt-3">
+                    <div class="flex flex-col">
+                        <label for="email" class="text-sm mb-1 text-gray-900">Email</label>
+                        <input name="email" class="border-gray-300 rounded-sm outline-none focus:ring-[#2AACF0] focus:ring-1" type="email" placeholder="Адрес эл. почты или телефон">
+                    </div>
+                    <div class="flex flex-col relative mt-2">
+                        <label for="password" class="text-sm mb-1 text-gray-900">Пароль</label>
+                        <input name="password" maxlength="16" minlength="8" class="border-gray-300 rounded-sm pr-[200px] outline-none focus:ring-[#2AACF0] focus:ring-1" type="password" placeholder="Пароль">
+                        <span class="absolute bottom-2 right-3 text-black font-medium cursor-pointer hover:border-b-2 hover:border-black">Показать</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-3">
+                        <button class="py-3 px-16 text-white text-base font-bold  bg-[#023BA4] rounded-md focus:ring-2 focus:ring-[#AAAAAA] focus:bg-[#AAAAAA]">Войти</button>
+                        <a href="#" class="text-[#AAAAAA] hover:border-b-2 hover:border-[#AAAAAA]">Забыли пароль?</a>
+                    </div>
+                </form>
+                <div class="my-3">
+                    <div class="ml-3 flex items-center">
+                        <span class="text-[#AAAAAA] w-full text-base">Войти через соц. сети</span>
+                        <div class="h-[1px] w-[200px] opacity-50 bg-[#AAAAAA]"></div>
+                    </div>
+                    <div class="flex items-center gap-2 mt-2">
+                        <a href="#">
+                            <svg fill="#fff" class="w-6 h-6 opacity-10 hover:opacity-100"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            viewBox="-143 145 512 512" xml:space="preserve">
+                            <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z
+	                            M215.2,361.2c0.1,2.2,0.1,4.5,0.1,6.8c0,69.5-52.9,149.7-149.7,149.7c-29.7,0-57.4-8.7-80.6-23.6c4.1,0.5,8.3,0.7,12.6,0.7
+	                            c24.6,0,47.3-8.4,65.3-22.5c-23-0.4-42.5-15.6-49.1-36.5c3.2,0.6,6.5,0.9,9.9,0.9c4.8,0,9.5-0.6,13.9-1.9
+	                            C13.5,430-4.6,408.7-4.6,383.2v-0.6c7.1,3.9,15.2,6.3,23.8,6.6c-14.1-9.4-23.4-25.6-23.4-43.8c0-9.6,2.6-18.7,7.1-26.5
+	                            c26,31.9,64.7,52.8,108.4,55c-0.9-3.8-1.4-7.8-1.4-12c0-29,23.6-52.6,52.6-52.6c15.1,0,28.8,6.4,38.4,16.6
+	                            c12-2.4,23.2-6.7,33.4-12.8c-3.9,12.3-12.3,22.6-23.1,29.1c10.6-1.3,20.8-4.1,30.2-8.3C234.4,344.5,225.5,353.7,215.2,361.2z" fill="#023BA4"
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" class="w-6 h-6 opacity-10 hover:opacity-100" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            viewBox="-143 145 512 512" xml:space="preserve">
+                            <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z
+	                            M169.5,357.6l-2.9,38.3h-39.3v133H77.7v-133H51.2v-38.3h26.5v-25.7c0-11.3,0.3-28.8,8.5-39.7c8.7-11.5,20.6-19.3,41.1-19.3
+	                            c33.4,0,47.4,4.8,47.4,4.8l-6.6,39.2c0,0-11-3.2-21.3-3.2c-10.3,0-19.5,3.7-19.5,14v29.9H169.5z" fill="#023BA4"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            class="w-6 h-6 opacity-10 hover:opacity-100" viewBox="0 0 94 94" xml:space="preserve">
+                            <g>
+	                            <path d="M89,0H5C2.238,0,0,2.239,0,5v84c0,2.761,2.238,5,5,5h84c2.762,0,5-2.239,5-5V5C94,2.239,91.762,0,89,0z M74.869,52.943
+		                            c2.562,2.5,5.271,4.854,7.572,7.617c1.018,1.22,1.978,2.48,2.709,3.899c1.041,2.024,0.101,4.247-1.713,4.366l-11.256-0.003
+		                            c-2.906,0.239-5.22-0.931-7.172-2.918c-1.555-1.585-3.001-3.277-4.5-4.914c-0.611-0.673-1.259-1.306-2.025-1.806
+		                            c-1.534-0.996-2.867-0.692-3.748,0.909c-0.896,1.63-1.103,3.438-1.185,5.255c-0.125,2.655-0.925,3.348-3.588,3.471
+		                            c-5.69,0.268-11.091-0.596-16.108-3.463c-4.429-2.53-7.854-6.104-10.838-10.146c-5.816-7.883-10.27-16.536-14.27-25.437
+		                            c-0.901-2.005-0.242-3.078,1.967-3.119c3.676-0.073,7.351-0.063,11.022-0.004c1.496,0.023,2.485,0.879,3.058,2.289
+		                            c1.985,4.885,4.421,9.533,7.471,13.843c0.813,1.147,1.643,2.292,2.823,3.103c1.304,0.896,2.298,0.601,2.913-0.854
+		                            c0.393-0.928,0.563-1.914,0.647-2.906c0.292-3.396,0.327-6.792-0.177-10.175c-0.315-2.116-1.507-3.483-3.617-3.883
+		                            c-1.074-0.204-0.917-0.602-0.395-1.215c0.906-1.062,1.76-1.718,3.456-1.718l12.721-0.002c2.006,0.392,2.452,1.292,2.725,3.311
+		                            l0.012,14.133c-0.021,0.782,0.391,3.098,1.795,3.61c1.123,0.371,1.868-0.53,2.54-1.244c3.048-3.235,5.22-7.056,7.167-11.009
+		                            c0.857-1.743,1.6-3.549,2.32-5.356c0.533-1.337,1.367-1.995,2.875-1.971l12.246,0.013c0.36,0,0.729,0.004,1.086,0.063
+		                            c2.062,0.355,2.627,1.243,1.99,3.257c-1.004,3.163-2.959,5.799-4.871,8.441c-2.043,2.825-4.224,5.557-6.252,8.396
+		                            C72.411,49.38,72.561,50.688,74.869,52.943z" fill="#023BA4"/>
+                            </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	                            class="w-6 h-6 opacity-10 hover:opacity-100" viewBox="0 0 94 94" xml:space="preserve">
+                            <g>
+	                            <g>
+		                            <path d="M47.051,37.59c5.247-0.017,9.426-4.23,9.407-9.489c-0.021-5.259-4.207-9.448-9.456-9.452
+			                            c-5.293-0.005-9.52,4.259-9.479,9.566C37.562,33.454,41.788,37.612,47.051,37.59z" fill="#023BA4"/>
+		                            <path d="M89,0H5C2.239,0,0,2.238,0,5v84c0,2.762,2.239,5,5,5h84c2.762,0,5-2.238,5-5V5C94,2.238,91.762,0,89,0z M47.08,8.766
+			                            c10.699,0.027,19.289,8.781,19.236,19.602c-0.057,10.57-8.787,19.138-19.469,19.102c-10.576-0.036-19.248-8.803-19.188-19.396
+			                            C27.722,17.365,36.4,8.734,47.08,8.766z M68.753,55.072c-2.366,2.431-5.214,4.187-8.378,5.416
+			                            c-2.991,1.156-6.268,1.742-9.512,2.13c0.49,0.534,0.721,0.793,1.025,1.102c4.404,4.425,8.826,8.832,13.215,13.27
+			                            c1.494,1.511,1.81,3.386,0.985,5.145c-0.901,1.925-2.916,3.188-4.894,3.052c-1.252-0.088-2.228-0.711-3.094-1.582
+			                            c-3.324-3.345-6.711-6.627-9.965-10.031c-0.947-0.992-1.403-0.807-2.241,0.056c-3.343,3.442-6.738,6.831-10.155,10.2
+			                            c-1.535,1.514-3.36,1.785-5.143,0.922c-1.892-0.917-3.094-2.848-3.001-4.791c0.064-1.312,0.71-2.314,1.611-3.214
+			                            c4.356-4.351,8.702-8.713,13.05-13.072c0.289-0.288,0.557-0.597,0.976-1.045c-5.929-0.619-11.275-2.077-15.85-5.657
+			                            c-0.567-0.445-1.154-0.875-1.674-1.373c-2.002-1.924-2.203-4.125-0.618-6.396c1.354-1.942,3.632-2.464,5.997-1.349
+			                            c0.459,0.215,0.895,0.486,1.313,0.775c8.528,5.86,20.245,6.023,28.806,0.266c0.847-0.647,1.754-1.183,2.806-1.449
+			                            c2.045-0.525,3.947,0.224,5.045,2.012C70.314,51.496,70.297,53.488,68.753,55.072z" fill="#023BA4"/>
+	                            </g>
+                            </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="#fff" class="w-8 h-8 opacity-10 hover:opacity-100" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM548.5 622.8c-43.9 61.8-132.1 79.8-200.9 53.3-69-26.3-118-99.2-112.1-173.5 1.5-90.9 85.2-170.6 176.1-167.5 43.6-2 84.6 16.9 118 43.6-14.3 16.2-29 31.8-44.8 46.3-40.1-27.7-97.2-35.6-137.3-3.6-57.4 39.7-60 133.4-4.8 176.1 53.7 48.7 155.2 24.5 170.1-50.1-33.6-.5-67.4 0-101-1.1-.1-20.1-.2-40.1-.1-60.2 56.2-.2 112.5-.3 168.8.2 3.3 47.3-3 97.5-32 136.5zM791 536.5c-16.8.2-33.6.3-50.4.4-.2 16.8-.3 33.6-.3 50.4H690c-.2-16.8-.2-33.5-.3-50.3-16.8-.2-33.6-.3-50.4-.5v-50.1c16.8-.2 33.6-.3 50.4-.3.1-16.8.3-33.6.4-50.4h50.2l.3 50.4c16.8.2 33.6.2 50.4.3v50.1z" fill="#023BA4"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                </div>
+                <div class="py-4 px-4 flex justify-between items-center  w-full bg-[#EDF4FC]">
+                    <span class="text-lg font-bold">Еще не в GM?</span>
+                    <a href="#" class="py-3 px-12 text-black shadow-lg text-base font-bold  bg-white rounded-md hover:shadow-sm">Регистрация</a>
+                </div>
+                </div>
+            </div>
+          
+    </div>
+        </div>
+    </header>
+  <main class="p-4 text-white mainSection">
+    <section class="flex flex-col items-center ">
+       
+    <div class="container flex w-full overflow-x-auto hide-scrollbar">
+        
+        <div class="adaptive-block flex flex-col items-center border-r-[1px] border-r-[#11254a] w-auto min-w-[80px]">
+            <img src="./assets/iconsFBlock/ico.svg" alt="Icon 1" class="mb-1 w-6 h-6">
+            <h3 class="gm-card-text font-bold text-center">GM FACE</h3>
+            <p class="development-text text-center">Разработка</p>
+        </div>
+
+      
+        <div class="adaptive-block flex flex-col items-center border-r-[1px] border-r-[#11254a] w-auto min-w-[80px]">
+            <img src="./assets/iconsFBlock/untitled.svg" alt="Icon 2" class="mb-1 w-6 h-6">
+            <h3 class="gm-card-text font-bold text-center text-[#f4d710]">GM CARD</h3>
+            <p class="development-text text-center text-[#f4d710]">Готов</p>
+        </div>
+
+    
+        <div class="adaptive-block flex flex-col items-center border-r-[1px] border-r-[#11254a] w-auto min-w-[80px]">
+            <img src="./assets/iconsFBlock/ico.svg" alt="Icon 3" class="mb-1 w-6 h-6">
+            <h3 class="gm-card-text font-bold text-center">GM WORK</h3>
+            <p class="development-text text-center">Разработка</p>
+        </div>
+
+        
+        <div class="adaptive-block flex flex-col items-center border-r-[1px] border-r-[#11254a] w-auto min-w-[80px]">
+            <img src="./assets/iconsFBlock/ico.svg" alt="Icon 4" class="mb-1 w-6 h-6">
+            <h3 class="gm-card-text font-bold text-center">GM GENERATOR</h3>
+            <p class="development-text text-center">Разработка</p>
+        </div>
+
+     
+        <div class="adaptive-block flex flex-col items-center w-auto min-w-[80px]">
+            <img src="./assets/iconsFBlock/ico.svg" alt="Icon 5" class="mb-1 w-6 h-6">
+            <h3 class="gm-card-text font-bold text-center">GM BUSSINES</h3>
+            <p class="development-text text-center">Разработка</p>
+        </div>
+    </div>
+
+
+        
+        <div class="flex flex-col items-center text-[#727e94] mt-6 text-center descSection">
+            <p class="mb-6 text-sm">Действие платных тарифов распространяется на все наши сервисы платформы</p>
+            <p class="text-sm text-[#727e94]">В данный момент мы предоставляем только один сервис. <br> Остальные наши сервисы сейчас в разработке</p>
+        </div>
+    </section>
+    <div class="flex overflow-x-auto space-x-6 justify-start lg:justify-center saleWrapper">
+   
+        <div class="flex-shrink-0 w-[364px]  h-[742px] bg-white rounded-[20px] saleBlock p-4">
+            <div class="flex flex-col items-center">
+                <div class="relative">
+                    <img src="./assets/saleBlocks/GR.svg" alt="image" class="rectangles rectangles--first object-cover rounded-lg" />
+                </div>
+                <h2 class="font-bold text-4xl text-black mt-4 tariffName tariffName-F">Free</h2>
+                <p class="text-sm text-[#8A9CAE] mt-2">Мне только посмотреть</p>
+                <div class="space-y-2 mt-4">
+                    <button class="w-full py-4 px-12 rounded-[10px] bg-[#F2F6FB] text-center text-sm text-[#8A9CAE] btnTariff">Базовый тариф всегда <br> бесплатно для каждого 😉</button>
+                    <button class="w-full py-4 goinBtn goinBtnFree rounded-[10px] bg-[#F2F6FB] px-4 text-sm text-[#8A9CAE] font-bold text-center">
+                        Активен ✔
+                    </button>
+                    <div id="promoCodeDisplay" class="hidden promoCodeDisplay mt-4 flex items-center justify-between w-full">
+                    <span class="font-bold text-black">Промокод:</span>
+                    <div class="bg-[rgba(88,151,72,0.29)] rounded-[7px] px-2 py-1 text-[rgba(88,151,72,1)]">
+                        SALE-2024-GM
+                    </div>
+                </div>  
+                </div>
+                <p class="mt-4 text-sm text-[#8A9CAE] dashes-underline cursor-pointer" id="promoCodeTrigger">У меня есть промокод</p>
+            </div>
+            <div class="border-t border-[#e7ecf3] mt-4"></div>
+            <div class="p-5 tariffAb">
+                <h3 class="font-bold text-sm text-black mt-4">Что входит:</h3>
+                <ul class="space-y-2 mt-2 text-black">
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        базовый набор возможностей
+                    </li>
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        бесплатное создание акций
+                    </li>
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        стандартный кэшбэк
+                    </li>
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        редактируемый бейдж
+                    </li>
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        стандартная комиссия за вывод средств
+                    </li>
+                    <li class="flex items-center">
+                        <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+                        и многое другое, подробнее ниже
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+  
+            <div class="flex-shrink-0 w-[364px]   h-[742px] secondSale rounded-[20px] saleBlock p-4">
+            <div class="flex flex-col items-center ">
+            <div class="relative ">
+            <img src="./assets/saleBlocks/YR.svg" alt="image" class="rectangles rectangles--second object-cover rounded-lg" />
+            <img src="./assets/saleBlocks/Hint.svg" class="popular" alt="">
+            </div>
+            <h2 class="font-bold text-4xl text-white mt-4 tariffName-F">Pro</h2>
+            <p class="text-sm text-[#8A9CAE] mt-2">Уже посмотрел</p>
+            <div class="space-y-2 mt-4">
+            <div class="w-full py-4 pr-8 pl-7 rounded-[10px] bg-[#3d5b92] text-center text-sm text-white checkTariff">
+             
+                <div class="flex items-center justify-between mb-4 firstCheckTariff">
+                    <label for="radio1" class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" id="radio1" name="subscription" class="custom-radio">
+                        <span class="checkmark"></span>
+                        <span>1 месяц</span>
+                    </label>
+                    <span>200 ₽ в мес.</span>
+                </div>
+
+                <div class="mr-[-2rem] ml-[-1.7rem] h-[1px] bg-[#5974a3] tariffRaz"></div>
+
+              
+                <div class="flex items-center justify-between gap-[30px] mt-4 SecondCheckTariff">
+                    <label for="radio2" class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" id="radio2" name="subscription" class="custom-radio">
+                        <span class="checkmark"></span>
+                        <span>1 год</span>
+                        <div class="bg-[#5973a2] px-3 py-1 rounded-lg text-white discount">-25%</div>
+                    </label>
+                    <div class="flex items-center space-x-2">
+                        <div class="text-[#6d84ad] line-through">200</div>
+                        <span class="text-white">150 ₽ в мес.</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+                <button class="w-full py-4 rounded-[10px] goinBtn   px-4 text-sm  text-black font-bold text-center">
+                Перейти
+                </button>
+                <div id="promoCodeDisplay" class="hidden promoCodeDisplay mt-4 flex items-center justify-between w-full">
+                    <span class="font-bold text-white">Промокод:</span>
+                    <div class="bg-[rgba(88,151,72,0.29)] rounded-[7px] px-2 py-1 text-[rgba(88,151,72,1)]">
+                        SALE-2024-GM
+                    </div>
+                </div>  
+            </div>
+            <p class="mt-4 text-sm text-white dashes-underline dashes-underline-second cursor-pointer " id="promoCodeTrigger">У меня есть промокод</p>
+            </div>
+            <div class=" borderSec mt-4"></div>
+            <div class="p-5 tariffAb">
+                <h3 class="font-bold text-sm text-white mt-4">Что входит:</h3>
+                <ul class="space-y-2 mt-2 text-white">
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    больше возможностей
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    бесплатное создание акций
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    повышенный кэшбэк
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    премиум бейдж
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    пониженная комиссия за вывод средств
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plusSec.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    и многое другок, подробнее ниже
+                </li>
+                </ul>
+            </div>
+        </div>
+ 
+        <div class="flex-shrink-0 w-[364px] h-[742px] bg-white rounded-[20px] saleBlock p-4">
+            <div class="flex flex-col items-center ">
+                <div class="relative ">
+                    <img src="./assets/saleBlocks/BR.svg" alt="image" class="rectangles rectangles--third object-cover rounded-lg" />
+                </div>
+                <h2 class="font-bold text-4xl text-black mt-4 tariffName-F">Exp</h2>
+                <p class="text-sm text-[#8A9CAE] mt-2">Знаю чего хочу</p>
+
+                <div class="w-full py-4 pr-8 pl-7 rounded-[10px] mt-4 bg-[#f2f6fb] text-center text-sm text-black checkTariffExp">
+               <div class="flex items-center justify-between mb-4 firstCheckTariff "> <label for="radio3" class="flex items-center space-x-2 cursor-pointer"> <input type="radio" id="radio3" name="subscription" class="custom-radio"> <span class="checkmark checkmark--sec "></span> <span>1 месяц</span> </label> <span>600 ₽ в мес.</span> </div>
+            <div class="mr-[-2rem] ml-[-1.7rem] h-[1px] bg-[#dce4ef] tariffRaz"></div>
+
+        
+            <div class="flex items-center justify-between gap-[30px] mt-4 SecondCheckTariffExp">
+                <label for="radio4" class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" id="radio4" name="subscription" class="custom-radio">
+                    <span class="checkmark checkmark--sec"></span>
+                    <span>1 год</span>
+                    <div class="bg-[#dbe4ee] px-3 py-1 rounded-lg text-[#041a41] font-bold discount">-25%</div>
+                </label>
+                <div class="flex items-center space-x-2">
+                    <div class="text-[#8a9cae] line-through">600</div>
+                    <span class="text-black">450 ₽ в мес.</span>
+                </div>
+            </div>
+                </div>
+
+            <button class="w-full py-4 rounded-[10px] goinBtn   px-4 text-sm  text-black font-bold text-center">
+                Перейти
+                </button>
+
+                <div id="promoCodeDisplay" class="hidden promoCodeDisplay mt-4 flex items-center justify-between w-full">
+                    <span class="font-bold text-black">Промокод:</span>
+                    <div class="bg-[rgba(88,151,72,0.29)] rounded-[7px] px-2 py-1 text-[rgba(88,151,72,1)]">
+                        SALE-2024-GM
+                    </div>
+                </div>
+                
+                <p class="mt-4 text-sm text-[#8A9CAE] dashes-underline cursor-pointer" id="promoCodeTrigger">У меня есть промокод</p>
+            </div>
+            <div class="border-t border-[#e7ecf3] mt-4"></div>
+            <div class="p-5 tariffAb">
+                <h3 class="font-bold text-sm text-black mt-4">Что входит:</h3>
+                <ul class="space-y-2 mt-2 text-black">
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    базовый набор возможностей
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    бесплатное создание акций
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    стандартный кэшбэк
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    редактируемый бейдж
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    стандартная комиссия за вывод средств
+                </li>
+                <li class="flex items-center">
+                    <img src="./assets/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2"/>
+                    и многое другок, подробнее ниже
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ <div class="flex flex-col items-center text-[#727e94] mt-6 text-center descSectionMob">
+            <p class="mb-6 text-sm">Действие платных тарифов распространяется на все наши сервисы платформы</p>
+            <p class="text-sm text-[#727e94]">В данный момент мы предоставляем только один сервис. <br> Остальные наши сервисы сейчас в разработке</p>
+        </div>
+<section class="tariff-section border-t border-[#25385a] w-full py-3 px-32">
+  
+
+   <div class="tariff-info bg-[#364867] border-none rounded-[14px] py-4 px-5 text-sm text-[#9aa4b3] flex w-[440px] relative left-[2%] items-center flex-wrap">
+    Чтобы увидеть подробности, нажмите знак 
+    <div id="popUpSecTrigger">
+        
+        <img src="./assets/tarif/question.svg" alt="Image" class="tariff-info-image ml-2 mr-2" />
+        <img src="./assets/tarif/questionHover.svg" alt="Image" class="tariff-info-image-hover ml-2 mr-2" />  
+    </div>
+    <br> <span class="text-continue">рядом с опцией</span>
+</div>
+
+  <div class="tariff-details container grid grid-cols-2 gap-[20px] text-white mt-[15px] justify-around items-center sticky top-0 bg-[#041a41] border-b border-[#203457] z-10">
+    
+    
+    <div class="tariff-header col-span-1">
+      <h2 class="tariff-title text-[36px] text-center leading-normal">Тарифы и что <br/> в них входит</h2>
+    </div>
+
+  
+    <div class="tariff-plans col-span-1 grid grid-cols-3 gap-[40px]">
+      <!-- Тариф Free -->
+      <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifFree">
+        <h3 class="tariff-name text-[24px] font-bold">Free</h3>
+        <div class="tariff-status bg-[#1d3154] rounded-[12px] text-[#8a9cae] py-2 px-6 font-bold">Активен</div>
+      </div>
+
+      <!-- Тариф Pro -->
+     <div class="sr p-4 text-center rounded-[14px] flex flex-col items-center gap-3 w-64 bg-[#11254a] rounded-b-none tarifPro">
+        <h3 class="tariff-name text-[24px] font-bold tariffName">Pro</h3>
+        <div class="tariff-status bg-[#f4d710] rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+      </div>
+
+      <!-- Тариф Exp -->
+     <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifExp">
+        <h3 class="tariff-name text-[24px] font-bold tariffName">Exp</h3>
+        <div class="tariff-status bg-[#f4d710] rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+      </div>
+    </div>
+  </div>
+
+ 
+  
+
+
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px] items-center">
+    
+
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="w-[25px] h-auto markTariff"/>
+      </div>
+      <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-[25px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+  </div>
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px]  items-center">
+    
+
+    <div class="features-description col-span-1">
+        <h2 class="features-title text-[16px] relative">Возможность создавать свои <br> акции, скидки, конкурсы и т.д. 
+            <img src="./assets/tarif/question.svg" alt="Image" class="tariff-info-image ml-2 mr-2 absolute left-[100%] top-[47%]" id="popUpSecTrigger"/>
+            <img src="./assets/tarif/questionHover.svg" alt="Image" class="tariff-info-image-hover  ml-2 mr-2 absolute left-[100%] top-[47%]" id="popUpSecTrigger"/> 
+        </h2>      
+    </div>
+
+
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+  <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]"> 
+    1
+  </div>
+  <div class="image-item image-itemSec w-64 flex flex-col items-center justify-center h-full bg-[#11254a] text-[18px]"> 
+    5
+  </div>
+  <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]"> 
+    8
+  </div>
+</div>
+
+  </div>
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px]  items-center">
+    
+    
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+  
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]">
+        99
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full text-[18px]">
+       190
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]">
+       500
+      </div>
+    </div>
+  </div>
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px]  items-center">
+    
+
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+   
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 1" class="w-[30px] h-auto"/>
+      </div>
+    <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 2" class="w-[30px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+  </div>
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px]  items-center">
+    
+
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 1" class="w-[30px] h-auto"/>
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 2" class="w-[30px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+  </div>
+  <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px] items-center">
+    
+
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 1" class="w-[30px] h-auto"/>
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-[25px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+    
+  </div>
+    <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px] items-center">
+    
+    
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+   <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 1" class="w-[30px] h-auto"/>
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-[25px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+    
+  </div>
+    <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px] items-center">
+    
+    
+   <div class="features-description col-span-1">
+        <h2 class="features-title text-[16px] relative">Возможность создавать свои <br> акции, скидки, конкурсы и т.д. 
+            <img src="./assets/tarif/question.svg" alt="Image" class="tariff-info-image ml-2 mr-2 absolute left-[100%] top-[47%]" id="popUpSecTrigger"/>
+            <img src="./assets/tarif/questionHover.svg" alt="Image" class="tariff-info-image-hover  ml-2 mr-2 absolute left-[100%] top-[47%]" id="popUpSecTrigger"/> 
+        </h2>      
+    </div>
+
+
+    <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]">
+        50%
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full text-[18px]">
+        20%
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full text-[18px]">
+       5%
+      </div>
+    </div>
+    
+  </div>
+    <div class="features-section container grid grid-cols-2 gap-[20px] text-white justify-around rounded-[20px] items-center">
+    
+
+    <div class="features-description col-span-1">
+      <h2 class="features-title text-[16px]">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+    </div>
+
+        <div class="features-images col-span-1 grid grid-cols-3 gap-[40px] h-[100px]">
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/minus.svg" alt="Image 1" class="w-[30px] h-auto"/>
+      </div>
+     <div class="image-item image-itemSec w-64 flex flex-col items-center bg-[#11254a] justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-[25px] h-auto"/>
+      </div>
+      <div class="image-item w-64 flex flex-col items-center justify-center h-full">
+        <img src="./assets/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-[25px] h-auto"/>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="tariff-details tariff-details-Bottom container grid grid-cols-2 gap-[250px] text-white  justify-around items-center border-t border-[#203457]">
+    
+
+    <div class="tariff-header col-span-1">
+      <h2 class="tariff-title text-[36px] text-center leading-normal"></h2>
+    </div>
+
+
+    <div class="tariff-plans tariff-plans-Bottom col-span-1 grid grid-cols-3 gap-[40px] mr-2">
+
+      <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifFree">
+        <h3 class="tariff-name text-[24px] font-bold"></h3>
+        <div class="tariff-status bg-[#1d3154] rounded-[12px] text-[#8a9cae] py-2 px-6 font-bold">Активен</div>
+      </div>
+
+
+     <div class="sr p-4 text-center rounded-[14px] flex flex-col items-center gap-3 w-64 bg-[#11254a] rounded-t-none tarifPro tarifPro-Bottom">
+        <h3 class="tariff-name text-[24px] font-bold"></h3>
+        <div class="tariff-status bg-[#f4d710] rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+      </div>
+
+
+     <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifExp">
+        <h3 class="tariff-name text-[24px] font-bold"></h3>
+        <div class="tariff-status bg-[#f4d710] rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="bg-[#101121] relative overflow-hidden flex">
+        <div class=" 2xl:px-4 w-[1140px] mx-auto py-9 relative">
+            <img src="/assets/images/phone.png" class="absolute -bottom-2 -left-11 z-10 hand" alt="Телефон">
+            <ul class="flex items-center justify-between flex-wrap z-20 relative footer_navBlock">
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Все магазины</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Все промокоды</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Все скидки</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Все конкурсы</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >О нас</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Помощь</a></li>
+                <li><a href="#" class="text-sm text-white font-bold uppercase hover:border-b-2 footer_nav hover:border-b-white" >Контакты</a></li>
+            </ul>
+            <div class="w-full bg-white opacity-10 my-10 h-[1px]"></div>
+            <div class="flex justify-between z-20 relative footer_block" >
+                <ul class="w-[143px] footer_upBlock flex flex-col gap-3 list-none">
+                    <li><a href="#" class="text-lg font-bold text-white opacity-30">Больше скидок</a></li>
+                    <li><a href="#" class="text-[15px] text-white">В нашем мобильном приложении</a></li>
+                    <div class="flex flex-col gap-3 upBlock_phones">
+                    <li class="w-[143px] h-[54px] flex items-center justify-center bg-[#000000] rounded-lg hover:opacity-80" ><a href="#"><img src="/assets/images/app_store.png" class="w-[106px] h-[31px]" alt="Скачать на IPhone" data-tooltip-target="tooltip-app" type="button"></a></li>
+                    <li><a href="#" class=""><img src="/assets/images/store.png" class="w-[143px] h-[54px] hover:opacity-80" alt="Скачать на Android" data-tooltip-target="tooltip-app" type="button"></a></li>
+                    </div>
+                   <div id="tooltip-app" role="tooltip" class="absolute z-10 w-[150px] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        В разработке! 
+                       
+                    </div>
+                </ul>
+                <ul class="list-none list_footer ml-[250px] footer_downBlock">
+                    <li class="text-lg font-bold text-white opacity-30">Следите за новостями и акциями</li>
+                    <div class="flex items-center flex-wrap gap-3 mt-[15px]">
+                        <li><a href="" class="flex items-center justify-center text-[16px] text-white w-[147px] h-[48px] ring-[1px] ring-white/50 hover:ring-white rounded-lg" data-tooltip-target="tooltip-social" type="button"><svg class="w-5 h-5 text-white opacity-50" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            <g id="SVGRepo_iconCarrier"> <path d="M12 7.90001C11.1891 7.90001 10.3964 8.14048 9.72218 8.59099C9.04794 9.0415 8.52243 9.68184 8.21211 10.431C7.90179 11.1802 7.8206 12.0046 7.9788 12.7999C8.13699 13.5952 8.52748 14.3258 9.10088 14.8992C9.67427 15.4725 10.4048 15.863 11.2001 16.0212C11.9955 16.1794 12.8198 16.0982 13.569 15.7879C14.3182 15.4776 14.9585 14.9521 15.409 14.2779C15.8596 13.6036 16.1 12.8109 16.1 12C16.1013 11.4612 15.9962 10.9275 15.7906 10.4295C15.585 9.93142 15.2831 9.47892 14.9021 9.09794C14.5211 8.71695 14.0686 8.415 13.5706 8.20942C13.0725 8.00385 12.5388 7.8987 12 7.90001ZM12 14.67C11.4719 14.67 10.9557 14.5134 10.5166 14.22C10.0776 13.9267 9.73534 13.5097 9.53326 13.0218C9.33117 12.5339 9.2783 11.9971 9.38132 11.4791C9.48434 10.9612 9.73863 10.4854 10.112 10.112C10.4854 9.73863 10.9612 9.48434 11.4791 9.38132C11.9971 9.2783 12.5339 9.33117 13.0218 9.53326C13.5097 9.73534 13.9267 10.0776 14.22 10.5166C14.5134 10.9557 14.67 11.4719 14.67 12C14.67 12.7081 14.3887 13.3873 13.888 13.888C13.3873 14.3887 12.7081 14.67 12 14.67ZM17.23 7.73001C17.23 7.9278 17.1714 8.12114 17.0615 8.28558C16.9516 8.45003 16.7954 8.57821 16.6127 8.65389C16.43 8.72958 16.2289 8.74938 16.0349 8.7108C15.8409 8.67221 15.6628 8.57697 15.5229 8.43712C15.3831 8.29727 15.2878 8.11909 15.2492 7.92511C15.2106 7.73112 15.2304 7.53006 15.3061 7.34733C15.3818 7.16461 15.51 7.00843 15.6744 6.89855C15.8389 6.78866 16.0322 6.73001 16.23 6.73001C16.4952 6.73001 16.7496 6.83537 16.9371 7.02291C17.1247 7.21044 17.23 7.4648 17.23 7.73001ZM19.94 8.73001C19.9691 7.48684 19.5054 6.28261 18.65 5.38001C17.7522 4.5137 16.5474 4.03897 15.3 4.06001C14 4.00001 10 4.00001 8.70001 4.06001C7.45722 4.0331 6.25379 4.49652 5.35001 5.35001C4.49465 6.25261 4.03093 7.45684 4.06001 8.70001C4.00001 10 4.00001 14 4.06001 15.3C4.03093 16.5432 4.49465 17.7474 5.35001 18.65C6.25379 19.5035 7.45722 19.9669 8.70001 19.94C10.02 20.02 13.98 20.02 15.3 19.94C16.5432 19.9691 17.7474 19.5054 18.65 18.65C19.5054 17.7474 19.9691 16.5432 19.94 15.3C20 14 20 10 19.94 8.70001V8.73001ZM18.24 16.73C18.1042 17.074 17.8993 17.3863 17.6378 17.6478C17.3763 17.9093 17.064 18.1142 16.72 18.25C15.1676 18.5639 13.5806 18.6715 12 18.57C10.4228 18.6716 8.83902 18.564 7.29001 18.25C6.94608 18.1142 6.63369 17.9093 6.37223 17.6478C6.11076 17.3863 5.90579 17.074 5.77001 16.73C5.35001 15.67 5.44001 13.17 5.44001 12.01C5.44001 10.85 5.35001 8.34001 5.77001 7.29001C5.90196 6.94268 6.10547 6.62698 6.36733 6.36339C6.62919 6.09981 6.94355 5.89423 7.29001 5.76001C8.83902 5.44599 10.4228 5.33839 12 5.44001C13.5806 5.33856 15.1676 5.44616 16.72 5.76001C17.064 5.89579 17.3763 6.10076 17.6378 6.36223C17.8993 6.62369 18.1042 6.93608 18.24 7.28001C18.66 8.34001 18.56 10.84 18.56 12C18.56 13.16 18.66 15.67 18.24 16.72V16.73Z" fill="currentColor"/> </g>
+                            </svg>Telegramm</a></li>
+                            <a href="" class="flex items-center justify-center w-[50px] h-[48px] ring-[1px] ring-white/50 hover:ring-white rounded-lg" data-tooltip-target="tooltip-social" type="button">
+                        <svg class="w-5 h-5 text-white opacity-50" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="SVGRepo_iconCarrier">
+    <path d="M21.426 2.19a1.5 1.5 0 0 0-1.931-.72L2.562 9.697a1.5 1.5 0 0 0 .106 2.78l4.15 1.3 1.98 6.15a1.5 1.5 0 0 0 2.74.14l2.69-6.8 4.44-4.27a1.5 1.5 0 0 0-.5-2.82zM9.58 14.78l-.88-2.73 7.31-5.1-8.43 7.83z"/>
+  </g>
+</svg>
+
+                            </a>
+                        </li>
+                        <div id="tooltip-social" role="tooltip" class="absolute z-10 w-[250px] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            Руки никак не доходят :)
+                       
+                    </div>
+                    </div>
+                    <p class="text-sm max-w-xs mt-5 text-white opacity-30 hover:opacity-100">Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России</p>
+                    <li class="text-lg font-bold text-white opacity-30 mt-12">Служба поддержки GM</li>
+                    <div class="flex gap-7 mt-[15px] flex-wrap">
+                        <li><li><a href="mailto:admin@gmcard.ru" class="text-white text-[16px] flex items-center border-b-2 border-b-white/30"><img src="/assets/icons/email.png" class="opacity-50 mr-[14px]" alt="">admin@gmcard.ru</a></li></li>
+                        <li>
+                            <button id="modal-cash" class="text-white text-[16px] flex items-center border-b-2 border-b-white/30">Где мой кэшбэк?</button>
+                            <div id="staticModals" class="fixed top-0 left-0  w-full h-full z-50 bg-black bg-opacity-30 overflow-auto hidden">
+                                <div class="flex justify-center py-10 w-full px-4">
+                                <div class="relative  w-full max-w-[500px] max-h-full z-50">
+                                    <div class="relative bg-white rounded-lg dark:bg-gray-700">
+                                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                Где мой кэшбек?
+                                            </h3>
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" id="close_Modal">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                                            </button>
+                                        </div>
+                                        <div class="p-6 space-y-1">
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                Пожалуйста заполните эту форму и мы поможем Вам найти кэшбек
+                                                Поиск кэшбека возможен, если с момента соверщения покупки прошло не более 6 месяцев, т.е. если Вы потеряли бонус за покупку, которую сделали более полугода назад, то найти нам его, скорее всего, не удастся.
+                                            </p>
+                                            <form action="">
+                                                <div class="mt-2">
+                                                    <label for="email-address-icon" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Email, указанный при регистрации</label>
+                                                    <div class="relative">
+                                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                                        </div>
+                                                        <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ivanov@gmail.com">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label for="email-address-icon" class="block text-base font-medium text-gray-900 dark:text-white">Дата покупки</label>
+                                                    <p class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Дата покупки должна быть не менее 5 дней назад, т.к. в некоторых интернет-магазинах отслеживание Вашей покупки и зачисление бонуса может занять до 5 дней.</p>
+                                                    <div class="relative max-w-full">
+                                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                                                        </div>
+                                                        <input datepicker datepicker-autohide type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Выберите дату">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label for="email-address-icon" class="block text-base font-medium text-gray-900 dark:text-white">Магазин</label>
+                                                    <p class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Здесь отображаются магазины, которые Вы посещали в течение 7 дней.</p>
+                                                    <div class="relative max-w-full">
+                                                        <input  type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label for="email-address-icon" class="block text-base font-medium text-gray-900 dark:text-white">Номер заказа</label>
+                                                    <div class="relative max-w-full">
+                                                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Валюта</label>
+                                                    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <option selected>RUB</option>
+                                                        <option value="US">USD</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <p class="text-gray-900 dark:text-gray-300 text-base">Покупка совершена через мобильное приложение?</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-radio" class="text-sm font-medium text-gray-900 dark:text-gray-300">Да</label>
+                                                            <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-2-radio" class=" text-sm font-medium text-gray-900 dark:text-gray-300">Нет</label>
+                                                            <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <p class="text-gray-900 dark:text-gray-300 text-base">Вы использовали промокоды?</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-radio" class="text-sm font-medium text-gray-900 dark:text-gray-300">Да</label>
+                                                            <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-2-radio" class=" text-sm font-medium text-gray-900 dark:text-gray-300">Нет</label>
+                                                            <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <p class="text-gray-900 dark:text-gray-300 text-base">Находились ли товары в корзине до перехода через GmCash?</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-radio" class="text-sm font-medium text-gray-900 dark:text-gray-300">Да</label>
+                                                            <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                        <div class="flex items-center mr-4">
+                                                            <label for="inline-2-radio" class=" text-sm font-medium text-gray-900 dark:text-gray-300">Нет</label>
+                                                            <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Пожалуйста, прикрепите скриншот заказа, где видно номер заказа, дату заказа и полную сумму покупки</label>
+                                                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
+                                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" id="file_input_help">Прикрепите файл (рамер до 1МБ): (*.pdf, *.png, *.jpg, *.gif, *.jpeg)</p>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Комментарий</label>
+                                                    <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                            <button id="close_Submit" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Отправить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="flex gap-4 mt-11 relative z-30 politic">
+                        <li><a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Политика защиты персональный информации</a></li>
+                        <li><a href="#" class="text-sm text-white opacity-30 hover:opacity-100">Пользовательское соглашение</a></li>
+                    </div>
+                </ul>
+                <ul class="list-none block pay_block">
+                    <li class="text-lg font-bold text-white opacity-30 mb-6">Мы работаем с</li>
+                    <ul class="flex gap-5">
+                        <li>
+                            <ul class="flex flex-col">
+                                <li><img src="/assets/icons/visa.png" class="mb-11 mt-1 w-[47px] h-[14px]" alt="Visa"></li>
+                                <li><img src="/assets/icons/sberbank.png" class="mb-11" alt="Сбер Банк"></li>
+                                <li><img src="/assets/icons/alfa.png" alt="Альфа Банк"></li>
+                            </ul>
+                        </li>
+                        <div class="w-[1px] h-full bg-white "></div>
+                        <li>
+                            <ul class="flex flex-col">
+                                <li><img src="/assets/icons/master.png" class="mb-8" alt="MasterCard"></li>
+                                <li><img src="/assets/icons/robbo.png" class="mb-9" alt="Robbo"></li>
+                                <li><img src="/assets/icons/yandex.png" alt="Яндекс"></li>
+                            </ul>
+                        </li>
+                        <div></div>
+                        <li>
+                            <ul class="flex flex-col">
+                                <li><img src="/assets/icons/maestro.png" class="mb-10" alt="Maestro"></li>
+                                <li><img src="/assets/icons/webmoney.png" class="mb-9" alt="Webmoney"></li>
+                                <li><img src="/assets/icons/qiwi.png" alt="Qiwi"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <li class="text-sm text-white opacity-30 mt-11 text-end">И другие</li>
+                </ul>
+            </div>
+            <div class="w-full bg-white opacity-10 my-8 h-[1px]"></div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-[16px]">
+                    <img src="/assets/icons/logo.png" class="w-[26px] h-[26px]" alt="GM">
+                    <span class="text-sm text-white opacity-30">GM 2014 - 2025</span>
+                </div>
+                <ul class="flex items-center partner_link">
+                    <li class="text-[#eacc14] font-bold hover:opacity-80 relative z-10"><a href="#">+ Партнерская программа</a></li>
+                    <div class="h-[30px] w-[1px] bg-white opacity-10 mx-5"></div>
+                    <li class="text-[#eacc14] font-bold hover:opacity-80"><a href="#">+ Добавить магазин</a></li>
+                </ul>
+                <div class="flex items-center justify-center ring-1 ring-white/30 hover:ring-white rounded-lg gap-2 w-[141px] h-[39px]" data-tooltip-target="tooltip-country" type="button">
+                    <img src="/assets/icons/russia.png" class="w-[13px] h-[9px]" alt="Россия">
+                    <span class="text-[12px] font-bold text-white">Россия</span>
+                    <img src="/assets/icons/up.png" alt="Вверх" class="arrowFooter">
+                    <div id="tooltip-country" role="tooltip" class="absolute z-10 w-[250px] invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        Данный выпадающий список - находится в разработке! 
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div id="modal" class="modal hiddenPop">
+        <div class="modal-content">
+        <div class="modal-header flex justify-between p-6">
+            <h2 class="text-lg font-bold">Введите промокод</h2>
+            <button id="closeModal" class="close-button">
+                <img src="./assets/pop-up/close.svg" alt="">
+            </button>
+        </div>
+        <div class="h-[1px] bg-[#e7ecf3]"></div>
+        <div class="popUpImg flex justify-center py-10">
+            <img src="./assets/pop-up/Info.svg" alt="">
+        </div>
+        <div class="modal-body">
+            <input type="text" placeholder="Промокод" class="border border-gray-300 rounded-lg p-2 mb-2 w-full" />
+            <button class="bg-yellow-400 text-black rounded-lg p-2 w-full">Применить</button>
+         </div>
+        </div>
+    </div>
+     <div id="modalSec" class="modalSec hiddenPopSec">
+    <div class="modal-content modal-content-Sec">
+        <div class="modal-header flex justify-between p-6">
+            <h2 class="text-lg font-bold">Введите промокод</h2>
+            <button id="closeModalSec" class="close-button close-button-Sec">
+                <img src="./assets/pop-up/close.svg" alt="">
+            </button>
+        </div>
+        <div class="h-[1px] bg-[#e7ecf3]"></div>
+        <div class="popUpImg flex justify-center py-10">
+            <img src="./assets/modalTarif/Info.svg" alt="">
+        </div>
+        <div class="modal-body modal-body-Sec">
+            <h1 class="text-[36px] font-bold text-black leading-tight">
+                Возможность создавать свои акции, скидки, конкурсы и т.д.
+            </h1>
+            <p class="text-[16px] text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="text-[16px] text-[#8A9CAE]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+</div>
+
+
+    </footer>
+        <script src="./index.js"></script>
+        <script src="./secondmodal.js"></script>
+    </body>
+</html>

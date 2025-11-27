@@ -50,7 +50,7 @@ function toggleMobileMenu() {
 
 <template>
     <header id="header" class="bg-brand-dark flex h-[60px] w-full items-center">
-        <div class="relative mx-auto flex w-[1140px] items-center justify-between 2xl:w-full 2xl:px-4">
+        <div class="relative mx-auto flex w-full max-w-[1140px] items-center justify-between px-4">
             <div id="header" class="relative flex items-center">
                 <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип" />

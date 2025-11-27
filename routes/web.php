@@ -6,11 +6,13 @@ use App\Http\Controllers\Landing\BusinessLandingController;
 use App\Http\Controllers\Landing\UserLandingController;
 use App\Http\Controllers\Popup\FormSubmitController;
 use App\Http\Controllers\Promo\CreatePromoController;
+use App\Http\Controllers\Tariff\TariffPlansController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
+Route::get('/tarif-plans', [TariffPlansController::class, 'index'])->name('tarif.plans');
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
