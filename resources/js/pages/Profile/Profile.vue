@@ -191,15 +191,12 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                     @show-admin-message="(promo) => openAdminModal(promo)"
                 />
                 <ModalWindow :is-open="isAdminModalOpen" title="Сообщение от администрации" @close="closeAdminModal">
-                    <AdminMessageContent
-                        :rejection-reason="selectedRejectionReason"
-                        :rejection-message="selectedRejectionMessage"
-                    />
+                    <AdminMessageContent :rejection-reason="selectedRejectionReason" :rejection-message="selectedRejectionMessage" />
                     <div class="flex items-center justify-center">
                         <button
                             type="button"
                             @click="closeAdminModal"
-                            class="rounded-lg text-blue-500 px-5 py-2.5 text-center text-base font-semibold shadow hover:bg-blue/80 focus:ring-4 focus:ring-black/40 focus:outline-none"
+                            class="hover:bg-blue/80 rounded-lg px-5 py-2.5 text-center text-base font-semibold text-blue-500 shadow focus:ring-4 focus:ring-black/40 focus:outline-none"
                         >
                             ОК
                         </button>

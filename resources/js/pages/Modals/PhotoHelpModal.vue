@@ -19,15 +19,17 @@ import { Modal } from '@inertiaui/modal-vue';
             </div>
             <div class="p-3 sm:p-6">
                 <div class="shadoFi space-y-6 bg-white p-3 sm:p-6">
-                    <p class="all_text text-center text-base font-black leading-relaxed text-gray-500">
-                        Вы можете воспользоваться сервисом «Google Картинки» и поискать изображения там. Важным параметром является то, что изображение должно
-                        быть не менее 800x600 пикселей.
+                    <p class="all_text text-center text-base leading-relaxed font-black text-gray-500">
+                        Вы можете воспользоваться сервисом «Google Картинки» и поискать изображения там. Важным параметром является то, что
+                        изображение должно быть не менее 800x600 пикселей.
                     </p>
                     <p class="text-center text-lg font-black text-gray-900">Ниже мы сделали несколько примеров:</p>
                     <div class="mx-4 flex flex-wrap justify-center gap-10 sm:mx-8">
                         <ul class="space-y-2 text-center">
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Запчасти</a></li>
-                            <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Юридическая помощь</a></li>
+                            <li>
+                                <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Юридическая помощь</a>
+                            </li>
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Мебель</a></li>
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Шугаринг</a></li>
                         </ul>
@@ -37,7 +39,9 @@ import { Modal } from '@inertiaui/modal-vue';
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Сауны</a></li>
                         </ul>
                         <ul class="space-y-2 text-center">
-                            <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Ремонт компьютеров</a></li>
+                            <li>
+                                <a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Ремонт компьютеров</a>
+                            </li>
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Стоматология</a></li>
                             <li><a class="border-b border-dashed border-blue-700 text-blue-700 hover:border-solid" href="#">Маникюр</a></li>
                         </ul>
@@ -51,7 +55,7 @@ import { Modal } from '@inertiaui/modal-vue';
                         <button
                             type="button"
                             @click="close"
-                            class="rounded-lg bg-blue-700 px-5 py-2.5 text-base font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                            class="rounded-lg bg-blue-700 px-5 py-2.5 text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
                         >
                             Нет примеров
                         </button>

@@ -26,11 +26,7 @@ function handleFileChange(event: Event) {
             </div>
             <div class="flex items-center gap-2 max-md:mt-4">
                 <img src="/images/png/constructor/picture-sale.png" class="h-6 w-8" alt="Картинка" />
-                <ModalLink
-                    :href="route('promos.photo-help')"
-                    :navigate="true"
-                    class="text-left text-sm font-semibold text-blue-600 hover:underline"
-                >
+                <ModalLink :href="route('promos.photo-help')" :navigate="true" class="text-left text-sm font-semibold text-blue-600 hover:underline">
                     У меня нет фото,<br class="max-sm:hidden" />
                     что делать?
                 </ModalLink>
