@@ -1681,6 +1681,10 @@ select {
     min-height: 500px;
 }
 
+.min-h-500 {
+    min-height: 500px;
+}
+
 .w-1\/3 {
     width: 33.333333%;
 }

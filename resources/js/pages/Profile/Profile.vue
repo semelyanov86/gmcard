@@ -13,6 +13,7 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
+import CameraIcon from '@/components/primitives/icons/CameraIcon.vue';
 import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
@@ -67,7 +68,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
             <div class="h-line w-full bg-white opacity-10"></div>
             <div class="my-12 flex justify-between">
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
-                    <div class="flex min-h-[500px] flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
+                    <div class="flex min-h-500 flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
                         <h2 class="text-start text-5xl font-medium">Личный кабинет</h2>
                         <div class="flex justify-between border-2 p-8">
                             <div class="profMenu flex gap-10">
@@ -95,7 +96,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                                         </div>
                                     </div>
                                     <div
-                                        class="relative flex h-[200px] w-[200px] items-center justify-center overflow-hidden rounded-full"
+                                        class="relative flex h-50 w-50 items-center justify-center overflow-hidden rounded-full"
                                         id="photoBlock"
                                     >
                                         <img
@@ -108,25 +109,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                                             class="bg-divider-dark absolute bottom-0 flex hidden h-full w-full items-center justify-center"
                                             id="photoChangeBtn"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="w-14 cursor-pointer text-white"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
-                                                />
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
-                                                />
-                                            </svg>
+                                            <CameraIcon />
                                             <input type="file" class="hidden" id="uploadImage2" />
                                         </div>
                                     </div>
