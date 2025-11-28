@@ -147,6 +147,10 @@
         height: 200px;
     }
 
+    .min-h-100 {
+        min-height: 100px;
+    }
+
     .min-h-500 {
         min-height: 500px;
     }

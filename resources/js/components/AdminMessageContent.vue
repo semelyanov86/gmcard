@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import AdminMessageBlock from '@/components/AdminMessageBlock.vue';
 
 interface Props {
     rejectionReason?: string | null;
@@ -15,18 +16,8 @@ const hasMessage = computed(() => Boolean(rejectionReason.value || rejectionMess
 
 <template>
     <div class="space-y-4">
-        <div v-if="rejectionReason">
-            <label class="mb-2 block text-sm font-medium text-gray-700">Причина отклонения:</label>
-            <div class="min-h-[100px] w-full rounded-lg border border-black/20 bg-gray-50 p-4 text-sm whitespace-pre-wrap">
-                {{ rejectionReason }}
-            </div>
-        </div>
-        <div v-if="rejectionMessage">
-            <label class="mb-2 block text-sm font-medium text-gray-700">Сообщение:</label>
-            <div class="min-h-[80px] w-full rounded-lg border border-black/20 bg-gray-50 p-4 text-sm whitespace-pre-wrap">
-                {{ rejectionMessage }}
-            </div>
-        </div>
+        <AdminMessageBlock label="Причина отклонения:" :content="rejectionReason" />
+        <AdminMessageBlock label="Сообщение:" :content="rejectionMessage" />
         <div v-if="!hasMessage">
             <p class="text-sm text-gray-500 italic">Сообщение от администрации отсутствует</p>
         </div>
