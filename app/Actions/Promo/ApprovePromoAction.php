@@ -14,9 +14,9 @@ final readonly class ApprovePromoAction
 {
     use AsAction;
 
-    public function handle(ApprovePromoData $dto): Promo
+    public function handle(ApprovePromoData $dto): void
     {
-        return DB::transaction(function () use ($dto): Promo {
+        DB::transaction(function () use ($dto): void {
             $promo = Promo::findOrFail($dto->promoId);
 
             $promo->update([
@@ -33,10 +33,6 @@ final readonly class ApprovePromoAction
                 $promo->update(['started_at' => now()]);
             }
 
-            /** @var Promo $promo */
-            $promo = $promo->fresh();
-
-            return $promo;
         });
     }
 }

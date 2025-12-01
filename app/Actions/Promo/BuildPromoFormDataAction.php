@@ -170,4 +170,3 @@ final readonly class BuildPromoFormDataAction
         };
     }
 }
-

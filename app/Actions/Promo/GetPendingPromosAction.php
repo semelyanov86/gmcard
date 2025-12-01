@@ -7,7 +7,6 @@ namespace App\Actions\Promo;
 use App\Data\PromoListItemData;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
-use Illuminate\Support\Collection;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
@@ -26,15 +25,6 @@ final readonly class GetPendingPromosAction
             ->latest()
             ->get();
 
-        return $this->mapPromos($promos);
-    }
-
-    /**
-     * @param  Collection<int, Promo>  $promos
-     * @return array<int, PromoListItemData>
-     */
-    private function mapPromos(Collection $promos): array
-    {
-        return $promos->map(fn ($promo) => PromoListItemData::fromPromo($promo))->all();
+        return PromoListItemData::collect($promos, 'array');
     }
 }

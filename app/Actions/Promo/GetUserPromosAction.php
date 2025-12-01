@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Actions\Promo;
 
 use App\Data\PromoListItemData;
-use App\Models\Promo;
 use App\Models\User;
-use Illuminate\Support\Collection;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
@@ -23,20 +21,11 @@ final readonly class GetUserPromosAction
     public function handle(User $user): array
     {
         return [
-            'activePromos' => $this->mapPromos($user->activePromos()->get()),
-            'completedPromos' => $this->mapPromos($user->completedPromos()->get()),
-            'draftPromos' => $this->mapPromos($user->draftPromos()->get()),
-            'moderationPromos' => $this->mapPromos($user->moderationPromos()->get()),
-            'rejectedPromos' => $this->mapPromos($user->rejectedPromos()->get()),
+            'activePromos' => PromoListItemData::collect($user->activePromos()->get(), 'array'),
+            'completedPromos' => PromoListItemData::collect($user->completedPromos()->get(), 'array'),
+            'draftPromos' => PromoListItemData::collect($user->draftPromos()->get(), 'array'),
+            'moderationPromos' => PromoListItemData::collect($user->moderationPromos()->get(), 'array'),
+            'rejectedPromos' => PromoListItemData::collect($user->rejectedPromos()->get(), 'array'),
         ];
-    }
-
-    /**
-     * @param  Collection<int, Promo>  $promos
-     * @return array<int, PromoListItemData>
-     */
-    private function mapPromos(Collection $promos): array
-    {
-        return $promos->map(fn ($promo) => PromoListItemData::fromPromo($promo))->all();
     }
 }
