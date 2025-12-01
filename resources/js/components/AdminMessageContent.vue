@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import AdminMessageBlock from '@/components/AdminMessageBlock.vue';
+import { computed } from 'vue';
 
 interface Props {
     rejectionReason?: string | null;

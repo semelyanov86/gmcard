@@ -6,6 +6,7 @@ import Header from '@/components/Header.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import ModalWindow from '@/components/ModalWindow.vue';
 import NavBar from '@/components/NavBar.vue';
+import CameraIcon from '@/components/primitives/icons/CameraIcon.vue';
 import ActivePromos from '@/components/Profile/ActivePromos.vue';
 import CompletedPromos from '@/components/Profile/CompletedPromos.vue';
 import DraftPromos from '@/components/Profile/DraftPromos.vue';
@@ -13,7 +14,6 @@ import ModerationPromos from '@/components/Profile/ModerationPromos.vue';
 import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
-import CameraIcon from '@/components/primitives/icons/CameraIcon.vue';
 import { MODERATOR_ROLES } from '@/composables/useUserRoles';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
@@ -95,10 +95,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="relative flex h-50 w-50 items-center justify-center overflow-hidden rounded-full"
-                                        id="photoBlock"
-                                    >
+                                    <div class="relative flex h-50 w-50 items-center justify-center overflow-hidden rounded-full" id="photoBlock">
                                         <img
                                             src="/images/png/profile/product8.png"
                                             id="cropperResult2"
