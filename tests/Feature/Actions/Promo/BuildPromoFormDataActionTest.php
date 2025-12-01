@@ -148,5 +148,3 @@ class BuildPromoFormDataActionTest extends TestCase
         $this->assertTrue($result->isDraft);
     }
 }
-
-

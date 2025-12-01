@@ -23,6 +23,11 @@ final class PromoListItemData extends Data
         public ?string $rejectionMessage = null,
     ) {}
 
+    public static function fromModel(Promo $promo): self
+    {
+        return self::fromPromo($promo);
+    }
+
     public static function fromPromo(Promo $promo): self
     {
         $status = self::determineStatus($promo);
