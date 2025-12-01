@@ -113,16 +113,28 @@ class BuildPromoFormDataActionTest extends TestCase
 
         $result = BuildPromoFormDataAction::run($promo);
 
-        $this->assertTrue($result->schedule['enabled']);
-        $this->assertSame(['monday', 'wednesday'], $result->schedule['days']);
-        $this->assertTrue($result->schedule['timeRange']['enabled']);
-        $this->assertSame('00:00', $result->schedule['timeRange']['start']);
-        $this->assertSame('18:00', $result->schedule['timeRange']['end']);
+        /** @var array<string, mixed> $schedule */
+        $schedule = $result->schedule;
+
+        $this->assertTrue($schedule['enabled']);
+        $this->assertSame(['monday', 'wednesday'], $schedule['days']);
+
+        /** @var array<string, mixed> $timeRange */
+        $timeRange = $schedule['timeRange'];
+
+        $this->assertTrue($timeRange['enabled']);
+        $this->assertSame('00:00', $timeRange['start']);
+        $this->assertSame('18:00', $timeRange['end']);
 
         $this->assertCount(2, $result->categoryIds);
-        $this->assertContains((string) $categories->first()->id, $result->categoryIds);
+        /** @var Category $firstCategory */
+        $firstCategory = $categories->first();
+        $this->assertContains((string) $firstCategory->id, $result->categoryIds);
+
         $this->assertCount(2, $result->cityIds);
-        $this->assertContains($cities->first()->id, $result->cityIds);
+        /** @var City $firstCity */
+        $firstCity = $cities->first();
+        $this->assertContains($firstCity->id, $result->cityIds);
 
         $this->assertCount(1, $result->addresses);
         $this->assertSame('Test Address', $result->addresses[0]['address']);
