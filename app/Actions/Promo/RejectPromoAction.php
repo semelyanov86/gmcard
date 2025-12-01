@@ -14,9 +14,9 @@ final readonly class RejectPromoAction
 {
     use AsAction;
 
-    public function handle(RejectPromoData $dto): Promo
+    public function handle(RejectPromoData $dto): void
     {
-        return DB::transaction(function () use ($dto): Promo {
+        DB::transaction(function () use ($dto): void {
             $promo = Promo::findOrFail($dto->promoId);
 
             $promo->update([
@@ -29,11 +29,6 @@ final readonly class RejectPromoAction
                 'approved_by' => null,
                 'approving_notes' => null,
             ]);
-
-            /** @var Promo $promo */
-            $promo = $promo->fresh();
-
-            return $promo;
         });
     }
 }
