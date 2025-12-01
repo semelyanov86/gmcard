@@ -7065,6 +7065,31 @@ a {
 
  :root {
     --color-service-border: #11254a;
+    --tariff-bg-muted: #F2F6FB;
+    --tariff-main-line: #5974a3;
+    --tariff-discount-bg: #5973a2;
+    --tariff-discount-alt-bg: #dbe4ee;
+    --tariff-muted-text: #6d84ad;
+}
+
+.bg-tariff-muted {
+    background-color: var(--tariff-bg-muted);
+}
+
+.bg-tariff-main-line {
+    background-color: var(--tariff-main-line);
+}
+
+.bg-tariff-discount {
+    background-color: var(--tariff-discount-bg);
+}
+
+.bg-tariff-discount-alt {
+    background-color: var(--tariff-discount-alt-bg);
+}
+
+.text-tariff-muted {
+    color: var(--tariff-muted-text);
 }
 
 /* Promo type block sizes */
