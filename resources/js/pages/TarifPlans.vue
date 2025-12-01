@@ -7,9 +7,11 @@ import '../../css/internal/outputsec.css';
 import '../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import type { ContactModel } from '@/types';
+import type { ServiceStatusBlock } from '@/types/tariff/ServiceStatusBlock';
 
-const props = defineProps<{
+const { contact, serviceStatusBlocks } = defineProps<{
     contact: ContactModel;
+    serviceStatusBlocks: ServiceStatusBlock[];
 }>();
 
 </script>
@@ -19,7 +21,7 @@ const props = defineProps<{
         <Header />
         <main class="py-4 text-white mainSection">
             <div class="max-w-[1140px] w-full mx-auto">
-                <ServiceStatusSection />
+                <ServiceStatusSection :services="serviceStatusBlocks" />
                 <TariffSaleCards />
                 <TariffDetailsSection />
             </div>

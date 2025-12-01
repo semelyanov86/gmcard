@@ -1,6 +1,9 @@
+<script setup lang="ts">
+</script>
+
 <template>
     <div class="flex flex-wrap gap-6 justify-between saleWrapper">
-        <div class="flex-shrink-0 w-sale-card-md h-sale-card-height bg-white rounded-[20px] saleBlock p-4">
+        <div class="flex-shrink-0 w-sale-card-md bg-white rounded-3xl saleBlock p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
                     <img src="/images/svg/saleBlocks/GR.svg" alt="image"
@@ -58,7 +61,7 @@
             </div>
         </div>
 
-        <div class="flex-shrink-0 w-sale-card-md h-sale-card-height secondSale rounded-[20px] saleBlock p-4">
+        <div class="flex-shrink-0 w-sale-card-md secondSale rounded-3xl saleBlock p-4">
             <div class="flex flex-col items-center">
                 <div class="relative ">
                     <img src="/images/svg/saleBlocks/YR.svg" alt="image"
@@ -139,7 +142,7 @@
             </div>
         </div>
 
-        <div class="flex-shrink-0 w-sale-card-md h-sale-card-height bg-white rounded-[20px] saleBlock p-4">
+        <div class="flex-shrink-0 w-sale-card-md bg-white rounded-3xl saleBlock p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
                     <img src="/images/svg/saleBlocks/BR.svg" alt="image"
@@ -218,8 +221,7 @@
         </div>
     </div>
 </template>
-<script setup lang="ts">
-</script>
+
 <style scoped>
 .popular-img {
     position: absolute;
@@ -227,5 +229,9 @@
     bottom: 40%;
     height: auto;
     width: 100%;
+}
+
+.w-sale-card-md {
+    width: 360px;
 }
 </style>

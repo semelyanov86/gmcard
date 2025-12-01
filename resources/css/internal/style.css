@@ -173,16 +173,6 @@ body
 }
 
 
-
-
-.adaptive-block {
-    flex-shrink: 0;
-    width: 20%;
-    min-width: 80px;
-    margin-bottom: 16px;
-}
-
-
 .modal, .modalSec {
     display: flex;
     justify-content: center;
@@ -334,14 +324,7 @@ body
 }
 
 
-@media (min-width: 641px) and (max-width: 1024px) {
-    .adaptive-block {
-        width: 48%;
-        margin-bottom: 16px;
-
-    }
-
-}@media (max-width: 768px) {
+@media (max-width: 768px) {
 
     .btnTariff
     {
@@ -442,11 +425,6 @@ body
 }
 
 @media (min-width: 1025px) {
-    .adaptive-block {
-        width: 19%;
-        margin-bottom: 16px;
-
-    }
     .profMenu
     {
         flex-direction: column;

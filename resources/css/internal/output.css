@@ -7063,6 +7063,10 @@ a {
     border-color: #c6c7c6;
 }
 
+ :root {
+    --color-service-border: #11254a;
+}
+
 /* Promo type block sizes */
 .promo-block-large {
     width: 230px;

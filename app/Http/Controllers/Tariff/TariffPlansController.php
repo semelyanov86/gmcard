@@ -18,6 +18,7 @@ class TariffPlansController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
+            'serviceStatusBlocks' => config('tariff.status_blocks'),
         ]);
     }
 }
