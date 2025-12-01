@@ -9,14 +9,14 @@ use App\Models\User;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static array<string, array<int, PromoListItemData>> run(User $user)
+ * @method static array<string, PromoListItemData[]> run(User $user)
  */
 final readonly class GetUserPromosAction
 {
     use AsAction;
 
     /**
-     * @return array<string, array<int, PromoListItemData>>
+     * @return array<string, PromoListItemData[]>
      */
     public function handle(User $user): array
     {
