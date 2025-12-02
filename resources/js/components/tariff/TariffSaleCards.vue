@@ -80,7 +80,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                         </div>
                     </div>
                     <button
-                        class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center bg-[#f4d710]">
+                        class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center bg-brand-yellow-dark">
                         Перейти
                     </button>
                 </div>
@@ -137,7 +137,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                     </div>
                 </div>
                 <button
-                    class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center mt-4 bg-[#f4d710]">
+                    class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center mt-4 bg-brand-yellow-dark">
                     Перейти
                 </button>
                 <div class="hidden promoCodeDisplay mt-4 flex items-center justify-between w-full">

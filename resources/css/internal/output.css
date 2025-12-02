@@ -3658,6 +3658,7 @@ a {
     --brand-dark-navy: #222e54;
     --brand-dark-slate: #28a8eb;
     --brand-darker: #041a41;
+    --brand-border: #203457;
     --brand-footer: #0f1120;
     --brand-footer-bg: #101121;
     --brand-light-bg: #edf4fc;
@@ -3758,6 +3759,30 @@ a {
     color: var(--brand-text);
 }
 
+.text-16 {
+    font-size: 16px;
+}
+
+.text-18 {
+    font-size: 18px;
+}
+
+.h-100 {
+    height: 100px;
+}
+
+.w-30 {
+    width: 30px;
+}
+
+.left-100p {
+    left: 100%;
+}
+
+.top-47p {
+    top: 47%;
+}
+
 .border-brand-blue {
     border-color: var(--brand-blue);
 }
@@ -3775,6 +3800,9 @@ a {
 }
 .border-brand-gray {
     border-color: var(--brand-gray);
+}
+.border-brand {
+    border-color: var(--brand-border);
 }
 
 .ring-brand-blue {

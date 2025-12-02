@@ -1,3 +1,15 @@
+<script setup lang="ts">
+const props = defineProps<{
+    modelValue: boolean;
+}>();
+
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: boolean): void;
+}>();
+
+const close = () => emit('update:modelValue', false);
+</script>
+
 <template>
     <teleport to="body">
         <div v-if="modelValue" class="modalSec" role="dialog" aria-modal="true" @click.self="close">
@@ -27,16 +39,3 @@
         </div>
     </teleport>
 </template>
-
-<script setup lang="ts">
-const props = defineProps<{
-    modelValue: boolean;
-}>();
-
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: boolean): void;
-}>();
-
-const close = () => emit('update:modelValue', false);
-</script>
-
