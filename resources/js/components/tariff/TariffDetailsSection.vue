@@ -67,7 +67,7 @@ onUnmounted(() => {
 
             <div class="tariff-plans col-span-1 grid grid-cols-3 gap-10">
                 <!-- Тариф Free -->
-                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-2xl rounded-[14px] bg-transparent p-4 text-center">
+                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
                     <h3 class="tariff-name text-2xl font-bold">Free</h3>
                     <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
                 </div>
@@ -316,5 +316,160 @@ onUnmounted(() => {
 
 .dark-blue {
     background-color: #11254a;
+}
+
+.tariff-info-image {
+    transition: 0.3s linear;
+}
+
+.tariff-info-image-hover {
+    display: none;
+    transition: 0.3s linear;
+}
+
+.tariff-info-image:hover {
+    display: none;
+}
+
+.tariff-info-image:hover + .tariff-info-image-hover {
+    display: block;
+}
+
+.tariff-details {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.leading-normal {
+    line-height: 1.5;
+}
+
+.col-span-1 {
+    grid-column: span 1 / span 1;
+}
+
+.tariff-status {
+    cursor: pointer;
+}
+
+.features-section {
+    transition: 0.3s linear;
+}
+
+.features-section:hover {
+    background-color: #10264d;
+    .image-itemSec {
+        background-color: #1d2f53;
+    }
+}
+
+.image-itemSec {
+    transition: 0.3s linear;
+}
+
+@media (max-width: 1330px) {
+    .tariff-info-image {
+        position: static;
+    }
+
+    .tariff-info-image-hover {
+        position: static;
+    }
+
+    .tariff-details {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .tariff-details-Bottom {
+        display: block;
+    }
+
+    .tariff-title {
+        margin-top: 15px;
+        text-align: left;
+        font-weight: bold;
+        font-size: 29px;
+        br {
+            display: none;
+        }
+    }
+
+    .tariff-plans {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+    }
+
+    .tarifFree {
+        padding: 0;
+        padding-bottom: 10px;
+    }
+
+    .tariff-status {
+        cursor: pointer;
+    }
+
+    .tarifPro {
+        background-color: transparent;
+        border-bottom: 1px solid #495975;
+        padding: 0;
+        padding-bottom: 10px;
+    }
+
+    .tarifExp {
+        padding: 0;
+        padding-bottom: 10px;
+    }
+
+    .features-section {
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px solid #293c5d;
+        border-radius: 0;
+    }
+
+    .features-section:hover {
+        background-color: #10264d;
+        .image-itemSec {
+            background-color: transparent;
+        }
+    }
+
+    .features-description {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .features-title {
+        display: flex;
+        br {
+            display: none;
+        }
+    }
+
+    .features-images {
+        grid-template-columns: repeat(3, 1fr);
+        height: auto;
+        width: 100%;
+    }
+
+    .image-item {
+        height: auto;
+        width: auto;
+        padding-bottom: 24px;
+    }
+
+    .image-itemSec {
+        background-color: transparent;
+        border-bottom: 1px solid #495975;
+    }
 }
 </style>

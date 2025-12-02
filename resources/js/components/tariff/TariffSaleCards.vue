@@ -145,6 +145,69 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 </template>
 
 <style scoped>
+.saleWrapper {
+    padding-bottom: 80px;
+    padding-top: 60px;
+}
+
+.saleWrapper::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.saleBlock {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.saleBlock:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.rectangles {
+    margin-top: -3rem;
+    width: 6rem;
+    height: 6rem;
+}
+
+.rectangles--first {
+    filter: blur(0px) drop-shadow(0px -3px 10px rgba(255, 255, 255, 0.75));
+}
+
+.rectangles--second {
+    filter: blur(0px) drop-shadow(0px -3px 15px rgb(244, 185, 16));
+    width: 6rem;
+    height: 6rem;
+}
+
+.rectangles--third {
+    filter: blur(0px) drop-shadow(0px -3px 15px rgb(62, 119, 220));
+}
+
+.goinBtn {
+    background-color: #f4d710;
+    transition: 0.3s linear;
+    &:hover {
+        background-color: #ffeb24;
+    }
+}
+
+.goinBtnFree {
+    background-color: #e7ecf3;
+    &:hover {
+        background-color: #d7dadd;
+    }
+}
+
+.secondSale {
+    background-color: #0b3277;
+}
+
 .tariffRaz {
     margin-right: -2rem;
     margin-left: -1.7rem;
@@ -161,5 +224,51 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 
 .w-sale-card-md {
     width: 360px;
+}
+
+@media (max-width: 440px) {
+    .saleWrapper {
+        padding-bottom: 0px;
+    }
+
+    .saleBlock {
+        width: 310px;
+        padding: 2px 25px;
+        height: auto;
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+    }
+
+    .rectangles {
+        margin-top: -1.5rem;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .tariffName-F {
+        font-size: 2.65rem;
+    }
+
+    .btnTariff {
+        padding: 14px 33px;
+    }
+
+    .goinBtnFree {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .tariffAb {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btnTariff {
+        padding: 16px 35px;
+    }
 }
 </style>

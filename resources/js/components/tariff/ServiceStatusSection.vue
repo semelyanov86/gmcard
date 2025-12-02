@@ -11,10 +11,10 @@ const props = defineProps<{
         <div class="hide-scrollbar container flex w-full overflow-x-auto">
             <div v-for="service in props.services" :key="service.key" class="adaptive-block flex w-auto min-w-80 flex-col items-center">
                 <img :src="service.img" :alt="service.alt" class="mb-1 h-6 w-6" />
-                <h3 class="gm-card-text text-center font-bold" :class="{ 'text-yellow-300': service.highlight }">
+                <h3 class="text-base text-center font-bold" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.title }}
                 </h3>
-                <p class="development-text text-center" :class="{ 'text-yellow-300': service.highlight }">
+                <p class="text-sm text-center" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.status }}
                 </p>
             </div>
@@ -40,6 +40,12 @@ const props = defineProps<{
 
 .adaptive-block:not(:last-child) {
     border-right: 1px solid var(--color-service-border);
+}
+
+@media (max-width: 440px) {
+    .descSection {
+        display: none;
+    }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
