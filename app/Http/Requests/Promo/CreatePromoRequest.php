@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Promo;
 
+use App\Enums\Weekday;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -55,7 +56,7 @@ class CreatePromoRequest extends FormRequest
             'schedule' => ['nullable', 'array'],
             'schedule.enabled' => ['nullable', 'boolean'],
             'schedule.days' => ['nullable', 'array'],
-            'schedule.days.*' => ['string', Rule::in(['md', 'tu', 'wd', 'th', 'fr', 'su', 'sn'])],
+            'schedule.days.*' => ['string', Rule::in(Weekday::values())],
             'schedule.timeRange' => ['nullable', 'array'],
             'schedule.timeRange.enabled' => ['nullable', 'boolean'],
             'schedule.timeRange.start' => ['nullable', 'string', 'date_format:H:i'],
@@ -68,8 +69,8 @@ class CreatePromoRequest extends FormRequest
             'social_links.*' => ['nullable', 'array'],
             'social_links.*.*' => ['nullable', 'string', 'url', 'max:2083'],
             'photos' => ['nullable', 'array', 'max:10'],
-            'photos.*' => ['nullable', 'string'],
-            'agree_to_terms' => ['accepted'],
+            'photos.*' => ['nullable', 'file', 'image', 'max:10240'],
+            'agree_to_terms' => [Rule::requiredIf(fn () => ! $this->input('is_draft', false)), 'accepted'],
             'is_draft' => ['nullable', 'boolean'],
         ];
     }

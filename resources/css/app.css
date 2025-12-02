@@ -2,6 +2,8 @@
 
 @import 'tw-animate-css';
 
+@source '../../node_modules/@inertiaui/modal-vue/src/**/*.{js,vue}';
+
 @font-face {
     font-family: 'PT Sans';
     src: url('/fonts/pt-sans-400.woff2') format('woff2');
@@ -88,6 +90,79 @@
     body,
     html {
         --font-sans: 'PT Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+
+    .min-w-300 {
+        min-width: 300px;
+    }
+
+    .w-262 {
+        width: 262px;
+    }
+
+    .w-250 {
+        width: 250px;
+    }
+
+    .w-1140 {
+        width: 1140px;
+        max-width: 1140px;
+    }
+
+    .w-600 {
+        width: 600px;
+    }
+
+    .h-136 {
+        height: 136px;
+    }
+
+    .h-150 {
+        height: 150px;
+    }
+
+    .text-15 {
+        font-size: 15px;
+    }
+
+    .w-26 {
+        width: 26px;
+    }
+
+    .h-26 {
+        height: 26px;
+    }
+
+    @media (min-width: 1024px) {
+        .lg\:h-150 {
+            height: 150px;
+        }
+    }
+
+    .w-200 {
+        width: 200px;
+    }
+
+    .h-200 {
+        height: 200px;
+    }
+
+    .min-h-100 {
+        min-height: 100px;
+    }
+
+    .min-h-500 {
+        min-height: 500px;
+    }
+
+    .h-line {
+        height: 1px;
+    }
+
+    @media (max-width: 1023px) {
+        .lg\:w-232 {
+            width: 232px;
+        }
     }
 }
 
@@ -241,7 +316,7 @@
     color: white !important;
 }
 
-.mains:hover .drop_list {
+.mains1:hover .drop_list {
     display: flex;
 }
 
@@ -310,7 +385,7 @@
     background-color: #ededf4;
 }
 
-.mains:hover #icons1 {
+.mains1:hover #icons1 {
     display: block;
 }
 
@@ -367,7 +442,7 @@
     opacity: 0.3;
 }
 
-.mains:hover .image-1 {
+.mains1:hover .image-1 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -858,6 +933,57 @@
 
 .cell_padding {
     padding: 0 10px;
+}
+
+.padding-x-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.height-60 {
+    height: 60px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.height-5 {
+    height: 5px;
+}
+
+.width-8 {
+    width: 8px;
+}
+
+.width-350 {
+    width: 350px;
+}
+
+.width-220 {
+    width: 220px;
+}
+
+.width-200 {
+    width: 200px;
+}
+
+.padding-right-200 {
+    padding-right: 200px;
+}
+
+.height-1 {
+    height: 1px;
+}
+
+.top-70 {
+    top: 70px;
+}
+
+@media (min-width: 768px) {
+    .md\:top-70 {
+        top: 70px;
+    }
 }
 
 .text-yellow {
@@ -3068,4 +3194,164 @@
         padding-left: 5rem;
         padding-right: 5rem;
     }
+}
+
+/* Color Palette - Semantic Colors */
+:root {
+    --color-secondary: #063966;
+    --color-secondary-dark: #063965;
+    --color-primary: #1d89f2;
+    --color-button: #0066cb;
+    --color-tooltip: #041f35;
+    --color-header: #152041;
+    --color-icon: #648099;
+    --color-hover: #f2f6fb;
+    --color-yellow: #f9d914;
+    --color-yellow-dark: #f4d710;
+    --color-divider: rgba(0, 0, 0, 0.2);
+    --color-divider-light: rgba(0, 0, 0, 0.1);
+    --color-divider-dark: rgba(0, 0, 0, 0.5);
+    --color-divider-darker: rgba(0, 0, 0, 0.8);
+    --color-divider-border: rgba(0, 0, 0, 0.4);
+    --color-muted: rgba(0, 0, 0, 0.5);
+    --color-muted-light: rgba(0, 0, 0, 0.3);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-secondary-dark {
+    background-color: var(--color-secondary-dark);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-button {
+    background-color: var(--color-button);
+}
+
+.bg-tooltip {
+    background-color: var(--color-tooltip);
+}
+
+.bg-icon {
+    background-color: var(--color-icon);
+}
+
+.hover\:bg-secondary:hover {
+    background-color: var(--color-secondary);
+}
+
+.hover\:bg-icon:hover {
+    background-color: var(--color-icon);
+}
+
+.hover\:bg-hover:hover {
+    background-color: var(--color-hover);
+}
+
+.hover\:bg-yellow:hover {
+    background-color: var(--color-yellow);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-header {
+    color: var(--color-header);
+}
+
+.text-icon {
+    color: var(--color-icon);
+}
+
+.hover\:text-primary:hover {
+    color: var(--color-primary);
+}
+
+.hover\:text-yellow:hover {
+    color: var(--color-yellow);
+}
+
+.border-button {
+    border-color: var(--color-button);
+}
+
+.focus\:border-button:focus {
+    border-color: var(--color-button);
+}
+
+.focus\:ring-button:focus {
+    --tw-ring-color: var(--color-button);
+}
+
+.bg-hover {
+    background-color: var(--color-hover);
+}
+
+.bg-yellow {
+    background-color: var(--color-yellow);
+}
+
+.bg-yellow-dark {
+    background-color: var(--color-yellow-dark);
+}
+
+/* Divider Colors */
+.bg-divider {
+    background-color: var(--color-divider);
+}
+
+.bg-divider-light {
+    background-color: var(--color-divider-light);
+}
+
+.bg-divider-dark {
+    background-color: var(--color-divider-dark);
+}
+
+.bg-divider-darker {
+    background-color: var(--color-divider-darker);
+}
+
+.hover\:bg-divider-light:hover {
+    background-color: var(--color-divider-light);
+}
+
+.hover\:bg-divider:hover {
+    background-color: var(--color-divider);
+}
+
+/* Border Divider */
+.border-divider {
+    border-color: var(--color-divider);
+}
+
+.border-divider-light {
+    border-color: var(--color-divider-light);
+}
+
+.border-divider-dark {
+    border-color: var(--color-divider-border);
+}
+
+/* Text Muted */
+.text-muted {
+    color: var(--color-muted);
+}
+
+.text-muted-light {
+    color: var(--color-muted-light);
+}
+
+.hover\:text-muted-light:hover {
+    color: var(--color-muted-light);
+}
+
+.bg-promo-container {
+    background-color: var(--color-secondary-dark);
 }

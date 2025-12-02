@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
-import { ref } from 'vue';
-import PhotoHelpModal from './PhotoHelpModal.vue';
+import { ModalLink } from '@inertiaui/modal-vue';
 
-const photoModalOpen = ref(false);
+const props = defineProps<{
+    existingPhoto?: string | null;
+}>();
+
+const photos = defineModel<File[]>({ required: true });
+
+function handleFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+        photos.value = [input.files[0]];
+    }
+}
 </script>
 
 <template>
@@ -16,11 +26,10 @@ const photoModalOpen = ref(false);
             </div>
             <div class="flex items-center gap-2 max-md:mt-4">
                 <img src="/images/png/constructor/picture-sale.png" class="h-6 w-8" alt="Картинка" />
-                <button type="button" @click="photoModalOpen = true" class="text-sm font-semibold text-blue-600 hover:underline">
+                <ModalLink :href="route('promos.photo-help')" :navigate="true" class="text-left text-sm font-semibold text-blue-600 hover:underline">
                     У меня нет фото,<br class="max-sm:hidden" />
                     что делать?
-                </button>
-                <PhotoHelpModal :isOpen="photoModalOpen" @close="photoModalOpen = false" />
+                </ModalLink>
             </div>
         </div>
         <div class="flex flex-wrap justify-between gap-2">
@@ -31,6 +40,8 @@ const photoModalOpen = ref(false);
                     <input
                         type="file"
                         id="uploadImage"
+                        @change="handleFileChange"
+                        accept="image/*"
                         class="files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none"
                     />
                 </div>
@@ -118,6 +129,14 @@ const photoModalOpen = ref(false);
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="photos.length === 0 && props.existingPhoto" class="mt-5">
+            <p class="text-sm text-black/60">Текущее изображение</p>
+            <img
+                :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
+                alt="Текущее изображение акции"
+                class="mt-2 h-56 w-56 rounded-2xl object-cover"
+            />
         </div>
         <div class="mt-5 flex items-center justify-center">
             <p class="cursor-pointer border-b border-dashed border-blue-600 text-base text-blue-600 max-sm:text-sm" id="moreImg">

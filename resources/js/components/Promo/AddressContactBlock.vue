@@ -2,24 +2,11 @@
 import DeleteIcon from '@/components/primitives/icons/DeleteIcon.vue';
 import LocationPinIcon from '@/components/primitives/icons/LocationPinIcon.vue';
 import VerticalDivider from '@/components/primitives/VerticalDivider.vue';
+import type { AddressData } from '@/types/address/AddressData';
 import { computed } from 'vue';
 import { IMaskDirective } from 'vue-imask';
 
 const vImask = IMaskDirective;
-
-const phoneMask = {
-    mask: '+{7} (000) 000-00-00',
-    lazy: false,
-    placeholderChar: '_',
-};
-
-interface AddressData {
-    id?: number;
-    address: string;
-    schedule: string;
-    phone: string;
-    phone2?: string;
-}
 
 interface Props {
     modelValue: AddressData[];
@@ -37,6 +24,11 @@ const addresses = computed({
     get: () => props.modelValue,
     set: (value: AddressData[]) => emit('update:modelValue', value),
 });
+
+const phoneMask = {
+    mask: '+{7} (000) 000-00-00',
+    lazy: false,
+};
 
 function updateAddress(index: number, field: keyof AddressData, value: string | undefined) {
     const updated = [...addresses.value];
@@ -114,9 +106,9 @@ if (addresses.value.length === 0) {
                     <label :for="`phone-${index}`" class="mb-2 text-sm font-bold">Телефон</label>
                     <input
                         :id="`phone-${index}`"
-                        v-imask="phoneMask"
                         type="tel"
-                        :value="address.phone"
+                        v-imask="phoneMask"
+                        :value="typeof address.phone === 'string' ? address.phone || '' : ''"
                         @input="updateAddress(index, 'phone', ($event.target as HTMLInputElement).value)"
                         class="rounded-md border-none"
                         placeholder="+7 (000) 000-00-00"
@@ -127,9 +119,9 @@ if (addresses.value.length === 0) {
                     <div class="relative">
                         <input
                             :id="`phone2-${index}`"
-                            v-imask="phoneMask"
                             type="tel"
-                            :value="address.phone2"
+                            v-imask="phoneMask"
+                            :value="typeof address.phone2 === 'string' ? address.phone2 || '' : ''"
                             @input="updateAddress(index, 'phone2', ($event.target as HTMLInputElement).value)"
                             class="rounded-md border-none pr-10"
                             placeholder="+7 (000) 000-00-00"
@@ -140,7 +132,7 @@ if (addresses.value.length === 0) {
                 </div>
                 <span
                     v-if="!address.phone2"
-                    @click="updateAddress(index, 'phone2', '+7 (')"
+                    @click="updateAddress(index, 'phone2', '')"
                     class="mt-6 ml-6 cursor-pointer text-sm font-bold text-blue-400 hover:border-b-2 hover:border-dashed hover:border-blue-400"
                     >+ еще телефон</span
                 >

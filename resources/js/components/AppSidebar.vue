@@ -20,7 +20,10 @@ const mainNavItems: NavItem[] = [
 
 const pricesItems: NavItem[] = [{ title: 'Regional hourly rates', href: '/prices/regional-hourly-rates', icon: TrendingUp }];
 
-const settingsItems: NavItem[] = [{ title: 'Users', href: '/users', icon: Users }];
+const settingsItems: NavItem[] = [
+    { title: 'Dashboard', href: '/dashboard', icon: LayoutGrid },
+    { title: 'Users', href: '/users', icon: Users },
+];
 
 const footerNavItems: NavItem[] = [
     {

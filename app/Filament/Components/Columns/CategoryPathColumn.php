@@ -19,16 +19,10 @@ final class CategoryPathColumn
 
     public static function pathOf(Category $record): string
     {
-        $parts = [];
-        $current = $record;
-        for ($i = 0; $i < 32; $i++) {
-            if ($current === null) {
-                break;
-            }
-            $parts[] = $current->name;
-            $current = $current->parent;
-        }
+        $ancestors = $record->getAncestors();
+        $parts = $ancestors->pluck('name')->toArray();
+        $parts[] = $record->name;
 
-        return implode(' / ', array_reverse($parts));
+        return implode(' / ', $parts);
     }
 }

@@ -15,6 +15,7 @@ use Filament\Panel;
 use App\Enums\GenderType;
 use App\Enums\JobStatusType;
 use App\Enums\RoleType;
+use App\Enums\Promo\PromoModerationStatus;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as BreezyTwoFactor;
 use Laravel\Fortify\TwoFactorAuthenticatable as FortifyTwoFactor;
 use App\Casts\MoneyValueObjectCast;
@@ -167,8 +168,47 @@ class User extends Authenticatable implements FilamentUser
     public function activePromos(): HasMany
     {
         return $this->promos()
+            ->where('moderation_status', PromoModerationStatus::APPROVED->value)
             ->whereNotNull('started_at')
             ->where('available_till', '>=', now());
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function completedPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', PromoModerationStatus::APPROVED->value)
+            ->whereNotNull('started_at')
+            ->where('available_till', '<', now());
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function draftPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', PromoModerationStatus::DRAFT->value);
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function moderationPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', PromoModerationStatus::PENDING->value);
+    }
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function rejectedPromos(): HasMany
+    {
+        return $this->promos()
+            ->where('moderation_status', PromoModerationStatus::REJECTED->value);
     }
 
     /**
