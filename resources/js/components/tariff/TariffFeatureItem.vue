@@ -6,10 +6,7 @@ const props = defineProps<{
 
 <template>
     <li class="flex items-center">
-        <img src="/images/svg/saleBlocks/plus.svg" alt="icon" class="w-6 h-6 mr-2" />
+        <img src="/images/svg/saleBlocks/plus.svg" alt="icon" class="mr-2 h-6 w-6" />
         {{ props.text }}
     </li>
 </template>
-
-
-

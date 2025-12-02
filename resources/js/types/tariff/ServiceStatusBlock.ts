@@ -6,5 +6,3 @@ export interface ServiceStatusBlock {
     status: string;
     highlight: boolean;
 }
-
-

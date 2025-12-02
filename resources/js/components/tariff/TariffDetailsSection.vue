@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onUnmounted, ref, watch } from 'vue';
 import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
+import { onUnmounted, ref, watch } from 'vue';
 
 const isModalOpen = ref(false);
 
@@ -27,7 +27,7 @@ watch(
             window.removeEventListener('keydown', handleKeydown);
         }
     },
-    { immediate: true }
+    { immediate: true },
 );
 
 onUnmounted(() => {
@@ -36,285 +36,272 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <section class="border-t border-brand w-full py-3">
-
-        <div class="bg-slate-600 border-none rounded-2xl py-4 px-5 text-sm text-slate-400 flex w-112 relative info items-center flex-wrap">
+    <section class="border-brand w-full border-t py-3">
+        <div class="info relative flex w-112 flex-wrap items-center rounded-2xl border-none bg-slate-600 px-5 py-4 text-sm text-slate-400">
             Чтобы увидеть подробности, нажмите знак
-            <div id="popUpSecTrigger" role="button" tabindex="0" class="inline-flex items-center" @click="openModal" @keyup.enter.prevent="openModal" @keyup.space.prevent="openModal">
-                <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image ml-2 mr-2" />
-                <img src="/images/svg/tarif/questionHover.svg" alt="Подробнее" class="tariff-info-image-hover ml-2 mr-2" />
+            <div
+                id="popUpSecTrigger"
+                role="button"
+                tabindex="0"
+                class="inline-flex items-center"
+                @click="openModal"
+                @keyup.enter.prevent="openModal"
+                @keyup.space.prevent="openModal"
+            >
+                <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image mr-2 ml-2" />
+                <img src="/images/svg/tarif/questionHover.svg" alt="Подробнее" class="tariff-info-image-hover mr-2 ml-2" />
             </div>
-            <br> <span class="text-continue">рядом с опцией</span>
+            <br />
+            <span class="text-continue">рядом с опцией</span>
         </div>
 
-        <div class="tariff-details container grid grid-cols-2 gap-5 text-white mt-4 justify-around items-center sticky top-0 bg-brand-darker border-b border-brand z-10">
-
-
+        <div
+            class="tariff-details bg-brand-darker border-brand sticky top-0 z-10 container mt-4 grid grid-cols-2 items-center justify-around gap-5 border-b text-white"
+        >
             <div class="tariff-header col-span-1">
-                <h2 class="tariff-title text-4xl text-center leading-normal">Тарифы и что <br/> в них входит</h2>
+                <h2 class="tariff-title text-center text-4xl leading-normal">
+                    Тарифы и что <br />
+                    в них входит
+                </h2>
             </div>
-
 
             <div class="tariff-plans col-span-1 grid grid-cols-3 gap-10">
                 <!-- Тариф Free -->
-                <div class="sr p-4 text-center bg-transparent rounded-[14px] rounded-2xl flex flex-col items-center gap-3 w-64 tarifFree">
+                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-2xl rounded-[14px] bg-transparent p-4 text-center">
                     <h3 class="tariff-name text-2xl font-bold">Free</h3>
-                    <div class="tariff-status bg-[#1d3154] rounded-[12px] text-[#8a9cae] py-2 px-6 font-bold">Активен</div>
+                    <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
                 </div>
 
                 <!-- Тариф Pro -->
-                <div class="sr p-4 text-center rounded-[14px] flex flex-col items-center gap-3 w-64 dark-blue rounded-b-none tarifPro">
-                    <h3 class="tariff-name text-2xl font-bold tariffName">Pro</h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+                <div class="sr dark-blue tarifPro flex w-64 flex-col items-center gap-3 rounded-[14px] rounded-b-none p-4 text-center">
+                    <h3 class="tariff-name tariffName text-2xl font-bold">Pro</h3>
+                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
 
                 <!-- Тариф Exp -->
-                <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifExp">
-                    <h3 class="tariff-name text-2xl font-bold tariffName">Exp</h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+                <div class="sr tarifExp flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
+                    <h3 class="tariff-name tariffName text-2xl font-bold">Exp</h3>
+                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
             </div>
         </div>
 
-
-
-
-
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="w-6 h-auto markTariff"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="markTariff h-auto w-6" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-6 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16 relative">
-                    Возможность создавать свои <br> акции, скидки, конкурсы и т.д.
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
                     <span
-                        class="inline-flex absolute left-[100%] top-[47%] group"
+                        class="group absolute top-[47%] left-[100%] inline-flex"
                         role="button"
                         tabindex="0"
                         @click="openModal"
                         @keyup.enter.prevent="openModal"
                         @keyup.space.prevent="openModal"
                     >
-                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image ml-2 mr-2 group-hover:hidden" />
-                        <img src="/images/svg/tarif/questionHover.svg" alt="Подробнее" class="tariff-info-image-hover ml-2 mr-2 hidden group-hover:inline-block" />
+                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image mr-2 ml-2 group-hover:hidden" />
+                        <img
+                            src="/images/svg/tarif/questionHover.svg"
+                            alt="Подробнее"
+                            class="tariff-info-image-hover mr-2 ml-2 hidden group-hover:inline-block"
+                        />
                     </span>
                 </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    1
-                </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center justify-center h-full dark-blue text-18">
-                    5
-                </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    8
-                </div>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">1</div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">5</div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">8</div>
             </div>
-
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl  items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    99
-                </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full text-18">
-                    190
-                </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    500
-                </div>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">99</div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">190</div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">500</div>
             </div>
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl  items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="w-30 h-auto"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="w-30 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="h-auto w-30" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="w-30 h-auto"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="w-30 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="h-auto w-30" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="w-30 h-auto"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="h-auto w-30" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-6 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
-
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="w-30 h-auto"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-6 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
-
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16 relative">
-                    Возможность создавать свои <br> акции, скидки, конкурсы и т.д.
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
                     <span
-                        class="inline-flex absolute left-[100%] top-[47%] group"
+                        class="group absolute top-[47%] left-[100%] inline-flex"
                         role="button"
                         tabindex="0"
                         @click="openModal"
                         @keyup.enter.prevent="openModal"
                         @keyup.space.prevent="openModal"
                     >
-                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image ml-2 mr-2 group-hover:hidden" />
-                        <img src="/images/svg/tarif/questionHover.svg" alt="Подробнее" class="tariff-info-image-hover ml-2 mr-2 hidden group-hover:inline-block" />
+                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image mr-2 ml-2 group-hover:hidden" />
+                        <img
+                            src="/images/svg/tarif/questionHover.svg"
+                            alt="Подробнее"
+                            class="tariff-info-image-hover mr-2 ml-2 hidden group-hover:inline-block"
+                        />
                     </span>
                 </h2>
             </div>
 
-
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    50%
-                </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full text-18">
-                    20%
-                </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full text-18">
-                    5%
-                </div>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">50%</div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">20%</div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">5%</div>
             </div>
-
         </div>
-        <div class="features-section container grid grid-cols-2 gap-5 text-white justify-around rounded-3xl items-center">
-
-
+        <div class="features-section container grid grid-cols-2 items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
-                <h2 class="features-title text-16">Возможность создавать свои <br> акции, скидки, конкурсы и т.д.</h2>
+                <h2 class="features-title text-16">
+                    Возможность создавать свои <br />
+                    акции, скидки, конкурсы и т.д.
+                </h2>
             </div>
 
-            <div class="features-images col-span-1 grid grid-cols-3 gap-10 h-100">
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="w-30 h-auto"/>
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
                 </div>
-                <div class="image-item image-itemSec w-64 flex flex-col items-center dark-blue justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="w-6 h-auto"/>
+                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
                 </div>
-                <div class="image-item w-64 flex flex-col items-center justify-center h-full">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="w-6 h-auto"/>
+                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
+                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
                 </div>
             </div>
-
         </div>
 
-        <div class="tariff-details tariff-details-Bottom container grid grid-cols-2 gap-[250px] text-white justify-around items-center border-t border-brand">
-
-
+        <div
+            class="tariff-details tariff-details-Bottom border-brand container grid grid-cols-2 items-center justify-around gap-[250px] border-t text-white"
+        >
             <div class="tariff-header col-span-1">
-                <h2 class="tariff-title text-[36px] text-center leading-normal"></h2>
+                <h2 class="tariff-title text-center text-[36px] leading-normal"></h2>
             </div>
 
-
-            <div class="tariff-plans tariff-plans-Bottom col-span-1 grid grid-cols-3 gap-10 mr-2">
-
-                <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifFree">
+            <div class="tariff-plans tariff-plans-Bottom col-span-1 mr-2 grid grid-cols-3 gap-10">
+                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
                     <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status bg-[#1d3154] rounded-[12px] text-[#8a9cae] py-2 px-6 font-bold">Активен</div>
+                    <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
                 </div>
 
-
-                <div class="sr p-4 text-center rounded-[14px] flex flex-col items-center gap-3 w-64 dark-blue rounded-t-none tarifPro tarifPro-Bottom">
+                <div
+                    class="sr dark-blue tarifPro tarifPro-Bottom flex w-64 flex-col items-center gap-3 rounded-[14px] rounded-t-none p-4 text-center"
+                >
                     <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
 
-
-                <div class="sr p-4 text-center bg-transparent rounded-[14px] flex flex-col items-center gap-3 w-64 tarifExp">
+                <div class="sr tarifExp flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
                     <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] text-black py-2 px-6 font-bold">Перейти</div>
+                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
             </div>
         </div>

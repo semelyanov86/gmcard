@@ -4,31 +4,28 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 </script>
 
 <template>
-    <div class="flex flex-wrap gap-6 justify-between saleWrapper">
-        <div class="flex-shrink-0 w-sale-card-md bg-white rounded-3xl saleBlock p-4">
+    <div class="saleWrapper flex flex-wrap justify-between gap-6">
+        <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/GR.svg" alt="image"
-                         class="rectangles rectangles--first object-cover rounded-lg" />
+                    <img src="/images/svg/saleBlocks/GR.svg" alt="image" class="rectangles rectangles--first rounded-lg object-cover" />
                 </div>
-                <h2 class="font-bold text-4xl text-black mt-4 tariffName tariffName-F">Free</h2>
-                <p class="text-sm text-slate-400 mt-2">Мне только посмотреть</p>
-                <div class="space-y-2 mt-4">
-                    <button
-                        class="w-full py-4 px-12 bg-tariff-muted text-center text-sm text-[#8A9CAE] btnTariff">
+                <h2 class="tariffName tariffName-F mt-4 text-4xl font-bold text-black">Free</h2>
+                <p class="mt-2 text-sm text-slate-400">Мне только посмотреть</p>
+                <div class="mt-4 space-y-2">
+                    <button class="bg-tariff-muted btnTariff w-full px-12 py-4 text-center text-sm text-[#8A9CAE]">
                         Базовый тариф всегда <br />бесплатно для каждого 😉
                     </button>
-                    <button
-                        class="w-full py-4 goinBtn goinBtnFree rounded-lg bg-tariff-muted px-4 text-sm text-[#8A9CAE] font-bold text-center">
+                    <button class="goinBtn goinBtnFree bg-tariff-muted w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-[#8A9CAE]">
                         Активен ✔
                     </button>
                 </div>
-                <p class="mt-4 text-sm text-slate-400 dashes-underline cursor-pointer">У меня есть промокод</p>
+                <p class="dashes-underline mt-4 cursor-pointer text-sm text-slate-400">У меня есть промокод</p>
             </div>
-            <div class="border-t mt-4"></div>
-            <div class="p-5 tariffAb text-black">
-                <h3 class="font-bold text-sm mt-4">Что входит:</h3>
-                <ul class="space-y-2 mt-2">
+            <div class="mt-4 border-t"></div>
+            <div class="tariffAb p-5 text-black">
+                <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
+                <ul class="mt-2 space-y-2">
                     <TariffFeatureItem text="базовый набор возможностей" />
                     <TariffFeatureItem text="бесплатное создание акций" />
                     <TariffFeatureItem text="стандартный кэшбэк" />
@@ -39,24 +36,20 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
             </div>
         </div>
 
-        <div class="flex-shrink-0 w-sale-card-md secondSale rounded-3xl saleBlock p-4">
+        <div class="secondSale saleBlock w-sale-card-md flex-shrink-0 rounded-3xl p-4">
             <div class="flex flex-col items-center">
-                <div class="relative ">
-                    <img src="/images/svg/saleBlocks/YR.svg" alt="image"
-                         class="rectangles rectangles--second object-cover rounded-lg" />
-                    <img src="/images/svg/saleBlocks/Hint.svg" class="popular-img" alt="">
+                <div class="relative">
+                    <img src="/images/svg/saleBlocks/YR.svg" alt="image" class="rectangles rectangles--second rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/Hint.svg" class="popular-img" alt="" />
                 </div>
 
-
-                <h2 class="font-bold text-4xl text-white mt-4 tariffName-F">Pro</h2>
-                <p class="text-sm text-slate-400 mt-2">Уже посмотрел</p>
-                <div class="space-y-2 mt-4 w-full">
-                    <div
-                        class="w-full py-4 pr-8 pl-7 rounded-lg bg-[#3d5b92] text-center text-sm text-white checkTariff">
-
-                        <div class="flex items-center justify-between mb-4 firstCheckTariff">
-                            <label for="radio1" class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" id="radio1" name="subscription" class="custom-radio hidden">
+                <h2 class="tariffName-F mt-4 text-4xl font-bold text-white">Pro</h2>
+                <p class="mt-2 text-sm text-slate-400">Уже посмотрел</p>
+                <div class="mt-4 w-full space-y-2">
+                    <div class="checkTariff w-full rounded-lg bg-[#3d5b92] py-4 pr-8 pl-7 text-center text-sm text-white">
+                        <div class="firstCheckTariff mb-4 flex items-center justify-between">
+                            <label for="radio1" class="flex cursor-pointer items-center space-x-2">
+                                <input type="radio" id="radio1" name="subscription" class="custom-radio hidden" />
                                 <span class="checkmark"></span>
                                 <span>1 месяц</span>
                             </label>
@@ -65,13 +58,12 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 
                         <div class="bg-main-tariff tariffRaz"></div>
 
-
-                        <div class="flex items-center justify-between gap-[30px] mt-4 SecondCheckTariff">
-                            <label for="radio2" class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" id="radio2" name="subscription" class="custom-radio hidden">
+                        <div class="SecondCheckTariff mt-4 flex items-center justify-between gap-[30px]">
+                            <label for="radio2" class="flex cursor-pointer items-center space-x-2">
+                                <input type="radio" id="radio2" name="subscription" class="custom-radio hidden" />
                                 <span class="checkmark"></span>
                                 <span>1 год</span>
-                        <div class="bg-tariff-discount px-3 py-1 rounded-lg text-white discount">-25%</div>
+                                <div class="bg-tariff-discount discount rounded-lg px-3 py-1 text-white">-25%</div>
                             </label>
                             <div class="flex items-center space-x-2">
                                 <div class="text-tariff-muted line-through">200</div>
@@ -79,19 +71,14 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                             </div>
                         </div>
                     </div>
-                    <button
-                        class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center bg-brand-yellow-dark">
-                        Перейти
-                    </button>
+                    <button class="goinBtn bg-brand-yellow-dark w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">Перейти</button>
                 </div>
-                <p class="mt-4 text-sm text-white dashes-underline dashes-underline-second cursor-pointer">
-                    У меня есть промокод
-                </p>
+                <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть промокод</p>
             </div>
             <div class="borderSec mt-4"></div>
-            <div class="p-5 tariffAb text-white">
-                <h3 class="font-bold text-sm mt-4">Что входит:</h3>
-                <ul class="space-y-2 mt-2">
+            <div class="tariffAb p-5 text-white">
+                <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
+                <ul class="mt-2 space-y-2">
                     <TariffProFeatureItem text="больше возможностей" />
                     <TariffProFeatureItem text="бесплатное создание акций" />
                     <TariffProFeatureItem text="повышенный кэшбэк" />
@@ -102,33 +89,30 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
             </div>
         </div>
 
-        <div class="flex-shrink-0 w-sale-card-md bg-white rounded-3xl saleBlock p-4">
+        <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/BR.svg" alt="image"
-                         class="rectangles rectangles--third object-cover rounded-lg" />
+                    <img src="/images/svg/saleBlocks/BR.svg" alt="image" class="rectangles rectangles--third rounded-lg object-cover" />
                 </div>
-                <h2 class="font-bold text-4xl text-black mt-4 tariffName-F">Exp</h2>
-                <p class="text-sm text-slate-400 mt-2">Знаю чего хочу</p>
-                <div
-                    class="w-full py-4 pr-8 pl-7 rounded-lg mt-4 bg-tariff-muted text-center text-sm text-black checkTariffExp">
-                    <div class="flex items-center justify-between mb-4 firstCheckTariff ">
-                        <label for="radio3" class="flex items-center space-x-2 cursor-pointer">
+                <h2 class="tariffName-F mt-4 text-4xl font-bold text-black">Exp</h2>
+                <p class="mt-2 text-sm text-slate-400">Знаю чего хочу</p>
+                <div class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg py-4 pr-8 pl-7 text-center text-sm text-black">
+                    <div class="firstCheckTariff mb-4 flex items-center justify-between">
+                        <label for="radio3" class="flex cursor-pointer items-center space-x-2">
                             <input type="radio" id="radio3" name="subscription" class="custom-radio hidden" />
-                            <span class="checkmark checkmark--sec "></span>
+                            <span class="checkmark checkmark--sec"></span>
                             <span>1 месяц</span>
                         </label>
                         <span>600 ₽ в мес.</span>
                     </div>
-                    <div class="bg-white tariffRaz"></div>
+                    <div class="tariffRaz bg-white"></div>
 
-
-                    <div class="flex items-center justify-between gap-[30px] mt-4 SecondCheckTariffExp">
-                        <label for="radio4" class="flex items-center space-x-2 cursor-pointer">
+                    <div class="SecondCheckTariffExp mt-4 flex items-center justify-between gap-[30px]">
+                        <label for="radio4" class="flex cursor-pointer items-center space-x-2">
                             <input type="radio" id="radio4" name="subscription" class="custom-radio hidden" />
                             <span class="checkmark checkmark--sec"></span>
                             <span>1 год</span>
-                            <div class="bg-tariff-discount-alt px-3 py-1 rounded-lg text-black font-bold discount">-25%</div>
+                            <div class="bg-tariff-discount-alt discount rounded-lg px-3 py-1 font-bold text-black">-25%</div>
                         </label>
                         <div class="flex items-center space-x-2">
                             <div class="text-slate-400 line-through">600</div>
@@ -136,19 +120,18 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                         </div>
                     </div>
                 </div>
-                <button
-                    class="w-full py-4 rounded-lg goinBtn px-4 text-sm text-black font-bold text-center mt-4 bg-brand-yellow-dark">
+                <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
                     Перейти
                 </button>
-                <div class="hidden promoCodeDisplay mt-4 flex items-center justify-between w-full">
+                <div class="promoCodeDisplay mt-4 flex hidden w-full items-center justify-between">
                     <span class="font-bold text-black">Промокод:</span>
                 </div>
-                <p class="mt-4 text-sm text-slate-400 dashes-underline cursor-pointer">У меня есть промокод</p>
+                <p class="dashes-underline mt-4 cursor-pointer text-sm text-slate-400">У меня есть промокод</p>
             </div>
-            <div class="border-t mt-4"></div>
-            <div class="p-5 tariffAb text-black">
-                <h3 class="font-bold text-sm mt-4">Что входит:</h3>
-                <ul class="space-y-2 mt-2">
+            <div class="mt-4 border-t"></div>
+            <div class="tariffAb p-5 text-black">
+                <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
+                <ul class="mt-2 space-y-2">
                     <TariffFeatureItem text="базовый набор возможностей" />
                     <TariffFeatureItem text="бесплатное создание акций" />
                     <TariffFeatureItem text="стандартный кэшбэк" />

@@ -8,24 +8,18 @@ const props = defineProps<{
 
 <template>
     <section class="flex flex-col items-center">
-        <div class="container flex w-full overflow-x-auto hide-scrollbar">
-            <div v-for="service in props.services" :key="service.key" class="adaptive-block flex flex-col items-center w-auto min-w-80">
-                <img :src="service.img" :alt="service.alt" class="mb-1 w-6 h-6" />
-                <h3
-                    class="gm-card-text font-bold text-center"
-                    :class="{ 'text-yellow-300': service.highlight }"
-                >
+        <div class="hide-scrollbar container flex w-full overflow-x-auto">
+            <div v-for="service in props.services" :key="service.key" class="adaptive-block flex w-auto min-w-80 flex-col items-center">
+                <img :src="service.img" :alt="service.alt" class="mb-1 h-6 w-6" />
+                <h3 class="gm-card-text text-center font-bold" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.title }}
                 </h3>
-                <p
-                    class="development-text text-center"
-                    :class="{ 'text-yellow-300': service.highlight }"
-                >
+                <p class="development-text text-center" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.status }}
                 </p>
             </div>
         </div>
-        <div class="flex flex-col items-center text-slate-500 mt-6 text-center descSection">
+        <div class="descSection mt-6 flex flex-col items-center text-center text-slate-500">
             <p class="mb-6 text-sm">Действие платных тарифов распространяется на все наши сервисы платформы</p>
             <p class="text-sm text-slate-500">
                 В данный момент мы предоставляем только один сервис. <br />

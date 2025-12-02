@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { modelValue } = defineProps<{
     modelValue: boolean;
 }>();
 
@@ -25,13 +25,11 @@ const close = () => emit('update:modelValue', false);
                     <img src="/images/svg/pop-up/Info.svg" alt="Информация" />
                 </div>
                 <div class="modal-body modal-body-Sec text-left">
-                    <h1 class="text-[36px] font-bold text-black leading-tight">
-                        Возможность создавать свои акции, скидки, конкурсы и т.д.
-                    </h1>
-                    <p class="text-[16px] text-black mt-4">
+                    <h1 class="text-[36px] leading-tight font-bold text-black">Возможность создавать свои акции, скидки, конкурсы и т.д.</h1>
+                    <p class="mt-4 text-[16px] text-black">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
-                    <p class="text-[16px] text-[#8A9CAE] mt-2">
+                    <p class="mt-2 text-[16px] text-[#8A9CAE]">
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                 </div>

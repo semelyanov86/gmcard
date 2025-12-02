@@ -7091,9 +7091,9 @@ a {
     border-color: #c6c7c6;
 }
 
- :root {
+:root {
     --color-service-border: #11254a;
-    --tariff-bg-muted: #F2F6FB;
+    --tariff-bg-muted: #f2f6fb;
     --tariff-main-line: #5974a3;
     --tariff-discount-bg: #5973a2;
     --tariff-discount-alt-bg: #dbe4ee;
