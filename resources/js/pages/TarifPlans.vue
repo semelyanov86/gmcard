@@ -25,7 +25,6 @@ const { contact, serviceStatusBlocks } = defineProps<{
                 <TariffDetailsSection />
             </div>
         </main>
-
-        <Footer :contact="contact"></Footer>
+        <Footer  :contact="contact" />
     </div>
 </template>
