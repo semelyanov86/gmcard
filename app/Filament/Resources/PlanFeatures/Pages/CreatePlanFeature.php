@@ -11,5 +11,3 @@ class CreatePlanFeature extends CreateRecord
 {
     protected static string $resource = PlanFeatureResource::class;
 }
-
-

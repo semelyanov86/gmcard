@@ -51,5 +51,3 @@ final class PlanFeaturesTable
             ->defaultSort('id', 'asc');
     }
 }
-
-

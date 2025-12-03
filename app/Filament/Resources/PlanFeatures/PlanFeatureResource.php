@@ -52,5 +52,3 @@ class PlanFeatureResource extends Resource
         ];
     }
 }
-
-

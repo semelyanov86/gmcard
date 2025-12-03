@@ -11,5 +11,3 @@ class ListPlanFeatures extends ListRecords
 {
     protected static string $resource = PlanFeatureResource::class;
 }
-
-

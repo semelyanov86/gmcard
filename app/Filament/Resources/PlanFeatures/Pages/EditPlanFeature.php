@@ -11,5 +11,3 @@ class EditPlanFeature extends EditRecord
 {
     protected static string $resource = PlanFeatureResource::class;
 }
-
-
