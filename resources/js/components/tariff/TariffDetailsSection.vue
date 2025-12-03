@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
+import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import { onUnmounted, ref, watch } from 'vue';
 
 const isModalOpen = ref(false);
+
+const { tariffPlans } = defineProps<{
+    tariffPlans: TariffPlanModel[];
+}>();
+
+const freeTariff = tariffPlans[0];
+const proTariff = tariffPlans[1];
+const expTariff = tariffPlans[2];
 
 const openModal = () => {
     isModalOpen.value = true;
@@ -68,19 +77,25 @@ onUnmounted(() => {
             <div class="tariff-plans col-span-1 grid grid-cols-3 gap-10">
                 <!-- Тариф Free -->
                 <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name text-2xl font-bold">Free</h3>
+                    <h3 class="tariff-name text-2xl font-bold">
+                        {{ freeTariff.name }}
+                    </h3>
                     <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
                 </div>
 
                 <!-- Тариф Pro -->
                 <div class="sr dark-blue tarifPro flex w-64 flex-col items-center gap-3 rounded-[14px] rounded-b-none p-4 text-center">
-                    <h3 class="tariff-name tariffName text-2xl font-bold">Pro</h3>
+                    <h3 class="tariff-name tariffName text-2xl font-bold">
+                        {{ proTariff.name }}
+                    </h3>
                     <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
 
                 <!-- Тариф Exp -->
                 <div class="sr tarifExp flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name tariffName text-2xl font-bold">Exp</h3>
+                    <h3 class="tariff-name tariffName text-2xl font-bold">
+                        {{ expTariff.name }}
+                    </h3>
                     <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
                 </div>
             </div>

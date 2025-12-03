@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import TariffFeatureItem from '@/components/tariff/TariffFeatureItem.vue';
 import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
+import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
+
+const { tariffPlans } = defineProps<{
+    tariffPlans: TariffPlanModel[];
+}>();
+
+const freeTariff = tariffPlans[0];
+const proTariff = tariffPlans[1];
+const expTariff = tariffPlans[2];
 </script>
 
 <template>
@@ -11,7 +20,9 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                     <img src="/images/svg/saleBlocks/GR.svg" alt="image"
                          class="rectangles rectangles--first rounded-lg object-cover" />
                 </div>
-                <h2 class="tariffName tariffName-F mt-4 text-4xl font-bold text-black">Free</h2>
+                <h2 class="tariffName tariffName-F mt-4 text-4xl font-bold text-black">
+                    {{ freeTariff.name }}
+                </h2>
                 <p class="mt-2 text-sm text-slate-400">Мне только посмотреть</p>
                 <div class="mt-4 space-y-2 ">
                     <button
@@ -26,15 +37,14 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                 <p class="dashes-underline mt-4 cursor-pointer text-sm text-slate-400">У меня есть промокод</p>
             </div>
             <div class="mt-4 border-t"></div>
-            <div class="tariffAb p-5 text-black">
+            <div v-if="freeTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem text="базовый набор возможностей" />
-                    <TariffFeatureItem text="бесплатное создание акций" />
-                    <TariffFeatureItem text="стандартный кэшбэк" />
-                    <TariffFeatureItem text="редактируемый бейдж" />
-                    <TariffFeatureItem text="стандартная комиссия за вывод средств" />
-                    <TariffFeatureItem text="и многое другое, подробнее ниже" />
+                    <TariffFeatureItem
+                        v-for="feature in freeTariff.features"
+                        :key="feature.id"
+                        :text="feature.display_name"
+                    />
                 </ul>
             </div>
         </div>
@@ -47,7 +57,9 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                     <img src="/images/svg/saleBlocks/Hint.svg" class="popular-img" alt="" />
                 </div>
 
-                <h2 class="tariffName-F mt-4 text-4xl font-bold text-white">Pro</h2>
+                <h2 class="tariffName-F mt-4 text-4xl font-bold text-white">
+                    {{ proTariff.name }}
+                </h2>
                 <p class="mt-2 text-sm text-slate-400">Уже посмотрел</p>
                 <div class="mt-4 w-full space-y-2">
                     <div
@@ -85,15 +97,14 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                     промокод</p>
             </div>
             <div class="borderSec mt-4"></div>
-            <div class="tariffAb p-5 text-white">
+            <div v-if="proTariff" class="tariffAb p-5 text-white">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffProFeatureItem text="больше возможностей" />
-                    <TariffProFeatureItem text="бесплатное создание акций" />
-                    <TariffProFeatureItem text="повышенный кэшбэк" />
-                    <TariffProFeatureItem text="премиум бейдж" />
-                    <TariffProFeatureItem text="пониженная комиссия за вывод средств" />
-                    <TariffProFeatureItem text="и многое другое, подробнее ниже" />
+                    <TariffProFeatureItem
+                        v-for="feature in proTariff.features"
+                        :key="feature.id"
+                        :text="feature.display_name"
+                    />
                 </ul>
             </div>
         </div>
@@ -104,7 +115,9 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                     <img src="/images/svg/saleBlocks/BR.svg" alt="image"
                          class="rectangles rectangles--third rounded-lg object-cover" />
                 </div>
-                <h2 class="tariffName-F mt-4 text-4xl font-bold text-black">Exp</h2>
+                <h2 class="tariffName-F mt-4 text-4xl font-bold text-black">
+                    {{ expTariff.name }}
+                </h2>
                 <p class="mt-2 text-sm text-slate-400">Знаю чего хочу</p>
                 <div
                     class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg p-4 pr-8 pl-7 text-center text-sm text-black">
@@ -143,15 +156,14 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                 <p class="dashes-underline mt-4 cursor-pointer text-sm text-slate-400">У меня есть промокод</p>
             </div>
             <div class="mt-4 border-t"></div>
-            <div class="tariffAb p-5 text-black">
+            <div v-if="expTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem text="базовый набор возможностей" />
-                    <TariffFeatureItem text="бесплатное создание акций" />
-                    <TariffFeatureItem text="стандартный кэшбэк" />
-                    <TariffFeatureItem text="редактируемый бейдж" />
-                    <TariffFeatureItem text="стандартная комиссия за вывод средств" />
-                    <TariffFeatureItem text="и многое другое, подробнее ниже" />
+                    <TariffFeatureItem
+                        v-for="feature in expTariff.features"
+                        :key="feature.id"
+                        :text="feature.display_name"
+                    />
                 </ul>
             </div>
         </div>

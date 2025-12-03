@@ -6,11 +6,13 @@ import TariffSaleCards from '@/components/tariff/TariffSaleCards.vue';
 import TariffDetailsSection from '@/components/tariff/TariffDetailsSection.vue';
 import type { ContactModel } from '@/types';
 import type { ServiceStatusBlock } from '@/types/tariff/ServiceStatusBlock';
+import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import '../../css/internal/output.css';
 
-const { contact, serviceStatusBlocks } = defineProps<{
+const props = defineProps<{
     contact: ContactModel;
     serviceStatusBlocks: ServiceStatusBlock[];
+    tariffPlans: TariffPlanModel[];
 }>();
 </script>
 
@@ -19,11 +21,11 @@ const { contact, serviceStatusBlocks } = defineProps<{
         <Header />
         <main class="mainSection py-4 text-white">
             <div class="mx-auto w-full max-w-[1140px]">
-                <ServiceStatusSection :services="serviceStatusBlocks" />
-                <TariffSaleCards />
-                <TariffDetailsSection />
+                <ServiceStatusSection :services="props.serviceStatusBlocks" />
+                <TariffSaleCards :tariff-plans="props.tariffPlans" />
+                <TariffDetailsSection :tariff-plans="props.tariffPlans" />
             </div>
         </main>
-        <Footer  :contact="contact" />
+        <Footer :contact="props.contact" />
     </div>
 </template>
