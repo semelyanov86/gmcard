@@ -8,6 +8,7 @@ use App\Casts\MoneyValueObjectCast;
 use Database\Factories\TariffPlanFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TariffPlan extends Model
@@ -37,6 +38,16 @@ class TariffPlan extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * @return BelongsToMany<PlanFeature>
+     */
+    public function features(): BelongsToMany
+    {
+        return $this->belongsToMany(PlanFeature::class)
+            ->withPivot(['is_included'])
+            ->withTimestamps();
     }
 
     protected function casts(): array
