@@ -8,6 +8,7 @@ use App\Http\Requests\Promo\CreatePromoRequest;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
@@ -190,8 +191,8 @@ class CreatePromoRequestTest extends TestCase
 
     public function test_requires_agree_to_terms(): void
     {
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $data = [
             'promo_type_id' => 4,

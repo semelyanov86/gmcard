@@ -54,7 +54,7 @@ class PopupFormSubmitTest extends TestCase
     public function test_example(): void
     {
         $response = $this->get('/');
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_form_submit_successfully_creates_lead(): void

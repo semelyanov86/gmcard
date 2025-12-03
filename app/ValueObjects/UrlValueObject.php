@@ -6,12 +6,13 @@ namespace App\ValueObjects;
 
 use App\Data\MenuData;
 use Illuminate\Support\Uri;
+use JsonSerializable;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
 use Spatie\LaravelData\Support\DataProperty;
 use Stringable;
 
-final readonly class UrlValueObject implements Cast, Stringable
+final readonly class UrlValueObject implements Cast, JsonSerializable, Stringable
 {
     public function __construct(
         private Uri $uri
@@ -67,6 +68,11 @@ final readonly class UrlValueObject implements Cast, Stringable
     }
 
     public function __toString(): string
+    {
+        return (string) $this->uri;
+    }
+
+    public function jsonSerialize(): string
     {
         return (string) $this->uri;
     }

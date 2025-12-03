@@ -14,9 +14,9 @@ class MenuSeeder extends Seeder
     {
         $navbarItems = [
             ['label' => 'Главная', 'url' => '/', 'order' => 1],
-            ['label' => 'Пользователям', 'url' => '/discount.html', 'order' => 2],
+            ['label' => 'Пользователям', 'url' => '/user-landing', 'order' => 2],
             ['label' => 'Кэшбэк', 'url' => '/#popular', 'order' => 3],
-            ['label' => 'Для бизнеса', 'url' => '/buis_new.html', 'order' => 4],
+            ['label' => 'Для бизнеса', 'url' => '/', 'order' => 4],
             ['label' => 'Правила', 'url' => '/help.html', 'order' => 5],
             ['label' => 'Контакты', 'url' => '/help.html', 'order' => 6],
             ['label' => 'GM', 'url' => '/buis.html', 'order' => 7],
@@ -47,6 +47,25 @@ class MenuSeeder extends Seeder
                 'label' => $item['label'],
                 'url' => $item['url'],
                 'type' => MenuType::SIDEBAR,
+                'order' => $item['order'],
+                'is_active' => true,
+            ]);
+        }
+
+        $promoSidebarItems = [
+            ['label' => 'Личный кабинет', 'url' => '/profile', 'order' => 1],
+            ['label' => 'Запустить акцию', 'url' => '/promos/create', 'order' => 2],
+            ['label' => 'Мои акции', 'url' => '/profile', 'order' => 3],
+            ['label' => 'Мои акции с купонами', 'url' => '/profile', 'order' => 4],
+            ['label' => 'Мои купоны', 'url' => '/profile', 'order' => 5],
+            ['label' => 'Мои черновики', 'url' => '/profile', 'order' => 6],
+        ];
+
+        foreach ($promoSidebarItems as $item) {
+            Menu::query()->create([
+                'label' => $item['label'],
+                'url' => $item['url'],
+                'type' => MenuType::PROMO_SIDEBAR,
                 'order' => $item['order'],
                 'is_active' => true,
             ]);

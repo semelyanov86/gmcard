@@ -7,26 +7,23 @@ namespace App\Actions\Promo;
 use App\Actions\Payment\CreatePaymentAction;
 use App\Actions\User\RecalculateUserBalanceAction;
 use App\Data\CreatePromoData;
-use App\Data\PromoCostData;
 use App\Data\PaymentData;
-use App\Enums\PromoType;
-use App\Models\Address;
+use App\Data\PromoCostData;
+use App\Enums\Promo\PromoCostType;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\User;
 use App\ValueObjects\MoneyValueObject;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Throwable;
 
 /**
  * @method static CreatePromoData run(CreatePromoData $dto)
  */
-final readonly class CreatePromoAction
+final readonly class CreatePromoAction extends AbstractPromoSaveAction
 {
-    use AsAction;
-
     /**
      * @throws Throwable
      */
@@ -34,16 +31,10 @@ final readonly class CreatePromoAction
     {
         return DB::transaction(function () use ($dto): CreatePromoData {
             $user = User::findOrFail($dto->userId);
-            /** @var PromoCostData $cost */
-            $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
 
-            if (! $cost->isFree) {
-                $totalCost = $this->applyBonusBalance($user, $cost->totalCost, $dto->useBonusBalance ?? false);
-                if ($totalCost > 0) {
-                    $this->ensureSufficientBalance($user, $totalCost);
-                    $this->createPaymentForPromo($dto, $totalCost);
-                }
-            }
+            $cost = $dto->isDraft
+                ? $this->calculateCostForDraft($dto)
+                : $this->calculateCostForPublication($user, $dto);
 
             $createData = $this->buildCreateData($dto, $cost);
 
@@ -55,6 +46,33 @@ final readonly class CreatePromoAction
 
             return $dto;
         });
+    }
+
+    private function calculateCostForDraft(CreatePromoData $dto): PromoCostData
+    {
+        return new PromoCostData(
+            dailyCost: 0,
+            isFree: true,
+            type: PromoCostType::NO_TARIFF,
+            durationDays: $dto->durationDays,
+            totalCost: 0,
+        );
+    }
+
+    private function calculateCostForPublication(User $user, CreatePromoData $dto): PromoCostData
+    {
+        /** @var PromoCostData $cost */
+        $cost = CalculateAdCostAction::run($user, $dto->durationDays, $dto->showInBanner ?? false);
+
+        if (! $cost->isFree) {
+            $totalCost = $this->applyBonusBalance($user, $cost->totalCost, $dto->useBonusBalance ?? false);
+            if ($totalCost > 0) {
+                $this->ensureSufficientBalance($user, $totalCost);
+                $this->createPaymentForPromo($dto, $totalCost);
+            }
+        }
+
+        return $cost;
     }
 
     private function applyBonusBalance(User $user, int $totalCost, bool $useBonusBalance): int
@@ -110,9 +128,12 @@ final readonly class CreatePromoAction
      */
     private function buildCreateData(CreatePromoData $dto, PromoCostData $cost): array
     {
-        $promoType = $this->getPromoType($dto->promoTypeId);
+        $promoType = $this->getPromoTypeEnum($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
+        $moderationStatus = $dto->isDraft
+            ? PromoModerationStatus::DRAFT
+            : PromoModerationStatus::PENDING;
 
         return [
             'user_id' => $dto->userId,
@@ -122,7 +143,7 @@ final readonly class CreatePromoAction
             'extra_conditions' => $dto->conditions,
             'free_delivery' => $dto->freeDelivery ?? false,
             'show_on_home' => $dto->showInBanner ?? false,
-            'available_till' => Carbon::now()->addDays($dto->durationDays),
+            'available_till' => CarbonImmutable::now()->addDays($dto->durationDays),
             'discount' => $discount,
             'amount' => $amount,
             'sales_order_from' => $dto->minimumOrder ?? MoneyValueObject::fromCents(0),
@@ -132,103 +153,14 @@ final readonly class CreatePromoAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => is_array($dto->photos) ? ($dto->photos[0] ?? null) : null,
-            'started_at' => $dto->isDraft ? null : now(),
+            'img' => $this->handlePhotoUpload($dto->photos),
+            'moderation_status' => $moderationStatus,
+            'started_at' => null,
             'raise_on_top_hours' => 0,
             'restart_after_finish_days' => 0,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
             'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
             'payment_required' => ! $cost->isFree,
         ];
-    }
-
-    private function getPromoType(int $id): PromoType
-    {
-        return match ($id) {
-            1 => PromoType::SIMPLE,
-            2 => PromoType::COUPON,
-            3 => PromoType::GIFT,
-            4 => PromoType::ONE_PLUS_ONE,
-            5 => PromoType::TWO_PLUS_ONE,
-            6 => PromoType::CASHBACK,
-            7 => PromoType::KONKURS,
-            default => PromoType::SIMPLE,
-        };
-    }
-
-    private function syncRelations(Promo $promo, CreatePromoData $dto): void
-    {
-        $promo->categories()->sync($dto->categoryIds);
-        $promo->cities()->sync($dto->cityIds);
-
-        if ($dto->addresses && ! empty($dto->addresses)) {
-            $addressIds = [];
-
-            foreach ($dto->addresses as $index => $addressData) {
-                if (empty($addressData['address']) && empty($addressData['phone'])) {
-                    continue;
-                }
-
-                $addressCreateData = [
-                    'name' => $addressData['address'] ?? '',
-                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
-                    'phone' => $addressData['phone'] ?? '',
-                    'phone_secondary' => $addressData['phone2'] ?? null,
-                ];
-
-                $address = Address::create($addressCreateData);
-
-                $addressIds[] = $address->id;
-            }
-
-            if (! empty($addressIds)) {
-                $promo->addresses()->sync($addressIds);
-            }
-        }
-    }
-
-    private function getDiscount(CreatePromoData $dto, PromoType $type): ?string
-    {
-        if (in_array($type, [PromoType::SIMPLE, PromoType::COUPON, PromoType::GIFT]) && $dto->discount) {
-            return $dto->discount->toString() . ($dto->discount->getCurrency() === 'RUB' ? '₽' : '%');
-        }
-
-        if (in_array($type, [PromoType::CASHBACK, PromoType::KONKURS]) && $dto->cashback) {
-            return $dto->cashback->toString() . ($dto->cashback->getCurrency() === 'RUB' ? '₽' : '%');
-        }
-
-        return null;
-    }
-
-    private function getAmount(CreatePromoData $dto, PromoType $type): ?MoneyValueObject
-    {
-        if (in_array($type, [PromoType::SIMPLE, PromoType::COUPON, PromoType::GIFT]) && $dto->discount) {
-            return $dto->discount->getCurrency() === 'RUB' ? $dto->discount : null;
-        }
-
-        if (in_array($type, [PromoType::CASHBACK, PromoType::KONKURS]) && $dto->cashback) {
-            return $dto->cashback->getCurrency() === 'RUB' ? $dto->cashback : null;
-        }
-
-        return null;
-    }
-
-    /**
-     * @param  array<string, mixed>|null  $schedule
-     */
-    private function getScheduleTime(?array $schedule, string $key): ?string
-    {
-        if (! is_array($schedule)) {
-            return null;
-        }
-
-        $timeRange = $schedule['timeRange'] ?? null;
-        if (! is_array($timeRange)) {
-            return null;
-        }
-
-        $value = $timeRange[$key] ?? null;
-
-        return is_string($value) ? $value : null;
     }
 }

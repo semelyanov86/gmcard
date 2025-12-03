@@ -6,6 +6,7 @@ namespace Tests\Feature\Actions\Promo;
 
 use App\Actions\Promo\CreatePromoAction;
 use App\Data\CreatePromoData;
+use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
@@ -55,8 +56,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -83,8 +84,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -112,7 +113,7 @@ class CreatePromoActionTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
         $categories = Category::factory()->count(3)->create();
-        $cities = City::factory()->count(1)->create();
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -131,7 +132,8 @@ class CreatePromoActionTest extends TestCase
         $promo = Promo::with('categories')->findOrFail($dto->id);
         $this->assertCount(3, $promo->categories);
         $firstCategory = $categories->first();
-        assert($firstCategory instanceof Category);
+        $this->assertNotNull($firstCategory);
+        $this->assertInstanceOf(Category::class, $firstCategory);
         $this->assertTrue($promo->categories->contains($firstCategory));
     }
 
@@ -139,7 +141,7 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
         $cities = City::factory()->count(3)->create();
 
         $dto = new CreatePromoData(
@@ -159,7 +161,8 @@ class CreatePromoActionTest extends TestCase
         $promo = Promo::with('cities')->findOrFail($dto->id);
         $this->assertCount(3, $promo->cities);
         $firstCity = $cities->first();
-        assert($firstCity instanceof City);
+        $this->assertNotNull($firstCity);
+        $this->assertInstanceOf(City::class, $firstCity);
         $this->assertTrue($promo->cities->contains($firstCity));
     }
 
@@ -167,8 +170,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -187,14 +190,15 @@ class CreatePromoActionTest extends TestCase
         $this->assertNotEmpty($dto->id);
         $promo = Promo::findOrFail($dto->id);
         $this->assertNull($promo->started_at);
+        $this->assertEquals(PromoModerationStatus::DRAFT, $promo->moderation_status);
     }
 
     public function test_creates_published_promo(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -212,15 +216,16 @@ class CreatePromoActionTest extends TestCase
 
         $this->assertNotEmpty($dto->id);
         $promo = Promo::findOrFail($dto->id);
-        $this->assertNotNull($promo->started_at);
+        $this->assertNull($promo->started_at);
+        $this->assertEquals(PromoModerationStatus::PENDING, $promo->moderation_status);
     }
 
     public function test_converts_minimum_order_amount_to_minor_units(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -245,8 +250,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -277,8 +282,8 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
-        $cities = City::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
+        $cities = new Collection([City::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,
@@ -313,7 +318,7 @@ class CreatePromoActionTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
-        $categories = Category::factory()->count(1)->create();
+        $categories = new Collection([Category::factory()->createOne()]);
 
         $dto = new CreatePromoData(
             userId: $user->id,

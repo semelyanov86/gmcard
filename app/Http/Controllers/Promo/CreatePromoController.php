@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
+use InertiaUI\Modal\Modal;
 use Throwable;
 
 class CreatePromoController extends Controller
@@ -44,7 +45,7 @@ class CreatePromoController extends Controller
             'socialNetworks' => config('promo.social_networks'),
             'user' => $user,
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
-            'sidebarMenu' => GetMenuItemsAction::run(MenuType::SIDEBAR),
+            'sidebarMenu' => GetMenuItemsAction::run(MenuType::PROMO_SIDEBAR),
         ]);
     }
 
@@ -79,5 +80,11 @@ class CreatePromoController extends Controller
         return redirect()
             ->route('promos.create')
             ->with('success', $message);
+    }
+
+    public function photoHelp(): Modal
+    {
+        return new Modal('Modals/PhotoHelpModal')
+            ->baseRoute('promos.create');
     }
 }

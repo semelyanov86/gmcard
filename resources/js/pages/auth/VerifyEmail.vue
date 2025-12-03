@@ -30,7 +30,7 @@ const submit = () => {
         </form>
 
         <p class="mt-10 text-center text-base">
-            <TextLink :href="route('logout')" method="post" as="button" class="font-bold underline hover:text-[#F9D914]">Выйти</TextLink>
+            <TextLink :href="route('logout')" method="post" as="button" class="hover:text-yellow font-bold underline">Выйти</TextLink>
         </p>
     </AuthCustomLayout>
 </template>

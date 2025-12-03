@@ -24,7 +24,7 @@ const props = withDefaults(
     <button
         :type="props.type"
         :disabled="props.disabled || props.loading"
-        class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#F4D710] py-4 text-lg font-bold hover:bg-[#F9D914] disabled:cursor-not-allowed disabled:opacity-50"
+        class="bg-yellow-dark hover:bg-yellow flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl py-4 text-lg font-bold disabled:cursor-not-allowed disabled:opacity-50"
         :class="props.class"
         v-bind="attrs"
     >
