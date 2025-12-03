@@ -3650,10 +3650,6 @@ body {
     display: none;
 }
 
-.tariff-section {
-    overflow: visible;
-}
-
 .mainSection {
     overflow: visible;
 }
@@ -3681,51 +3677,6 @@ body {
 
 .markTariff {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.borderSec {
-    --tw-border-opacity: 1;
-    border-top-width: 1px;
-    border-color: rgb(35, 70, 133);
-}
-
-.custom-radio {
-    display: none;
-}
-
-.checkmark {
-    width: 24px;
-    height: 24px;
-    background-color: #6d84ad;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    transition:
-        background-color 0.3s,
-        border-color 0.3s;
-}
-
-.custom-radio + .checkmark--sec {
-    background-color: #dce4ef;
-}
-
-.custom-radio:checked + .checkmark {
-    background-color: #f4d710;
-    border-color: #f4d710;
-}
-
-.custom-radio:checked + .checkmark::after {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 11px;
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-    left: 9px;
-    top: 5px;
-    border-radius: 2px;
 }
 
 .container {
@@ -3814,33 +3765,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .checkTariff {
-        padding: 8px;
-    }
-
-    .checkTariffExp {
-        padding: 8px;
-        margin-bottom: 9px;
-    }
-
-    .firstCheckTariff {
-        margin-bottom: 7px;
-    }
-
-    .SecondCheckTariff {
-        gap: 0;
-        margin-top: 9px;
-    }
-
-    .SecondCheckTariffExp {
-        gap: 0;
-        margin-top: 9px;
-    }
-
-    .tariffRaz {
-        margin-left: -0.5rem;
-        margin-right: -0.5rem;
-    }
 
     .modal-content,
     .modal-content-Sec {
@@ -3911,14 +3835,8 @@ body {
     }
 }
 
-.tariff-section {
-    padding: 80px 330px;
-}
 
 @media (max-width: 1330px) {
-    .tariff-section {
-        padding: 0;
-    }
 
     .tariff-info {
         width: auto;
@@ -3926,10 +3844,6 @@ body {
         display: flex;
         flex-direction: row;
         margin-top: 20px;
-    }
-
-    .tariff-header {
-        text-align: left;
     }
 
     .tarifPro-Bottom {

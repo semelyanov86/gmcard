@@ -7,7 +7,6 @@ import TariffDetailsSection from '@/components/tariff/TariffDetailsSection.vue';
 import type { ContactModel } from '@/types';
 import type { ServiceStatusBlock } from '@/types/tariff/ServiceStatusBlock';
 import '../../css/internal/output.css';
-import '../../css/internal/outputsec.css';
 
 const { contact, serviceStatusBlocks } = defineProps<{
     contact: ContactModel;

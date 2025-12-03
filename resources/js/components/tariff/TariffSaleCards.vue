@@ -8,15 +8,18 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
         <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/GR.svg" alt="image" class="rectangles rectangles--first rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/GR.svg" alt="image"
+                         class="rectangles rectangles--first rounded-lg object-cover" />
                 </div>
                 <h2 class="tariffName tariffName-F mt-4 text-4xl font-bold text-black">Free</h2>
                 <p class="mt-2 text-sm text-slate-400">Мне только посмотреть</p>
-                <div class="mt-4 space-y-2">
-                    <button class="bg-tariff-muted btnTariff w-full px-12 py-4 text-center text-sm text-[#8A9CAE]">
+                <div class="mt-4 space-y-2 ">
+                    <button
+                        class="bg-tariff-muted rounded-lg btnTariff w-full px-12 py-4 text-center text-sm text-gray-400">
                         Базовый тариф всегда <br />бесплатно для каждого 😉
                     </button>
-                    <button class="goinBtn goinBtnFree bg-tariff-muted w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-[#8A9CAE]">
+                    <button
+                        class="goinBtn goinBtnFree bg-tariff-muted mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-gray-400">
                         Активен ✔
                     </button>
                 </div>
@@ -39,14 +42,16 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
         <div class="secondSale saleBlock w-sale-card-md flex-shrink-0 rounded-3xl p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/YR.svg" alt="image" class="rectangles rectangles--second rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/YR.svg" alt="image"
+                         class="rectangles rectangles--second rounded-lg object-cover" />
                     <img src="/images/svg/saleBlocks/Hint.svg" class="popular-img" alt="" />
                 </div>
 
                 <h2 class="tariffName-F mt-4 text-4xl font-bold text-white">Pro</h2>
                 <p class="mt-2 text-sm text-slate-400">Уже посмотрел</p>
                 <div class="mt-4 w-full space-y-2">
-                    <div class="checkTariff w-full rounded-lg bg-[#3d5b92] py-4 pr-8 pl-7 text-center text-sm text-white">
+                    <div
+                        class="checkTariff w-full rounded-lg bg-[#3d5b92] p-4 pr-8 pl-7 text-center text-sm text-white">
                         <div class="firstCheckTariff mb-4 flex items-center justify-between">
                             <label for="radio1" class="flex cursor-pointer items-center space-x-2">
                                 <input type="radio" id="radio1" name="subscription" class="custom-radio hidden" />
@@ -56,7 +61,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                             <span>200 ₽ в мес.</span>
                         </div>
 
-                        <div class="bg-main-tariff tariffRaz"></div>
+                        <div class="mr-[-2rem]  h-[1px] bg-[#5974a3] tariffRaz"></div>
 
                         <div class="SecondCheckTariff mt-4 flex items-center justify-between gap-[30px]">
                             <label for="radio2" class="flex cursor-pointer items-center space-x-2">
@@ -71,9 +76,13 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                             </div>
                         </div>
                     </div>
-                    <button class="goinBtn bg-brand-yellow-dark w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">Перейти</button>
+                    <button
+                        class="goinBtn bg-brand-yellow-dark w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black mt-4">
+                        Перейти
+                    </button>
                 </div>
-                <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть промокод</p>
+                <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть
+                    промокод</p>
             </div>
             <div class="borderSec mt-4"></div>
             <div class="tariffAb p-5 text-white">
@@ -92,11 +101,13 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
         <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/BR.svg" alt="image" class="rectangles rectangles--third rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/BR.svg" alt="image"
+                         class="rectangles rectangles--third rounded-lg object-cover" />
                 </div>
                 <h2 class="tariffName-F mt-4 text-4xl font-bold text-black">Exp</h2>
                 <p class="mt-2 text-sm text-slate-400">Знаю чего хочу</p>
-                <div class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg py-4 pr-8 pl-7 text-center text-sm text-black">
+                <div
+                    class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg p-4 pr-8 pl-7 text-center text-sm text-black">
                     <div class="firstCheckTariff mb-4 flex items-center justify-between">
                         <label for="radio3" class="flex cursor-pointer items-center space-x-2">
                             <input type="radio" id="radio3" name="subscription" class="custom-radio hidden" />
@@ -112,7 +123,9 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                             <input type="radio" id="radio4" name="subscription" class="custom-radio hidden" />
                             <span class="checkmark checkmark--sec"></span>
                             <span>1 год</span>
-                            <div class="bg-tariff-discount-alt discount rounded-lg px-3 py-1 font-bold text-black">-25%</div>
+                            <div class="bg-tariff-discount-alt discount rounded-lg px-3 py-1 font-bold text-black">
+                                -25%
+                            </div>
                         </label>
                         <div class="flex items-center space-x-2">
                             <div class="text-slate-400 line-through">600</div>
@@ -120,7 +133,8 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
                         </div>
                     </div>
                 </div>
-                <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
+                <button
+                    class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
                     Перейти
                 </button>
                 <div class="promoCodeDisplay mt-4 flex hidden w-full items-center justify-between">
@@ -156,17 +170,15 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 }
 
 .saleBlock {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .saleBlock:hover {
     transform: translateY(-10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .rectangles {
@@ -192,6 +204,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 .goinBtn {
     background-color: #f4d710;
     transition: 0.3s linear;
+
     &:hover {
         background-color: #ffeb24;
     }
@@ -199,6 +212,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 
 .goinBtnFree {
     background-color: #e7ecf3;
+
     &:hover {
         background-color: #d7dadd;
     }
@@ -210,7 +224,7 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 
 .tariffRaz {
     margin-right: -2rem;
-    margin-left: -1.7rem;
+    margin-left: -1rem;
     height: 1px;
 }
 
@@ -224,6 +238,50 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 
 .w-sale-card-md {
     width: 360px;
+}
+
+.custom-radio {
+    display: none;
+}
+
+.custom-radio + .checkmark--sec {
+    background-color: #dce4ef;
+}
+
+.custom-radio:checked + .checkmark {
+    background-color: #f4d710;
+    border-color: #f4d710;
+}
+
+.custom-radio:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 11px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    left: 9px;
+    top: 5px;
+    border-radius: 2px;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    background-color: #6d84ad;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s,
+    border-color 0.3s;
+}
+
+.borderSec {
+    --tw-border-opacity: 1;
+    border-top-width: 1px;
+    border-color: rgb(35, 70, 133);
 }
 
 @media (max-width: 440px) {
@@ -269,6 +327,34 @@ import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 @media (max-width: 768px) {
     .btnTariff {
         padding: 16px 35px;
+    }
+
+    .tariffRaz {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+
+    .checkTariff {
+        padding: 8px;
+    }
+
+    .checkTariffExp {
+        padding: 8px;
+        margin-bottom: 9px;
+    }
+
+    .firstCheckTariff {
+        margin-bottom: 7px;
+    }
+
+    .SecondCheckTariff {
+        gap: 0;
+        margin-top: 9px;
+    }
+
+    .SecondCheckTariffExp {
+        gap: 0;
+        margin-top: 9px;
     }
 }
 </style>
