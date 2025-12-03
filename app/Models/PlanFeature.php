@@ -27,7 +27,7 @@ class PlanFeature extends Model
     ];
 
     /**
-     * @return BelongsToMany<TariffPlan>
+     * @return BelongsToMany<TariffPlan, $this>
      */
     public function tariffPlans(): BelongsToMany
     {
@@ -36,5 +36,3 @@ class PlanFeature extends Model
             ->withTimestamps();
     }
 }
-
-

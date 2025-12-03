@@ -41,7 +41,7 @@ class TariffPlan extends Model
     }
 
     /**
-     * @return BelongsToMany<PlanFeature>
+     * @return BelongsToMany<PlanFeature, $this>
      */
     public function features(): BelongsToMany
     {

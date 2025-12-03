@@ -15,9 +15,8 @@ const props = defineProps<{
 
 <template>
     <section class="footer bg-brand-footer">
-        <div class="container">
-            <footer class="bg-brand-footer-bg relative overflow-hidden">
-                <div class="relative mx-auto w-1140 py-9 2xl:w-full 2xl:px-4">
+        <footer class="bg-brand-footer-bg relative overflow-hidden">
+            <div class="relative mx-auto w-full max-w-[1140px] py-9 2xl:w-full 2xl:px-4">
                     <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
                     <ul class="footer_navBlock relative z-20 flex flex-wrap items-center justify-between">
                         <li>
@@ -91,6 +90,7 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <VkFooterIcon custom-class="vk-icon-bright mr-[14px] opacity-50" />
@@ -101,6 +101,7 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[147px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <TelegramIcon custom-class="mr-[14px] text-white opacity-50" />
@@ -111,6 +112,7 @@ const props = defineProps<{
                                         <a
                                             href=""
                                             class="flex h-[48px] w-[48px] items-center justify-center rounded-lg text-[16px] text-white ring-[1px] ring-white/50 hover:ring-white"
+                                            data-tooltip-target="tooltip-social"
                                             type="button"
                                         >
                                             <InstagramIcon custom-class="text-white opacity-50" />
@@ -261,29 +263,29 @@ const props = defineProps<{
                                                                     <div class="mt-1 flex items-center">
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="mobile-app-yes"
+                                                                                for="inline-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Да</label
                                                                             >
                                                                             <input
-                                                                                id="mobile-app-yes"
+                                                                                id="inline-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="mobile-app-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="mobile-app-no"
+                                                                                for="inline-2-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Нет</label
                                                                             >
                                                                             <input
-                                                                                id="mobile-app-no"
+                                                                                id="inline-2-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="mobile-app-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
@@ -296,29 +298,29 @@ const props = defineProps<{
                                                                     <div class="mt-1 flex items-center">
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="promo-codes-yes"
+                                                                                for="inline-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Да</label
                                                                             >
                                                                             <input
-                                                                                id="promo-codes-yes"
+                                                                                id="inline-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="promo-codes-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="promo-codes-no"
+                                                                                for="inline-2-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Нет</label
                                                                             >
                                                                             <input
-                                                                                id="promo-codes-no"
+                                                                                id="inline-2-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="promo-codes-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
@@ -331,29 +333,29 @@ const props = defineProps<{
                                                                     <div class="mt-1 flex items-center">
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="cart-yes"
+                                                                                for="inline-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Да</label
                                                                             >
                                                                             <input
-                                                                                id="cart-yes"
+                                                                                id="inline-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="cart-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
                                                                         <div class="mr-4 flex items-center">
                                                                             <label
-                                                                                for="cart-no"
+                                                                                for="inline-2-radio"
                                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-300"
                                                                                 >Нет</label
                                                                             >
                                                                             <input
-                                                                                id="cart-no"
+                                                                                id="inline-2-radio"
                                                                                 type="radio"
                                                                                 value=""
-                                                                                name="cart-group"
+                                                                                name="inline-radio-group"
                                                                                 class="ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                                                             />
                                                                         </div>
@@ -469,6 +471,7 @@ const props = defineProps<{
                         </ul>
                         <div
                             class="flex h-[39px] w-[141px] items-center justify-center gap-2 rounded-lg ring-1 ring-white/30 hover:ring-white"
+                            data-tooltip-target="tooltip-country"
                             type="button"
                         >
                             <AdaptiveImage image-path="icons/russia" image-class="h-[9px] w-[13px]" alt="Россия" />

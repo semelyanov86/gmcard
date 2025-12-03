@@ -3741,9 +3741,7 @@ body {
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(242, 246, 251, 1) 35%);
 }
 
-
 @media (max-width: 440px) {
-
     .descSectionMob {
         display: block;
         margin-bottom: 36px;
@@ -3765,7 +3763,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     .modal-content,
     .modal-content-Sec {
         position: absolute;
@@ -3835,9 +3832,7 @@ body {
     }
 }
 
-
 @media (max-width: 1330px) {
-
     .tariff-info {
         width: auto;
         position: static;

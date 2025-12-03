@@ -11,5 +11,3 @@ export interface TariffPlanModel {
     extra_ad_price: number | null;
     features: TariffFeatureModel[];
 }
-
-

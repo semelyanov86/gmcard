@@ -31,5 +31,3 @@ return new class () extends Migration {
         Schema::dropIfExists('plan_feature_tariff_plan');
     }
 };
-
-

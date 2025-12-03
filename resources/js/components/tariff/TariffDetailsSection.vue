@@ -65,10 +65,10 @@ onUnmounted(() => {
         </div>
 
         <div
-            class="tariff-details bg-brand-darker border-brand sticky top-0 z-10 container mt-4 grid grid-cols-30-70 items-center justify-around gap-5 border-b text-white"
+            class="tariff-details bg-brand-darker border-brand grid-cols-30-70 sticky top-0 z-10 container mt-4 grid items-center justify-around gap-5 border-b text-white"
         >
             <div class="tariff-header col-span-1">
-                <h2 class="tariff-title  text-4xl leading-normal">
+                <h2 class="tariff-title text-4xl leading-normal">
                     Тарифы и что <br />
                     в них входит
                 </h2>
@@ -101,9 +101,7 @@ onUnmounted(() => {
             </div>
         </div>
 
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -123,9 +121,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16 relative">
                     Возможность создавать свои <br />
@@ -154,9 +150,7 @@ onUnmounted(() => {
                 <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">8</div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -170,9 +164,7 @@ onUnmounted(() => {
                 <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">500</div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -192,9 +184,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -214,9 +204,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -236,9 +224,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -258,9 +244,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16 relative">
                     Возможность создавать свои <br />
@@ -289,9 +273,7 @@ onUnmounted(() => {
                 <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">5%</div>
             </div>
         </div>
-        <div
-            class="features-section container grid grid-cols-30-70 items-center justify-around gap-5 rounded-3xl text-white"
-        >
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
                     Возможность создавать свои <br />
@@ -313,7 +295,7 @@ onUnmounted(() => {
         </div>
 
         <div
-            class="tariff-details tariff-details-Bottom border-brand container grid grid-cols-30-70 items-center justify-around gap-5 border-t text-white"
+            class="tariff-details tariff-details-Bottom border-brand grid-cols-30-70 container grid items-center justify-around gap-5 border-t text-white"
         >
             <div class="tariff-header col-span-1">
                 <h2 class="tariff-title text-[36px] leading-normal"></h2>
@@ -405,8 +387,7 @@ onUnmounted(() => {
     text-align: left;
 }
 
-.tariff-details
-{
+.tariff-details {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -526,8 +507,7 @@ onUnmounted(() => {
         position: relative;
     }
 
-    .tariff-details-Bottom
-    {
+    .tariff-details-Bottom {
         display: block;
     }
 

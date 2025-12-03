@@ -148,5 +148,3 @@ class PlanFeaturesSeeder extends Seeder
         }
     }
 }
-
-

@@ -2,8 +2,8 @@
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import ServiceStatusSection from '@/components/tariff/ServiceStatusSection.vue';
-import TariffSaleCards from '@/components/tariff/TariffSaleCards.vue';
 import TariffDetailsSection from '@/components/tariff/TariffDetailsSection.vue';
+import TariffSaleCards from '@/components/tariff/TariffSaleCards.vue';
 import type { ContactModel } from '@/types';
 import type { ServiceStatusBlock } from '@/types/tariff/ServiceStatusBlock';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';

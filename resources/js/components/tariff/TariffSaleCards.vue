@@ -17,20 +17,17 @@ const expTariff = tariffPlans[2];
         <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/GR.svg" alt="image"
-                         class="rectangles rectangles--first rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/GR.svg" alt="image" class="rectangles rectangles--first rounded-lg object-cover" />
                 </div>
                 <h2 class="tariffName tariffName-F mt-4 text-4xl font-bold text-black">
                     {{ freeTariff.name }}
                 </h2>
                 <p class="mt-2 text-sm text-slate-400">Мне только посмотреть</p>
-                <div class="mt-4 space-y-2 ">
-                    <button
-                        class="bg-tariff-muted rounded-lg btnTariff w-full px-12 py-4 text-center text-sm text-gray-400">
+                <div class="mt-4 space-y-2">
+                    <button class="bg-tariff-muted btnTariff w-full rounded-lg px-12 py-4 text-center text-sm text-gray-400">
                         Базовый тариф всегда <br />бесплатно для каждого 😉
                     </button>
-                    <button
-                        class="goinBtn goinBtnFree bg-tariff-muted mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-gray-400">
+                    <button class="goinBtn goinBtnFree bg-tariff-muted mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-gray-400">
                         Активен ✔
                     </button>
                 </div>
@@ -40,11 +37,7 @@ const expTariff = tariffPlans[2];
             <div v-if="freeTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem
-                        v-for="feature in freeTariff.features"
-                        :key="feature.id"
-                        :text="feature.display_name"
-                    />
+                    <TariffFeatureItem v-for="feature in freeTariff.features" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>
@@ -52,8 +45,7 @@ const expTariff = tariffPlans[2];
         <div class="secondSale saleBlock w-sale-card-md flex-shrink-0 rounded-3xl p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/YR.svg" alt="image"
-                         class="rectangles rectangles--second rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/YR.svg" alt="image" class="rectangles rectangles--second rounded-lg object-cover" />
                     <img src="/images/svg/saleBlocks/Hint.svg" class="popular-img" alt="" />
                 </div>
 
@@ -62,8 +54,7 @@ const expTariff = tariffPlans[2];
                 </h2>
                 <p class="mt-2 text-sm text-slate-400">Уже посмотрел</p>
                 <div class="mt-4 w-full space-y-2">
-                    <div
-                        class="checkTariff w-full rounded-lg bg-[#3d5b92] p-4 pr-8 pl-7 text-center text-sm text-white">
+                    <div class="checkTariff w-full rounded-lg bg-[#3d5b92] p-4 pr-8 pl-7 text-center text-sm text-white">
                         <div class="firstCheckTariff mb-4 flex items-center justify-between">
                             <label for="radio1" class="flex cursor-pointer items-center space-x-2">
                                 <input type="radio" id="radio1" name="subscription" class="custom-radio hidden" />
@@ -73,7 +64,7 @@ const expTariff = tariffPlans[2];
                             <span>200 ₽ в мес.</span>
                         </div>
 
-                        <div class="mr-[-2rem]  h-[1px] bg-[#5974a3] tariffRaz"></div>
+                        <div class="tariffRaz mr-[-2rem] h-[1px] bg-[#5974a3]"></div>
 
                         <div class="SecondCheckTariff mt-4 flex items-center justify-between gap-[30px]">
                             <label for="radio2" class="flex cursor-pointer items-center space-x-2">
@@ -88,23 +79,17 @@ const expTariff = tariffPlans[2];
                             </div>
                         </div>
                     </div>
-                    <button
-                        class="goinBtn bg-brand-yellow-dark w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black mt-4">
+                    <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
                         Перейти
                     </button>
                 </div>
-                <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть
-                    промокод</p>
+                <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть промокод</p>
             </div>
             <div class="borderSec mt-4"></div>
             <div v-if="proTariff" class="tariffAb p-5 text-white">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffProFeatureItem
-                        v-for="feature in proTariff.features"
-                        :key="feature.id"
-                        :text="feature.display_name"
-                    />
+                    <TariffProFeatureItem v-for="feature in proTariff.features" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>
@@ -112,15 +97,13 @@ const expTariff = tariffPlans[2];
         <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
-                    <img src="/images/svg/saleBlocks/BR.svg" alt="image"
-                         class="rectangles rectangles--third rounded-lg object-cover" />
+                    <img src="/images/svg/saleBlocks/BR.svg" alt="image" class="rectangles rectangles--third rounded-lg object-cover" />
                 </div>
                 <h2 class="tariffName-F mt-4 text-4xl font-bold text-black">
                     {{ expTariff.name }}
                 </h2>
                 <p class="mt-2 text-sm text-slate-400">Знаю чего хочу</p>
-                <div
-                    class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg p-4 pr-8 pl-7 text-center text-sm text-black">
+                <div class="bg-tariff-muted checkTariffExp mt-4 w-full rounded-lg p-4 pr-8 pl-7 text-center text-sm text-black">
                     <div class="firstCheckTariff mb-4 flex items-center justify-between">
                         <label for="radio3" class="flex cursor-pointer items-center space-x-2">
                             <input type="radio" id="radio3" name="subscription" class="custom-radio hidden" />
@@ -136,9 +119,7 @@ const expTariff = tariffPlans[2];
                             <input type="radio" id="radio4" name="subscription" class="custom-radio hidden" />
                             <span class="checkmark checkmark--sec"></span>
                             <span>1 год</span>
-                            <div class="bg-tariff-discount-alt discount rounded-lg px-3 py-1 font-bold text-black">
-                                -25%
-                            </div>
+                            <div class="bg-tariff-discount-alt discount rounded-lg px-3 py-1 font-bold text-black">-25%</div>
                         </label>
                         <div class="flex items-center space-x-2">
                             <div class="text-slate-400 line-through">600</div>
@@ -146,8 +127,7 @@ const expTariff = tariffPlans[2];
                         </div>
                     </div>
                 </div>
-                <button
-                    class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
+                <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
                     Перейти
                 </button>
                 <div class="promoCodeDisplay mt-4 flex hidden w-full items-center justify-between">
@@ -159,11 +139,7 @@ const expTariff = tariffPlans[2];
             <div v-if="expTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem
-                        v-for="feature in expTariff.features"
-                        :key="feature.id"
-                        :text="feature.display_name"
-                    />
+                    <TariffFeatureItem v-for="feature in expTariff.features" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>
@@ -182,15 +158,17 @@ const expTariff = tariffPlans[2];
 }
 
 .saleBlock {
-    transition: transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .saleBlock:hover {
     transform: translateY(-10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .rectangles {
@@ -286,8 +264,9 @@ const expTariff = tariffPlans[2];
     border-radius: 50%;
     display: inline-block;
     position: relative;
-    transition: background-color 0.3s,
-    border-color 0.3s;
+    transition:
+        background-color 0.3s,
+        border-color 0.3s;
 }
 
 .borderSec {

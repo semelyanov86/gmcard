@@ -11,10 +11,10 @@ const props = defineProps<{
         <div class="hide-scrollbar container flex w-full overflow-x-auto">
             <div v-for="service in props.services" :key="service.key" class="adaptive-block flex w-auto min-w-80 flex-col items-center">
                 <img :src="service.img" :alt="service.alt" class="mb-1 h-6 w-6" />
-                <h3 class="text-base text-center font-bold" :class="{ 'text-yellow-300': service.highlight }">
+                <h3 class="text-center text-base font-bold" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.title }}
                 </h3>
-                <p class="text-sm text-center" :class="{ 'text-yellow-300': service.highlight }">
+                <p class="text-center text-sm" :class="{ 'text-yellow-300': service.highlight }">
                     {{ service.status }}
                 </p>
             </div>

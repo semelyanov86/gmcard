@@ -4,5 +4,3 @@ export interface TariffFeatureModel {
     display_name: string;
     description: string | null;
 }
-
-

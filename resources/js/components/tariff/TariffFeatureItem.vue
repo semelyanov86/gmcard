@@ -5,7 +5,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <li class="flex items-center mt-2">
+    <li class="mt-2 flex items-center">
         <img src="/images/svg/saleBlocks/plus.svg" alt="icon" class="mr-2 h-6 w-6" />
         {{ props.text }}
     </li>
