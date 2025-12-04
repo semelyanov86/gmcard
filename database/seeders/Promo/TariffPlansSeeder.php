@@ -20,6 +20,12 @@ class TariffPlansSeeder extends Seeder
                 'ads_count' => 1,
                 'banner_price' => 3000,
                 'extra_ad_price' => 300,
+                'banner_slots_total' => 5,
+                'own_banner_slots_total' => 1,
+                'cashback_bonus_percent' => 0,
+                'auto_schedule_enabled' => true,
+                'auto_restart_enabled' => false,
+                'auto_bump_enabled' => false,
             ],
             [
                 'slug' => 'pro',
@@ -29,6 +35,12 @@ class TariffPlansSeeder extends Seeder
                 'ads_count' => 5,
                 'banner_price' => 2000,
                 'extra_ad_price' => 200,
+                'banner_slots_total' => 5,
+                'own_banner_slots_total' => 1,
+                'cashback_bonus_percent' => 0.5,
+                'auto_schedule_enabled' => true,
+                'auto_restart_enabled' => true,
+                'auto_bump_enabled' => true,
             ],
             [
                 'slug' => 'expert',
@@ -38,6 +50,12 @@ class TariffPlansSeeder extends Seeder
                 'ads_count' => 8,
                 'banner_price' => 1000,
                 'extra_ad_price' => 100,
+                'banner_slots_total' => 5,
+                'own_banner_slots_total' => 1,
+                'cashback_bonus_percent' => 1.0,
+                'auto_schedule_enabled' => true,
+                'auto_restart_enabled' => true,
+                'auto_bump_enabled' => true,
             ],
         ];
 

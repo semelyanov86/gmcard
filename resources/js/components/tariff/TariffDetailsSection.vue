@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
+import TariffBottomPlansSection from '@/components/tariff/TariffBottomPlansSection.vue';
+import TariffTopPlansSection from '@/components/tariff/TariffTopPlansSection.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import { onUnmounted, ref, watch } from 'vue';
 
@@ -64,42 +66,7 @@ onUnmounted(() => {
             <span class="text-continue">рядом с опцией</span>
         </div>
 
-        <div
-            class="tariff-details bg-brand-darker border-brand grid-cols-30-70 sticky top-0 z-10 container mt-4 grid items-center justify-around gap-5 border-b text-white"
-        >
-            <div class="tariff-header col-span-1">
-                <h2 class="tariff-title text-4xl leading-normal">
-                    Тарифы и что <br />
-                    в них входит
-                </h2>
-            </div>
-
-            <div class="tariff-plans col-span-1 grid grid-cols-3 gap-10">
-                <!-- Тариф Free -->
-                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name text-2xl font-bold">
-                        {{ freeTariff.name }}
-                    </h3>
-                    <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
-                </div>
-
-                <!-- Тариф Pro -->
-                <div class="sr dark-blue tarifPro flex w-64 flex-col items-center gap-3 rounded-[14px] rounded-b-none p-4 text-center">
-                    <h3 class="tariff-name tariffName text-2xl font-bold">
-                        {{ proTariff.name }}
-                    </h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
-                </div>
-
-                <!-- Тариф Exp -->
-                <div class="sr tarifExp flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name tariffName text-2xl font-bold">
-                        {{ expTariff.name }}
-                    </h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
-                </div>
-            </div>
-        </div>
+        <TariffTopPlansSection :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
@@ -124,8 +91,8 @@ onUnmounted(() => {
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16 relative">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
+                    Сколько акций можно запускать <br />
+                    одновременно бесплатно?
                     <span
                         class="group absolute top-[47%] left-[100%] inline-flex"
                         role="button"
@@ -145,186 +112,236 @@ onUnmounted(() => {
             </div>
 
             <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">1</div>
-                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">5</div>
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">8</div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">{{ freeTariff.ads_count }}</div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ proTariff.ads_count }}
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">{{ expTariff.ads_count }}</div>
             </div>
         </div>
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
+                    Стоимость запуска акции <br /> сверх лимита?
                 </h2>
             </div>
 
             <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">99</div>
-                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">190</div>
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">500</div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ freeTariff.extra_ad_price }} ₽ в день
+                </div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ proTariff.extra_ad_price }} ₽ в день
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ expTariff.extra_ad_price }} ₽ в день
+                </div>
             </div>
         </div>
+
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
+                    Стоимость размещения в баннере?
+                </h2>
+            </div>
+
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ freeTariff.banner_price }} ₽ в день
+                </div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ proTariff.banner_price }} ₽ в день
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ expTariff.banner_price }} ₽ в день
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
+            <div class="features-description col-span-1">
+                <h2 class="features-title text-16">
+                    Сколько мест под акции в баннере всего?
+                </h2>
+            </div>
+
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ freeTariff.banner_slots_total }}
+                </div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ proTariff.banner_slots_total }}
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ expTariff.banner_slots_total }}
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
+            <div class="features-description col-span-1">
+                <h2 class="features-title text-16">
+                    Сколько мест под ваши акции в баннере всего?
+                </h2>
+            </div>
+
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ freeTariff.own_banner_slots_total }} (если есть место)
+                </div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ proTariff.own_banner_slots_total }} (если есть место)
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    {{ expTariff.own_banner_slots_total }} (если есть место)
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
+            <div class="features-description col-span-1">
+                <h2 class="features-title text-16">
+                    Какой кешбэк с кешбэк акций?
+                </h2>
+            </div>
+
+            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    <span v-if="freeTariff.cashback_bonus_percent === 0">Стандартный, как указано в акции</span>
+                    <span v-else>Стандартный +{{ freeTariff.cashback_bonus_percent }}%</span>
+                </div>
+                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
+                    <span v-if="proTariff.cashback_bonus_percent === 0">Стандартный, как указано в акции</span>
+                    <span v-else>Стандартный +{{ proTariff.cashback_bonus_percent }}%</span>
+                </div>
+                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">
+                    <span v-if="expTariff.cashback_bonus_percent === 0">Стандартный, как указано в акции</span>
+                    <span v-else>Стандартный +{{ expTariff.cashback_bonus_percent }}%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
+            <div class="features-description col-span-1">
+                <h2 class="features-title text-16">
+                    Автопланирование акций по дням и часам?
                 </h2>
             </div>
 
             <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
+                    <img
+                        v-if="freeTariff.auto_schedule_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="h-auto w-30" />
+                    <img
+                        v-if="proTariff.auto_schedule_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
+                    <img
+                        v-if="expTariff.auto_schedule_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
             </div>
         </div>
+
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
+                    Возможность автоперезапуска акции <br /> по истечении времени?
                 </h2>
             </div>
 
             <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
+                    <img
+                        v-if="freeTariff.auto_restart_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 2" class="h-auto w-30" />
+                    <img
+                        v-if="proTariff.auto_restart_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
+                    <img
+                        v-if="expTariff.auto_restart_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
             </div>
         </div>
+
         <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
             <div class="features-description col-span-1">
                 <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
+                    Возможность автоподъема акции на первое место?
                 </h2>
             </div>
 
             <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 1" class="h-auto w-30" />
+                    <img
+                        v-if="freeTariff.auto_bump_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
+                    <img
+                        v-if="proTariff.auto_bump_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
                 <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
-                </div>
-            </div>
-        </div>
-        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
-            <div class="features-description col-span-1">
-                <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
-                </h2>
-            </div>
-
-            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
-                </div>
-                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
-                </div>
-                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
-                </div>
-            </div>
-        </div>
-        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
-            <div class="features-description col-span-1">
-                <h2 class="features-title text-16 relative">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
-                    <span
-                        class="group absolute top-[47%] left-[100%] inline-flex"
-                        role="button"
-                        tabindex="0"
-                        @click="openModal"
-                        @keyup.enter.prevent="openModal"
-                        @keyup.space.prevent="openModal"
-                    >
-                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image mr-2 ml-2 group-hover:hidden" />
-                        <img
-                            src="/images/svg/tarif/questionHover.svg"
-                            alt="Подробнее"
-                            class="tariff-info-image-hover mr-2 ml-2 hidden group-hover:inline-block"
-                        />
-                    </span>
-                </h2>
-            </div>
-
-            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">50%</div>
-                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">20%</div>
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">5%</div>
-            </div>
-        </div>
-        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
-            <div class="features-description col-span-1">
-                <h2 class="features-title text-16">
-                    Возможность создавать свои <br />
-                    акции, скидки, конкурсы и т.д.
-                </h2>
-            </div>
-
-            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/minus.svg" alt="Image 1" class="h-auto w-30" />
-                </div>
-                <div class="image-item image-itemSec dark-blue flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 2" class="h-auto w-6" />
-                </div>
-                <div class="image-item flex h-full w-64 flex-col items-center justify-center">
-                    <img src="/images/svg/tarif/check_yz81wi204gqx.svg" alt="Image 3" class="h-auto w-6" />
+                    <img
+                        v-if="expTariff.auto_bump_enabled"
+                        src="/images/svg/tarif/check_yz81wi204gqx.svg"
+                        alt="Да"
+                        class="h-auto w-6"
+                    />
+                    <img v-else src="/images/svg/tarif/minus.svg" alt="Нет" class="h-auto w-6" />
                 </div>
             </div>
         </div>
 
-        <div
-            class="tariff-details tariff-details-Bottom border-brand grid-cols-30-70 container grid items-center justify-around gap-5 border-t text-white"
-        >
-            <div class="tariff-header col-span-1">
-                <h2 class="tariff-title text-[36px] leading-normal"></h2>
-            </div>
-
-            <div class="tariff-plans tariff-plans-Bottom col-span-1 grid grid-cols-3 gap-10">
-                <div class="sr tarifFree flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
-                </div>
-
-                <div
-                    class="sr dark-blue tarifPro tarifPro-Bottom flex w-64 flex-col items-center gap-3 rounded-[14px] rounded-t-none p-4 text-center"
-                >
-                    <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
-                </div>
-
-                <div class="sr tarifExp flex w-64 flex-col items-center gap-3 rounded-[14px] bg-transparent p-4 text-center">
-                    <h3 class="tariff-name text-2xl font-bold"></h3>
-                    <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
-                </div>
-            </div>
-        </div>
+        <TariffBottomPlansSection />
     </section>
     <TariffInfoModal v-model="isModalOpen" />
 </template>
 
-<style scoped>
+<style>
 .info {
     left: 2%;
 }

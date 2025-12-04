@@ -24,6 +24,12 @@ class TariffPlan extends Model
         'ads_count',
         'banner_price',
         'extra_ad_price',
+        'banner_slots_total',
+        'own_banner_slots_total',
+        'cashback_bonus_percent',
+        'auto_schedule_enabled',
+        'auto_restart_enabled',
+        'auto_bump_enabled',
     ];
 
     protected $guarded = [
@@ -56,6 +62,9 @@ class TariffPlan extends Model
             'price' => MoneyValueObjectCast::class,
             'banner_price' => MoneyValueObjectCast::class,
             'extra_ad_price' => MoneyValueObjectCast::class,
+            'auto_schedule_enabled' => 'bool',
+            'auto_restart_enabled' => 'bool',
+            'auto_bump_enabled' => 'bool',
         ];
     }
 }
