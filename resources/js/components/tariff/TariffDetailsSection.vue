@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
-import TariffBottomPlansSection from '@/components/tariff/TariffBottomPlansSection.vue';
-import TariffTopPlansSection from '@/components/tariff/TariffTopPlansSection.vue';
-import TariffPriceRow from '@/components/tariff/TariffPriceRow.vue';
-import TariffNumberRow from '@/components/tariff/TariffNumberRow.vue';
-import TariffFeatureRow from '@/components/tariff/TariffFeatureRow.vue';
-import TariffOwnBannerSlotsRow from '@/components/tariff/TariffOwnBannerSlotsRow.vue';
 import TariffBooleanRow from '@/components/tariff/TariffBooleanRow.vue';
+import TariffBottomPlansSection from '@/components/tariff/TariffBottomPlansSection.vue';
 import TariffCashbackRow from '@/components/tariff/TariffCashbackRow.vue';
+import TariffFeatureRow from '@/components/tariff/TariffFeatureRow.vue';
+import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
 import TariffInfoNote from '@/components/tariff/TariffInfoNote.vue';
+import TariffNumberRow from '@/components/tariff/TariffNumberRow.vue';
+import TariffOwnBannerSlotsRow from '@/components/tariff/TariffOwnBannerSlotsRow.vue';
+import TariffPriceRow from '@/components/tariff/TariffPriceRow.vue';
+import TariffTopPlansSection from '@/components/tariff/TariffTopPlansSection.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import { onUnmounted, ref, watch } from 'vue';
 
@@ -22,8 +22,7 @@ const freeTariff = tariffPlans[0];
 const proTariff = tariffPlans[1];
 const expTariff = tariffPlans[2];
 
-const getFeatureTitle = (systemName: string): string =>
-    freeTariff.features.find((feature) => feature.system_name === systemName)?.display_name ?? '';
+const getFeatureTitle = (systemName: string): string => freeTariff.features.find((feature) => feature.system_name === systemName)?.display_name ?? '';
 
 const openModal = () => {
     isModalOpen.value = true;
@@ -60,11 +59,7 @@ onUnmounted(() => {
     <section class="border-brand w-full border-t py-3">
         <TariffInfoNote @trigger="openModal" />
 
-        <TariffTopPlansSection
-            :free-tariff="freeTariff"
-            :pro-tariff="proTariff"
-            :exp-tariff="expTariff"
-        />
+        <TariffTopPlansSection :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
         <TariffFeatureRow
             :title="getFeatureTitle('custom_promotions')"
@@ -135,12 +130,7 @@ onUnmounted(() => {
             :exp-tariff="expTariff"
         />
 
-        <TariffCashbackRow
-            :title="getFeatureTitle('cashback_bonus')"
-            :free-tariff="freeTariff"
-            :pro-tariff="proTariff"
-            :exp-tariff="expTariff"
-        />
+        <TariffCashbackRow :title="getFeatureTitle('cashback_bonus')" :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
         <TariffBooleanRow
             :title="getFeatureTitle('auto_schedule_enabled')"

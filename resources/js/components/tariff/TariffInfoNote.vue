@@ -27,5 +27,3 @@ const handleTrigger = () => {
         <span class="text-continue">рядом с опцией</span>
     </div>
 </template>
-
-

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
-import type { TariffFeatureModel } from '@/types/tariff/TariffFeatureModel';
 import TariffLayoutRow from '@/components/tariff/TariffLayoutRow.vue';
+import type { TariffFeatureModel } from '@/types/tariff/TariffFeatureModel';
+import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 
 const props = defineProps<{
     title: string;
@@ -48,5 +48,3 @@ const hasFeature = (features: TariffFeatureModel[], systemName: string): boolean
         </div>
     </TariffLayoutRow>
 </template>
-
-

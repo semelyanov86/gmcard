@@ -1,5 +1,7 @@
 <template>
-    <div class="tariff-details tariff-details-Bottom border-brand grid-cols-30-70 container grid items-center justify-around gap-5 border-t text-white">
+    <div
+        class="tariff-details tariff-details-Bottom border-brand grid-cols-30-70 container grid items-center justify-around gap-5 border-t text-white"
+    >
         <div class="tariff-header col-span-1">
             <h2 class="tariff-title text-[36px] leading-normal"></h2>
         </div>
@@ -22,5 +24,3 @@
         </div>
     </div>
 </template>
-
-
