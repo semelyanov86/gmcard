@@ -191,7 +191,7 @@ function handleUpdate() {
 </script>
 
 <template>
-    <Header :userData="userData" />
+    <Header />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
 
