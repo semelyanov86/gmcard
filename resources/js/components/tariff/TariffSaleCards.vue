@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import TariffFeatureItem from '@/components/tariff/TariffFeatureItem.vue';
 import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
@@ -10,6 +11,10 @@ const { tariffPlans } = defineProps<{
 const freeTariff = tariffPlans[0];
 const proTariff = tariffPlans[1];
 const expTariff = tariffPlans[2];
+
+const freeIncludedFeatures = computed(() => freeTariff.features.filter((f) => f.category === 'included'));
+const proIncludedFeatures = computed(() => proTariff.features.filter((f) => f.category === 'included'));
+const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.category === 'included'));
 </script>
 
 <template>
@@ -37,7 +42,7 @@ const expTariff = tariffPlans[2];
             <div v-if="freeTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem v-for="feature in freeTariff.features" :key="feature.id" :text="feature.display_name" />
+                    <TariffFeatureItem v-for="feature in freeIncludedFeatures" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>
@@ -89,7 +94,7 @@ const expTariff = tariffPlans[2];
             <div v-if="proTariff" class="tariffAb p-5 text-white">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffProFeatureItem v-for="feature in proTariff.features" :key="feature.id" :text="feature.display_name" />
+                    <TariffProFeatureItem v-for="feature in proIncludedFeatures" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>
@@ -139,7 +144,7 @@ const expTariff = tariffPlans[2];
             <div v-if="expTariff" class="tariffAb p-5 text-black">
                 <h3 class="mt-4 text-sm font-bold">Что входит:</h3>
                 <ul class="mt-2 space-y-2">
-                    <TariffFeatureItem v-for="feature in expTariff.features" :key="feature.id" :text="feature.display_name" />
+                    <TariffFeatureItem v-for="feature in expIncludedFeatures" :key="feature.id" :text="feature.display_name" />
                 </ul>
             </div>
         </div>

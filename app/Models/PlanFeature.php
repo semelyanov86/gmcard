@@ -18,6 +18,7 @@ class PlanFeature extends Model
         'system_name',
         'display_name',
         'description',
+        'category',
     ];
 
     protected $guarded = [
