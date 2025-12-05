@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TariffButton from '@/components/tariff/TariffButton.vue';
 import TariffFeatureItem from '@/components/tariff/TariffFeatureItem.vue';
 import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
@@ -32,9 +33,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
                     <button class="bg-tariff-muted btnTariff w-full rounded-lg px-12 py-4 text-center text-sm text-gray-400">
                         Базовый тариф всегда <br />бесплатно для каждого 😉
                     </button>
-                    <button class="goinBtn goinBtnFree bg-tariff-muted mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-gray-400">
-                        Активен ✔
-                    </button>
+                    <TariffButton :tariff="freeTariff" />
                 </div>
                 <p class="dashes-underline mt-4 cursor-pointer text-sm text-slate-400">У меня есть промокод</p>
             </div>
@@ -84,9 +83,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
                             </div>
                         </div>
                     </div>
-                    <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
-                        Перейти
-                    </button>
+                    <TariffButton :tariff="proTariff" />
                 </div>
                 <p class="dashes-underline dashes-underline-second mt-4 cursor-pointer text-sm text-white">У меня есть промокод</p>
             </div>
@@ -132,9 +129,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
                         </div>
                     </div>
                 </div>
-                <button class="goinBtn bg-brand-yellow-dark mt-4 w-full rounded-lg px-4 py-4 text-center text-sm font-bold text-black">
-                    Перейти
-                </button>
+                <TariffButton :tariff="expTariff" />
                 <div class="promoCodeDisplay mt-4 flex hidden w-full items-center justify-between">
                     <span class="font-bold text-black">Промокод:</span>
                 </div>

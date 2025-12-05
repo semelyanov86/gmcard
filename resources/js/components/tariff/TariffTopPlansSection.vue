@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TariffStatusBadge from '@/components/tariff/TariffStatusBadge.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 
 const props = defineProps<{
@@ -25,7 +26,7 @@ const props = defineProps<{
                 <h3 class="tariff-name text-2xl font-bold">
                     {{ props.freeTariff.name }}
                 </h3>
-                <div class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
+                <TariffStatusBadge :tariff="props.freeTariff" />
             </div>
 
             <!-- Тариф Pro -->
@@ -33,7 +34,7 @@ const props = defineProps<{
                 <h3 class="tariff-name tariffName text-2xl font-bold">
                     {{ props.proTariff.name }}
                 </h3>
-                <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
+                <TariffStatusBadge :tariff="props.proTariff" />
             </div>
 
             <!-- Тариф Exp -->
@@ -41,7 +42,7 @@ const props = defineProps<{
                 <h3 class="tariff-name tariffName text-2xl font-bold">
                     {{ props.expTariff.name }}
                 </h3>
-                <div class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
+                <TariffStatusBadge :tariff="props.expTariff" />
             </div>
         </div>
     </div>

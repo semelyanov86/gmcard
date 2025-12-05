@@ -104,7 +104,7 @@ const getFeatureTitle = (systemName: string): string => {
             :field="TariffBooleanField.AutoBump"
         />
 
-        <TariffBottomPlansSection />
+        <TariffBottomPlansSection :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
     </section>
 </template>
 
