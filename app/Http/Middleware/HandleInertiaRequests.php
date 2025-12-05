@@ -52,7 +52,10 @@ class HandleInertiaRequests extends Middleware
         $userData = null;
         if ($user && ! $request->routeIs('logout')) {
             $userData = UserData::fromModel($user, loadRoles: true);
-            $user->load('tariffPlan');
+            if ($user->relationLoaded('tariffPlan') === false && $user->exists) {
+                $user->refresh();
+                $user->load('tariffPlan');
+            }
         }
 
         return [

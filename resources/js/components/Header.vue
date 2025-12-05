@@ -14,7 +14,6 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const page = usePage<AppPageProps>();
-const userData = page.props.userData;
 
 const loginModalOpen = ref(false);
 const clickedButton = ref<LoginButtonType | null>(null);

@@ -10,5 +10,3 @@ const props = defineProps<{
         {{ props.text }}
     </li>
 </template>
-
-

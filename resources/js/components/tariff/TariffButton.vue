@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TariffStatusButton from '@/components/tariff/TariffStatusButton.vue';
 import TariffGoButton from '@/components/tariff/TariffGoButton.vue';
+import TariffStatusButton from '@/components/tariff/TariffStatusButton.vue';
 import type { AppPageProps } from '@/types';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import { usePage } from '@inertiajs/vue3';
@@ -26,4 +26,3 @@ const isActive = computed(() => currentTariffSlug.value === props.tariff.slug);
     <TariffStatusButton v-if="isActive" />
     <TariffGoButton v-else />
 </template>
-

@@ -80,8 +80,6 @@ const props = defineProps<{
     sidebarMenu: MenuData[];
 }>();
 
-const userData = page.props.userData;
-
 const form = useForm({
     promo_type_id: 1,
     discount: { amount: null as number | null, currency: '%' },
