@@ -3,13 +3,7 @@ import { Modal } from '@inertiaui/modal-vue';
 </script>
 
 <template>
-    <Modal
-        :close-button="false"
-        padding-classes="p-0"
-        panel-classes="bg-transparent shadow-none"
-        max-width="md"
-        v-slot="{ close }"
-    >
+    <Modal :close-button="false" padding-classes="p-0" panel-classes="bg-transparent shadow-none" max-width="md" v-slot="{ close }">
         <div class="modalSec" role="dialog" aria-modal="true" @click.self="close">
             <div class="modal-content modal-content-Sec">
                 <div class="modal-header flex justify-between p-6">
@@ -64,4 +58,3 @@ import { Modal } from '@inertiaui/modal-vue';
     padding-right: 40px;
 }
 </style>
-

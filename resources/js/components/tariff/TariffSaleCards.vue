@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import TariffFeatureItem from '@/components/tariff/TariffFeatureItem.vue';
 import TariffProFeatureItem from '@/components/tariff/TariffProFeatureItem.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
+import { computed } from 'vue';
 
 const { tariffPlans } = defineProps<{
     tariffPlans: TariffPlanModel[];

@@ -3,5 +3,3 @@ export enum TariffBooleanField {
     AutoRestart = 'auto_restart_enabled',
     AutoBump = 'auto_bump_enabled',
 }
-
-

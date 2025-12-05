@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TariffLayoutRow from '@/components/tariff/TariffLayoutRow.vue';
-import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 import { TariffBooleanField } from '@/types/tariff/TariffBooleanField';
+import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
 
 const props = defineProps<{
     title: string;

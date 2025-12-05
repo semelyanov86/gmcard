@@ -4,8 +4,8 @@ import TariffBottomPlansSection from '@/components/tariff/TariffBottomPlansSecti
 import TariffCashbackRow from '@/components/tariff/TariffCashbackRow.vue';
 import TariffFeatureRow from '@/components/tariff/TariffFeatureRow.vue';
 import TariffInfoNote from '@/components/tariff/TariffInfoNote.vue';
-import TariffNumberRowWithInfo from '@/components/tariff/TariffNumberRowWithInfo.vue';
 import TariffNumberRow from '@/components/tariff/TariffNumberRow.vue';
+import TariffNumberRowWithInfo from '@/components/tariff/TariffNumberRowWithInfo.vue';
 import TariffOwnBannerSlotsRow from '@/components/tariff/TariffOwnBannerSlotsRow.vue';
 import TariffPriceRow from '@/components/tariff/TariffPriceRow.vue';
 import TariffTopPlansSection from '@/components/tariff/TariffTopPlansSection.vue';
@@ -78,12 +78,7 @@ const getFeatureTitle = (systemName: string): string => {
             :exp-tariff="expTariff"
         />
 
-        <TariffCashbackRow
-            :title="getFeatureTitle('cashback_bonus')"
-            :free-tariff="freeTariff"
-            :pro-tariff="proTariff"
-            :exp-tariff="expTariff"
-        />
+        <TariffCashbackRow :title="getFeatureTitle('cashback_bonus')" :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
         <TariffBooleanRow
             :title="getFeatureTitle('auto_schedule_enabled')"
