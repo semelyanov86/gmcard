@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import TariffLayoutRow from '@/components/tariff/TariffLayoutRow.vue';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
+import { TariffBooleanField } from '@/types/tariff/TariffBooleanField';
 
 const props = defineProps<{
     title: string;
     freeTariff: TariffPlanModel;
     proTariff: TariffPlanModel;
     expTariff: TariffPlanModel;
-    field: 'auto_schedule_enabled' | 'auto_restart_enabled' | 'auto_bump_enabled';
+    field: TariffBooleanField;
 }>();
 
-const getFlag = (tariff: TariffPlanModel, field: typeof props.field): boolean => Boolean(tariff[field]);
+const getFlag = (tariff: TariffPlanModel, field: TariffBooleanField): boolean => Boolean(tariff[field]);
 </script>
 
 <template>

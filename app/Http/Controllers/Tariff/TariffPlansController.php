@@ -9,6 +9,7 @@ use App\Models\TariffPlan;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
 use Inertia\Response;
+use InertiaUI\Modal\Modal;
 
 class TariffPlansController extends Controller
 {
@@ -24,5 +25,11 @@ class TariffPlansController extends Controller
             'serviceStatusBlocks' => config('tariff.status_blocks'),
             'tariffPlans' => $tariffPlans,
         ]);
+    }
+
+    public function infoModal(): Modal
+    {
+        return new Modal('Modals/TariffInfoModal')
+            ->baseRoute('tarif.plans');
     }
 }

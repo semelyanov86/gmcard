@@ -3,16 +3,14 @@ import TariffBooleanRow from '@/components/tariff/TariffBooleanRow.vue';
 import TariffBottomPlansSection from '@/components/tariff/TariffBottomPlansSection.vue';
 import TariffCashbackRow from '@/components/tariff/TariffCashbackRow.vue';
 import TariffFeatureRow from '@/components/tariff/TariffFeatureRow.vue';
-import TariffInfoModal from '@/components/tariff/TariffInfoModal.vue';
 import TariffInfoNote from '@/components/tariff/TariffInfoNote.vue';
+import TariffNumberRowWithInfo from '@/components/tariff/TariffNumberRowWithInfo.vue';
 import TariffNumberRow from '@/components/tariff/TariffNumberRow.vue';
 import TariffOwnBannerSlotsRow from '@/components/tariff/TariffOwnBannerSlotsRow.vue';
 import TariffPriceRow from '@/components/tariff/TariffPriceRow.vue';
 import TariffTopPlansSection from '@/components/tariff/TariffTopPlansSection.vue';
+import { TariffBooleanField } from '@/types/tariff/TariffBooleanField';
 import type { TariffPlanModel } from '@/types/tariff/TariffPlanModel';
-import { onUnmounted, ref, watch } from 'vue';
-
-const isModalOpen = ref(false);
 
 const { tariffPlans } = defineProps<{
     tariffPlans: TariffPlanModel[];
@@ -22,42 +20,15 @@ const freeTariff = tariffPlans[0];
 const proTariff = tariffPlans[1];
 const expTariff = tariffPlans[2];
 
-const getFeatureTitle = (systemName: string): string => freeTariff.features.find((feature) => feature.system_name === systemName)?.display_name ?? '';
-
-const openModal = () => {
-    isModalOpen.value = true;
+const getFeatureTitle = (systemName: string): string => {
+    const feature = freeTariff.features.find((feature) => feature.system_name === systemName);
+    return feature?.display_name ?? '';
 };
-
-const closeModal = () => {
-    isModalOpen.value = false;
-};
-
-const handleKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-        closeModal();
-    }
-};
-
-watch(
-    isModalOpen,
-    (value) => {
-        if (value) {
-            window.addEventListener('keydown', handleKeydown);
-        } else {
-            window.removeEventListener('keydown', handleKeydown);
-        }
-    },
-    { immediate: true },
-);
-
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeydown);
-});
 </script>
 
 <template>
     <section class="border-brand w-full border-t py-3">
-        <TariffInfoNote @trigger="openModal" />
+        <TariffInfoNote />
 
         <TariffTopPlansSection :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
@@ -68,36 +39,13 @@ onUnmounted(() => {
             :exp-tariff="expTariff"
             system-name="custom_promotions"
         />
-        <div class="features-section grid-cols-30-70 container grid items-center justify-around gap-5 rounded-3xl text-white">
-            <div class="features-description col-span-1">
-                <h2 class="features-title text-16 relative">
-                    {{ getFeatureTitle('free_promos_limit') }}
-                    <span
-                        class="group absolute top-[47%] left-[100%] inline-flex"
-                        role="button"
-                        tabindex="0"
-                        @click="openModal"
-                        @keyup.enter.prevent="openModal"
-                        @keyup.space.prevent="openModal"
-                    >
-                        <img src="/images/svg/tarif/question.svg" alt="Подробнее" class="tariff-info-image mr-2 ml-2 group-hover:hidden" />
-                        <img
-                            src="/images/svg/tarif/questionHover.svg"
-                            alt="Подробнее"
-                            class="tariff-info-image-hover mr-2 ml-2 hidden group-hover:inline-block"
-                        />
-                    </span>
-                </h2>
-            </div>
 
-            <div class="features-images col-span-1 grid h-100 grid-cols-3 gap-10">
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">{{ freeTariff.ads_count }}</div>
-                <div class="image-item image-itemSec dark-blue text-18 flex h-full w-64 flex-col items-center justify-center">
-                    {{ proTariff.ads_count }}
-                </div>
-                <div class="image-item text-18 flex h-full w-64 flex-col items-center justify-center">{{ expTariff.ads_count }}</div>
-            </div>
-        </div>
+        <TariffNumberRowWithInfo
+            :title="getFeatureTitle('free_promos_limit')"
+            :free-value="freeTariff.ads_count"
+            :pro-value="proTariff.ads_count"
+            :exp-value="expTariff.ads_count"
+        />
 
         <TariffPriceRow
             :title="getFeatureTitle('extra_ad_price')"
@@ -130,14 +78,19 @@ onUnmounted(() => {
             :exp-tariff="expTariff"
         />
 
-        <TariffCashbackRow :title="getFeatureTitle('cashback_bonus')" :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
+        <TariffCashbackRow
+            :title="getFeatureTitle('cashback_bonus')"
+            :free-tariff="freeTariff"
+            :pro-tariff="proTariff"
+            :exp-tariff="expTariff"
+        />
 
         <TariffBooleanRow
             :title="getFeatureTitle('auto_schedule_enabled')"
             :free-tariff="freeTariff"
             :pro-tariff="proTariff"
             :exp-tariff="expTariff"
-            field="auto_schedule_enabled"
+            :field="TariffBooleanField.AutoSchedule"
         />
 
         <TariffBooleanRow
@@ -145,7 +98,7 @@ onUnmounted(() => {
             :free-tariff="freeTariff"
             :pro-tariff="proTariff"
             :exp-tariff="expTariff"
-            field="auto_restart_enabled"
+            :field="TariffBooleanField.AutoRestart"
         />
 
         <TariffBooleanRow
@@ -153,12 +106,11 @@ onUnmounted(() => {
             :free-tariff="freeTariff"
             :pro-tariff="proTariff"
             :exp-tariff="expTariff"
-            field="auto_bump_enabled"
+            :field="TariffBooleanField.AutoBump"
         />
 
         <TariffBottomPlansSection />
     </section>
-    <TariffInfoModal v-model="isModalOpen" />
 </template>
 
 <style>

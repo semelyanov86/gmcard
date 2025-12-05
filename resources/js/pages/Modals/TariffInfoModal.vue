@@ -1,18 +1,16 @@
 <script setup lang="ts">
-const { modelValue } = defineProps<{
-    modelValue: boolean;
-}>();
-
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: boolean): void;
-}>();
-
-const close = () => emit('update:modelValue', false);
+import { Modal } from '@inertiaui/modal-vue';
 </script>
 
 <template>
-    <teleport to="body">
-        <div v-if="modelValue" class="modalSec" role="dialog" aria-modal="true" @click.self="close">
+    <Modal
+        :close-button="false"
+        padding-classes="p-0"
+        panel-classes="bg-transparent shadow-none"
+        max-width="md"
+        v-slot="{ close }"
+    >
+        <div class="modalSec" role="dialog" aria-modal="true" @click.self="close">
             <div class="modal-content modal-content-Sec">
                 <div class="modal-header flex justify-between p-6">
                     <h2 class="text-lg font-bold text-black">Введите промокод</h2>
@@ -35,7 +33,7 @@ const close = () => emit('update:modelValue', false);
                 </div>
             </div>
         </div>
-    </teleport>
+    </Modal>
 </template>
 
 <style scoped>
@@ -66,3 +64,4 @@ const close = () => emit('update:modelValue', false);
     padding-right: 40px;
 }
 </style>
+
