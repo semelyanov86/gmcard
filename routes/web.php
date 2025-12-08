@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Landing\BusinessLandingController;
 use App\Http\Controllers\Landing\UserLandingController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\Popup\FormSubmitController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Promo\CreatePromoController;
@@ -14,6 +15,7 @@ use Inertia\Inertia;
 
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
+Route::get('/main-page', [MainController::class, 'index'])->name('main');
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
