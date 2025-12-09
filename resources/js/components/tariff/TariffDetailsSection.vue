@@ -27,8 +27,10 @@ const getFeatureTitle = (systemName: string): string => {
 </script>
 
 <template>
-    <section class="border-brand w-full border-t py-3">
-        <TariffInfoNote />
+<section class="tariff-section w-full border-t border-[#25385a] py-3 px-4 md:px-12 lg:px-32">
+        <div class="flex lg:justify-start">
+            <TariffInfoNote />
+        </div>
 
         <TariffTopPlansSection :free-tariff="freeTariff" :pro-tariff="proTariff" :exp-tariff="expTariff" />
 
@@ -243,10 +245,13 @@ const getFeatureTitle = (systemName: string): string => {
     }
 
     .features-section {
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        justify-items: stretch;
         border-bottom: 1px solid #293c5d;
         border-radius: 0;
+        text-align: left;
     }
 
     .features-section:hover {
@@ -259,10 +264,11 @@ const getFeatureTitle = (systemName: string): string => {
     .features-description {
         margin-top: 15px;
         width: 100%;
+        text-align: left;
     }
 
     .features-title {
-        display: flex;
+        display: block;
         br {
             display: none;
         }
@@ -272,6 +278,7 @@ const getFeatureTitle = (systemName: string): string => {
         grid-template-columns: repeat(3, 1fr);
         height: auto;
         width: 100%;
+        justify-items: center;
     }
 
     .image-item {

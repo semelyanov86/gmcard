@@ -41,3 +41,29 @@ const props = defineProps<{
         </div>
     </div>
 </template>
+
+<style scoped>
+@media (max-width: 1024px) {
+    .tariff-details-Bottom {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        border-color: #203457;
+    }
+
+    .tariff-plans-Bottom {
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tariff-plans-Bottom .sr {
+        width: 100%;
+        max-width: 120px;
+        padding: 12px;
+        margin: 0 auto;
+    }
+
+    .tariff-name {
+        font-size: 20px;
+    }
+}
+</style>

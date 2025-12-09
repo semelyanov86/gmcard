@@ -19,7 +19,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
 </script>
 
 <template>
-    <div class="saleWrapper flex flex-wrap justify-between gap-6">
+    <div class="saleWrapper flex gap-6 overflow-x-auto px-6 lg:flex-wrap lg:justify-between lg:overflow-visible lg:px-0">
         <div class="saleBlock w-sale-card-md flex-shrink-0 rounded-3xl bg-white p-4">
             <div class="flex flex-col items-center">
                 <div class="relative">
@@ -144,17 +144,27 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
             </div>
         </div>
     </div>
+
+    <div class="descSectionMob mt-6 flex flex-col items-center text-center text-[#727e94] block lg:hidden">
+        <p class="mb-6 text-sm">Действие платных тарифов распространяется на все наши сервисы платформы</p>
+        <p class="text-sm text-[#727e94]">
+            В данный момент мы предоставляем только один сервис. <br />
+            Остальные наши сервисы сейчас в разработке
+        </p>
+    </div>
 </template>
 
 <style scoped>
 .saleWrapper {
     padding-bottom: 80px;
     padding-top: 60px;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow-x: auto;
 }
 
 .saleWrapper::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
+    display: none;
 }
 
 .saleBlock {
@@ -228,6 +238,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
 
 .w-sale-card-md {
     width: 360px;
+    flex-shrink: 0;
 }
 
 .custom-radio {
@@ -273,6 +284,17 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
     --tw-border-opacity: 1;
     border-top-width: 1px;
     border-color: rgb(35, 70, 133);
+}
+
+.descSectionMob {
+    padding: 0 12px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .descSectionMob {
+        display: none !important;
+    }
 }
 
 @media (max-width: 440px) {
@@ -346,6 +368,13 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
     .SecondCheckTariffExp {
         gap: 0;
         margin-top: 9px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .saleWrapper {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 </style>

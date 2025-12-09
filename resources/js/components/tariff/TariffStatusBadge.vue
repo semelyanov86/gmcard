@@ -21,6 +21,16 @@ const isActive = computed(() => currentTariffSlug.value === props.tariff.slug);
 </script>
 
 <template>
-    <div v-if="isActive" class="tariff-status rounded-[12px] bg-[#1d3154] px-6 py-2 font-bold text-[#8a9cae]">Активен</div>
-    <div v-else class="tariff-status bg-brand-yellow-dark rounded-[12px] px-6 py-2 font-bold text-black">Перейти</div>
+    <div
+        v-if="isActive"
+        class="tariff-status rounded-[12px] bg-[#1d3154] px-4 py-2 text-sm font-bold text-[#8a9cae] md:px-5 md:text-sm lg:px-6 lg:text-base"
+    >
+        Активен
+    </div>
+    <div
+        v-else
+        class="tariff-status rounded-[12px] bg-brand-yellow-dark px-4 py-2 text-sm font-bold text-black md:px-5 md:text-sm lg:px-6 lg:text-base"
+    >
+        Перейти
+    </div>
 </template>
