@@ -15,6 +15,11 @@ class TariffPlansController extends Controller
 {
     public function index(GeneralSettings $settings): Response
     {
+        $user = auth()->user();
+        if ($user) {
+            $user->loadMissing('tariffPlan');
+        }
+
         $tariffPlans = TariffPlan::with('features')->get();
 
         return Inertia::render('TarifPlans', [
