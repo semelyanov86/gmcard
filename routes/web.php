@@ -15,8 +15,11 @@ use Inertia\Inertia;
 
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
-Route::get('/tarif-plans', [TariffPlansController::class, 'index'])->name('tarif.plans');
-Route::get('/tarif-plans/info-modal', [TariffPlansController::class, 'infoModal'])->name('tarif.plans.info-modal');
+
+Route::prefix('tariff')->group(function () {
+    Route::get('/plans', [TariffPlansController::class, 'index'])->name('tarif.plans');
+    Route::get('/plans/info-modal', [TariffPlansController::class, 'infoModal'])->name('tarif.plans.info-modal');
+});
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
