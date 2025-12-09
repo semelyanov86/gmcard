@@ -145,7 +145,7 @@ const expIncludedFeatures = computed(() => expTariff.features.filter((f) => f.ca
         </div>
     </div>
 
-    <div class="descSectionMob mt-6 flex flex-col items-center text-center text-[#727e94] block lg:hidden">
+    <div class="descSectionMob mt-6 block flex flex-col items-center text-center text-[#727e94] lg:hidden">
         <p class="mb-6 text-sm">Действие платных тарифов распространяется на все наши сервисы платформы</p>
         <p class="text-sm text-[#727e94]">
             В данный момент мы предоставляем только один сервис. <br />

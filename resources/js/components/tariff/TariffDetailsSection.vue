@@ -27,7 +27,7 @@ const getFeatureTitle = (systemName: string): string => {
 </script>
 
 <template>
-<section class="tariff-section w-full border-t border-[#25385a] py-3 px-4 md:px-12 lg:px-32">
+    <section class="tariff-section w-full border-t border-[#25385a] px-4 py-3 md:px-12 lg:px-32">
         <div class="flex lg:justify-start">
             <TariffInfoNote />
         </div>

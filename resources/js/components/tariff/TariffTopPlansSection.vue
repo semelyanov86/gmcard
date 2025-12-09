@@ -14,7 +14,7 @@ const props = defineProps<{
         class="tariff-details bg-brand-darker border-brand grid-cols-30-70 sticky top-0 z-10 container mt-4 grid items-center justify-around gap-5 border-b text-white"
     >
         <div class="tariff-header col-span-1">
-            <h2 class="tariff-title text-4xl leading-normal text-left">
+            <h2 class="tariff-title text-left text-4xl leading-normal">
                 Тарифы и что <br />
                 в них входит
             </h2>
