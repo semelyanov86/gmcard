@@ -23,6 +23,13 @@ class TariffPlanFactory extends Factory
             'price' => 0,
             'ads_count' => $this->faker->numberBetween(0, 10),
             'banner_price' => 0,
+            'extra_ad_price' => 0,
+            'banner_slots_total' => 5,
+            'own_banner_slots_total' => 1,
+            'cashback_bonus_percent' => 0,
+            'auto_schedule_enabled' => true,
+            'auto_restart_enabled' => false,
+            'auto_bump_enabled' => false,
         ];
     }
 }

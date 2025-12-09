@@ -31,7 +31,6 @@ import EyeIcon from '@/components/primitives/icons/EyeIcon.vue';
 import FileIcon from '@/components/primitives/icons/FileIcon.vue';
 import { notify } from '@/services/notifications';
 import type {
-    AppPageProps,
     CategoryModel,
     CityModel,
     ContactModel,
@@ -43,11 +42,9 @@ import type {
     WeekdayModel,
 } from '@/types';
 import { MoneyValueObject } from '@/types/MoneyValueObject';
-import { useForm, usePage } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
 import '../../../css/internal/output.css';
-
-const page = usePage<AppPageProps>();
 
 interface PromoFormPayload {
     id: number;
@@ -95,8 +92,6 @@ const props = defineProps<{
     sidebarMenu: MenuData[];
     promo: PromoFormPayload;
 }>();
-
-const userData = page.props.userData;
 
 const form = useForm({
     promo_type_id: props.promo.promo_type_id,
@@ -191,7 +186,7 @@ function handleUpdate() {
 </script>
 
 <template>
-    <Header :userData="userData" />
+    <Header />
     <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
         <MobileMenu />
 

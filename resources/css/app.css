@@ -26,6 +26,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --spacing-84: 21rem;
+    --spacing-sale-card: 22.75rem;
+    --spacing-sale-card-md: 21.875rem;
+    --spacing-sale-card-height: 46.375rem;
+
     --font-sans: 'PT Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --radius-lg: var(--radius);

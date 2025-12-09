@@ -8,14 +8,12 @@ import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
 import TwitterIcon from '@/components/primitives/icons/TwitterIcon.vue';
 import UserIcon from '@/components/primitives/icons/UserIcon.vue';
 import VkIcon from '@/components/primitives/icons/VkIcon.vue';
-import type { UserDataModel } from '@/types';
+import type { AppPageProps } from '@/types';
 import { LoginButtonType } from '@/types/LoginButtonType';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps<{
-    userData?: UserDataModel | null;
-}>();
+const page = usePage<AppPageProps>();
 
 const loginModalOpen = ref(false);
 const clickedButton = ref<LoginButtonType | null>(null);
@@ -49,8 +47,8 @@ function toggleMobileMenu() {
 </script>
 
 <template>
-    <header id="header" class="bg-brand-dark height-60 flex w-full items-center">
-        <div class="relative mx-auto flex w-1140 items-center justify-between 2xl:w-full 2xl:px-4">
+    <header id="header" class="bg-brand-dark flex h-[60px] w-full items-center">
+        <div class="relative mx-auto flex w-full max-w-[1140px] items-center justify-between px-4">
             <div id="header" class="relative flex items-center">
                 <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип" />
@@ -108,7 +106,7 @@ function toggleMobileMenu() {
             </div>
             <ul id="header" class="relative flex list-none items-center md:hidden">
                 <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
-                    <Link v-if="userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
+                    <Link v-if="page.props.userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
                         >Запустить акцию</Link
                     >
                     <a
@@ -126,7 +124,7 @@ function toggleMobileMenu() {
                     />
                 </li>
                 <div class="bg-brand-dark-blue height-60 ml-4 w-[1px]"></div>
-                <li class="relative">
+                <li v-if="!page.props.userData" class="relative">
                     <a
                         @click.prevent="openLoginModal(LoginButtonType.Login)"
                         href="#"
@@ -140,15 +138,15 @@ function toggleMobileMenu() {
                         custom-class="absolute right-0 -bottom-10 h-7 w-6 text-white"
                     />
                 </li>
-                <li>
+                <li v-if="!page.props.userData">
                     <Link
                         :href="route('register')"
                         class="hover: bg-brand-blue-dark focus:ring-brand-blue-dark ml-3 rounded-md px-3 py-2 text-base text-white focus:ring-1"
                         >Регистрация</Link
                     >
                 </li>
-                <div class="bg-brand-dark-blue height-60 ml-2 w-[1px]"></div>
-                <li v-if="userData">
+                <div v-if="!page.props.userData" class="bg-brand-dark-blue height-60 ml-2 w-[1px]"></div>
+                <li v-if="page.props.userData">
                     <Link :href="route('profile')" class="bg-brand-dark-navy ml-3 block rounded-md px-2 py-2">
                         <img src="/images/png/icons/reg.png" alt="Профиль" />
                     </Link>
@@ -234,7 +232,7 @@ function toggleMobileMenu() {
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div class="flex items-center text-lg font-bold">
                             <img src="/images/png/icons/he.png" class="mr-3 h-7 w-7" alt="" />
-                            {{ props.userData?.name }} {{ props.userData?.last_name || '' }}
+                            {{ page.props.userData?.name }} {{ page.props.userData?.last_name || '' }}
                         </div>
                     </div>
                     <ul class="px-2 py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
@@ -245,7 +243,7 @@ function toggleMobileMenu() {
                             >
                         </li>
                         <li class="flex items-center justify-between border-b-2 border-b-black/5">
-                            <span class="text-base font-bold">Баланс: {{ props.userData?.balance ?? 0 }} руб.</span
+                            <span class="text-base font-bold">Баланс: {{ page.props.userData?.balance ?? 0 }} руб.</span
                             ><a href="#" class="block px-1 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Оперировать</a>
                         </li>
                         <li class="flex items-center justify-between border-b-2 border-b-black/5">
