@@ -7,20 +7,18 @@ import NavBar from '@/components/NavBar.vue';
 import { usePage } from '@inertiajs/vue3';
 import type { AppPageProps, ContactModel } from '@/types';
 import type { CategoryModel, MenuData } from '@/types';
+import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import MobileMenu from '@/components/MobileMenu.vue';
-import ControlsCarousel from '@/components/main/ControlsCarousel.vue';
 import FilterBlock from '@/components/main/FilterBlock.vue';
 import PopularPromotions from '@/components/main/PopularPromotions.vue';
 import Footer from '@/components/Footer.vue';
-import PopularDiscounts from '@/components/main/PopularDiscounts.vue';
-import NewStores from '@/components/main/NewStores.vue';
-import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
 
 const page = usePage<AppPageProps>();
 const props = defineProps<{
     categories: CategoryModel[];
     navbarMenu: MenuData[];
     contact: ContactModel;
+    promos?: ProfilePromo[];
 }>();
 </script>
 
@@ -36,17 +34,9 @@ const props = defineProps<{
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <ControlsCarousel />
-
                 <FilterBlock />
 
-                <PopularPromotions />
-
-                <PopularDiscounts />
-
-                <NewStores />
-
-                <DiscountCoupons />
+                <PopularPromotions :promos="props.promos" />
             </div>
         </section>
         <Footer :contact="contact"></Footer>
