@@ -8,6 +8,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\Popup\FormSubmitController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Promo\CreatePromoController;
+use App\Http\Controllers\Tariff\TariffPlansController;
 use App\Http\Controllers\Promo\ModerationController;
 use App\Http\Controllers\Promo\PromoController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,11 @@ use Inertia\Inertia;
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 Route::get('/main-page', [MainController::class, 'index'])->name('main');
+
+Route::prefix('tariff')->group(function (): void {
+    Route::get('/plans', [TariffPlansController::class, 'index'])->name('tarif.plans');
+    Route::get('/plans/info-modal', [TariffPlansController::class, 'infoModal'])->name('tarif.plans.info-modal');
+});
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 

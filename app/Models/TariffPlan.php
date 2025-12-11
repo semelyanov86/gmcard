@@ -8,6 +8,7 @@ use App\Casts\MoneyValueObjectCast;
 use Database\Factories\TariffPlanFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TariffPlan extends Model
@@ -23,6 +24,12 @@ class TariffPlan extends Model
         'ads_count',
         'banner_price',
         'extra_ad_price',
+        'banner_slots_total',
+        'own_banner_slots_total',
+        'cashback_bonus_percent',
+        'auto_schedule_enabled',
+        'auto_restart_enabled',
+        'auto_bump_enabled',
     ];
 
     protected $guarded = [
@@ -39,12 +46,25 @@ class TariffPlan extends Model
         return $this->hasMany(User::class);
     }
 
+    /**
+     * @return BelongsToMany<PlanFeature, $this>
+     */
+    public function features(): BelongsToMany
+    {
+        return $this->belongsToMany(PlanFeature::class)
+            ->withPivot(['is_included'])
+            ->withTimestamps();
+    }
+
     protected function casts(): array
     {
         return [
             'price' => MoneyValueObjectCast::class,
             'banner_price' => MoneyValueObjectCast::class,
             'extra_ad_price' => MoneyValueObjectCast::class,
+            'auto_schedule_enabled' => 'bool',
+            'auto_restart_enabled' => 'bool',
+            'auto_bump_enabled' => 'bool',
         ];
     }
 }

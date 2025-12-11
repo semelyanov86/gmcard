@@ -58,7 +58,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
 </script>
 
 <template>
-    <Header :user-data="page.props.userData"></Header>
+    <Header />
     <FlashToaster />
     <section id="section-1" class="body h-full max-w-full overflow-visible pb-9">
         <MobileMenu />

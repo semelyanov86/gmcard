@@ -3666,6 +3666,7 @@ a {
     --brand-dark-navy: #222e54;
     --brand-dark-slate: #28a8eb;
     --brand-darker: #041a41;
+    --brand-border: #203457;
     --brand-footer: #0f1120;
     --brand-footer-bg: #101121;
     --brand-light-bg: #edf4fc;
@@ -3766,6 +3767,30 @@ a {
     color: var(--brand-text);
 }
 
+.text-16 {
+    font-size: 16px;
+}
+
+.text-18 {
+    font-size: 18px;
+}
+
+.h-100 {
+    height: 100px;
+}
+
+.w-30 {
+    width: 30px;
+}
+
+.left-100p {
+    left: 100%;
+}
+
+.top-47p {
+    top: 47%;
+}
+
 .border-brand-blue {
     border-color: var(--brand-blue);
 }
@@ -3783,6 +3808,9 @@ a {
 }
 .border-brand-gray {
     border-color: var(--brand-gray);
+}
+.border-brand {
+    border-color: var(--brand-border);
 }
 
 .ring-brand-blue {
@@ -7071,6 +7099,35 @@ a {
     border-color: #c6c7c6;
 }
 
+:root {
+    --color-service-border: #11254a;
+    --tariff-bg-muted: #f2f6fb;
+    --tariff-main-line: #5974a3;
+    --tariff-discount-bg: #5973a2;
+    --tariff-discount-alt-bg: #dbe4ee;
+    --tariff-muted-text: #6d84ad;
+}
+
+.bg-tariff-muted {
+    background-color: var(--tariff-bg-muted);
+}
+
+.bg-tariff-main-line {
+    background-color: var(--tariff-main-line);
+}
+
+.bg-tariff-discount {
+    background-color: var(--tariff-discount-bg);
+}
+
+.bg-tariff-discount-alt {
+    background-color: var(--tariff-discount-alt-bg);
+}
+
+.text-tariff-muted {
+    color: var(--tariff-muted-text);
+}
+
 /* Promo type block sizes */
 .promo-block-large {
     width: 230px;
@@ -7086,5 +7143,9 @@ a {
 @media (max-width: 768px) {
     .promo_sections_btn {
         background-color: #fae115 !important;
+    }
+
+    header ul#header {
+        display: none !important;
     }
 }
