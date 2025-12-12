@@ -30,7 +30,3 @@ final readonly class GetApprovedPromosForHomeAction
         return PromoListItemData::collect($promos, 'array');
     }
 }
-
-
-
-
