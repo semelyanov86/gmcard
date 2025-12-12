@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import '../../css/internal/output.css';
-import Header from '@/components/Header.vue';
-import FlashToaster from '@/components/system/FlashToaster.vue';
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
-import NavBar from '@/components/NavBar.vue';
-import { usePage } from '@inertiajs/vue3';
-import type { AppPageProps, ContactModel } from '@/types';
-import type { CategoryModel, MenuData } from '@/types';
-import type { ProfilePromo } from '@/types/promo/ProfilePromo';
-import MobileMenu from '@/components/MobileMenu.vue';
-import FilterBlock from '@/components/main/FilterBlock.vue';
-import PopularPromotions from '@/components/main/PopularPromotions.vue';
 import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
+import MobileMenu from '@/components/MobileMenu.vue';
+import NavBar from '@/components/NavBar.vue';
+import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
+import FilterBlock from '@/components/main/FilterBlock.vue';
+import NewShops from '@/components/main/NewShops.vue';
+import PopularPromotions from '@/components/main/PopularPromotions.vue';
+import ShopPopular from '@/components/main/ShopPopular.vue';
+import FlashToaster from '@/components/system/FlashToaster.vue';
+import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
+import type { ProfilePromo } from '@/types/promo/ProfilePromo';
+import { usePage } from '@inertiajs/vue3';
+import '../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
 const props = defineProps<{
@@ -37,6 +39,12 @@ const props = defineProps<{
                 <FilterBlock />
 
                 <PopularPromotions :promos="props.promos" />
+
+                <ShopPopular />
+
+                <NewShops />
+
+                <DiscountCoupons />
             </div>
         </section>
         <Footer :contact="contact"></Footer>

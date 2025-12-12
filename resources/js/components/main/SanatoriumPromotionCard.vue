@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
+import type { ProfilePromo } from '@/types/promo/ProfilePromo';
+import { computed } from 'vue';
 
 const props = defineProps<{
     promo?: ProfilePromo;
@@ -13,7 +13,6 @@ const imageSrc = computed(() => {
     }
     return '';
 });
-
 </script>
 
 <template>
@@ -36,4 +35,3 @@ const imageSrc = computed(() => {
 </template>
 
 <style scoped></style>
-

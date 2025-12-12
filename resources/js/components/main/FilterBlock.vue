@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="filter_block z-31 mb-6 flex h-[46px] items-center justify-between lg:h-full">

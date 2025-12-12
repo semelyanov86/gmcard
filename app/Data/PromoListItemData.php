@@ -41,7 +41,7 @@ final class PromoListItemData extends Data
             description: $promo->description,
             img: $promo->img,
             status: $status,
-            type: $promo->type?->value,
+            type: $promo->type->value,
             discount: $promo->discount,
             promoTypeId: $promo->promo_type_id,
             startedAt: $promo->started_at?->toIso8601String(),
