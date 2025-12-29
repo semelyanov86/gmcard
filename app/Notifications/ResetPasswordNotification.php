@@ -6,9 +6,11 @@ namespace App\Notifications;
 
 use Illuminate\Auth\Notifications\ResetPassword as BaseResetPasswordNotification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Override;
 
 class ResetPasswordNotification extends BaseResetPasswordNotification
 {
+    #[Override]
     public function toMail(mixed $notifiable): MailMessage
     {
         $url = url(route('password.reset', [
@@ -18,7 +20,7 @@ class ResetPasswordNotification extends BaseResetPasswordNotification
 
         $expire = config('auth.passwords.users.expire', 60);
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Восстановление пароля')
             ->view('emails.reset-password', [
                 'url' => $url,
@@ -26,4 +28,3 @@ class ResetPasswordNotification extends BaseResetPasswordNotification
             ]);
     }
 }
-
