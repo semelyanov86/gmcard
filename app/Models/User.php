@@ -20,6 +20,7 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as BreezyTwoFacto
 use Laravel\Fortify\TwoFactorAuthenticatable as FortifyTwoFactor;
 use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
+use App\Notifications\ResetPasswordNotification as CustomResetPasswordNotification;
 
 /**
  * @property MoneyValueObject|null $balance
@@ -209,6 +210,16 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->promos()
             ->where('moderation_status', PromoModerationStatus::REJECTED->value);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
     }
 
     /**
