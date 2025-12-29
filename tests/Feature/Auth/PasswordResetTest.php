@@ -9,6 +9,7 @@ use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
+use Exception;
 
 class PasswordResetTest extends TestCase
 {
@@ -22,7 +23,7 @@ class PasswordResetTest extends TestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_reset_password_link_can_be_requested(): void
     {
