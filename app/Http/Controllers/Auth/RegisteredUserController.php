@@ -11,6 +11,7 @@ use App\Jobs\SendUserToVtigerJob;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -18,11 +19,12 @@ use Inertia\Response;
 
 final class RegisteredUserController extends Controller
 {
-    public function create(): Response
+    public function create(Request $request): Response
     {
         return Inertia::render('auth/AuthPage', [
             'initialTab' => 'register',
             'canResetPassword' => true,
+            'status' => $request->session()->get('status'),
         ]);
     }
 
@@ -51,6 +53,6 @@ final class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return to_route('dashboard');
+        return redirect()->route('register')->with('status', __('auth.verification_email_sent'));
     }
 }
