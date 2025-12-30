@@ -33,11 +33,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use BreezyTwoFactor;
     use FortifyTwoFactor;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
     use HasRoles;
-
     use MustVerifyEmailTrait;
     use Notifiable;
 
