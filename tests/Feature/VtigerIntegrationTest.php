@@ -26,7 +26,7 @@ class VtigerIntegrationTest extends TestCase
     {
         $response = $this->post(route('register'), $this->registrationPayload());
 
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('register'));
 
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
