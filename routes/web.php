@@ -18,6 +18,7 @@ Route::get('/', [BusinessLandingController::class, 'index'])->name('business.lan
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/help/user-agreement', [HelpController::class, 'userAgreement'])->name('help.user-agreement');
+Route::get('/help/{slug}', [HelpController::class, 'show'])->name('help.post');
 
 Route::prefix('tariff')->group(function (): void {
     Route::get('/plans', [TariffPlansController::class, 'index'])->name('tarif.plans');

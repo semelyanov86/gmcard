@@ -3,8 +3,13 @@ import Footer from '@/components/Footer.vue';
 import type { ContactModel } from '@/types';
 import { Link } from '@inertiajs/vue3';
 
-const { contact } = defineProps<{
+const { contact, posts } = defineProps<{
     contact: ContactModel;
+    posts: Array<{
+        id: number;
+        title: string;
+        slug: string;
+    }>;
 }>();
 </script>
 
@@ -21,100 +26,16 @@ const { contact } = defineProps<{
             <div class="help_content 4xl:w-full mt-8 flex flex-col items-center justify-center">
                 <h4 class="text-lg font-bold uppercase">GM справка</h4>
                 <ul class="help_list mt-10 grid grid-cols-4 gap-4">
-                    <li class="box-border h-32">
+                    <li
+                        v-for="post in posts"
+                        :key="post.id"
+                        class="box-border h-32"
+                    >
                         <Link
-                            href="/rules.html"
+                            :href="route('help.post', { slug: post.slug })"
                             class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
                         >
-                            О GM1LP
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            :href="route('help.user-agreement')"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            Пользовательское соглашение
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            Правила сообщества
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            Возможности
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе скидок
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе конкурсов
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе заданий
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе кредитования, P2P
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            Черный список
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О бартере
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе поиска вещей
-                        </Link>
-                    </li>
-                    <li class="box-border h-32">
-                        <Link
-                            href="/rules.html"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
-                        >
-                            О сервисе для краудфандинга
+                            {{ post.title }}
                         </Link>
                     </li>
                 </ul>
