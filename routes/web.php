@@ -17,6 +17,7 @@ use Inertia\Inertia;
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
+Route::get('/help/user-agreement', [HelpController::class, 'userAgreement'])->name('help.user-agreement');
 
 Route::prefix('tariff')->group(function (): void {
     Route::get('/plans', [TariffPlansController::class, 'index'])->name('tarif.plans');

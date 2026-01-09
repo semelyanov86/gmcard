@@ -20,4 +20,14 @@ class HelpController extends Controller
             ],
         ]);
     }
+
+    public function userAgreement(GeneralSettings $settings): Response
+    {
+        return Inertia::render('help/UserAgreement', [
+            'contact' => [
+                'email' => $settings->email,
+                'phone' => $settings->phone,
+            ],
+        ]);
+    }
 }

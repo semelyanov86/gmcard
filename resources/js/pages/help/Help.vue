@@ -30,7 +30,7 @@ const {contact} = defineProps<{
                     <li
                         class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] border-[6px] border-transparent hover:bg-white hover:border-[#FAE115] hover:px-4 hover:cursor-pointer box-border"
                     >
-                        <a href="/rules.html" class="text-[#093A9C] font-bold text-[20px] text-center">Пользовательское соглашение</a>
+                        <a href="/help/user-agreement" class="text-[#093A9C] font-bold text-[20px] text-center">Пользовательское соглашение</a>
                     </li>
                     <li
                         class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] border-[6px] border-transparent hover:bg-white hover:border-[#FAE115] hover:px-4 hover:cursor-pointer box-border"
