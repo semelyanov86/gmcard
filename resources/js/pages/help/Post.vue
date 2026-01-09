@@ -39,7 +39,7 @@ const { contact, post, posts } = defineProps<{
                         <h2 class="text-4xl text-[#093A9C] text-center">{{ post.title }}</h2>
                         <div class="mt-6 text-start whitespace-pre-line">{{ post.content }}</div>
                     </div>
-                    <ul class="overflow-y-scroll scroll-m-0 max-h-[650px] h-full w-[400px] md:w-full flex-shrink-0">
+                    <ul class="help_post_list overflow-y-scroll scroll-m-0 max-h-[650px] h-full w-[400px] md:w-full flex-shrink-0">
                         <li
                             v-for="postItem in posts"
                             :key="postItem.id"
@@ -87,6 +87,12 @@ const { contact, post, posts } = defineProps<{
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
+    }
+
+    .help_post_list {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
     }
 }
 </style>
