@@ -39,5 +39,4 @@ class HelpController extends Controller
             'posts' => $posts,
         ]);
     }
-
 }
