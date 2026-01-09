@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '../../../css/internal/output.css';
+
 </script>
 
 <template>
@@ -14,66 +14,66 @@ import '../../../css/internal/output.css';
                 </h1>
                 <p class="text-lg mt-3 text-[#333333]">Один аккаунт для всех сервисов GM</p>
             </div>
-            <div class="flex flex-col justify-center items-center mt-8 w-[1200px] 2xl:w-full">
+            <div class="flex flex-col justify-center items-center mt-8 2xl:w-full">
                 <h4 class="uppercase text-lg font-bold">GM справка</h4>
-                <ul class="flex flex-wrap gap-4 mt-10 justify-center help_list">
+                <ul class="grid grid-cols-4 gap-4 mt-10 help_list">
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О GM1LP</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">Пользовательское соглашение</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">Правила сообщества</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">Возможности</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе скидок</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе конкурсов</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе заданий</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе кредитования, P2P</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">Черный список</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О бартере</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе поиска вещей</a>
                     </li>
                     <li
-                        class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                        class="h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
                         <a href="/rules.html" class="text-[#093A9C] font-bold text-[21px] text-center">О сервисе для краудфандинга</a>
                     </li>
@@ -163,12 +163,7 @@ import '../../../css/internal/output.css';
 <style scoped>
 @media (max-width: 768px) {
     .help_list {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .help_list > li {
-        width: 100%;
+        grid-template-columns: 1fr;
     }
 
     .help_footer_top {
