@@ -19,7 +19,7 @@ const {contact} = defineProps<{
                 </h1>
                 <p class="text-lg mt-3 text-[#333333]">Один аккаунт для всех сервисов GM</p>
             </div>
-            <div class="flex flex-col justify-center items-center mt-8 2xl:w-full">
+            <div class="flex flex-col justify-center items-center mt-8 w-[1100px] 4xl:w-full">
                 <h4 class="uppercase text-lg font-bold">GM справка</h4>
                 <ul class="grid grid-cols-4 gap-4 mt-10 help_list">
                     <li
@@ -90,6 +90,28 @@ const {contact} = defineProps<{
 </template>
 
 <style scoped>
+.help_list li {
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    align-content: center !important;
+}
+
+.help_list a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    hyphens: auto !important;
+    flex-shrink: 1 !important;
+    text-align: center !important;
+}
+
 @media (max-width: 768px) {
     .help_list {
         grid-template-columns: 1fr;
