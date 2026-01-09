@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import '../../../css/internal/output.css';
 import Footer from '@/components/Footer.vue';
 import type { ContactModel } from '@/types';
 import { Link } from '@inertiajs/vue3';
+import '../../../css/internal/output.css';
 
 const { contact, post, posts } = defineProps<{
     contact: ContactModel;
@@ -21,34 +21,29 @@ const { contact, post, posts } = defineProps<{
 </script>
 
 <template>
-    <section class="w-full h-full flex items-center justify-center py-10 px-4 md:px-0 md:text-center">
+    <section class="flex h-full w-full items-center justify-center px-4 py-10 md:px-0 md:text-center">
         <div class="flex flex-col items-center justify-center md:w-full">
-            <div class="flex flex-col justify-center items-center">
+            <div class="flex flex-col items-center justify-center">
                 <a href="/index.html">
-                    <img src="/assets/png/logo.png" alt="Логотип" class="w-14 h-14" />
+                    <img src="/assets/png/logo.png" alt="Логотип" class="h-14 w-14" />
                 </a>
-                <h1 class="text-4xl font-bold mt-3 md:text-3xl">
-                    Один аккаунт. <span class="text-[#3399ff]">Весь мир GM!</span>
-                </h1>
-                <p class="text-lg mt-3 text-[#333333]">Один аккаунт для всех сервисов GM</p>
+                <h1 class="mt-3 text-4xl font-bold md:text-3xl">Один аккаунт. <span class="text-[#3399ff]">Весь мир GM!</span></h1>
+                <p class="mt-3 text-lg text-[#333333]">Один аккаунт для всех сервисов GM</p>
             </div>
-            <div class="flex flex-col justify-center items-center mt-8 w-[1200px] 2xl:w-full">
-                <h4 class="uppercase text-lg font-bold">GM справка</h4>
-                <div class="help_post_container flex w-full mt-10 gap-8 md:items-center">
-                    <div class="flex-1 min-w-0 help_post_content">
-                        <h2 class="text-4xl text-[#093A9C] text-center">{{ post.title }}</h2>
+            <div class="mt-8 flex w-[1200px] flex-col items-center justify-center 2xl:w-full">
+                <h4 class="text-lg font-bold uppercase">GM справка</h4>
+                <div class="help_post_container mt-10 flex w-full gap-8 md:items-center">
+                    <div class="help_post_content min-w-0 flex-1">
+                        <h2 class="text-center text-4xl text-[#093A9C]">{{ post.title }}</h2>
                         <div class="mt-6 text-start whitespace-pre-line">{{ post.content }}</div>
                     </div>
-                    <ul class="help_post_list overflow-y-scroll scroll-m-0 max-h-[650px] h-full w-[300px] md:w-full flex-shrink-0">
+                    <ul class="help_post_list h-full max-h-[650px] w-[300px] flex-shrink-0 scroll-m-0 overflow-y-scroll md:w-full">
                         <li
                             v-for="postItem in posts"
                             :key="postItem.id"
-                            class="w-[280px] md:w-full min-h-[128px] mt-2 px-6 flex items-center justify-center text-[#093A9C] font-bold text-[21px] text-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
+                            class="mt-2 flex min-h-[128px] w-[280px] items-center justify-center bg-[#EBF0F5] px-6 text-center text-[21px] font-bold text-[#093A9C] hover:cursor-pointer hover:border-[6px] hover:border-[#FAE115] hover:bg-white hover:px-4 md:w-full"
                         >
-                            <Link
-                                :href="route('help.post', { slug: postItem.slug })"
-                                class="w-full h-full flex items-center justify-center"
-                            >
+                            <Link :href="route('help.post', { slug: postItem.slug })" class="flex h-full w-full items-center justify-center">
                                 {{ postItem.title }}
                             </Link>
                         </li>
@@ -96,4 +91,3 @@ const { contact, post, posts } = defineProps<{
     }
 }
 </style>
-

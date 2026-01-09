@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HelpPost extends Model
 {
+    /** @use HasFactory<\Database\Factories\HelpPostFactory> */
     use HasFactory;
 
     protected $table = 'help_posts';

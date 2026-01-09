@@ -27,7 +27,6 @@ use Database\Seeders\Categories\TravelSeeder;
 use Database\Seeders\Finance\PaymentSeeder;
 use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Finance\VirtualBalanceSeeder;
-use Database\Seeders\HelpPostSeeder;
 use Database\Seeders\Promo\BonusSeeder;
 use Database\Seeders\Promo\PlanFeaturesSeeder;
 use Database\Seeders\Promo\PromoSeeder;

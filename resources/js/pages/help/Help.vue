@@ -26,14 +26,10 @@ const { contact, posts } = defineProps<{
             <div class="help_content 4xl:w-full mt-8 flex flex-col items-center justify-center">
                 <h4 class="text-lg font-bold uppercase">GM справка</h4>
                 <ul class="help_list mt-10 grid grid-cols-4 gap-4">
-                    <li
-                        v-for="post in posts"
-                        :key="post.id"
-                        class="box-border h-32"
-                    >
+                    <li v-for="post in posts" :key="post.id" class="box-border h-32">
                         <Link
                             :href="route('help.post', { slug: post.slug })"
-                            class="flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent help_card_bg px-6 text-center text-xl font-bold help_card_text help_card_link hover:bg-white hover:px-4"
+                            class="help_card_bg help_card_text help_card_link flex h-full w-full cursor-pointer items-center justify-center border-4 border-transparent px-6 text-center text-xl font-bold hover:bg-white hover:px-4"
                         >
                             {{ post.title }}
                         </Link>
