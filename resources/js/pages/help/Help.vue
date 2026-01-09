@@ -16,7 +16,7 @@ import '../../../css/internal/output.css';
             </div>
             <div class="flex flex-col justify-center items-center mt-8 w-[1200px] 2xl:w-full">
                 <h4 class="uppercase text-lg font-bold">GM справка</h4>
-                <ul class="flex flex-wrap gap-4 mt-10 justify-center md:flex-col">
+                <ul class="flex flex-wrap gap-4 mt-10 justify-center help_list">
                     <li
                         class="w-[280px] md:w-full h-[128px] px-6 flex items-center justify-center bg-[#EBF0F5] hover:bg-white hover:border-[6px] hover:border-[#FAE115] hover:px-4 hover:cursor-pointer"
                     >
@@ -83,9 +83,9 @@ import '../../../css/internal/output.css';
     </section>
     <footer class="flex justify-center bg-[#1f2339] py-10">
         <div class="w-[1200px] 2xl:w-full">
-            <div class="flex items-start gap-10 md:flex-col md:ml-4 md:gap-2 2xl:gap-5 foot_main">
+            <div class="flex items-start gap-10 md:ml-4 md:gap-2 2xl:gap-5 foot_main help_footer_top">
                 <img src="/assets/png/logo.png" alt="Логотип" class="w-8 h-8" />
-                <ul class="flex justify-between w-full md:flex-col foot_block">
+                <ul class="flex justify-between w-full foot_block help_footer_top_list">
                     <li>
                         <h2 class="text-lg font-bold text-white opacity-70 md:mt-4">Общие сведения</h2>
                         <ul class="text-white text-base mt-5">
@@ -142,7 +142,7 @@ import '../../../css/internal/output.css';
                 </ul>
             </div>
             <div class="w-full h-[1px] bg-white opacity-20 mt-12 mb-5"></div>
-            <ul class="flex gap-10 ml-[70px] md:flex-col md:ml-4 md:gap-2">
+            <ul class="flex gap-10 ml-[70px] md:ml-4 md:gap-2 help_footer_bottom">
                 <li>
                     <a href="#" class="text-white opacity-70 hover:opacity-100">О компании</a>
                 </li>
@@ -159,5 +159,34 @@ import '../../../css/internal/output.css';
         </div>
     </footer>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+    .help_list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .help_list > li {
+        width: 100%;
+    }
+
+    .help_footer_top {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .help_footer_top_list {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .help_footer_bottom {
+        flex-direction: column;
+        margin-left: 1rem;
+        gap: 0.5rem;
+    }
+}
+</style>
 
 
