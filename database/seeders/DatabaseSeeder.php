@@ -76,6 +76,8 @@ class DatabaseSeeder extends Seeder
             PaymentSeeder::class,
             SubscriptionSeeder::class,
             VirtualBalanceSeeder::class,
+
+            HelpPostSeeder::class,
         ]);
 
         Category::fixTree();
