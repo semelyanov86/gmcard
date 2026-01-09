@@ -28,6 +28,7 @@ class HelpController extends Controller
     public function show(string $slug, GeneralSettings $settings): Response
     {
         $post = HelpPost::where('slug', $slug)->firstOrFail();
+        $posts = HelpPost::all();
 
         return Inertia::render('help/Post', [
             'contact' => [
@@ -35,16 +36,8 @@ class HelpController extends Controller
                 'phone' => $settings->phone,
             ],
             'post' => $post,
+            'posts' => $posts,
         ]);
     }
 
-    public function userAgreement(GeneralSettings $settings): Response
-    {
-        return Inertia::render('help/UserAgreement', [
-            'contact' => [
-                'email' => $settings->email,
-                'phone' => $settings->phone,
-            ],
-        ]);
-    }
 }
