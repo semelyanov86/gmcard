@@ -467,6 +467,19 @@ const props = defineProps<{
 </template>
 
 <style scoped>
+.footer {
+    background-color: #0f1120;
+    color: #ffffff;
+}
+
+.footer > footer {
+    background-color: #101121;
+}
+
+.footer a {
+    color: #ffffff;
+}
+
 .vk-icon-bright {
     filter: brightness(1.5);
 }
