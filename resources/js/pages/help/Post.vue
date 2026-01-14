@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue';
+import HelpHeader from '@/components/help/HelpHeader.vue';
 import type { ContactModel } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import '../../../css/internal/output.css';
@@ -23,15 +24,9 @@ const { contact, post, posts } = defineProps<{
 <template>
     <section class="flex h-full w-full items-center justify-center px-4 py-10 md:px-0 md:text-center">
         <div class="flex flex-col items-center justify-center md:w-full">
-            <div class="flex flex-col items-center justify-center">
-                <Link :href="route('business.landing')">
-                    <img src="/assets/png/logo.png" alt="Логотип" class="h-14 w-14" />
-                </Link>
-                <h1 class="mt-3 text-4xl font-bold md:text-3xl">Один аккаунт. <span class="text-[#3399ff]">Весь мир GM!</span></h1>
-                <p class="mt-3 text-lg text-[#333333]">Один аккаунт для всех сервисов GM</p>
-            </div>
-            <div class="mt-8 flex w-[1200px] flex-col items-center justify-center 2xl:w-full">
-                <h4 class="text-lg font-bold uppercase">GM справка</h4>
+            <HelpHeader />
+            <div class="mt-8 flex max-w-6xl flex-col items-center justify-center 2xl:w-full">
+
                 <div class="help_post_container mt-10 flex w-full gap-8 md:items-center">
                     <div class="help_post_content min-w-0 flex-1">
                         <h2 class="text-center text-4xl text-[#093A9C]">{{ post.title }}</h2>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue';
+import HelpHeader from '@/components/help/HelpHeader.vue';
 import type { ContactModel } from '@/types';
 import { Link } from '@inertiajs/vue3';
 
@@ -14,17 +15,10 @@ const { contact, posts } = defineProps<{
 </script>
 
 <template>
-    <section class="flex h-full w-full items-center justify-center px-4 py-10 md:px-0 md:text-center">
+    <section class="flex min-h-screen w-full items-center justify-center px-4 py-10 md:px-0 md:text-center">
         <div class="flex flex-col items-center justify-center md:w-full">
-            <div class="flex flex-col items-center justify-center">
-                <Link :href="route('business.landing')">
-                    <img src="/assets/png/logo.png" alt="Логотип" class="h-14 w-14" />
-                </Link>
-                <h1 class="mt-3 text-4xl font-bold md:text-3xl">Один аккаунт. <span class="text-blue-500">Весь мир GM!</span></h1>
-                <p class="mt-3 text-lg text-black">Один аккаунт для всех сервисов GM</p>
-            </div>
+            <HelpHeader />
             <div class="help_content 4xl:w-full mt-8 flex flex-col items-center justify-center">
-                <h4 class="text-lg font-bold uppercase">GM справка</h4>
                 <ul class="help_list mt-10 grid grid-cols-4 gap-4">
                     <li v-for="post in posts" :key="post.id" class="box-border h-32">
                         <Link
