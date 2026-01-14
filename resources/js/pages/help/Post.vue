@@ -35,7 +35,7 @@ const { contact, post, posts } = defineProps<{
                         <li
                             v-for="postItem in posts"
                             :key="postItem.id"
-                            class="help_post_text_primary help_post_card mt-2 flex items-center justify-center px-6 text-center text-[21px] font-bold hover:cursor-pointer hover:border-[6px] hover:bg-white hover:px-4 md:w-full"
+                            class="help_post_text_primary help_post_card mt-2 flex items-center justify-center px-6 text-center text-xl font-bold hover:cursor-pointer hover:border-[6px] hover:bg-white hover:px-4 md:w-full"
                         >
                             <Link :href="route('help.post', { slug: postItem.slug })" class="flex h-full w-full items-center justify-center">
                                 {{ postItem.title }}
