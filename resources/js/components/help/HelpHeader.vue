@@ -15,5 +15,3 @@ import { Link } from '@inertiajs/vue3';
         <h4 class="mt-3 text-lg font-bold uppercase">GM справка</h4>
     </div>
 </template>
-
-
