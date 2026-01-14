@@ -26,17 +26,16 @@ const { contact, post, posts } = defineProps<{
         <div class="flex flex-col items-center justify-center md:w-full">
             <HelpHeader />
             <div class="mt-8 flex max-w-6xl flex-col items-center justify-center 2xl:w-full">
-
                 <div class="help_post_container mt-10 flex w-full gap-8 md:items-center">
                     <div class="help_post_content min-w-0 flex-1">
-                        <h2 class="text-center text-4xl text-[#093A9C]">{{ post.title }}</h2>
+                        <h2 class="help_post_text_primary text-center text-4xl">{{ post.title }}</h2>
                         <div class="mt-6 text-start whitespace-pre-line">{{ post.content }}</div>
                     </div>
-                    <ul class="help_post_list h-full max-h-[650px] w-[300px] flex-shrink-0 scroll-m-0 overflow-y-scroll md:w-full">
+                    <ul class="help_post_list h-full flex-shrink-0 scroll-m-0 overflow-y-scroll">
                         <li
                             v-for="postItem in posts"
                             :key="postItem.id"
-                            class="mt-2 flex min-h-[128px] w-[280px] items-center justify-center bg-[#EBF0F5] px-6 text-center text-[21px] font-bold text-[#093A9C] hover:cursor-pointer hover:border-[6px] hover:border-[#FAE115] hover:bg-white hover:px-4 md:w-full"
+                            class="help_post_text_primary help_post_card mt-2 flex items-center justify-center px-6 text-center text-[21px] font-bold hover:cursor-pointer hover:border-[6px] hover:bg-white hover:px-4 md:w-full"
                         >
                             <Link :href="route('help.post', { slug: postItem.slug })" class="flex h-full w-full items-center justify-center">
                                 {{ postItem.title }}
@@ -53,6 +52,25 @@ const { contact, post, posts } = defineProps<{
 <style scoped>
 .help_post_container {
     flex-direction: row;
+}
+
+.help_post_text_primary {
+    color: #093a9c;
+}
+
+.help_post_card {
+    background-color: #ebf0f5;
+    min-height: 128px;
+    width: 280px;
+}
+
+.help_post_card:hover {
+    border-color: #fae115;
+}
+
+.help_post_list {
+    max-height: 650px;
+    width: 300px;
 }
 
 @media (max-width: 768px) {
@@ -83,6 +101,7 @@ const { contact, post, posts } = defineProps<{
         padding-left: 16px;
         padding-right: 16px;
         box-sizing: border-box;
+        width: 100%;
     }
 }
 </style>
