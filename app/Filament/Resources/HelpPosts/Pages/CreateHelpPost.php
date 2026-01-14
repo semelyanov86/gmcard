@@ -11,5 +11,3 @@ class CreateHelpPost extends CreateRecord
 {
     protected static string $resource = HelpPostResource::class;
 }
-
-

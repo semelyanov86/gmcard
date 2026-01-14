@@ -54,5 +54,3 @@ class HelpPostResource extends Resource
         ];
     }
 }
-
-

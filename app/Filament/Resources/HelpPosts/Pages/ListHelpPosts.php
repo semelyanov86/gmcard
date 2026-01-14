@@ -19,5 +19,3 @@ class ListHelpPosts extends ListRecords
         ];
     }
 }
-
-

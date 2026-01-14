@@ -19,5 +19,3 @@ class EditHelpPost extends EditRecord
         ];
     }
 }
-
-
