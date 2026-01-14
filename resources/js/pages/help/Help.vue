@@ -17,7 +17,7 @@ const { contact, posts } = defineProps<{
     <section class="flex h-full w-full items-center justify-center px-4 py-10 md:px-0 md:text-center">
         <div class="flex flex-col items-center justify-center md:w-full">
             <div class="flex flex-col items-center justify-center">
-                <Link href="/index.html">
+                <Link :href="route('business.landing')">
                     <img src="/assets/png/logo.png" alt="Логотип" class="h-14 w-14" />
                 </Link>
                 <h1 class="mt-3 text-4xl font-bold md:text-3xl">Один аккаунт. <span class="text-blue-500">Весь мир GM!</span></h1>
