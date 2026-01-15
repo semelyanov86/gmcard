@@ -46,15 +46,16 @@ class RegistrationTest extends TestCase
     {
         $response = $this->post(route('register'), $this->registrationPayload());
 
-        $response->assertRedirect(route('dashboard', absolute: false));
-        $this->get(route('dashboard', absolute: false))->assertOk();
+        $response->assertRedirect(route('register'));
+        $response->assertSessionHas('status');
+        $this->assertAuthenticated();
     }
 
     public function test_new_users_can_register_with_code(): void
     {
         $response = $this->post(route('register'), $this->registrationPayload('PROMO2024'));
 
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('register'));
 
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
@@ -117,7 +118,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->post(route('register'), $this->registrationPayload());
 
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('register'));
         $this->assertAuthenticated();
 
         $this->assertDatabaseHas('users', [
@@ -239,7 +240,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->post(route('register'), $this->registrationPayload());
 
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('register'));
         $this->assertAuthenticated();
     }
 
