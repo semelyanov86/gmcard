@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Help;
 
+use App\Data\HelpPostData;
 use App\Http\Controllers\Controller;
 use App\Models\HelpPost;
 use App\Settings\GeneralSettings;
@@ -21,7 +22,7 @@ class HelpController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
-            'posts' => $posts,
+            'posts' => HelpPostData::collect($posts, 'array'),
         ]);
     }
 
@@ -35,8 +36,8 @@ class HelpController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
-            'post' => $post,
-            'posts' => $posts,
+            'post' => HelpPostData::from($post),
+            'posts' => HelpPostData::collect($posts, 'array'),
         ]);
     }
 }
