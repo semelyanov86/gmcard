@@ -15,4 +15,3 @@ final class HelpPostData extends Data
         public string $content,
     ) {}
 }
-
