@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -20,12 +22,14 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as BreezyTwoFacto
 use Laravel\Fortify\TwoFactorAuthenticatable as FortifyTwoFactor;
 use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
+use App\Notifications\ResetPasswordNotification as CustomResetPasswordNotification;
+use App\Notifications\VerifyEmailNotification as CustomVerifyEmailNotification;
 
 /**
  * @property MoneyValueObject|null $balance
  * @property int|null $bonus_balance
  */
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use BreezyTwoFactor;
     use FortifyTwoFactor;
@@ -34,6 +38,7 @@ class User extends Authenticatable implements FilamentUser
     use HasFactory;
 
     use HasRoles;
+    use MustVerifyEmailTrait;
     use Notifiable;
 
     /**
@@ -209,6 +214,24 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->promos()
             ->where('moderation_status', PromoModerationStatus::REJECTED->value);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
+    }
+
+    /**
+     * Send the email verification notification.
+     */
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new CustomVerifyEmailNotification());
     }
 
     /**

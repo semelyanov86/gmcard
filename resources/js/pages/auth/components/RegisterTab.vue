@@ -6,6 +6,10 @@ import PrimaryButton from '@/components/primitives/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+defineProps<{
+    status?: string;
+}>();
+
 const registerForm = useForm({
     name: '',
     email: '',
@@ -26,6 +30,9 @@ const submitRegister = () => {
 
 <template>
     <div class="w-full">
+        <div v-if="status" class="mt-6 mb-4 text-center text-sm font-medium text-green-600">
+            {{ status }}
+        </div>
         <div class="mt-5 flex flex-col items-center">
             <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
             <ul class="mt-5 flex items-center gap-8">

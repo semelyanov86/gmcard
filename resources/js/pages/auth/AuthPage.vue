@@ -28,7 +28,7 @@ const tabs = [
             <AuthTabButton v-for="tab in tabs" :key="tab.value" :tab="tab" :is-active="activeTab === tab.value" @click="activeTab = tab.value" />
         </div>
 
-        <RegisterTab v-if="activeTab === AuthTab.Register" />
+        <RegisterTab v-if="activeTab === AuthTab.Register" :status="status" />
         <LoginTab v-if="activeTab === AuthTab.Login" :status="status" :can-reset-password="canResetPassword" />
         <ResetTab v-if="activeTab === AuthTab.Reset" :status="status" />
     </AuthCustomLayout>
