@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import type { AppPageProps, ContactModel } from '@/types';
+import MobileMenu from '@/components/MobileMenu.vue';
+import NavBar from '@/components/NavBar.vue';
+import type { AppPageProps, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import '../../../css/internal/output.css';
 
@@ -9,6 +11,7 @@ const page = usePage<AppPageProps>();
 
 const props = defineProps<{
     contact: ContactModel;
+    navbarMenu: MenuData[];
 }>();
 </script>
 
@@ -17,7 +20,9 @@ const props = defineProps<{
         <Header :user-data="page.props.userData" />
 
         <section class="body h-full max-w-full overflow-hidden pb-9">
+            <MobileMenu />
             <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
+                <NavBar :menu-items="props.navbarMenu" />
                 <div class="flex w-full h-full mt-12 saleBlocks">
                     <div id="promoHiddenMob" class="bg-white py-4 rounded-3xl shadow-2xl border mb-10 hidden salesLink1">
                         <div class="">
