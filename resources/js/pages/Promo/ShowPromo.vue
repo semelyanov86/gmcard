@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
-import Header from '@/components/Header.vue';
+import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
 import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import '../../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
@@ -15,6 +17,11 @@ const props = defineProps<{
     navbarMenu: MenuData[];
     categories: CategoryModel[];
 }>();
+
+const showAddress1 = ref(false);
+const showAddress2 = ref(false);
+const showAddress3 = ref(false);
+const showAddress4 = ref(false);
 </script>
 
 <template>
@@ -311,16 +318,16 @@ const props = defineProps<{
                                 <div class="w-full h-[1px] bg-black/20"></div>
                                 <div class="p-4">
                                     <h3 class="text-2xl font-bold text-black/90">Контакты</h3>
-                                    <div id="address1" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 mt-5 cursor-pointer justify-between">
+                                    <div @click="showAddress1 = !showAddress1" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 mt-5 cursor-pointer justify-between">
                                         <div>
                                             <h3 class="font-bold text-lg">Адрес 1</h3>
                                             <p>Россия, Москва, Калужско-Рижская линия, метро Ленинский проспект</p>
                                         </div>
-                                        <svg id="showAd1" class="w-6 h-6 ml-4 stroke-4 icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                        <svg :class="['w-6 h-6 ml-4 stroke-4 icon transition-transform', showAddress1 ? 'rotate-180' : '']" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <div id="address1Block" class="opacity-90 my-5 hidden">
+                                    <div v-show="showAddress1" class="opacity-90 my-5">
                                         <div class="flex gap-2 mb-2">
                                             <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
@@ -349,16 +356,16 @@ const props = defineProps<{
                                 </div>
                                 <div class="w-full h-[1px] bg-black/20"></div>
                                 <div class="px-4">
-                                    <div id="address2" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
+                                    <div @click="showAddress2 = !showAddress2" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
                                         <div>
                                             <h3 class="font-bold text-lg">Адрес 2</h3>
                                             <p>Россия, Москва, Калужско-Рижская линия, метро Ленинский проспект</p>
                                         </div>
-                                        <svg id="showAd2" class="w-6 h-6 ml-4 stroke-4 icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                        <svg :class="['w-6 h-6 ml-4 stroke-4 icon transition-transform', showAddress2 ? 'rotate-180' : '']" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <div id="address2Block" class="opacity-90 my-5 hidden">
+                                    <div v-show="showAddress2" class="opacity-90 my-5">
                                         <div class="flex gap-2 mb-2">
                                             <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
@@ -387,16 +394,16 @@ const props = defineProps<{
                                 </div>
                                 <div class="w-full h-[1px] bg-black/20"></div>
                                 <div class="px-4">
-                                    <div id="address3" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
+                                    <div @click="showAddress3 = !showAddress3" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
                                         <div>
                                             <h3 class="font-bold text-lg">Адрес 3</h3>
                                             <p>Россия, Москва, Калужско-Рижская линия, метро Ленинский проспект</p>
                                         </div>
-                                        <svg id="showAd3" class="w-6 h-6 ml-4 stroke-4 icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                        <svg :class="['w-6 h-6 ml-4 stroke-4 icon transition-transform', showAddress3 ? 'rotate-180' : '']" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <div id="address3Block" class="opacity-90 my-5 hidden">
+                                    <div v-show="showAddress3" class="opacity-90 my-5">
                                         <div class="flex gap-2 mb-2">
                                             <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
@@ -425,16 +432,16 @@ const props = defineProps<{
                                 </div>
                                 <div class="w-full h-[1px] bg-black/20"></div>
                                 <div class="px-4">
-                                    <div id="address4" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
+                                    <div @click="showAddress4 = !showAddress4" class="bg-[#F2F2F2] p-4 flex items-center rounded-lg opacity-90 my-5 cursor-pointer justify-between">
                                         <div>
                                             <h3 class="font-bold text-lg">Адрес 4</h3>
                                             <p>Россия, Москва, Калужско-Рижская линия, метро Ленинский проспект</p>
                                         </div>
-                                        <svg id="showAd4" class="w-6 h-6 ml-4 stroke-4 icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                        <svg :class="['w-6 h-6 ml-4 stroke-4 icon transition-transform', showAddress4 ? 'rotate-180' : '']" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <div id="address4Block" class="opacity-90 my-5 hidden">
+                                    <div v-show="showAddress4" class="opacity-90 my-5">
                                         <div class="flex gap-2 mb-2">
                                             <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
@@ -465,6 +472,8 @@ const props = defineProps<{
                         </div>
                     </div>
                 </div>
+
+            <DiscountCoupons />
             </div>
         </section>
 
