@@ -81,6 +81,8 @@ const props = defineProps<{
                         </div>
                     </div>
                     <div class="w-[780px] box-border h-full rightBlocsks">
+                        <!-- Carousel -->
+                        <!--
                         <div id="indicators-carousel" class="relative w-full" data-carousel="static">
                             <div class="relative w-full h-[380px] carouselHeight overflow-hidden flex items-center rounded-t-3xl">
                                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
@@ -89,7 +91,7 @@ const props = defineProps<{
                                         <img class="w-[90px] h-[90px] specImgSale" src="/images/png/images/discount.png" alt="Скидка на товар" />
                                     </div>
                                     <div class="absolute top-0 right-10 z-50">
-                                        <img class="w-[120px] h-[70px] specImgSale object-contain" src="/images/png/images/delivery.png" alt="Скидка на товар" />
+                                        <img class="w-[120px] h-[70px] specImgSale object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
                                         <p id="sale_for_promo" class="bg-white px-2 py-1 rounded-lg font-bold text-black inline-block border border-gray-200 shadow-sm"></p>
                                     </div>
                                 </div>
@@ -122,32 +124,43 @@ const props = defineProps<{
                                 </span>
                             </button>
                         </div>
+                        -->
+                        <div class="relative w-full h-[380px] overflow-visible rounded-t-3xl">
+                            <div class="absolute -top-6 left-4 z-50">
+                                <img class="w-[90px] h-[90px] specImgSale" src="/images/png/images/discount.png" alt="Скидка на товар" />
+                            </div>
+                            <div class="absolute -top-6 right-10 z-50">
+                                <img class="w-[120px] h-[70px] specImgSale object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
+                                <p id="sale_for_promo" class="bg-white px-2 py-1 rounded-lg font-bold text-black inline-block border border-gray-200 shadow-sm"></p>
+                            </div>
+                            <img src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" class="w-full h-full object-cover rounded-t-3xl" alt="Promo" />
+                        </div>
                         <div class="bg-white rounded-b-3xl py-1 px-0 2xl:px-4">
                             <div class="flex items-center justify-between masrginsBlock m-10 mt-4 mb-5 shareBlocks">
                                 <div class="shareBlockses flex items-center gap-2">
                                     <h3 class="font-black">Поделиться</h3>
                                     <div class="flex gap-2">
                                         <a href="#" class="flex items-center bg-[#EE8208] rounded-sm px-2">
-                                            <img src="/images/png/images/ok.png" class="w-4" alt="ok" />
+                                            <img src="/images/png/sale/ok-svgrepo-com.svg" class="w-4" alt="ok" />
                                             <span class="text-sm text-white font-sans">13</span>
                                         </a>
                                         <a href="#" class="flex items-center bg-[#4460A0] rounded-sm px-2">
-                                            <img src="/images/png/images/facebook.png" class="w-4" alt="facebook" />
+                                            <img src="/images/png/sale/facebook-color-svgrepo-com.svg" class="w-4" alt="facebook" />
                                             <span class="text-sm text-white font-sans">13</span>
                                         </a>
                                         <a class="flex items-center bg-[#00AAEC] rounded-sm px-2" href="#">
-                                            <img src="/images/png/images/twitter.png" class="w-3" alt="Twitter" />
+                                            <img src="/images/png/sale/sale_twit.png" class="w-3" alt="Twitter" />
                                             <span class="text-sm text-white font-sans">13</span>
                                         </a>
                                         <a class="flex items-center bg-[#355dcd] rounded-sm px-2" href="#">
-                                            <img src="/images/png/images/mailru.png" class="w-3" alt="mailru" />
+                                            <!-- mailru icon removed -->
                                             <span class="text-sm text-white font-sans">13</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-2 btnAndLike">
                                     <div class="flex items-center gap-4 border px-2 py-1 rounded-md border-black/20 cursor-pointer hover:border-black/50">
-                                        <img src="/images/png/images/heart.png" class="w-5" alt="лайк" />
+                                        <img src="/images/png/sale/heart-svgrepo-com.svg" class="w-5" alt="лайк" />
                                         <span>1245</span>
                                     </div>
                                     <div id="showGalBlock" class="flex items-center bg-[#E5ECF0] py-2 px-2 rounded-md hover:bg-opacity-50 cursor-pointer">
@@ -168,31 +181,31 @@ const props = defineProps<{
                                 <a id="gal1" class="relative flex items-center justify-center" href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" data-fancybox="gallery" data-caption="Caption #1">
                                     <img class="w-[110px] h-[110px] moreImgAfterBtn rounded-md object-cover" src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" />
                                     <div id="galD1" class="absolute w-full h-full flex items-center justify-center rounded-md bg-black/80 hidden">
-                                        <img src="/images/png/images/maximize.png" class="w-16" alt="max" />
+                                        <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                                     </div>
                                 </a>
                                 <a id="gal2" class="relative flex items-center justify-center" href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" data-fancybox="gallery" data-caption="Caption #2">
                                     <img class="w-[110px] h-[110px] moreImgAfterBtn rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
                                     <div id="galD2" class="absolute w-full h-full flex items-center justify-center rounded-md bg-black/80 hidden">
-                                        <img src="/images/png/images/maximize.png" class="w-16" alt="max" />
+                                        <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                                     </div>
                                 </a>
                                 <a id="gal3" class="relative flex items-center justify-center" href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" data-fancybox="gallery" data-caption="Caption #1">
                                     <img class="w-[110px] h-[110px] moreImgAfterBtn rounded-md object-cover" src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" />
                                     <div id="galD3" class="absolute w-full h-full flex items-center justify-center rounded-md bg-black/80 hidden">
-                                        <img src="/images/png/images/maximize.png" class="w-16" alt="max" />
+                                        <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                                     </div>
                                 </a>
                                 <a id="gal4" class="relative flex items-center justify-center" href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" data-fancybox="gallery" data-caption="Caption #2">
                                     <img class="w-[110px] h-[110px] moreImgAfterBtn rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
                                     <div id="galD4" class="absolute w-full h-full flex items-center justify-center rounded-md bg-black/80 hidden">
-                                        <img src="/images/png/images/maximize.png" class="w-16" alt="max" />
+                                        <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                                     </div>
                                 </a>
                                 <a id="gal5" class="relative flex items-center justify-center" href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" data-fancybox="gallery" data-caption="Caption #1">
                                     <img class="w-[110px] h-[110px] moreImgAfterBtn rounded-md object-cover" src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" />
                                     <div id="galD5" class="absolute w-full h-full flex items-center justify-center rounded-md bg-black/80 hidden">
-                                        <img src="/images/png/images/maximize.png" class="w-16" alt="max" />
+                                        <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                                     </div>
                                 </a>
                             </div>
@@ -212,22 +225,22 @@ const props = defineProps<{
                             </div>
                             <ul class="flex items-center gap-2 masrginsBlock m-10 mb-5">
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/instagram.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_ins.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/ok.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_ok.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/skype.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_sky.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/twitter.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_twit.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/linkedin.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_lin.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                                 <li class="shadow-2xl rounded-full">
-                                    <a href="#"><img src="/images/png/images/youtube.png" class="w-7" alt="Соц сети" /></a>
+                                    <a href="#"><img src="/images/png/sale/sale_you.png" class="w-7" alt="Соц сети" /></a>
                                 </li>
                             </ul>
                             <div class="flex items-center gap-2 masrginsBlock m-10 mb-5">
@@ -309,7 +322,7 @@ const props = defineProps<{
                                     </div>
                                     <div id="address1Block" class="opacity-90 my-5 hidden">
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/time.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">График работы</h3>
                                                 <p>
@@ -319,14 +332,14 @@ const props = defineProps<{
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/phone.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/phone-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Телефоны</h3>
                                                 <p>800-2000-600-700</p>
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/link.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/link-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Сайт</h3>
                                                 <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
@@ -347,7 +360,7 @@ const props = defineProps<{
                                     </div>
                                     <div id="address2Block" class="opacity-90 my-5 hidden">
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/time.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">График работы</h3>
                                                 <p>
@@ -357,14 +370,14 @@ const props = defineProps<{
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/phone.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/phone-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Телефоны</h3>
                                                 <p>800-2000-600-700</p>
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/link.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/link-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Сайт</h3>
                                                 <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
@@ -385,7 +398,7 @@ const props = defineProps<{
                                     </div>
                                     <div id="address3Block" class="opacity-90 my-5 hidden">
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/time.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">График работы</h3>
                                                 <p>
@@ -395,14 +408,14 @@ const props = defineProps<{
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/phone.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/phone-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Телефоны</h3>
                                                 <p>800-2000-600-700</p>
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/link.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/link-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Сайт</h3>
                                                 <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
@@ -423,7 +436,7 @@ const props = defineProps<{
                                     </div>
                                     <div id="address4Block" class="opacity-90 my-5 hidden">
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/time.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/time-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">График работы</h3>
                                                 <p>
@@ -433,14 +446,14 @@ const props = defineProps<{
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/phone.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/phone-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Телефоны</h3>
                                                 <p>800-2000-600-700</p>
                                             </div>
                                         </div>
                                         <div class="flex gap-2 mb-2">
-                                            <img src="/images/png/images/link.png" class="w-5 h-5 mt-2" alt="time" />
+                                            <img src="/images/png/sale/link-icon.png" class="w-5 h-5 mt-2" alt="time" />
                                             <div>
                                                 <h3 class="text-lg font-bold">Сайт</h3>
                                                 <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
