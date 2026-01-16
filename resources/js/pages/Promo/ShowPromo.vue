@@ -164,7 +164,7 @@ const props = defineProps<{
                                         <span>1245</span>
                                     </div>
                                     <div id="showGalBlock" class="flex items-center bg-[#E5ECF0] py-2 px-2 rounded-md hover:bg-opacity-50 cursor-pointer">
-                                        <img src="/images/png/images/picture.png" alt="More Photo" class="w-10" />
+                                        <img src="/images/png/constructor/picture-sale.png" alt="More Photo" class="w-10" />
                                         <span class="text-xs ml-2">
                                             Показать
                                             <br />
