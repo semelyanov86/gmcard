@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Promo;
 
+use App\Actions\Category\GetCategoriesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
@@ -21,6 +22,7 @@ class ShowPromoController extends Controller
                 'phone' => $settings->phone,
             ],
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
+            'categories' => GetCategoriesAction::run(),
         ]);
     }
 }
