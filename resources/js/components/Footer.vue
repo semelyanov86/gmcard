@@ -398,9 +398,9 @@ const props = defineProps<{
                         <li class="politic relative z-30 mt-11 flex gap-4">
                             <ul class="flex gap-4">
                                 <li>
-                                    <a href="#" class="text-sm text-white opacity-60 hover:opacity-100">Политика защиты персональный информации</a>
+                                    <a :href="route('help')" class="text-sm text-white opacity-60 hover:opacity-100">Политика защиты персональный информации</a>
                                 </li>
-                                <li><a href="#" class="text-sm text-white opacity-60 hover:opacity-100">Пользовательское соглашение</a></li>
+                                <li><a :href="route('help')" class="text-sm text-white opacity-60 hover:opacity-100">Пользовательское соглашение</a></li>
                             </ul>
                         </li>
                     </ul>
