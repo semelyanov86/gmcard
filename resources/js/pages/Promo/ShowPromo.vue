@@ -7,6 +7,7 @@ import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
+import PromoImage from '@/components/promoShow/PromoImage.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -87,60 +88,7 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="w-[780px] box-border h-full rightBlocsks">
-                        <!-- Carousel -->
-                        <!--
-                        <div id="indicators-carousel" class="relative w-full" data-carousel="static">
-                            <div class="relative w-full h-[380px] carouselHeight overflow-hidden flex items-center rounded-t-3xl">
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                                    <img src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mt-6 rounded-t-3xl" alt="..." />
-                                    <div class="absolute top-0 left-10 z-50">
-                                        <img class="w-[90px] h-[90px] specImgSale" src="/images/png/images/discount.png" alt="Скидка на товар" />
-                                    </div>
-                                    <div class="absolute top-0 right-10 z-50">
-                                        <img class="w-[120px] h-[70px] specImgSale object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
-                                        <p id="sale_for_promo" class="bg-white px-2 py-1 rounded-lg font-bold text-black inline-block border border-gray-200 shadow-sm"></p>
-                                    </div>
-                                </div>
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mt-6 rounded-t-3xl" alt="..." />
-                                </div>
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="https://o-tendencii.com/uploads/posts/2023-04/thumbs/1680742575_o-tendencii-com-p-korotkaya-shuba-cheburashka-s-chem-nosit-f-17.jpg" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mt-6 rounded-t-3xl" alt="..." />
-                                </div>
-                            </div>
-                            <div class="absolute z-50 flex space-x-3 -translate-x-1/2 bottom-3 left-1/2">
-                                <button type="button" class="w-[100px] md:w-10 h-1 rounded-2xl z-50" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                                <button type="button" class="w-[100px] md:w-10 h-1 rounded-2xl z-50" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                                <button type="button" class="w-[100px] md:w-10 h-1 rounded-2xl z-50" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                            </div>
-                            <button type="button" class="absolute top-0 left-5 btnPrev z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 group-focus:outline-none">
-                                    <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                                    </svg>
-                                    <span class="sr-only">Previous</span>
-                                </span>
-                            </button>
-                            <button type="button" class="absolute top-0 right-14 btnNext z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 group-focus:outline-none">
-                                    <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                    </svg>
-                                    <span class="sr-only">Next</span>
-                                </span>
-                            </button>
-                        </div>
-                        -->
-                        <div class="relative w-full h-[380px] overflow-visible rounded-t-3xl">
-                            <div class="absolute -top-6 left-4 z-10">
-                                <img class="w-[90px] h-[90px] specImgSale" src="/images/png/images/discount.png" alt="Скидка на товар" />
-                            </div>
-                            <div class="absolute -top-6 right-10 z-10">
-                                <img class="w-[120px] h-[70px] specImgSale object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
-                                <p id="sale_for_promo" class="bg-white px-2 py-1 rounded-lg font-bold text-black inline-block border border-gray-200 shadow-sm"></p>
-                            </div>
-                            <img src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" class="w-full h-full object-cover rounded-t-3xl" alt="Promo" />
-                        </div>
+                        <PromoImage />
                         <div class="bg-white rounded-b-3xl py-1 px-0 2xl:px-4">
                             <div class="flex items-center justify-between masrginsBlock m-10 mt-4 mb-5 shareBlocks">
                                 <div class="shareBlockses flex items-center gap-2">
