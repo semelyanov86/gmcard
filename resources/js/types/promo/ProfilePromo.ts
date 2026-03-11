@@ -6,6 +6,7 @@ export interface ProfilePromo {
     type?: string | null;
     discount?: string | null;
     promoTypeId?: number | null;
+    promoTypeIcon?: string | null;
     created_at: string;
     likes_count?: number;
     rejectionReason?: string | null;
