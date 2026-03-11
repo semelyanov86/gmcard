@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 class PromoType extends Model
 {
@@ -30,7 +31,7 @@ class PromoType extends Model
         return $this->hasMany(Promo::class, 'promo_type_id');
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

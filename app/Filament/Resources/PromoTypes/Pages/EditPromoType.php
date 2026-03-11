@@ -7,12 +7,13 @@ namespace App\Filament\Resources\PromoTypes\Pages;
 use App\Filament\Resources\PromoTypes\PromoTypeResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 class EditPromoType extends EditRecord
 {
     protected static string $resource = PromoTypeResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

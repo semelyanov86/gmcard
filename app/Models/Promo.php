@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\PromoType as PromoTypeEnum;
 use App\Enums\Promo\PromoModerationStatus;
+use Override;
 
 /**
  * @property int $id
@@ -162,7 +163,7 @@ class Promo extends Model
         return $this->belongsTo(User::class, 'rejected_by');
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

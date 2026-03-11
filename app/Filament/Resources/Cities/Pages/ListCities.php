@@ -7,12 +7,13 @@ namespace App\Filament\Resources\Cities\Pages;
 use App\Filament\Resources\Cities\CityResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 class ListCities extends ListRecords
 {
     protected static string $resource = CityResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

@@ -7,12 +7,13 @@ namespace App\Filament\Resources\TariffPlans\Pages;
 use App\Filament\Resources\TariffPlans\TariffPlanResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 class ListTariffPlans extends ListRecords
 {
     protected static string $resource = TariffPlanResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

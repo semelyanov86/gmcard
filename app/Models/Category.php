@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Kalnoy\Nestedset\NodeTrait;
+use Override;
 
 /**
  * @property int $id
@@ -43,7 +44,7 @@ class Category extends Model
         return $this->belongsToMany(Promo::class, 'category_promo');
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

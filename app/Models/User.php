@@ -22,6 +22,7 @@ use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
 use App\Notifications\ResetPasswordNotification as CustomResetPasswordNotification;
 use App\Notifications\VerifyEmailNotification as CustomVerifyEmailNotification;
+use Override;
 
 /**
  * @property MoneyValueObject|null $balance
@@ -218,7 +219,7 @@ class User extends Authenticatable implements FilamentUser
      *
      * @param  string  $token
      */
-    #[\Override]
+    #[Override]
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));
@@ -227,7 +228,7 @@ class User extends Authenticatable implements FilamentUser
     /**
      * Send the email verification notification.
      */
-    #[\Override]
+    #[Override]
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmailNotification());
@@ -238,7 +239,7 @@ class User extends Authenticatable implements FilamentUser
      *
      * @return array<string, string>
      */
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

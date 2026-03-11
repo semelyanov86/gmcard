@@ -27,7 +27,7 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    #[\Override]
+    #[Override]
     public static function canCreate(): bool
     {
         $user = auth()->user();
@@ -35,7 +35,7 @@ class UserResource extends Resource
         return $user && ($user->hasRole(RoleType::SUPER_ADMIN->value) || $user->hasRole(RoleType::ADMIN->value));
     }
 
-    #[\Override]
+    #[Override]
     public static function canEdit(Model $record): bool
     {
         $user = auth()->user();
@@ -51,7 +51,7 @@ class UserResource extends Resource
         return false;
     }
 
-    #[\Override]
+    #[Override]
     public static function canDelete(Model $record): bool
     {
         return self::canEdit($record);
@@ -77,7 +77,7 @@ class UserResource extends Resource
         ];
     }
 
-    #[\Override]
+    #[Override]
     public static function getPages(): array
     {
         return [

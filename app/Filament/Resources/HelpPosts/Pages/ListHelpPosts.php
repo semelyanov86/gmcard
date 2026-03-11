@@ -7,12 +7,13 @@ namespace App\Filament\Resources\HelpPosts\Pages;
 use App\Filament\Resources\HelpPosts\HelpPostResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 class ListHelpPosts extends ListRecords
 {
     protected static string $resource = HelpPostResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

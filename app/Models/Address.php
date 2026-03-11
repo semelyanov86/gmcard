@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Casts\PhoneNumberCast;
+use Override;
 
 /**
  * @property array<string, string> $open_hours
@@ -51,7 +52,7 @@ class Address extends Model
     /**
      * @return array<string, string>
      */
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

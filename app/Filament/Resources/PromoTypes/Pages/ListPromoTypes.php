@@ -7,12 +7,13 @@ namespace App\Filament\Resources\PromoTypes\Pages;
 use App\Filament\Resources\PromoTypes\PromoTypeResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 class ListPromoTypes extends ListRecords
 {
     protected static string $resource = PromoTypeResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

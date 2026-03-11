@@ -7,12 +7,13 @@ namespace App\Filament\Resources\Addresses\Pages;
 use App\Filament\Resources\Addresses\AddressResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 class EditAddress extends EditRecord
 {
     protected static string $resource = AddressResource::class;
 
-    #[\Override]
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

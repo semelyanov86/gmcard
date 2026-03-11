@@ -9,6 +9,7 @@ use App\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Override;
 
 class Bonus extends Model
 {
@@ -45,7 +46,7 @@ class Bonus extends Model
         return $this->belongsTo(User::class, 'target_id');
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

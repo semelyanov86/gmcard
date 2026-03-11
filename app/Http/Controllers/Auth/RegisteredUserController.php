@@ -49,7 +49,7 @@ final class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        dispatch(new \App\Jobs\SendUserToVtigerJob($user->id));
+        dispatch(new SendUserToVtigerJob($user->id));
 
         Auth::login($user);
 

@@ -36,7 +36,7 @@ class Menu extends Model
         return new MenuBuilder($query);
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

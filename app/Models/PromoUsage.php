@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Override;
 
 class PromoUsage extends Model
 {
@@ -42,7 +43,7 @@ class PromoUsage extends Model
         return $this->belongsTo(User::class);
     }
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [
