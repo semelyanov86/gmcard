@@ -19,6 +19,7 @@ class PromoType extends Model
         'description',
         'is_active',
         'sort_order',
+        'icon',
     ];
 
     /**

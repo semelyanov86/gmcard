@@ -37,7 +37,6 @@ class Promo extends Model
 {
     /** @use HasFactory<\Database\Factories\PromoFactory> */
     use HasFactory;
-
     protected $fillable = [
         'name',
         'type',

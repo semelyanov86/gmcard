@@ -6,6 +6,7 @@ namespace App\Data;
 
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
+use App\Models\PromoType;
 use Spatie\LaravelData\Data;
 
 final class PromoListItemData extends Data
@@ -19,6 +20,7 @@ final class PromoListItemData extends Data
         public ?string $type,
         public ?string $discount,
         public ?int $promoTypeId,
+        public ?string $promoTypeIcon,
         public ?string $startedAt,
         public ?string $availableTill,
         public ?string $code,
@@ -33,7 +35,22 @@ final class PromoListItemData extends Data
 
     public static function fromPromo(Promo $promo): self
     {
+        $promo->loadMissing('promoType');
+
         $status = self::determineStatus($promo);
+
+        // Определяем тип промо и иконку:
+        // 1) сначала пробуем связанный promoType по promo_type_id
+        // 2) если его нет (например, для сидированных данных) — ищем по названию типа
+        $resolvedPromoType = $promo->promoType;
+        if ($resolvedPromoType === null) {
+            $resolvedPromoType = PromoType::query()
+                ->where('name', $promo->type->value)
+                ->first();
+        }
+
+        $iconPath = $resolvedPromoType?->icon;
+        $promoTypeIcon = $iconPath !== null ? asset('storage/' . $iconPath) : null;
 
         return new self(
             id: $promo->id,
@@ -43,7 +60,8 @@ final class PromoListItemData extends Data
             status: $status,
             type: $promo->type->value,
             discount: $promo->discount,
-            promoTypeId: $promo->promo_type_id,
+            promoTypeId: $promo->promo_type_id ?? $resolvedPromoType?->id,
+            promoTypeIcon: $promoTypeIcon,
             startedAt: $promo->started_at?->toIso8601String(),
             availableTill: $promo->available_till?->toIso8601String(),
             code: $promo->code,

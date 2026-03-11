@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -29,7 +27,7 @@ use App\Notifications\VerifyEmailNotification as CustomVerifyEmailNotification;
  * @property MoneyValueObject|null $balance
  * @property int|null $bonus_balance
  */
-class User extends Authenticatable implements FilamentUser, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser
 {
     use BreezyTwoFactor;
     use FortifyTwoFactor;
@@ -38,7 +36,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasFactory;
 
     use HasRoles;
-    use MustVerifyEmailTrait;
     use Notifiable;
 
     /**
