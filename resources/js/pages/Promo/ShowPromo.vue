@@ -75,7 +75,7 @@ const showPromoCode = ref(false);
                             </svg>
                             <div class="flex flex-col items-center justify-center relative">
                                 <div class="bg-[#F4D710] w-12 p-2 rounded-lg rotate-12">
-                                    <img src="/images/png/constructor/constructor_sale2_hover.png" class="w-full" alt="promo" />
+                                    <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                 </div>
                                 <h4 class="text-black/50 mt-1">Ваш промокод</h4>
                                 <h2 id="promoCodeMob" class="text-lg mt-2 font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
@@ -104,7 +104,7 @@ const showPromoCode = ref(false);
                                     </svg>
                                     <div class="flex flex-col items-center justify-center relative">
                                         <div class="bg-[#F4D710] w-12 p-2 rounded-lg rotate-12">
-                                            <img src="/images/png/constructor/constructor_sale2_hover.png" class="w-full" alt="promo" />
+                                            <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                         </div>
                                         <h4 class="text-black/50 mt-1">Ваш промокод</h4>
                                         <h2 id="promoCode" class="text-lg mt-2 font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
