@@ -12,6 +12,7 @@ class ListPromoTypes extends ListRecords
 {
     protected static string $resource = PromoTypeResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

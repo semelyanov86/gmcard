@@ -45,6 +45,7 @@ class Bonus extends Model
         return $this->belongsTo(User::class, 'target_id');
     }
 
+    #[\Override]
     protected function casts(): array
     {
         return [

@@ -12,6 +12,7 @@ class EditSubscription extends EditRecord
 {
     protected static string $resource = SubscriptionResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

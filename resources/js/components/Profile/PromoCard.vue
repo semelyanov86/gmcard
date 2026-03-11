@@ -30,12 +30,7 @@ function handleImageError(e: Event) {
         <div class="main_card promo-card relative mt-7 rounded-xl">
             <img :src="imageSrc" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
-                <img
-                    v-if="promoBadgeIcon"
-                    class="promo-card-discount-badge"
-                    :src="promoBadgeIcon"
-                    :alt="props.promo.type || 'Скидка на товар'"
-                />
+                <img v-if="promoBadgeIcon" class="promo-card-discount-badge" :src="promoBadgeIcon" :alt="props.promo.type || 'Скидка на товар'" />
             </div>
             <Tooltip id="tooltip-default" text="Скидка" :show="true" />
             <div class="down_block promo-card-content overflow-hidden rounded-b-3xl bg-white text-black">
@@ -43,12 +38,7 @@ function handleImageError(e: Event) {
                 <div class="promo-card-divider w-full bg-black opacity-10"></div>
                 <div class="flex items-center justify-between px-6 py-4">
                     <span class="promo-card-type font-bold">{{ props.promo.type }}</span>
-                    <img
-                        v-if="promoBadgeIcon"
-                        class="promo-card-icon"
-                        :src="promoBadgeIcon"
-                        :alt="props.promo.type || 'Скидка на товар'"
-                    />
+                    <img v-if="promoBadgeIcon" class="promo-card-icon" :src="promoBadgeIcon" :alt="props.promo.type || 'Скидка на товар'" />
                 </div>
             </div>
         </div>

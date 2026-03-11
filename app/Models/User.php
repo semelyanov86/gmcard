@@ -218,6 +218,7 @@ class User extends Authenticatable implements FilamentUser
      *
      * @param  string  $token
      */
+    #[\Override]
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));
@@ -226,6 +227,7 @@ class User extends Authenticatable implements FilamentUser
     /**
      * Send the email verification notification.
      */
+    #[\Override]
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmailNotification());
@@ -236,6 +238,7 @@ class User extends Authenticatable implements FilamentUser
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [

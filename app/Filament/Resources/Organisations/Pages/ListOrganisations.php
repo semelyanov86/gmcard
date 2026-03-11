@@ -12,6 +12,7 @@ class ListOrganisations extends ListRecords
 {
     protected static string $resource = OrganisationResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

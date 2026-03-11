@@ -45,6 +45,7 @@ class AdvCampaignResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

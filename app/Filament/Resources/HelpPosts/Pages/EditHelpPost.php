@@ -12,6 +12,7 @@ class EditHelpPost extends EditRecord
 {
     protected static string $resource = HelpPostResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

@@ -12,6 +12,7 @@ class EditPermission extends EditRecord
 {
     protected static string $resource = PermissionResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

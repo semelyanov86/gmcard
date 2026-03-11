@@ -12,6 +12,7 @@ class ListRoles extends ListRecords
 {
     protected static string $resource = RoleResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

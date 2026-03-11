@@ -12,6 +12,7 @@ class ListHelpPosts extends ListRecords
 {
     protected static string $resource = HelpPostResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

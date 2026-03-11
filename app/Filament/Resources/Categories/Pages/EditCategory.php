@@ -12,6 +12,7 @@ class EditCategory extends EditRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

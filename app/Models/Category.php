@@ -43,6 +43,7 @@ class Category extends Model
         return $this->belongsToMany(Promo::class, 'category_promo');
     }
 
+    #[\Override]
     protected function casts(): array
     {
         return [

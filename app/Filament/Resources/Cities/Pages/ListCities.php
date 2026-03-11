@@ -12,6 +12,7 @@ class ListCities extends ListRecords
 {
     protected static string $resource = CityResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

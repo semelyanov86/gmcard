@@ -12,6 +12,7 @@ class EditBonus extends EditRecord
 {
     protected static string $resource = BonusResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

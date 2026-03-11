@@ -45,6 +45,7 @@ class MenuResource extends Resource
         return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

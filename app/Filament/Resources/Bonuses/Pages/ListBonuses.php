@@ -12,6 +12,7 @@ class ListBonuses extends ListRecords
 {
     protected static string $resource = BonusResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

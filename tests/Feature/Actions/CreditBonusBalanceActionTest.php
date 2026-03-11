@@ -21,7 +21,7 @@ class CreditBonusBalanceActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = app(CreditBonusBalanceAction::class);
+        $this->action = resolve(CreditBonusBalanceAction::class);
     }
 
     public function test_it_sets_bonus_balance_for_new_user(): void

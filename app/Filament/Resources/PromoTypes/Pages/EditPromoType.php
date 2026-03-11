@@ -12,6 +12,7 @@ class EditPromoType extends EditRecord
 {
     protected static string $resource = PromoTypeResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

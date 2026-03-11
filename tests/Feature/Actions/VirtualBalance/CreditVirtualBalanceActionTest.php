@@ -24,7 +24,7 @@ class CreditVirtualBalanceActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = app(CreditVirtualBalanceAction::class);
+        $this->action = resolve(CreditVirtualBalanceAction::class);
     }
 
     public function test_it_creates_credit_record_and_recalculates_balance(): void

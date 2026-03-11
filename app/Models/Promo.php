@@ -37,6 +37,7 @@ class Promo extends Model
 {
     /** @use HasFactory<\Database\Factories\PromoFactory> */
     use HasFactory;
+
     protected $fillable = [
         'name',
         'type',
@@ -161,6 +162,7 @@ class Promo extends Model
         return $this->belongsTo(User::class, 'rejected_by');
     }
 
+    #[\Override]
     protected function casts(): array
     {
         return [

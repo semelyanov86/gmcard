@@ -12,6 +12,7 @@ class ListAdvCampaigns extends ListRecords
 {
     protected static string $resource = AdvCampaignResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

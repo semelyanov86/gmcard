@@ -12,6 +12,7 @@ class EditRole extends EditRecord
 {
     protected static string $resource = RoleResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

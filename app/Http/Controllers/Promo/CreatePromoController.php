@@ -77,8 +77,7 @@ class CreatePromoController extends Controller
             ? 'Акция сохранена как черновик'
             : 'Акция успешно создана и отправлена на модерацию';
 
-        return redirect()
-            ->route('promos.create')
+        return to_route('promos.create')
             ->with('success', $message);
     }
 

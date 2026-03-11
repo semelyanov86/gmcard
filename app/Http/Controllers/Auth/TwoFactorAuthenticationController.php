@@ -50,7 +50,7 @@ class TwoFactorAuthenticationController extends Controller
                 ]);
             }
 
-            $isValid = app(TwoFactorAuthenticationProvider::class)->verify(
+            $isValid = resolve(TwoFactorAuthenticationProvider::class)->verify(
                 $decryptedSecret,
                 $code
             );

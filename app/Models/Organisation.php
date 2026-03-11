@@ -60,6 +60,7 @@ class Organisation extends Model
         return $this->hasMany(Promo::class);
     }
 
+    #[\Override]
     protected function casts(): array
     {
         return [

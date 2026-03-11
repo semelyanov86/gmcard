@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import CategoriesMenu from '@/components/CategoriesMenu.vue';
-import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
+import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
@@ -36,84 +36,101 @@ const showPromoCode = ref(false);
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <div class="flex w-full h-full mt-12 saleBlocks">
-                    <div id="promoHiddenMob" class="bg-white py-4 rounded-3xl shadow-2xl border mb-10 hidden salesLink1">
+                <div class="saleBlocks mt-12 flex h-full w-full">
+                    <div id="promoHiddenMob" class="salesLink1 mb-10 hidden rounded-3xl border bg-white py-4 shadow-2xl">
                         <div class="">
-                            <p class="px-6 py-2 flex items-center">
+                            <p class="flex items-center px-6 py-2">
                                 До конца акции
                                 <img src="/images/png/images/alarm.png" class="mx-2 opacity-50" alt="time" />
                                 <strong>4 дня 15:13:15</strong>
                             </p>
-                            <div class="w-full h-[1px] bg-black/20"></div>
+                            <div class="h-[1px] w-full bg-black/20"></div>
                             <div class="px-6 py-2">
-                                <h2 class="text-lg mt-2">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
-                                <div class="flex items-center gap-2 mt-4">
+                                <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
+                                <div class="mt-4 flex items-center gap-2">
                                     <img src="/images/png/images/discount.png" class="w-12" alt="discount" />
                                     <span class="text-2xl font-bold">Скидка 50%</span>
                                 </div>
-                                <div class="flex flex-col items-start relative">
-                                    <div class="absolute left-10 bg-[#0CA563] w-[3px] h-full"></div>
+                                <div class="relative flex flex-col items-start">
+                                    <div class="absolute left-10 h-full w-[3px] bg-[#0CA563]"></div>
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
-                                    <p class="ml-14 text-sm">Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей</p>
-                                    <h4 class="ml-14 text-sm font-bold mt-4">Минимальная сумма</h4>
+                                    <p class="ml-14 text-sm">
+                                        Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
+                                    </p>
+                                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
                                     <p class="ml-14 text-sm">10 000 рублей</p>
                                 </div>
                             </div>
-                            <div class="px-3 w-full">
-                                <button id="openThePromoMob" class="bg-[#0CA563] w-full py-4 inline-block text-center mt-5 rounded-xl text-white text-lg opacity-80 hover:opacity-100">
+                            <div class="w-full px-3">
+                                <button
+                                    id="openThePromoMob"
+                                    class="mt-5 inline-block w-full rounded-xl bg-[#0CA563] py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
+                                >
                                     Получить промокод
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div id="promoCopyMob" class="bg-white py-4 rounded-3xl shadow-2xl border mb-10 hidden">
-                        <div class="w-full h-full rounded-3xl shadow-2xl py-20 px-12 relative">
-                            <svg id="closeThePromoMob" class="w-8 h-8 absolute top-4 right-4 p-1 rounded-full cursor-pointer hover:bg-black/50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div id="promoCopyMob" class="mb-10 hidden rounded-3xl border bg-white py-4 shadow-2xl">
+                        <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
+                            <svg
+                                id="closeThePromoMob"
+                                class="absolute top-4 right-4 h-8 w-8 cursor-pointer rounded-full p-1 hover:bg-black/50"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
                                 <rect width="24" height="24" fill="white" />
                                 <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <div class="flex flex-col items-center justify-center relative">
-                                <div class="bg-[#F4D710] w-12 p-2 rounded-lg rotate-12">
+                            <div class="relative flex flex-col items-center justify-center">
+                                <div class="w-12 rotate-12 rounded-lg bg-[#F4D710] p-2">
                                     <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                 </div>
-                                <h4 class="text-black/50 mt-1">Ваш промокод</h4>
-                                <h2 id="promoCodeMob" class="text-lg mt-2 font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
-                                <div class="bg-black/20 w-full h-[1px] mt-4"></div>
-                                <button id="copyBtnMob" class="w-full py-4 bg-[#F4D710] mt-4 rounded-3xl font-bold">
+                                <h4 class="mt-1 text-black/50">Ваш промокод</h4>
+                                <h2 id="promoCodeMob" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
+                                <div class="mt-4 h-[1px] w-full bg-black/20"></div>
+                                <button id="copyBtnMob" class="mt-4 w-full rounded-3xl bg-[#F4D710] py-4 font-bold">
                                     Скопировать и перейти на сайт
                                 </button>
-                                <p id="copyJustMob" class="text-black/50 mt-4 cursor-pointer">Просто скопировать</p>
-                                <p id="copyYesMob" class="py-2 px-3 shadow-xl rounded-xl absolute -bottom-10 text-center hidden">Скопировано!</p>
+                                <p id="copyJustMob" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
+                                <p id="copyYesMob" class="absolute -bottom-10 hidden rounded-xl px-3 py-2 text-center shadow-xl">Скопировано!</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[780px] box-border h-full rightBlocsks">
+                    <div class="rightBlocsks box-border h-full w-[780px]">
                         <PromoImage />
                         <PromoDescription />
                     </div>
-                    <div class="relative w-[410px] h-full leftMainBlocks">
-                        <div class="absolute w-[400px] top-12 -left-[20px] z-40 h-full leftBlocsk">
+                    <div class="leftMainBlocks relative h-full w-[410px]">
+                        <div class="leftBlocsk absolute top-12 -left-[20px] z-40 h-full w-[400px]">
                             <MainInfo v-if="!showPromoCode" @get-promo-code="showPromoCode = true" />
-                            <div v-show="showPromoCode" class="bg-white p-4 rounded-3xl shadow-2xl border salesLink2">
-                                <div class="w-full h-full rounded-3xl shadow-2xl py-20 px-12 relative">
-                                    <svg @click="showPromoCode = false" class="w-8 h-8 absolute top-4 right-4 p-1 rounded-full cursor-pointer hover:bg-black/50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
+                                <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
+                                    <svg
+                                        @click="showPromoCode = false"
+                                        class="absolute top-4 right-4 h-8 w-8 cursor-pointer rounded-full p-1 hover:bg-black/50"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
                                         <rect width="24" height="24" fill="white" />
                                         <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" />
                                         <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <div class="flex flex-col items-center justify-center relative">
-                                        <div class="bg-[#F4D710] w-12 p-2 rounded-lg rotate-12">
+                                    <div class="relative flex flex-col items-center justify-center">
+                                        <div class="w-12 rotate-12 rounded-lg bg-[#F4D710] p-2">
                                             <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                         </div>
-                                        <h4 class="text-black/50 mt-1">Ваш промокод</h4>
-                                        <h2 id="promoCode" class="text-lg mt-2 font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
-                                        <div class="bg-black/20 w-full h-[1px] mt-4"></div>
-                                        <button id="copyBtn" class="w-full py-4 bg-[#F4D710] mt-4 rounded-3xl font-bold">
+                                        <h4 class="mt-1 text-black/50">Ваш промокод</h4>
+                                        <h2 id="promoCode" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
+                                        <div class="mt-4 h-[1px] w-full bg-black/20"></div>
+                                        <button id="copyBtn" class="mt-4 w-full rounded-3xl bg-[#F4D710] py-4 font-bold">
                                             Скопировать и перейти на сайт
                                         </button>
-                                        <p id="copyJust" class="text-black/50 mt-4 cursor-pointer">Просто скопировать</p>
-                                        <p id="copyYes" class="py-2 px-3 shadow-xl rounded-xl absolute -bottom-10 text-center hidden">Скопировано!</p>
+                                        <p id="copyJust" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
+                                        <p id="copyYes" class="absolute -bottom-10 hidden rounded-xl px-3 py-2 text-center shadow-xl">Скопировано!</p>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +139,7 @@ const showPromoCode = ref(false);
                     </div>
                 </div>
 
-            <DiscountCoupons />
+                <DiscountCoupons />
             </div>
         </section>
 

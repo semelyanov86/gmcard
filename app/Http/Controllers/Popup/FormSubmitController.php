@@ -19,6 +19,6 @@ class FormSubmitController extends Controller
         $dto = PopUpData::from($request);
         $this->service->handle($dto);
 
-        return redirect()->back()->with('success', 'Заявка отправлена!');
+        return back()->with('success', 'Заявка отправлена!');
     }
 }

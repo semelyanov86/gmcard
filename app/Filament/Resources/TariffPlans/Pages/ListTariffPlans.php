@@ -12,6 +12,7 @@ class ListTariffPlans extends ListRecords
 {
     protected static string $resource = TariffPlanResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

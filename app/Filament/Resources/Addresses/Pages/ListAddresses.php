@@ -12,6 +12,7 @@ class ListAddresses extends ListRecords
 {
     protected static string $resource = AddressResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

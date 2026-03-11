@@ -139,7 +139,7 @@ class RecalculateUserBalanceActionTest extends TestCase
 
         $originalUpdatedAt = $user->updated_at;
 
-        sleep(1);
+        \Illuminate\Support\Sleep::sleep(1);
 
         RecalculateUserBalanceAction::run($user->id);
 

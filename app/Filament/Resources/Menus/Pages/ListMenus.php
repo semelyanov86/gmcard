@@ -12,6 +12,7 @@ class ListMenus extends ListRecords
 {
     protected static string $resource = MenuResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

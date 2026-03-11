@@ -30,6 +30,7 @@ class PromoType extends Model
         return $this->hasMany(Promo::class, 'promo_type_id');
     }
 
+    #[\Override]
     protected function casts(): array
     {
         return [
