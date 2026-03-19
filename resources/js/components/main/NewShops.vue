@@ -4,8 +4,8 @@
     <div class="mt-6 mb-12 flex w-full flex-col">
         <h3 class="shops-title font-bold text-white">Новые магазины</h3>
         <div class="flex flex-wrap justify-between">
-            <div class="main_card mt-11 shop-card overflow-hidden rounded-3xl bg-white shadow-md">
-                <div class="relative flex shop-card-header items-center justify-center">
+            <div class="main_card shop-card mt-11 overflow-hidden rounded-3xl bg-white shadow-md">
+                <div class="shop-card-header relative flex items-center justify-center">
                     <img src="/images/png/images/dns.png" alt="Название магазина" />
                     <img src="/images/png/images/shape.png" class="absolute top-4 right-4 h-5 w-5 cursor-pointer hover:opacity-70" alt="Лайк" />
                 </div>
@@ -13,11 +13,9 @@
                 <ul class="list-none px-3 py-5 text-center">
                     <li><a href="#" class="shops-text opacity-50">DNS</a></li>
                     <li><a href="#" class="text-xl font-bold">Кэшбек до 5.0%</a></li>
-                    <li><a href="#" class="text-sm shop-link">Подробнее</a></li>
+                    <li><a href="#" class="shop-link text-sm">Подробнее</a></li>
                     <li>
-                        <a
-                            href="#"
-                            class="mt-2 flex shop-button w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
+                        <a href="#" class="shop-button mt-2 flex w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
                             >В магазин
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-10 h-5 w-5 text-white" viewBox="0 0 512 512">
                                 <path
@@ -33,8 +31,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="main_card mt-11 shop-card overflow-hidden rounded-3xl bg-white shadow-md">
-                <div class="relative flex shop-card-header items-center justify-center">
+            <div class="main_card shop-card mt-11 overflow-hidden rounded-3xl bg-white shadow-md">
+                <div class="shop-card-header relative flex items-center justify-center">
                     <img src="/images/png/images/sitilnik.png" alt="Название магазина" />
                     <img src="/images/png/images/shape_1.png" class="absolute top-4 right-4 h-5 w-5 cursor-pointer hover:opacity-70" alt="Лайк" />
                 </div>
@@ -42,11 +40,9 @@
                 <ul class="list-none px-3 py-5 text-center">
                     <li><a href="#" class="shops-text opacity-50">Ситильник</a></li>
                     <li><a href="#" class="text-xl font-bold">Кэшбек до 4.5%</a></li>
-                    <li><a href="#" class="text-sm shop-link">Подробнее</a></li>
+                    <li><a href="#" class="shop-link text-sm">Подробнее</a></li>
                     <li>
-                        <a
-                            href="#"
-                            class="mt-2 flex shop-button w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
+                        <a href="#" class="shop-button mt-2 flex w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
                             >В магазин
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-10 h-5 w-5 text-white" viewBox="0 0 512 512">
                                 <path
@@ -62,8 +58,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="main_card mt-11 shop-card overflow-hidden rounded-3xl bg-white shadow-md">
-                <div class="relative flex shop-card-header items-center justify-center">
+            <div class="main_card shop-card mt-11 overflow-hidden rounded-3xl bg-white shadow-md">
+                <div class="shop-card-header relative flex items-center justify-center">
                     <img src="/images/png/images/djungli.png" alt="Название магазина" />
                     <img src="/images/png/images/shape.png" class="absolute top-4 right-4 h-5 w-5 cursor-pointer hover:opacity-70" alt="Лайк" />
                 </div>
@@ -71,11 +67,9 @@
                 <ul class="list-none px-3 py-5 text-center">
                     <li><a href="#" class="shops-text opacity-50">Джунгли</a></li>
                     <li><a href="#" class="text-xl font-bold">Кэшбек до 1.5%</a></li>
-                    <li><a href="#" class="text-sm shop-link">Подробнее</a></li>
+                    <li><a href="#" class="shop-link text-sm">Подробнее</a></li>
                     <li>
-                        <a
-                            href="#"
-                            class="mt-2 flex shop-button w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
+                        <a href="#" class="shop-button mt-2 flex w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
                             >В магазин
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-10 h-5 w-5 text-white" viewBox="0 0 512 512">
                                 <path
@@ -91,8 +85,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="main_card mt-11 shop-card overflow-hidden rounded-3xl bg-white shadow-md">
-                <div class="relative flex shop-card-header items-center justify-center">
+            <div class="main_card shop-card mt-11 overflow-hidden rounded-3xl bg-white shadow-md">
+                <div class="shop-card-header relative flex items-center justify-center">
                     <img src="/images/png/images/5ka.png" alt="Название магазина" />
                     <img src="/images/png/images/shape.png" class="absolute top-4 right-4 h-5 w-5 cursor-pointer hover:opacity-70" alt="Лайк" />
                 </div>
@@ -100,11 +94,9 @@
                 <ul class="list-none px-3 py-5 text-center">
                     <li><a href="#" class="shops-text opacity-50">Пятерочка</a></li>
                     <li><a href="#" class="text-xl font-bold">Кэшбек до 5.87%</a></li>
-                    <li><a href="#" class="text-sm shop-link">Подробнее</a></li>
+                    <li><a href="#" class="shop-link text-sm">Подробнее</a></li>
                     <li>
-                        <a
-                            href="#"
-                            class="mt-2 flex shop-button w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
+                        <a href="#" class="shop-button mt-2 flex w-full items-center justify-center rounded-xl pl-8 text-lg font-bold text-white"
                             >В магазин
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-10 h-5 w-5 text-white" viewBox="0 0 512 512">
                                 <path
@@ -123,9 +115,7 @@
         </div>
     </div>
     <div class="flex items-center justify-center">
-        <button class="flex shop-more-button items-center justify-center rounded-md text-center">
-            Показать еще
-        </button>
+        <button class="shop-more-button flex items-center justify-center rounded-md text-center">Показать еще</button>
     </div>
     <div class="mt-12 h-px w-full bg-white opacity-10"></div>
 </template>

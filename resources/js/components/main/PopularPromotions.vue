@@ -27,7 +27,7 @@ const loadMore = () => {
         </div>
         <div class="mt-16 flex items-center justify-center">
             <button
-                class="flex popular-more-button items-center justify-center rounded-md text-center"
+                class="popular-more-button flex items-center justify-center rounded-md text-center"
                 type="button"
                 :disabled="!hasMore"
                 @click="loadMore"

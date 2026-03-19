@@ -99,12 +99,12 @@ const showPromoCode = ref(false);
                             </div>
                         </div>
                     </div>
-                    <div class="rightBlocsks box-border h-full promo-right">
+                    <div class="rightBlocsks promo-right box-border h-full">
                         <PromoImage />
                         <PromoDescription />
                     </div>
-                    <div class="leftMainBlocks relative h-full promo-left">
-                        <div class="leftBlocsk absolute top-12 -left-[20px] z-40 h-full promo-left-inner">
+                    <div class="leftMainBlocks promo-left relative h-full">
+                        <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
                             <MainInfo v-if="!showPromoCode" @get-promo-code="showPromoCode = true" />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
                                 <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
@@ -125,8 +125,8 @@ const showPromoCode = ref(false);
                                         </div>
                                         <h4 class="mt-1 text-black/50">Ваш промокод</h4>
                                         <h2 id="promoCode" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
-                                <div class="mt-4 h-px w-full bg-black/20"></div>
-                                <button id="copyBtn" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
+                                        <div class="mt-4 h-px w-full bg-black/20"></div>
+                                        <button id="copyBtn" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
                                             Скопировать и перейти на сайт
                                         </button>
                                         <p id="copyJust" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>

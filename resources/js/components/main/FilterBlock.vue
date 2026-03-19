@@ -17,9 +17,7 @@
                         id="icons"
                     />
                 </div>
-                <div
-                    class="custom-options absolute z-50 mt-1 hidden h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
-                >
+                <div class="custom-options absolute z-50 mt-1 hidden h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg">
                     <div class="custom-option cursor-pointer bg-[#F9D914] px-4 py-2 hover:bg-gray-200">Чебоксары</div>
                     <div class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200">Москва</div>
                     <div class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200">Санкт-Петербург</div>

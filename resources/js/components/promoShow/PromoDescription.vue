@@ -36,7 +36,7 @@ const toggleGallery = () => {
                     <img src="/images/png/sale/heart-svgrepo-com.svg" class="w-5" alt="лайк" />
                     <span>1245</span>
                 </div>
-                <div @click="toggleGallery" class="promo-gallery-toggle flex cursor-pointer items-center rounded-md px-2 py-2 hover:bg-opacity-50">
+                <div @click="toggleGallery" class="promo-gallery-toggle hover:bg-opacity-50 flex cursor-pointer items-center rounded-md px-2 py-2">
                     <img src="/images/png/constructor/picture-sale.png" alt="More Photo" class="w-10" />
                     <span class="ml-2 text-xs">
                         Показать
