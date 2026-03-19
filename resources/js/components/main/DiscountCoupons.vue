@@ -172,12 +172,12 @@
 .coupon-card {
     height: 413px;
     min-height: 413px;
-    width: 263px;
+    width: 280px;
 }
 
 @media (min-width: 1024px) {
     .coupon-card {
-        width: 232px;
+        width: 260px;
     }
 }
 
