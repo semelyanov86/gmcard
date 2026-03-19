@@ -31,7 +31,7 @@ const showPromoCode = ref(false);
 
         <section class="body h-full max-w-full overflow-hidden pb-9">
             <MobileMenu />
-            <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
+            <div class="promo-container mx-auto 2xl:w-full 2xl:px-4">
                 <NavBar :menu-items="props.navbarMenu" />
 
                 <CategoriesMenu :categories="props.categories" />
@@ -44,7 +44,7 @@ const showPromoCode = ref(false);
                                 <img src="/images/png/images/alarm.png" class="mx-2 opacity-50" alt="time" />
                                 <strong>4 дня 15:13:15</strong>
                             </p>
-                            <div class="h-[1px] w-full bg-black/20"></div>
+                            <div class="h-px w-full bg-black/20"></div>
                             <div class="px-6 py-2">
                                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                                 <div class="mt-4 flex items-center gap-2">
@@ -52,7 +52,7 @@ const showPromoCode = ref(false);
                                     <span class="text-2xl font-bold">Скидка 50%</span>
                                 </div>
                                 <div class="relative flex flex-col items-start">
-                                    <div class="absolute left-10 h-full w-[3px] bg-[#0CA563]"></div>
+                                    <div class="promo-mobile-accent absolute left-10 h-full"></div>
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
                                     <p class="ml-14 text-sm">
                                         Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
@@ -64,7 +64,7 @@ const showPromoCode = ref(false);
                             <div class="w-full px-3">
                                 <button
                                     id="openThePromoMob"
-                                    class="mt-5 inline-block w-full rounded-xl bg-[#0CA563] py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
+                                    class="promo-mobile-button mt-5 inline-block w-full rounded-xl py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
                                 >
                                     Получить промокод
                                 </button>
@@ -90,8 +90,8 @@ const showPromoCode = ref(false);
                                 </div>
                                 <h4 class="mt-1 text-black/50">Ваш промокод</h4>
                                 <h2 id="promoCodeMob" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
-                                <div class="mt-4 h-[1px] w-full bg-black/20"></div>
-                                <button id="copyBtnMob" class="mt-4 w-full rounded-3xl bg-[#F4D710] py-4 font-bold">
+                                <div class="mt-4 h-px w-full bg-black/20"></div>
+                                <button id="copyBtnMob" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
                                     Скопировать и перейти на сайт
                                 </button>
                                 <p id="copyJustMob" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
@@ -99,12 +99,12 @@ const showPromoCode = ref(false);
                             </div>
                         </div>
                     </div>
-                    <div class="rightBlocsks box-border h-full w-[780px]">
+                    <div class="rightBlocsks box-border h-full promo-right">
                         <PromoImage />
                         <PromoDescription />
                     </div>
-                    <div class="leftMainBlocks relative h-full w-[410px]">
-                        <div class="leftBlocsk absolute top-12 -left-[20px] z-40 h-full w-[400px]">
+                    <div class="leftMainBlocks relative h-full promo-left">
+                        <div class="leftBlocsk absolute top-12 -left-[20px] z-40 h-full promo-left-inner">
                             <MainInfo v-if="!showPromoCode" @get-promo-code="showPromoCode = true" />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
                                 <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
@@ -125,8 +125,8 @@ const showPromoCode = ref(false);
                                         </div>
                                         <h4 class="mt-1 text-black/50">Ваш промокод</h4>
                                         <h2 id="promoCode" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
-                                        <div class="mt-4 h-[1px] w-full bg-black/20"></div>
-                                        <button id="copyBtn" class="mt-4 w-full rounded-3xl bg-[#F4D710] py-4 font-bold">
+                                <div class="mt-4 h-px w-full bg-black/20"></div>
+                                <button id="copyBtn" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
                                             Скопировать и перейти на сайт
                                         </button>
                                         <p id="copyJust" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
@@ -147,4 +147,33 @@ const showPromoCode = ref(false);
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.promo-container {
+    width: 1140px;
+}
+
+.promo-right {
+    width: 780px;
+}
+
+.promo-left {
+    width: 410px;
+}
+
+.promo-left-inner {
+    width: 400px;
+}
+
+.promo-mobile-accent {
+    width: 3px;
+    background-color: #0ca563;
+}
+
+.promo-mobile-button {
+    background-color: #0ca563;
+}
+
+.promo-mobile-copy-button {
+    background-color: #f4d710;
+}
+</style>
