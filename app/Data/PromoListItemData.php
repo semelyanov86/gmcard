@@ -39,9 +39,6 @@ final class PromoListItemData extends Data
 
         $status = self::determineStatus($promo);
 
-        // Определяем тип промо и иконку:
-        // 1) сначала пробуем связанный promoType по promo_type_id
-        // 2) если его нет (например, для сидированных данных) — ищем по названию типа
         $resolvedPromoType = $promo->promoType;
         if ($resolvedPromoType === null) {
             $resolvedPromoType = PromoType::query()
