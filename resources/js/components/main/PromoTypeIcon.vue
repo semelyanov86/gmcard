@@ -8,7 +8,7 @@ const props = defineProps<{
 }>();
 
 const src = computed(() => (props.icon && props.icon.trim() !== '' ? props.icon : ''));
-const cssClass = computed(() => props.sizeClass || 'h-[77px] w-[77px]');
+const cssClass = computed(() => props.sizeClass || 'h-16 w-16');
 </script>
 
 <template>
