@@ -22,18 +22,18 @@ const showAddress4 = ref(false);
             >
             <iframe
                 src="https://yandex.ru/map-widget/v1/?ll=37.643243%2C55.745426&rl=37.232355%2C55.867221&z=12"
-                class="h-[200px] w-full rounded-md border"
+                class="promo-map-frame w-full rounded-md border"
                 frameborder="1"
                 allowfullscreen="true"
                 style="position: relative"
             ></iframe>
         </div>
-        <div class="h-[1px] w-full bg-black/20"></div>
+        <div class="h-px w-full bg-black/20"></div>
         <div class="p-4">
             <h3 class="text-2xl font-bold text-black/90">Контакты</h3>
             <div
                 @click="showAddress1 = !showAddress1"
-                class="mt-5 flex cursor-pointer items-center justify-between rounded-lg bg-[#F2F2F2] p-4 opacity-90"
+                class="promo-address-card mt-5 flex cursor-pointer items-center justify-between rounded-lg p-4 opacity-90"
             >
                 <div>
                     <h3 class="text-lg font-bold">Адрес 1</h3>
@@ -69,16 +69,16 @@ const showAddress4 = ref(false);
                     <img src="/images/png/sale/link-icon.png" class="mt-2 h-5 w-5" alt="time" />
                     <div>
                         <h3 class="text-lg font-bold">Сайт</h3>
-                        <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
+                        <a href="#" class="promo-address-link hover:underline">goo.gl/2cSMwl</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="h-[1px] w-full bg-black/20"></div>
+        <div class="h-px w-full bg-black/20"></div>
         <div class="px-4">
             <div
                 @click="showAddress2 = !showAddress2"
-                class="my-5 flex cursor-pointer items-center justify-between rounded-lg bg-[#F2F2F2] p-4 opacity-90"
+                class="promo-address-card my-5 flex cursor-pointer items-center justify-between rounded-lg p-4 opacity-90"
             >
                 <div>
                     <h3 class="text-lg font-bold">Адрес 2</h3>
@@ -114,16 +114,16 @@ const showAddress4 = ref(false);
                     <img src="/images/png/sale/link-icon.png" class="mt-2 h-5 w-5" alt="time" />
                     <div>
                         <h3 class="text-lg font-bold">Сайт</h3>
-                        <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
+                        <a href="#" class="promo-address-link hover:underline">goo.gl/2cSMwl</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="h-[1px] w-full bg-black/20"></div>
+        <div class="h-px w-full bg-black/20"></div>
         <div class="px-4">
             <div
                 @click="showAddress3 = !showAddress3"
-                class="my-5 flex cursor-pointer items-center justify-between rounded-lg bg-[#F2F2F2] p-4 opacity-90"
+                class="promo-address-card my-5 flex cursor-pointer items-center justify-between rounded-lg p-4 opacity-90"
             >
                 <div>
                     <h3 class="text-lg font-bold">Адрес 3</h3>
@@ -159,16 +159,16 @@ const showAddress4 = ref(false);
                     <img src="/images/png/sale/link-icon.png" class="mt-2 h-5 w-5" alt="time" />
                     <div>
                         <h3 class="text-lg font-bold">Сайт</h3>
-                        <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
+                        <a href="#" class="promo-address-link hover:underline">goo.gl/2cSMwl</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="h-[1px] w-full bg-black/20"></div>
+        <div class="h-px w-full bg-black/20"></div>
         <div class="px-4">
             <div
                 @click="showAddress4 = !showAddress4"
-                class="my-5 flex cursor-pointer items-center justify-between rounded-lg bg-[#F2F2F2] p-4 opacity-90"
+                class="promo-address-card my-5 flex cursor-pointer items-center justify-between rounded-lg p-4 opacity-90"
             >
                 <div>
                     <h3 class="text-lg font-bold">Адрес 4</h3>
@@ -204,10 +204,24 @@ const showAddress4 = ref(false);
                     <img src="/images/png/sale/link-icon.png" class="mt-2 h-5 w-5" alt="time" />
                     <div>
                         <h3 class="text-lg font-bold">Сайт</h3>
-                        <a href="#" class="text-[#1463B9] hover:underline">goo.gl/2cSMwl</a>
+                        <a href="#" class="promo-address-link hover:underline">goo.gl/2cSMwl</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.promo-map-frame {
+    height: 200px;
+}
+
+.promo-address-card {
+    background-color: #f2f2f2;
+}
+
+.promo-address-link {
+    color: #1463b9;
+}
+</style>
