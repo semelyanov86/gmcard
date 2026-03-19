@@ -12,7 +12,7 @@ const emit = defineEmits<{
                 <img src="/images/png/images/alarm.png" class="mx-2 opacity-50" alt="time" />
                 <strong>4 дня 15:13:15</strong>
             </p>
-            <div class="h-[1px] w-full bg-black/20"></div>
+            <div class="h-px w-full bg-black/20"></div>
             <div class="px-6 py-2">
                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                 <div class="mt-4 flex items-center gap-2">
@@ -20,7 +20,7 @@ const emit = defineEmits<{
                     <span class="text-3xl font-bold">Скидка 50%</span>
                 </div>
                 <div class="relative flex flex-col items-start">
-                    <div class="absolute left-10 h-full w-[3px] bg-[#0CA563]"></div>
+                    <div class="promo-accent-line absolute left-10 h-full"></div>
                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
                     <p class="ml-14 text-sm">
                         Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
@@ -32,7 +32,7 @@ const emit = defineEmits<{
             <div class="w-full px-3">
                 <button
                     @click="emit('get-promo-code')"
-                    class="mt-5 inline-block w-full rounded-xl bg-[#0CA563] py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
+                    class="promo-main-button mt-5 inline-block w-full rounded-xl py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
                 >
                     Получить промокод
                 </button>
@@ -40,3 +40,14 @@ const emit = defineEmits<{
         </div>
     </div>
 </template>
+
+<style scoped>
+.promo-accent-line {
+    width: 3px;
+    background-color: #0ca563;
+}
+
+.promo-main-button {
+    background-color: #0ca563;
+}
+</style>
