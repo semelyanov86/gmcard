@@ -36,6 +36,7 @@ class ShowPromoController extends Controller
                 'description' => $promo->description,
                 'title' => $promo->name,
                 'promoTypeIcon' => $resolvedPromoType?->icon,
+                'extraConditions' => $promo->extra_conditions,
             ],
         ]);
     }

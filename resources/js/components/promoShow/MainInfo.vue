@@ -4,6 +4,7 @@ import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 defineProps<{
     promoTypeIcon?: string | null;
     promoName?: string | null;
+    extraConditions?: string | null;
 }>();
 
 const emit = defineEmits<{
@@ -38,8 +39,7 @@ const emit = defineEmits<{
                 <div class="relative flex flex-col items-start">
                     <div class="promo-accent-line absolute left-10 h-full"></div>
                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
-                    <p class="ml-14 text-sm">
-                        Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
+                    <p class="ml-14 text-sm" v-html="extraConditions">
                     </p>
                     <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
                     <p class="ml-14 text-sm">10 000 рублей</p>

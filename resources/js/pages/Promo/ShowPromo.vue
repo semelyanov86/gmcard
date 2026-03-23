@@ -26,6 +26,7 @@ const props = defineProps<{
         description?: string | null;
         title?: string | null;
         promoTypeIcon?: string | null;
+        extraConditions?: string | null;
     };
 }>();
 
@@ -122,6 +123,7 @@ const showPromoCode = ref(false);
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"
                                 :promo-name="props.promo.title"
+                                :extra-conditions="props.promo.extraConditions"
                                 @get-promo-code="showPromoCode = true"
                             />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
