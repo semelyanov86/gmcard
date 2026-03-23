@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 
 const props = defineProps<{
     img?: string | null;
     title?: string | null;
+    promoTypeIcon?: string | null;
 }>();
 
 const imageSrc = computed(() => {
@@ -18,7 +20,13 @@ const imageSrc = computed(() => {
 <template>
     <div class="promo-image relative w-full overflow-visible rounded-t-3xl">
         <div class="absolute -top-6 left-4 z-10">
-            <img class="specImgSale promo-image-badge-main" src="/images/png/images/discount.png" alt="Скидка на товар" />
+            <PromoTypeIcon
+                v-if="props.promoTypeIcon"
+                :icon="props.promoTypeIcon"
+                sizeClass="h-[90px] w-[90px]"
+                alt="Тип акции"
+            />
+            <img v-else class="specImgSale promo-image-badge-main" src="/images/png/images/discount.png" alt="Скидка на товар" />
         </div>
         <div class="absolute -top-6 right-10 z-10">
             <img class="specImgSale promo-image-badge-delivery object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />

@@ -131,8 +131,7 @@ const toggleGallery = () => {
         </div>
         <div v-show="showGallery" id="border_line" class="h-px w-full bg-black/20"></div>
         <div class="masrginsBlock m-10 flex flex-col gap-4">
-            <p v-if="props.description" class="promo-text whitespace-pre-line">
-                {{ props.description }}
+            <p v-if="props.description" v-html="props.description" class="promo-text whitespace-pre-line">
             </p>
             <p v-else class="promo-text">Описание акции отсутствует</p>
         </div>

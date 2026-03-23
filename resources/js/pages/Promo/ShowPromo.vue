@@ -9,6 +9,7 @@ import MainInfo from '@/components/promoShow/MainInfo.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
 import PromoDescription from '@/components/promoShow/PromoDescription.vue';
 import PromoImage from '@/components/promoShow/PromoImage.vue';
+import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -24,6 +25,7 @@ const props = defineProps<{
         img?: string | null;
         description?: string | null;
         title?: string | null;
+        promoTypeIcon?: string | null;
     };
 }>();
 
@@ -53,7 +55,13 @@ const showPromoCode = ref(false);
                             <div class="px-6 py-2">
                                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                                 <div class="mt-4 flex items-center gap-2">
-                                    <img src="/images/png/images/discount.png" class="w-12" alt="discount" />
+                                    <PromoTypeIcon
+                                        v-if="props.promo.promoTypeIcon"
+                                        :icon="props.promo.promoTypeIcon"
+                                        sizeClass="w-12 h-12"
+                                        alt="discount"
+                                    />
+                                    <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
                                     <span class="text-2xl font-bold">Скидка 50%</span>
                                 </div>
                                 <div class="relative flex flex-col items-start">
@@ -105,12 +113,16 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="rightBlocsks promo-right box-border h-full">
-                        <PromoImage :img="props.promo.img" :title="props.promo.title" />
+                        <PromoImage :img="props.promo.img" :title="props.promo.title" :promo-type-icon="props.promo.promoTypeIcon" />
                         <PromoDescription :description="props.promo.description" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
-                        <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
-                            <MainInfo v-if="!showPromoCode" @get-promo-code="showPromoCode = true" />
+                            <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
+                            <MainInfo
+                                v-if="!showPromoCode"
+                                :promo-type-icon="props.promo.promoTypeIcon"
+                                @get-promo-code="showPromoCode = true"
+                            />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
                                 <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
                                     <svg
