@@ -9,6 +9,7 @@ use App\Enums\SubscriptionType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Override;
 
 class Subscription extends Model
 {
@@ -36,6 +37,7 @@ class Subscription extends Model
         return $this->belongsTo(User::class);
     }
 
+    #[Override]
     protected function casts(): array
     {
         return [

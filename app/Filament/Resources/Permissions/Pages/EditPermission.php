@@ -7,11 +7,13 @@ namespace App\Filament\Resources\Permissions\Pages;
 use App\Filament\Resources\Permissions\PermissionResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 class EditPermission extends EditRecord
 {
     protected static string $resource = PermissionResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

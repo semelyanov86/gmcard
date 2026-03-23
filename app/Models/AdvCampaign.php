@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 /**
  * @property array<string, string> $action_details
@@ -40,6 +41,7 @@ class AdvCampaign extends Model
         return $this->hasMany(Promo::class);
     }
 
+    #[Override]
     protected function casts(): array
     {
         return [

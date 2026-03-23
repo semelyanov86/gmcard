@@ -49,10 +49,10 @@ final class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        SendUserToVtigerJob::dispatch($user->id);
+        dispatch(new SendUserToVtigerJob($user->id));
 
         Auth::login($user);
 
-        return redirect()->route('register')->with('status', __('auth.verification_email_sent'));
+        return to_route('register')->with('status', __('auth.verification_email_sent'));
     }
 }

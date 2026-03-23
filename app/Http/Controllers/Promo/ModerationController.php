@@ -35,8 +35,7 @@ class ModerationController extends Controller
             'message' => $request->validated()['message'] ?? null,
         ]));
 
-        return redirect()
-            ->back()
+        return back()
             ->with('success', 'Акция одобрена');
     }
 
@@ -52,8 +51,7 @@ class ModerationController extends Controller
             'message' => $request->validated()['message'] ?? null,
         ]));
 
-        return redirect()
-            ->route('profile')
+        return to_route('profile')
             ->with('success', 'Акция отклонена');
     }
 }

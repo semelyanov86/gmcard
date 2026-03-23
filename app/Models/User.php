@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -24,12 +22,13 @@ use App\Casts\MoneyValueObjectCast;
 use App\ValueObjects\MoneyValueObject;
 use App\Notifications\ResetPasswordNotification as CustomResetPasswordNotification;
 use App\Notifications\VerifyEmailNotification as CustomVerifyEmailNotification;
+use Override;
 
 /**
  * @property MoneyValueObject|null $balance
  * @property int|null $bonus_balance
  */
-class User extends Authenticatable implements FilamentUser, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser
 {
     use BreezyTwoFactor;
     use FortifyTwoFactor;
@@ -38,7 +37,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasFactory;
 
     use HasRoles;
-    use MustVerifyEmailTrait;
     use Notifiable;
 
     /**
@@ -221,6 +219,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      *
      * @param  string  $token
      */
+    #[Override]
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new CustomResetPasswordNotification($token));
@@ -229,6 +228,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Send the email verification notification.
      */
+    #[Override]
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmailNotification());
@@ -239,6 +239,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [

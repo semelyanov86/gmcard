@@ -25,7 +25,7 @@ class DebitVirtualBalanceActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = app(DebitVirtualBalanceAction::class);
+        $this->action = resolve(DebitVirtualBalanceAction::class);
     }
 
     public function test_it_creates_debit_record_and_recalculates_balance(): void

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Landing\BusinessLandingController;
 use App\Http\Controllers\Landing\UserLandingController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\Help\HelpController;
 use App\Http\Controllers\Popup\FormSubmitController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -11,11 +12,14 @@ use App\Http\Controllers\Promo\CreatePromoController;
 use App\Http\Controllers\Tariff\TariffPlansController;
 use App\Http\Controllers\Promo\ModerationController;
 use App\Http\Controllers\Promo\PromoController;
+use App\Http\Controllers\Promo\ShowPromoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
+Route::get('/main-page', [MainController::class, 'index'])->name('main');
+Route::get('/promo/show', [ShowPromoController::class, 'index'])->name('promo.show');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/help/{slug}', [HelpController::class, 'show'])->name('help.post');
 
@@ -26,9 +30,9 @@ Route::prefix('tariff')->group(function (): void {
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
 
-Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function (): void {
+Route::middleware(['auth'])->group(function (): void {
     Route::prefix('promos')->group(function (): void {
         Route::get('/create', [CreatePromoController::class, 'index'])->name('promos.create');
         Route::get('/photo-help', [CreatePromoController::class, 'photoHelp'])->name('promos.photo-help');
@@ -39,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         Route::post('/{promo}/complete', [PromoController::class, 'complete'])->name('promos.complete');
     });
 
-    Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile');
 
     Route::middleware('can:moderate promos')->group(function (): void {
         Route::get('/moderation/promos/{promo}/reject-form', [ModerationController::class, 'rejectForm'])->name('moderation.promos.reject-form');

@@ -7,11 +7,13 @@ namespace App\Filament\Resources\AdvCampaigns\Pages;
 use App\Filament\Resources\AdvCampaigns\AdvCampaignResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 class ListAdvCampaigns extends ListRecords
 {
     protected static string $resource = AdvCampaignResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

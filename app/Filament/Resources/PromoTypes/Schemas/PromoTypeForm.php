@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\PromoTypes\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -30,6 +31,14 @@ class PromoTypeForm
                 Textarea::make('description')
                     ->label('Описание')
                     ->rows(3)
+                    ->columnSpanFull(),
+                FileUpload::make('icon')
+                    ->label('Иконка типа промо')
+                    ->image()
+                    ->directory('promo-types')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->nullable()
                     ->columnSpanFull(),
                 TextInput::make('sort_order')
                     ->label('Порядок сортировки')

@@ -45,6 +45,7 @@ class CityResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

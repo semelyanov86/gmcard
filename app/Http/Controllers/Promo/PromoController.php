@@ -64,8 +64,7 @@ class PromoController extends Controller
 
         UpdatePromoAction::run($dto);
 
-        return redirect()
-            ->route('profile')
+        return to_route('profile')
             ->with('success', 'Акция обновлена');
     }
 
@@ -75,8 +74,7 @@ class PromoController extends Controller
 
         $promo->delete();
 
-        return redirect()
-            ->back()
+        return back()
             ->with('success', 'Акция удалена');
     }
 
@@ -86,8 +84,7 @@ class PromoController extends Controller
 
         CompletePromoAction::run($promo);
 
-        return redirect()
-            ->route('profile')
+        return to_route('profile')
             ->with('success', 'Акция завершена');
     }
 

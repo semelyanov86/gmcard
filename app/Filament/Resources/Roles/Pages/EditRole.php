@@ -7,11 +7,13 @@ namespace App\Filament\Resources\Roles\Pages;
 use App\Filament\Resources\Roles\RoleResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 class EditRole extends EditRecord
 {
     protected static string $resource = RoleResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [
