@@ -7,7 +7,16 @@ const props = defineProps<{
     sizeClass?: string | null;
 }>();
 
-const src = computed(() => (props.icon && props.icon.trim() !== '' ? props.icon : ''));
+const src = computed(() => {
+    const icon = props.icon?.trim();
+    if (!icon) return '';
+
+    if (icon.startsWith('http')) return icon;
+    if (icon.startsWith('/storage/')) return icon;
+    if (icon.startsWith('storage/')) return `/storage/${icon.slice('storage/'.length)}`;
+
+    return `/storage/${icon}`;
+});
 const cssClass = computed(() => props.sizeClass || 'h-16 w-16');
 </script>
 

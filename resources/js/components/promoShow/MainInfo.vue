@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
+
+defineProps<{
+    promoTypeIcon?: string | null;
+}>();
+
 const emit = defineEmits<{
     'get-promo-code': [];
 }>();
@@ -16,7 +22,13 @@ const emit = defineEmits<{
             <div class="px-6 py-2">
                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                 <div class="mt-4 flex items-center gap-2">
-                    <img src="/images/png/images/discount.png" class="w-12" alt="discount" />
+                    <PromoTypeIcon
+                        v-if="promoTypeIcon"
+                        :icon="promoTypeIcon"
+                        sizeClass="w-12 h-12"
+                        alt="discount"
+                    />
+                    <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
                     <span class="text-3xl font-bold">Скидка 50%</span>
                 </div>
                 <div class="relative flex flex-col items-start">
