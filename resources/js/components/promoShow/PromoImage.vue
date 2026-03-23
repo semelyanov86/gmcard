@@ -1,4 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue';
+
+const props = defineProps<{
+    img?: string | null;
+    title?: string | null;
+}>();
+
+const imageSrc = computed(() => {
+    if (props.img && typeof props.img === 'string' && props.img.trim() !== '') {
+        return props.img.startsWith('http') ? props.img : `/storage/${props.img}`;
+    }
+
+    return '/images/png/profile/product6.png';
+});
+</script>
 
 <template>
     <div class="promo-image relative w-full overflow-visible rounded-t-3xl">
@@ -9,7 +24,7 @@
             <img class="specImgSale promo-image-badge-delivery object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
             <p id="sale_for_promo" class="inline-block rounded-lg border border-gray-200 bg-white px-2 py-1 font-bold text-black shadow-sm"></p>
         </div>
-        <img src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" class="h-full w-full rounded-t-3xl object-cover" alt="Promo" />
+        <img :src="imageSrc" class="h-full w-full rounded-t-3xl object-cover" :alt="props.title || 'Promo'" />
     </div>
 </template>
 
