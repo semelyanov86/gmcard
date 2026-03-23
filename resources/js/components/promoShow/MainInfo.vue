@@ -3,10 +3,12 @@ import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 
 defineProps<{
     promoTypeIcon?: string | null;
+    promoName?: string | null;
 }>();
 
 const emit = defineEmits<{
     'get-promo-code': [];
+
 }>();
 </script>
 
@@ -29,7 +31,9 @@ const emit = defineEmits<{
                         alt="discount"
                     />
                     <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
-                    <span class="text-3xl font-bold">Скидка 50%</span>
+                    <span class="text-3xl font-bold">
+                        {{ promoName }}
+                    </span>
                 </div>
                 <div class="relative flex flex-col items-start">
                     <div class="promo-accent-line absolute left-10 h-full"></div>
