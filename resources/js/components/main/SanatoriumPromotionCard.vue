@@ -2,13 +2,14 @@
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { computed } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps<{
-    promo?: ProfilePromo;
+    promo: ProfilePromo;
 }>();
 
 const imageSrc = computed(() => {
-    if (props.promo?.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== '') {
+    if (props.promo.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== '') {
         return props.promo.img.startsWith('http') ? props.promo.img : `/storage/${props.promo.img}`;
     }
     return '';
@@ -16,22 +17,24 @@ const imageSrc = computed(() => {
 </script>
 
 <template>
+    <Link :href="route('promo.show', props.promo.id)" class="block">
     <div class="main_card sanatorium-card relative mx-1 mt-11 rounded-xl">
         <img :src="imageSrc" class="sanatorium-image w-full rounded-t-xl object-cover" alt="Товар" />
         <div class="absolute -top-6 left-4 z-40">
-            <PromoTypeIcon :icon="props.promo?.promoTypeIcon ?? null" />
+            <PromoTypeIcon :icon="props.promo.promoTypeIcon ?? null" />
         </div>
         <div class="down_block sanatorium-content flex flex-col justify-between rounded-b-3xl bg-white text-[#000000]">
             <h3 class="line-clamp-2 px-6 py-4">
-                {{ props.promo?.name ?? '' }}
+                {{ props.promo.name ?? '' }}
             </h3>
             <div class="h-px w-full bg-black opacity-10"></div>
             <div class="flex items-center justify-between px-6 py-4">
-                <span class="sanatorium-type font-bold">{{ props.promo?.type ?? '' }}</span>
-                <PromoTypeIcon :icon="props.promo?.promoTypeIcon ?? null" sizeClass="sanatorium-icon-small" />
+                <span class="sanatorium-type font-bold">{{ props.promo.type ?? '' }}</span>
+                <PromoTypeIcon :icon="props.promo.promoTypeIcon ?? null" sizeClass="sanatorium-icon-small" />
             </div>
         </div>
     </div>
+    </Link>
 </template>
 
 <style scoped>
