@@ -20,6 +20,11 @@ const props = defineProps<{
     contact: ContactModel;
     navbarMenu: MenuData[];
     categories: CategoryModel[];
+    promo: {
+        img?: string | null;
+        description?: string | null;
+        title?: string | null;
+    };
 }>();
 
 const showPromoCode = ref(false);
@@ -100,8 +105,8 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="rightBlocsks promo-right box-border h-full">
-                        <PromoImage />
-                        <PromoDescription />
+                        <PromoImage :img="props.promo.img" :title="props.promo.title" />
+                        <PromoDescription :description="props.promo.description" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
                         <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
