@@ -31,6 +31,7 @@ const props = defineProps<{
         salesOrderFrom?: number | null;
         availableTill?: string | null;
         hasFreeDeliveryBadge?: boolean | null;
+        socialLinks?: Record<string, string[] | null> | null;
         addresses: Array<{
             id: number;
             name: string;
@@ -132,7 +133,7 @@ const showPromoCode = ref(false);
                             :promo-type-icon="props.promo.promoTypeIcon"
                             :has-free-delivery-badge="props.promo.hasFreeDeliveryBadge"
                         />
-                        <PromoDescription :description="props.promo.description" />
+                        <PromoDescription :description="props.promo.description" :social-links="props.promo.socialLinks || null" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
                         <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">

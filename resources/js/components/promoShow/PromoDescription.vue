@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import PromoSocialLinks from '@/components/promoShow/PromoSocialLinks.vue';
 
 const props = defineProps<{
     description?: string | null;
+    socialLinks?: Record<string, string[] | null> | null;
 }>();
 
 const showGallery = ref(false);
@@ -141,30 +143,7 @@ const toggleGallery = () => {
                 frameborder="0"
             ></iframe>
         </div>
-        <ul class="masrginsBlock m-10 mb-5 flex items-center gap-2">
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_ins.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_ok.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_sky.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_twit.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_lin.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_you.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-        </ul>
-        <div class="masrginsBlock m-10 mb-5 flex items-center gap-2">
-            <span>Наш сайт:</span>
-            <a href="#" class="promo-main-link hover:underline">goo.gl/2cSMwl</a>
-        </div>
+        <PromoSocialLinks :links="props.socialLinks || null" />
     </div>
 </template>
 
@@ -202,7 +181,4 @@ const toggleGallery = () => {
     height: 400px;
 }
 
-.promo-main-link {
-    color: #1463b9;
-}
 </style>
