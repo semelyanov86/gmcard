@@ -30,6 +30,7 @@ const props = defineProps<{
         extraConditions?: string | null;
         salesOrderFrom?: number | null;
         availableTill?: string | null;
+        hasFreeDeliveryBadge?: boolean | null;
         addresses: Array<{
             id: number;
             name: string;
@@ -125,7 +126,12 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="rightBlocsks promo-right box-border h-full">
-                        <PromoImage :img="props.promo.img" :title="props.promo.name" :promo-type-icon="props.promo.promoTypeIcon" />
+                        <PromoImage
+                            :img="props.promo.img"
+                            :title="props.promo.name"
+                            :promo-type-icon="props.promo.promoTypeIcon"
+                            :has-free-delivery-badge="props.promo.hasFreeDeliveryBadge"
+                        />
                         <PromoDescription :description="props.promo.description" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">

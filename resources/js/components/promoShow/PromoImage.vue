@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import { computed } from 'vue';
+import PromoDeliveryBadge from '@/components/promoShow/PromoDeliveryBadge.vue';
 
 const props = defineProps<{
     img?: string | null;
     title?: string | null;
     promoTypeIcon?: string | null;
+    hasFreeDeliveryBadge?: boolean | null;
 }>();
 
 const imageSrc = computed(() => {
@@ -20,13 +22,17 @@ const imageSrc = computed(() => {
 <template>
     <div class="promo-image relative w-full overflow-visible rounded-t-3xl">
         <div class="absolute -top-6 left-4 z-10">
-            <PromoTypeIcon v-if="props.promoTypeIcon" :icon="props.promoTypeIcon" sizeClass="h-[90px] w-[90px]" alt="Тип акции" />
+            <PromoTypeIcon
+                v-if="props.promoTypeIcon"
+                :icon="props.promoTypeIcon"
+                sizeClass="promo-image-type-badge"
+                alt="Тип акции" />
             <img v-else class="specImgSale promo-image-badge-main" src="/images/png/images/discount.png" alt="Скидка на товар" />
         </div>
-        <div class="absolute -top-6 right-10 z-10">
-            <img class="specImgSale promo-image-badge-delivery object-contain" src="/images/png/sale/delivary.png" alt="Скидка на товар" />
-            <p id="sale_for_promo" class="inline-block rounded-lg border border-gray-200 bg-white px-2 py-1 font-bold text-black shadow-sm"></p>
-        </div>
+            <PromoDeliveryBadge
+                v-if="props.hasFreeDeliveryBadge"
+                label="Бесплатная доставка"
+            />
         <img :src="imageSrc" class="h-full w-full rounded-t-3xl object-cover" :alt="props.title || 'Promo'" />
     </div>
 </template>
@@ -37,6 +43,11 @@ const imageSrc = computed(() => {
 }
 
 .promo-image-badge-main {
+    height: 90px;
+    width: 90px;
+}
+
+.promo-image-type-badge {
     height: 90px;
     width: 90px;
 }
