@@ -30,6 +30,7 @@ final class PromoShowData extends Data
         public ?string $promoTypeIcon,
         public ?string $extraConditions,
         public ?int $salesOrderFrom,
+        public ?bool $hasFreeDeliveryBadge,
         public array $addresses,
     ) {}
 
@@ -47,6 +48,7 @@ final class PromoShowData extends Data
             promoTypeIcon: $resolvedPromoType?->icon,
             extraConditions: $promo->extra_conditions,
             salesOrderFrom: $salesOrderFrom !== null ? (int) round($salesOrderFrom->toFloat()) : null,
+            hasFreeDeliveryBadge: (bool) $promo->free_delivery,
             addresses: $promo->addresses->map(self::mapAddress(...))->values()->all(),
         );
     }
