@@ -22,11 +22,21 @@ const props = defineProps<{
     navbarMenu: MenuData[];
     categories: CategoryModel[];
     promo: {
+        id: number;
         img?: string | null;
         description?: string | null;
-        title?: string | null;
+        name: string;
         promoTypeIcon?: string | null;
         extraConditions?: string | null;
+        salesOrderFrom?: number | null;
+        addresses: Array<{
+            id: number;
+            name: string;
+            openHours?: Record<string, string> | null;
+            phone?: string | null;
+            phoneSecondary?: string | null;
+            website?: string | null;
+        }>;
     };
 }>();
 
@@ -63,16 +73,14 @@ const showPromoCode = ref(false);
                                         alt="discount"
                                     />
                                     <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
-                                    <span class="text-2xl font-bold">Скидка 50%</span>
+                                    <span class="text-2xl font-bold">{{ props.promo.name }}</span>
                                 </div>
                                 <div class="relative flex flex-col items-start">
                                     <div class="promo-mobile-accent absolute left-10 h-full"></div>
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
-                                    <p class="ml-14 text-sm">
-                                        Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
-                                    </p>
-                                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
-                                    <p class="ml-14 text-sm">10 000 рублей</p>
+                                    <p class="ml-14 text-sm">{{ props.promo.extraConditions || 'Не указаны' }}</p>
+                                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма </h4>
+                                    <p class="ml-14 text-sm">{{ props.promo.salesOrderFrom ? `${props.promo.salesOrderFrom} рублей` : 'Не указана' }}</p>
                                 </div>
                             </div>
                             <div class="w-full px-3">
@@ -114,7 +122,7 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="rightBlocsks promo-right box-border h-full">
-                        <PromoImage :img="props.promo.img" :title="props.promo.title" :promo-type-icon="props.promo.promoTypeIcon" />
+                        <PromoImage :img="props.promo.img" :title="props.promo.name" :promo-type-icon="props.promo.promoTypeIcon" />
                         <PromoDescription :description="props.promo.description" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
@@ -122,8 +130,9 @@ const showPromoCode = ref(false);
                             <MainInfo
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"
-                                :promo-name="props.promo.title"
+                                :promo-name="props.promo.name"
                                 :extra-conditions="props.promo.extraConditions"
+                                :sales-order-from="props.promo.salesOrderFrom"
                                 @get-promo-code="showPromoCode = true"
                             />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
@@ -154,7 +163,7 @@ const showPromoCode = ref(false);
                                     </div>
                                 </div>
                             </div>
-                            <PromoAddress />
+                            <PromoAddress :addresses="props.promo.addresses" />
                         </div>
                     </div>
                 </div>

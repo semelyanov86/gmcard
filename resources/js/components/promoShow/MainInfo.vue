@@ -5,6 +5,7 @@ defineProps<{
     promoTypeIcon?: string | null;
     promoName?: string | null;
     extraConditions?: string | null;
+    salesOrderFrom?: number | null;
 }>();
 
 const emit = defineEmits<{
@@ -33,16 +34,22 @@ const emit = defineEmits<{
                     />
                     <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
                     <span class="text-3xl font-bold">
-                        {{ promoName }}
+                        {{ promoName || 'Акция' }}
                     </span>
                 </div>
-                <div class="relative flex flex-col items-start">
+                <div class="relative flex min-w-0 w-full flex-col items-start">
                     <div class="promo-accent-line absolute left-10 h-full"></div>
-                    <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
-                    <p class="ml-14 text-sm" v-html="extraConditions">
+                    <h4 class="ml-14 w-[calc(100%-3.5rem)] text-sm font-bold">Дополнительные условия</h4>
+                    <p
+                        v-if="extraConditions"
+                        class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all"
+                        v-html="extraConditions"
+                    ></p>
+                    <p v-else class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all">Не указаны</p>
+                    <h4 class="mt-4 ml-14 w-[calc(100%-3.5rem)] text-sm font-bold">Минимальная сумма</h4>
+                    <p class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all">
+                        {{ salesOrderFrom ? `${salesOrderFrom} рублей` : 'Не указана' }}
                     </p>
-                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
-                    <p class="ml-14 text-sm">10 000 рублей</p>
                 </div>
             </div>
             <div class="w-full px-3">
