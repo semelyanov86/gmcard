@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { PromoAddressItem } from '@/types/promo/PromoAddressItem';
+import { ref } from 'vue';
 
 const props = defineProps<{
     addresses?: PromoAddressItem[];
@@ -23,7 +23,10 @@ const isOpened = (id: number) => openedIds.value.includes(id);
 <template>
     <div class="mt-8 rounded-3xl border bg-white py-4 shadow-2xl">
         <div class="relative overflow-hidden p-4">
-            <a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" style="color: #eee; font-size: 12px; position: absolute; top: 0px">
+            <a
+                href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
+                style="color: #eee; font-size: 12px; position: absolute; top: 0px"
+            >
                 Москва
             </a>
             <a
@@ -45,11 +48,7 @@ const isOpened = (id: number) => openedIds.value.includes(id);
             <h3 class="text-2xl font-bold text-black/90">Контакты</h3>
 
             <template v-if="props.addresses?.length">
-                <div
-                    v-for="(address, index) in props.addresses"
-                    :key="address.id"
-                    class="border-b border-black/20 last:border-b-0"
-                >
+                <div v-for="(address, index) in props.addresses" :key="address.id" class="border-b border-black/20 last:border-b-0">
                     <div
                         @click="toggleAddress(address.id)"
                         class="promo-address-card my-5 flex cursor-pointer items-center justify-between rounded-lg p-4 opacity-90"

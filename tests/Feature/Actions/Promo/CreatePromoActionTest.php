@@ -243,6 +243,7 @@ class CreatePromoActionTest extends TestCase
         $promo = Promo::findOrFail($dto->id);
 
         $this->assertNotEmpty($dto->id);
+        $this->assertNotNull($promo->sales_order_from);
         $this->assertSame('10000', $promo->sales_order_from->getMoney()->getAmount());
     }
 

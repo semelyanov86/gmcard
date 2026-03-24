@@ -10,7 +10,6 @@ defineProps<{
 
 const emit = defineEmits<{
     'get-promo-code': [];
-
 }>();
 </script>
 
@@ -26,25 +25,16 @@ const emit = defineEmits<{
             <div class="px-6 py-2">
                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                 <div class="mt-4 flex items-center gap-2">
-                    <PromoTypeIcon
-                        v-if="promoTypeIcon"
-                        :icon="promoTypeIcon"
-                        sizeClass="w-12 h-12"
-                        alt="discount"
-                    />
+                    <PromoTypeIcon v-if="promoTypeIcon" :icon="promoTypeIcon" sizeClass="w-12 h-12" alt="discount" />
                     <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
                     <span class="text-3xl font-bold">
                         {{ promoName || 'Акция' }}
                     </span>
                 </div>
-                <div class="relative flex min-w-0 w-full flex-col items-start">
+                <div class="relative flex w-full min-w-0 flex-col items-start">
                     <div class="promo-accent-line absolute left-10 h-full"></div>
                     <h4 class="ml-14 w-[calc(100%-3.5rem)] text-sm font-bold">Дополнительные условия</h4>
-                    <p
-                        v-if="extraConditions"
-                        class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all"
-                        v-html="extraConditions"
-                    ></p>
+                    <p v-if="extraConditions" class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all" v-html="extraConditions"></p>
                     <p v-else class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all">Не указаны</p>
                     <h4 class="mt-4 ml-14 w-[calc(100%-3.5rem)] text-sm font-bold">Минимальная сумма</h4>
                     <p class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all">

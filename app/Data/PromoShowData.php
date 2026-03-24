@@ -11,6 +11,16 @@ use Spatie\LaravelData\Data;
 
 final class PromoShowData extends Data
 {
+    /**
+     * @param array<int, array{
+     *     id: int,
+     *     name: string,
+     *     openHours: ?array<string, string>,
+     *     phone: ?string,
+     *     phoneSecondary: ?string,
+     *     website: ?string
+     * }> $addresses
+     */
     public function __construct(
         public int $id,
         public string $name,
@@ -25,6 +35,7 @@ final class PromoShowData extends Data
     public static function fromPromo(Promo $promo): self
     {
         $resolvedPromoType = $promo->promoType ?? PromoType::where('name', $promo->type->value)->first();
+        $salesOrderFrom = $promo->sales_order_from;
 
         return new self(
             id: $promo->id,
@@ -33,7 +44,7 @@ final class PromoShowData extends Data
             img: $promo->img,
             promoTypeIcon: $resolvedPromoType?->icon,
             extraConditions: $promo->extra_conditions,
-            salesOrderFrom: $promo->sales_order_from ? (int) round($promo->sales_order_from->toFloat()) : null,
+            salesOrderFrom: $salesOrderFrom !== null ? (int) round($salesOrderFrom->toFloat()) : null,
             addresses: $promo->addresses->map(self::mapAddress(...))->values()->all(),
         );
     }

@@ -3,13 +3,13 @@ import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
+import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
 import PromoDescription from '@/components/promoShow/PromoDescription.vue';
 import PromoImage from '@/components/promoShow/PromoImage.vue';
-import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -79,8 +79,10 @@ const showPromoCode = ref(false);
                                     <div class="promo-mobile-accent absolute left-10 h-full"></div>
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
                                     <p class="ml-14 text-sm">{{ props.promo.extraConditions || 'Не указаны' }}</p>
-                                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма </h4>
-                                    <p class="ml-14 text-sm">{{ props.promo.salesOrderFrom ? `${props.promo.salesOrderFrom} рублей` : 'Не указана' }}</p>
+                                    <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
+                                    <p class="ml-14 text-sm">
+                                        {{ props.promo.salesOrderFrom ? `${props.promo.salesOrderFrom} рублей` : 'Не указана' }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="w-full px-3">
@@ -126,7 +128,7 @@ const showPromoCode = ref(false);
                         <PromoDescription :description="props.promo.description" />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
-                            <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
+                        <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
                             <MainInfo
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"
