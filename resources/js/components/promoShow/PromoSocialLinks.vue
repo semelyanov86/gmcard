@@ -6,6 +6,7 @@ defineProps<{
 
 <template>
     <div>
+        <h3 class="masrginsBlock m-10 mb-3 text-base font-bold">Соцсети организации</h3>
         <ul class="masrginsBlock m-10 mb-5 flex items-center gap-2">
             <li v-if="links?.ins?.[0]" class="rounded-full shadow-2xl">
                 <a :href="links.ins[0]" target="_blank" rel="noopener noreferrer"><img src="/images/png/sale/sale_ins.png" class="w-7" alt="Instagram" /></a>
