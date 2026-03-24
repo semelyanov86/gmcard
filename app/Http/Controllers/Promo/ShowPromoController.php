@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Promo;
 
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Data\PromoListItemData;
 use App\Enums\MenuType;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Http\Controllers\Controller;
@@ -31,13 +32,7 @@ class ShowPromoController extends Controller
             ],
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'categories' => GetCategoriesAction::run(),
-            'promo' => [
-                'img' => $promo->img,
-                'description' => $promo->description,
-                'title' => $promo->name,
-                'promoTypeIcon' => $resolvedPromoType?->icon,
-                'extraConditions' => $promo->extra_conditions,
-            ],
+            'promo' => PromoListItemData::fromPromo($promo),
         ]);
     }
 }
