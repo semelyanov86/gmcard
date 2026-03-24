@@ -1,16 +1,68 @@
 <script setup lang="ts">
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     promoTypeIcon?: string | null;
     promoName?: string | null;
     extraConditions?: string | null;
     salesOrderFrom?: number | null;
+    availableTill?: string | null;
 }>();
 
 const emit = defineEmits<{
     'get-promo-code': [];
 }>();
+
+dayjs.extend(duration);
+
+const timeLeft = ref('Срок не указан');
+let timer: ReturnType<typeof setInterval> | null = null;
+
+function updateTimeLeft(): void {
+    if (!props.availableTill) {
+        timeLeft.value = 'Срок не указан';
+        return;
+    }
+
+    const endDate = dayjs(props.availableTill);
+    if (!endDate.isValid()) {
+        timeLeft.value = 'Срок не указан';
+        return;
+    }
+
+    const diffMs = endDate.diff(dayjs());
+    if (diffMs <= 0) {
+        timeLeft.value = 'Акция завершена';
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        return;
+    }
+
+    const diff = dayjs.duration(diffMs);
+    const days = Math.floor(diff.asDays());
+    const hours = String(diff.hours()).padStart(2, '0');
+    const minutes = String(diff.minutes()).padStart(2, '0');
+    const seconds = String(diff.seconds()).padStart(2, '0');
+
+    timeLeft.value = `${days} дн. ${hours}:${minutes}:${seconds}`;
+}
+
+onMounted(() => {
+    updateTimeLeft();
+    timer = setInterval(updateTimeLeft, 1000);
+});
+
+onUnmounted(() => {
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
+});
 </script>
 
 <template>
@@ -19,7 +71,7 @@ const emit = defineEmits<{
             <p class="flex items-center px-6 py-2">
                 До конца акции
                 <img src="/images/png/images/alarm.png" class="mx-2 opacity-50" alt="time" />
-                <strong>4 дня 15:13:15</strong>
+                <strong>{{ timeLeft }}</strong>
             </p>
             <div class="h-px w-full bg-black/20"></div>
             <div class="px-6 py-2">

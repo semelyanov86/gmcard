@@ -29,6 +29,7 @@ const props = defineProps<{
         promoTypeIcon?: string | null;
         extraConditions?: string | null;
         salesOrderFrom?: number | null;
+        availableTill?: string | null;
         addresses: Array<{
             id: number;
             name: string;
@@ -135,6 +136,7 @@ const showPromoCode = ref(false);
                                 :promo-name="props.promo.name"
                                 :extra-conditions="props.promo.extraConditions"
                                 :sales-order-from="props.promo.salesOrderFrom"
+                                :available-till="props.promo.availableTill"
                                 @get-promo-code="showPromoCode = true"
                             />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
