@@ -51,10 +51,10 @@ class PopupFormSubmitTest extends TestCase
         ]);
     }
 
-    public function test_example(): void
+    public function test_submit_form_route_disallows_get_method(): void
     {
-        $response = $this->get('/');
-        $response->assertOk();
+        $response = $this->get('/submit-form');
+        $response->assertStatus(405);
     }
 
     public function test_form_submit_successfully_creates_lead(): void
