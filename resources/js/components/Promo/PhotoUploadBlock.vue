@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue';
-import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
-import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 import { ModalLink } from '@inertiaui/modal-vue';
 import PromoCoverUpload from '@/components/Promo/PromoCoverUpload.vue';
+import PromoAdditionalPhotos from '@/components/Promo/PromoAdditionalPhotos.vue';
 
 const props = defineProps<{
     existingPhoto?: string | null;
@@ -143,61 +142,6 @@ function handleFileChange3(event: Event) {
             />
         </div>
 
-        <div class="mt-5 flex items-center justify-center">
-            <p class="cursor-pointer border-b border-dashed border-blue-600 text-base text-blue-600 max-sm:text-sm" id="moreImg">
-                Загрузить дополнительные фотографии
-            </p>
-            <ChevronDownIcon id="svgImg" custom-class="w-5 h-5 text-blue-600 cursor-pointer" />
-        </div>
-        <div id="moreImgShow" class="mt-5 flex hidden flex-col">
-            <h3 class="text-center font-bold">Дополнительные фото в карточке под спойлером (не обязательно)</h3>
-            <p class="all_text mt-5 px-0 text-center text-black/50 sm:px-16">
-                Выберите стиль отображения дополнительных фото, увидеть отличия вы сможете при просмотре акции.
-            </p>
-            <div class="add_more_photos relative mt-4 flex flex-wrap justify-between">
-                <div class="relative h-full w-32 overflow-hidden">
-                    <div class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer" />
-                    </div>
-                    <div class="relative flex h-20 w-full flex-col items-center">
-                        <input type="file" id="photoOne" class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none" />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div class="relative h-full w-32 overflow-hidden">
-                    <div class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer" />
-                    </div>
-                    <div class="relative flex h-20 w-full flex-col items-center">
-                        <input type="file" id="photoTwo" class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none" />
-                        <label for="photoTwo" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div class="relative h-full w-32 overflow-hidden">
-                    <div class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer" />
-                    </div>
-                    <div class="relative flex h-20 w-full flex-col items-center">
-                        <input type="file" id="photoThree" class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none" />
-                        <label for="photoThree" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div class="relative h-full w-32 overflow-hidden">
-                    <div class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer" />
-                    </div>
-                    <div class="relative flex h-20 w-full flex-col items-center">
-                        <input type="file" id="photoFour" class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none" />
-                        <label for="photoFour" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div
-                    id="morePhotos"
-                    class="reltive morePhoto relative flex h-50 w-32 flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed hover:border-blue-700"
-                >
-                    <span class="absolute bottom-8 px-4 text-center text-sm">Добавить еще место <br /> под фото</span>
-                </div>
-            </div>
-        </div>
+        <PromoAdditionalPhotos />
     </div>
 </template>
