@@ -8,7 +8,7 @@ const props = defineProps<{
     existingPhoto?: string | null;
 }>();
 
-const photos = defineModel<File[]>({ required: true });
+const photos = defineModel<Array<File | null>>({ required: true });
 
 const cover1File = computed<File | null>({
     get: () => photos.value[0] ?? null,
@@ -133,7 +133,7 @@ function handleFileChange3(event: Event) {
             </div>
         </div>
 
-        <div v-if="photos.length === 0 && props.existingPhoto" class="mt-5">
+        <div v-if="!photos[0] && props.existingPhoto" class="mt-5">
             <p class="text-sm text-black/60">Текущее изображение</p>
             <img
                 :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
@@ -142,6 +142,6 @@ function handleFileChange3(event: Event) {
             />
         </div>
 
-        <PromoAdditionalPhotos />
+        <PromoAdditionalPhotos v-model="photos" />
     </div>
 </template>
