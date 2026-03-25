@@ -35,13 +35,15 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             $finalPaths = [];
 
             if (array_key_exists(0, $uploadedPathsByIndex)) {
-                $finalPaths = $uploadedPathsByIndex[0];
+                $finalPaths = [$uploadedPathsByIndex[0]];
             } elseif ($dto->existingPhoto) {
-                $finalPaths = $dto->existingPhoto;
+                $finalPaths = [$dto->existingPhoto];
             }
 
             foreach ($uploadedPathsByIndex as $idx => $path) {
-                if ((int) $idx === 0) continue;
+                if ((int) $idx === 0) {
+                    continue;
+                }
                 $finalPaths[] = $path;
             }
 
@@ -118,20 +120,5 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
         }
 
         return $updateData;
-    }
-
-    private function resolvePhoto(Promo $promo, CreatePromoData $dto): ?string
-    {
-        $newPhotoPath = $this->handlePhotoUpload($dto->photos);
-
-        if ($newPhotoPath !== null) {
-            return $newPhotoPath;
-        }
-
-        if ($dto->existingPhoto) {
-            return $dto->existingPhoto;
-        }
-
-        return $promo->img;
     }
 }

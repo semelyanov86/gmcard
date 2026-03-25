@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue';
 import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
+import { onBeforeUnmount, ref } from 'vue';
 
 const isOpen = ref(false);
 const showSlot5 = ref(false);
@@ -39,55 +39,37 @@ function removePhoto(slotIndex: number) {
 
 <template>
     <div>
-        <div class="mt-5 flex items-center justify-center cursor-pointer" @click="isOpen = !isOpen">
-            <p class="border-b border-dashed border-[#2578cf] text-base text-[#2578cf] max-sm:text-sm">
-                Загрузить дополнительные фотографии
-            </p>
-            <ChevronDownIcon
-                :custom-class="`morePhotosChevron ${isOpen ? 'morePhotosChevronOpen' : ''}`"
-            />
+        <div class="mt-5 flex cursor-pointer items-center justify-center" @click="isOpen = !isOpen">
+            <p class="border-b border-dashed border-[#2578cf] text-base text-[#2578cf] max-sm:text-sm">Загрузить дополнительные фотографии</p>
+            <ChevronDownIcon :custom-class="`morePhotosChevron ${isOpen ? 'morePhotosChevronOpen' : ''}`" />
         </div>
 
         <div v-if="isOpen" class="mt-5 flex flex-col">
-            <h3 class="font-bold text-center">Дополнительные фото в карточке под спойлером (не обязательно)</h3>
-            <p class="text-center mt-5 text-black/50 px-0 sm:px-16 all_text">
+            <h3 class="text-center font-bold">Дополнительные фото в карточке под спойлером (не обязательно)</h3>
+            <p class="all_text mt-5 px-0 text-center text-black/50 sm:px-16">
                 Выберите стиль отображения дополнительных фото, увидеть отличия вы сможете при просмотре акции.
             </p>
 
-            <div class="relative flex flex-wrap justify-between mt-4">
+            <div class="relative mt-4 flex flex-wrap justify-between">
                 <!-- Слоты 1-4 -->
-                <div
-                    v-for="i in 4"
-                    :key="i"
-                    class="overflow-hidden relative additionalPhotoSlot h-full"
-                >
+                <div v-for="i in 4" :key="i" class="additionalPhotoSlot relative h-full overflow-hidden">
                     <template v-if="!previews[i - 1]">
-                        <div class="relative additionalPhotoPlaceholderBg w-full additionalPhotoThumb rounded-2xl" />
-                        <div class="flex flex-col items-center relative w-full additionalPhotoFooter">
+                        <div class="additionalPhotoPlaceholderBg additionalPhotoThumb relative w-full rounded-2xl" />
+                        <div class="additionalPhotoFooter relative flex w-full flex-col items-center">
                             <input
                                 type="file"
                                 :id="`additionalPhoto${i}`"
                                 accept="image/*"
-                                class="absolute left-0 w-full top-4 custom-file-inputs focus:outline-none focus:border-none"
+                                class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
                                 @change="(e) => handleFileChange(i - 1, e)"
                             />
-                            <label :for="`additionalPhoto${i}`" class="additionalPhotoLabel text-sm absolute top-14">
-                                Файл не выбран
-                            </label>
+                            <label :for="`additionalPhoto${i}`" class="additionalPhotoLabel absolute top-14 text-sm"> Файл не выбран </label>
                         </div>
                     </template>
 
                     <template v-else>
-                        <img
-                            :src="previews[i - 1]!"
-                            class="w-full object-cover additionalPhotoThumb rounded-2xl"
-                            alt="Фото"
-                        />
-                        <button
-                            type="button"
-                            class="absolute top-0 right-0 z-50 bg-white rounded-md hover:opacity-80"
-                            @click="removePhoto(i - 1)"
-                        >
+                        <img :src="previews[i - 1]!" class="additionalPhotoThumb w-full rounded-2xl object-cover" alt="Фото" />
+                        <button type="button" class="absolute top-0 right-0 z-50 rounded-md bg-white hover:opacity-80" @click="removePhoto(i - 1)">
                             <TrashIcon custom-class="w-7 h-7 text-black/30" />
                         </button>
                     </template>
@@ -96,41 +78,34 @@ function removePhoto(slotIndex: number) {
                 <!-- Кнопка добавить 5-й слот -->
                 <div
                     v-if="!showSlot5"
-                    class="relative flex additionalPhotoAdd flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed additionalPhotoSlot additionalPhotoAddHoverBorder"
+                    class="additionalPhotoAdd additionalPhotoSlot additionalPhotoAddHoverBorder relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed"
                     @click="showSlot5 = true"
                 >
-                    <span class="absolute bottom-8 text-sm text-center px-4">Добавить еще место <br /> под фото</span>
+                    <span class="absolute bottom-8 px-4 text-center text-sm"
+                        >Добавить еще место <br />
+                        под фото</span
+                    >
                 </div>
 
                 <!-- Слот 5 -->
-                <div v-if="showSlot5" class="overflow-hidden relative additionalPhotoSlot h-full">
+                <div v-if="showSlot5" class="additionalPhotoSlot relative h-full overflow-hidden">
                     <template v-if="!previews[4]">
-                        <div class="relative additionalPhotoPlaceholderBg w-full additionalPhotoThumb rounded-2xl" />
-                        <div class="flex flex-col items-center relative w-full additionalPhotoFooter">
+                        <div class="additionalPhotoPlaceholderBg additionalPhotoThumb relative w-full rounded-2xl" />
+                        <div class="additionalPhotoFooter relative flex w-full flex-col items-center">
                             <input
                                 type="file"
                                 id="additionalPhoto5"
                                 accept="image/*"
-                                class="absolute left-0 w-full top-4 custom-file-inputs focus:outline-none focus:border-none"
+                                class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
                                 @change="(e) => handleFileChange(4, e)"
                             />
-                            <label for="additionalPhoto5" class="additionalPhotoLabel text-sm absolute top-14">
-                                Файл не выбран
-                            </label>
+                            <label for="additionalPhoto5" class="additionalPhotoLabel absolute top-14 text-sm"> Файл не выбран </label>
                         </div>
                     </template>
 
                     <template v-else>
-                        <img
-                            :src="previews[4]!"
-                            class="w-full object-cover additionalPhotoThumb rounded-2xl"
-                            alt="Фото"
-                        />
-                        <button
-                            type="button"
-                            class="absolute top-0 right-0 z-50 bg-white rounded-md hover:opacity-80"
-                            @click="removePhoto(4)"
-                        >
+                        <img :src="previews[4]!" class="additionalPhotoThumb w-full rounded-2xl object-cover" alt="Фото" />
+                        <button type="button" class="absolute top-0 right-0 z-50 rounded-md bg-white hover:opacity-80" @click="removePhoto(4)">
                             <TrashIcon custom-class="w-7 h-7 text-black/30" />
                         </button>
                     </template>

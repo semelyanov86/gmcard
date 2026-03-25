@@ -20,6 +20,8 @@ final class PromoShowData extends Data
      *     phoneSecondary: ?string,
      *     website: ?string
      * }> $addresses
+     * @param  array<int, string>  $photos
+     * @param  array<string, mixed>|null  $socialLinks
      */
     public function __construct(
         public int $id,
@@ -48,7 +50,9 @@ final class PromoShowData extends Data
             description: $promo->description,
             availableTill: $promo->available_till?->toIso8601String(),
             img: $promo->img,
-            photos: $promo->photos->pluck('path')->values()->all(),
+            photos: $promo->photos()->pluck('path')->map(
+                static fn (mixed $path): string => is_scalar($path) ? (string) $path : '',
+            )->values()->all(),
             promoTypeIcon: $resolvedPromoType?->icon,
             extraConditions: $promo->extra_conditions,
             salesOrderFrom: $salesOrderFrom !== null ? (int) round($salesOrderFrom->toFloat()) : null,

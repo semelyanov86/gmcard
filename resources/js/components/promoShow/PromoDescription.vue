@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
 import PromoSocialLinks from '@/components/promoShow/PromoSocialLinks.vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
     description?: string | null;
@@ -67,7 +67,7 @@ const toggleGallery = () => {
             </div>
         </div>
         <div class="h-px w-full bg-black/20"></div>
-        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex flex-wrap gap-4 justify-start">
+        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex flex-wrap justify-start gap-4">
             <a
                 v-for="(photoUrl, i) in galleryPhotoUrls"
                 :key="photoUrl + i"
@@ -76,13 +76,8 @@ const toggleGallery = () => {
                 data-fancybox="gallery"
                 :data-caption="`Фото ${i + 1}`"
             >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    :src="photoUrl"
-                />
-                <div
-                    class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80"
-                >
+                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" :src="photoUrl" />
+                <div class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
                     <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                 </div>
             </a>
@@ -136,5 +131,4 @@ const toggleGallery = () => {
 .promo-youtube {
     height: 400px;
 }
-
 </style>

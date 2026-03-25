@@ -163,7 +163,10 @@ class Promo extends Model
         return $this->belongsTo(User::class, 'rejected_by');
     }
 
-    public function photos(): Promo|HasMany
+    /**
+     * @return HasMany<PromoPhoto, $this>
+     */
+    public function photos(): HasMany
     {
         return $this->hasMany(PromoPhoto::class)->orderBy('sort_order');
     }

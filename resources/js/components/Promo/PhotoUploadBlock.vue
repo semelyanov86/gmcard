@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue';
-import { ModalLink } from '@inertiaui/modal-vue';
-import PromoCoverUpload from '@/components/Promo/PromoCoverUpload.vue';
 import PromoAdditionalPhotos from '@/components/Promo/PromoAdditionalPhotos.vue';
+import PromoCoverUpload from '@/components/Promo/PromoCoverUpload.vue';
+import { ModalLink } from '@inertiaui/modal-vue';
+import { computed, onBeforeUnmount, ref } from 'vue';
 
 const props = defineProps<{
     existingPhoto?: string | null;
@@ -72,8 +72,9 @@ function handleFileChange3(event: Event) {
         <div class="flex flex-wrap justify-between gap-2">
             <PromoCoverUpload v-model="cover1File" :existing-photo="props.existingPhoto" />
 
-
-            <div class="file_uploaded files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100">
+            <div
+                class="file_uploaded files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100"
+            >
                 <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
                     <h2 v-if="!objectUrl2" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
                     <label v-if="!objectUrl2" for="uploadImage2" class="text-sm text-gray-400">Файл не выбран</label>
@@ -89,12 +90,7 @@ function handleFileChange3(event: Event) {
                         @change="handleFileChange2"
                     />
                 </div>
-                <img
-                    v-if="objectUrl2"
-                    :src="objectUrl2"
-                    alt="Обложка 2"
-                    class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover"
-                />
+                <img v-if="objectUrl2" :src="objectUrl2" alt="Обложка 2" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
 
             <div
@@ -102,7 +98,10 @@ function handleFileChange3(event: Event) {
                 :class="{ hidden: showFileUpload3 }"
                 @click="showFileUpload3 = true"
             >
-                <span class="textPlus absolute bottom-10 text-center">Добавить еще место <br /> под фото</span>
+                <span class="textPlus absolute bottom-10 text-center"
+                    >Добавить еще место <br />
+                    под фото</span
+                >
             </div>
 
             <div
@@ -124,12 +123,7 @@ function handleFileChange3(event: Event) {
                         @change="handleFileChange3"
                     />
                 </div>
-                <img
-                    v-if="objectUrl3"
-                    :src="objectUrl3"
-                    alt="Обложка 3"
-                    class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover"
-                />
+                <img v-if="objectUrl3" :src="objectUrl3" alt="Обложка 3" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
         </div>
 

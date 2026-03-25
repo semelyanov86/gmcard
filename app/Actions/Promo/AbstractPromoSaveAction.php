@@ -8,7 +8,6 @@ use App\Data\CreatePromoData;
 use App\Enums\PromoType;
 use App\Models\Address;
 use App\Models\Promo;
-use App\Models\PromoPhoto;
 use App\ValueObjects\MoneyValueObject;
 use Illuminate\Http\UploadedFile;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -16,6 +15,43 @@ use Lorisleiva\Actions\Concerns\AsAction;
 abstract readonly class AbstractPromoSaveAction
 {
     use AsAction;
+
+    final public function uploadOnePhoto(UploadedFile $file): ?string
+    {
+        $path = $file->store('promos', 'public');
+
+        return $path === false ? null : $path;
+    }
+
+    /**
+     * @param  array<int, UploadedFile|string|null>|null  $photos
+     * @return array<int, string>
+     */
+    final public function uploadPhotosIndexed(?array $photos): array
+    {
+        if (empty($photos)) {
+            return [];
+        }
+
+        $result = [];
+
+        foreach ($photos as $index => $file) {
+            if (! ($file instanceof UploadedFile)) {
+                continue;
+            }
+
+            $i = (int) $index;
+            $path = $this->uploadOnePhoto($file);
+
+            if ($path !== null) {
+                $result[$i] = $path;
+            }
+        }
+
+        ksort($result);
+
+        return $result;
+    }
 
     protected function getPromoTypeEnum(int $id): PromoType
     {
@@ -127,33 +163,5 @@ abstract readonly class AbstractPromoSaveAction
         } else {
             $promo->addresses()->detach();
         }
-    }
-
-    public function uploadOnePhoto(UploadedFile $file): ?string
-    {
-        $path = $file->store('promos', 'public');
-
-        return $path === false ? null : $path;
-    }
-
-    public function uploadPhotosIndexed(?array $photos): array
-    {
-        if (empty($photos)) return [];
-
-        $result = [];
-
-        foreach ($photos as $index => $file) {
-            if (!($file instanceof UploadedFile)) continue;
-
-            $i = (int) $index;
-            $path = $this->uploadOnePhoto($file);
-
-            if ($path !== null) {
-                $result[$i] = $path;
-            }
-        }
-
-        ksort($result);
-        return $result;
     }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import Cropper from 'cropperjs';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 
 const props = defineProps<{
     modelValue: File | null;
@@ -115,7 +115,7 @@ async function handleSave() {
     const selection = (cropper as any).getCropperSelection?.();
     if (!selection) return;
 
-    const croppedCanvas = await (selection as any).$toCanvas() as HTMLCanvasElement | null;
+    const croppedCanvas = (await (selection as any).$toCanvas()) as HTMLCanvasElement | null;
     if (!croppedCanvas) return;
 
     croppedCanvas.toBlob(
@@ -137,13 +137,7 @@ async function handleSave() {
     <div class="file_upload files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-yellow-300">
         <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
             <h2 v-if="!hasCoverPreview" class="text-sm font-bold lg:text-base">Обложка (обязательно)</h2>
-            <label
-                v-if="!hasCoverPreview && !isPendingCrop"
-                for="uploadImage"
-                class="text-sm text-gray-400"
-            >
-                Файл не выбран
-            </label>
+            <label v-if="!hasCoverPreview && !isPendingCrop" for="uploadImage" class="text-sm text-gray-400"> Файл не выбран </label>
             <input
                 type="file"
                 id="uploadImage"
@@ -157,12 +151,7 @@ async function handleSave() {
             />
         </div>
 
-        <img
-            v-if="coverPreviewUrl"
-            :src="coverPreviewUrl"
-            alt="Обложка"
-            class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover"
-        />
+        <img v-if="coverPreviewUrl" :src="coverPreviewUrl" alt="Обложка" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
 
         <Teleport to="body">
             <div
@@ -211,18 +200,10 @@ async function handleSave() {
                     <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
                         <span class="text-base">Выберите длинное изображение</span>
                         <div class="flex gap-4">
-                            <button
-                                class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20"
-                                type="button"
-                                @click="cleanupPending"
-                            >
+                            <button class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20" type="button" @click="cleanupPending">
                                 Отмена
                             </button>
-                            <button
-                                class="rounded-md bg-blue-700 px-10 py-2 text-white hover:bg-blue-800"
-                                type="button"
-                                @click="handleSave"
-                            >
+                            <button class="rounded-md bg-blue-700 px-10 py-2 text-white hover:bg-blue-800" type="button" @click="handleSave">
                                 Сохранить
                             </button>
                         </div>
@@ -232,4 +213,3 @@ async function handleSave() {
         </Teleport>
     </div>
 </template>
-

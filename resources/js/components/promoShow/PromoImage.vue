@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
-import { computed } from 'vue';
 import PromoDeliveryBadge from '@/components/promoShow/PromoDeliveryBadge.vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
     img?: string | null;
@@ -22,17 +22,10 @@ const imageSrc = computed(() => {
 <template>
     <div class="promo-image relative w-full overflow-visible rounded-t-3xl">
         <div class="absolute -top-6 left-4 z-10">
-            <PromoTypeIcon
-                v-if="props.promoTypeIcon"
-                :icon="props.promoTypeIcon"
-                sizeClass="promo-image-type-badge"
-                alt="Тип акции" />
+            <PromoTypeIcon v-if="props.promoTypeIcon" :icon="props.promoTypeIcon" sizeClass="promo-image-type-badge" alt="Тип акции" />
             <img v-else class="specImgSale promo-image-badge-main" src="/images/png/images/discount.png" alt="Скидка на товар" />
         </div>
-            <PromoDeliveryBadge
-                v-if="props.hasFreeDeliveryBadge"
-                label="Бесплатная доставка"
-            />
+        <PromoDeliveryBadge v-if="props.hasFreeDeliveryBadge" label="Бесплатная доставка" />
         <img :src="imageSrc" class="h-full w-full rounded-t-3xl object-cover" :alt="props.title || 'Promo'" />
     </div>
 </template>
