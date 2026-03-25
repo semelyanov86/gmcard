@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import PromoSocialLinks from '@/components/promoShow/PromoSocialLinks.vue';
 
 const props = defineProps<{
     description?: string | null;
     socialLinks?: Record<string, string[] | null> | null;
+    photos?: string[] | null;
 }>();
 
 const showGallery = ref(false);
+
+function resolvePhotoUrl(path: string) {
+    return path.startsWith('http') ? path : `/storage/${path}`;
+}
+
+const galleryPhotoUrls = computed(() => (props.photos ?? []).slice(1).map(resolvePhotoUrl));
 
 const toggleGallery = () => {
     showGallery.value = !showGallery.value;
@@ -60,73 +67,22 @@ const toggleGallery = () => {
             </div>
         </div>
         <div class="h-px w-full bg-black/20"></div>
-        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex justify-between">
+        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex flex-wrap gap-4 justify-start">
             <a
-                id="gal1"
+                v-for="(photoUrl, i) in galleryPhotoUrls"
+                :key="photoUrl + i"
                 class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
+                :href="photoUrl"
                 data-fancybox="gallery"
-                data-caption="Caption #1"
+                :data-caption="`Фото ${i + 1}`"
             >
                 <img
                     class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
+                    :src="photoUrl"
                 />
-                <div id="galD1" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal2"
-                class="relative flex items-center justify-center"
-                href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/"
-                data-fancybox="gallery"
-                data-caption="Caption #2"
-            >
-                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
-                <div id="galD2" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal3"
-                class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                data-fancybox="gallery"
-                data-caption="Caption #1"
-            >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-мith-devushki-shuba-ulybka-podarok-726076.jpg"
-                />
-                <div id="galD3" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal4"
-                class="relative flex items-center justify-center"
-                href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/"
-                data-fancybox="gallery"
-                data-caption="Caption #2"
-            >
-                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
-                <div id="galD4" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal5"
-                class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                data-fancybox="gallery"
-                data-caption="Caption #1"
-            >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                />
-                <div id="galD5" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
+                <div
+                    class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80"
+                >
                     <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                 </div>
             </a>

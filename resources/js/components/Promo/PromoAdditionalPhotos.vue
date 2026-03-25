@@ -6,6 +6,8 @@ import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
 const isOpen = ref(false);
 const showSlot5 = ref(false);
 
+const photos = defineModel<Array<File | null>>({ required: true });
+
 const previews = ref<Array<string | null>>(Array(5).fill(null));
 
 onBeforeUnmount(() => {
@@ -21,12 +23,16 @@ function handleFileChange(slotIndex: number, event: Event) {
 
     if (previews.value[slotIndex]) URL.revokeObjectURL(previews.value[slotIndex]!);
     previews.value[slotIndex] = URL.createObjectURL(file);
+    const targetIndex = 3 + slotIndex;
+    photos.value[targetIndex] = file;
     input.value = '';
 }
 
 function removePhoto(slotIndex: number) {
     if (previews.value[slotIndex]) URL.revokeObjectURL(previews.value[slotIndex]!);
     previews.value[slotIndex] = null;
+    const targetIndex = 3 + slotIndex;
+    photos.value[targetIndex] = null;
     if (slotIndex === 4) showSlot5.value = false;
 }
 </script>
@@ -172,6 +178,5 @@ function removePhoto(slotIndex: number) {
 
 .morePhotosChevronOpen {
     transform: rotate(180deg);
-    /* Используется transition из базового класса */
 }
 </style>
