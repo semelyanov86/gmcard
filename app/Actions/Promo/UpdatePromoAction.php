@@ -30,6 +30,34 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 
             $updateData = $this->buildUpdateData($promo, $dto);
 
+            $uploadedPathsByIndex = $this->uploadPhotosIndexed($dto->photos);
+
+            $finalPaths = [];
+
+            if (array_key_exists(0, $uploadedPathsByIndex)) {
+                $finalPaths = $uploadedPathsByIndex[0];
+            } elseif ($dto->existingPhoto) {
+                $finalPaths = $dto->existingPhoto;
+            }
+
+            foreach ($uploadedPathsByIndex as $idx => $path) {
+                if ((int) $idx === 0) continue;
+                $finalPaths[] = $path;
+            }
+
+            $promo->photos()->delete();
+
+            foreach ($finalPaths as $i => $path) {
+                $promo->photos()->create([
+                    'path' => $path,
+                    'sort_order' => (int) $i,
+                ]);
+            }
+
+            if (! empty($finalPaths)) {
+                $updateData['img'] = $finalPaths[0];
+            }
+
             $promo->fill($updateData)->save();
 
             $this->syncRelations($promo, $dto);
@@ -71,7 +99,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => $this->resolvePhoto($promo, $dto),
+            'img' => $promo->img,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
         ];
 
