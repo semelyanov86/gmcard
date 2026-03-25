@@ -27,6 +27,7 @@ final class PromoShowData extends Data
         public string $description,
         public ?string $availableTill,
         public ?string $img,
+        public array $photos,
         public ?string $promoTypeIcon,
         public ?string $extraConditions,
         public ?int $salesOrderFrom,
@@ -37,6 +38,7 @@ final class PromoShowData extends Data
 
     public static function fromPromo(Promo $promo): self
     {
+        $promo->loadMissing(['photos:id,promo_id,path,sort_order']);
         $resolvedPromoType = $promo->promoType ?? PromoType::where('name', $promo->type->value)->first();
         $salesOrderFrom = $promo->sales_order_from;
 
@@ -46,6 +48,7 @@ final class PromoShowData extends Data
             description: $promo->description,
             availableTill: $promo->available_till?->toIso8601String(),
             img: $promo->img,
+            photos: $promo->photos->pluck('path')->values()->all(),
             promoTypeIcon: $resolvedPromoType?->icon,
             extraConditions: $promo->extra_conditions,
             salesOrderFrom: $salesOrderFrom !== null ? (int) round($salesOrderFrom->toFloat()) : null,
