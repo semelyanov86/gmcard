@@ -37,11 +37,13 @@ abstract readonly class AbstractPromoSaveAction
 
         foreach ($photos as $index => $file) {
             $i = (int) $index;
+
             if ($file instanceof UploadedFile) {
                 $path = $this->uploadOnePhoto($file);
                 if ($path !== null) {
                     $result[$i] = $path;
                 }
+
                 continue;
             }
 
