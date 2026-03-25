@@ -105,7 +105,7 @@ const form = useForm({
     city_ids: [] as number[],
     youtube_url: '',
     social_links: {} as Record<string, string[]>,
-    photos: [] as File[],
+    photos: [] as Array<File | null>,
     agree_to_terms: false,
 });
 

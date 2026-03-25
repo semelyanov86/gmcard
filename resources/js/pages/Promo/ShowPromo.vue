@@ -24,6 +24,7 @@ const props = defineProps<{
     promo: {
         id: number;
         img?: string | null;
+        photos?: string[] | null;
         description?: string | null;
         name: string;
         promoTypeIcon?: string | null;
@@ -133,7 +134,11 @@ const showPromoCode = ref(false);
                             :promo-type-icon="props.promo.promoTypeIcon"
                             :has-free-delivery-badge="props.promo.hasFreeDeliveryBadge"
                         />
-                        <PromoDescription :description="props.promo.description" :social-links="props.promo.socialLinks || null" />
+                        <PromoDescription
+                            :description="props.promo.description"
+                            :social-links="props.promo.socialLinks || null"
+                            :photos="props.promo.photos || null"
+                        />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
                         <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">

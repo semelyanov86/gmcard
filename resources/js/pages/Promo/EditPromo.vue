@@ -118,7 +118,7 @@ const form = useForm({
     city_ids: props.promo.city_ids ?? [],
     youtube_url: props.promo.youtube_url ?? '',
     social_links: props.promo.social_links ?? {},
-    photos: [] as File[],
+    photos: [] as Array<File | null>,
     existing_photo: props.promo.existing_photo ?? null,
     agree_to_terms: true,
     is_draft: props.promo.is_draft ?? false,
@@ -149,7 +149,7 @@ const conditionsModalOpen = ref(false);
 watch(
     () => form.photos,
     (photos) => {
-        if (photos && photos.length > 0) {
+        if (photos && photos[0]) {
             form.existing_photo = null;
         }
     },
