@@ -100,6 +100,7 @@ onUnmounted(() => {
             <p v-if="props.description" v-html="props.description" class="promo-text whitespace-pre-line"></p>
             <p v-else class="promo-text">Описание акции отсутствует</p>
         </div>
+        <!--
         <div class="youtubeBlocks promo-youtube w-full p-10 pr-24 pb-5">
             <iframe
                 class="box-border h-full w-full overflow-hidden rounded-lg"
@@ -107,6 +108,7 @@ onUnmounted(() => {
                 frameborder="0"
             ></iframe>
         </div>
+        -->
         <PromoSocialLinks :links="props.socialLinks || null" />
     </div>
 </template>
