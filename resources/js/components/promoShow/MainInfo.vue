@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
+import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
+import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { onMounted, onUnmounted, ref } from 'vue';
-import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
-import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
 
 const props = defineProps<{
     promoTypeIcon?: string | null;
@@ -97,10 +97,7 @@ onUnmounted(() => {
                 </div>
             </div>
             <div class="w-full px-3">
-                <PromoTypeActionButton
-                    :promo-type-icon="promoTypeIcon"
-                    @get-promo-code="emit('get-promo-code')"
-                />
+                <PromoTypeActionButton :promo-type-icon="promoTypeIcon" @get-promo-code="emit('get-promo-code')" />
             </div>
         </div>
     </div>

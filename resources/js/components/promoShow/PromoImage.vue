@@ -38,12 +38,7 @@ const imageSrc = computed(() => {
         </div>
         <PromoDeliveryBadge v-if="props.hasFreeDeliveryBadge" label="Бесплатная доставка" />
 
-        <img
-            data-role="promo-main-gallery-image"
-            :src="imageSrc"
-            class="h-full w-full rounded-t-3xl object-cover"
-            :alt="props.title || 'Promo'"
-        />
+        <img data-role="promo-main-gallery-image" :src="imageSrc" class="h-full w-full rounded-t-3xl object-cover" :alt="props.title || 'Promo'" />
     </div>
 </template>
 

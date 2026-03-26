@@ -54,4 +54,3 @@ const bgClass = computed(() => {
     background-color: #0ca563;
 }
 </style>
-

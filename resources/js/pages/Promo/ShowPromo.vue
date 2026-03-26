@@ -7,11 +7,11 @@ import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
-import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
-import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
 import PromoDescription from '@/components/promoShow/PromoDescription.vue';
 import PromoImage from '@/components/promoShow/PromoImage.vue';
+import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
+import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -92,10 +92,7 @@ const showPromoCode = ref(false);
                                 </div>
                             </div>
                             <div class="w-full px-3">
-                                <PromoTypeActionButton
-                                    id="openThePromoMob"
-                                    :promo-type-icon="props.promo.promoTypeIcon"
-                                />
+                                <PromoTypeActionButton id="openThePromoMob" :promo-type-icon="props.promo.promoTypeIcon" />
                             </div>
                         </div>
                     </div>

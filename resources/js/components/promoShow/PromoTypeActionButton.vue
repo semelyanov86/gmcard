@@ -59,11 +59,7 @@ function onClick(e: MouseEvent) {
     <button
         :id="props.id"
         :disabled="props.disabled"
-        :class="[
-            'mt-5 inline-block w-full rounded-xl py-4 text-center text-lg opacity-80 hover:opacity-100',
-            bgClass,
-            textClass,
-        ]"
+        :class="['mt-5 inline-block w-full rounded-xl py-4 text-center text-lg opacity-80 hover:opacity-100', bgClass, textClass]"
         @click="onClick"
     >
         {{ label }}
@@ -95,4 +91,3 @@ function onClick(e: MouseEvent) {
     background-color: #0ca563;
 }
 </style>
-
