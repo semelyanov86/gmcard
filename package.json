@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-vue": "^7.3.1",
+        "@fancyapps/ui": "^6.1.13",
         "@inertiajs/vue3": "^2.0.0",
         "@inertiaui/modal-vue": "^0.21.0",
         "@splidejs/vue-splide": "^0.6.12",
