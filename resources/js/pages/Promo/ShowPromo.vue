@@ -130,6 +130,7 @@ const showPromoCode = ref(false);
                     <div class="rightBlocsks promo-right box-border h-full">
                         <PromoImage
                             :img="props.promo.img"
+                            :photos="props.promo.photos || null"
                             :title="props.promo.name"
                             :promo-type-icon="props.promo.promoTypeIcon"
                             :has-free-delivery-badge="props.promo.hasFreeDeliveryBadge"
