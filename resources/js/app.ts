@@ -1,6 +1,7 @@
 import '../css/app.css';
 
 import '@splidejs/splide/dist/css/splide.min.css';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { renderApp } from '@inertiaui/modal-vue';
