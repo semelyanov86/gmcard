@@ -65,17 +65,44 @@ function toggleMobileMenu() {
                     <div v-show="servicesDropdownOpen" @click="closeServicesDropdown" class="fixed inset-0 z-40"></div>
                     <div
                         v-show="servicesDropdownOpen"
-                        class="border-brand-blue-light absolute top-9 -left-12 z-50 w-44 divide-y divide-gray-100 border-4 bg-white shadow"
+                        class="absolute top-9 -left-12 z-50 w-64 overflow-hidden rounded-xl border border-black/10 bg-white shadow-xl"
                     >
-                        <ul class="py-2 text-sm text-gray-700">
+                        <ul class="p-2 text-sm text-gray-800">
                             <li>
-                                <a href="https://mainface.ru/" class="linkHeader block text-sm font-bold hover:bg-gray-100">Перейти на mainface</a>
+                                <button
+                                    type="button"
+                                    class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-semibold text-gray-400"
+                                    disabled
+                                >
+                                    <span>mainface</span>
+                                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+                                        В процессе разработки
+                                    </span>
+                                </button>
                             </li>
                             <li>
-                                <a href="https://gmcard.ru/" class="linkHeader block text-sm font-bold hover:bg-gray-100">Перейти на gmcard</a>
+                                <button
+                                    type="button"
+                                    class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-semibold text-gray-400"
+                                    disabled
+                                >
+                                    <span>gmcard</span>
+                                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+                                        В процессе разработки
+                                    </span>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="linkHeader block text-sm font-bold hover:bg-gray-100">Перейти на gmwork</a>
+                                <button
+                                    type="button"
+                                    class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-semibold text-gray-400"
+                                    disabled
+                                >
+                                    <span>gmwork</span>
+                                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+                                        В процессе разработки
+                                    </span>
+                                </button>
                             </li>
                         </ul>
                     </div>
