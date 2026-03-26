@@ -3,6 +3,8 @@ import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { onMounted, onUnmounted, ref } from 'vue';
+import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
+import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
 
 const props = defineProps<{
     promoTypeIcon?: string | null;
@@ -84,7 +86,7 @@ onUnmounted(() => {
                     </span>
                 </div>
                 <div class="relative flex w-full min-w-0 flex-col items-start">
-                    <div class="promo-accent-line absolute left-10 h-full"></div>
+                    <PromoTypeAccentLine :promo-type-icon="promoTypeIcon" class="absolute left-10 h-full" />
                     <h4 class="ml-14 w-[calc(100%-3.5rem)] text-sm font-bold">Дополнительные условия</h4>
                     <p v-if="extraConditions" class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all" v-html="extraConditions"></p>
                     <p v-else class="ml-14 w-[calc(100%-3.5rem)] text-sm break-all">Не указаны</p>
@@ -95,24 +97,11 @@ onUnmounted(() => {
                 </div>
             </div>
             <div class="w-full px-3">
-                <button
-                    @click="emit('get-promo-code')"
-                    class="promo-main-button mt-5 inline-block w-full rounded-xl py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
-                >
-                    Получить промокод
-                </button>
+                <PromoTypeActionButton
+                    :promo-type-icon="promoTypeIcon"
+                    @get-promo-code="emit('get-promo-code')"
+                />
             </div>
         </div>
     </div>
 </template>
-
-<style scoped>
-.promo-accent-line {
-    width: 3px;
-    background-color: #0ca563;
-}
-
-.promo-main-button {
-    background-color: #0ca563;
-}
-</style>

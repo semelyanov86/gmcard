@@ -7,6 +7,8 @@ import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
+import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
+import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
 import PromoDescription from '@/components/promoShow/PromoDescription.vue';
 import PromoImage from '@/components/promoShow/PromoImage.vue';
@@ -80,7 +82,7 @@ const showPromoCode = ref(false);
                                     <span class="text-2xl font-bold">{{ props.promo.name }}</span>
                                 </div>
                                 <div class="relative flex flex-col items-start">
-                                    <div class="promo-mobile-accent absolute left-10 h-full"></div>
+                                    <PromoTypeAccentLine :promo-type-icon="props.promo.promoTypeIcon" class="absolute left-10 h-full" />
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
                                     <p class="ml-14 text-sm">{{ props.promo.extraConditions || 'Не указаны' }}</p>
                                     <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
@@ -90,12 +92,10 @@ const showPromoCode = ref(false);
                                 </div>
                             </div>
                             <div class="w-full px-3">
-                                <button
+                                <PromoTypeActionButton
                                     id="openThePromoMob"
-                                    class="promo-mobile-button mt-5 inline-block w-full rounded-xl py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
-                                >
-                                    Получить промокод
-                                </button>
+                                    :promo-type-icon="props.promo.promoTypeIcon"
+                                />
                             </div>
                         </div>
                     </div>
@@ -207,15 +207,6 @@ const showPromoCode = ref(false);
 
 .promo-left-inner {
     width: 400px;
-}
-
-.promo-mobile-accent {
-    width: 3px;
-    background-color: #0ca563;
-}
-
-.promo-mobile-button {
-    background-color: #0ca563;
 }
 
 .promo-mobile-copy-button {
