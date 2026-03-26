@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PromoSocialLinks from '@/components/promoShow/PromoSocialLinks.vue';
-import { computed, ref } from 'vue';
+import { Fancybox } from '@fancyapps/ui';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     description?: string | null;
@@ -14,11 +15,23 @@ function resolvePhotoUrl(path: string) {
     return path.startsWith('http') ? path : `/storage/${path}`;
 }
 
-const galleryPhotoUrls = computed(() => (props.photos ?? []).slice(1).map(resolvePhotoUrl));
+const galleryPhotoUrls = computed(() => (props.photos ?? []).map(resolvePhotoUrl));
+const photosCount = computed(() => (props.photos ?? []).length);
+const remainingPhotosCount = computed(() => photosCount.value);
 
 const toggleGallery = () => {
     showGallery.value = !showGallery.value;
 };
+
+onMounted(() => {
+    Fancybox.bind("[data-fancybox='gallery']", {
+        groupAll: true,
+    });
+});
+
+onUnmounted(() => {
+    Fancybox.destroy();
+});
 </script>
 
 <template>
@@ -54,7 +67,7 @@ const toggleGallery = () => {
                     <span class="ml-2 text-xs">
                         Показать
                         <br />
-                        еще 5 фото
+                        еще {{ remainingPhotosCount }} фото
                     </span>
                     <svg
                         :class="['icon ml-4 h-4 w-4 transition-transform', showGallery ? 'rotate-180' : '']"
