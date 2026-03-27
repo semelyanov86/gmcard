@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LoaderCircle } from 'lucide-vue-next';
-import { useAttrs, withDefaults } from 'vue';
+import { useAttrs } from 'vue';
 
 const attrs = useAttrs();
 
