@@ -25,50 +25,63 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             ]);
         }
 
-        return DB::transaction(function () use ($dto): Promo {
-            $promo = Promo::findOrFail($dto->id);
+        return DB::transaction(fn (): Promo => $this->updatePromoWithinTransaction($dto));
+    }
 
-            $updateData = $this->buildUpdateData($promo, $dto);
+    private function updatePromoWithinTransaction(CreatePromoData $dto): Promo
+    {
+        $promo = Promo::findOrFail($dto->id);
 
-            $uploadedPathsByIndex = $this->uploadPhotosIndexed($dto->photos);
+        $updateData = $this->buildUpdateData($promo, $dto);
 
-            $finalPaths = [];
+        $finalPaths = $this->syncPhotosAndGetFinalPaths($promo, $dto);
 
-            if (array_key_exists(0, $uploadedPathsByIndex)) {
-                $finalPaths = [$uploadedPathsByIndex[0]];
-            } elseif ($dto->existingPhoto) {
-                $finalPaths = [$dto->existingPhoto];
+        if (! empty($finalPaths)) {
+            $updateData['img'] = $finalPaths[0];
+        }
+
+        $promo->fill($updateData)->save();
+
+        $this->syncRelations($promo, $dto);
+
+        $fresh = $promo->fresh();
+        assert($fresh !== null);
+
+        return $fresh;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function syncPhotosAndGetFinalPaths(Promo $promo, CreatePromoData $dto): array
+    {
+        $uploadedPathsByIndex = $this->uploadPhotosIndexed($dto->photos);
+
+        $finalPaths = [];
+
+        if (array_key_exists(0, $uploadedPathsByIndex)) {
+            $finalPaths = [$uploadedPathsByIndex[0]];
+        } elseif ($dto->existingPhoto) {
+            $finalPaths = [$dto->existingPhoto];
+        }
+
+        foreach ($uploadedPathsByIndex as $idx => $path) {
+            if ((int) $idx === 0) {
+                continue;
             }
+            $finalPaths[] = $path;
+        }
 
-            foreach ($uploadedPathsByIndex as $idx => $path) {
-                if ((int) $idx === 0) {
-                    continue;
-                }
-                $finalPaths[] = $path;
-            }
+        $promo->photos()->delete();
 
-            $promo->photos()->delete();
+        foreach ($finalPaths as $i => $path) {
+            $promo->photos()->create([
+                'path' => $path,
+                'sort_order' => (int) $i,
+            ]);
+        }
 
-            foreach ($finalPaths as $i => $path) {
-                $promo->photos()->create([
-                    'path' => $path,
-                    'sort_order' => (int) $i,
-                ]);
-            }
-
-            if (! empty($finalPaths)) {
-                $updateData['img'] = $finalPaths[0];
-            }
-
-            $promo->fill($updateData)->save();
-
-            $this->syncRelations($promo, $dto);
-
-            $fresh = $promo->fresh();
-            assert($fresh !== null);
-
-            return $fresh;
-        });
+        return $finalPaths;
     }
 
     /**
