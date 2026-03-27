@@ -26,7 +26,7 @@ const selectedFile = ref<File | null>(null);
 const selectedObjectUrl = ref<string | null>(null);
 
 const cropperImageRef = ref<HTMLImageElement | null>(null);
-let cropper: Cropper | null = null;
+let cropper: any = null;
 
 watch(
     () => props.modelValue,
