@@ -1,11 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import PromoSocialLinks from '@/components/promoShow/PromoSocialLinks.vue';
+import { Fancybox } from '@fancyapps/ui';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+
+const props = defineProps<{
+    description?: string | null;
+    socialLinks?: Record<string, string[] | null> | null;
+    photos?: string[] | null;
+}>();
 
 const showGallery = ref(false);
+
+function resolvePhotoUrl(path: string) {
+    return path.startsWith('http') ? path : `/storage/${path}`;
+}
+
+const galleryPhotoUrls = computed(() => (props.photos ?? []).map(resolvePhotoUrl));
+const photosCount = computed(() => (props.photos ?? []).length);
+const remainingPhotosCount = computed(() => photosCount.value);
 
 const toggleGallery = () => {
     showGallery.value = !showGallery.value;
 };
+
+onMounted(() => {
+    Fancybox.bind("[data-fancybox='gallery']", {
+        groupAll: true,
+    });
+});
+
+onUnmounted(() => {
+    Fancybox.destroy();
+});
 </script>
 
 <template>
@@ -41,7 +67,7 @@ const toggleGallery = () => {
                     <span class="ml-2 text-xs">
                         Показать
                         <br />
-                        еще 5 фото
+                        еще {{ remainingPhotosCount }} фото
                     </span>
                     <svg
                         :class="['icon ml-4 h-4 w-4 transition-transform', showGallery ? 'rotate-180' : '']"
@@ -54,111 +80,27 @@ const toggleGallery = () => {
             </div>
         </div>
         <div class="h-px w-full bg-black/20"></div>
-        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex justify-between">
+        <div v-show="showGallery" id="galBlock" class="mx-10 mt-5 mb-5 flex flex-wrap justify-start gap-4">
             <a
-                id="gal1"
+                v-for="(photoUrl, i) in galleryPhotoUrls"
+                :key="photoUrl + i"
                 class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
+                :href="photoUrl"
                 data-fancybox="gallery"
-                data-caption="Caption #1"
+                :data-caption="`Фото ${i + 1}`"
             >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                />
-                <div id="galD1" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal2"
-                class="relative flex items-center justify-center"
-                href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/"
-                data-fancybox="gallery"
-                data-caption="Caption #2"
-            >
-                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
-                <div id="galD2" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal3"
-                class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                data-fancybox="gallery"
-                data-caption="Caption #1"
-            >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-мith-devushki-shuba-ulybka-podarok-726076.jpg"
-                />
-                <div id="galD3" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal4"
-                class="relative flex items-center justify-center"
-                href="https://vorle.ru/media/konkurs/logo/shuba1.jpg/"
-                data-fancybox="gallery"
-                data-caption="Caption #2"
-            >
-                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" src="https://vorle.ru/media/konkurs/logo/shuba1.jpg/" />
-                <div id="galD4" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
-                    <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
-                </div>
-            </a>
-            <a
-                id="gal5"
-                class="relative flex items-center justify-center"
-                href="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                data-fancybox="gallery"
-                data-caption="Caption #1"
-            >
-                <img
-                    class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover"
-                    src="https://i.artfile.me/wallpaper/27-05-2013/800x600/amia-mith-devushki-shuba-ulybka-podarok-726076.jpg"
-                />
-                <div id="galD5" class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
+                <img class="moreImgAfterBtn promo-gallery-thumb rounded-md object-cover" :src="photoUrl" />
+                <div class="absolute flex hidden h-full w-full items-center justify-center rounded-md bg-black/80">
                     <img src="/images/png/sale/maximize.svg" class="w-16" alt="max" />
                 </div>
             </a>
         </div>
         <div v-show="showGallery" id="border_line" class="h-px w-full bg-black/20"></div>
         <div class="masrginsBlock m-10 flex flex-col gap-4">
-            <h3 class="promo-text font-bold">
-                «Снежная Королева» — крупнейшая российская сеть мультибрендовых магазинов модной одежды. Открытие первого магазина компании состоялось
-                в Москве в 1998 году. Сегодня в обеих столицах и крупных региональных городах открыто более ста магазинов компании.
-            </h3>
-            <p class="promo-text">
-                Более 16 лет своего существования компания «Снежная Королева» успешно развивает формат престижного Department Store, предоставляя
-                своим покупателям любые виды женской, мужской одежды и аксессуаров высокого качества в пределах одного магазина, и уже зарекомендовала
-                себя экспертом в области торговли верхней одеждой из кожи и меха, гарантом качества и специалистом в сфере предоставления услуг по
-                формированию стиля.
-            </p>
-            <p class="promo-text">
-                Создание собственных торговых марок, сотрудничество с ведущими мировыми производителями, динамичное развитие формата розничной
-                торговли в соответствии с международными тенденциями, проведение масштабных рекламных кампаний — все это характеризует деятельность
-                «Снежной Королевы».
-            </p>
-            <p class="promo-text">
-                Сегодня в любом магазине «Снежная Королева» можно подобрать одежду и аксессуары для создания целостных модных и гармоничных образов на
-                разные случаи жизни и любую погоду.
-            </p>
-            <h3 class="promo-text font-bold uppercase">ФИНАЛЬНАЯ РАСПРОДАЖА! СКИДКИ ДО 70% НА ВСЕ!</h3>
-            <p class="promo-text">
-                Сохранить семейный бюджет и обновить гардероб модной одеждой на разные случаи жизни и любую погоду — легко!Нужно лишь творчески
-                подойти к вопросу и выбрать правильное место для шоппинга! «Снежная Королева» приглашает за удачными покупками и объявляет грандиозные
-                скидки — до 70% на всю коллекцию весна-лето с 28 июля до 31 августа!
-            </p>
-            <h3 class="promo-text font-bold">Условия и ограничения:</h3>
-            <p class="promo-text">
-                Акция действует во всех магазинах сети «Снежная Королева» и интернет-магазине.Акция не распространяется на модели из новой коллекции.
-                Скидка по данной акции не суммируется со скидкой по Картам Королевского Клуба. Товары, участвующие в акции, не могут быть оформлены в
-                кредит «без переплаты».
-            </p>
+            <p v-if="props.description" v-html="props.description" class="promo-text whitespace-pre-line"></p>
+            <p v-else class="promo-text">Описание акции отсутствует</p>
         </div>
+        <!--
         <div class="youtubeBlocks promo-youtube w-full p-10 pr-24 pb-5">
             <iframe
                 class="box-border h-full w-full overflow-hidden rounded-lg"
@@ -166,30 +108,8 @@ const toggleGallery = () => {
                 frameborder="0"
             ></iframe>
         </div>
-        <ul class="masrginsBlock m-10 mb-5 flex items-center gap-2">
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_ins.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_ok.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_sky.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_twit.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_lin.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-            <li class="rounded-full shadow-2xl">
-                <a href="#"><img src="/images/png/sale/sale_you.png" class="w-7" alt="Соц сети" /></a>
-            </li>
-        </ul>
-        <div class="masrginsBlock m-10 mb-5 flex items-center gap-2">
-            <span>Наш сайт:</span>
-            <a href="#" class="promo-main-link hover:underline">goo.gl/2cSMwl</a>
-        </div>
+        -->
+        <PromoSocialLinks :links="props.socialLinks || null" />
     </div>
 </template>
 
@@ -225,9 +145,5 @@ const toggleGallery = () => {
 
 .promo-youtube {
     height: 400px;
-}
-
-.promo-main-link {
-    color: #1463b9;
 }
 </style>

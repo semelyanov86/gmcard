@@ -25,20 +25,63 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             ]);
         }
 
-        return DB::transaction(function () use ($dto): Promo {
-            $promo = Promo::findOrFail($dto->id);
+        return DB::transaction(fn (): Promo => $this->updatePromoWithinTransaction($dto));
+    }
 
-            $updateData = $this->buildUpdateData($promo, $dto);
+    private function updatePromoWithinTransaction(CreatePromoData $dto): Promo
+    {
+        $promo = Promo::findOrFail($dto->id);
 
-            $promo->fill($updateData)->save();
+        $updateData = $this->buildUpdateData($promo, $dto);
 
-            $this->syncRelations($promo, $dto);
+        $finalPaths = $this->syncPhotosAndGetFinalPaths($promo, $dto);
 
-            $fresh = $promo->fresh();
-            assert($fresh !== null);
+        if (! empty($finalPaths)) {
+            $updateData['img'] = $finalPaths[0];
+        }
 
-            return $fresh;
-        });
+        $promo->fill($updateData)->save();
+
+        $this->syncRelations($promo, $dto);
+
+        $fresh = $promo->fresh();
+        assert($fresh !== null);
+
+        return $fresh;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function syncPhotosAndGetFinalPaths(Promo $promo, CreatePromoData $dto): array
+    {
+        $uploadedPathsByIndex = $this->uploadPhotosIndexed($dto->photos);
+
+        $finalPaths = [];
+
+        if (array_key_exists(0, $uploadedPathsByIndex)) {
+            $finalPaths = [$uploadedPathsByIndex[0]];
+        } elseif ($dto->existingPhoto) {
+            $finalPaths = [$dto->existingPhoto];
+        }
+
+        foreach ($uploadedPathsByIndex as $idx => $path) {
+            if ((int) $idx === 0) {
+                continue;
+            }
+            $finalPaths[] = $path;
+        }
+
+        $promo->photos()->delete();
+
+        foreach ($finalPaths as $i => $path) {
+            $promo->photos()->create([
+                'path' => $path,
+                'sort_order' => (int) $i,
+            ]);
+        }
+
+        return $finalPaths;
     }
 
     /**
@@ -71,7 +114,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => $this->resolvePhoto($promo, $dto),
+            'img' => $promo->img,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
         ];
 
@@ -90,20 +133,5 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
         }
 
         return $updateData;
-    }
-
-    private function resolvePhoto(Promo $promo, CreatePromoData $dto): ?string
-    {
-        $newPhotoPath = $this->handlePhotoUpload($dto->photos);
-
-        if ($newPhotoPath !== null) {
-            return $newPhotoPath;
-        }
-
-        if ($dto->existingPhoto) {
-            return $dto->existingPhoto;
-        }
-
-        return $promo->img;
     }
 }

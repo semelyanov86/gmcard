@@ -16,6 +16,39 @@ abstract readonly class AbstractPromoSaveAction
 {
     use AsAction;
 
+    final public function uploadOnePhoto(UploadedFile $file): ?string
+    {
+        $path = $file->store('promos', 'public');
+
+        return $path === false ? null : $path;
+    }
+
+    /**
+     * @param  array<int, UploadedFile|string|null>|null  $photos
+     * @return array<int, string>
+     */
+    final public function uploadPhotosIndexed(?array $photos): array
+    {
+        return collect($photos ?? [])
+            ->mapWithKeys(function ($file, $index): array {
+                $i = (int) $index;
+
+                if ($file instanceof UploadedFile) {
+                    $path = $this->uploadOnePhoto($file);
+
+                    return $path !== null ? [$i => $path] : [];
+                }
+
+                if (is_string($file)) {
+                    return [$i => $file];
+                }
+
+                return [];
+            })
+            ->sortKeys()
+            ->all();
+    }
+
     protected function getPromoTypeEnum(int $id): PromoType
     {
         return match ($id) {

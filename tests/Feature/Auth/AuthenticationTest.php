@@ -68,7 +68,7 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post(route('logout'));
 
         $this->assertGuest();
-        $response->assertRedirect(route('business.landing'));
+        $response->assertRedirect(route('main'));
     }
 
     public function test_session_is_regenerated_on_login(): void

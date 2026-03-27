@@ -16,10 +16,10 @@ use App\Http\Controllers\Promo\ShowPromoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [BusinessLandingController::class, 'index'])->name('business.landing');
+Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
-Route::get('/main-page', [MainController::class, 'index'])->name('main');
-Route::get('/promo/show', [ShowPromoController::class, 'index'])->name('promo.show');
+Route::get('/business-landing', [BusinessLandingController::class, 'index'])->name('business.landing');
+Route::get('/promo/show/{promo}', [ShowPromoController::class, 'index'])->name('promo.show');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/help/{slug}', [HelpController::class, 'show'])->name('help.post');
 

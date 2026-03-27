@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LoaderCircle } from 'lucide-vue-next';
-import { useAttrs, withDefaults } from 'vue';
+import { useAttrs } from 'vue';
 
 const attrs = useAttrs();
 
@@ -24,7 +24,7 @@ const props = withDefaults(
     <button
         :type="props.type"
         :disabled="props.disabled || props.loading"
-        class="bg-yellow hover:bg-yellow flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl py-4 text-lg font-bold disabled:cursor-not-allowed disabled:opacity-50"
+        class="bg-yellow !hover:bg-yellow flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl py-4 text-lg font-bold disabled:cursor-not-allowed disabled:opacity-50"
         :class="props.class"
         v-bind="attrs"
     >

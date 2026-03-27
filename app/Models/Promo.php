@@ -18,8 +18,8 @@ use Override;
 
 /**
  * @property int $id
- * @property MoneyValueObject $sales_order_from
- * @property MoneyValueObject $free_delivery_from
+ * @property MoneyValueObject|null $sales_order_from
+ * @property MoneyValueObject|null $free_delivery_from
  * @property array<string, string> $smm_links
  * @property CarbonImmutable|null $started_at
  * @property CarbonImmutable|null $available_till
@@ -161,6 +161,14 @@ class Promo extends Model
     public function rejectedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'rejected_by');
+    }
+
+    /**
+     * @return HasMany<PromoPhoto, $this>
+     */
+    public function photos(): HasMany
+    {
+        return $this->hasMany(PromoPhoto::class)->orderBy('sort_order');
     }
 
     #[Override]

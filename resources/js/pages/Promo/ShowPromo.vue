@@ -3,12 +3,15 @@ import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import DiscountCoupons from '@/components/main/DiscountCoupons.vue';
+import PromoTypeIcon from '@/components/main/PromoTypeIcon.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
 import MainInfo from '@/components/promoShow/MainInfo.vue';
 import PromoAddress from '@/components/promoShow/PromoAddress.vue';
 import PromoDescription from '@/components/promoShow/PromoDescription.vue';
 import PromoImage from '@/components/promoShow/PromoImage.vue';
+import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
+import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -20,6 +23,27 @@ const props = defineProps<{
     contact: ContactModel;
     navbarMenu: MenuData[];
     categories: CategoryModel[];
+    promo: {
+        id: number;
+        img?: string | null;
+        photos?: string[] | null;
+        description?: string | null;
+        name: string;
+        promoTypeIcon?: string | null;
+        extraConditions?: string | null;
+        salesOrderFrom?: number | null;
+        availableTill?: string | null;
+        hasFreeDeliveryBadge?: boolean | null;
+        socialLinks?: Record<string, string[] | null> | null;
+        addresses: Array<{
+            id: number;
+            name: string;
+            openHours?: Record<string, string> | null;
+            phone?: string | null;
+            phoneSecondary?: string | null;
+            website?: string | null;
+        }>;
+    };
 }>();
 
 const showPromoCode = ref(false);
@@ -48,26 +72,27 @@ const showPromoCode = ref(false);
                             <div class="px-6 py-2">
                                 <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
                                 <div class="mt-4 flex items-center gap-2">
-                                    <img src="/images/png/images/discount.png" class="w-12" alt="discount" />
-                                    <span class="text-2xl font-bold">Скидка 50%</span>
+                                    <PromoTypeIcon
+                                        v-if="props.promo.promoTypeIcon"
+                                        :icon="props.promo.promoTypeIcon"
+                                        sizeClass="w-12 h-12"
+                                        alt="discount"
+                                    />
+                                    <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
+                                    <span class="text-2xl font-bold">{{ props.promo.name }}</span>
                                 </div>
                                 <div class="relative flex flex-col items-start">
-                                    <div class="promo-mobile-accent absolute left-10 h-full"></div>
+                                    <PromoTypeAccentLine :promo-type-icon="props.promo.promoTypeIcon" class="absolute left-10 h-full" />
                                     <h4 class="ml-14 text-sm font-bold">Дополнительный условия</h4>
-                                    <p class="ml-14 text-sm">
-                                        Сделай покупки на сумму выше 60 000 рублей и используй промокод что бы получить скидку до 10 000 рублей
-                                    </p>
+                                    <p class="ml-14 text-sm">{{ props.promo.extraConditions || 'Не указаны' }}</p>
                                     <h4 class="mt-4 ml-14 text-sm font-bold">Минимальная сумма</h4>
-                                    <p class="ml-14 text-sm">10 000 рублей</p>
+                                    <p class="ml-14 text-sm">
+                                        {{ props.promo.salesOrderFrom ? `${props.promo.salesOrderFrom} рублей` : 'Не указана' }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="w-full px-3">
-                                <button
-                                    id="openThePromoMob"
-                                    class="promo-mobile-button mt-5 inline-block w-full rounded-xl py-4 text-center text-lg text-white opacity-80 hover:opacity-100"
-                                >
-                                    Получить промокод
-                                </button>
+                                <PromoTypeActionButton id="openThePromoMob" :promo-type-icon="props.promo.promoTypeIcon" />
                             </div>
                         </div>
                     </div>
@@ -100,12 +125,30 @@ const showPromoCode = ref(false);
                         </div>
                     </div>
                     <div class="rightBlocsks promo-right box-border h-full">
-                        <PromoImage />
-                        <PromoDescription />
+                        <PromoImage
+                            :img="props.promo.img"
+                            :photos="props.promo.photos || null"
+                            :title="props.promo.name"
+                            :promo-type-icon="props.promo.promoTypeIcon"
+                            :has-free-delivery-badge="props.promo.hasFreeDeliveryBadge"
+                        />
+                        <PromoDescription
+                            :description="props.promo.description"
+                            :social-links="props.promo.socialLinks || null"
+                            :photos="props.promo.photos || null"
+                        />
                     </div>
                     <div class="leftMainBlocks promo-left relative h-full">
                         <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
-                            <MainInfo v-if="!showPromoCode" @get-promo-code="showPromoCode = true" />
+                            <MainInfo
+                                v-if="!showPromoCode"
+                                :promo-type-icon="props.promo.promoTypeIcon"
+                                :promo-name="props.promo.name"
+                                :extra-conditions="props.promo.extraConditions"
+                                :sales-order-from="props.promo.salesOrderFrom"
+                                :available-till="props.promo.availableTill"
+                                @get-promo-code="showPromoCode = true"
+                            />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
                                 <div class="relative h-full w-full rounded-3xl px-12 py-20 shadow-2xl">
                                     <svg
@@ -134,7 +177,7 @@ const showPromoCode = ref(false);
                                     </div>
                                 </div>
                             </div>
-                            <PromoAddress />
+                            <PromoAddress :addresses="props.promo.addresses" />
                         </div>
                     </div>
                 </div>
@@ -162,15 +205,6 @@ const showPromoCode = ref(false);
 
 .promo-left-inner {
     width: 400px;
-}
-
-.promo-mobile-accent {
-    width: 3px;
-    background-color: #0ca563;
-}
-
-.promo-mobile-button {
-    background-color: #0ca563;
 }
 
 .promo-mobile-copy-button {

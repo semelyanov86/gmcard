@@ -1,5 +1,6 @@
 import '../css/app.css';
 
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import '@splidejs/splide/dist/css/splide.min.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';

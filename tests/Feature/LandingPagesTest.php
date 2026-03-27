@@ -51,14 +51,14 @@ class LandingPagesTest extends TestCase
 
     public function test_business_landing_page_is_accessible(): void
     {
-        $response = $this->get('/');
+        $response = $this->get(route('business.landing'));
 
         $response->assertOk();
     }
 
     public function test_business_landing_page_has_required_props(): void
     {
-        $response = $this->get('/');
+        $response = $this->get(route('business.landing'));
 
         $response->assertOk();
         $response->assertInertia(
@@ -92,7 +92,7 @@ class LandingPagesTest extends TestCase
 
     public function test_business_landing_has_correct_contact_data(): void
     {
-        $response = $this->get('/');
+        $response = $this->get(route('business.landing'));
 
         $response->assertOk();
         $response->assertInertia(

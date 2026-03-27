@@ -36,9 +36,19 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
                 ? $this->calculateCostForDraft($dto)
                 : $this->calculateCostForPublication($user, $dto);
 
-            $createData = $this->buildCreateData($dto, $cost);
+            $uploadedPathsByIndex = $this->uploadPhotosIndexed($dto->photos);
+            $firstPhotoPath = $uploadedPathsByIndex[0] ?? (array_values($uploadedPathsByIndex)[0] ?? null);
+
+            $createData = $this->buildCreateData($dto, $cost, $firstPhotoPath);
 
             $promo = Promo::create($createData);
+
+            foreach ($uploadedPathsByIndex as $sortOrder => $path) {
+                $promo->photos()->create([
+                    'path' => $path,
+                    'sort_order' => (int) $sortOrder,
+                ]);
+            }
 
             $this->syncRelations($promo, $dto);
 
@@ -126,7 +136,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
     /**
      * @return array<string, mixed>
      */
-    private function buildCreateData(CreatePromoData $dto, PromoCostData $cost): array
+    private function buildCreateData(CreatePromoData $dto, PromoCostData $cost, ?string $firstPhotoPath): array
     {
         $promoType = $this->getPromoTypeEnum($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
@@ -153,7 +163,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
             'days_availability' => is_array($dto->schedule) ? ($dto->schedule['days'] ?? null) : null,
             'availabe_from' => $this->getScheduleTime($dto->schedule, 'start'),
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
-            'img' => $this->handlePhotoUpload($dto->photos),
+            'img' => $firstPhotoPath,
             'moderation_status' => $moderationStatus,
             'started_at' => null,
             'raise_on_top_hours' => 0,

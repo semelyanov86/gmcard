@@ -1,24 +1,61 @@
 <script setup lang="ts">
-import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
-import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
+import PromoAdditionalPhotos from '@/components/Promo/PromoAdditionalPhotos.vue';
+import PromoCoverUpload from '@/components/Promo/PromoCoverUpload.vue';
 import { ModalLink } from '@inertiaui/modal-vue';
+import { computed, onBeforeUnmount, ref } from 'vue';
 
 const props = defineProps<{
     existingPhoto?: string | null;
 }>();
 
-const photos = defineModel<File[]>({ required: true });
+const photos = defineModel<Array<File | null>>({ required: true });
 
-function handleFileChange(event: Event) {
+const cover1File = computed<File | null>({
+    get: () => photos.value[0] ?? null,
+    set: (file) => {
+        if (!file) return;
+        photos.value = [file, ...photos.value.slice(1)];
+    },
+});
+
+const objectUrl2 = ref<string | null>(null);
+const objectUrl3 = ref<string | null>(null);
+const showFileUpload3 = ref(false);
+
+onBeforeUnmount(() => {
+    if (objectUrl2.value) URL.revokeObjectURL(objectUrl2.value);
+    if (objectUrl3.value) URL.revokeObjectURL(objectUrl3.value);
+});
+
+function handleFileChange2(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-        photos.value = [input.files[0]];
-    }
+    const file = input.files?.[0];
+    if (!file) return;
+
+    if (objectUrl2.value) URL.revokeObjectURL(objectUrl2.value);
+    objectUrl2.value = URL.createObjectURL(file);
+
+    const next = photos.value.slice();
+    next[1] = file;
+    photos.value = next;
+}
+
+function handleFileChange3(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    if (objectUrl3.value) URL.revokeObjectURL(objectUrl3.value);
+    objectUrl3.value = URL.createObjectURL(file);
+
+    const next = photos.value.slice();
+    next[2] = file;
+    photos.value = next;
 }
 </script>
 
 <template>
-    <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 md:p-4" id="shestoi">
+    <div class="mt-8 flex w-full flex-col rounded-2xl bg-white p-8 md:p-4">
         <div class="mb-8 flex w-full flex-row justify-between max-md:flex-col">
             <div>
                 <h3 class="text-base font-bold">Загрузите привлекательное изображение для вашей акции</h3>
@@ -33,104 +70,64 @@ function handleFileChange(event: Event) {
             </div>
         </div>
         <div class="flex flex-wrap justify-between gap-2">
-            <div class="file_upload files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-yellow-300">
-                <div id="file_block" class="relative flex h-full w-full flex-col items-center justify-center">
-                    <h2 class="text-sm font-bold lg:text-base">Обложка (обязательно)</h2>
-                    <label for="" class="text-sm text-gray-400">Файл не выбран</label>
-                    <input
-                        type="file"
-                        id="uploadImage"
-                        @change="handleFileChange"
-                        accept="image/*"
-                        class="files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none"
-                    />
-                </div>
-                <img id="cropperResult" alt="Cropped Image" class="hidden h-full w-full rounded-2xl object-cover" />
-                <div id="cropModal" class="modal z-50 h-auto w-full">
-                    <div class="modal-content max-w-xl bg-white p-4">
-                        <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
-                        <div class="cropper-container">
-                            <img id="cropperImage" alt="Crop Image" class="w-full object-cover" />
-                        </div>
-                        <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
-                            <h2 class="text-base">Выберите длинное изображение</h2>
-                            <div class="flex gap-4">
-                                <button id="cancelButton" class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20">Отмена</button>
-                                <button id="cropButton" class="hover:bg-opacity-80 rounded-md bg-blue-700 px-10 py-2 text-white">Сохранить</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <PromoCoverUpload v-model="cover1File" :existing-photo="props.existingPhoto" />
+
             <div
                 class="file_uploaded files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100"
             >
-                <div id="file_block2" class="relative flex h-full w-full flex-col items-center justify-center">
-                    <h2 class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
-                    <label for="" class="text-sm text-gray-400">Файл не выбран</label>
+                <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
+                    <h2 v-if="!objectUrl2" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
+                    <label v-if="!objectUrl2" for="uploadImage2" class="text-sm text-gray-400">Файл не выбран</label>
                     <input
                         type="file"
                         id="uploadImage2"
-                        class="files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none"
+                        accept="image/*"
+                        :class="
+                            objectUrl2
+                                ? 'absolute inset-0 z-20 opacity-0 focus:border-none focus:outline-none'
+                                : 'files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none'
+                        "
+                        @change="handleFileChange2"
                     />
                 </div>
-                <img id="cropperResult2" alt="Cropped Image" class="hidden h-full w-full rounded-2xl object-cover" />
-                <div id="cropModal2" class="modal z-50 h-auto w-full">
-                    <div class="modal-content max-w-xl bg-white p-4">
-                        <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
-                        <div class="cropper-container">
-                            <img id="cropperImage2" alt="Crop Image" class="w-full" />
-                        </div>
-                        <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
-                            <h2 class="text-base">Выберите длинное изображение</h2>
-                            <div class="flex gap-4">
-                                <button id="cancelButton2" class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20">Отмена</button>
-                                <button id="cropButton2" class="hover:bg-opacity-80 rounded-md bg-blue-700 px-10 py-2 text-white">Сохранить</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <img v-if="objectUrl2" :src="objectUrl2" alt="Обложка 2" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
+
             <div
                 class="file_uploadPlus files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white p-8 hover:cursor-pointer hover:border-dashed hover:border-blue-700"
+                :class="{ hidden: showFileUpload3 }"
+                @click="showFileUpload3 = true"
             >
                 <span class="textPlus absolute bottom-10 text-center"
                     >Добавить еще место <br />
                     под фото</span
                 >
             </div>
+
             <div
-                id="fileUpload3"
-                class="file_upload files_img relative hidden h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100"
+                class="file_upload files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100"
+                :class="{ hidden: !showFileUpload3 }"
             >
-                <div id="file_block3" class="relative flex h-full w-full flex-col items-center justify-center">
-                    <h2 class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
-                    <label for="" class="text-sm text-gray-400">Файл не выбран</label>
+                <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
+                    <h2 v-if="!objectUrl3" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
+                    <label v-if="!objectUrl3" for="uploadImage3" class="text-sm text-gray-400">Файл не выбран</label>
                     <input
                         type="file"
                         id="uploadImage3"
-                        class="files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none"
+                        accept="image/*"
+                        :class="
+                            objectUrl3
+                                ? 'absolute inset-0 z-20 opacity-0 focus:border-none focus:outline-none'
+                                : 'files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none'
+                        "
+                        @change="handleFileChange3"
                     />
                 </div>
-                <img id="cropperResult3" alt="Cropped Image" class="hidden h-full w-full rounded-2xl object-cover" />
-                <div id="cropModal3" class="modal z-50 h-auto w-full">
-                    <div class="modal-content max-w-xl bg-white p-4">
-                        <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
-                        <div class="cropper-container">
-                            <img id="cropperImage3" alt="Crop Image" class="w-full object-cover" />
-                        </div>
-                        <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
-                            <h2 class="text-base">Выберите длинное изображение</h2>
-                            <div class="flex gap-4">
-                                <button id="cancelButton3" class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20">Отмена</button>
-                                <button id="cropButton3" class="hover:bg-opacity-80 rounded-md bg-blue-700 px-10 py-2 text-white">Сохранить</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <img v-if="objectUrl3" :src="objectUrl3" alt="Обложка 3" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
         </div>
-        <div v-if="photos.length === 0 && props.existingPhoto" class="mt-5">
+
+        <div v-if="!photos[0] && props.existingPhoto" class="mt-5">
             <p class="text-sm text-black/60">Текущее изображение</p>
             <img
                 :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
@@ -138,113 +135,7 @@ function handleFileChange(event: Event) {
                 class="mt-2 h-56 w-56 rounded-2xl object-cover"
             />
         </div>
-        <div class="mt-5 flex items-center justify-center">
-            <p class="cursor-pointer border-b border-dashed border-blue-600 text-base text-blue-600 max-sm:text-sm" id="moreImg">
-                Загрузить дополнительные фотографии
-            </p>
-            <ChevronDownIcon id="svgImg" custom-class="w-5 h-5 text-blue-600 cursor-pointer" />
-        </div>
-        <div id="moreImgShow" class="mt-5 flex hidden flex-col">
-            <h3 class="text-center font-bold">Дополнительные фото в карточке под спойлером (не обязательно)</h3>
-            <p class="all_text mt-5 px-0 text-center text-black/50 sm:px-16">
-                Выберите стиль отображения дополнительных фото, увидеть отличия вы сможете при просмотре акции.
-            </p>
-            <div class="add_more_photos relative mt-4 flex flex-wrap justify-between">
-                <div id="photoBlock" class="relative h-full w-32 overflow-hidden">
-                    <div id="photoCard" class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon
-                            id="delPhoto"
-                            custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
-                        />
-                    </div>
-                    <img src="" id="photoPlace" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile" class="relative flex h-20 w-full flex-col items-center">
-                        <input
-                            type="file"
-                            id="photoOne"
-                            class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
-                        />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div id="photoBlock2" class="relative h-full w-32 overflow-hidden">
-                    <div id="photoCard2" class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon
-                            id="delPhoto2"
-                            custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
-                        />
-                    </div>
-                    <img src="" id="photoPlace2" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile2" class="relative flex h-20 w-full flex-col items-center">
-                        <input
-                            type="file"
-                            id="photoOne2"
-                            class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
-                        />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div id="photoBlock3" class="relative h-full w-32 overflow-hidden">
-                    <div id="photoCard3" class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon
-                            id="delPhoto3"
-                            custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
-                        />
-                    </div>
-                    <img src="" id="photoPlace3" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile3" class="relative flex h-20 w-full flex-col items-center">
-                        <input
-                            type="file"
-                            id="photoOne3"
-                            class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
-                        />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div id="photoBlock4" class="relative h-full w-32 overflow-hidden">
-                    <div id="photoCard4" class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon
-                            id="delPhoto4"
-                            custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
-                        />
-                    </div>
-                    <img src="" id="photoPlace4" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile4" class="relative flex h-20 w-full flex-col items-center">
-                        <input
-                            type="file"
-                            id="photoOne4"
-                            class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
-                        />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-                <div
-                    id="morePhotos"
-                    class="reltive morePhoto relative flex h-50 w-32 flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white hover:cursor-pointer hover:border-dashed hover:border-blue-700"
-                >
-                    <span class="absolute bottom-8 px-4 text-center text-sm"
-                        >Добавить еще место <br />
-                        под фото</span
-                    >
-                </div>
-                <div id="photoBlock5" class="relative hidden h-full w-32 overflow-hidden">
-                    <div id="photoCard5" class="customPhoto1 relative h-32 w-full rounded-2xl bg-slate-100">
-                        <TrashIcon
-                            id="delPhoto5"
-                            custom-class="hidden w-7 h-7 absolute z-50 text-black/30 right-0 bg-white rounded-md hover:opacity-80 cursor-pointer"
-                        />
-                    </div>
-                    <img src="" id="photoPlace5" class="hidden h-32 w-full rounded-2xl object-cover" alt="Фото" />
-                    <div id="blockFile5" class="relative flex h-20 w-full flex-col items-center">
-                        <input
-                            type="file"
-                            id="photoOne5"
-                            class="custom-file-inputs absolute top-4 left-0 w-full focus:border-none focus:outline-none"
-                        />
-                        <label for="photoOne" class="absolute top-14 text-sm text-gray-400">Файл не выбран</label>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <PromoAdditionalPhotos v-model="photos" />
     </div>
 </template>

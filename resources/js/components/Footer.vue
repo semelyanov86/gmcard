@@ -114,6 +114,13 @@ const props = defineProps<{
                                 </li>
                             </ul>
                         </li>
+                        <div
+                            id="tooltip-social"
+                            role="tooltip"
+                            class="tooltip invisible absolute z-10 inline-block w-[190px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+                        >
+                            Ссылки появятся позже
+                        </div>
                         <li class="mt-5 max-w-xs cursor-pointer text-sm text-white opacity-60 hover:opacity-100">
                             Instagram - соцсеть принадлежит компании Meta, признанной экстремистской и запрещенной на территории России
                         </li>
@@ -463,6 +470,13 @@ const props = defineProps<{
                         <AdaptiveImage image-path="icons/russia" image-class="h-[9px] w-[13px]" alt="Россия" />
                         <span class="text-[12px] font-bold text-white">Россия</span>
                         <AdaptiveImage image-path="icons/up" alt="Вверх" />
+                    </div>
+                    <div
+                        id="tooltip-country"
+                        role="tooltip"
+                        class="tooltip invisible absolute z-10 inline-block w-[190px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+                    >
+                        Выбор страны скоро
                     </div>
                 </div>
             </div>

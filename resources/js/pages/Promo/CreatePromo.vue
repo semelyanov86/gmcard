@@ -105,7 +105,7 @@ const form = useForm({
     city_ids: [] as number[],
     youtube_url: '',
     social_links: {} as Record<string, string[]>,
-    photos: [] as File[],
+    photos: [] as Array<File | null>,
     agree_to_terms: false,
 });
 
@@ -151,8 +151,10 @@ function handleSaveDraft() {
         onSuccess: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
-        onError: () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        onError: (errors) => {
+            console.error(errors);
+            const firstKey = errors && typeof errors === 'object' ? Object.keys(errors as object)[0] : null;
+            notify.error(firstKey ? `Не удалось сохранить черновик: ${firstKey}` : 'Не удалось сохранить черновик');
         },
     });
 }
@@ -163,8 +165,10 @@ function handleLaunch() {
         onSuccess: () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
-        onError: () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        onError: (errors) => {
+            console.error(errors);
+            const firstKey = errors && typeof errors === 'object' ? Object.keys(errors as object)[0] : null;
+            notify.error(firstKey ? `Не удалось запустить акцию: ${firstKey}` : 'Не удалось запустить акцию');
         },
     });
 }
