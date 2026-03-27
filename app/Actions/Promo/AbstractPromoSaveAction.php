@@ -24,14 +24,14 @@ abstract readonly class AbstractPromoSaveAction
     }
 
     /**
-     * @param array<int, UploadedFile|string|null>|null $photos
+     * @param  array<int, UploadedFile|string|null>|null  $photos
      * @return array<int, string>
      */
     final public function uploadPhotosIndexed(?array $photos): array
     {
         return collect($photos ?? [])
             ->mapWithKeys(function ($file, $index): array {
-                $i = (int)$index;
+                $i = (int) $index;
 
                 if ($file instanceof UploadedFile) {
                     $path = $this->uploadOnePhoto($file);
@@ -90,16 +90,16 @@ abstract readonly class AbstractPromoSaveAction
     }
 
     /**
-     * @param array<string, mixed>|null $schedule
+     * @param  array<string, mixed>|null  $schedule
      */
     protected function getScheduleTime(?array $schedule, string $key): ?string
     {
-        if (!is_array($schedule)) {
+        if (! is_array($schedule)) {
             return null;
         }
 
         $timeRange = $schedule['timeRange'] ?? null;
-        if (!is_array($timeRange)) {
+        if (! is_array($timeRange)) {
             return null;
         }
 
@@ -109,11 +109,11 @@ abstract readonly class AbstractPromoSaveAction
     }
 
     /**
-     * @param array<int, UploadedFile|string>|null $photos
+     * @param  array<int, UploadedFile|string>|null  $photos
      */
     protected function handlePhotoUpload(?array $photos): ?string
     {
-        if (empty($photos) || !isset($photos[0])) {
+        if (empty($photos) || ! isset($photos[0])) {
             return null;
         }
 
@@ -136,7 +136,7 @@ abstract readonly class AbstractPromoSaveAction
 
         $addressIds = [];
 
-        if ($dto->addresses && !empty($dto->addresses)) {
+        if ($dto->addresses && ! empty($dto->addresses)) {
             foreach ($dto->addresses as $addressData) {
                 if (empty($addressData['address']) && empty($addressData['phone'])) {
                     continue;
@@ -144,7 +144,7 @@ abstract readonly class AbstractPromoSaveAction
 
                 $addressCreateData = [
                     'name' => $addressData['address'] ?? '',
-                    'open_hours' => !empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
+                    'open_hours' => ! empty($addressData['schedule']) ? ['schedule' => $addressData['schedule']] : null,
                     'phone' => $addressData['phone'] ?? '',
                     'phone_secondary' => $addressData['phone2'] ?? null,
                 ];
@@ -154,7 +154,7 @@ abstract readonly class AbstractPromoSaveAction
             }
         }
 
-        if (!empty($addressIds)) {
+        if (! empty($addressIds)) {
             $promo->addresses()->sync($addressIds);
         } else {
             $promo->addresses()->detach();
