@@ -90,7 +90,7 @@ tasks:
     desc: "Find all vulnerabilities in front end and backend"
     cmds:
       - "{{.EXEC_PHP}} composer audit"
-      - npm audit --omit=dev
+      - npm audit
 
   generate:
     desc: "Generate helper ide mockups"
