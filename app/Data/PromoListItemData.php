@@ -49,7 +49,7 @@ final class PromoListItemData extends Data
         }
 
         $iconPath = $resolvedPromoType?->icon;
-        $promoTypeIcon = $iconPath !== null ? '/storage/' . ltrim($iconPath, '/') : null;
+        $promoTypeIcon = $iconPath !== null ? '/storage/' . mb_ltrim($iconPath, '/') : null;
 
         return new self(
             id: $promo->id,
