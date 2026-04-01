@@ -13,14 +13,14 @@ class MenuSeeder extends Seeder
     public function run(): void
     {
         $navbarItems = [
-            ['label' => 'Главная', 'url' => '/', 'order' => 1],
-            ['label' => 'Пользователям', 'url' => '/user-landing', 'order' => 2],
-            ['label' => 'Кэшбэк', 'url' => '/#popular', 'order' => 3],
-            ['label' => 'Для бизнеса', 'url' => '/', 'order' => 4],
-            ['label' => 'Правила', 'url' => '/help.html', 'order' => 5],
-            ['label' => 'Контакты', 'url' => '/help.html', 'order' => 6],
-            ['label' => 'GM', 'url' => '/buis.html', 'order' => 7],
-            ['label' => '₽', 'url' => '/coupon.html', 'order' => 8],
+            ['label' => 'Главная', 'url' => route('main', [], false), 'order' => 1],
+            ['label' => 'Пользователям', 'url' => route('user.landing', [], false), 'order' => 2],
+            ['label' => 'Кэшбэк', 'url' => route('main', [], false) . '#popular', 'order' => 3],
+            ['label' => 'Для бизнеса', 'url' => route('business.landing', [], false), 'order' => 4],
+            ['label' => 'Правила', 'url' => route('help.post', ['slug' => 'community-rules'], false), 'order' => 5],
+            ['label' => 'Контакты', 'url' => route('help', [], false), 'order' => 6],
+            ['label' => 'GM', 'url' => route('help.post', ['slug' => 'about-gm1lp'], false), 'order' => 7],
+            ['label' => '₽', 'url' => route('help.post', ['slug' => 'about-discounts-service'], false), 'order' => 8],
         ];
 
         foreach ($navbarItems as $item) {
