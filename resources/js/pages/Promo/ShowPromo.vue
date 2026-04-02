@@ -53,14 +53,14 @@ const showPromoCode = ref(false);
     <div class="promo-page">
         <Header :user-data="page.props.userData" />
 
-        <section class="body h-full max-w-full overflow-hidden pb-9">
+        <section class="body promo-show-section h-full max-w-full pb-9">
             <MobileMenu />
             <div class="promo-container mx-auto 2xl:w-full 2xl:px-4">
                 <NavBar :menu-items="props.navbarMenu" />
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <div class="saleBlocks mt-12 flex w-full">
+                <div class="saleBlocks mt-12 flex w-full items-start overflow-visible">
                     <div id="promoHiddenMob" class="salesLink1 mb-10 hidden rounded-3xl border bg-white py-4 shadow-2xl">
                         <div class="">
                             <p class="flex items-center px-6 py-2">
@@ -124,7 +124,7 @@ const showPromoCode = ref(false);
                             </div>
                         </div>
                     </div>
-                    <div class="rightBlocsks promo-right box-border">
+                    <div class="rightBlocsks promo-right box-border overflow-visible">
                         <PromoImage
                             :img="props.promo.img"
                             :photos="props.promo.photos || null"
@@ -138,8 +138,10 @@ const showPromoCode = ref(false);
                             :photos="props.promo.photos || null"
                         />
                     </div>
-                    <div class="leftMainBlocks promo-left relative">
-                        <div class="leftBlocsk promo-left-inner relative z-40 mt-12 -translate-x-[20px]">
+                    <div class="leftMainBlocks promo-left relative shrink-0 overflow-visible">
+                        <div
+                            class="leftBlocsk promo-left-inner relative z-40 mt-12 w-[400px] -left-[20px]"
+                        >
                             <MainInfo
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"
@@ -191,8 +193,14 @@ const showPromoCode = ref(false);
 </template>
 
 <style scoped>
+/* overflow visible: иначе overflow-hidden на секции обрезает «наезд» карточки на карусель */
+.promo-show-section {
+    overflow: visible;
+}
+
 .promo-container {
     width: 1140px;
+    overflow: visible;
 }
 
 .promo-right {
