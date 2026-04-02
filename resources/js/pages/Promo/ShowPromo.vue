@@ -60,7 +60,7 @@ const showPromoCode = ref(false);
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <div class="saleBlocks mt-12 flex h-full w-full">
+                <div class="saleBlocks mt-12 flex w-full">
                     <div id="promoHiddenMob" class="salesLink1 mb-10 hidden rounded-3xl border bg-white py-4 shadow-2xl">
                         <div class="">
                             <p class="flex items-center px-6 py-2">
@@ -124,7 +124,7 @@ const showPromoCode = ref(false);
                             </div>
                         </div>
                     </div>
-                    <div class="rightBlocsks promo-right box-border h-full">
+                    <div class="rightBlocsks promo-right box-border">
                         <PromoImage
                             :img="props.promo.img"
                             :photos="props.promo.photos || null"
@@ -138,8 +138,8 @@ const showPromoCode = ref(false);
                             :photos="props.promo.photos || null"
                         />
                     </div>
-                    <div class="leftMainBlocks promo-left relative h-full">
-                        <div class="leftBlocsk promo-left-inner absolute top-12 -left-[20px] z-40 h-full">
+                    <div class="leftMainBlocks promo-left relative">
+                        <div class="leftBlocsk promo-left-inner relative mt-12 -translate-x-[20px] z-40">
                             <MainInfo
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"

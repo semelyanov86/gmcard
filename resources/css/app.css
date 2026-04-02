@@ -439,7 +439,7 @@
 }
 
 .image-1 {
-    background-image: url(/assets/12icons/man.svg);
+    background-image: url(/assets/12icons/kid.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -453,14 +453,14 @@
 }
 
 .activeImage {
-    background-image: url(/assets/12icons/man.svg);
+    background-image: url(/assets/12icons/kid.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-2 {
-    background-image: url(/assets/12icons/woman.svg);
+    background-image: url(/images/svg/12icons/fash.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -474,14 +474,14 @@
 }
 
 .activeImage2 {
-    background-image: url(/assets/12icons/woman.svg);
+    background-image: url(/images/svg/12icons/fash.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-3 {
-    background-image: url(/assets/12icons/kid.svg);
+    background-image: url(/assets/12icons/work.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -495,7 +495,7 @@
 }
 
 .activeImage3 {
-    background-image: url(/assets/12icons/kid.svg);
+    background-image: url(/assets/12icons/work.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -523,7 +523,7 @@
 }
 
 .image-5 {
-    background-image: url(/assets/12icons/game.svg);
+    background-image: url(/assets/12icons/cart.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -537,14 +537,14 @@
 }
 
 .activeImage5 {
-    background-image: url(/assets/12icons/game.svg);
+    background-image: url(/assets/12icons/cart.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-6 {
-    background-image: url(/assets/12icons/strong.svg);
+    background-image: url(/assets/12icons/gift.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -558,14 +558,14 @@
 }
 
 .activeImage6 {
-    background-image: url(/assets/12icons/strong.svg);
+    background-image: url(/assets/12icons/gift.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-7 {
-    background-image: url(/assets/12icons/work.svg);
+    background-image: url(/assets/12icons/helth.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -579,14 +579,14 @@
 }
 
 .activeImage7 {
-    background-image: url(/assets/12icons/work.svg);
+    background-image: url(/assets/12icons/helth.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-8 {
-    background-image: url(/assets/12icons/plane.svg);
+    background-image: url(/assets/12icons/strong.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -600,14 +600,14 @@
 }
 
 .activeImage8 {
-    background-image: url(/assets/12icons/plane.svg);
+    background-image: url(/assets/12icons/strong.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-9 {
-    background-image: url(/assets/12icons/cart.svg);
+    background-image: url(/assets/12icons/car.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -621,14 +621,14 @@
 }
 
 .activeImage9 {
-    background-image: url(/assets/12icons/cart.svg);
+    background-image: url(/assets/12icons/car.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-10 {
-    background-image: url(/assets/12icons/shop.svg);
+    background-image: url(/assets/12icons/edu.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -642,14 +642,14 @@
 }
 
 .activeImage10 {
-    background-image: url(/assets/12icons/shop.svg);
+    background-image: url(/assets/12icons/edu.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-11 {
-    background-image: url(/assets/12icons/car.svg);
+    background-image: url(/assets/12icons/zoo.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -663,14 +663,14 @@
 }
 
 .activeImage11 {
-    background-image: url(/assets/12icons/car.svg);
+    background-image: url(/assets/12icons/zoo.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .image-12 {
-    background-image: url(/assets/12icons/edu.svg);
+    background-image: url(/assets/12icons/plane.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -684,7 +684,7 @@
 }
 
 .activeImage12 {
-    background-image: url(/assets/12icons/edu.svg);
+    background-image: url(/assets/12icons/plane.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
