@@ -10,7 +10,7 @@ import UserIcon from '@/components/primitives/icons/UserIcon.vue';
 import VkIcon from '@/components/primitives/icons/VkIcon.vue';
 import type { AppPageProps } from '@/types';
 import { LoginButtonType } from '@/types/LoginButtonType';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const page = usePage<AppPageProps>();
@@ -26,6 +26,20 @@ function openLoginModal(buttonType: LoginButtonType) {
     servicesDropdownOpen.value = false;
     mobileMenuOpen.value = false;
 }
+
+const loginForm = useForm({
+    email: '',
+    password: '',
+});
+
+const submitLogin = () => {
+    loginForm.post(route('login'), {
+        onSuccess: () => {
+            closeLoginModal();
+            loginForm.reset('password');
+        },
+    });
+};
 
 function closeLoginModal() {
     loginModalOpen.value = false;
@@ -200,11 +214,12 @@ function toggleMobileMenu() {
                         <h2 class="text-3xl font-bold text-black">Войти в GM</h2>
                         <p class="text-base font-medium">Выполните вход для доступа ко всей системе сайтов GM</p>
                     </div>
-                    <form action="" class="mt-3 w-full">
+                    <form @submit.prevent="submitLogin" action="" class="mt-3 w-full">
                         <div class="flex flex-col">
                             <label for="email" class="mb-1 text-sm text-gray-900">Email</label>
                             <input
                                 name="email"
+                                v-model="loginForm.email"
                                 class="focus:ring-brand-blue rounded-sm border-gray-300 outline-none focus:ring-1"
                                 type="email"
                                 placeholder="Адрес эл. почты или телефон"
@@ -214,6 +229,7 @@ function toggleMobileMenu() {
                             <label for="password" class="mb-1 text-sm text-gray-900">Пароль</label>
                             <input
                                 name="password"
+                                v-model="loginForm.password"
                                 maxlength="16"
                                 minlength="8"
                                 class="focus:ring-brand-blue padding-right-200 rounded-sm border-gray-300 outline-none focus:ring-1"
@@ -226,6 +242,7 @@ function toggleMobileMenu() {
                         </div>
                         <div class="mt-3 flex items-center justify-between">
                             <button
+                                type="submit"
                                 class="bg-brand-blue-darker focus:bg-brand-gray focus:ring-brand-gray rounded-md px-16 py-3 text-base font-bold text-white focus:ring-2"
                             >
                                 Войти
