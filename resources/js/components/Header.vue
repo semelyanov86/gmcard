@@ -10,7 +10,7 @@ import UserIcon from '@/components/primitives/icons/UserIcon.vue';
 import VkIcon from '@/components/primitives/icons/VkIcon.vue';
 import type { AppPageProps } from '@/types';
 import { LoginButtonType } from '@/types/LoginButtonType';
-import { Link, usePage, useForm } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const page = usePage<AppPageProps>();
@@ -247,7 +247,7 @@ function toggleMobileMenu() {
                             >
                                 Войти
                             </button>
-                            <a href="/forgot_password.html" class="text-brand-gray hover:border-b-brand-gray hover:border-b-2">Забыли пароль?</a>
+                            <a :href="route('password.request')" class="text-brand-gray hover:border-b-brand-gray hover:border-b-2">Забыли пароль?</a>
                         </div>
                     </form>
                     <div class="my-3">
