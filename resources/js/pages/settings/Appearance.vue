@@ -10,10 +10,7 @@ import { Head } from '@inertiajs/vue3';
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall
-                    title="Оформление"
-                    description="Настройки внешнего вида интерфейса в личном кабинете"
-                />
+                <HeadingSmall title="Оформление" description="Настройки внешнего вида интерфейса в личном кабинете" />
                 <p class="text-sm text-muted-foreground">
                     Сейчас используется светлая тема. Дополнительные варианты оформления можно будет добавить позже.
                 </p>

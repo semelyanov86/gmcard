@@ -74,4 +74,12 @@ class CreatePromoRequest extends FormRequest
             'is_draft' => ['nullable', 'boolean'],
         ];
     }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return trans('promo.validation');
+    }
 }

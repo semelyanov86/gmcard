@@ -28,6 +28,7 @@ final class ProfileUpdateRequest extends FormRequest
         ];
     }
 
+    #[\Override]
     protected function prepareForValidation(): void
     {
         if ($this->input('city') === '' || $this->input('city') === null) {

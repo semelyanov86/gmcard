@@ -47,10 +47,7 @@ const updatePassword = () => {
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall
-                    title="Смена пароля"
-                    description="Используйте длинный надёжный пароль, чтобы защитить аккаунт"
-                />
+                <HeadingSmall title="Смена пароля" description="Используйте длинный надёжный пароль, чтобы защитить аккаунт" />
 
                 <form @submit.prevent="updatePassword" class="space-y-6">
                     <div class="grid gap-2">

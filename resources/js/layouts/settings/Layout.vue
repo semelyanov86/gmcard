@@ -45,7 +45,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
                         :key="item.href"
                         variant="ghost"
                         :class="[
-                            'h-auto min-h-9 w-full items-start justify-start whitespace-normal py-2 text-left leading-snug',
+                            'h-auto min-h-9 w-full items-start justify-start py-2 text-left leading-snug whitespace-normal',
                             { 'bg-muted': currentPath === item.href },
                         ]"
                         as-child

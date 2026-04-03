@@ -83,7 +83,7 @@ const submit = () => {
                         <select
                             id="city"
                             v-model="form.city"
-                            class="border-input flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs md:text-sm"
+                            class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs md:text-sm"
                         >
                             <option value="">Не указано</option>
                             <option v-for="c in props.cities ?? []" :key="c.id" :value="c.id">{{ c.name }}</option>
