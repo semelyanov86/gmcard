@@ -28,6 +28,8 @@ final class PromoListItemData extends Data
         public ?string $code,
         public ?string $rejectionReason = null,
         public ?string $rejectionMessage = null,
+        /** @var list<string>|null */
+        public ?array $photos = null,
     ) {}
 
     public static function fromModel(Promo $promo): self
@@ -37,9 +39,22 @@ final class PromoListItemData extends Data
 
     public static function fromPromo(Promo $promo): self
     {
-        $promo->loadMissing('promoType');
+        $promo->loadMissing([
+            'promoType',
+            'photos' => static function ($query): void {
+                $query->orderBy('sort_order');
+            },
+        ]);
 
         $status = self::determineStatus($promo);
+
+        $photoPaths = $promo->photos
+            ->pluck('path')
+            ->filter()
+            ->values()
+            ->all();
+
+        $photos = $photoPaths === [] ? null : $photoPaths;
 
         $resolvedPromoType = $promo->promoType;
         if ($resolvedPromoType === null) {
@@ -68,6 +83,7 @@ final class PromoListItemData extends Data
             code: $promo->code,
             rejectionReason: $promo->rejection_reason,
             rejectionMessage: $promo->rejection_message,
+            photos: $photos,
         );
     }
 
