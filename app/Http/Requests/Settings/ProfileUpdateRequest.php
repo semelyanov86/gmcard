@@ -19,14 +19,19 @@ final class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255',
                 Rule::unique(User::class)->ignore($this->user()?->id),
             ],
+            'job' => ['nullable', 'string', 'max:50'],
+            'country' => ['nullable', 'string', 'max:50'],
+            'city' => ['nullable', 'integer', Rule::exists('cities', 'id')],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->input('city') === '' || $this->input('city') === null) {
+            $this->merge(['city' => null]);
+        }
     }
 }
