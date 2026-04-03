@@ -7,6 +7,7 @@ namespace App\Http\Requests\Settings;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Override;
 
 final class ProfileUpdateRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ final class ProfileUpdateRequest extends FormRequest
         ];
     }
 
-    #[\Override]
+    #[Override]
     protected function prepareForValidation(): void
     {
         if ($this->input('city') === '' || $this->input('city') === null) {
