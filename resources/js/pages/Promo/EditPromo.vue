@@ -73,6 +73,7 @@ interface PromoFormPayload {
     social_links: Record<string, string[]>;
     photos: File[];
     existing_photo: string | null;
+    existing_photo_paths?: string[];
     free_delivery_from_value?: number | null;
     is_draft: boolean;
     use_bonus_balance: boolean;
@@ -330,7 +331,11 @@ function handleUpdate() {
                         v-model:freeDeliveryFrom="form.free_delivery_from"
                     />
                     <PromoTitleInput v-model="form.title" :error="form.errors.title" />
-                    <PhotoUploadBlock v-model="form.photos" :existing-photo="form.existing_photo" />
+                    <PhotoUploadBlock
+                        v-model="form.photos"
+                        :existing-photo="form.existing_photo"
+                        :existing-photo-paths="props.promo.existing_photo_paths ?? []"
+                    />
                     <YouTubeBlock v-model="form.youtube_url as string" :error="form.errors.youtube_url" />
                     <PromoDescriptionBlock
                         v-model:description="form.description"

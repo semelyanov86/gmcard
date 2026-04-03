@@ -2,6 +2,7 @@ export interface ProfilePromo {
     id: number;
     name?: string | null;
     img?: string | null;
+    photos?: string[] | null;
     description?: string | null;
     type?: string | null;
     discount?: string | null;
