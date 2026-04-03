@@ -22,9 +22,25 @@ final readonly class BuildPromoFormDataAction
 
     public function handle(Promo $promo): PromoFormData
     {
-        $promo->loadMissing(['categories:id', 'cities:id', 'addresses']);
+        $promo->loadMissing([
+            'categories:id',
+            'cities:id',
+            'addresses',
+            'photos' => static function ($query): void {
+                $query->orderBy('sort_order');
+            },
+        ]);
 
         [$discount, $cashback] = $this->splitDiscounts($promo);
+
+        $photoPaths = $promo->photos
+            ->pluck('path')
+            ->filter()
+            ->values()
+            ->all();
+        if ($photoPaths === [] && $promo->img !== null && $promo->img !== '') {
+            $photoPaths = [$promo->img];
+        }
 
         /** @var array<int|string, int> $categoryIdsRaw */
         $categoryIdsRaw = $promo->categories->pluck('id')->all();
@@ -51,7 +67,8 @@ final readonly class BuildPromoFormDataAction
             durationDays: $this->resolveDurationDays($promo),
             showInBanner: (bool) $promo->show_on_home,
             youtubeUrl: $promo->video_link,
-            existingPhoto: $promo->img,
+            existingPhoto: $photoPaths[0] ?? $promo->img,
+            existingPhotoPaths: $photoPaths,
             photos: [],
             useBonusBalance: false,
             isDraft: $promo->moderation_status === PromoModerationStatus::DRAFT,

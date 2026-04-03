@@ -45,6 +45,7 @@ final class PromoFormData extends Data
         public bool $showInBanner = false,
         public ?string $youtubeUrl = null,
         public ?string $existingPhoto = null,
+        public array $existingPhotoPaths = [],
         public array $photos = [],
         public bool $useBonusBalance = false,
         public bool $isDraft = false,
