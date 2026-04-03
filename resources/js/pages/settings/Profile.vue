@@ -8,21 +8,26 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
-import { type User } from '@/types';
+import type { CityModel, User } from '@/types';
 
 interface Props {
     mustVerifyEmail: boolean;
     status?: string;
+    cities: CityModel[];
 }
 
 const props = defineProps<Props>();
 
 const page = usePage();
 const user = page.props.auth.user as User;
+const userData = page.props.userData;
 
 const form = useForm({
     name: user.name,
     email: user.email,
+    job: userData?.job,
+    country: userData?.country,
+    city: userData?.city,
 });
 
 const submit = () => {
@@ -59,6 +64,31 @@ const submit = () => {
                             placeholder="Email"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="job">Место работы</Label>
+                        <Input id="job" :v-model="form.job" class="mt-1 block w-full" maxlength="50" autocomplete="organization-title" />
+                        <InputError class="mt-2" :message="form.errors.job" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="country">Страна</Label>
+                        <Input id="country" :v-model="form.country" class="mt-1 block w-full" maxlength="50" autocomplete="country-name" />
+                        <InputError class="mt-2" :message="form.errors.country" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="city">Место проживания (город)</Label>
+                        <select
+                            id="city"
+                            v-model="form.city"
+                            class="border-input flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs md:text-sm"
+                        >
+                            <option value="">Не указано</option>
+                            <option v-for="c in props.cities ?? []" :key="c.id" :value="c.id">{{ c.name }}</option>
+                        </select>
+                        <InputError class="mt-2" :message="form.errors.city" />
                     </div>
 
                     <div v-if="props.mustVerifyEmail && !user.email_verified_at">
