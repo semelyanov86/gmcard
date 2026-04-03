@@ -152,10 +152,7 @@ function handleFileChange3(event: Event) {
             </div>
         </div>
 
-        <div
-            v-if="!photos[0] && props.existingPhoto && (!props.existingPhotoPaths || props.existingPhotoPaths.length === 0)"
-            class="mt-5"
-        >
+        <div v-if="!photos[0] && props.existingPhoto && (!props.existingPhotoPaths || props.existingPhotoPaths.length === 0)" class="mt-5">
             <p class="text-sm text-black/60">Текущее изображение</p>
             <img
                 :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"

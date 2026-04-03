@@ -48,12 +48,14 @@ final class PromoListItemData extends Data
 
         $status = self::determineStatus($promo);
 
+        /** @var list<string> $photoPaths */
         $photoPaths = $promo->photos
             ->pluck('path')
             ->filter()
             ->values()
             ->all();
 
+        /** @var list<string>|null $photos */
         $photos = $photoPaths === [] ? null : $photoPaths;
 
         $resolvedPromoType = $promo->promoType;

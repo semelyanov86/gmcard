@@ -33,13 +33,17 @@ final readonly class BuildPromoFormDataAction
 
         [$discount, $cashback] = $this->splitDiscounts($promo);
 
-        $photoPaths = $promo->photos
+        /** @var list<string> $fromDb */
+        $fromDb = $promo->photos
             ->pluck('path')
             ->filter()
             ->values()
             ->all();
-        if ($photoPaths === [] && $promo->img !== null && $promo->img !== '') {
+
+        if ($fromDb === [] && $promo->img !== null && $promo->img !== '') {
             $photoPaths = [$promo->img];
+        } else {
+            $photoPaths = $fromDb;
         }
 
         /** @var array<int|string, int> $categoryIdsRaw */

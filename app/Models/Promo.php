@@ -33,6 +33,7 @@ use Override;
  * @property string|null $rejection_reason
  * @property string|null $rejection_message
  * @property int|null $approved_by
+ * @property string|null $img
  */
 class Promo extends Model
 {

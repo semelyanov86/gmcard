@@ -78,6 +78,7 @@ class CreatePromoRequest extends FormRequest
     /**
      * @return array<string, string>
      */
+    #[\Override]
     public function messages(): array
     {
         return trans('promo.validation');
