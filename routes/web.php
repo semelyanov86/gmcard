@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Category\CategoryPromosController;
 use App\Http\Controllers\Landing\BusinessLandingController;
 use App\Http\Controllers\Landing\UserLandingController;
 use App\Http\Controllers\MainController;
@@ -19,6 +20,7 @@ use Inertia\Inertia;
 Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/user-landing', [UserLandingController::class, 'index'])->name('user.landing');
 Route::get('/business-landing', [BusinessLandingController::class, 'index'])->name('business.landing');
+Route::get('/categories/{category}/promos', [CategoryPromosController::class, 'index'])->name('categories.promos');
 Route::get('/promo/show/{promo}', [ShowPromoController::class, 'index'])->name('promo.show');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/help/{slug}', [HelpController::class, 'show'])->name('help.post');
