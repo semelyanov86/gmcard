@@ -21,7 +21,9 @@ final readonly class GetApprovedPromosForHomeAction
      */
     public function handle(): array
     {
-        $promos = Promo::where('moderation_status', PromoModerationStatus::APPROVED->value)
+        $promos = Promo::query()
+            ->with(PromoListItemData::eagerLoadForListItem())
+            ->where('moderation_status', PromoModerationStatus::APPROVED->value)
             ->where('show_on_home', true)
             ->latest()
             ->take(24)
