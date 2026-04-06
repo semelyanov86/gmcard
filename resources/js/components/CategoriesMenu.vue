@@ -3,6 +3,7 @@ import CategoriesMenuMobile from '@/components/CategoriesMenuMobile.vue';
 import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
 import TriangleUpIcon from '@/components/primitives/icons/TriangleUpIcon.vue';
 import type { CategoryModel } from '@/types';
+import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 
 interface Props {
@@ -45,12 +46,13 @@ const handleSubCategoryHover = (category: CategoryModel) => {
 <template>
     <div class="relative w-full py-4 md:py-0" @mouseleave="handleContainerLeave">
         <div class="mobile_desctop -mx-2 flex items-end justify-between px-4 lg:px-0">
-            <div
+            <Link
                 v-for="(category, index) in props.categories"
                 :key="category.id"
+                :href="route('categories.promos', category.id)"
                 :class="[
                     `mains${category.icon_index ?? index + 1}`,
-                    'relative flex w-[95px] min-w-0 flex-shrink-0 cursor-pointer flex-col items-center',
+                    'relative flex w-[95px] min-w-0 flex-shrink-0 cursor-pointer flex-col items-center no-underline',
                 ]"
                 @mouseenter="handleMainCategoryHover(category)"
             >
@@ -74,14 +76,10 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     :class="{ hidden: activeMainCategory?.id !== category.id }"
                     custom-class="absolute -bottom-6 h-7 w-6 text-brand-yellow"
                 />
-            </div>
+            </Link>
         </div>
 
-        <CategoriesMenuMobile
-            :categories="props.categories"
-            :is-dropdown-open="!!activeMainCategory"
-            @open-dropdown="activeMainCategory = props.categories[0]"
-        />
+        <CategoriesMenuMobile :categories="props.categories" />
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
             <div class="bg-brand-yellow z-[1] h-[16px] w-full" />
@@ -90,14 +88,17 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
-                        class="my-class hover:bg-hover cursor-pointer rounded-lg px-4 py-3 transition-colors"
+                        class="my-class flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 transition-colors hover:bg-hover"
                         :class="{ 'bg-hover': selectedSubCategory?.id === subCategory.id }"
                         @mouseenter="handleSubCategoryHover(subCategory)"
                     >
-                        <div class="icon-container flex items-center gap-3">
+                        <Link
+                            :href="route('categories.promos', subCategory.id)"
+                            class="icon-container flex min-w-0 flex-1 items-center gap-3 text-inherit no-underline"
+                        >
                             <span>{{ subCategory.name }}</span>
-                        </div>
-                        <span class="strelka">›</span>
+                        </Link>
+                        <span class="strelka shrink-0">›</span>
                     </li>
                 </ul>
 
@@ -122,12 +123,13 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                         <div v-for="category in filteredSubSubCategories" :key="category.id" class="category-block">
                             <h3 class="mb-2 text-base font-semibold text-black">{{ category.name }}</h3>
                             <ul v-if="category.children && category.children.length > 0" class="mt-3 flex flex-col gap-2 space-y-1">
-                                <li
-                                    v-for="child in category.children"
-                                    :key="child.id"
-                                    class="text-brand-text cursor-pointer text-sm hover:text-blue-600"
-                                >
-                                    {{ child.name }}
+                                <li v-for="child in category.children" :key="child.id" class="text-sm">
+                                    <Link
+                                        :href="route('categories.promos', child.id)"
+                                        class="text-brand-text cursor-pointer hover:text-blue-600 hover:underline"
+                                    >
+                                        {{ child.name }}
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
