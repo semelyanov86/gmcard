@@ -37,14 +37,22 @@ final class PromoListItemData extends Data
         return self::fromPromo($promo);
     }
 
-    public static function fromPromo(Promo $promo): self
+    /**
+     * @return array<string, callable|string>
+     */
+    public static function eagerLoadForListItem(): array
     {
-        $promo->loadMissing([
+        return [
             'promoType',
             'photos' => static function ($query): void {
                 $query->orderBy('sort_order');
             },
-        ]);
+        ];
+    }
+
+    public static function fromPromo(Promo $promo): self
+    {
+        $promo->loadMissing(self::eagerLoadForListItem());
 
         $status = self::determineStatus($promo);
 
