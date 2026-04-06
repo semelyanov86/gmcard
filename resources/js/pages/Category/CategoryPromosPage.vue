@@ -45,7 +45,7 @@ const hasPromos = computed(() => (props.promos?.length ?? 0) > 0);
                     <p class="mt-5 max-w-2xl text-lg text-white/65 md:text-xl">Они скоро появятся — загляните позже.</p>
                     <Link
                         :href="route('main')"
-                        class="mt-10 inline-flex items-center justify-center rounded-md bg-brand-blue px-10 py-4 text-lg font-semibold text-white shadow-lg no-underline hover:opacity-90"
+                        class="bg-brand-blue mt-10 inline-flex items-center justify-center rounded-md px-10 py-4 text-lg font-semibold text-white no-underline shadow-lg hover:opacity-90"
                     >
                         Перейти к акциям
                     </Link>

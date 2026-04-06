@@ -3550,6 +3550,8 @@ a {
 
 .body {
     background: #041a41 !important;
+    position: relative;
+    z-index: 10;
 }
 
 ::-webkit-scrollbar {

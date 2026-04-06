@@ -7,7 +7,9 @@ namespace App\Data;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\PromoType;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelData\Data;
+use Closure;
 
 final class PromoListItemData extends Data
 {
@@ -38,13 +40,14 @@ final class PromoListItemData extends Data
     }
 
     /**
-     * @return array<string, callable|string>
+     * @return array<int|string, string|Closure(Relation): void>
      */
+    // @phpstan-ignore missingType.generics
     public static function eagerLoadForListItem(): array
     {
         return [
             'promoType',
-            'photos' => static function ($query): void {
+            'photos' => static function (Relation $query): void {
                 $query->orderBy('sort_order');
             },
         ];

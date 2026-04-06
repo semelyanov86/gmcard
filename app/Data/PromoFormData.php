@@ -15,32 +15,15 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class PromoFormData extends Data
 {
     /**
-     * @param int $id
-     * @param int $promoTypeId
-     * @param string $title
-     * @param string $description
-     * @param string|null $conditions
-     * @param array<string, float|string>|null $discount
-     * @param array<string, float|string>|null $cashback
-     * @param array<int, string> $categoryIds
-     * @param array<int, int> $cityIds
-     * @param array<int, array<string, mixed>> $addresses
-     * @param array<string, mixed> $schedule
-     * @param array<string, string> $socialLinks
-     * @param string|null $promoCode
-     * @param int|null $minimumOrderAmount
-     * @param bool $freeDelivery
-     * @param int|null $freeDeliveryFrom
-     * @param int $durationDays
-     * @param bool $showInBanner
-     * @param string|null $youtubeUrl
-     * @param string|null $existingPhoto
-     * @param list<string> $existingPhotoPaths
-     * @param array<int, UploadedFile|string> $photos
-     * @param bool $useBonusBalance
-     * @param bool $isDraft
-     * @param bool $agreeToTerms
-     * @param string $filterCity
+     * @param  array<string, float|string>|null  $discount
+     * @param  array<string, float|string>|null  $cashback
+     * @param  array<int, string>  $categoryIds
+     * @param  array<int, int>  $cityIds
+     * @param  array<int, array<string, mixed>>  $addresses
+     * @param  array<string, mixed>  $schedule
+     * @param  array<string, string>  $socialLinks
+     * @param  list<string>  $existingPhotoPaths
+     * @param  array<int, UploadedFile|string>  $photos
      */
     public function __construct(
         public int $id,

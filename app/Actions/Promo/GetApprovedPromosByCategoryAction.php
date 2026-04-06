@@ -28,7 +28,6 @@ final readonly class GetApprovedPromosByCategoryAction
             ->latest()
             ->get();
 
-        return PromoListItemData::collect($promos, 'array');
+        return array_values(PromoListItemData::collect($promos, 'array'));
     }
-
 }

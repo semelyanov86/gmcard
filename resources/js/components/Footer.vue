@@ -14,7 +14,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <section class="footer bg-brand-footer">
+    <section class="footer bg-brand-footer relative z-0">
         <footer class="bg-brand-footer-bg relative overflow-hidden">
             <div class="relative mx-auto w-full max-w-[1140px] py-9 2xl:w-full 2xl:px-4">
                 <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
