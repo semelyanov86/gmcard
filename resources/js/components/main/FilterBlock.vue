@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import type { AppPageProps, CityModel } from '@/types';
-import { usePage } from '@inertiajs/vue3';
+import type { CityModel } from '@/types';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     cities: CityModel[];
 }>();
-
-const page = usePage<AppPageProps>();
 
 const cityOpen = ref(false);
 const selectedCityId = ref<number | null>(null);
@@ -57,11 +54,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                     @click.stop="toggleCityOpen"
                 >
                     <span class="mr-2">{{ selectedCityName || 'Выберите город' }}</span>
-                    <img
-                        src="/images/png/icons/down.png"
-                        class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
-                        alt=""
-                    />
+                    <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
                 </div>
                 <div
                     class="custom-options absolute z-50 mt-1 h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
@@ -90,11 +83,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                     class="custom_select focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                 >
                     <div id="spaner" class="mr-2">Не менее 5%</div>
-                    <img
-                        src="/images/png/icons/down.png"
-                        class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
-                        alt=""
-                    />
+                    <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
                 </div>
                 <div
                     class="custom-options_1 absolute z-50 mt-1 hidden h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
@@ -129,11 +118,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                     class="custom_selected focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
                 >
                     <div id="spaner1" class="mr-2">Все</div>
-                    <img
-                        src="/images/png/icons/down.png"
-                        class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2"
-                        alt=""
-                    />
+                    <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
                 </div>
                 <div
                     class="custom-options_2 absolute z-50 mt-1 hidden h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"

@@ -19,7 +19,11 @@ final readonly class GetApprovedPromosByCategoryAction
      */
     public function handle(Category $category): array
     {
-        $categoryIds = Category::descendantsAndSelf($category->id)->pluck('id')->all();
+        /** @var list<int> $categoryIds */
+        $categoryIds = array_values(array_unique(array_merge(
+            [$category->id],
+            $category->descendants()->get()->pluck('id')->all(),
+        )));
 
         if ($categoryIds === []) {
             return [];
