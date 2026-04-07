@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Category;
 
 use App\Actions\Category\GetCategoriesAction;
+use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\GetApprovedPromosByCategoryAction;
 use App\Enums\MenuType;
@@ -30,6 +31,7 @@ class CategoryPromosController extends Controller
                 'name' => $category->name,
             ],
             'promos' => GetApprovedPromosByCategoryAction::run($category),
+            'cities' => GetCitiesAction::run(),
         ]);
     }
 }

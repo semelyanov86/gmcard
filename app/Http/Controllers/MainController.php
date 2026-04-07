@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Category\GetCategoriesAction;
+use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\GetApprovedPromosForHomeAction;
 use App\Enums\MenuType;
@@ -24,6 +25,7 @@ class MainController extends Controller
                 'phone' => $settings->phone,
             ],
             'promos' => GetApprovedPromosForHomeAction::run(),
+            'cities' => GetCitiesAction::run(),
         ]);
     }
 }
