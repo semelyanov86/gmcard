@@ -4,9 +4,10 @@ import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 import NavBar from '@/components/NavBar.vue';
+import FilterBlock from '@/components/main/FilterBlock.vue';
 import PopularPromotions from '@/components/main/PopularPromotions.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
-import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
+import type { AppPageProps, CategoryModel, CityModel, ContactModel, MenuData } from '@/types';
 import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
@@ -20,6 +21,7 @@ const props = defineProps<{
     categories: CategoryModel[];
     category: { id: number; name: string };
     promos?: ProfilePromo[] | null;
+    cities: CityModel[];
 }>();
 
 const hasPromos = computed(() => (props.promos?.length ?? 0) > 0);
@@ -33,6 +35,7 @@ const hasPromos = computed(() => (props.promos?.length ?? 0) > 0);
             <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
                 <NavBar :menu-items="props.navbarMenu" />
                 <CategoriesMenu :categories="props.categories" />
+                <FilterBlock :cities="props.cities" />
                 <h1 class="mt-4 text-3xl font-bold text-white">{{ props.category.name }}</h1>
 
                 <PopularPromotions v-if="hasPromos" :promos="props.promos ?? []" />
