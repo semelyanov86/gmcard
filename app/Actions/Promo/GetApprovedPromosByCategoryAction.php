@@ -19,12 +19,16 @@ final readonly class GetApprovedPromosByCategoryAction
      */
     public function handle(Category $category): array
     {
-        $categoryId = [$category->id];
+        $categoryIds = Category::descendantsAndSelf($category->id)->pluck('id')->all();
+
+        if ($categoryIds === []) {
+            return [];
+        }
 
         $promos = Promo::query()
             ->with(PromoListItemData::eagerLoadForListItem())
             ->where('moderation_status', PromoModerationStatus::APPROVED->value)
-            ->whereHas('categories', fn ($q) => $q->whereIn('category_id', $categoryId))
+            ->whereHas('categories', fn ($q) => $q->whereIn('category_id', $categoryIds))
             ->latest()
             ->get();
 

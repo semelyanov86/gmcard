@@ -42,7 +42,6 @@ final class PromoListItemData extends Data
     /**
      * @return array<int|string, string|Closure(Relation): void>
      */
-    // @phpstan-ignore missingType.generics
     public static function eagerLoadForListItem(): array
     {
         return [
