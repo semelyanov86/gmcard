@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 final class DiscountFilterOption extends Model
 {
@@ -17,7 +18,7 @@ final class DiscountFilterOption extends Model
         'sort_order',
     ];
 
-    #[\Override]
+    #[Override]
     public function casts(): array
     {
         return [
