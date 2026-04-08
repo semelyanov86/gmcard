@@ -72,6 +72,7 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,
             PromoUsageSeeder::class,
             BonusSeeder::class,
+            DiscountFilterOptionSeeder::class,
 
             PaymentSeeder::class,
             SubscriptionSeeder::class,
