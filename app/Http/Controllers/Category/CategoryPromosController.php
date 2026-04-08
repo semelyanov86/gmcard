@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Category;
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Actions\Percent\GetDiscountFilterOptionsAction;
 use App\Actions\Promo\GetApprovedPromosByCategoryAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
@@ -32,6 +33,7 @@ class CategoryPromosController extends Controller
             ],
             'promos' => GetApprovedPromosByCategoryAction::run($category),
             'cities' => GetCitiesAction::run(),
+            'discountFilterOptions' => GetDiscountFilterOptionsAction::run(),
         ]);
     }
 }

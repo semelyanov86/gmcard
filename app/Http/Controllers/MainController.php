@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
+use App\Actions\Percent\GetDiscountFilterOptionsAction;
 use App\Actions\Promo\GetApprovedPromosForHomeAction;
 use App\Enums\MenuType;
 use App\Settings\GeneralSettings;
@@ -26,6 +27,7 @@ class MainController extends Controller
             ],
             'promos' => GetApprovedPromosForHomeAction::run(),
             'cities' => GetCitiesAction::run(),
+            'discountFilterOptions' => GetDiscountFilterOptionsAction::run(),
         ]);
     }
 }
