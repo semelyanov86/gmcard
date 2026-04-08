@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\DiscountFilterOption;
@@ -15,7 +17,6 @@ final class DiscountFilterOptionFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
     protected $model = DiscountFilterOption::class;
 
     public function definition(): array

@@ -17,6 +17,7 @@ final class DiscountFilterOption extends Model
         'sort_order',
     ];
 
+    #[\Override]
     public function casts(): array
     {
         return [
