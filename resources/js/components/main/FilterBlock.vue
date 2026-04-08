@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import type { CityModel, DiscountFilterOptionModel } from '@/types';
+import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     cities: CityModel[];
     discountFilterOptions: DiscountFilterOptionModel[];
+    promoTypes: PromoTypeModel[];
 }>();
 
 const cityOpen = ref(false);
 const selectedCityId = ref<number | null>(null);
 const cityRoot = ref<HTMLElement | null>(null);
-const discountOpen = ref(false);
-const selectedMinPercent = ref<number | null>(null);
-const discountRoot = ref<HTMLElement | null>(null);
 
 const selectedCityName = computed(() => {
     if (selectedCityId.value === null) {
@@ -30,6 +28,10 @@ function selectCity(city: CityModel) {
     cityOpen.value = false;
 }
 
+const discountOpen = ref(false);
+const selectedMinPercent = ref<number | null>(null);
+const discountRoot = ref<HTMLElement | null>(null);
+
 function toggleDiscountOpen() {
     discountOpen.value = !discountOpen.value;
 }
@@ -37,6 +39,29 @@ function toggleDiscountOpen() {
 function selectDiscount(option: DiscountFilterOptionModel) {
     selectedMinPercent.value = option.minPercent;
     discountOpen.value = false;
+}
+
+const promoTypeOpen = ref(false);
+const selectedPromoTypeId = ref<number | null>(null);
+const promoTypeRoot = ref<HTMLElement | null>(null);
+
+const selectPromoTypeTitle = computed(() => {
+        if (selectedPromoTypeId.value === null) return 'Все';
+        return props.promoTypes.find((t) => t.id === selectedPromoTypeId.value)?.title ?? 'Все';
+});
+
+function togglePromoTypeOpen() {
+    promoTypeOpen.value = !promoTypeOpen.value;
+}
+
+function selectPromoType(type: PromoTypeModel) {
+    selectedPromoTypeId.value = type.id;
+    promoTypeOpen.value = false;
+}
+
+function selectAllPromoTypes() {
+    selectedPromoTypeId.value = null;
+    promoTypeOpen.value = false;
 }
 
 function onDocumentClick(e: MouseEvent) {
@@ -48,6 +73,9 @@ function onDocumentClick(e: MouseEvent) {
     }
     if (discountRoot.value && !discountRoot.value.contains(e.target)) {
         discountOpen.value = false;
+    }
+    if (promoTypeRoot.value && !promoTypeRoot.value.contains(e.target)) {
+        promoTypeOpen.value = false;
     }
 }
 
@@ -124,17 +152,37 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
         </div>
         <div class="gapper filter_inp relative flex items-center gap-6">
             <label for="sale" class="text-base text-white">Вид акции</label>
-            <div class="selected_block relative inline-block h-12">
+            <div ref="promoTypeRoot" class="selected_block relative inline-block h-12">
                 <div
-                    class="custom_selected focus:shadow-outline flex h-12 w-52 appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                    class="custom_selected focus:shadow-outline flex h-12 w-52 cursor-pointer appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
+                    role="button"
+                    tabindex="0"
+                    :aria-expanded="promoTypeOpen"
+                    @click.stop="togglePromoTypeOpen"
                 >
-                    <div id="spaner1" class="mr-2">Все</div>
+                    <div id="spaner1" class="mr-2">{{ selectPromoTypeTitle }}</div>
                     <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
                 </div>
                 <div
-                    class="custom-options_2 absolute z-50 mt-1 hidden h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white shadow-lg"
+                    class="custom-options_2 absolute z-50 mt-1 h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white text-black shadow-lg"
+                    :class="{ hidden: !promoTypeOpen }"
                 >
-                    <div class="custom-option_2 filter-option-selected cursor-pointer px-4 py-2 hover:bg-gray-200">Все</div>
+                    <div
+                        class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
+                        :class="{ 'filter-option-selected': selectedPromoTypeId === null }"
+                        @click.stop="selectAllPromoTypes"
+                    >
+                        Все
+                    </div>
+                    <div
+                        v-for="type in promoTypes"
+                        :key="type.id"
+                        class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
+                        :class="{ 'filter-option-selected': selectedPromoTypeId === type.id }"
+                        @click.stop="selectPromoType(type)"
+                    >
+                        {{ type.title }}
+                    </div>
                 </div>
             </div>
         </div>
