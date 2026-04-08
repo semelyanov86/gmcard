@@ -10,6 +10,7 @@ import NewShops from '@/components/main/NewShops.vue';
 import PopularPromotions from '@/components/main/PopularPromotions.vue';
 import ShopPopular from '@/components/main/ShopPopular.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
+import { DiscountFilterOptionModel } from '@/types';
 import type { AppPageProps, CategoryModel, CityModel, ContactModel, MenuData } from '@/types';
 import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { usePage } from '@inertiajs/vue3';
@@ -22,6 +23,7 @@ const props = defineProps<{
     contact: ContactModel;
     promos?: ProfilePromo[];
     cities: CityModel[];
+    discountFilterOptions: DiscountFilterOptionModel[];
 }>();
 </script>
 
@@ -37,7 +39,10 @@ const props = defineProps<{
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <FilterBlock :cities="props.cities" />
+                <FilterBlock
+                    :cities="props.cities"
+                    :discount-filter-options="props.discountFilterOptions"
+                />
 
                 <PopularPromotions :promos="props.promos" />
 
