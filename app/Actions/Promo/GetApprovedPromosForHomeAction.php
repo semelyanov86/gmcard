@@ -26,16 +26,16 @@ final readonly class GetApprovedPromosForHomeAction
             ->where('moderation_status', PromoModerationStatus::APPROVED->value)
             ->where('show_on_home', true);
 
-        if (!empty($filters['promo_type'])) {
+        if (! empty($filters['promo_type'])) {
             $query->where('promo_type_id', (int) $filters['promo_type']);
         }
 
-        if (!empty($filters['city'])) {
+        if (! empty($filters['city'])) {
             $query->whereHas('cities', fn ($q) => $q->where('cities.id', $filters['city']));
         }
 
         // Исправить
-        if (!empty($filters['min_discount'])) {
+        if (! empty($filters['min_discount'])) {
             $query->whereRaw(
                 "CAST(COALESCE(NULLIF(discount, ''), '0') AS UNSIGNED) >= ?",
                 [$filters['min_discount']]

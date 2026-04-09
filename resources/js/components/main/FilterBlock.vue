@@ -19,7 +19,6 @@ const city = ref<number | null>(props.filters?.city ?? null);
 const minDiscount = ref<number | null>(props.filters?.min_discount ?? null);
 const promoType = ref<number | null>(props.filters?.promo_type ?? null);
 
-
 watch([city, minDiscount, promoType], () => {
     router.get(
         props.submitUrl,
@@ -47,5 +46,4 @@ watch([city, minDiscount, promoType], () => {
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

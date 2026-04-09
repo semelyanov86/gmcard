@@ -11,8 +11,8 @@ import PopularPromotions from '@/components/main/PopularPromotions.vue';
 import ShopPopular from '@/components/main/ShopPopular.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
 import type { AppPageProps, CategoryModel, CityModel, ContactModel, DiscountFilterOptionModel, MenuData, PromoTypeModel } from '@/types';
-import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
+import type { ProfilePromo } from '@/types/promo/ProfilePromo';
 import { usePage } from '@inertiajs/vue3';
 import '../../css/internal/output.css';
 
@@ -41,7 +41,13 @@ const props = defineProps<{
 
                 <CategoriesMenu :categories="props.categories" />
 
-                <FilterBlock :cities="props.cities" :discount-filter-options="props.discountFilterOptions" :promo-types="props.promoTypes" :filters="props.filters" :submit-url="route('main')" />
+                <FilterBlock
+                    :cities="props.cities"
+                    :discount-filter-options="props.discountFilterOptions"
+                    :promo-types="props.promoTypes"
+                    :filters="props.filters"
+                    :submit-url="route('main')"
+                />
 
                 <PopularPromotions :promos="props.promos" />
 

@@ -24,6 +24,17 @@ enum PromoType: string
         return array_column(self::cases(), 'value', 'value');
     }
 
+    public static function fromId(int $id): self
+    {
+        foreach (self::cases() as $case) {
+            if ($case->id() === $id) {
+                return $case;
+            }
+        }
+
+        throw new ValueError("Invalid promo type id: $id");
+    }
+
     public function id(): int
     {
         return match ($this) {
@@ -35,16 +46,5 @@ enum PromoType: string
             self::CASHBACK => 6,
             self::KONKURS => 7,
         };
-    }
-
-    public static function fromId(int $id): self
-    {
-        foreach (self::cases() as $case) {
-            if ($case->id() === $id) {
-                return $case;
-            }
-        }
-
-        throw new ValueError("Invalid promo type id: $id");
     }
 }

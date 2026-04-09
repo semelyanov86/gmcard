@@ -11,6 +11,7 @@ use App\Models\Promo;
 use App\ValueObjects\MoneyValueObject;
 use Illuminate\Http\UploadedFile;
 use Lorisleiva\Actions\Concerns\AsAction;
+use ValueError;
 
 abstract readonly class AbstractPromoSaveAction
 {
@@ -53,7 +54,7 @@ abstract readonly class AbstractPromoSaveAction
     {
         try {
             return PromoType::fromId($id);
-        } catch (\ValueError) {
+        } catch (ValueError) {
             return PromoType::SIMPLE;
         }
     }

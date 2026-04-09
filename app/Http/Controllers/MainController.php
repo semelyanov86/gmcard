@@ -29,7 +29,7 @@ class MainController extends Controller
                 'email' => $settings->email,
                 'phone' => $settings->phone,
             ],
-            'promos' => GetApprovedPromosForHomeAction::run($filters),
+            'promos' => GetApprovedPromosForHomeAction::run(),
             'filters' => $filters,
             'cities' => GetCitiesAction::run(),
             'discountFilterOptions' => GetDiscountFilterOptionsAction::run(),
