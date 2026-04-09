@@ -53,7 +53,7 @@ final readonly class BuildPromoFormDataAction
 
         return new PromoFormData(
             id: $promo->id,
-            promoTypeId: $promo->promo_type_id ?? $promo->type?->id() ?? 1,
+            promoTypeId: $promo->promo_type_id ?? $promo->type->id(),
             title: $promo->name,
             description: $promo->description ?? '',
             conditions: $promo->extra_conditions,
@@ -175,19 +175,5 @@ final readonly class BuildPromoFormDataAction
         }
 
         return 1;
-    }
-
-    private function mapPromoTypeToId(?PromoTypeEnum $type): int
-    {
-        return match ($type) {
-            PromoTypeEnum::SIMPLE => 1,
-            PromoTypeEnum::COUPON => 2,
-            PromoTypeEnum::GIFT => 3,
-            PromoTypeEnum::ONE_PLUS_ONE => 4,
-            PromoTypeEnum::TWO_PLUS_ONE => 5,
-            PromoTypeEnum::CASHBACK => 6,
-            PromoTypeEnum::KONKURS => 7,
-            default => 1,
-        };
     }
 }

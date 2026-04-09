@@ -17,6 +17,7 @@ final readonly class GetApprovedPromosForHomeAction
     use AsAction;
 
     /**
+     * @param  array{city?: int|null, min_discount?: int|null, promo_type?: int|null}  $filters
      * @return PromoListItemData[]
      */
     public function handle(array $filters = []): array

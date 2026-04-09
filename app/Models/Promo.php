@@ -26,6 +26,7 @@ use Override;
  * @property CarbonImmutable|null $availabe_from
  * @property CarbonImmutable|null $available_to
  * @property PromoTypeEnum $type
+ * @property int|null $promo_type_id
  * @property string|null $discount
  * @property PromoModerationStatus $moderation_status
  * @property CarbonImmutable|null $rejected_at

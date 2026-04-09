@@ -25,6 +25,9 @@ class PromoFilterRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array{city: int|null, min_discount: int|null, promo_type: int|null}
+     */
     public function filters(): array
     {
         return [

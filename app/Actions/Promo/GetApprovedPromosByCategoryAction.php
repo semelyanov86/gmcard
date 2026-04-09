@@ -15,6 +15,7 @@ final readonly class GetApprovedPromosByCategoryAction
     use AsAction;
 
     /**
+     * @param  array{city?: int|null, min_discount?: int|null, promo_type?: int|null}  $filters
      * @return list<PromoListItemData>
      */
     public function handle(Category $category, array $filters = []): array
