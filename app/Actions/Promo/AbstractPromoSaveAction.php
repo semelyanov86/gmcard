@@ -51,16 +51,11 @@ abstract readonly class AbstractPromoSaveAction
 
     protected function getPromoTypeEnum(int $id): PromoType
     {
-        return match ($id) {
-            1 => PromoType::SIMPLE,
-            2 => PromoType::COUPON,
-            3 => PromoType::GIFT,
-            4 => PromoType::ONE_PLUS_ONE,
-            5 => PromoType::TWO_PLUS_ONE,
-            6 => PromoType::CASHBACK,
-            7 => PromoType::KONKURS,
-            default => PromoType::SIMPLE,
-        };
+        try {
+            return PromoType::fromId($id);
+        } catch (\ValueError) {
+            return PromoType::SIMPLE;
+        }
     }
 
     protected function getDiscount(CreatePromoData $dto, PromoType $type): ?string

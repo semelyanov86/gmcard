@@ -53,7 +53,7 @@ final readonly class BuildPromoFormDataAction
 
         return new PromoFormData(
             id: $promo->id,
-            promoTypeId: $promo->promo_type_id ?? $this->mapPromoTypeToId($promo->type),
+            promoTypeId: $promo->promo_type_id ?? $promo->type?->id() ?? 1,
             title: $promo->name,
             description: $promo->description ?? '',
             conditions: $promo->extra_conditions,
