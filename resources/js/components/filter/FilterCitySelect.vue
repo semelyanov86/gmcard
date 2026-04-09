@@ -4,17 +4,21 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     cities: CityModel[];
+    modelValue: number | null;
+}>();
+
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: number | null): void;
 }>();
 
 const cityOpen = ref(false);
-const selectedCityId = ref<number | null>(null);
 const cityRoot = ref<HTMLElement | null>(null);
 
 const selectedCityName = computed(() => {
-    if (selectedCityId.value === null) {
+    if (props.modelValue === null) {
         return '';
     }
-    return props.cities.find((c) => c.id === selectedCityId.value)?.name ?? '';
+    return props.cities.find((c) => c.id === props.modelValue)?.name ?? '';
 });
 
 function toggleCityOpen() {
@@ -22,7 +26,12 @@ function toggleCityOpen() {
 }
 
 function selectCity(city: CityModel) {
-    selectedCityId.value = city.id;
+    emit('update:modelValue', city.id);
+    cityOpen.value = false;
+}
+
+function selectAllCities() {
+    emit('update:modelValue', null);
     cityOpen.value = false;
 }
 
@@ -59,12 +68,21 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                 role="listbox"
             >
                 <div
+                    class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200"
+                    :class="{ 'filter-option-selected': props.modelValue === null }"
+                    role="option"
+                    :aria-selected="props.modelValue === null"
+                    @click.stop="selectAllCities"
+                >
+                    Все города
+                </div>
+                <div
                     v-for="city in props.cities"
                     :key="city.id"
                     class="custom-option cursor-pointer px-4 py-2 hover:bg-gray-200"
-                    :class="{ 'filter-option-selected': city.id === selectedCityId }"
+                    :class="{ 'filter-option-selected': city.id === props.modelValue }"
                     role="option"
-                    :aria-selected="city.id === selectedCityId"
+                    :aria-selected="city.id === props.modelValue"
                     @click.stop="selectCity(city)"
                 >
                     {{ city.name }}
