@@ -4,15 +4,21 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     promoTypes: PromoTypeModel[];
+    modelValue: number | null;
+}>();
+
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: number | null): void;
 }>();
 
 const promoTypeOpen = ref(false);
-const selectedPromoTypeId = ref<number | null>(null);
 const promoTypeRoot = ref<HTMLElement | null>(null);
 
 const selectPromoTypeTitle = computed(() => {
-    if (selectedPromoTypeId.value === null) return 'Все';
-    return props.promoTypes.find((t) => t.id === selectedPromoTypeId.value)?.title ?? 'Все';
+    if (props.modelValue === null) {
+        return 'Все';
+    }
+    return props.promoTypes.find((t) => t.id === props.modelValue)?.title ?? 'Все';
 });
 
 function togglePromoTypeOpen() {
@@ -20,12 +26,12 @@ function togglePromoTypeOpen() {
 }
 
 function selectPromoType(type: PromoTypeModel) {
-    selectedPromoTypeId.value = type.id;
+    emit('update:modelValue', type.id);
     promoTypeOpen.value = false;
 }
 
 function selectAllPromoTypes() {
-    selectedPromoTypeId.value = null;
+    emit('update:modelValue', null);
     promoTypeOpen.value = false;
 }
 
@@ -62,16 +68,16 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
             >
                 <div
                     class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                    :class="{ 'filter-option-selected': selectedPromoTypeId === null }"
+                    :class="{ 'filter-option-selected': props.modelValue === null }"
                     @click.stop="selectAllPromoTypes"
                 >
                     Все
                 </div>
                 <div
-                    v-for="type in promoTypes"
+                    v-for="type in props.promoTypes"
                     :key="type.id"
                     class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                    :class="{ 'filter-option-selected': selectedPromoTypeId === type.id }"
+                    :class="{ 'filter-option-selected': props.modelValue === type.id }"
                     @click.stop="selectPromoType(type)"
                 >
                     {{ type.title }}
