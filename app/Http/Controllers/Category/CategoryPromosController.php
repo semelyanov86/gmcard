@@ -12,6 +12,7 @@ use App\Actions\Promo\GetApprovedPromosByCategoryAction;
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Promo\PromoFilterRequest;
 use App\Models\Category;
 use App\Settings\GeneralSettings;
 use Inertia\Inertia;
@@ -19,8 +20,10 @@ use Inertia\Response;
 
 class CategoryPromosController extends Controller
 {
-    public function index(Category $category, GeneralSettings $settings): Response
+    public function index(PromoFilterRequest $request, Category $category, GeneralSettings $settings): Response
     {
+        $filters = $request->filters();
+
         return Inertia::render('Category/CategoryPromosPage', [
             'contact' => [
                 'email' => $settings->email,
@@ -32,7 +35,8 @@ class CategoryPromosController extends Controller
                 'id' => $category->id,
                 'name' => $category->name,
             ],
-            'promos' => GetApprovedPromosByCategoryAction::run($category),
+            'promos' => GetApprovedPromosByCategoryAction::run($category, $filters),
+            'filters' => $filters,
             'cities' => GetCitiesAction::run(),
             'discountFilterOptions' => GetDiscountFilterOptionsAction::run(),
             'promoTypes' => GetPromoTypesAction::run(),
