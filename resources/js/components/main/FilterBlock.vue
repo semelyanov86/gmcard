@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
 import FilterCitySelect from '@/components/filter/FilterCitySelect.vue';
 import FilterDiscountSelect from '@/components/filter/FilterDiscountSelect.vue';
+import FilterTypeSelect from '@/components/filter/FilterTypeSelect.vue';
 
 const props = defineProps<{
     cities: CityModel[];
@@ -10,41 +10,6 @@ const props = defineProps<{
     promoTypes: PromoTypeModel[];
 }>();
 
-
-const promoTypeOpen = ref(false);
-const selectedPromoTypeId = ref<number | null>(null);
-const promoTypeRoot = ref<HTMLElement | null>(null);
-
-const selectPromoTypeTitle = computed(() => {
-        if (selectedPromoTypeId.value === null) return 'Все';
-        return props.promoTypes.find((t) => t.id === selectedPromoTypeId.value)?.title ?? 'Все';
-});
-
-function togglePromoTypeOpen() {
-    promoTypeOpen.value = !promoTypeOpen.value;
-}
-
-function selectPromoType(type: PromoTypeModel) {
-    selectedPromoTypeId.value = type.id;
-    promoTypeOpen.value = false;
-}
-
-function selectAllPromoTypes() {
-    selectedPromoTypeId.value = null;
-    promoTypeOpen.value = false;
-}
-
-function onDocumentClick(e: MouseEvent) {
-    if (!(e.target instanceof Node)) {
-        return;
-    }
-    if (promoTypeRoot.value && !promoTypeRoot.value.contains(e.target)) {
-        promoTypeOpen.value = false;
-    }
-}
-
-onMounted(() => document.addEventListener('click', onDocumentClick));
-onUnmounted(() => document.removeEventListener('click', onDocumentClick));
 </script>
 
 <template>
@@ -52,42 +17,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
         <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>
         <FilterCitySelect  :cities="props.cities"/>
         <FilterDiscountSelect :discount-filter-options="props.discountFilterOptions" />
-        <div class="gapper filter_inp relative flex items-center gap-6">
-            <label for="sale" class="text-base text-white">Вид акции</label>
-            <div ref="promoTypeRoot" class="selected_block relative inline-block h-12">
-                <div
-                    class="custom_selected focus:shadow-outline flex h-12 w-52 cursor-pointer appearance-none items-center rounded-md border border-white bg-none px-4 py-2 pr-8 leading-tight text-white shadow hover:border-gray-300 focus:outline-none"
-                    role="button"
-                    tabindex="0"
-                    :aria-expanded="promoTypeOpen"
-                    @click.stop="togglePromoTypeOpen"
-                >
-                    <div id="spaner1" class="mr-2">{{ selectPromoTypeTitle }}</div>
-                    <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
-                </div>
-                <div
-                    class="custom-options_2 absolute z-50 mt-1 h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white text-black shadow-lg"
-                    :class="{ hidden: !promoTypeOpen }"
-                >
-                    <div
-                        class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                        :class="{ 'filter-option-selected': selectedPromoTypeId === null }"
-                        @click.stop="selectAllPromoTypes"
-                    >
-                        Все
-                    </div>
-                    <div
-                        v-for="type in promoTypes"
-                        :key="type.id"
-                        class="custom-option_2 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                        :class="{ 'filter-option-selected': selectedPromoTypeId === type.id }"
-                        @click.stop="selectPromoType(type)"
-                    >
-                        {{ type.title }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <FilterTypeSelect :promo-types="props.promoTypes" />
     </div>
 </template>
 
