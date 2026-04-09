@@ -15,13 +15,10 @@ use App\ValueObjects\MoneyValueObject;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class CreatePromoActionTest extends TestCase
+class CreatePromoActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_creates_promo_with_required_fields(): void
     {
         /** @var User $user */

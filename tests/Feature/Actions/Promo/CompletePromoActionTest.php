@@ -7,13 +7,10 @@ namespace Tests\Feature\Actions\Promo;
 use App\Actions\Promo\CompletePromoAction;
 use App\Models\Promo;
 use Carbon\CarbonImmutable;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class CompletePromoActionTest extends TestCase
+class CompletePromoActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_completes_promo(): void
     {
         /** @var Promo $promo */

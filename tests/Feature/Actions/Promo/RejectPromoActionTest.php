@@ -9,13 +9,10 @@ use App\Data\RejectPromoData;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class RejectPromoActionTest extends TestCase
+class RejectPromoActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_rejects_promo(): void
     {
         /** @var User $moderator */

@@ -7,16 +7,13 @@ namespace Tests\Feature\Promo;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 use Override;
 
-class ModerationControllerTest extends TestCase
+class ModerationControllerTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     #[Override]
     protected function setUp(): void
     {

@@ -10,13 +10,10 @@ use App\Models\Promo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class CreatePromoControllerTest extends TestCase
+class CreatePromoControllerTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_guests_are_redirected_from_index(): void
     {
         $response = $this->get(route('promos.create'));

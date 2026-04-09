@@ -10,13 +10,10 @@ use App\Models\Promo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class PromoControllerTest extends TestCase
+class PromoControllerTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_edit_requires_authentication(): void
     {
         /** @var Promo $promo */

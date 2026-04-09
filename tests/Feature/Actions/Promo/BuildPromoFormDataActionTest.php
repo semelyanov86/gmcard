@@ -13,13 +13,10 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class BuildPromoFormDataActionTest extends TestCase
+class BuildPromoFormDataActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_builds_basic_fields(): void
     {
         /** @var User $user */
