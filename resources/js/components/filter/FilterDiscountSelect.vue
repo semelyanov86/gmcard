@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
 import type { DiscountFilterOptionModel } from '@/types';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 defineProps<{
     discountFilterOptions: DiscountFilterOptionModel[];
@@ -18,7 +18,6 @@ function selectDiscount(option: DiscountFilterOptionModel) {
     selectedMinPercent.value = option.minPercent;
     discountOpen.value = false;
 }
-
 
 function onDocumentClick(e: MouseEvent) {
     if (!(e.target instanceof Node)) {

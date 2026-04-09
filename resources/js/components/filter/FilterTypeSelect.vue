@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
 import type { PromoTypeModel } from '@/types';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     promoTypes: PromoTypeModel[];

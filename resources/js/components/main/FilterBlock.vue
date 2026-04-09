@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
 import FilterCitySelect from '@/components/filter/FilterCitySelect.vue';
 import FilterDiscountSelect from '@/components/filter/FilterDiscountSelect.vue';
 import FilterTypeSelect from '@/components/filter/FilterTypeSelect.vue';
+import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
 
 const props = defineProps<{
     cities: CityModel[];
     discountFilterOptions: DiscountFilterOptionModel[];
     promoTypes: PromoTypeModel[];
 }>();
-
 </script>
 
 <template>
     <div class="filter_block z-31 mb-6 flex h-12 items-center justify-between lg:h-full">
         <h3 class="text_filter text-2xl font-bold text-white">Фильтровать</h3>
-        <FilterCitySelect  :cities="props.cities"/>
+        <FilterCitySelect :cities="props.cities" />
         <FilterDiscountSelect :discount-filter-options="props.discountFilterOptions" />
         <FilterTypeSelect :promo-types="props.promoTypes" />
     </div>
