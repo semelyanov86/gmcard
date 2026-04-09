@@ -2,12 +2,16 @@
 import type { DiscountFilterOptionModel } from '@/types';
 import { onMounted, onUnmounted, ref } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     discountFilterOptions: DiscountFilterOptionModel[];
+    modelValue: number | null;
+}>();
+
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: number | null): void;
 }>();
 
 const discountOpen = ref(false);
-const selectedMinPercent = ref<number | null>(null);
 const discountRoot = ref<HTMLElement | null>(null);
 
 function toggleDiscountOpen() {
@@ -15,7 +19,12 @@ function toggleDiscountOpen() {
 }
 
 function selectDiscount(option: DiscountFilterOptionModel) {
-    selectedMinPercent.value = option.minPercent;
+    emit('update:modelValue', option.minPercent);
+    discountOpen.value = false;
+}
+
+function selectAllDiscounts() {
+    emit('update:modelValue', null);
     discountOpen.value = false;
 }
 
@@ -45,7 +54,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                 @click.stop="toggleDiscountOpen"
             >
                 <div id="spaner" class="mr-2">
-                    {{ selectedMinPercent ? `Не менее ${selectedMinPercent}%` : 'Выберите скидку' }}
+                    {{ props.modelValue ? `Не менее ${props.modelValue}%` : 'Выберите скидку' }}
                 </div>
                 <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
             </div>
@@ -54,10 +63,17 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                 :class="{ hidden: !discountOpen }"
             >
                 <div
-                    v-for="opt in discountFilterOptions"
+                    class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200"
+                    :class="{ 'filter-option-selected': props.modelValue === null }"
+                    @click.stop="selectAllDiscounts"
+                >
+                    Любая скидка
+                </div>
+                <div
+                    v-for="opt in props.discountFilterOptions"
                     :key="opt.id"
                     class="custom-option_1 cursor-pointer px-4 py-2 hover:bg-gray-200"
-                    :class="{ 'filter-option-selected': opt.minPercent === selectedMinPercent }"
+                    :class="{ 'filter-option-selected': opt.minPercent === props.modelValue }"
                     @click.stop="selectDiscount(opt)"
                 >
                     Не менее {{ opt.minPercent }}%
