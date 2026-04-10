@@ -349,7 +349,7 @@ function toggleMobileMenu() {
     top: 100%;
     left: 50%;
     z-index: 20;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     display: flex;
     min-width: calc(100% + 1.25rem);
     flex-direction: column;

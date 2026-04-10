@@ -1,10 +1,47 @@
 <script setup lang="ts">
 import SearchIcon from '@/components/primitives/icons/SearchIcon.vue';
 import type { MenuData } from '@/types';
+import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
+import { router } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     menuItems: MenuData[];
+    submitUrl?: string;
+    filters?: PromoFiltersModel;
 }>();
+
+const search = ref(props.filters?.search ?? '');
+
+watch(
+    () => props.filters,
+    (f) => {
+        search.value = f?.search ?? '';
+    },
+    { deep: true },
+);
+
+function submitSearch(): void {
+    if (!props.submitUrl) {
+        return;
+    }
+    const s = search.value.trim();
+    router.get(
+        props.submitUrl,
+        {
+            city: props.filters?.city ?? undefined,
+            min_discount: props.filters?.min_discount ?? undefined,
+            promo_type: props.filters?.promo_type ?? undefined,
+            search: s !== '' ? s : undefined,
+        },
+        {
+            preserveState: true,
+            preserveScroll: true,
+            replace: true,
+            only: ['promos', 'filters'],
+        },
+    );
+}
 </script>
 
 <template>
@@ -15,11 +52,14 @@ defineProps<{
                     <a target="_blank" rel="noopener noreferrer" :href="item.url" class="hover:border-b-2 hover:border-white">{{ item.label }}</a>
                 </li>
             </ul>
-            <div class="flex items-center lg:hidden">
+            <div v-if="submitUrl" class="flex items-center lg:hidden">
                 <div class="bg-brand-blue-navy ml-[52px] block h-[55px] w-[1px]"></div>
-                <form name="search" class="s ml-4 flex items-center">
+                <form name="search" class="s ml-4 flex items-center" @submit.prevent="submitSearch">
                     <input
-                        type="text"
+                        v-model="search"
+                        type="search"
+                        name="search"
+                        autocomplete="off"
                         class="h-[41px] w-[280px] rounded-l-md border-none pr-4 pl-4 outline-none 2xl:w-[200px]"
                         placeholder="Что вы хотите найти?"
                     />
@@ -29,7 +69,9 @@ defineProps<{
                     </select>
                 </form>
                 <button
+                    type="button"
                     class="bg-brand-yellow-dark hover:text-brand-orange focus:ring-brand-yellow-dark ml-2 flex h-[41px] items-center justify-center rounded-md px-6 text-[16px] font-bold focus:ring-2"
+                    @click="submitSearch"
                 >
                     <SearchIcon custom-class="mr-1 group-hover:stroke-brand-orange" />
                     Найти

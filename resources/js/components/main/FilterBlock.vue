@@ -4,7 +4,7 @@ import FilterDiscountSelect from '@/components/filter/FilterDiscountSelect.vue';
 import FilterTypeSelect from '@/components/filter/FilterTypeSelect.vue';
 import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
 import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
-import { router } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 
 const props = defineProps<{
@@ -15,17 +15,21 @@ const props = defineProps<{
     submitUrl: string;
 }>();
 
+const page = usePage<{ filters?: PromoFiltersModel }>();
+
 const city = ref<number | null>(props.filters?.city ?? null);
 const minDiscount = ref<number | null>(props.filters?.min_discount ?? null);
 const promoType = ref<number | null>(props.filters?.promo_type ?? null);
 
-watch([city, minDiscount, promoType], () => {
+function applyFiltersFromRefs(): void {
+    const search = page.props.filters?.search?.trim();
     router.get(
         props.submitUrl,
         {
             city: city.value ?? undefined,
             min_discount: minDiscount.value ?? undefined,
             promo_type: promoType.value ?? undefined,
+            search: search ? search : undefined,
         },
         {
             preserveState: true,
@@ -34,7 +38,22 @@ watch([city, minDiscount, promoType], () => {
             only: ['promos', 'filters'],
         },
     );
-});
+}
+
+watch([city, minDiscount, promoType], applyFiltersFromRefs);
+
+watch(
+    () => props.filters,
+    (f) => {
+        if (!f) {
+            return;
+        }
+        city.value = f.city ?? null;
+        minDiscount.value = f.min_discount ?? null;
+        promoType.value = f.promo_type ?? null;
+    },
+    { deep: true },
+);
 </script>
 
 <template>

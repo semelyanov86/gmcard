@@ -37,7 +37,7 @@ const props = defineProps<{
         <section id="section-1" class="body h-full max-w-full overflow-hidden pb-9">
             <MobileMenu />
             <div class="mx-auto w-[1140px] 2xl:w-full 2xl:px-4">
-                <NavBar :menu-items="props.navbarMenu" />
+                <NavBar :menu-items="props.navbarMenu" :submit-url="route('main')" :filters="props.filters" />
 
                 <CategoriesMenu :categories="props.categories" />
 
