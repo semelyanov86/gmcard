@@ -61,8 +61,8 @@ function toggleMobileMenu() {
 </script>
 
 <template>
-    <header id="header" class="bg-brand-dark flex h-[60px] w-full items-center">
-        <div class="relative mx-auto flex w-full max-w-[1140px] items-center justify-between px-4">
+    <header id="header" class="bg-brand-dark flex h-[60px] w-full items-center overflow-visible">
+        <div class="relative mx-auto flex w-full max-w-[1140px] items-center justify-between overflow-visible px-4">
             <div id="header" class="relative flex items-center">
                 <Link href="/">
                     <img src="/images/png/gm-logo-2.png" alt="Логотип" />
@@ -145,24 +145,38 @@ function toggleMobileMenu() {
                     <MenuIcon custom-class="h-6 w-6" />
                 </button>
             </div>
-            <ul id="header" class="relative flex list-none items-center md:hidden">
-                <li class="bg-brand-yellow-dark focus:ring-brand-yellow-dark relative rounded-md px-3 py-2 hover:opacity-100 focus:ring-2">
-                    <Link v-if="page.props.userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
-                        >Запустить акцию</Link
-                    >
-                    <a
-                        v-else
-                        @click.prevent="openLoginModal(LoginButtonType.Start)"
-                        href="#"
-                        class="hover:text-brand-orange cursor-pointer text-black"
-                        id="userAuth1"
-                        >Запустить акцию</a
-                    >
-                    <TriangleUpIcon
-                        v-show="loginModalOpen && clickedButton === LoginButtonType.Start"
-                        id="startBTN"
-                        custom-class="absolute right-14 -bottom-8 h-7 w-6 text-white"
-                    />
+            <ul id="header" class="relative flex list-none items-center overflow-visible md:hidden">
+                <li class="relative z-20 w-fit shrink-0">
+                    <div class="relative w-fit">
+                        <div
+                            class="bg-brand-yellow-dark focus-within:ring-brand-yellow-dark w-fit rounded-md px-3 py-2 hover:opacity-100 focus-within:ring-2"
+                        >
+                            <Link v-if="page.props.userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
+                                >Запустить акцию</Link
+                            >
+                            <a
+                                v-else
+                                @click.prevent="openLoginModal(LoginButtonType.Start)"
+                                href="#"
+                                class="hover:text-brand-orange cursor-pointer text-black"
+                                id="userAuth1"
+                                >Запустить акцию</a
+                            >
+                        </div>
+                        <TriangleUpIcon
+                            v-show="loginModalOpen && clickedButton === LoginButtonType.Start"
+                            id="startBTN"
+                            custom-class="absolute right-14 -bottom-8 h-7 w-6 text-white"
+                        />
+                    </div>
+                    <div class="promo-placement-popover" aria-hidden="true">
+                        <div class="promo-placement-popover__caret" />
+                        <div
+                            class="w-full rounded-2xl bg-red-600 px-2 py-2 text-center text-sm font-semibold whitespace-nowrap text-white shadow-sm"
+                        >
+                            Размещение 0&nbsp;₽
+                        </div>
+                    </div>
                 </li>
                 <div class="bg-brand-dark-blue height-60 ml-4 w-[1px]"></div>
                 <li v-if="!page.props.userData" class="relative">
@@ -328,4 +342,50 @@ function toggleMobileMenu() {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.promo-placement-popover {
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 20;
+    margin-top: 0.5rem;
+    display: flex;
+    min-width: calc(100% + 1.25rem);
+    flex-direction: column;
+    align-items: center;
+    animation: promo-placement-popover-attention 3.5s ease-in-out infinite;
+}
+
+@keyframes promo-placement-popover-attention {
+    0%,
+    72%,
+    100% {
+        transform: translateX(-50%) translateX(0);
+    }
+
+    78% {
+        transform: translateX(-50%) translateX(-4px);
+    }
+
+    84% {
+        transform: translateX(-50%) translateX(4px);
+    }
+
+    90% {
+        transform: translateX(-50%) translateX(-3px);
+    }
+
+    96% {
+        transform: translateX(-50%) translateX(0);
+    }
+}
+
+.promo-placement-popover__caret {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 7px solid rgb(220 38 38);
+}
+</style>
