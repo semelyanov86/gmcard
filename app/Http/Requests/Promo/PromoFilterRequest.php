@@ -32,7 +32,7 @@ class PromoFilterRequest extends FormRequest
     public function filters(): array
     {
         $searchRaw = $this->input('search');
-        $search = is_string($searchRaw) ? trim($searchRaw) : '';
+        $search = is_string($searchRaw) ? mb_trim($searchRaw) : '';
 
         return [
             'city' => $this->integer('city') ?: null,
