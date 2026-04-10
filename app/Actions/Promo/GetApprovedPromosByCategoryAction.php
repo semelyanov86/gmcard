@@ -15,7 +15,7 @@ final readonly class GetApprovedPromosByCategoryAction
     use AsAction;
 
     /**
-     * @param  array{city?: int|null, min_discount?: int|null, promo_type?: int|null}  $filters
+     * @param  array{city?: int|null, min_discount?: int|null, promo_type?: int|null, search?: string|null}  $filters
      * @return list<PromoListItemData>
      */
     public function handle(Category $category, array $filters = []): array
@@ -41,6 +41,10 @@ final readonly class GetApprovedPromosByCategoryAction
 
         if (! empty($filters['city'])) {
             $query->whereHas('cities', fn ($q) => $q->where('cities.id', $filters['city']));
+        }
+
+        if (! empty($filters['search'])) {
+            $query->where('name', 'like', '%' . $filters['search'] . '%');
         }
 
         // Исправить
