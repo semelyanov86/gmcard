@@ -8,9 +8,16 @@ const props = defineProps<{
     promo: ProfilePromo;
 }>();
 
-const imageSrc = computed(() => {
-    if (props.promo.img && typeof props.promo.img === 'string' && props.promo.img.trim() !== '') {
-        return props.promo.img.startsWith('http') ? props.promo.img : `/storage/${props.promo.img}`;
+function resolveStorageUrl(path: string): string {
+    return path.startsWith('http') ? path : `/storage/${path}`;
+}
+
+const coverUrl = computed(() => {
+    if (props.promo.photos?.length) {
+        return resolveStorageUrl(props.promo.photos[0]);
+    }
+    if (props.promo.img && props.promo.img.trim() !== '') {
+        return resolveStorageUrl(props.promo.img);
     }
     return '/images/png/profile/product6.png';
 });
@@ -28,7 +35,7 @@ function handleImageError(e: Event) {
 <template>
     <div>
         <div class="main_card promo-card relative mt-7 rounded-xl">
-            <img :src="imageSrc" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
+            <img :src="coverUrl" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
             <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
                 <img v-if="promoBadgeIcon" class="promo-card-discount-badge" :src="promoBadgeIcon" :alt="props.promo.type || 'Скидка на товар'" />
             </div>

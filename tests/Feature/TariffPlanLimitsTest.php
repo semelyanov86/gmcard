@@ -11,13 +11,10 @@ use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\TariffPlan;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class TariffPlanLimitsTest extends TestCase
+class TariffPlanLimitsTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_user_without_tariff_has_no_limits(): void
     {
         $user = $this->createUserWithTariff();

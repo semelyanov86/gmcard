@@ -14,6 +14,7 @@ use Override;
  * @property int $id
  * @property int|null $parent_id
  * @property bool $is_starred
+ * @method static descendantsAndSelf(int $id)
  */
 class Category extends Model
 {

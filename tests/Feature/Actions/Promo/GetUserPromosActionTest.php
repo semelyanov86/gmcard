@@ -9,13 +9,10 @@ use App\Data\PromoListItemData;
 use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class GetUserPromosActionTest extends TestCase
+class GetUserPromosActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_groups_promos_by_status(): void
     {
         /** @var User $user */

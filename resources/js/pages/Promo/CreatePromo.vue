@@ -145,6 +145,18 @@ watch(
 
 function handlePreview() {}
 
+function firstValidationMessage(errors: Record<string, string | string[]>): string | null {
+    const key = Object.keys(errors)[0];
+    if (!key) {
+        return null;
+    }
+    const value = errors[key];
+    if (Array.isArray(value)) {
+        return value[0] ?? null;
+    }
+    return typeof value === 'string' ? value : null;
+}
+
 function handleSaveDraft() {
     form.transform((data) => ({ ...data, is_draft: true })).post(route('promos.store'), {
         preserveScroll: false,
@@ -153,8 +165,8 @@ function handleSaveDraft() {
         },
         onError: (errors) => {
             console.error(errors);
-            const firstKey = errors && typeof errors === 'object' ? Object.keys(errors as object)[0] : null;
-            notify.error(firstKey ? `Не удалось сохранить черновик: ${firstKey}` : 'Не удалось сохранить черновик');
+            const msg = firstValidationMessage(errors as Record<string, string | string[]>);
+            notify.error(msg ? `Не удалось сохранить черновик: ${msg}` : 'Не удалось сохранить черновик');
         },
     });
 }
@@ -167,8 +179,8 @@ function handleLaunch() {
         },
         onError: (errors) => {
             console.error(errors);
-            const firstKey = errors && typeof errors === 'object' ? Object.keys(errors as object)[0] : null;
-            notify.error(firstKey ? `Не удалось запустить акцию: ${firstKey}` : 'Не удалось запустить акцию');
+            const msg = firstValidationMessage(errors as Record<string, string | string[]>);
+            notify.error(msg ? `Не удалось запустить акцию: ${msg}` : 'Не удалось запустить акцию');
         },
     });
 }

@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Organisation;
-use App\Models\AdvCampaign;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\PromoType;
+use App\Models\AdvCampaign;
+use App\Models\Organisation;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PromoFactory extends Factory
 {
     public function definition(): array
     {
+        $type = fake()->randomElement(PromoType::cases());
+
         return [
             'name' => fake()->sentence(3),
             'user_id' => User::factory(),
-            'type' => fake()->randomElement(PromoType::cases()),
+            'promo_type_id' => $type->id(),
+            'type' => $type,
             'code' => fake()->optional(0.7)->bothify('PROMO##??'),
             'img' => fake()->optional(0.5)->imageUrl(),
             'amount' => fake()->numberBetween(100, 10000),

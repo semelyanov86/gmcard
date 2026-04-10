@@ -14,7 +14,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <section class="footer bg-brand-footer">
+    <section class="footer bg-brand-footer relative z-0">
         <footer class="bg-brand-footer-bg relative overflow-hidden">
             <div class="relative mx-auto w-full max-w-[1140px] py-9 2xl:w-full 2xl:px-4">
                 <AdaptiveImage image-path="hand-footer" image-class="hand absolute -bottom-2 -left-20 z-10" alt="Телефон" />
@@ -405,12 +405,22 @@ const props = defineProps<{
                         <li class="politic relative z-30 mt-11 flex gap-4">
                             <ul class="flex gap-4">
                                 <li>
-                                    <a :href="route('help')" class="text-sm text-white opacity-60 hover:opacity-100"
+                                    <a
+                                        :href="route('help')"
+                                        class="text-sm text-white opacity-60 hover:opacity-100"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         >Политика защиты персональный информации</a
                                     >
                                 </li>
                                 <li>
-                                    <a :href="route('help')" class="text-sm text-white opacity-60 hover:opacity-100">Пользовательское соглашение</a>
+                                    <a
+                                        :href="route('help')"
+                                        class="text-sm text-white opacity-60 hover:opacity-100"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        >Пользовательское соглашение</a
+                                    >
                                 </li>
                             </ul>
                         </li>

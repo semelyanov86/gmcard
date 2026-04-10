@@ -147,6 +147,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
 
         return [
             'user_id' => $dto->userId,
+            'promo_type_id' => $dto->promoTypeId,
             'name' => $dto->title,
             'type' => $promoType,
             'description' => $dto->description,

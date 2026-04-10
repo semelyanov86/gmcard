@@ -20,12 +20,14 @@ final readonly class GetUserPromosAction
      */
     public function handle(User $user): array
     {
+        $listItemRelations = PromoListItemData::eagerLoadForListItem();
+
         return [
-            'activePromos' => PromoListItemData::collect($user->activePromos()->get(), 'array'),
-            'completedPromos' => PromoListItemData::collect($user->completedPromos()->get(), 'array'),
-            'draftPromos' => PromoListItemData::collect($user->draftPromos()->get(), 'array'),
-            'moderationPromos' => PromoListItemData::collect($user->moderationPromos()->get(), 'array'),
-            'rejectedPromos' => PromoListItemData::collect($user->rejectedPromos()->get(), 'array'),
+            'activePromos' => PromoListItemData::collect($user->activePromos()->with($listItemRelations)->get(), 'array'),
+            'completedPromos' => PromoListItemData::collect($user->completedPromos()->with($listItemRelations)->get(), 'array'),
+            'draftPromos' => PromoListItemData::collect($user->draftPromos()->with($listItemRelations)->get(), 'array'),
+            'moderationPromos' => PromoListItemData::collect($user->moderationPromos()->with($listItemRelations)->get(), 'array'),
+            'rejectedPromos' => PromoListItemData::collect($user->rejectedPromos()->with($listItemRelations)->get(), 'array'),
         ];
     }
 }

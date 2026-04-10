@@ -26,15 +26,25 @@ enum PromoType: string
 
     public static function fromId(int $id): self
     {
-        return match ($id) {
-            1 => self::SIMPLE,
-            2 => self::COUPON,
-            3 => self::GIFT,
-            4 => self::ONE_PLUS_ONE,
-            5 => self::TWO_PLUS_ONE,
-            6 => self::CASHBACK,
-            7 => self::KONKURS,
-            default => throw new ValueError("Invalid promo type id: $id"),
+        foreach (self::cases() as $case) {
+            if ($case->id() === $id) {
+                return $case;
+            }
+        }
+
+        throw new ValueError("Invalid promo type id: $id");
+    }
+
+    public function id(): int
+    {
+        return match ($this) {
+            self::SIMPLE => 1,
+            self::COUPON => 2,
+            self::GIFT => 3,
+            self::ONE_PLUS_ONE => 4,
+            self::TWO_PLUS_ONE => 5,
+            self::CASHBACK => 6,
+            self::KONKURS => 7,
         };
     }
 }

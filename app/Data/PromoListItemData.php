@@ -8,6 +8,7 @@ use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Promo;
 use App\Models\PromoType;
 use Spatie\LaravelData\Data;
+use Closure;
 
 final class PromoListItemData extends Data
 {
@@ -28,6 +29,8 @@ final class PromoListItemData extends Data
         public ?string $code,
         public ?string $rejectionReason = null,
         public ?string $rejectionMessage = null,
+        /** @var list<string>|null */
+        public ?array $photos = null,
     ) {}
 
     public static function fromModel(Promo $promo): self
@@ -35,11 +38,34 @@ final class PromoListItemData extends Data
         return self::fromPromo($promo);
     }
 
+    /**
+     * @return array<int|string, string|Closure(mixed): void>
+     */
+    public static function eagerLoadForListItem(): array
+    {
+        return [
+            'promoType',
+            'photos' => static function ($query): void {
+                $query->orderBy('sort_order');
+            },
+        ];
+    }
+
     public static function fromPromo(Promo $promo): self
     {
-        $promo->loadMissing('promoType');
+        $promo->loadMissing(self::eagerLoadForListItem());
 
         $status = self::determineStatus($promo);
+
+        /** @var list<string> $photoPaths */
+        $photoPaths = $promo->photos
+            ->pluck('path')
+            ->filter()
+            ->values()
+            ->all();
+
+        /** @var list<string>|null $photos */
+        $photos = $photoPaths === [] ? null : $photoPaths;
 
         $resolvedPromoType = $promo->promoType;
         if ($resolvedPromoType === null) {
@@ -68,6 +94,7 @@ final class PromoListItemData extends Data
             code: $promo->code,
             rejectionReason: $promo->rejection_reason,
             rejectionMessage: $promo->rejection_message,
+            photos: $photos,
         );
     }
 

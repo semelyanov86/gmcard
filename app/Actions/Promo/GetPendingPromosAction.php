@@ -21,7 +21,9 @@ final readonly class GetPendingPromosAction
      */
     public function handle(): array
     {
-        $promos = Promo::where('moderation_status', PromoModerationStatus::PENDING->value)
+        $promos = Promo::query()
+            ->with(PromoListItemData::eagerLoadForListItem())
+            ->where('moderation_status', PromoModerationStatus::PENDING->value)
             ->latest()
             ->get();
 

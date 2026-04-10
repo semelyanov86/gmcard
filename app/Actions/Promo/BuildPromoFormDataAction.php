@@ -22,9 +22,29 @@ final readonly class BuildPromoFormDataAction
 
     public function handle(Promo $promo): PromoFormData
     {
-        $promo->loadMissing(['categories:id', 'cities:id', 'addresses']);
+        $promo->loadMissing([
+            'categories:id',
+            'cities:id',
+            'addresses',
+            'photos' => static function ($query): void {
+                $query->orderBy('sort_order');
+            },
+        ]);
 
         [$discount, $cashback] = $this->splitDiscounts($promo);
+
+        /** @var list<string> $fromDb */
+        $fromDb = $promo->photos
+            ->pluck('path')
+            ->filter()
+            ->values()
+            ->all();
+
+        if ($fromDb === [] && $promo->img !== null && $promo->img !== '') {
+            $photoPaths = [$promo->img];
+        } else {
+            $photoPaths = $fromDb;
+        }
 
         /** @var array<int|string, int> $categoryIdsRaw */
         $categoryIdsRaw = $promo->categories->pluck('id')->all();
@@ -33,7 +53,7 @@ final readonly class BuildPromoFormDataAction
 
         return new PromoFormData(
             id: $promo->id,
-            promoTypeId: $promo->promo_type_id ?? $this->mapPromoTypeToId($promo->type),
+            promoTypeId: $promo->promo_type_id ?? $promo->type->id(),
             title: $promo->name,
             description: $promo->description ?? '',
             conditions: $promo->extra_conditions,
@@ -51,7 +71,8 @@ final readonly class BuildPromoFormDataAction
             durationDays: $this->resolveDurationDays($promo),
             showInBanner: (bool) $promo->show_on_home,
             youtubeUrl: $promo->video_link,
-            existingPhoto: $promo->img,
+            existingPhoto: $photoPaths[0] ?? $promo->img,
+            existingPhotoPaths: $photoPaths,
             photos: [],
             useBonusBalance: false,
             isDraft: $promo->moderation_status === PromoModerationStatus::DRAFT,
@@ -154,19 +175,5 @@ final readonly class BuildPromoFormDataAction
         }
 
         return 1;
-    }
-
-    private function mapPromoTypeToId(?PromoTypeEnum $type): int
-    {
-        return match ($type) {
-            PromoTypeEnum::SIMPLE => 1,
-            PromoTypeEnum::COUPON => 2,
-            PromoTypeEnum::GIFT => 3,
-            PromoTypeEnum::ONE_PLUS_ONE => 4,
-            PromoTypeEnum::TWO_PLUS_ONE => 5,
-            PromoTypeEnum::CASHBACK => 6,
-            PromoTypeEnum::KONKURS => 7,
-            default => 1,
-        };
     }
 }

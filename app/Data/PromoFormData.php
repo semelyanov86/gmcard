@@ -15,13 +15,14 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class PromoFormData extends Data
 {
     /**
+     * @param  array<string, float|string>|null  $discount
+     * @param  array<string, float|string>|null  $cashback
      * @param  array<int, string>  $categoryIds
      * @param  array<int, int>  $cityIds
      * @param  array<int, array<string, mixed>>  $addresses
      * @param  array<string, mixed>  $schedule
      * @param  array<string, string>  $socialLinks
-     * @param  array<string, float|string>|null  $discount
-     * @param  array<string, float|string>|null  $cashback
+     * @param  list<string>  $existingPhotoPaths
      * @param  array<int, UploadedFile|string>  $photos
      */
     public function __construct(
@@ -45,6 +46,7 @@ final class PromoFormData extends Data
         public bool $showInBanner = false,
         public ?string $youtubeUrl = null,
         public ?string $existingPhoto = null,
+        public array $existingPhotoPaths = [],
         public array $photos = [],
         public bool $useBonusBalance = false,
         public bool $isDraft = false,

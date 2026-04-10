@@ -139,9 +139,7 @@ const showPromoCode = ref(false);
                         />
                     </div>
                     <div class="leftMainBlocks promo-left relative shrink-0 overflow-visible">
-                        <div
-                            class="leftBlocsk promo-left-inner relative z-40 mt-12 w-[400px] -left-[20px]"
-                        >
+                        <div class="leftBlocsk promo-left-inner relative -left-[20px] z-40 mt-12 w-[400px]">
                             <MainInfo
                                 v-if="!showPromoCode"
                                 :promo-type-icon="props.promo.promoTypeIcon"

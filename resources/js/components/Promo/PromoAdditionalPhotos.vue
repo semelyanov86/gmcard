@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import ChevronDownIcon from '@/components/primitives/icons/ChevronDownIcon.vue';
 import TrashIcon from '@/components/primitives/icons/TrashIcon.vue';
-import { onBeforeUnmount, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const props = defineProps<{
+    initialServerPaths?: string[] | null;
+}>();
 
 const isOpen = ref(false);
 const showSlot5 = ref(false);
@@ -10,9 +14,41 @@ const photos = defineModel<Array<File | null>>({ required: true });
 
 const previews = ref<Array<string | null>>(Array(5).fill(null));
 
+function resolveStoragePath(path: string): string {
+    return path.startsWith('http') ? path : `/storage/${path}`;
+}
+
+function safeRevoke(url: string | null): void {
+    if (url?.startsWith('blob:')) {
+        URL.revokeObjectURL(url);
+    }
+}
+
+function applyServerPaths(paths: string[] | null | undefined): void {
+    if (!paths?.length) {
+        return;
+    }
+    for (let i = 0; i < 5 && i < paths.length; i++) {
+        const p = paths[i];
+        if (p) {
+            previews.value[i] = resolveStoragePath(p);
+        }
+    }
+    if (paths.length > 0) {
+        isOpen.value = true;
+    }
+    if (paths.length > 4) {
+        showSlot5.value = true;
+    }
+}
+
+onMounted(() => {
+    applyServerPaths(props.initialServerPaths ?? null);
+});
+
 onBeforeUnmount(() => {
     for (const url of previews.value) {
-        if (url) URL.revokeObjectURL(url);
+        safeRevoke(url);
     }
 });
 
@@ -21,7 +57,7 @@ function handleFileChange(slotIndex: number, event: Event) {
     const file = input.files?.[0];
     if (!file) return;
 
-    if (previews.value[slotIndex]) URL.revokeObjectURL(previews.value[slotIndex]!);
+    safeRevoke(previews.value[slotIndex]);
     previews.value[slotIndex] = URL.createObjectURL(file);
     const targetIndex = 3 + slotIndex;
     photos.value[targetIndex] = file;
@@ -29,7 +65,7 @@ function handleFileChange(slotIndex: number, event: Event) {
 }
 
 function removePhoto(slotIndex: number) {
-    if (previews.value[slotIndex]) URL.revokeObjectURL(previews.value[slotIndex]!);
+    safeRevoke(previews.value[slotIndex]);
     previews.value[slotIndex] = null;
     const targetIndex = 3 + slotIndex;
     photos.value[targetIndex] = null;

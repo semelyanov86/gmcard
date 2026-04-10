@@ -49,6 +49,8 @@ export type { CategoryModel } from './CategoryModel';
 export type { CityModel } from './CityModel';
 export type { ContactModel } from './ContactModel';
 export type { DiscountFilterModel } from './DiscountFilterModel';
+export type { DiscountFilterOptionModel } from './DiscountFilterOptionModel';
+export type { PromoFiltersModel } from './filter/PromoFiltersModel';
 export type { MenuData } from './MenuData';
 export type { PromoTypeModel } from './PromoTypeModel';
 export type { ScheduleModel } from './ScheduleModel';

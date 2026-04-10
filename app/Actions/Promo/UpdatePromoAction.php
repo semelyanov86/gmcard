@@ -98,6 +98,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             : CarbonImmutable::now()->addDays($dto->durationDays);
 
         $updateData = [
+            'promo_type_id' => $dto->promoTypeId,
             'name' => $dto->title,
             'type' => $promoType,
             'description' => $dto->description,

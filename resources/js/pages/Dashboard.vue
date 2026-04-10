@@ -7,7 +7,7 @@ import { Head, Link, usePage } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Главная',
         href: '/dashboard',
     },
 ];
@@ -17,7 +17,7 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Главная" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col">
@@ -26,7 +26,7 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                     <div class="rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
                         <div class="flex items-center gap-4">
                             <div class="flex flex-col">
-                                <span class="text-base font-medium">Menu</span>
+                                <span class="text-base font-medium">Меню</span>
                                 <div class="mt-3 grid grid-cols-1 gap-2">
                                     <Link
                                         :href="route('business.landing')"
@@ -58,20 +58,20 @@ const auth = page.props.auth as { user?: { name?: string; avatar?: string } };
                 </div>
                 <div class="relative h-screen w-[80%] space-y-4 px-2">
                     <div class="flex items-center py-6 md:py-8">
-                        <h2 class="text-3xl font-semibold md:text-4xl">Dashboard</h2>
+                        <h2 class="text-3xl font-semibold md:text-4xl">Главная</h2>
                     </div>
 
                     <div class="w-250 rounded-xl border border-sidebar-border/70 bg-background p-4 dark:border-sidebar-border">
                         <div class="flex items-center gap-4">
                             <Avatar class="size-10 overflow-hidden rounded-full">
-                                <AvatarImage v-if="auth.user?.avatar" :src="auth.user?.avatar" :alt="auth.user?.name || 'User'" />
+                                <AvatarImage v-if="auth.user?.avatar" :src="auth.user?.avatar" :alt="auth.user?.name || 'Пользователь'" />
                                 <AvatarFallback class="rounded-full bg-black font-semibold text-white">
                                     {{ getInitials(auth.user?.name) }}
                                 </AvatarFallback>
                             </Avatar>
                             <div class="flex flex-col">
                                 <span class="text-sm text-neutral-500">{{ auth.user?.name || 'admin' }}</span>
-                                <span class="text-base font-medium">Welcome</span>
+                                <span class="text-base font-medium">Добро пожаловать</span>
                             </div>
                         </div>
                     </div>

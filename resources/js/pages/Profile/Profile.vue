@@ -15,7 +15,7 @@ import ProfileSidebar from '@/components/Profile/ProfileSidebar.vue';
 import RejectedPromos from '@/components/Profile/RejectedPromos.vue';
 import FlashToaster from '@/components/system/FlashToaster.vue';
 import { MODERATOR_ROLES } from '@/composables/useUserRoles';
-import type { AppPageProps, CategoryModel, ContactModel, MenuData, User } from '@/types';
+import type { AppPageProps, CategoryModel, CityModel, ContactModel, MenuData, User } from '@/types';
 import { ProfileTab } from '@/types/enums/profile';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
@@ -28,6 +28,7 @@ const props = defineProps<{
     categories?: CategoryModel[];
     navbarMenu: MenuData[];
     user: User | null;
+    cities?: CityModel[];
     activePromos: any[];
     completedPromos: any[];
     draftPromos: any[];
@@ -55,6 +56,16 @@ const closeAdminModal = () => {
 
 const selectedRejectionReason = computed(() => selectedRejectedPromo.value?.rejectionReason ?? null);
 const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rejectionMessage ?? null);
+
+const cityLabel = computed(() => {
+    const id = page.props.userData?.city;
+    if (id == null) {
+        return null;
+    }
+    const list = props.cities ?? [];
+    const found = list.find((c) => c.id === id);
+    return found?.name ?? null;
+});
 </script>
 
 <template>
@@ -70,7 +81,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                 <div v-show="activeTab === ProfileTab.Profile" class="w-3/4" id="block1DATA">
                     <div class="flex min-h-500 flex-col gap-5 rounded-2xl bg-white p-8 md:p-2">
                         <h2 class="text-start text-5xl font-medium">Личный кабинет</h2>
-                        <div class="flex justify-between border-2 p-8">
+                        <div class="flex items-start justify-between border-2 p-8">
                             <div class="profMenu flex gap-10">
                                 <div>
                                     <div id="cropModal2" class="modal z-50 h-auto w-full">
@@ -121,7 +132,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                                         </li>
                                         <li>
                                             <span>Место проживания:</span>
-                                            <span class="text-primary">{{ page.props.userData?.city || 'Не указано' }}</span>
+                                            <span class="text-primary">{{ cityLabel || 'Не указано' }}</span>
                                         </li>
                                         <li>
                                             <span>Страна:</span>
@@ -156,7 +167,7 @@ const selectedRejectionMessage = computed(() => selectedRejectedPromo.value?.rej
                                     >
                                 </div>
                             </div>
-                            <p class="cursor-pointer text-primary hover:underline">Редактировать</p>
+                            <a :href="route('profile.edit')" class="cursor-pointer text-primary hover:underline">Редактировать</a>
                         </div>
                     </div>
                     <div></div>

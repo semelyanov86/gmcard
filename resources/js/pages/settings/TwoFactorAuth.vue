@@ -20,7 +20,7 @@ const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Two-Factor Authentication',
+        title: 'Двухфакторная аутентификация',
         href: '/settings/two-factor',
     },
 ];
@@ -128,7 +128,7 @@ const updateTwoFactorStatus = (enabled: boolean) => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Two-Factor Authentication" />
+        <Head title="Двухфакторная аутентификация" />
 
         <SettingsLayout>
             <div class="space-y-6">

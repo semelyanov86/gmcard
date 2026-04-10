@@ -71,7 +71,10 @@ const isOpened = (id: number) => openedIds.value.includes(id);
                             <img src="/images/png/sale/time-icon.png" class="mt-2 h-5 w-5" alt="time" />
                             <div>
                                 <h3 class="text-lg font-bold">График работы</h3>
-                                <p v-for="(hours, day) in address.openHours" :key="day">{{ day }}: {{ hours }}</p>
+                                <p v-for="(hours, day) in address.openHours" :key="day">
+                                    <template v-if="day === 'schedule'">{{ hours }}</template>
+                                    <template v-else>{{ day }}: {{ hours }}</template>
+                                </p>
                             </div>
                         </div>
 

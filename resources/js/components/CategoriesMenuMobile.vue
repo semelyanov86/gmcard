@@ -1,35 +1,27 @@
 <script setup lang="ts">
 import type { CategoryModel } from '@/types';
+import { Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 interface Props {
     categories?: CategoryModel[];
-    isDropdownOpen: boolean;
 }
 
 const props = defineProps<Props>();
 
 const mainCategories = computed(() => props.categories || []);
-
-const emit = defineEmits<{
-    'open-dropdown': [];
-}>();
-
-const handleClick = () => {
-    emit('open-dropdown');
-};
 </script>
 
 <template>
     <div class="mobile_scroll -mx-2 hidden items-end justify-between px-4 lg:px-0">
-        <div
+        <Link
             v-for="(category, index) in mainCategories"
             :key="`mobile-${category.id || category.name}`"
+            :href="route('categories.promos', category.id)"
             :class="[
                 `mains${category.icon_index ?? index + 1}`,
-                'icons_block relative mx-2 flex w-[120px] min-w-[100px] flex-shrink-0 cursor-pointer flex-col items-center',
+                'icons_block relative mx-2 flex w-[120px] min-w-[100px] flex-shrink-0 cursor-pointer flex-col items-center no-underline',
             ]"
-            @click="handleClick"
         >
             <div class="relative flex w-full flex-col items-center justify-center">
                 <div :class="`image-${category.icon_index ?? index + 1}`" class="h-13 w-13 rounded-lg px-4 py-3" />
@@ -37,7 +29,7 @@ const handleClick = () => {
                     {{ category.name }}
                 </p>
             </div>
-        </div>
+        </Link>
     </div>
 </template>
 

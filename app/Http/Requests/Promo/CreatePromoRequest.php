@@ -7,6 +7,7 @@ namespace App\Http\Requests\Promo;
 use App\Enums\Weekday;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Override;
 
 class CreatePromoRequest extends FormRequest
 {
@@ -73,5 +74,14 @@ class CreatePromoRequest extends FormRequest
             'agree_to_terms' => [Rule::requiredIf(fn () => ! $this->input('is_draft', false)), 'accepted'],
             'is_draft' => ['nullable', 'boolean'],
         ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    #[Override]
+    public function messages(): array
+    {
+        return trans('promo.validation');
     }
 }

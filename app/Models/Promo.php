@@ -26,6 +26,7 @@ use Override;
  * @property CarbonImmutable|null $availabe_from
  * @property CarbonImmutable|null $available_to
  * @property PromoTypeEnum $type
+ * @property int|null $promo_type_id
  * @property string|null $discount
  * @property PromoModerationStatus $moderation_status
  * @property CarbonImmutable|null $rejected_at
@@ -33,6 +34,7 @@ use Override;
  * @property string|null $rejection_reason
  * @property string|null $rejection_message
  * @property int|null $approved_by
+ * @property string|null $img
  */
 class Promo extends Model
 {

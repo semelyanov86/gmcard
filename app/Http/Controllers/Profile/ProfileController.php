@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Profile;
 
 use App\Actions\Category\GetCategoriesAction;
+use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\GetPendingPromosAction;
 use App\Actions\Promo\GetUserPromosAction;
@@ -41,6 +42,7 @@ class ProfileController extends Controller
             'draftPromos' => $promosData['draftPromos'],
             'rejectedPromos' => $promosData['rejectedPromos'],
             'moderationPromos' => $moderationPromos,
+            'cities' => GetCitiesAction::run(),
         ]);
     }
 }

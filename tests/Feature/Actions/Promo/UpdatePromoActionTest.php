@@ -14,14 +14,11 @@ use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
-use Tests\TestCase;
+use Tests\PromoDatabaseTestCase;
 
-class UpdatePromoActionTest extends TestCase
+class UpdatePromoActionTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
-
     public function test_updates_promo_fields(): void
     {
         /** @var User $user */

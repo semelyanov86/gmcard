@@ -2,13 +2,28 @@
 import PromoAdditionalPhotos from '@/components/Promo/PromoAdditionalPhotos.vue';
 import PromoCoverUpload from '@/components/Promo/PromoCoverUpload.vue';
 import { ModalLink } from '@inertiaui/modal-vue';
-import { computed, onBeforeUnmount, ref } from 'vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
 
 const props = defineProps<{
     existingPhoto?: string | null;
+    existingPhotoPaths?: string[] | null;
 }>();
 
 const photos = defineModel<Array<File | null>>({ required: true });
+
+function resolvePath(path: string): string {
+    return path.startsWith('http') ? path : `/storage/${path}`;
+}
+
+const paths = computed(() => props.existingPhotoPaths?.filter(Boolean) ?? []);
+
+const coverExistingPhoto = computed(() => paths.value[0] ?? props.existingPhoto ?? null);
+
+const existingSlot2Url = computed(() => (paths.value[1] ? resolvePath(paths.value[1]) : null));
+const existingSlot3Url = computed(() => (paths.value[2] ? resolvePath(paths.value[2]) : null));
+
+const displayUrl2 = computed(() => objectUrl2.value ?? existingSlot2Url.value);
+const displayUrl3 = computed(() => objectUrl3.value ?? existingSlot3Url.value);
 
 const cover1File = computed<File | null>({
     get: () => photos.value[0] ?? null,
@@ -21,6 +36,16 @@ const cover1File = computed<File | null>({
 const objectUrl2 = ref<string | null>(null);
 const objectUrl3 = ref<string | null>(null);
 const showFileUpload3 = ref(false);
+
+watch(
+    paths,
+    (p) => {
+        if (p.length > 2) {
+            showFileUpload3.value = true;
+        }
+    },
+    { immediate: true },
+);
 
 onBeforeUnmount(() => {
     if (objectUrl2.value) URL.revokeObjectURL(objectUrl2.value);
@@ -70,27 +95,27 @@ function handleFileChange3(event: Event) {
             </div>
         </div>
         <div class="flex flex-wrap justify-between gap-2">
-            <PromoCoverUpload v-model="cover1File" :existing-photo="props.existingPhoto" />
+            <PromoCoverUpload v-model="cover1File" :existing-photo="coverExistingPhoto" />
 
             <div
                 class="file_uploaded files_img relative flex h-56 w-56 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-100"
             >
                 <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
-                    <h2 v-if="!objectUrl2" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
-                    <label v-if="!objectUrl2" for="uploadImage2" class="text-sm text-gray-400">Файл не выбран</label>
+                    <h2 v-if="!displayUrl2" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
+                    <label v-if="!displayUrl2" for="uploadImage2" class="text-sm text-gray-400">Файл не выбран</label>
                     <input
                         type="file"
                         id="uploadImage2"
                         accept="image/*"
                         :class="
-                            objectUrl2
+                            displayUrl2
                                 ? 'absolute inset-0 z-20 opacity-0 focus:border-none focus:outline-none'
                                 : 'files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none'
                         "
                         @change="handleFileChange2"
                     />
                 </div>
-                <img v-if="objectUrl2" :src="objectUrl2" alt="Обложка 2" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
+                <img v-if="displayUrl2" :src="displayUrl2" alt="Обложка 2" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
 
             <div
@@ -109,25 +134,25 @@ function handleFileChange3(event: Event) {
                 :class="{ hidden: !showFileUpload3 }"
             >
                 <div class="relative z-10 flex h-full w-full flex-col items-center justify-center">
-                    <h2 v-if="!objectUrl3" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
-                    <label v-if="!objectUrl3" for="uploadImage3" class="text-sm text-gray-400">Файл не выбран</label>
+                    <h2 v-if="!displayUrl3" class="text-sm font-bold lg:text-base">Обложка (необязательно)</h2>
+                    <label v-if="!displayUrl3" for="uploadImage3" class="text-sm text-gray-400">Файл не выбран</label>
                     <input
                         type="file"
                         id="uploadImage3"
                         accept="image/*"
                         :class="
-                            objectUrl3
+                            displayUrl3
                                 ? 'absolute inset-0 z-20 opacity-0 focus:border-none focus:outline-none'
                                 : 'files_inp custom-file-input absolute bottom-10 left-10 focus:border-none focus:outline-none'
                         "
                         @change="handleFileChange3"
                     />
                 </div>
-                <img v-if="objectUrl3" :src="objectUrl3" alt="Обложка 3" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
+                <img v-if="displayUrl3" :src="displayUrl3" alt="Обложка 3" class="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover" />
             </div>
         </div>
 
-        <div v-if="!photos[0] && props.existingPhoto" class="mt-5">
+        <div v-if="!photos[0] && props.existingPhoto && (!props.existingPhotoPaths || props.existingPhotoPaths.length === 0)" class="mt-5">
             <p class="text-sm text-black/60">Текущее изображение</p>
             <img
                 :src="props.existingPhoto.startsWith('http') ? props.existingPhoto : `/storage/${props.existingPhoto}`"
@@ -136,6 +161,6 @@ function handleFileChange3(event: Event) {
             />
         </div>
 
-        <PromoAdditionalPhotos v-model="photos" />
+        <PromoAdditionalPhotos v-model="photos" :initial-server-paths="paths.slice(3)" />
     </div>
 </template>

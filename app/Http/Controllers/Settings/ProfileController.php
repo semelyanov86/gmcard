@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Settings;
 
+use App\Actions\City\GetCitiesAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -23,6 +24,7 @@ class ProfileController extends Controller
         return Inertia::render('settings/Profile', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => $request->session()->get('status'),
+            'cities' => GetCitiesAction::run(),
         ]);
     }
 
