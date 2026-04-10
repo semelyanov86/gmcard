@@ -10,7 +10,7 @@ use App\Models\Promo;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static PromoListItemData[] run(array $filters = [])
+ * @method static PromoListItemData[] run(array{city?: int|null, min_discount?: int|null, promo_type?: int|null, search?: string|null} $filters = [])
  */
 final readonly class GetApprovedPromosForHomeAction
 {
@@ -36,7 +36,8 @@ final readonly class GetApprovedPromosForHomeAction
         }
 
         if (! empty($filters['search'])) {
-            $query->where('name', 'like', '%' . $filters['search'] . '%');
+            $term = addcslashes($filters['search'], '%_\\');
+            $query->where('name', 'like', '%' . $term . '%');
         }
 
         // Исправить

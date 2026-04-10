@@ -44,7 +44,8 @@ final readonly class GetApprovedPromosByCategoryAction
         }
 
         if (! empty($filters['search'])) {
-            $query->where('name', 'like', '%' . $filters['search'] . '%');
+            $term = addcslashes($filters['search'], '%_\\');
+            $query->where('name', 'like', '%' . $term . '%');
         }
 
         // Исправить

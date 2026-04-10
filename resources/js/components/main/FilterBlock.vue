@@ -2,7 +2,7 @@
 import FilterCitySelect from '@/components/filter/FilterCitySelect.vue';
 import FilterDiscountSelect from '@/components/filter/FilterDiscountSelect.vue';
 import FilterTypeSelect from '@/components/filter/FilterTypeSelect.vue';
-import type { CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
+import type { AppPageProps, CityModel, DiscountFilterOptionModel, PromoTypeModel } from '@/types';
 import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
 import { router, usePage } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
@@ -15,7 +15,7 @@ const props = defineProps<{
     submitUrl: string;
 }>();
 
-const page = usePage<{ filters?: PromoFiltersModel }>();
+const page = usePage<AppPageProps<{ filters?: PromoFiltersModel }>>();
 
 const city = ref<number | null>(props.filters?.city ?? null);
 const minDiscount = ref<number | null>(props.filters?.min_discount ?? null);
