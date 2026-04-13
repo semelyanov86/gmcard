@@ -59,7 +59,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                 <img src="/images/png/icons/down.png" class="pointer-events-none absolute top-2 right-0 mt-3 mr-2 h-1 w-2" alt="" />
             </div>
             <div
-                class="custom-options_1 absolute z-50 mt-1 h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white text-black shadow-lg"
+                class="custom-options_1 absolute z-40 mt-1 h-48 w-52 overflow-y-scroll rounded-b border border-gray-400 bg-white text-black shadow-lg"
                 :class="{ hidden: !discountOpen }"
             >
                 <div

@@ -36,7 +36,7 @@ function handleImageError(e: Event) {
     <div>
         <div class="main_card promo-card relative mt-7 rounded-xl">
             <img :src="coverUrl" class="w-full rounded-t-3xl" alt="Товар" @error="handleImageError" />
-            <div class="absolute -top-6 left-4 z-40" data-tooltip-target="tooltip-default" type="button">
+            <div class="absolute -top-6 left-4 z-10" data-tooltip-target="tooltip-default" type="button">
                 <img v-if="promoBadgeIcon" class="promo-card-discount-badge" :src="promoBadgeIcon" :alt="props.promo.type || 'Скидка на товар'" />
             </div>
             <Tooltip id="tooltip-default" text="Скидка" :show="true" />
