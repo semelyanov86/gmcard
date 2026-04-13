@@ -94,8 +94,8 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                 <input
                     v-model="searchQuery"
                     type="text"
-                    placeholder="Select city"
-                    class="w-full appearance-none border-none bg-transparent text-white outline-none ring-0 placeholder:text-white/70 focus:border-none focus:outline-none focus:ring-0"
+                    placeholder="Выберите город"
+                    class="city-input w-full appearance-none border-none bg-transparent text-white outline-none ring-0 placeholder:text-white focus:border-none focus:outline-none focus:ring-0"
                     @input="onCityInput"
                     @focus="cityOpen = true"
                 />
@@ -135,5 +135,29 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
 <style scoped>
 .filter-option-selected {
     background-color: #f9d914;
+}
+
+.city-input::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+.city-input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.city-input:focus,
+.city-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.city-input::selection {
+    background: transparent;
+    color: inherit;
+}
+
+.city-input::-moz-selection {
+    background: transparent;
+    color: inherit;
 }
 </style>
