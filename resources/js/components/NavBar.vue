@@ -5,11 +5,18 @@ import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
 import { router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 
-const props = defineProps<{
-    menuItems: MenuData[];
-    submitUrl?: string;
-    filters?: PromoFiltersModel;
-}>();
+const props = withDefaults(
+    defineProps<{
+        menuItems: MenuData[];
+        submitUrl?: string;
+        filters?: PromoFiltersModel;
+        /** Hide the mobile-only blue top links bar (md:hidden). */
+        hideTopBar?: boolean;
+    }>(),
+    {
+        hideTopBar: false,
+    },
+);
 
 const search = ref(props.filters?.search ?? '');
 
@@ -45,7 +52,7 @@ function submitSearch(): void {
 </script>
 
 <template>
-    <div class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
+    <div v-if="!hideTopBar" class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
         <div class="bg-brand-blue mb-4 flex h-[55px] w-full items-center rounded-md px-5 shadow-2xl xl:pr-5 xl:pl-7">
             <ul class="flex w-full items-center justify-between">
                 <li v-for="item in menuItems" :key="item.id" class="cursor-pointer text-[16px] text-white">

@@ -87,7 +87,7 @@ const selectedCategoriesNames = computed(() => {
                 >
                     <div class="flex w-full items-center gap-3">
                         <input
-                            v-if="level >= 2"
+                            v-if="level >= 1"
                             type="checkbox"
                             :checked="isCategorySelected(category.id)"
                             @click.stop="toggleCategory(category.id)"
