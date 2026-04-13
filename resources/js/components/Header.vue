@@ -151,15 +151,18 @@ function toggleMobileMenu() {
                         <div
                             class="bg-brand-yellow-dark focus-within:ring-brand-yellow-dark w-fit rounded-md px-3 py-2 hover:opacity-100 focus-within:ring-2"
                         >
-                            <Link v-if="page.props.userData" :href="route('promos.create')" class="hover:text-brand-orange cursor-pointer text-black"
+                            <Link
+                                v-if="page.props.userData"
+                                :href="route('promos.create')"
+                                class="header-promo-launch-link cursor-pointer text-black"
                                 >Запустить акцию</Link
                             >
                             <a
                                 v-else
-                                @click.prevent="openLoginModal(LoginButtonType.Start)"
-                                href="#"
-                                class="hover:text-brand-orange cursor-pointer text-black"
                                 id="userAuth1"
+                                href="#"
+                                class="header-promo-launch-link cursor-pointer text-black"
+                                @click.prevent="openLoginModal(LoginButtonType.Start)"
                                 >Запустить акцию</a
                             >
                         </div>
@@ -388,4 +391,10 @@ function toggleMobileMenu() {
     border-right: 6px solid transparent;
     border-bottom: 7px solid rgb(220 38 38);
 }
+</style>
+
+<style>
+    a.header-promo-launch-link:hover {
+        color: #983301 !important;
+    }
 </style>
