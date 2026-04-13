@@ -38,10 +38,6 @@ const selectedCityName = computed(() => {
     return props.cities.find((c) => c.id === props.modelValue)?.name ?? '';
 });
 
-function toggleCityOpen() {
-    cityOpen.value = !cityOpen.value;
-}
-
 function onCityInput() {
     cityOpen.value = true;
     emit('update:modelValue', null);
