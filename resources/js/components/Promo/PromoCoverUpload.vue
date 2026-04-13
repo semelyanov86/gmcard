@@ -27,6 +27,14 @@ const selectedObjectUrl = ref<string | null>(null);
 
 const cropperImageRef = ref<HTMLImageElement | null>(null);
 let cropper: any = null;
+let selectionMinSizeListener: ((event: Event) => void) | null = null;
+
+const OUTPUT_WIDTH = 1000;
+const OUTPUT_HEIGHT = 1000;
+const COVER_ASPECT_RATIO = OUTPUT_WIDTH / OUTPUT_HEIGHT;
+
+const MIN_CROP_HEIGHT_PX = 120;
+const MIN_CROP_WIDTH_PX = MIN_CROP_HEIGHT_PX * COVER_ASPECT_RATIO;
 
 watch(
     () => props.modelValue,
@@ -45,6 +53,11 @@ onBeforeUnmount(() => {
 
 function destroyCropper() {
     if (!cropper) return;
+    const selection = cropper.getCropperSelection?.() as HTMLElement | undefined;
+    if (selection && selectionMinSizeListener) {
+        selection.removeEventListener('change', selectionMinSizeListener);
+        selectionMinSizeListener = null;
+    }
     cropper.destroy();
     cropper = null;
 }
@@ -61,22 +74,34 @@ async function initCropper() {
                 <cropper-image rotatable scalable skewable translatable initial-center-size="contain"></cropper-image>
                 <cropper-shade hidden></cropper-shade>
                 <cropper-handle action="select" plain></cropper-handle>
-                <cropper-selection initial-coverage="0.5" movable resizable aspect-ratio="1">
+                <cropper-selection initial-coverage="0.5" movable resizable aspect-ratio="${COVER_ASPECT_RATIO}" style="min-width: ${MIN_CROP_WIDTH_PX}px; min-height: ${MIN_CROP_HEIGHT_PX}px;">
                     <cropper-grid role="grid" bordered covered></cropper-grid>
                     <cropper-crosshair centered></cropper-crosshair>
                     <cropper-handle action="move" theme-color="rgba(255, 255, 255, 0.35)"></cropper-handle>
-                    <cropper-handle action="n-resize"></cropper-handle>
-                    <cropper-handle action="e-resize"></cropper-handle>
-                    <cropper-handle action="s-resize"></cropper-handle>
-                    <cropper-handle action="w-resize"></cropper-handle>
-                    <cropper-handle action="ne-resize"></cropper-handle>
-                    <cropper-handle action="nw-resize"></cropper-handle>
-                    <cropper-handle action="se-resize"></cropper-handle>
-                    <cropper-handle action="sw-resize"></cropper-handle>
+                    <cropper-handle action="n-resize" style="width: 100%; height: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="e-resize" style="width: 22px; height: 100%; min-width: 22px;"></cropper-handle>
+                    <cropper-handle action="s-resize" style="width: 100%; height: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="w-resize" style="width: 22px; height: 100%; min-width: 22px;"></cropper-handle>
+                    <cropper-handle action="ne-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="nw-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="se-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="sw-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
                 </cropper-selection>
             </cropper-canvas>
         `,
     } as any);
+
+    const selection = cropper.getCropperSelection?.() as HTMLElement | undefined;
+    if (selection) {
+        selectionMinSizeListener = (event: Event) => {
+            const e = event as CustomEvent<{ width: number; height: number }>;
+            const { width, height } = e.detail;
+            if (width < MIN_CROP_WIDTH_PX || height < MIN_CROP_HEIGHT_PX) {
+                e.preventDefault();
+            }
+        };
+        selection.addEventListener('change', selectionMinSizeListener);
+    }
 }
 
 function cleanupPending() {
@@ -115,7 +140,17 @@ async function handleSave() {
     const selection = (cropper as any).getCropperSelection?.();
     if (!selection) return;
 
-    const croppedCanvas = (await (selection as any).$toCanvas()) as HTMLCanvasElement | null;
+    if (selection.width < MIN_CROP_WIDTH_PX || selection.height < MIN_CROP_HEIGHT_PX) {
+        alert(
+            `Минимальный размер области обрезки — примерно ${Math.round(MIN_CROP_WIDTH_PX)}×${MIN_CROP_HEIGHT_PX} пикселей (соотношение ${OUTPUT_WIDTH}:${OUTPUT_HEIGHT}).`,
+        );
+        return;
+    }
+
+    const croppedCanvas = (await (selection as any).$toCanvas({
+        width: OUTPUT_WIDTH,
+        height: OUTPUT_HEIGHT,
+    })) as HTMLCanvasElement | null;
     if (!croppedCanvas) return;
 
     croppedCanvas.toBlob(
@@ -181,7 +216,7 @@ async function handleSave() {
                 >
                     <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
                     <div
-                        class="crop-container"
+                        class="crop-container promo-cover-cropper"
                         :style="{
                             position: 'relative',
                             overflow: 'hidden',
