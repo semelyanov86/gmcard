@@ -121,7 +121,11 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     </div>
                     <div v-if="filteredSubSubCategories.length > 0" class="grid grid-cols-3 gap-7">
                         <div v-for="category in filteredSubSubCategories" :key="category.id" class="category-block">
-                            <h3 class="mb-2 text-base font-semibold text-black">{{ category.name }}</h3>
+                            <h3 class="mb-2 text-base font-semibold text-black">
+                                <Link :href="route('categories.promos', category.id)" class="text-black hover:text-blue-600 hover:underline">
+                                    {{ category.name }}
+                                </Link>
+                            </h3>
                             <ul v-if="category.children && category.children.length > 0" class="mt-3 flex flex-col gap-2 space-y-1">
                                 <li v-for="child in category.children" :key="child.id" class="text-sm">
                                     <Link
