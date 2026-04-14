@@ -130,6 +130,11 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
                 $updateData['rejection_reason'] = null;
             } elseif ($promo->moderation_status === PromoModerationStatus::DRAFT) {
                 $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+            } elseif ($promo->moderation_status === PromoModerationStatus::APPROVED) {
+                $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+                $updateData['approved_at'] = null;
+                $updateData['approved_by'] = null;
+                $updateData['approving_notes'] = null;
             }
         }
 
