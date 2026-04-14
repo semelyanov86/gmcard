@@ -3894,14 +3894,13 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 6px;
     width: 100%;
 }
 
 /* Стили для иконок категорий */
 .category-icon {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
 

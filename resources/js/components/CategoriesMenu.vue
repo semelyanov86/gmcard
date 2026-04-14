@@ -58,9 +58,13 @@ const subcategoryIconSlugByIndex: Record<number, string> = {
     12: 'plane',
 };
 
-function subcategoryIconSrc(iconIndex: number | null): string | null {
+function subcategoryIconSrc(category: CategoryModel): string | null {
+    const iconIndex = category.icon_index;
     if (iconIndex == null) {
         return null;
+    }
+    if (activeMainCategory.value?.name === 'Товары для детей') {
+        return `/images/goods_for_kids/${iconIndex}.png`;
     }
     const slug = subcategoryIconSlugByIndex[iconIndex];
     if (!slug) {
@@ -125,9 +129,9 @@ function subcategoryIconSrc(iconIndex: number | null): string | null {
                             class="icon-container flex min-w-0 flex-1 items-center gap-3 text-inherit no-underline"
                         >
                             <img
-                                v-if="subcategoryIconSrc(subCategory.icon_index)"
-                                :src="subcategoryIconSrc(subCategory.icon_index) ?? undefined"
-                                class="category-icon h-6 w-6 shrink-0 object-contain"
+                                v-if="subcategoryIconSrc(subCategory)"
+                                :src="subcategoryIconSrc(subCategory)"
+                                class="category-icon  shrink-0 object-contain"
                                 alt=""
                             />
                             <span class="min-w-0">{{ subCategory.name }}</span>

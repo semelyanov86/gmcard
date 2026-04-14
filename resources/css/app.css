@@ -288,13 +288,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 6px;
     width: 100%;
 }
 
 .category-icon {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
 
