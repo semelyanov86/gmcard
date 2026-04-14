@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class RestaurantsSeeder extends Seeder
@@ -82,6 +83,40 @@ class RestaurantsSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $restaurantsRootCategory = Category::query()
+            ->where('name', 'Рестораны, Кафе и Доставка')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $restaurantsRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Рестораны' => 1,
+            'Кафе и Кофейни' => 2,
+            'Фастфуд' => 3,
+            'Бары и Пабы' => 4,
+            'Доставка готовой еды' => 5,
+            'Доставка продуктов' => 6,
+            'Фудкорты и Столовые' => 7,
+            'Пекарни и Кондитерские' => 8,
+            'Фермерские рынки и Спецмагазины' => 9,
+            'Кейтеринг' => 10,
+            'Подписки на готовую еду' => 11,
+            'Подарочные сертификаты на еду' => 12,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $restaurantsRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/restaurant/{$iconIndex}.png",
+                ]);
         }
     }
 }
