@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class GiftsSeeder extends Seeder
@@ -36,6 +37,32 @@ class GiftsSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $giftsRootCategory = Category::query()
+            ->where('name', 'Цветы и Подарки')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $giftsRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Цветы' => 1,
+            'Подарки' => 2,
+            'Упаковка и аксессуары' => 3,
+            'Услуги' => 4,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $giftsRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/flowers/{$iconIndex}.png",
+                ]);
         }
     }
 }
