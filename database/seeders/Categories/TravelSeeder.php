@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class TravelSeeder extends Seeder
@@ -75,6 +76,35 @@ class TravelSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $restRootCategory = Category::query()
+            ->where('name', 'Досуг, Культура и Путешествия')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $restRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Книги' => 1,
+            'Канцтовары' => 2,
+            'Творчество и Хобби' => 3,
+            'Направления' => 4,
+            'Типы отдыха' => 5,
+            'Сервисы' => 6,
+            'Товары' => 7,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $restRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/rest/{$iconIndex}.png",
+                ]);
         }
     }
 }
