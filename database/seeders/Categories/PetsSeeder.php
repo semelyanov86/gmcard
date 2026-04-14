@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class PetsSeeder extends Seeder
@@ -38,6 +39,33 @@ class PetsSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $petsRootCategory = Category::query()
+            ->where('name', 'Зоотовары')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $petsRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Корма' => 1,
+            'Аксессуары' => 2,
+            'Гигиена и уход' => 3,
+            'Аквариумистика' => 4,
+            'Ветеринария' => 5,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $petsRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/zoo/{$iconIndex}.png",
+                ]);
         }
     }
 }
