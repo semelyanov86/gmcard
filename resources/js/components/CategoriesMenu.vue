@@ -59,12 +59,13 @@ const subcategoryIconSlugByIndex: Record<number, string> = {
 };
 
 function subcategoryIconSrc(category: CategoryModel): string | null {
+    if (category.icon) {
+        return category.icon;
+    }
+
     const iconIndex = category.icon_index;
     if (iconIndex == null) {
         return null;
-    }
-    if (activeMainCategory.value?.name === 'Товары для детей') {
-        return `/images/goods_for_kids/${iconIndex}.png`;
     }
     const slug = subcategoryIconSlugByIndex[iconIndex];
     if (!slug) {

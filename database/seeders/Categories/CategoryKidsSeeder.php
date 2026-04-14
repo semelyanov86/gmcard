@@ -73,7 +73,10 @@ class CategoryKidsSeeder extends Seeder
             Category::query()
                 ->where('parent_id', $kidsRootCategory->id)
                 ->where('name', $categoryName)
-                ->update(['icon_index' => $iconData['icon_index']]);
+                ->update([
+                    'icon_index' => $iconData['icon_index'],
+                    'icon' => "/images/goods_for_kids/{$iconData['icon_index']}.png",
+                ]);
         }
     }
 }
