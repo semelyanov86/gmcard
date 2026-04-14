@@ -3359,3 +3359,22 @@
 .bg-promo-container {
     background-color: var(--color-secondary-dark);
 }
+
+/* Brand palette — tokens + Tailwind `bg-brand-yellow-dark` etc. */
+:root {
+    --brand-yellow: #f9d914;
+    --brand-yellow-dark: #f4d710;
+    --brand-yellow-darker: #eacc14;
+    --brand-yellow-light: #f6db12;
+    --brand-orange: #983301;
+    --color-yellow: var(--brand-yellow);
+    --color-yellow-dark: var(--brand-yellow-dark);
+}
+
+@theme inline {
+    --color-brand-yellow: var(--brand-yellow);
+    --color-brand-yellow-dark: var(--brand-yellow-dark);
+    --color-brand-yellow-darker: var(--brand-yellow-darker);
+    --color-brand-yellow-light: var(--brand-yellow-light);
+    --color-brand-orange: var(--brand-orange);
+}

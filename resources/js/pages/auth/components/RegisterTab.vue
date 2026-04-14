@@ -76,7 +76,7 @@ const submitRegister = () => {
             <div class="h-[1px] w-[100px] bg-black/40 opacity-80"></div>
         </div>
 
-        <form @submit.prevent="submitRegister" class="form-reset bestForm flex w-[500px] flex-col items-center px-4">
+        <form @submit.prevent="submitRegister" class="form-reset bestForm flex w-full max-w-[500px] flex-col px-4">
             <h2 class="text-lg font-bold">Укажите электронную почту и пароль</h2>
             <div class="relative mt-5 flex w-full flex-col">
                 <label for="name" class="mb-2 text-sm font-semibold">Ваше имя</label>
