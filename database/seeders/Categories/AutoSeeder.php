@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class AutoSeeder extends Seeder
@@ -100,6 +101,36 @@ class AutoSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $autoRootCategory = Category::query()
+            ->where('name', 'Автотовары')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $autoRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Автозапчасти' => 1,
+            'Шины и диски' => 2,
+            'Автохимия и масла' => 3,
+            'Аксессуары' => 4,
+            'Автоэлектроника' => 5,
+            'Уход и обслуживание' => 6,
+            'Для мототехники' => 7,
+            'Электромобили и гибриды' => 8,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $autoRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/auto/{$iconIndex}.png",
+                ]);
         }
     }
 }
