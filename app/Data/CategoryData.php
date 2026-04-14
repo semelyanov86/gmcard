@@ -44,13 +44,17 @@ final class CategoryData extends Data
     }
 
     /**
-     * @param  Collection<int, Category>  $categories
+     * @param  iterable<mixed, Category>  $categories
      * @return CategoryData[]
      */
-    public static function collectFromModels(Collection $categories): array
+    public static function collectFromModels(iterable $categories): array
     {
-        return $categories->map(
-            fn (Category $category) => self::fromModel($category)
-        )->all();
+        $result = [];
+
+        foreach ($categories as $category) {
+            $result[] = self::fromModel($category);
+        }
+
+        return $result;
     }
 }

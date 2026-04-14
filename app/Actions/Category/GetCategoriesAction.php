@@ -6,6 +6,7 @@ namespace App\Actions\Category;
 
 use App\Data\CategoryData;
 use App\Models\Category;
+use Kalnoy\Nestedset\Collection as NestedSetCollection;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
@@ -20,11 +21,15 @@ final readonly class GetCategoriesAction
      */
     public function handle(): array
     {
-        $categories = Category::query()
+        /** @var NestedSetCollection<int, Category> $treeableCategories */
+        $treeableCategories = Category::query()
             ->select(['id', 'name', 'is_starred', 'parent_id', 'description', 'icon_index', 'icon', '_lft', '_rgt'])
-            ->get()
-            ->toTree();
+            ->get();
 
-        return CategoryData::collectFromModels($categories);
+        $categories = $treeableCategories->toTree();
+        /** @var array<int, Category> $categoriesArray */
+        $categoriesArray = $categories->all();
+
+        return CategoryData::collectFromModels($categoriesArray);
     }
 }

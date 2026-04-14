@@ -131,7 +131,7 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                         >
                             <img
                                 v-if="subcategoryIconSrc(subCategory)"
-                                :src="subcategoryIconSrc(subCategory)"
+                                :src="subcategoryIconSrc(subCategory) ?? undefined"
                                 class="category-icon  shrink-0 object-contain"
                                 alt=""
                             />
