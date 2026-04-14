@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategoryKidsSeeder extends Seeder
@@ -47,6 +48,32 @@ class CategoryKidsSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $kidsRootCategory = Category::query()
+            ->where('name', 'Товары для детей')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $kidsRootCategory) {
+            return;
+        }
+
+        $iconDataByCategoryName = [
+            'Одежда и обувь' => ['icon_index' => 1, 'icon_name' => 'clothes-and-shoes'],
+            'Уход и гигиена' => ['icon_index' => 2, 'icon_name' => 'care-and-hygiene'],
+            'Питание' => ['icon_index' => 3, 'icon_name' => 'nutrition'],
+            'Игрушки' => ['icon_index' => 4, 'icon_name' => 'toys'],
+            'Мебель и комната' => ['icon_index' => 5, 'icon_name' => 'furniture-and-room'],
+            'Прогулки' => ['icon_index' => 6, 'icon_name' => 'walks'],
+            'Для родителей' => ['icon_index' => 7, 'icon_name' => 'for-parents'],
+        ];
+
+        foreach ($iconDataByCategoryName as $categoryName => $iconData) {
+            Category::query()
+                ->where('parent_id', $kidsRootCategory->id)
+                ->where('name', $categoryName)
+                ->update(['icon_index' => $iconData['icon_index']]);
         }
     }
 }
