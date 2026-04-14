@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ElectroSeeder extends Seeder
@@ -64,6 +65,40 @@ class ElectroSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $electroRootCategory = Category::query()
+            ->where('name', 'Электроника и Бытовая техника')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $electroRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Гаджеты и мобильные устройства' => 1,
+            'Умный дом' => 2,
+            'Цифровые товары и контент' => 3,
+            'Аудио и видео' => 4,
+            'Компьютеры и периферия' => 5,
+            'Фототехника и дроны' => 6,
+            'Игровые устройства' => 7,
+            'Крупная бытехника' => 8,
+            'Климатическая техника' => 9,
+            'Кухонная техника' => 10,
+            'Уход за домом' => 11,
+            'Уход за собой' => 12,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $electroRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/electric/{$iconIndex}.png",
+                ]);
         }
     }
 }
