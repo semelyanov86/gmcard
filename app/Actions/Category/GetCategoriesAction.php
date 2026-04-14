@@ -20,9 +20,10 @@ final readonly class GetCategoriesAction
      */
     public function handle(): array
     {
-        // ????
-        // @phpstan-ignore method.notFound
-        $categories = Category::get()->toTree();
+        $categories = Category::query()
+            ->select(['id', 'name', 'is_starred', 'parent_id', 'description', 'icon_index', 'icon', '_lft', '_rgt'])
+            ->get()
+            ->toTree();
 
         return CategoryData::collectFromModels($categories);
     }

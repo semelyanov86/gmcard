@@ -29,6 +29,7 @@ class Category extends Model
         'is_starred',
         'parent_id',
         'icon_index',
+        'icon',
     ];
 
     protected $guarded = [
