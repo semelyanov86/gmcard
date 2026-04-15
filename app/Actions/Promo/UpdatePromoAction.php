@@ -98,7 +98,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
 
         if ($dto->discount !== null) {
             $discountAmount = $dto->discount->toFloat();
-            $discountAmount = $dto->discount->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
+            $discountCurrency = $dto->discount->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
         } elseif ($dto->cashback !== null) {
             $discountAmount = $dto->cashback->toFloat();
             $discountCurrency = $dto->cashback->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
