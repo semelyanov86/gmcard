@@ -149,12 +149,9 @@ function toggleMobileMenu() {
                 <li class="relative z-20 w-fit shrink-0">
                     <div class="relative w-fit">
                         <div
-                            class="bg-brand-yellow-dark focus-within:ring-brand-yellow-dark w-fit rounded-md px-3 py-2 hover:opacity-100 focus-within:ring-2"
+                            class="w-fit rounded-md bg-brand-yellow-dark px-3 py-2 focus-within:ring-2 focus-within:ring-brand-yellow-dark hover:opacity-100"
                         >
-                            <Link
-                                v-if="page.props.userData"
-                                :href="route('promos.create')"
-                                class="header-promo-launch-link cursor-pointer text-black"
+                            <Link v-if="page.props.userData" :href="route('promos.create')" class="header-promo-launch-link cursor-pointer text-black"
                                 >Запустить акцию</Link
                             >
                             <a
@@ -174,9 +171,7 @@ function toggleMobileMenu() {
                     </div>
                     <div class="promo-placement-popover" aria-hidden="true">
                         <div class="promo-placement-popover__caret" />
-                        <div
-                            class="w-full rounded-2xl bg-red-600 px-2 py-2 text-center text-sm font-semibold whitespace-nowrap text-white shadow-sm"
-                        >
+                        <div class="w-full rounded-2xl bg-red-600 px-2 py-2 text-center text-sm font-semibold whitespace-nowrap text-white shadow-sm">
                             Размещение 0&nbsp;₽
                         </div>
                     </div>
@@ -394,7 +389,7 @@ function toggleMobileMenu() {
 </style>
 
 <style>
-    a.header-promo-launch-link:hover {
-        color: #983301 !important;
-    }
+a.header-promo-launch-link:hover {
+    color: #983301 !important;
+}
 </style>

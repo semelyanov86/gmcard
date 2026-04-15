@@ -75,7 +75,7 @@ function submitSearch(): void {
                 </form>
                 <button
                     type="button"
-                    class="bg-brand-yellow-dark hover:text-brand-orange focus:ring-brand-yellow-dark ml-2 flex h-[41px] items-center justify-center rounded-md px-6 text-[16px] font-bold focus:ring-2"
+                    class="ml-2 flex h-[41px] items-center justify-center rounded-md bg-brand-yellow-dark px-6 text-[16px] font-bold hover:text-brand-orange focus:ring-2 focus:ring-brand-yellow-dark"
                     @click="submitSearch"
                 >
                     <SearchIcon custom-class="mr-1 group-hover:stroke-brand-orange" />

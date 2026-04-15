@@ -114,7 +114,7 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
         <CategoriesMenuMobile :categories="props.categories" />
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
-            <div class="bg-brand-yellow z-[1] h-[16px] w-full" />
+            <div class="z-[1] h-[16px] w-full bg-brand-yellow" />
             <div class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
                 <ul class="relative z-10 mt-[10px] w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li
@@ -132,7 +132,7 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                             <img
                                 v-if="subcategoryIconSrc(subCategory)"
                                 :src="subcategoryIconSrc(subCategory) ?? undefined"
-                                class="category-icon  shrink-0 object-contain"
+                                class="category-icon shrink-0 object-contain"
                                 alt=""
                             />
                             <span class="min-w-0">{{ subCategory.name }}</span>

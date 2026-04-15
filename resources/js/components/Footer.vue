@@ -464,11 +464,11 @@ const props = defineProps<{
                         <span class="text-sm text-white opacity-60">GM 2014 - 2025</span>
                     </div>
                     <ul class="partner_link flex items-center">
-                        <li class="text-brand-yellow-darker relative z-10 font-bold hover:opacity-80">
+                        <li class="relative z-10 font-bold text-brand-yellow-darker hover:opacity-80">
                             <a class="text-brand-yellow-darker" href="#">+ Партнерская программа</a>
                         </li>
                         <li class="mx-5 h-[30px] w-[1px] bg-white opacity-10"></li>
-                        <li class="text-brand-yellow-darker font-bold hover:opacity-80">
+                        <li class="font-bold text-brand-yellow-darker hover:opacity-80">
                             <a class="text-brand-yellow-darker" href="#">+ Добавить магазин</a>
                         </li>
                     </ul>

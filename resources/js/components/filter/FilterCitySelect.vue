@@ -23,7 +23,6 @@ const filteredCities = computed(() => {
         });
 });
 
-
 const emit = defineEmits<{
     (e: 'update:modelValue', value: number | null): void;
 }>();
@@ -91,7 +90,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
                     v-model="searchQuery"
                     type="text"
                     placeholder="Выберите город"
-                    class="city-input w-full appearance-none border-none bg-transparent text-white outline-none ring-0 placeholder:text-white focus:border-none focus:outline-none focus:ring-0"
+                    class="city-input w-full appearance-none border-none bg-transparent text-white ring-0 outline-none placeholder:text-white focus:border-none focus:ring-0 focus:outline-none"
                     @input="onCityInput"
                     @focus="cityOpen = true"
                 />
