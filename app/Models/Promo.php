@@ -35,6 +35,8 @@ use Override;
  * @property string|null $rejection_message
  * @property int|null $approved_by
  * @property string|null $img
+ * @property string|null $discount_amount
+ * @property string|null $discount_currency
  */
 class Promo extends Model
 {
@@ -77,6 +79,8 @@ class Promo extends Model
         'user_id',
         'daily_cost',
         'payment_required',
+        'discount_amount',
+        'discount_currency',
     ];
 
     protected $guarded = [
@@ -197,6 +201,8 @@ class Promo extends Model
             'restart_after_finish_days' => 'integer',
             'crmid' => 'string',
             'type' => PromoTypeEnum::class,
+            'discount_amount' => 'decimal:2',
+            'discount_currency' => 'string',
         ];
     }
 }
