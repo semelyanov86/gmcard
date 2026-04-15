@@ -246,7 +246,11 @@ async function handleSave() {
             </div>
         </Teleport>
         <Teleport to="body">
-            <div v-show="validationModalOpen" class="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 px-4" @click="closeValidationModal">
+            <div
+                v-show="validationModalOpen"
+                class="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 px-4"
+                @click="closeValidationModal"
+            >
                 <div class="w-full max-w-md rounded-xl bg-white p-5 shadow-2xl" @click.stop>
                     <h3 class="text-lg font-bold text-gray-900">Проверьте изображение</h3>
                     <p class="mt-2 text-sm text-gray-700">{{ validationModalMessage }}</p>
