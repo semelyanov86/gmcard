@@ -41,6 +41,38 @@ const handleContainerLeave = () => {
 const handleSubCategoryHover = (category: CategoryModel) => {
     selectedSubCategory.value = category;
 };
+
+/** Same icon set as `.image-1` … `.image-12` in `resources/css/app.css`, under `public/images/svg/12icons/`. */
+const subcategoryIconSlugByIndex: Record<number, string> = {
+    1: 'kid',
+    2: 'fash',
+    3: 'work',
+    4: 'sofa',
+    5: 'cart',
+    6: 'gift',
+    7: 'helth',
+    8: 'strong',
+    9: 'car',
+    10: 'edu',
+    11: 'zoo',
+    12: 'plane',
+};
+
+function subcategoryIconSrc(category: CategoryModel): string | null {
+    if (category.icon) {
+        return category.icon;
+    }
+
+    const iconIndex = category.icon_index;
+    if (iconIndex == null) {
+        return null;
+    }
+    const slug = subcategoryIconSlugByIndex[iconIndex];
+    if (!slug) {
+        return null;
+    }
+    return `/images/svg/12icons/${slug}.svg`;
+}
 </script>
 
 <template>
@@ -82,21 +114,28 @@ const handleSubCategoryHover = (category: CategoryModel) => {
         <CategoriesMenuMobile :categories="props.categories" />
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
-            <div class="bg-brand-yellow z-[1] h-[16px] w-full" />
+            <div class="z-[1] h-[16px] w-full bg-brand-yellow" />
             <div class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
-                <ul class="relative z-10 mt-[10px] w-1/3 overflow-y-scroll bg-white py-2 pr-[16px]">
+                <ul class="relative z-10 mt-[10px] w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
                         class="my-class hover:bg-hover flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 transition-colors"
                         :class="{ 'bg-hover': selectedSubCategory?.id === subCategory.id }"
+                        :data-category="subCategory.name"
                         @mouseenter="handleSubCategoryHover(subCategory)"
                     >
                         <Link
                             :href="route('categories.promos', subCategory.id)"
                             class="icon-container flex min-w-0 flex-1 items-center gap-3 text-inherit no-underline"
                         >
-                            <span>{{ subCategory.name }}</span>
+                            <img
+                                v-if="subcategoryIconSrc(subCategory)"
+                                :src="subcategoryIconSrc(subCategory) ?? undefined"
+                                class="category-icon shrink-0 object-contain"
+                                alt=""
+                            />
+                            <span class="min-w-0">{{ subCategory.name }}</span>
                         </Link>
                         <span class="strelka shrink-0">›</span>
                     </li>
@@ -121,7 +160,11 @@ const handleSubCategoryHover = (category: CategoryModel) => {
                     </div>
                     <div v-if="filteredSubSubCategories.length > 0" class="grid grid-cols-3 gap-7">
                         <div v-for="category in filteredSubSubCategories" :key="category.id" class="category-block">
-                            <h3 class="mb-2 text-base font-semibold text-black">{{ category.name }}</h3>
+                            <h3 class="mb-2 text-base font-semibold text-black">
+                                <Link :href="route('categories.promos', category.id)" class="text-black hover:text-blue-600 hover:underline">
+                                    {{ category.name }}
+                                </Link>
+                            </h3>
                             <ul v-if="category.children && category.children.length > 0" class="mt-3 flex flex-col gap-2 space-y-1">
                                 <li v-for="child in category.children" :key="child.id" class="text-sm">
                                     <Link

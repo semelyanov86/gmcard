@@ -70,7 +70,7 @@ const showPromoCode = ref(false);
                             </p>
                             <div class="h-px w-full bg-black/20"></div>
                             <div class="px-6 py-2">
-                                <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2>
+                                <!-- <h2 class="mt-2 text-lg">Зимняя распродажа до -50% на все в Снежная Королева!</h2> -->
                                 <div class="mt-4 flex items-center gap-2">
                                     <PromoTypeIcon
                                         v-if="props.promo.promoTypeIcon"

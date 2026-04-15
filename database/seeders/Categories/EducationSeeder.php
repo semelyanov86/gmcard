@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class EducationSeeder extends Seeder
@@ -81,6 +82,38 @@ class EducationSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $servicesRootCategory = Category::query()
+            ->where('name', 'Услуги, образование и курсы')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $servicesRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Ремонт и обслуживание' => 1,
+            'Транспорт и логистика' => 2,
+            'Красота и здоровье' => 3,
+            'Бизнес услуги' => 4,
+            'Дом и быт' => 5,
+            'Организация мероприятий' => 6,
+            'Образовательные услуги' => 7,
+            'Творчество и Хобби' => 8,
+            'Специализированные' => 9,
+            'Сезонные' => 10,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $servicesRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/services/{$iconIndex}.png",
+                ]);
         }
     }
 }

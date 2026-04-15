@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CategoriesMenu from '@/components/CategoriesMenu.vue';
 import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
@@ -192,8 +191,7 @@ function handleLaunch() {
         <MobileMenu />
 
         <div class="2xl:cell_padding mx-auto max-w-6xl 2xl:w-full">
-            <NavBar :menu-items="navbarMenu" />
-            <CategoriesMenu :categories="categories" />
+            <NavBar :menu-items="navbarMenu" hide-top-bar />
             <div class="fixed top-0 left-0 z-50 hidden h-screen w-full overflow-auto bg-white" id="modal_sub">
                 <div class="relative m-auto flex h-full w-full flex-col p-6">
                     <CloseIcon id="modal-closeSub" custom-class="w-5 h-5 text-gray-500 font-extrabold absolute right-5 top-5" />

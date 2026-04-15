@@ -93,6 +93,17 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
 
+        $discountAmount = null;
+        $discountCurrency = null;
+
+        if ($dto->discount !== null) {
+            $discountAmount = $dto->discount->toFloat();
+            $discountCurrency = $dto->discount->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
+        } elseif ($dto->cashback !== null) {
+            $discountAmount = $dto->cashback->toFloat();
+            $discountCurrency = $dto->cashback->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
+        }
+
         $availableTill = $promo->started_at !== null
             ? $promo->started_at->addDays($dto->durationDays)
             : CarbonImmutable::now()->addDays($dto->durationDays);
@@ -117,6 +128,8 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             'available_to' => $this->getScheduleTime($dto->schedule, 'end'),
             'img' => $promo->img,
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
+            'discount_amount' => $discountAmount,
+            'discount_currency' => $discountCurrency,
         ];
 
         if ($dto->isDraft) {
@@ -130,6 +143,11 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
                 $updateData['rejection_reason'] = null;
             } elseif ($promo->moderation_status === PromoModerationStatus::DRAFT) {
                 $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+            } elseif ($promo->moderation_status === PromoModerationStatus::APPROVED) {
+                $updateData['moderation_status'] = PromoModerationStatus::PENDING;
+                $updateData['approved_at'] = null;
+                $updateData['approved_by'] = null;
+                $updateData['approving_notes'] = null;
             }
         }
 

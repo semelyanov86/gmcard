@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class SportSeeder extends Seeder
@@ -59,6 +60,32 @@ class SportSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $sportRootCategory = Category::query()
+            ->where('name', 'Спорт и активный отдых')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $sportRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Спортивный инвентарь' => 1,
+            'Активный отдых' => 2,
+            'Спортивная экипировка' => 3,
+            'Услуги' => 4,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $sportRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/sport/{$iconIndex}.png",
+                ]);
         }
     }
 }

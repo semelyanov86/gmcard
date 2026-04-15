@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class HealthSeeder extends Seeder
@@ -34,6 +35,33 @@ class HealthSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $healthRootCategory = Category::query()
+            ->where('name', 'Красота, Здоровье, Гигиена')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $healthRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Косметика и уход' => 1,
+            'Уход за волосами' => 2,
+            'Гигиена' => 3,
+            'Здоровье' => 4,
+            'Фитнес и спортпит' => 5,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $healthRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/beauty/{$iconIndex}.png",
+                ]);
         }
     }
 }

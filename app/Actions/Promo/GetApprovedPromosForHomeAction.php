@@ -40,12 +40,10 @@ final readonly class GetApprovedPromosForHomeAction
             $query->where('name', 'like', '%' . $term . '%');
         }
 
-        // Исправить
         if (! empty($filters['min_discount'])) {
-            $query->whereRaw(
-                "CAST(COALESCE(NULLIF(discount, ''), '0') AS UNSIGNED) >= ?",
-                [$filters['min_discount']]
-            );
+            $query
+                ->where('discount_currency', 'PCT')
+                ->where('discount_amount', '>=', (float) $filters['min_discount']);
         }
 
         $promos = $query->latest()->take(24)->get();

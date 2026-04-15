@@ -19,8 +19,8 @@ const imageSrc = computed(() => {
 <template>
     <Link :href="route('promo.show', props.promo.id)" class="block">
         <div class="main_card sanatorium-card relative mx-1 mt-11 rounded-xl">
-            <img :src="imageSrc" class="sanatorium-image w-full rounded-t-xl object-cover" alt="Товар" />
-            <div class="absolute -top-6 left-4 z-40">
+            <img :src="imageSrc" class="sanatorium-image w-full rounded-t-xl bg-white object-cover" alt="Товар" />
+            <div class="absolute -top-6 left-4 z-10">
                 <PromoTypeIcon :icon="props.promo.promoTypeIcon ?? null" />
             </div>
             <div class="down_block sanatorium-content flex flex-col justify-between rounded-b-3xl bg-white text-[#000000]">

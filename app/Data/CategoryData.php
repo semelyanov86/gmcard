@@ -20,6 +20,7 @@ final class CategoryData extends Data
         public ?int $parent_id,
         public ?string $description,
         public ?int $icon_index,
+        public ?string $icon,
         public ?array $children,
     ) {}
 
@@ -35,6 +36,7 @@ final class CategoryData extends Data
             parent_id: $category->parent_id,
             description: $category->description,
             icon_index: $category->icon_index,
+            icon: $category->icon,
             children: $children->isNotEmpty()
                 ? self::collectFromModels($children)
                 : null
@@ -42,13 +44,17 @@ final class CategoryData extends Data
     }
 
     /**
-     * @param  Collection<int, Category>  $categories
+     * @param  iterable<mixed, Category>  $categories
      * @return CategoryData[]
      */
-    public static function collectFromModels(Collection $categories): array
+    public static function collectFromModels(iterable $categories): array
     {
-        return $categories->map(
-            fn (Category $category) => self::fromModel($category)
-        )->all();
+        $result = [];
+
+        foreach ($categories as $category) {
+            $result[] = self::fromModel($category);
+        }
+
+        return $result;
     }
 }

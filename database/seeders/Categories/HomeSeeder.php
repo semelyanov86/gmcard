@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Categories;
 
 use App\Actions\CategoryPathAction;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class HomeSeeder extends Seeder
@@ -43,6 +44,33 @@ class HomeSeeder extends Seeder
 
         foreach ($paths as $path) {
             CategoryPathAction::run($path);
+        }
+
+        $homeRootCategory = Category::query()
+            ->where('name', 'Дом, Ремонт и Сад')
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $homeRootCategory) {
+            return;
+        }
+
+        $iconIndexByCategoryName = [
+            'Мебель' => 1,
+            'Текстиль' => 2,
+            'Посуда' => 3,
+            'Ремонт' => 4,
+            'Сад' => 5,
+        ];
+
+        foreach ($iconIndexByCategoryName as $categoryName => $iconIndex) {
+            Category::query()
+                ->where('parent_id', $homeRootCategory->id)
+                ->where('name', $categoryName)
+                ->update([
+                    'icon_index' => $iconIndex,
+                    'icon' => "/images/house/{$iconIndex}.png",
+                ]);
         }
     }
 }

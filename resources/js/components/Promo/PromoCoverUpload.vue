@@ -24,9 +24,18 @@ const hasCoverPreview = computed(() => !!coverPreviewUrl.value);
 const isPendingCrop = ref(false);
 const selectedFile = ref<File | null>(null);
 const selectedObjectUrl = ref<string | null>(null);
+const validationModalOpen = ref(false);
+const validationModalMessage = ref('');
 
 const cropperImageRef = ref<HTMLImageElement | null>(null);
 let cropper: any = null;
+
+const OUTPUT_WIDTH = 1200;
+const OUTPUT_HEIGHT = 585;
+const COVER_ASPECT_RATIO = OUTPUT_WIDTH / OUTPUT_HEIGHT;
+
+const MIN_SAVE_CROP_HEIGHT_PX = 260;
+const MIN_SAVE_CROP_WIDTH_PX = MIN_SAVE_CROP_HEIGHT_PX * COVER_ASPECT_RATIO;
 
 watch(
     () => props.modelValue,
@@ -61,18 +70,18 @@ async function initCropper() {
                 <cropper-image rotatable scalable skewable translatable initial-center-size="contain"></cropper-image>
                 <cropper-shade hidden></cropper-shade>
                 <cropper-handle action="select" plain></cropper-handle>
-                <cropper-selection initial-coverage="0.5" movable resizable aspect-ratio="1">
+                <cropper-selection initial-coverage="0.5" movable resizable aspect-ratio="${COVER_ASPECT_RATIO}">
                     <cropper-grid role="grid" bordered covered></cropper-grid>
                     <cropper-crosshair centered></cropper-crosshair>
                     <cropper-handle action="move" theme-color="rgba(255, 255, 255, 0.35)"></cropper-handle>
-                    <cropper-handle action="n-resize"></cropper-handle>
-                    <cropper-handle action="e-resize"></cropper-handle>
-                    <cropper-handle action="s-resize"></cropper-handle>
-                    <cropper-handle action="w-resize"></cropper-handle>
-                    <cropper-handle action="ne-resize"></cropper-handle>
-                    <cropper-handle action="nw-resize"></cropper-handle>
-                    <cropper-handle action="se-resize"></cropper-handle>
-                    <cropper-handle action="sw-resize"></cropper-handle>
+                    <cropper-handle action="n-resize" style="width: 100%; height: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="e-resize" style="width: 22px; height: 100%; min-width: 22px;"></cropper-handle>
+                    <cropper-handle action="s-resize" style="width: 100%; height: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="w-resize" style="width: 22px; height: 100%; min-width: 22px;"></cropper-handle>
+                    <cropper-handle action="ne-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="nw-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="se-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
+                    <cropper-handle action="sw-resize" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px;"></cropper-handle>
                 </cropper-selection>
             </cropper-canvas>
         `,
@@ -87,13 +96,23 @@ function cleanupPending() {
     destroyCropper();
 }
 
+function openValidationModal(message: string) {
+    validationModalMessage.value = message;
+    validationModalOpen.value = true;
+}
+
+function closeValidationModal() {
+    validationModalOpen.value = false;
+    validationModalMessage.value = '';
+}
+
 function handleFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0] ?? null;
     if (!file) return;
 
     if (file.size > 10 * 1024 * 1024) {
-        alert('Файл слишком большой (макс. 10 МБ).');
+        openValidationModal('Файл слишком большой (макс. 10 МБ).');
         input.value = '';
         return;
     }
@@ -115,7 +134,17 @@ async function handleSave() {
     const selection = (cropper as any).getCropperSelection?.();
     if (!selection) return;
 
-    const croppedCanvas = (await (selection as any).$toCanvas()) as HTMLCanvasElement | null;
+    if (selection.width < MIN_SAVE_CROP_WIDTH_PX || selection.height < MIN_SAVE_CROP_HEIGHT_PX) {
+        openValidationModal(
+            `Минимальный размер области обрезки — примерно ${Math.round(MIN_SAVE_CROP_WIDTH_PX)}×${MIN_SAVE_CROP_HEIGHT_PX} пикселей (соотношение ${OUTPUT_WIDTH}:${OUTPUT_HEIGHT}).`,
+        );
+        return;
+    }
+
+    const croppedCanvas = (await (selection as any).$toCanvas({
+        width: OUTPUT_WIDTH,
+        height: OUTPUT_HEIGHT,
+    })) as HTMLCanvasElement | null;
     if (!croppedCanvas) return;
 
     croppedCanvas.toBlob(
@@ -181,7 +210,7 @@ async function handleSave() {
                 >
                     <h2 class="mb-4 text-xl">Фотография на вашей странице</h2>
                     <div
-                        class="crop-container"
+                        class="crop-container promo-cover-cropper"
                         :style="{
                             position: 'relative',
                             overflow: 'hidden',
@@ -198,7 +227,12 @@ async function handleSave() {
                         />
                     </div>
                     <div class="flex flex-col items-center justify-between gap-2 p-4 sm:flex-row sm:gap-0">
-                        <span class="text-base">Выберите длинное изображение</span>
+                        <div class="text-center sm:text-left">
+                            <span class="block text-base">Выберите длинное изображение</span>
+                            <span class="text-sm text-red-600">
+                                Область обрезки должна быть не меньше {{ Math.round(MIN_SAVE_CROP_WIDTH_PX) }}x{{ MIN_SAVE_CROP_HEIGHT_PX }} px
+                            </span>
+                        </div>
                         <div class="flex gap-4">
                             <button class="rounded-md bg-black/10 px-10 py-2 text-black hover:bg-black/20" type="button" @click="cleanupPending">
                                 Отмена
@@ -207,6 +241,27 @@ async function handleSave() {
                                 Сохранить
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </Teleport>
+        <Teleport to="body">
+            <div
+                v-show="validationModalOpen"
+                class="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 px-4"
+                @click="closeValidationModal"
+            >
+                <div class="w-full max-w-md rounded-xl bg-white p-5 shadow-2xl" @click.stop>
+                    <h3 class="text-lg font-bold text-gray-900">Проверьте изображение</h3>
+                    <p class="mt-2 text-sm text-gray-700">{{ validationModalMessage }}</p>
+                    <div class="mt-5 flex justify-end">
+                        <button
+                            type="button"
+                            class="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                            @click="closeValidationModal"
+                        >
+                            Понятно
+                        </button>
                     </div>
                 </div>
             </div>

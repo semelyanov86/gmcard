@@ -25,11 +25,10 @@ const loadMore = () => {
         <div class="flex flex-wrap justify-between">
             <SanatoriumPromotionCard v-for="promo in featuredPromos" :key="promo.id" :promo="promo" />
         </div>
-        <div class="mt-16 flex items-center justify-center">
+        <div v-if="hasMore" class="mt-16 flex items-center justify-center">
             <button
                 class="popular-more-button flex items-center justify-center rounded-md text-center"
                 type="button"
-                :disabled="!hasMore"
                 @click="loadMore"
             >
                 Показать еще

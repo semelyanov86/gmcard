@@ -141,6 +141,18 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
         $promoType = $this->getPromoTypeEnum($dto->promoTypeId);
         $discount = $this->getDiscount($dto, $promoType);
         $amount = $this->getAmount($dto, $promoType);
+
+        $discountAmount = null;
+        $discountCurrency = null;
+
+        if ($dto->discount !== null) {
+            $discountAmount = $dto->discount->toFloat();
+            $discountCurrency = $dto->discount->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
+        } elseif ($dto->cashback !== null) {
+            $discountAmount = $dto->cashback->toFloat();
+            $discountCurrency = $dto->cashback->getCurrency() === 'RUB' ? 'RUB' : 'PCT';
+        }
+
         $moderationStatus = $dto->isDraft
             ? PromoModerationStatus::DRAFT
             : PromoModerationStatus::PENDING;
@@ -172,6 +184,8 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
             'daily_cost' => MoneyValueObject::fromCents($cost->dailyCost),
             'payment_required' => ! $cost->isFree,
+            'discount_amount' => $discountAmount,
+            'discount_currency' => $discountCurrency,
         ];
     }
 }

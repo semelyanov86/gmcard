@@ -5,11 +5,18 @@ import type { PromoFiltersModel } from '@/types/filter/PromoFiltersModel';
 import { router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 
-const props = defineProps<{
-    menuItems: MenuData[];
-    submitUrl?: string;
-    filters?: PromoFiltersModel;
-}>();
+const props = withDefaults(
+    defineProps<{
+        menuItems: MenuData[];
+        submitUrl?: string;
+        filters?: PromoFiltersModel;
+        /** Hide the mobile-only blue top links bar (md:hidden). */
+        hideTopBar?: boolean;
+    }>(),
+    {
+        hideTopBar: false,
+    },
+);
 
 const search = ref(props.filters?.search ?? '');
 
@@ -22,12 +29,10 @@ watch(
 );
 
 function submitSearch(): void {
-    if (!props.submitUrl) {
-        return;
-    }
+    const url = props.submitUrl ?? route('main');
     const s = search.value.trim();
     router.get(
-        props.submitUrl,
+        url,
         {
             city: props.filters?.city ?? undefined,
             min_discount: props.filters?.min_discount ?? undefined,
@@ -45,14 +50,14 @@ function submitSearch(): void {
 </script>
 
 <template>
-    <div class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
+    <div v-if="!hideTopBar" class="flex h-full w-full items-center pt-10 md:hidden" id="topBar">
         <div class="bg-brand-blue mb-4 flex h-[55px] w-full items-center rounded-md px-5 shadow-2xl xl:pr-5 xl:pl-7">
             <ul class="flex w-full items-center justify-between">
                 <li v-for="item in menuItems" :key="item.id" class="cursor-pointer text-[16px] text-white">
                     <a target="_blank" rel="noopener noreferrer" :href="item.url" class="hover:border-b-2 hover:border-white">{{ item.label }}</a>
                 </li>
             </ul>
-            <div v-if="submitUrl" class="flex items-center lg:hidden">
+            <div class="flex items-center lg:hidden">
                 <div class="bg-brand-blue-navy ml-[52px] block h-[55px] w-[1px]"></div>
                 <form name="search" class="s ml-4 flex items-center" @submit.prevent="submitSearch">
                     <input
@@ -70,7 +75,7 @@ function submitSearch(): void {
                 </form>
                 <button
                     type="button"
-                    class="bg-brand-yellow-dark hover:text-brand-orange focus:ring-brand-yellow-dark ml-2 flex h-[41px] items-center justify-center rounded-md px-6 text-[16px] font-bold focus:ring-2"
+                    class="ml-2 flex h-[41px] items-center justify-center rounded-md bg-brand-yellow-dark px-6 text-[16px] font-bold hover:text-brand-orange focus:ring-2 focus:ring-brand-yellow-dark"
                     @click="submitSearch"
                 >
                     <SearchIcon custom-class="mr-1 group-hover:stroke-brand-orange" />
