@@ -136,6 +136,9 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick));
     color: #fff;
     opacity: 1;
 }
+.city-input:focus::placeholder {
+    color: transparent;
+}
 .city-input {
     -webkit-tap-highlight-color: transparent;
 }
