@@ -143,23 +143,31 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                 </ul>
 
                 <div class="rightSide flex-1 overflow-y-scroll px-10 py-5">
-                    <div class="headerWrap mb-6 flex items-center">
-                        <h1 class="flex-1 flex items-center gap-2 text-2xl font-bold text-black">
+                    <div class="headerWrap mb-6 grid grid-cols-[1fr_20rem] items-center gap-4">
+                        <h1 class="justify-self-center w-full max-w-md flex items-center justify-start gap-2 text-left text-2xl font-bold text-black">
                             <span>
                                 {{ selectedSubCategory?.name || 'Выберите категорию' }}
                             </span>
                             <span class="strelka">›</span>
                         </h1>
-                        <div class="relative mb-6 flex-none">
-                            <div class="absolute inset-y-0 left-3 flex items-center">
-                                <SearchIcon custom-class="h-5 w-5 text-gray-400" />
+                        <div class="mb-6 w-80">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-3 flex items-center">
+                                    <SearchIcon custom-class="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    v-model="searchQuery"
+                                    type="text"
+                                    placeholder="Найти категорию..."
+                                    class="inputMenu border-brand-blue-alpha bg-brand-blue-alpha w-full rounded-[10px] border py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
+                                />
                             </div>
-                            <input
-                                v-model="searchQuery"
-                                type="text"
-                                placeholder="Найти категорию..."
-                                class="inputMenu border-brand-blue-alpha bg-brand-blue-alpha w-full rounded-[10px] border py-2 pr-4 pl-10 focus:border-blue-500 focus:outline-none"
-                            />
+                            <Link
+                                :href="route('help')"
+                                class="mt-2 block w-full px-4 py-2 text-center text-sm font-semibold text-brand-blue hover:underline"
+                            >
+                                Нет нужной категории?
+                            </Link>
                         </div>
                     </div>
                     <div v-if="filteredSubSubCategories.length > 0" class="grid grid-cols-3 gap-7">
