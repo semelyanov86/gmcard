@@ -143,11 +143,14 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                 </ul>
 
                 <div class="rightSide flex-1 overflow-y-scroll px-10 py-5">
-                    <div class="headerWrap mb-6 flex items-center justify-between">
-                        <h1 class="align-center flex gap-3 text-2xl font-bold text-black">
-                            {{ selectedSubCategory?.name || 'Выберите категорию' }} <span class="strelka">></span>
+                    <div class="headerWrap mb-6 flex items-center">
+                        <h1 class="flex-1 flex items-center gap-2 text-2xl font-bold text-black">
+                            <span>
+                                {{ selectedSubCategory?.name || 'Выберите категорию' }}
+                            </span>
+                            <span class="strelka">›</span>
                         </h1>
-                        <div class="relative mb-6">
+                        <div class="relative mb-6 flex-none">
                             <div class="absolute inset-y-0 left-3 flex items-center">
                                 <SearchIcon custom-class="h-5 w-5 text-gray-400" />
                             </div>
