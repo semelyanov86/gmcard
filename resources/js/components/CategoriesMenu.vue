@@ -84,7 +84,8 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                 :href="route('categories.promos', category.id)"
                 :class="[
                     `mains${category.icon_index ?? index + 1}`,
-                    'relative flex w-[95px] min-w-0 flex-shrink-0 cursor-pointer flex-col items-center no-underline',
+                    'categories-menu-main-link',
+                    { 'is-active-main': activeMainCategory?.id === category.id },
                 ]"
                 @mouseenter="handleMainCategoryHover(category)"
             >
@@ -114,9 +115,9 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
         <CategoriesMenuMobile :categories="props.categories" />
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
-            <div class="z-[1] h-[16px] w-full bg-brand-yellow" />
-            <div class="z-[10] flex gap-1 overflow-y-scroll bg-white px-[15px] py-[2px]">
-                <ul class="relative z-10 mt-[10px] w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
+            <div class="category-yellow-bar" />
+            <div class="categories-menu-right flex gap-1 overflow-y-scroll bg-white categories-menu-right-padding">
+                <ul class="relative categories-menu-sublist w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
@@ -187,3 +188,37 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
         </div>
     </div>
 </template>
+
+<style scoped>
+.category-yellow-bar {
+    z-index: 1;
+    height: 10px;
+    width: 100%;
+    background-color: var(--brand-yellow);
+}
+
+.categories-menu-right {
+    z-index: 10;
+}
+
+.categories-menu-sublist {
+    z-index: 10;
+    margin-top: 10px;
+}
+
+.categories-menu-main-link {
+    position: relative;
+    display: flex;
+    width: 95px;
+    min-width: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.categories-menu-right-padding {
+    padding: 2px 15px;
+}
+</style>

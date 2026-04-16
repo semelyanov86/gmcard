@@ -446,7 +446,8 @@
     opacity: 0.3;
 }
 
-.mains1:hover .image-1 {
+.mains1:hover .image-1,
+.mains1.is-active-main .image-1 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -467,7 +468,8 @@
     opacity: 0.3;
 }
 
-.mains2:hover .image-2 {
+.mains2:hover .image-2,
+.mains2.is-active-main .image-2 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -488,7 +490,8 @@
     opacity: 0.3;
 }
 
-.mains3:hover .image-3 {
+.mains3:hover .image-3,
+.mains3.is-active-main .image-3 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -509,7 +512,8 @@
     opacity: 0.3;
 }
 
-.mains4:hover .image-4 {
+.mains4:hover .image-4,
+.mains4.is-active-main .image-4 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -530,7 +534,8 @@
     opacity: 0.3;
 }
 
-.mains5:hover .image-5 {
+.mains5:hover .image-5,
+.mains5.is-active-main .image-5 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -551,7 +556,8 @@
     opacity: 0.3;
 }
 
-.mains6:hover .image-6 {
+.mains6:hover .image-6,
+.mains6.is-active-main .image-6 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -572,7 +578,8 @@
     opacity: 0.3;
 }
 
-.mains7:hover .image-7 {
+.mains7:hover .image-7,
+.mains7.is-active-main .image-7 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -593,7 +600,8 @@
     opacity: 0.3;
 }
 
-.mains8:hover .image-8 {
+.mains8:hover .image-8,
+.mains8.is-active-main .image-8 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -614,7 +622,8 @@
     opacity: 0.3;
 }
 
-.mains9:hover .image-9 {
+.mains9:hover .image-9,
+.mains9.is-active-main .image-9 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -635,7 +644,8 @@
     opacity: 0.3;
 }
 
-.mains10:hover .image-10 {
+.mains10:hover .image-10,
+.mains10.is-active-main .image-10 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -656,7 +666,8 @@
     opacity: 0.3;
 }
 
-.mains11:hover .image-11 {
+.mains11:hover .image-11,
+.mains11.is-active-main .image-11 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
@@ -677,7 +688,8 @@
     opacity: 0.3;
 }
 
-.mains12:hover .image-12 {
+.mains12:hover .image-12,
+.mains12.is-active-main .image-12 {
     opacity: 1;
     filter: brightness(1) invert(0);
 }
