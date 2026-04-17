@@ -31,6 +31,8 @@ final class PromoShowData extends Data
         public ?string $img,
         public array $photos,
         public ?string $promoTypeIcon,
+        public ?int $promoTypeId,
+        public ?string $simpleActionButtonTitle,
         public ?string $extraConditions,
         public ?int $salesOrderFrom,
         public ?bool $hasFreeDeliveryBadge,
@@ -40,7 +42,7 @@ final class PromoShowData extends Data
 
     public static function fromPromo(Promo $promo): self
     {
-        $promo->loadMissing(['photos:id,promo_id,path,sort_order']);
+        $promo->loadMissing(['photos:id,promo_id,path,sort_order', 'simpleActionButton:id,title']);
         $resolvedPromoType = $promo->promoType ?? PromoType::where('name', $promo->type->value)->first();
         $salesOrderFrom = $promo->sales_order_from;
 
@@ -54,6 +56,8 @@ final class PromoShowData extends Data
                 static fn (mixed $path): string => is_scalar($path) ? (string) $path : '',
             )->values()->all(),
             promoTypeIcon: $resolvedPromoType?->icon,
+            promoTypeId: $promo->promo_type_id,
+            simpleActionButtonTitle: $promo->simpleActionButton?->title,
             extraConditions: $promo->extra_conditions,
             salesOrderFrom: $salesOrderFrom !== null ? (int) round($salesOrderFrom->toFloat()) : null,
             hasFreeDeliveryBadge: (bool) $promo->free_delivery,
