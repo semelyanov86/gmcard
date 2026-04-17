@@ -97,5 +97,8 @@ return [
         'agree_to_terms.required' => 'Нужно принять условия размещения акции.',
         'agree_to_terms.accepted' => 'Нужно принять условия размещения акции.',
         'is_draft.boolean' => 'Поле черновика указано некорректно.',
+        'simple_action_button_id.required_if' => 'Выберите текст кнопки для типа акции "Простая акция".',
+        'simple_action_button_id.integer' => 'Выбранный вариант кнопки указан некорректно.',
+        'simple_action_button_id.exists' => 'Выбранный вариант кнопки недоступен. Обновите список.',
     ],
 ];

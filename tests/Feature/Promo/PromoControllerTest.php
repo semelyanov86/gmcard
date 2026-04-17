@@ -7,13 +7,24 @@ namespace Tests\Feature\Promo;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
+use App\Models\PromoActionButton;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 use Tests\PromoDatabaseTestCase;
 
 class PromoControllerTest extends PromoDatabaseTestCase
 {
+    private PromoActionButton $promoActionButton;
+
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->promoActionButton = PromoActionButton::factory()->create();
+    }
+
     public function test_edit_requires_authentication(): void
     {
         /** @var Promo $promo */
@@ -55,6 +66,7 @@ class PromoControllerTest extends PromoDatabaseTestCase
                 ->has('categories')
                 ->has('cities')
                 ->has('promoTypes')
+                ->has('simpleActionButtons')
         );
     }
 
@@ -216,6 +228,7 @@ class PromoControllerTest extends PromoDatabaseTestCase
             'category_ids' => $categoryIds,
             'city_ids' => $cities->pluck('id')->toArray(),
             'discount' => ['amount' => 10, 'currency' => '%'],
+            'simple_action_button_id' => $this->promoActionButton->id,
         ];
     }
 }

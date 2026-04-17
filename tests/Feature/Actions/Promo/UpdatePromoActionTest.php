@@ -10,15 +10,26 @@ use App\Enums\Promo\PromoModerationStatus;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
+use App\Models\PromoActionButton;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
+use Override;
 use Tests\PromoDatabaseTestCase;
 
 class UpdatePromoActionTest extends PromoDatabaseTestCase
 {
+    private int $defaultSimpleActionButtonId;
+
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->defaultSimpleActionButtonId = PromoActionButton::factory()->create()->id;
+    }
+
     public function test_updates_promo_fields(): void
     {
         /** @var User $user */
@@ -295,7 +306,7 @@ class UpdatePromoActionTest extends PromoDatabaseTestCase
     /**
      * @param  Collection<int, Model>  $categories
      * @param  Collection<int, Model>  $cities
-     * @param  array{title?: string, description?: string, conditions?: string|null, durationDays?: int, isDraft?: bool, id?: int|null, photos?: array<int, string>|null, existingPhoto?: string|null}  $override
+     * @param  array{title?: string, description?: string, conditions?: string|null, durationDays?: int, isDraft?: bool, id?: int|null, photos?: array<int, string>|null, existingPhoto?: string|null, simpleActionButtonId?: int}  $override
      */
     private function createUpdateDto(?Promo $promo, User $user, Collection $categories, Collection $cities, array $override = []): CreatePromoData
     {
@@ -324,6 +335,7 @@ class UpdatePromoActionTest extends PromoDatabaseTestCase
             photos: $override['photos'] ?? null,
             existingPhoto: $override['existingPhoto'] ?? null,
             isDraft: $override['isDraft'] ?? false,
+            simpleActionButtonId: $override['simpleActionButtonId'] ?? $this->defaultSimpleActionButtonId,
         );
     }
 

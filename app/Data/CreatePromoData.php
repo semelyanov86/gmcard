@@ -51,5 +51,6 @@ final class CreatePromoData extends Data
         public ?string $existingPhoto = null,
         public bool $isDraft = false,
         public ?int $id = null,
+        public ?int $simpleActionButtonId = null,
     ) {}
 }

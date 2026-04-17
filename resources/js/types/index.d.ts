@@ -52,6 +52,7 @@ export type { DiscountFilterModel } from './DiscountFilterModel';
 export type { DiscountFilterOptionModel } from './DiscountFilterOptionModel';
 export type { PromoFiltersModel } from './filter/PromoFiltersModel';
 export type { MenuData } from './MenuData';
+export type { PromoActionButtonModel } from './PromoActionButtonModel';
 export type { PromoTypeModel } from './PromoTypeModel';
 export type { ScheduleModel } from './ScheduleModel';
 export type { SocialNetworkModel } from './SocialNetworkModel';

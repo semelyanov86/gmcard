@@ -8,6 +8,8 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     promoTypeIcon?: string | null;
+    promoTypeId?: number | null;
+    simpleActionButtonTitle?: string | null;
     promoName?: string | null;
     extraConditions?: string | null;
     salesOrderFrom?: number | null;
@@ -97,7 +99,12 @@ onUnmounted(() => {
                 </div>
             </div>
             <div class="w-full px-3">
-                <PromoTypeActionButton :promo-type-icon="promoTypeIcon" @get-promo-code="emit('get-promo-code')" />
+                <PromoTypeActionButton
+                    :promo-type-icon="promoTypeIcon"
+                    :promo-type-id="promoTypeId"
+                    :custom-label="simpleActionButtonTitle"
+                    @get-promo-code="emit('get-promo-code')"
+                />
             </div>
         </div>
     </div>

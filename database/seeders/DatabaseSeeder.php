@@ -29,6 +29,7 @@ use Database\Seeders\Finance\SubscriptionSeeder;
 use Database\Seeders\Finance\VirtualBalanceSeeder;
 use Database\Seeders\Promo\BonusSeeder;
 use Database\Seeders\Promo\PlanFeaturesSeeder;
+use Database\Seeders\Promo\PromoActionButtonSeeder;
 use Database\Seeders\Promo\PromoSeeder;
 use Database\Seeders\Promo\PromoUsageSeeder;
 use Database\Seeders\Promo\TariffPlansSeeder;
@@ -69,6 +70,7 @@ class DatabaseSeeder extends Seeder
             AdvCampaignSeeder::class,
 
             PromoTypeSeeder::class,
+            PromoActionButtonSeeder::class,
             PromoSeeder::class,
             PromoUsageSeeder::class,
             BonusSeeder::class,

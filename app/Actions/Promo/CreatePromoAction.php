@@ -186,6 +186,7 @@ final readonly class CreatePromoAction extends AbstractPromoSaveAction
             'payment_required' => ! $cost->isFree,
             'discount_amount' => $discountAmount,
             'discount_currency' => $discountCurrency,
+            'simple_action_button_id' => $dto->simpleActionButtonId,
         ];
     }
 }

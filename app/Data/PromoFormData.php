@@ -52,6 +52,7 @@ final class PromoFormData extends Data
         public bool $isDraft = false,
         public bool $agreeToTerms = true,
         public string $filterCity = '',
+        public ?int $simpleActionButtonId = null,
     ) {}
 
     public static function fromPromo(Promo $promo): self

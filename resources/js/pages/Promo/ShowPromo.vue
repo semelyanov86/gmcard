@@ -14,7 +14,8 @@ import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue'
 import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
 import { usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { useClipboard } from '@vueuse/core';
+import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
 const page = usePage<AppPageProps>();
@@ -30,11 +31,14 @@ const props = defineProps<{
         description?: string | null;
         name: string;
         promoTypeIcon?: string | null;
+        promoTypeId?: number | null;
+        simpleActionButtonTitle?: string | null;
         extraConditions?: string | null;
         salesOrderFrom?: number | null;
         availableTill?: string | null;
         hasFreeDeliveryBadge?: boolean | null;
         socialLinks?: Record<string, string[] | null> | null;
+        promoCode?: string | null;
         addresses: Array<{
             id: number;
             name: string;
@@ -47,6 +51,21 @@ const props = defineProps<{
 }>();
 
 const showPromoCode = ref(false);
+
+const { copy, copied } = useClipboard({
+    legacy: true,
+    copiedDuring: 2000,
+});
+
+const promoCodeToCopy = computed(() => props.promo.promoCode?.trim() ?? '');
+
+function copyPromoCode(): void {
+    const text = promoCodeToCopy.value;
+    if (!text) {
+        return;
+    }
+    void copy(text);
+}
 </script>
 
 <template>
@@ -92,7 +111,12 @@ const showPromoCode = ref(false);
                                 </div>
                             </div>
                             <div class="w-full px-3">
-                                <PromoTypeActionButton id="openThePromoMob" :promo-type-icon="props.promo.promoTypeIcon" />
+                                <PromoTypeActionButton
+                                    id="openThePromoMob"
+                                    :promo-type-icon="props.promo.promoTypeIcon"
+                                    :promo-type-id="props.promo.promoTypeId"
+                                    :custom-label="props.promo.simpleActionButtonTitle"
+                                />
                             </div>
                         </div>
                     </div>
@@ -114,13 +138,24 @@ const showPromoCode = ref(false);
                                     <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                 </div>
                                 <h4 class="mt-1 text-black/50">Ваш промокод</h4>
-                                <h2 id="promoCodeMob" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
+                                <h2 id="promoCodeMob" class="mt-2 text-lg font-bold">
+                                    {{ props.promo.promoCode ?? 'Уточняйте у менеджера' }}
+                                </h2>
                                 <div class="mt-4 h-px w-full bg-black/20"></div>
-                                <button id="copyBtnMob" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
+                                <button
+                                    id="copyBtnMob"
+                                    type="button"
+                                    class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold"
+                                    @click="copyPromoCode"
+                                >
                                     Скопировать и перейти на сайт
                                 </button>
-                                <p id="copyJustMob" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
-                                <p id="copyYesMob" class="absolute -bottom-10 hidden rounded-xl px-3 py-2 text-center shadow-xl">Скопировано!</p>
+                                <p id="copyJustMob" role="button" class="mt-4 cursor-pointer text-black/50" @click="copyPromoCode">
+                                    Просто скопировать
+                                </p>
+                                <p v-show="copied" id="copyYesMob" class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl">
+                                    Скопировано!
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -147,6 +182,8 @@ const showPromoCode = ref(false);
                                 :extra-conditions="props.promo.extraConditions"
                                 :sales-order-from="props.promo.salesOrderFrom"
                                 :available-till="props.promo.availableTill"
+                                :promo-type-id="props.promo.promoTypeId"
+                                :simple-action-button-title="props.promo.simpleActionButtonTitle"
                                 @get-promo-code="showPromoCode = true"
                             />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
@@ -167,13 +204,24 @@ const showPromoCode = ref(false);
                                             <img src="/images/png/sale/promo.png" class="w-full" alt="promo" />
                                         </div>
                                         <h4 class="mt-1 text-black/50">Ваш промокод</h4>
-                                        <h2 id="promoCode" class="mt-2 text-lg font-bold">vesna-9LSwVx-sWxB-MNbT0</h2>
+                                        <h2 id="promoCode" class="mt-2 text-lg font-bold">
+                                            {{ props.promo.promoCode ?? 'Уточняйте у менеджера' }}
+                                        </h2>
                                         <div class="mt-4 h-px w-full bg-black/20"></div>
-                                        <button id="copyBtn" class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold">
+                                        <button
+                                            id="copyBtn"
+                                            type="button"
+                                            class="promo-mobile-copy-button mt-4 w-full rounded-3xl py-4 font-bold"
+                                            @click="copyPromoCode"
+                                        >
                                             Скопировать и перейти на сайт
                                         </button>
-                                        <p id="copyJust" class="mt-4 cursor-pointer text-black/50">Просто скопировать</p>
-                                        <p id="copyYes" class="absolute -bottom-10 hidden rounded-xl px-3 py-2 text-center shadow-xl">Скопировано!</p>
+                                        <p id="copyJust" role="button" class="mt-4 cursor-pointer text-black/50" @click="copyPromoCode">
+                                            Просто скопировать
+                                        </p>
+                                        <p v-show="copied" id="copyYes" class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl">
+                                            Скопировано!
+                                        </p>
                                     </div>
                                 </div>
                             </div>

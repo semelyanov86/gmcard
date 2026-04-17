@@ -5,6 +5,8 @@ type Action = 'get-promo-code' | 'go-to-site';
 
 const props = defineProps<{
     promoTypeIcon?: string | null;
+    promoTypeId?: number | null;
+    customLabel?: string | null;
     id?: string;
     disabled?: boolean;
 }>();
@@ -44,6 +46,10 @@ const textClass = computed(() => {
 });
 
 const label = computed(() => {
+    if (props.promoTypeId === 1 && props.customLabel?.trim()) {
+        return props.customLabel;
+    }
+
     return action.value === 'get-promo-code' ? 'Получить промокод' : 'Перейти на сайт';
 });
 
