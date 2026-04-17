@@ -13,8 +13,8 @@ import PromoImage from '@/components/promoShow/PromoImage.vue';
 import PromoTypeAccentLine from '@/components/promoShow/PromoTypeAccentLine.vue';
 import PromoTypeActionButton from '@/components/promoShow/PromoTypeActionButton.vue';
 import type { AppPageProps, CategoryModel, ContactModel, MenuData } from '@/types';
-import { useClipboard } from '@vueuse/core';
 import { usePage } from '@inertiajs/vue3';
+import { useClipboard } from '@vueuse/core';
 import { computed, ref } from 'vue';
 import '../../../css/internal/output.css';
 
@@ -150,19 +150,10 @@ function copyPromoCode(): void {
                                 >
                                     Скопировать и перейти на сайт
                                 </button>
-                                <p
-                                    id="copyJustMob"
-                                    role="button"
-                                    class="mt-4 cursor-pointer text-black/50"
-                                    @click="copyPromoCode"
-                                >
+                                <p id="copyJustMob" role="button" class="mt-4 cursor-pointer text-black/50" @click="copyPromoCode">
                                     Просто скопировать
                                 </p>
-                                <p
-                                    v-show="copied"
-                                    id="copyYesMob"
-                                    class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl"
-                                >
+                                <p v-show="copied" id="copyYesMob" class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl">
                                     Скопировано!
                                 </p>
                             </div>
@@ -225,19 +216,10 @@ function copyPromoCode(): void {
                                         >
                                             Скопировать и перейти на сайт
                                         </button>
-                                        <p
-                                            id="copyJust"
-                                            role="button"
-                                            class="mt-4 cursor-pointer text-black/50"
-                                            @click="copyPromoCode"
-                                        >
+                                        <p id="copyJust" role="button" class="mt-4 cursor-pointer text-black/50" @click="copyPromoCode">
                                             Просто скопировать
                                         </p>
-                                        <p
-                                            v-show="copied"
-                                            id="copyYes"
-                                            class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl"
-                                        >
+                                        <p v-show="copied" id="copyYes" class="absolute -bottom-10 rounded-xl px-3 py-2 text-center shadow-xl">
                                             Скопировано!
                                         </p>
                                     </div>
