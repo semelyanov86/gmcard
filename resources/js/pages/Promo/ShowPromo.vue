@@ -30,6 +30,8 @@ const props = defineProps<{
         description?: string | null;
         name: string;
         promoTypeIcon?: string | null;
+        promoTypeId?: number | null;
+        simpleActionButtonTitle?: string | null;
         extraConditions?: string | null;
         salesOrderFrom?: number | null;
         availableTill?: string | null;
@@ -92,7 +94,12 @@ const showPromoCode = ref(false);
                                 </div>
                             </div>
                             <div class="w-full px-3">
-                                <PromoTypeActionButton id="openThePromoMob" :promo-type-icon="props.promo.promoTypeIcon" />
+                                <PromoTypeActionButton
+                                    id="openThePromoMob"
+                                    :promo-type-icon="props.promo.promoTypeIcon"
+                                    :promo-type-id="props.promo.promoTypeId"
+                                    :custom-label="props.promo.simpleActionButtonTitle"
+                                />
                             </div>
                         </div>
                     </div>
@@ -147,6 +154,8 @@ const showPromoCode = ref(false);
                                 :extra-conditions="props.promo.extraConditions"
                                 :sales-order-from="props.promo.salesOrderFrom"
                                 :available-till="props.promo.availableTill"
+                                :promo-type-id="props.promo.promoTypeId"
+                                :simple-action-button-title="props.promo.simpleActionButtonTitle"
                                 @get-promo-code="showPromoCode = true"
                             />
                             <div v-show="showPromoCode" class="salesLink2 rounded-3xl border bg-white p-4 shadow-2xl">
