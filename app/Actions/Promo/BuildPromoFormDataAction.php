@@ -78,6 +78,7 @@ final readonly class BuildPromoFormDataAction
             isDraft: $promo->moderation_status === PromoModerationStatus::DRAFT,
             agreeToTerms: true,
             filterCity: '',
+            simpleActionButtonId: $promo->simple_action_button_id,
         );
     }
 

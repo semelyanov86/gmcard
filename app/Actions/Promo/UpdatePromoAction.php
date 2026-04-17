@@ -130,6 +130,7 @@ final readonly class UpdatePromoAction extends AbstractPromoSaveAction
             'free_delivery_from' => $dto->freeDeliveryFrom ?? MoneyValueObject::fromCents(0),
             'discount_amount' => $discountAmount,
             'discount_currency' => $discountCurrency,
+            'simple_action_button_id' => $dto->simpleActionButtonId,
         ];
 
         if ($dto->isDraft) {
