@@ -81,6 +81,7 @@ class Promo extends Model
         'payment_required',
         'discount_amount',
         'discount_currency',
+        'simple_action_button_id',
     ];
 
     protected $guarded = [
@@ -175,6 +176,11 @@ class Promo extends Model
     public function photos(): HasMany
     {
         return $this->hasMany(PromoPhoto::class)->orderBy('sort_order');
+    }
+
+    public function simpleActionButton(): BelongsTo
+    {
+        return $this->belongsTo(PromoActionButton::class, 'simple_action_button_id');
     }
 
     #[Override]
