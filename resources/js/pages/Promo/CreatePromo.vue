@@ -18,6 +18,7 @@ import PromoTitleInput from '@/components/Promo/PromoTitleInput.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
+import SimpleActionButtonBlock from '@/components/Promo/SimpleActionButtonBlock.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
@@ -36,6 +37,7 @@ import type {
     ContactModel,
     DiscountFilterModel,
     MenuData,
+    PromoActionButtonModel,
     PromoTypeModel,
     ScheduleModel,
     SocialNetworkModel,
@@ -70,6 +72,7 @@ const props = defineProps<{
     categories: CategoryModel[];
     cities: CityModel[];
     promoTypes: PromoTypeModel[];
+    simpleActionButtons: PromoActionButtonModel[];
     discountFilters: DiscountFilterModel[];
     defaultDescription: string;
     weekdays: WeekdayModel[];
@@ -89,6 +92,7 @@ const form = useForm({
     conditions: null as string | null,
     minimum_order_amount: null as number | null,
     promo_code: '',
+    simple_action_button_id: null as number | null,
     free_delivery: false,
     free_delivery_from: null as number | null,
     duration_days: 1,
@@ -269,6 +273,12 @@ function handleLaunch() {
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
                         v-model="discountMoney"
                         :error="form.errors['discount.amount'] || form.errors['discount.currency']"
+                    />
+                    <SimpleActionButtonBlock
+                        v-if="form.promo_type_id === 1"
+                        v-model="form.simple_action_button_id"
+                        :buttons="props.simpleActionButtons"
+                        :error="form.errors.simple_action_button_id"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"

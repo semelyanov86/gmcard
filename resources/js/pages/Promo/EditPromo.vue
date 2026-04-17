@@ -19,6 +19,7 @@ import PromoTitleInput from '@/components/Promo/PromoTitleInput.vue';
 import PromoTypeSelector from '@/components/Promo/PromoTypeSelector.vue';
 import ScheduleBlock from '@/components/Promo/ScheduleBlock.vue';
 import SideNavigation from '@/components/Promo/SideNavigation.vue';
+import SimpleActionButtonBlock from '@/components/Promo/SimpleActionButtonBlock.vue';
 import SocialLinksBlock from '@/components/Promo/SocialLinksBlock.vue';
 import ToggleSwitch from '@/components/Promo/ToggleSwitch.vue';
 import TwoColumnFormBlock from '@/components/Promo/TwoColumnFormBlock.vue';
@@ -36,6 +37,7 @@ import type {
     ContactModel,
     DiscountFilterModel,
     MenuData,
+    PromoActionButtonModel,
     PromoTypeModel,
     ScheduleModel,
     SocialNetworkModel,
@@ -58,6 +60,7 @@ interface PromoFormPayload {
     conditions: string | null;
     minimum_order_amount: number | null;
     promo_code: string | null;
+    simple_action_button_id?: number | null;
     free_delivery: boolean;
     free_delivery_from: number | null;
     duration_days: number;
@@ -84,6 +87,7 @@ const props = defineProps<{
     categories: CategoryModel[];
     cities: CityModel[];
     promoTypes: PromoTypeModel[];
+    simpleActionButtons: PromoActionButtonModel[];
     discountFilters: DiscountFilterModel[];
     defaultDescription: string;
     weekdays: WeekdayModel[];
@@ -104,6 +108,7 @@ const form = useForm({
     conditions: props.promo.conditions ?? null,
     minimum_order_amount: props.promo.minimum_order_amount ?? null,
     promo_code: props.promo.promo_code ?? '',
+    simple_action_button_id: props.promo.simple_action_button_id ?? null,
     free_delivery: props.promo.free_delivery ?? false,
     free_delivery_from: props.promo.free_delivery_from ?? null,
     duration_days: props.promo.duration_days ?? 1,
@@ -271,6 +276,12 @@ function handleUpdate() {
                         label="Какой % скидки или суммы в рублях вы готовы предоставить?"
                         v-model="discountMoney"
                         :error="form.errors['discount.amount'] || form.errors['discount.currency']"
+                    />
+                    <SimpleActionButtonBlock
+                        v-if="form.promo_type_id === 1"
+                        v-model="form.simple_action_button_id"
+                        :buttons="props.simpleActionButtons"
+                        :error="form.errors.simple_action_button_id"
                     />
                     <DiscountInputBlock
                         :show="showPerviNew"
