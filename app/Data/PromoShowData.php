@@ -38,6 +38,7 @@ final class PromoShowData extends Data
         public ?bool $hasFreeDeliveryBadge,
         public ?array $socialLinks,
         public array $addresses,
+        public ?string $promoCode,
     ) {}
 
     public static function fromPromo(Promo $promo): self
@@ -63,6 +64,7 @@ final class PromoShowData extends Data
             hasFreeDeliveryBadge: (bool) $promo->free_delivery,
             socialLinks: $promo->smm_links,
             addresses: $promo->addresses->map(self::mapAddress(...))->values()->all(),
+            promoCode: $promo->code,
         );
     }
 
