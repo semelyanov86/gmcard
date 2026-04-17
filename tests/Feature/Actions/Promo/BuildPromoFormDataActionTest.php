@@ -12,6 +12,7 @@ use App\Models\Address;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
+use App\Models\PromoActionButton;
 use App\Models\User;
 use Tests\PromoDatabaseTestCase;
 
@@ -155,5 +156,26 @@ class BuildPromoFormDataActionTest extends PromoDatabaseTestCase
 
         $this->assertSame(2, $result->promoTypeId);
         $this->assertTrue($result->isDraft);
+    }
+
+    public function test_maps_simple_action_button_id(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+
+        /** @var PromoActionButton $button */
+        $button = PromoActionButton::factory()->create();
+
+        /** @var Promo $promo */
+        $promo = Promo::factory()->create([
+            'user_id' => $user->id,
+            'promo_type_id' => 1,
+            'type' => PromoTypeEnum::SIMPLE,
+            'simple_action_button_id' => $button->id,
+        ]);
+
+        $result = BuildPromoFormDataAction::run($promo);
+
+        $this->assertSame($button->id, $result->simpleActionButtonId);
     }
 }

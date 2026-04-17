@@ -7,13 +7,24 @@ namespace Tests\Feature\Promo;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Promo;
+use App\Models\PromoActionButton;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 use Tests\PromoDatabaseTestCase;
 
 class CreatePromoControllerTest extends PromoDatabaseTestCase
 {
+    private PromoActionButton $promoActionButton;
+
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->promoActionButton = PromoActionButton::factory()->create();
+    }
+
     public function test_guests_are_redirected_from_index(): void
     {
         $response = $this->get(route('promos.create'));
@@ -65,6 +76,7 @@ class CreatePromoControllerTest extends PromoDatabaseTestCase
                 ->has('socialNetworks')
                 ->has('navbarMenu')
                 ->has('sidebarMenu')
+                ->has('simpleActionButtons')
         );
     }
 
@@ -115,6 +127,7 @@ class CreatePromoControllerTest extends PromoDatabaseTestCase
             'name' => 'Test Promo',
             'description' => 'Test description',
             'extra_conditions' => 'Test conditions',
+            'simple_action_button_id' => $this->promoActionButton->id,
         ]);
 
         $promo->load(['categories', 'cities']);
@@ -177,6 +190,7 @@ class CreatePromoControllerTest extends PromoDatabaseTestCase
             'category_ids' => $categoryIds,
             'city_ids' => $cities->pluck('id')->toArray(),
             'discount' => ['amount' => 10, 'currency' => '%'],
+            'simple_action_button_id' => $this->promoActionButton->id,
             'agree_to_terms' => true,
         ];
     }

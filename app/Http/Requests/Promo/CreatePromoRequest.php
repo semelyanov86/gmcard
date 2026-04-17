@@ -78,7 +78,7 @@ class CreatePromoRequest extends FormRequest
                 Rule::exists('promo_action_buttons', 'id')->where(
                     fn ($query) => $query->where('is_active', true)
                 ),
-                ],
+            ],
         ];
     }
 

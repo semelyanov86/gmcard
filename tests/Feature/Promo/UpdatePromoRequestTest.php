@@ -7,15 +7,23 @@ namespace Tests\Feature\Promo;
 use App\Http\Requests\Promo\UpdatePromoRequest;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\PromoActionButton;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Validator;
-use Tests\TestCase;
+use Override;
+use Tests\PromoDatabaseTestCase;
 
-class UpdatePromoRequestTest extends TestCase
+class UpdatePromoRequestTest extends PromoDatabaseTestCase
 {
-    use RefreshDatabase;
+    private PromoActionButton $promoActionButton;
+
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->promoActionButton = PromoActionButton::factory()->create();
+    }
 
     public function test_does_not_require_agree_to_terms(): void
     {
@@ -94,6 +102,8 @@ class UpdatePromoRequestTest extends TestCase
             'duration_days' => 7,
             'category_ids' => $this->getCategoryIds($categories),
             'city_ids' => $cities->pluck('id')->toArray(),
+            'discount' => ['amount' => 10, 'currency' => '%'],
+            'simple_action_button_id' => $this->promoActionButton->id,
         ], $override);
     }
 

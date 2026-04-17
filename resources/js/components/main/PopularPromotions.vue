@@ -26,11 +26,7 @@ const loadMore = () => {
             <SanatoriumPromotionCard v-for="promo in featuredPromos" :key="promo.id" :promo="promo" />
         </div>
         <div v-if="hasMore" class="mt-16 flex items-center justify-center">
-            <button
-                class="popular-more-button flex items-center justify-center rounded-md text-center"
-                type="button"
-                @click="loadMore"
-            >
+            <button class="popular-more-button flex items-center justify-center rounded-md text-center" type="button" @click="loadMore">
                 Показать еще
                 <img src="/images/png/images/spiner.png" class="ml-4 h-[16px] w-[16px]" alt="loading" />
             </button>

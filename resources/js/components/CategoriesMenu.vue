@@ -116,8 +116,8 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
 
         <div v-show="activeMainCategory" class="drop_list absolute z-50 mt-3 flex w-full flex-col bg-white shadow-lg">
             <div class="category-yellow-bar" />
-            <div class="categories-menu-right flex gap-1 overflow-y-scroll bg-white categories-menu-right-padding">
-                <ul class="relative categories-menu-sublist w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
+            <div class="categories-menu-right categories-menu-right-padding flex gap-1 overflow-y-scroll bg-white">
+                <ul class="categories-menu-sublist relative w-1/4 shrink-0 overflow-y-scroll bg-white py-2 pr-[16px]">
                     <li
                         v-for="subCategory in activeMainCategory?.children || []"
                         :key="subCategory.id"
@@ -144,7 +144,7 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
 
                 <div class="rightSide flex-1 overflow-y-scroll px-10 py-5">
                     <div class="headerWrap mb-6 grid grid-cols-[1fr_20rem] items-center gap-4">
-                        <h1 class="justify-self-center w-full max-w-md flex items-center justify-start gap-2 text-left text-2xl font-bold text-black">
+                        <h1 class="flex w-full max-w-md items-center justify-start gap-2 justify-self-center text-left text-2xl font-bold text-black">
                             <span>
                                 {{ selectedSubCategory?.name || 'Выберите категорию' }}
                             </span>
@@ -164,7 +164,7 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                             </div>
                             <Link
                                 :href="route('help')"
-                                class="mt-2 block w-full px-4 py-2 text-center text-sm font-semibold text-brand-blue hover:underline"
+                                class="text-brand-blue mt-2 block w-full px-4 py-2 text-center text-sm font-semibold hover:underline"
                             >
                                 Нет нужной категории?
                             </Link>
