@@ -9,6 +9,7 @@ use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\CreatePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
+use App\Actions\PromoButton\GetPromoActionButtonsAction;
 use App\Data\CreatePromoData;
 use App\Enums\MenuType;
 use App\Http\Controllers\Controller;
@@ -46,6 +47,7 @@ class CreatePromoController extends Controller
             'user' => $user,
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'sidebarMenu' => GetMenuItemsAction::run(MenuType::PROMO_SIDEBAR),
+            'simpleActionButtons' => GetPromoActionButtonsAction::run(),
         ]);
     }
 

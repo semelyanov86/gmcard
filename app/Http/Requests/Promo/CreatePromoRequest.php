@@ -73,6 +73,12 @@ class CreatePromoRequest extends FormRequest
             'photos.*' => ['nullable', 'file', 'image', 'max:10240'],
             'agree_to_terms' => [Rule::requiredIf(fn () => ! $this->input('is_draft', false)), 'accepted'],
             'is_draft' => ['nullable', 'boolean'],
+            'simple_action_button_id' => [
+                'nullable', 'integer', 'required_if:promo_type_id,1',
+                Rule::exists('promo_action_buttons', 'id')->where(
+                    fn ($query) => $query->where('is_active', true)
+                ),
+                ],
         ];
     }
 

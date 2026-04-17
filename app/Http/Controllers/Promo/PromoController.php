@@ -10,6 +10,7 @@ use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\CompletePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Actions\Promo\UpdatePromoAction;
+use App\Actions\PromoButton\GetPromoActionButtonsAction;
 use App\Data\CreatePromoData;
 use App\Data\PromoFormData;
 use App\Enums\MenuType;
@@ -45,6 +46,7 @@ class PromoController extends Controller
             'navbarMenu' => GetMenuItemsAction::run(MenuType::NAVBAR),
             'sidebarMenu' => GetMenuItemsAction::run(MenuType::PROMO_SIDEBAR),
             'promo' => PromoFormData::fromPromo($promo),
+            'simpleActionButtons' => GetPromoActionButtonsAction::run(),
         ]);
     }
 
