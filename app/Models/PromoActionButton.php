@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
 
 class PromoActionButton extends Model
@@ -18,6 +19,14 @@ class PromoActionButton extends Model
         'is_active',
         'sort_order',
     ];
+
+    /**
+     * @return HasMany<Promo, $this>
+     */
+    public function promos(): HasMany
+    {
+        return $this->hasMany(Promo::class, 'simple_action_button_id');
+    }
 
     #[Override]
     protected function casts(): array
