@@ -306,7 +306,7 @@ class UpdatePromoActionTest extends PromoDatabaseTestCase
     /**
      * @param  Collection<int, Model>  $categories
      * @param  Collection<int, Model>  $cities
-     * @param  array{title?: string, description?: string, conditions?: string|null, durationDays?: int, isDraft?: bool, id?: int|null, photos?: array<int, string>|null, existingPhoto?: string|null}  $override
+     * @param  array{title?: string, description?: string, conditions?: string|null, durationDays?: int, isDraft?: bool, id?: int|null, photos?: array<int, string>|null, existingPhoto?: string|null, simpleActionButtonId?: int}  $override
      */
     private function createUpdateDto(?Promo $promo, User $user, Collection $categories, Collection $cities, array $override = []): CreatePromoData
     {

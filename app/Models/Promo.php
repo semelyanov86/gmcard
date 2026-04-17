@@ -37,6 +37,7 @@ use Override;
  * @property string|null $img
  * @property string|null $discount_amount
  * @property string|null $discount_currency
+ * @property-read PromoActionButton|null $simpleActionButton
  */
 class Promo extends Model
 {
@@ -178,6 +179,9 @@ class Promo extends Model
         return $this->hasMany(PromoPhoto::class)->orderBy('sort_order');
     }
 
+    /**
+     * @return BelongsTo<PromoActionButton, $this>
+     */
     public function simpleActionButton(): BelongsTo
     {
         return $this->belongsTo(PromoActionButton::class, 'simple_action_button_id');
