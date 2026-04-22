@@ -10,6 +10,9 @@ use App\Models\Promo;
 use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
 
+/**
+ * @method static Promo run(Promo $sourcePromo, int $userId)
+ */
 final readonly class DuplicatePromoAction
 {
     use AsAction;

@@ -7,8 +7,7 @@ import CopyIcon from '@/components/Promo/icons/CopyIcon.vue';
 import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
 import EditIcon from '@/components/Promo/icons/EditIcon.vue';
 import RaiseIcon from '@/components/Promo/icons/RaiseIcon.vue';
-import { Link } from '@inertiajs/vue3';
-import { useClipboard } from '@vueuse/core';
+import { Link, router } from '@inertiajs/vue3';
 
 interface Props {
     promoId: number;
@@ -32,15 +31,10 @@ const props = withDefaults(defineProps<Props>(), {
     showAdminMessage: false,
 });
 
-const { copy, copied } = useClipboard({
-    legacy: true,
-    copiedDuring: 2000,
-});
-
-function copyPromoLink(): void {
-    const promoUrl = route('promo.show', props.promoId);
-    const absolutePromoUrl = promoUrl.startsWith('http') ? promoUrl : `${window.location.origin}${promoUrl}`;
-    void copy(absolutePromoUrl);
+function duplicatePromo(): void {
+    router.post(route('promos.duplicate', props.promoId), {}, {
+        preserveScroll: true,
+    });
 }
 </script>
 
@@ -79,10 +73,10 @@ function copyPromoLink(): void {
         </Link>
         <Tooltip id="tooltip-edit" text="Редактировать" :show="props.showEdit" />
 
-        <button type="button" data-tooltip-target="tooltip-copy" data-tooltip-placement="top" class="relative" @click="copyPromoLink">
+        <button type="button" data-tooltip-target="tooltip-copy" data-tooltip-placement="top" class="relative" @click="duplicatePromo">
             <CopyIcon />
         </button>
-        <Tooltip id="tooltip-copy" :text="copied ? 'Ссылка скопирована' : 'Копировать ссылку'" :show="true" />
+        <Tooltip id="tooltip-copy" text="Сделать копию в черновики" :show="true" />
 
         <button
             v-if="props.showComplete"
