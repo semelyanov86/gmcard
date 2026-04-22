@@ -8,6 +8,7 @@ use App\Actions\Category\GetCategoriesAction;
 use App\Actions\City\GetCitiesAction;
 use App\Actions\Menu\GetMenuItemsAction;
 use App\Actions\Promo\CompletePromoAction;
+use App\Actions\Promo\DuplicatePromoAction;
 use App\Actions\Promo\GetPromoTypesAction;
 use App\Actions\Promo\UpdatePromoAction;
 use App\Actions\PromoButton\GetPromoActionButtonsAction;
@@ -78,6 +79,19 @@ class PromoController extends Controller
 
         return back()
             ->with('success', 'Акция удалена');
+    }
+
+    public function duplicate(Promo $promo): RedirectResponse
+    {
+        $this->authorizePromo($promo);
+
+        $userId = auth()->id();
+        abort_if($userId === null, 403);
+
+        $newPromo = DuplicatePromoAction::run($promo, $userId);
+
+        return to_route('promos.edit', $newPromo->id)
+            ->with('success', 'Копия акции создана в черновиках');
     }
 
     public function complete(Promo $promo): RedirectResponse
