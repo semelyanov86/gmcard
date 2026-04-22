@@ -35,7 +35,9 @@ function handleImageError(e: Event) {
 <template>
     <div>
         <div class="main_card promo-card relative mt-7 rounded-xl">
-            <img :src="coverUrl" class="w-full rounded-t-3xl bg-white" alt="Товар" @error="handleImageError" />
+            <div class="promo-card-image-wrap rounded-t-3xl bg-white">
+                <img :src="coverUrl" class="promo-card-image w-full rounded-t-3xl bg-white" alt="Товар" @error="handleImageError" />
+            </div>
             <div class="absolute -top-6 left-4 z-10" data-tooltip-target="tooltip-default" type="button">
                 <img v-if="promoBadgeIcon" class="promo-card-discount-badge" :src="promoBadgeIcon" :alt="props.promo.type || 'Скидка на товар'" />
             </div>
@@ -51,10 +53,10 @@ function handleImageError(e: Event) {
         </div>
         <div class="mt-5 flex items-center justify-between">
             <span class="text-icon text-sm">{{ props.promo.created_at }}</span>
-            <div class="flex items-center gap-1">
+            <!-- <div class="flex items-center gap-1">
                 <LikeIcon />
                 <span class="text-icon text-sm">{{ props.promo.likes_count || 0 }}</span>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -67,6 +69,16 @@ function handleImageError(e: Event) {
 .promo-card-discount-badge {
     height: 52px;
     width: 77px;
+}
+
+.promo-card-image-wrap {
+    height: 260px;
+    overflow: hidden;
+}
+
+.promo-card-image {
+    height: 100%;
+    object-fit: cover;
 }
 
 .promo-card-content {
@@ -90,6 +102,10 @@ function handleImageError(e: Event) {
 @media (min-width: 1024px) {
     .promo-card {
         width: 232px;
+    }
+
+    .promo-card-image-wrap {
+        height: 220px;
     }
 
     .promo-card-content {
