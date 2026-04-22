@@ -48,7 +48,7 @@ class BuildPromoFormDataActionTest extends PromoDatabaseTestCase
         $this->assertSame('TEST123', $result->promoCode);
         $this->assertSame('test.jpg', $result->existingPhoto);
         $this->assertSame('https://example.com/video', $result->youtubeUrl);
-        $this->assertSame(['instagram' => 'https://instagram.com/test'], $result->socialLinks);
+        $this->assertSame(['instagram' => ['https://instagram.com/test']], $result->socialLinks);
         $this->assertTrue($result->showInBanner);
         $this->assertTrue($result->freeDelivery);
         $this->assertFalse($result->isDraft);
@@ -177,5 +177,27 @@ class BuildPromoFormDataActionTest extends PromoDatabaseTestCase
         $result = BuildPromoFormDataAction::run($promo);
 
         $this->assertSame($button->id, $result->simpleActionButtonId);
+    }
+
+    public function test_normalizes_social_links_to_string_lists(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+
+        /** @var Promo $promo */
+        $promo = Promo::factory()->create([
+            'user_id' => $user->id,
+            'smm_links' => [
+                'instagram' => 'https://instagram.com/test',
+                'vk' => ['https://vk.com/a', 'https://vk.com/b'],
+            ],
+        ]);
+
+        $result = BuildPromoFormDataAction::run($promo);
+
+        $this->assertSame([
+            'instagram' => ['https://instagram.com/test'],
+            'vk' => ['https://vk.com/a', 'https://vk.com/b'],
+        ], $result->socialLinks);
     }
 }
