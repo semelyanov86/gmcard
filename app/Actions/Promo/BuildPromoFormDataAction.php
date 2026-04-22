@@ -162,7 +162,6 @@ final readonly class BuildPromoFormDataAction
     }
 
     /**
-     * @param  mixed  $value
      * @return array<string, list<string>>
      */
     private function normalizeSocialLinks(mixed $value): array
@@ -180,15 +179,16 @@ final readonly class BuildPromoFormDataAction
             }
 
             if (is_string($links)) {
-                $trimmed = trim($links);
+                $trimmed = mb_trim($links);
                 $normalized[$network] = $trimmed !== '' ? [$trimmed] : [];
+
                 continue;
             }
 
             if (is_array($links)) {
                 $normalized[$network] = array_values(array_filter(
                     array_map(
-                        static fn (mixed $link): string => is_string($link) ? trim($link) : '',
+                        static fn (mixed $link): string => is_string($link) ? mb_trim($link) : '',
                         $links
                     ),
                     static fn (string $link): bool => $link !== ''

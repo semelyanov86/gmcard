@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 /**
- * @method static Promo run(Promo $sourcePromo, int $userId)
+ * @method static Promo run(Promo $sourcePromo, positive-int $userId)
  */
 final readonly class DuplicatePromoAction
 {
     use AsAction;
 
+    /**
+     * @param  positive-int  $userId
+     */
     public function handle(Promo $sourcePromo, int $userId): Promo
     {
         return DB::transaction(function () use ($sourcePromo, $userId): Promo {

@@ -85,8 +85,11 @@ class PromoController extends Controller
     {
         $this->authorizePromo($promo);
 
-        $userId = auth()->id();
-        abort_if($userId === null, 403);
+        $user = auth()->user();
+        assert($user !== null);
+
+        $userId = (int) $user->id;
+        abort_if($userId <= 0, 403);
 
         $newPromo = DuplicatePromoAction::run($promo, $userId);
 

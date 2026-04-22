@@ -32,9 +32,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 function duplicatePromo(): void {
-    router.post(route('promos.duplicate', props.promoId), {}, {
-        preserveScroll: true,
-    });
+    router.post(
+        route('promos.duplicate', props.promoId),
+        {},
+        {
+            preserveScroll: true,
+        },
+    );
 }
 </script>
 
