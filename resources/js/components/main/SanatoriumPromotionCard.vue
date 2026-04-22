@@ -23,12 +23,12 @@ const imageSrc = computed(() => {
             <div class="absolute -top-6 left-4 z-10">
                 <PromoTypeIcon :icon="props.promo.promoTypeIcon ?? null" />
             </div>
-            <div class="down_block sanatorium-content flex flex-col justify-between rounded-b-3xl bg-white text-[#000000]">
-                <h3 class="line-clamp-2 px-6 py-4">
+            <div class="down_block sanatorium-content rounded-b-3xl bg-white text-[#000000]">
+                <h3 class="sanatorium-description line-clamp-2 px-6 py-4">
                     {{ props.promo.name ?? '' }}
                 </h3>
-                <div class="h-px w-full bg-black opacity-10"></div>
-                <div class="flex items-center justify-between px-6 py-4">
+                <div class="sanatorium-divider h-px w-full bg-black opacity-10"></div>
+                <div class="sanatorium-footer flex items-center justify-between px-6 py-4">
                     <span class="sanatorium-type font-bold">{{ props.promo.type ?? '' }}</span>
                     <PromoTypeIcon :icon="props.promo.promoTypeIcon ?? null" sizeClass="sanatorium-icon-small" />
                 </div>
@@ -54,13 +54,29 @@ const imageSrc = computed(() => {
 
 .sanatorium-content {
     height: 136px;
+    display: grid;
+    grid-template-rows: 79px 1px 56px;
     font-size: 15px;
 }
 
 @media (min-width: 1024px) {
     .sanatorium-content {
         height: 150px;
+        grid-template-rows: 93px 1px 56px;
     }
+}
+
+.sanatorium-description {
+    margin: 0;
+    overflow: hidden;
+}
+
+.sanatorium-divider {
+    height: 1px;
+}
+
+.sanatorium-footer {
+    height: 56px;
 }
 
 .sanatorium-type {
