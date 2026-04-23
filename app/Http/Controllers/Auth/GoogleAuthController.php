@@ -9,10 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendUserToVtigerJob;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class GoogleAuthController extends Controller
 {
@@ -24,23 +24,27 @@ class GoogleAuthController extends Controller
     public function callback(): RedirectResponse
     {
         $googleUser = Socialite::driver('google')->user();
+        $googleId = $googleUser->getId();
+        $email = $googleUser->getEmail();
+        $name = $googleUser->getName() ?? 'Google User';
+
         $isNewUser = false;
 
         $user = User::query()
-            ->where('google_id', $googleUser->id)
-            ->orWhere('email', $googleUser->email)
+            ->where('google_id', $googleId)
+            ->orWhere('email', $email)
             ->first();
 
         if (! $user) {
             $user = User::create([
-                'name' => $googleUser->name ?: 'Google User',
-                'email' => $googleUser->email,
-                'google_id' => $googleUser->id,
+                'name' => $name,
+                'email' => $email,
+                'google_id' => $googleId,
                 'password' => Str::password(32),
             ]);
             $isNewUser = true;
         } elseif (! $user->google_id) {
-            $user->update(['google_id' => $googleUser->id]);
+            $user->update(['google_id' => $googleId]);
         }
 
         if ($isNewUser) {
