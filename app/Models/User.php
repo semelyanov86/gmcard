@@ -58,6 +58,7 @@ class User extends Authenticatable implements FilamentUser
         'code',
         'crmid',
         'tariff_plan_id',
+        'google_id',
     ];
 
     /**
@@ -76,7 +77,6 @@ class User extends Authenticatable implements FilamentUser
      * @var list<string>
      */
     protected $guarded = [
-        'password',
         'balance',
         'bonus_balance',
         'virtual_balance',
