@@ -21,7 +21,7 @@ final class PromoFormData extends Data
      * @param  array<int, int>  $cityIds
      * @param  array<int, array<string, mixed>>  $addresses
      * @param  array<string, mixed>  $schedule
-     * @param  array<string, string>  $socialLinks
+     * @param  array<string, list<string>>|null  $socialLinks
      * @param  list<string>  $existingPhotoPaths
      * @param  array<int, UploadedFile|string>  $photos
      */
@@ -37,7 +37,7 @@ final class PromoFormData extends Data
         public array $cityIds,
         public array $addresses,
         public array $schedule,
-        public array $socialLinks,
+        public ?array $socialLinks,
         public ?string $promoCode = null,
         public ?int $minimumOrderAmount = null,
         public bool $freeDelivery = false,

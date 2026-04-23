@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function (): void {
         Route::get('/create', [CreatePromoController::class, 'index'])->name('promos.create');
         Route::get('/photo-help', [CreatePromoController::class, 'photoHelp'])->name('promos.photo-help');
         Route::post('/', [CreatePromoController::class, 'store'])->name('promos.store');
+        Route::post('/{promo}/duplicate', [PromoController::class, 'duplicate'])->name('promos.duplicate');
         Route::delete('/{promo}', [PromoController::class, 'destroy'])->name('promos.destroy');
         Route::get('/{promo}/edit', [PromoController::class, 'edit'])->name('promos.edit');
         Route::put('/{promo}', [PromoController::class, 'update'])->name('promos.update');

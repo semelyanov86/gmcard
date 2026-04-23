@@ -63,7 +63,7 @@ final readonly class BuildPromoFormDataAction
             cityIds: array_values(array_map(fn (int $id): int => $id, $cityIdsRaw)),
             addresses: $this->transformAddresses($promo->addresses),
             schedule: $this->buildSchedule($promo),
-            socialLinks: $promo->smm_links ?? [],
+            socialLinks: $this->normalizeSocialLinks($promo->smm_links),
             promoCode: $promo->code,
             minimumOrderAmount: $this->moneyToInt($promo->sales_order_from),
             freeDelivery: (bool) $promo->free_delivery,
@@ -159,6 +159,44 @@ final readonly class BuildPromoFormDataAction
         }
 
         return (int) round($money->toFloat());
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    private function normalizeSocialLinks(mixed $value): array
+    {
+        if (! is_array($value)) {
+            return [];
+        }
+
+        /** @var array<string, list<string>> $normalized */
+        $normalized = [];
+
+        foreach ($value as $network => $links) {
+            if (! is_string($network)) {
+                continue;
+            }
+
+            if (is_string($links)) {
+                $trimmed = mb_trim($links);
+                $normalized[$network] = $trimmed !== '' ? [$trimmed] : [];
+
+                continue;
+            }
+
+            if (is_array($links)) {
+                $normalized[$network] = array_values(array_filter(
+                    array_map(
+                        static fn (mixed $link): string => is_string($link) ? mb_trim($link) : '',
+                        $links
+                    ),
+                    static fn (string $link): bool => $link !== ''
+                ));
+            }
+        }
+
+        return $normalized;
     }
 
     private function resolveDurationDays(Promo $promo): int

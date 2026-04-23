@@ -3,10 +3,11 @@ import Tooltip from '@/components/Profile/Tooltip.vue';
 import AdminMessageIcon from '@/components/Promo/icons/AdminMessageIcon.vue';
 import ApproveIcon from '@/components/Promo/icons/ApproveIcon.vue';
 import CompleteIcon from '@/components/Promo/icons/CompleteIcon.vue';
+import CopyIcon from '@/components/Promo/icons/CopyIcon.vue';
 import DeleteIcon from '@/components/Promo/icons/DeleteIcon.vue';
 import EditIcon from '@/components/Promo/icons/EditIcon.vue';
 import RaiseIcon from '@/components/Promo/icons/RaiseIcon.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 interface Props {
     promoId: number;
@@ -29,6 +30,16 @@ const props = withDefaults(defineProps<Props>(), {
     showApprove: false,
     showAdminMessage: false,
 });
+
+function duplicatePromo(): void {
+    router.post(
+        route('promos.duplicate', props.promoId),
+        {},
+        {
+            preserveScroll: true,
+        },
+    );
+}
 </script>
 
 <template>
@@ -65,6 +76,11 @@ const props = withDefaults(defineProps<Props>(), {
             <EditIcon />
         </Link>
         <Tooltip id="tooltip-edit" text="Редактировать" :show="props.showEdit" />
+
+        <button type="button" data-tooltip-target="tooltip-copy" data-tooltip-placement="top" class="relative" @click="duplicatePromo">
+            <CopyIcon />
+        </button>
+        <Tooltip id="tooltip-copy" text="Сделать копию в черновики" :show="true" />
 
         <button
             v-if="props.showComplete"
