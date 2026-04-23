@@ -37,7 +37,7 @@ const submitRegister = () => {
             <h4 class="text-lg font-bold">Зарегистрироваться через</h4>
             <ul class="mt-5 flex items-center gap-8">
                 <li>
-                    <a href="" class="group"
+                    <a :href="route('auth.google.redirect')" class="group"
                         ><img
                             src="/images/svg/social/google_c.svg"
                             alt="Через google"
