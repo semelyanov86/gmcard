@@ -11,7 +11,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Str;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-
 /**
  * @method static User run(string $googleId, string $email, string $name)
  */

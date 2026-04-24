@@ -25,7 +25,7 @@ final class GoogleAuthController extends Controller
         $name = $googleUser->getName() ?? 'Google User';
 
         if ($googleId === '' || $email === null || $email === '') {
-            return redirect()->route('register');
+            return to_route('register');
         }
 
         $user = ResolveGoogleUserAction::run($googleId, $email, $name);
