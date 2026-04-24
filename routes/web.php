@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Category\CategoryPromosController;
 use App\Http\Controllers\Landing\BusinessLandingController;
 use App\Http\Controllers\Landing\UserLandingController;
@@ -31,6 +32,11 @@ Route::prefix('tariff')->group(function (): void {
 });
 
 Route::post('/submit-form', [FormSubmitController::class, 'submit']);
+
+Route::middleware(['guest'])->group(function (): void {
+    Route::get('auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
+    Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
+});
 
 Route::get('dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth'])->name('dashboard');
 

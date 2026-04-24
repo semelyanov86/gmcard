@@ -20,6 +20,7 @@
         "laravel/framework": "^12.18",
         "laravel/octane": "^2.9.3",
         "laravel/sanctum": "^4.2",
+        "laravel/socialite": "^5.26",
         "laravel/tinker": "^2.10.1",
         "lorisleiva/laravel-actions": "^2.9",
         "moneyphp/money": "^4.7",

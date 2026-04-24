@@ -83,7 +83,7 @@ onUnmounted(() => {
                 <div class="mt-4 flex min-w-0 items-center gap-2">
                     <PromoTypeIcon v-if="promoTypeIcon" :icon="promoTypeIcon" sizeClass="w-12 h-12" alt="discount" />
                     <img v-else src="/images/png/images/discount.png" class="w-12" alt="discount" />
-                    <span class="w-[calc(100%-3.5rem)] min-w-0 break-all text-3xl leading-tight font-bold">
+                    <span class="w-[calc(100%-3.5rem)] min-w-0 text-3xl leading-tight font-bold break-all">
                         {{ promoName || 'Акция' }}
                     </span>
                 </div>
