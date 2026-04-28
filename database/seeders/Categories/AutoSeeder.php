@@ -12,6 +12,9 @@ class AutoSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->removeRootCategory('Авто');
+        $this->removeRootCategory('Автотовары');
+
         $this->clearSectionChildren('Авто- и мототовары', 'Автомобили');
         $this->clearSectionChildren('Авто- и мототовары', 'Мототехника');
         $this->clearSectionChildren('Авто- и мототовары', 'Персональный микротранспорт');
@@ -238,4 +241,19 @@ class AutoSeeder extends Seeder
 
         $section->delete();
     }
+
+    private function removeRootCategory(string $rootName): void
+    {
+        $root = Category::query()
+            ->where('name', $rootName)
+            ->whereNull('parent_id')
+            ->first();
+
+        if (! $root) {
+            return;
+        }
+
+        $root->delete();
+    }
+
 }
