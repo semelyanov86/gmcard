@@ -255,5 +255,4 @@ class AutoSeeder extends Seeder
 
         $root->delete();
     }
-
 }
