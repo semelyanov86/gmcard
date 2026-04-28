@@ -210,11 +210,15 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
 
 .categories-menu-right {
     z-index: 10;
+    max-height: 70vh;
+    overflow: hidden;
 }
 
 .categories-menu-sublist {
     z-index: 10;
     margin-top: 10px;
+    max-height: calc(70vh - 10px);
+    overflow-y: auto;
 }
 
 .categories-menu-main-link {
