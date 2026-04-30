@@ -58,7 +58,6 @@ const subcategoryIconSlugByIndex: Record<number, string> = {
     12: 'plane',
 };
 
-
 function subcategoryIconSrc(category: CategoryModel): string | null {
     if (category.icon) {
         return category.icon;
