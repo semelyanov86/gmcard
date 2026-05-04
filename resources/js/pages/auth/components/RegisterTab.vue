@@ -63,9 +63,9 @@ const submitRegister = () => {
                 <li>
                     <a href="" class="group"
                         ><img
-                            src="/images/svg/social/id.svg"
-                            alt="Через ID"
-                            class="h-10 w-10 opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                            src="/images/svg/social/logo_yandex.png"
+                            alt="Через Яндекс"
+                            class="h-12 w-12 object-contain opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                     /></a>
                 </li>
             </ul>
