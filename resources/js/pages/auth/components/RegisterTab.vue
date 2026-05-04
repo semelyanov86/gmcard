@@ -41,7 +41,7 @@ const submitRegister = () => {
                         ><img
                             src="/images/svg/social/google_c.svg"
                             alt="Через google"
-                            class="h-10 w-10 grayscale transition-all duration-300 hover:grayscale-0"
+                            class="h-10 w-10 opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                     /></a>
                 </li>
                 <li>
@@ -49,7 +49,7 @@ const submitRegister = () => {
                         ><img
                             src="/images/svg/social/tg_c.svg"
                             alt="Через telegram"
-                            class="h-10 w-10 grayscale transition-all duration-300 hover:grayscale-0"
+                            class="h-10 w-10 opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                     /></a>
                 </li>
                 <li>
@@ -57,15 +57,15 @@ const submitRegister = () => {
                         ><img
                             src="/images/svg/social/vk_c.svg"
                             alt="Через vk"
-                            class="h-10 w-10 grayscale transition-all duration-300 hover:grayscale-0"
+                            class="h-10 w-10 opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                     /></a>
                 </li>
                 <li>
                     <a href="" class="group"
                         ><img
-                            src="/images/svg/social/ms_c.svg"
-                            alt="Через microsoft"
-                            class="h-10 w-10 grayscale transition-all duration-300 hover:grayscale-0"
+                            src="/images/svg/social/id.svg"
+                            alt="Через ID"
+                            class="h-10 w-10 opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                     /></a>
                 </li>
             </ul>
