@@ -58,6 +58,27 @@ const subcategoryIconSlugByIndex: Record<number, string> = {
     12: 'plane',
 };
 
+function mainCategoryVisualIndex(category: CategoryModel, fallbackIndex: number): number {
+    const normalizeCategoryName = (name: string): string => name.toLowerCase().replace(/\s+/g, ' ').trim();
+
+    const rootIconIndexByName: Record<string, number> = {
+        'товары для детей': 1,
+        'мода и стиль': 2,
+        'электроника и бытовая техника': 3,
+        'дом, ремонт и сад': 4,
+        'рестораны, кафе и доставка': 5,
+        'цветы и подарки': 6,
+        'красота, здоровье, гигиена': 7,
+        'спорт и активный образ жизни': 8,
+        'авто- и мототовары': 9,
+        'услуги, образование и курсы': 10,
+        'зоотовары': 11,
+        'досуг, культура и путешествия': 12,
+    };
+
+    return rootIconIndexByName[normalizeCategoryName(category.name)] ?? category.icon_index ?? fallbackIndex;
+}
+
 function subcategoryIconSrc(category: CategoryModel): string | null {
     if (category.icon) {
         return category.icon;
@@ -83,14 +104,14 @@ function subcategoryIconSrc(category: CategoryModel): string | null {
                 :key="category.id"
                 :href="route('categories.promos', category.id)"
                 :class="[
-                    `mains${category.icon_index ?? index + 1}`,
+                    `mains${mainCategoryVisualIndex(category, index + 1)}`,
                     'categories-menu-main-link',
                     { 'is-active-main': activeMainCategory?.id === category.id },
                 ]"
                 @mouseenter="handleMainCategoryHover(category)"
             >
                 <div class="relative flex w-full flex-col items-center justify-center">
-                    <div :class="`image-${category.icon_index ?? index + 1}`" class="h-13 w-13 rounded-lg px-4 py-3" />
+                    <div :class="`image-${mainCategoryVisualIndex(category, index + 1)}`" class="h-13 w-13 rounded-lg px-4 py-3" />
                     <p
                         class="mt-2 line-clamp-3 w-full px-1 text-center font-bold break-words text-white lg:text-sm"
                         style="
