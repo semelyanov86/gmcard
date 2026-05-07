@@ -1,38 +1,29 @@
 <?php
-
 declare(strict_types=1);
-
 namespace App\Http\Controllers\Auth;
-
-use App\Actions\Auth\ResolveGoogleUserAction;
+use App\Actions\Auth\ResolveYandexUserAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
 final class YandexAuthController extends Controller
 {
     public function redirect(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('yandex')->redirect();
     }
-
     public function callback(): RedirectResponse
     {
-        $googleUser = Socialite::driver('google')->user();
-        $googleId = $googleUser->getId();
-        $email = $googleUser->getEmail();
-        $name = $googleUser->getName() ?? 'Google User';
-
-        if ($googleId === '' || $email === null || $email === '') {
+        $yandexUser = Socialite::driver('yandex')->stateless()->user();
+        $yandexId = $yandexUser->getId();
+        $email = $yandexUser->getEmail();
+        $name = $yandexUser->getName() ?? 'Yandex User';
+        if ($yandexId === '' || $email === null || $email === '') {
             return to_route('register');
         }
-
-        $user = ResolveGoogleUserAction::run($googleId, $email, $name);
-
+        $user = ResolveYandexUserAction::run($yandexId, $email, $name);
         Auth::login($user);
         request()->session()->regenerate();
-
         return redirect()->intended(route('dashboard', absolute: false));
     }
 }
