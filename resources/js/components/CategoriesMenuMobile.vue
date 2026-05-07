@@ -25,7 +25,7 @@ function mainCategoryVisualIndex(category: CategoryModel, fallbackIndex: number)
         'спорт и активный образ жизни': 8,
         'авто- и мототовары': 9,
         'услуги, образование и курсы': 10,
-        'зоотовары': 11,
+        зоотовары: 11,
         'досуг, культура и путешествия': 12,
     };
 

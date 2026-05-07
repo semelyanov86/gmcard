@@ -12,7 +12,7 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         SocialiteWasCalled::class => [
-            YandexExtendSocialite::class.'@handle',
+            YandexExtendSocialite::class . '@handle',
         ],
     ];
 }
