@@ -61,7 +61,7 @@ const submitRegister = () => {
                     /></a>
                 </li>
                 <li>
-                    <a href="" class="group"
+                    <a :href="route('auth.yandex.redirect')" class="group"
                         ><img
                             src="/images/svg/social/logo_yandex.png"
                             alt="Через Яндекс"
