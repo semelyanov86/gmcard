@@ -60,6 +60,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'crmid',
         'tariff_plan_id',
         'google_id',
+        'yandex_id',
     ];
 
     /**
